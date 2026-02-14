@@ -107,7 +107,7 @@
   /* Layout */
   --sidebar-width: 250px;
   --toc-width: 250px;
-  --content-max-width: 880px;
+  --content-max-width: 920px;
   --header-height: 64px;
 
   /* Spacing (8px grid) */
@@ -460,7 +460,7 @@ a.sidebar-link-active:hover {
   flex: 1;
   min-width: 0;
   max-width: var(--content-max-width);
-  padding: var(--space-8) var(--space-6) var(--space-8) var(--space-12);
+  padding: var(--space-6) 0 var(--space-8) var(--space-12);
 }
 
 .layout-content article {
