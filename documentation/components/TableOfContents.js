@@ -5,6 +5,7 @@ export function TableOfContents() {
   const [headings, setHeadings] = useState([]);
   const [activeId, setActiveId] = useState("");
   const observerRef = useRef(null);
+  const clickedRef = useRef(false);
   const router = useRouter();
   const currentPath = router.asPath.split("#")[0].split("?")[0];
 
@@ -44,6 +45,9 @@ export function TableOfContents() {
     }
 
     const callback = (entries) => {
+      // Skip observer updates while a click-scroll is in progress
+      if (clickedRef.current) return;
+
       const visibleEntries = entries.filter((e) => e.isIntersecting);
       if (visibleEntries.length > 0) {
         setActiveId(visibleEntries[0].target.id);
@@ -85,9 +89,15 @@ export function TableOfContents() {
                 e.preventDefault();
                 const target = document.getElementById(id);
                 if (target) {
-                  target.scrollIntoView({ behavior: "smooth", block: "start" });
+                  // Suppress observer during scroll animation
+                  clickedRef.current = true;
                   setActiveId(id);
+                  target.scrollIntoView({ behavior: "smooth", block: "start" });
                   history.pushState(null, "", `#${id}`);
+                  // Re-enable observer after scroll settles
+                  setTimeout(() => {
+                    clickedRef.current = false;
+                  }, 800);
                 }
               }}
             >
