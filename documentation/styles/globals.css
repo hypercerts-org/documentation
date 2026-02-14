@@ -226,7 +226,7 @@ img {
 
 /* ===== Breadcrumbs ===== */
 .breadcrumbs {
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-6);
 }
 
 .breadcrumbs-list {
@@ -578,7 +578,7 @@ a.sidebar-link-active:hover {
   color: var(--color-text-title);
   line-height: 1.25;
   margin-top: 0;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-6);
 }
 
 .layout-content h2 {
@@ -586,8 +586,8 @@ a.sidebar-link-active:hover {
   font-weight: 700;
   color: var(--color-text-heading);
   line-height: 32px;
-  margin-top: var(--space-8);
-  margin-bottom: var(--space-3);
+  margin-top: var(--space-12);
+  margin-bottom: var(--space-4);
 }
 
 .layout-content h3 {
@@ -617,7 +617,7 @@ a.sidebar-link-active:hover {
 
 /* Tighter coupling between H1 and first H2 */
 .layout-content h1 + h2 {
-  margin-top: var(--space-6);
+  margin-top: var(--space-8);
 }
 
 /* Heading anchor links */
@@ -647,7 +647,7 @@ a.sidebar-link-active:hover {
   opacity: 1;
 }
 .layout-content p {
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
 }
 
 .layout-content article > p:last-child {
@@ -657,12 +657,12 @@ a.sidebar-link-active:hover {
 /* Lists */
 .layout-content ul,
 .layout-content ol {
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
   padding-left: var(--space-6);
 }
 
 .layout-content li {
-  margin: 6px 0;
+  margin: 8px 0;
   line-height: 1.65;
 }
 
