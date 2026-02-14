@@ -3,6 +3,7 @@ export const navigation = [
   {
     section: 'Getting Started',
     children: [
+      { title: 'Quickstart', path: '/getting-started/quickstart' },
       { title: "Why We're Building Hypercerts", path: '/getting-started/why-were-building-hypercerts' },
       { title: 'What is Certified?', path: '/getting-started/what-is-certified' },
       { title: 'Introduction to Impact Claims', path: '/getting-started/introduction-to-impact-claims' },
