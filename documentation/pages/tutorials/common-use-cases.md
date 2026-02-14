@@ -5,22 +5,22 @@ description: See how hypercerts work for different types of contributions.
 
 # Common Use Cases
 
-This page shows how to create hypercerts for four common scenarios. Each example uses the real SDK API and shows what additional records you'd attach.
+Hypercerts work for any kind of impact work. This page shows four common scenarios with real SDK code.
 
 ## Open-source software maintenance
 
-The NumPy team maintains the library throughout 2025. They want to create a hypercert covering their maintenance work, including bug fixes, documentation updates, and community support.
+A team maintains a widely-used library. They create a hypercert covering a year of maintenance — bug fixes, documentation updates, and community support.
 
 ```typescript
 import { createATProtoSDK } from "@hypercerts-org/sdk-core";
 
 const sdk = createATProtoSDK({ /* oauth config */ });
-const session = await sdk.restoreSession("did:plc:numpy-team");
+const session = await sdk.restoreSession("did:plc:abc123");
 const repo = sdk.getRepository(session);
 
 const result = await repo.hypercerts.create({
-  title: "NumPy library maintenance, 2025",
-  shortDescription: "Ongoing maintenance of the NumPy scientific computing library",
+  title: "Library maintenance, 2025",
+  shortDescription: "Ongoing maintenance of an open-source library",
   workScope: {
     allOf: ["Software Development", "Open Source"],
   },
@@ -35,22 +35,22 @@ const result = await repo.hypercerts.create({
 });
 ```
 
-After creating the hypercert, the team would attach contribution records identifying individual maintainers with roles (core developer, documentation lead, community manager). They'd add evidence records linking to the GitHub repository, release notes, and commit history. Research institutions or companies that depend on NumPy might fund this work retroactively.
+After creating the hypercert, the team attaches contribution records for individual maintainers with roles (core developer, documentation lead, community manager). They add evidence linking to the repository, release notes, and commit history. Organizations that depend on the library can fund this work retroactively.
 
 ## Regenerative land stewardship
 
-A conservation organization restores 50 hectares of rainforest in Costa Rica from 2020 to 2025. They want to document their stewardship work with precise location data.
+A conservation group restores degraded forest over several years. They document the work with location data and measurements.
 
 ```typescript
 const locationRef = await repo.locations.create({
-  latitude: 10.4183,
-  longitude: -84.0989,
+  latitude: 10.42,
+  longitude: -84.10,
   radius: 500, // meters
   createdAt: new Date().toISOString(),
 });
 
 const result = await repo.hypercerts.create({
-  title: "Rainforest restoration, Monteverde region",
+  title: "Forest restoration project, 2020–2025",
   shortDescription: "Reforestation and biodiversity recovery in degraded tropical forest",
   workScope: {
     allOf: ["Ecosystem Restoration", "Biodiversity Conservation"],
@@ -67,16 +67,16 @@ const result = await repo.hypercerts.create({
 });
 ```
 
-The organization would attach measurement records tracking hectares restored, native species planted, and carbon sequestration estimates. Evidence records would include satellite imagery, biodiversity surveys, and field reports. Climate funders or impact investors focused on nature-based solutions might support this work.
+The group attaches measurement records tracking hectares restored, native species planted, and carbon sequestration estimates. Evidence includes satellite imagery, biodiversity surveys, and field reports. Climate funders or impact investors can review the full record before deciding to support the next phase.
 
 ## Scientific research
 
-A research team publishes a breakthrough paper on mRNA delivery mechanisms. They want to create a hypercert documenting the multi-year research effort with clear contributor roles.
+A research team completes a multi-year study and wants to document the effort with clear contributor roles.
 
 ```typescript
 const result = await repo.hypercerts.create({
-  title: "mRNA delivery mechanism research, 2022-2024",
-  shortDescription: "Novel lipid nanoparticle design for improved mRNA therapeutic delivery",
+  title: "Drug delivery mechanism research, 2022–2024",
+  shortDescription: "Novel approaches to improving therapeutic delivery",
   workScope: {
     allOf: ["Biomedical Research", "Drug Delivery"],
   },
@@ -91,18 +91,18 @@ const result = await repo.hypercerts.create({
 });
 ```
 
-The team would create contribution records for each researcher, specifying roles like Principal Investigator, Postdoctoral Researcher, and Graduate Student. Evidence records would link to the published paper (via DOI), lab notebooks, and experimental protocols. Evaluation records might capture peer review outcomes or citation metrics. Pharmaceutical companies or research foundations interested in therapeutic development might fund this work.
+The team creates contribution records for each researcher — principal investigator, postdoctoral researchers, graduate students. Evidence links to the published paper (via DOI), lab notebooks, and experimental protocols. Evaluation records capture peer review outcomes. Research foundations or industry partners interested in the field can fund the work.
 
 ## Community event organization
 
-A developer community runs monthly coding workshops throughout 2025, teaching web development to underrepresented groups. They want to document their educational impact.
+A group runs regular workshops teaching practical skills to underrepresented communities. They want to document their educational impact.
 
 ```typescript
 const result = await repo.hypercerts.create({
-  title: "Monthly web development workshops, 2025",
-  shortDescription: "Free coding workshops for underrepresented groups in tech",
+  title: "Community workshops, 2025",
+  shortDescription: "Free skill-building workshops for underrepresented groups",
   workScope: {
-    allOf: ["Education", "Community Building", "Web Development"],
+    allOf: ["Education", "Community Building"],
   },
   startDate: "2025-01-01T00:00:00Z",
   endDate: "2025-12-31T23:59:59Z",
@@ -115,4 +115,4 @@ const result = await repo.hypercerts.create({
 });
 ```
 
-The organizers would attach measurement records tracking total attendees, completion rates, and post-workshop employment outcomes. Contribution records would identify instructors, venue hosts, and curriculum developers. Evidence records might include workshop materials, participant testimonials, and photos from events. Tech companies with diversity initiatives or local government education programs might fund this work.
+The organizers attach measurement records tracking total attendees, completion rates, and outcomes. Contribution records identify instructors, venue hosts, and curriculum developers. Evidence includes workshop materials and participant feedback. Organizations with community investment programs can review the record and decide to fund future sessions.
