@@ -1,10 +1,9 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/router";
 
 export function TableOfContents() {
   const [headings, setHeadings] = useState([]);
   const [activeId, setActiveId] = useState("");
-  const observerRef = useRef(null);
   const clickedRef = useRef(false);
   const router = useRouter();
   const currentPath = router.asPath.split("#")[0].split("?")[0];
@@ -36,41 +35,51 @@ export function TableOfContents() {
     setActiveId("");
   }, [currentPath]);
 
-  // Scroll spy using IntersectionObserver
+  // Scroll spy using scroll position
+  const updateActiveHeading = useCallback(() => {
+    if (clickedRef.current || headings.length === 0) return;
+
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const docHeight = document.documentElement.scrollHeight;
+    const offset = 100; // header height + buffer
+
+    // If scrolled to the bottom, activate the last heading
+    if (scrollY + windowHeight >= docHeight - 10) {
+      setActiveId(headings[headings.length - 1].id);
+      return;
+    }
+
+    // Find the last heading that has scrolled past the offset
+    let current = "";
+    for (const { id } of headings) {
+      const el = document.getElementById(id);
+      if (el) {
+        const top = el.getBoundingClientRect().top;
+        if (top <= offset) {
+          current = id;
+        } else {
+          break;
+        }
+      }
+    }
+
+    if (current) {
+      setActiveId(current);
+    }
+  }, [headings]);
+
   useEffect(() => {
     if (headings.length === 0) return;
 
-    if (observerRef.current) {
-      observerRef.current.disconnect();
-    }
+    // Run once on mount to set initial active heading
+    updateActiveHeading();
 
-    const callback = (entries) => {
-      // Skip observer updates while a click-scroll is in progress
-      if (clickedRef.current) return;
-
-      const visibleEntries = entries.filter((e) => e.isIntersecting);
-      if (visibleEntries.length > 0) {
-        setActiveId(visibleEntries[0].target.id);
-      }
-    };
-
-    observerRef.current = new IntersectionObserver(callback, {
-      rootMargin: "-80px 0px -60% 0px",
-      threshold: 0,
-    });
-
-    headings.forEach(({ id }) => {
-      const el = document.getElementById(id);
-      if (el) observerRef.current.observe(el);
-    });
-
+    window.addEventListener("scroll", updateActiveHeading, { passive: true });
     return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-        observerRef.current = null;
-      }
+      window.removeEventListener("scroll", updateActiveHeading);
     };
-  }, [headings]);
+  }, [headings, updateActiveHeading]);
 
   if (headings.length < 2) return null;
 
@@ -89,12 +98,10 @@ export function TableOfContents() {
                 e.preventDefault();
                 const target = document.getElementById(id);
                 if (target) {
-                  // Suppress observer during scroll animation
                   clickedRef.current = true;
                   setActiveId(id);
                   target.scrollIntoView({ behavior: "smooth", block: "start" });
                   history.pushState(null, "", `#${id}`);
-                  // Re-enable observer after scroll settles
                   setTimeout(() => {
                     clickedRef.current = false;
                   }, 800);
