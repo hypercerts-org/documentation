@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { Sidebar } from './Sidebar';
 import { TableOfContents } from './TableOfContents';
 import { getPrevNext } from '../lib/navigation';
+import { Breadcrumbs } from './Breadcrumbs';
 
 export default function Layout({ children, frontmatter }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -56,6 +57,7 @@ export default function Layout({ children, frontmatter }) {
         />
 
         <main className="layout-content">
+          <Breadcrumbs />
           <article>{children}</article>
 
           {/* Pagination */}
