@@ -33,7 +33,7 @@ This field is mandatory to prevent ambiguity about coordinate systems and axis o
 
 **Lexicon ID:** `app.certified.location`
 
-**Description:** A location reference for use across certified protocols. For location claims, we follow the
+**Description:** A location reference for use across AT Protocol applications. For location claims, we follow the
 
 **Key:** `any`
 

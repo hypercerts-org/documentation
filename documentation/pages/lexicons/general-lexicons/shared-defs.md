@@ -6,7 +6,7 @@ title: Shared Definitions
 
 ## Description
 
-Common type definitions used across all certified protocols. Defines reusable data types like URIs, blobs, and images with specific size constraints.
+Common type definitions shared across the Hypercerts ecosystem. Defines reusable data types like URIs, blobs, and images with specific size constraints.
 
 ## Lexicon
 
