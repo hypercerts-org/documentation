@@ -1,9 +1,9 @@
 ---
-title: What is Hypercerts?
+title: What are Hypercerts?
 description: A protocol for recording, evaluating, and funding impact work.
 ---
 
-# What is Hypercerts?
+# What are Hypercerts?
 
 Hypercerts is an open protocol for recording who did what, when, where, and with what evidence — then connecting that record to evaluations and funding. Each record is called a **hypercert**.
 
