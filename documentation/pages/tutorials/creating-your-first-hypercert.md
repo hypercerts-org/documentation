@@ -1,0 +1,155 @@
+---
+title: Creating Your First Hypercert
+description: A step-by-step guide to creating a complete hypercert with contributions, evidence, and measurements.
+---
+
+# Creating Your First Hypercert
+
+The [Quickstart](/getting-started/quickstart) shows how to create a minimal hypercert in one code block. This tutorial goes deeper — you'll create a complete hypercert with contributions, evidence, and measurements.
+
+We'll document a real scenario: a team that wrote documentation for the Hypercerts Protocol in Q1 2026.
+
+## Set up
+
+Assumes you've completed the [Quickstart](/getting-started/quickstart). You need an authenticated SDK session:
+
+```typescript
+import { createATProtoSDK } from "@hypercerts-org/sdk-core";
+
+const sdk = createATProtoSDK({
+  oauth: {
+    clientId: "https://your-app.com/client-metadata.json",
+    redirectUri: "https://your-app.com/callback",
+    scope: "atproto",
+  },
+});
+
+const session = await sdk.callback(callbackParams);
+const repo = sdk.getRepository(session);
+```
+
+## Create the activity claim
+
+The activity claim is the core record — it describes what work was done, when, and in what scope.
+
+```typescript
+const hypercert = await repo.hypercerts.create({
+  title: "Hypercerts Protocol documentation, Q1 2026",
+  shortDescription: "Wrote getting started guides, tutorials, and lexicon reference pages.",
+  description: "Created 12 new documentation pages covering quickstart, SDK setup, use cases, evaluations, and architecture. Migrated from GitBook to a custom Next.js + Markdoc site.",
+  workScope: {
+    allOf: ["Documentation", "Hypercerts Protocol"],
+  },
+  startDate: "2026-01-01T00:00:00Z",
+  endDate: "2026-03-31T23:59:59Z",
+  rights: {
+    name: "Public Display",
+    type: "display",
+    description: "Right to publicly display this contribution",
+  },
+  createdAt: new Date().toISOString(),
+});
+
+console.log(hypercert.uri);
+// → at://did:plc:abc123/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a
+```
+
+Save the `uri` and `cid` from the response — you'll need them to link other records to this hypercert.
+
+## Add contributions
+
+Contribution records identify who did the work. Create one per role:
+
+```typescript
+const lead = await repo.contributions.create({
+  contributors: ["did:plc:alice123"],
+  role: "Lead author",
+  description: "Wrote the quickstart, SDK setup, and architecture pages.",
+  startDate: "2026-01-01T00:00:00Z",
+  endDate: "2026-03-31T23:59:59Z",
+  createdAt: new Date().toISOString(),
+});
+
+const reviewer = await repo.contributions.create({
+  contributors: ["did:plc:bob456"],
+  role: "Technical reviewer",
+  description: "Reviewed all pages for accuracy against the SDK source code.",
+  startDate: "2026-02-01T00:00:00Z",
+  endDate: "2026-03-31T23:59:59Z",
+  createdAt: new Date().toISOString(),
+});
+```
+
+{% callout type="note" %}
+Contributions can live on different PDS instances. If Bob has his own PDS, he can create his contribution record there — it references the same activity claim via its AT-URI.
+{% /callout %}
+
+## Attach evidence
+
+Evidence records link supporting documentation to your hypercert. The `activity` field is a strong reference (URI + CID) to the activity claim:
+
+```typescript
+const evidence = await repo.evidence.create({
+  activity: {
+    uri: hypercert.uri,
+    cid: hypercert.cid,
+  },
+  title: "Documentation site repository",
+  shortDescription: "Source code and content for the Hypercerts Protocol documentation.",
+  content: {
+    $type: "org.hypercerts.defs#uri",
+    uri: "https://github.com/hypercerts-org/hypercerts-atproto-documentation",
+  },
+  createdAt: new Date().toISOString(),
+});
+```
+
+You can create multiple evidence records — one for the repo, one for the deployed site, one for the migration plan, etc.
+
+## Add measurements
+
+Measurements attach quantitative data to your hypercert:
+
+```typescript
+const pageCount = await repo.measurements.create({
+  activity: {
+    uri: hypercert.uri,
+    cid: hypercert.cid,
+  },
+  measurers: ["did:plc:alice123"],
+  metric: "Documentation pages written",
+  value: "12",
+  measurementMethodType: "manual-count",
+  createdAt: new Date().toISOString(),
+});
+
+const wordCount = await repo.measurements.create({
+  activity: {
+    uri: hypercert.uri,
+    cid: hypercert.cid,
+  },
+  measurers: ["did:plc:alice123"],
+  metric: "Total word count",
+  value: "8500",
+  measurementMethodType: "automated-count",
+  evidenceURI: ["https://example.com/word-count-report.csv"],
+  createdAt: new Date().toISOString(),
+});
+```
+
+## What you've built
+
+Your hypercert now has a complete structure:
+
+```
+Activity Claim (the core record)
+├── Contribution: Lead author (Alice)
+├── Contribution: Technical reviewer (Bob)
+├── Evidence: GitHub repository
+├── Measurement: 12 pages written
+└── Measurement: 8,500 words
+```
+
+All of these records are linked via strong references (URI + CID), making the entire structure tamper-evident and verifiable. Anyone can discover the contributions, evidence, and measurements attached to your hypercert by following these references.
+
+Third parties can now [evaluate your hypercert](/tutorials/working-with-evaluations) by creating evaluation records on their own PDS.
