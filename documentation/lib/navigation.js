@@ -58,6 +58,7 @@ export const navigation = [
     section: 'Architecture',
     children: [
       { title: 'Architecture Overview', path: '/architecture/overview' },
+      { title: 'Data Flow & Lifecycle', path: '/architecture/data-flow-and-lifecycle' },
     ],
   },
   {
@@ -71,9 +72,11 @@ export const navigation = [
   {
     section: 'Reference',
     children: [
+      { title: 'Building on Hypercerts', path: '/reference/building-on-hypercerts' },
       { title: 'Glossary', path: '/reference/glossary' },
       { title: 'FAQ', path: '/reference/faq' },
       { title: 'Error Handling & Constraints', path: '/reference/error-handling' },
+      { title: 'Testing & Security', path: '/reference/testing-and-security' },
     ],
   },
 ];
