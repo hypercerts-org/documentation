@@ -22,7 +22,24 @@ export const navigation = [
     ],
   },
   {
-    section: 'Lexicons',
+    section: 'Guides',
+    children: [
+      { title: 'Creating Your First Hypercert', path: '/tutorials/creating-your-first-hypercert' },
+      { title: 'Working with Evaluations', path: '/tutorials/working-with-evaluations' },
+      { title: 'Common Use Cases', path: '/tutorials/common-use-cases' },
+      { title: 'Building on Hypercerts', path: '/reference/building-on-hypercerts' },
+    ],
+  },
+  {
+    section: 'Tools',
+    children: [
+      { title: 'Hypercerts CLI', path: '/tools/hypercerts-cli' },
+      { title: 'Scaffold Starter App', path: '/tools/scaffold' },
+      { title: 'Hyperboard', path: '/tools/hyperboard' },
+    ],
+  },
+  {
+    section: 'Reference',
     children: [
       { title: 'Introduction to Lexicons', path: '/lexicons/introduction-to-lexicons' },
       {
@@ -46,28 +63,6 @@ export const navigation = [
           { title: 'Collection', path: '/lexicons/hypercerts-lexicons/collection' },
         ],
       },
-    ],
-  },
-  {
-    section: 'Guides',
-    children: [
-      { title: 'Creating Your First Hypercert', path: '/tutorials/creating-your-first-hypercert' },
-      { title: 'Working with Evaluations', path: '/tutorials/working-with-evaluations' },
-      { title: 'Common Use Cases', path: '/tutorials/common-use-cases' },
-      { title: 'Building on Hypercerts', path: '/reference/building-on-hypercerts' },
-    ],
-  },
-  {
-    section: 'Tools',
-    children: [
-      { title: 'Hypercerts CLI', path: '/tools/hypercerts-cli' },
-      { title: 'Scaffold Starter App', path: '/tools/scaffold' },
-      { title: 'Hyperboard', path: '/tools/hyperboard' },
-    ],
-  },
-  {
-    section: 'Reference',
-    children: [
       { title: 'Error Handling & Constraints', path: '/reference/error-handling' },
       { title: 'Testing & Security', path: '/reference/testing-and-security' },
       { title: 'Glossary', path: '/reference/glossary' },
