@@ -99,20 +99,3 @@ at://did:plc:abc123/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a
 
 Other records (evaluations, evidence, measurements) reference your hypercert using this URI. The response also includes a CID (content hash) that makes the reference tamper-evident. See the [Activity Claim lexicon](/lexicons/hypercerts-lexicons/activity-claim) for the complete schema.
 
-## See also
-
-{% card-link title="Activity Claim lexicon" href="/lexicons/hypercerts-lexicons/activity-claim" %}
-Complete schema for activity claims
-{% /card-link %}
-
-{% card-link title="Introduction to Lexicons" href="/lexicons/introduction-to-lexicons" %}
-How data schemas work in the Hypercerts Protocol
-{% /card-link %}
-
-{% card-link title="Deep Dive: The Work Scope" href="/deep-dive-the-work-scope" %}
-Precisely scope impact work using logical operators
-{% /card-link %}
-
-{% card-link title="SDK on GitHub" href="https://github.com/hypercerts-org/hypercerts-sdk" %}
-Source code, issues, and full API reference
-{% /card-link %}
