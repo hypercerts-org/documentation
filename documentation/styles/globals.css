@@ -579,7 +579,6 @@ a.sidebar-link-active:hover {
   line-height: 1.25;
   margin-top: 0;
   margin-bottom: var(--space-6);
-  margin-left: 2px;
 }
 
 .layout-content h2 {
