@@ -4,7 +4,6 @@ export const navigation = [
     section: 'Get Started',
     children: [
       { title: 'Quickstart', path: '/getting-started/quickstart' },
-      { title: 'Set up your development environment', path: '/getting-started/installing-the-sdk' },
       { title: 'What is Certified?', path: '/getting-started/what-is-certified' },
     ],
   },
