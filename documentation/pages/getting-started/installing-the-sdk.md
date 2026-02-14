@@ -30,21 +30,18 @@ npm install -g pnpm
 
 #### An AT Protocol account
 
-You need an AT Protocol account with a DID (Decentralized Identifier). The easiest way to get one is to create a Bluesky account at [bsky.app](https://bsky.app/). Your Bluesky handle (e.g., `alice.bsky.social`) is your AT Protocol identity.
+You need an AT Protocol account with a DID (Decentralized Identifier). There are two ways to get one:
 
-Alternatively, you can create an account on any AT Protocol PDS (Personal Data Server). See [atproto.com](https://atproto.com/) for more options.
+- **Create a Certified account (recommended)** — Go to [certified.app](https://certified.app) and sign up. Certified is the identity provider for the Hypercerts ecosystem. It creates an ATProto identity for you without requiring any prior knowledge of the AT Protocol or Bluesky.
+- **Use an existing Bluesky account** — If you already have a Bluesky account at [bsky.app](https://bsky.app/), it works with Hypercerts out of the box. Your Bluesky handle (e.g., `alice.bsky.social`) is a valid AT Protocol identity.
 
 #### A Personal Data Server (PDS)
 
 Your hypercerts data is stored on a PDS — a server that hosts your personal repository of records. You have three options:
 
-- **Use the Hypercerts Foundation PDS** — The foundation runs a PDS for hypercerts users. This is the recommended option for most developers.
+- **Certified PDS (recommended)** — When you create a [Certified](https://certified.app) account, your data is stored on the Certified PDS. This is the easiest option and the recommended starting point.
 - **Use your existing PDS** — If you already have a Bluesky account or another ATProto PDS, you can use it to store hypercerts.
 - **Self-host** — Advanced users can run their own PDS. See the [ATProto PDS documentation](https://atproto.com/guides/self-hosting) for details.
-
-{% callout type="note" %}
-The Hypercerts Foundation PDS is currently in private beta. Contact the team at team@hypercerts.org to request access.
-{% /callout %}
 
 ## Install the SDK
 
