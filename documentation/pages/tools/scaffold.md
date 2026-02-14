@@ -5,16 +5,69 @@ description: A Next.js starter app for building on ATProto with the Hypercerts S
 
 # Scaffold Starter App
 
-The Hypercerts Scaffold is a Next.js starter app for building on ATProto with the Hypercerts SDK. Clone it to bootstrap your own application. You get:
+The Hypercerts Scaffold is a working Next.js app that demonstrates how to build on ATProto with the Hypercerts SDK. It handles OAuth authentication, profile management, and the full hypercert creation workflow — from basic claims through evidence, locations, measurements, and evaluations.
 
-- OAuth authentication with ATProto (login, session management, token refresh)
-- Profile management (read and update Certified profiles)
-- Hypercert creation and listing
-- Server-side repository access patterns with React Query on the client
+Live at [hypercerts-scaffold.vercel.app](https://hypercerts-scaffold.vercel.app). Source: [github.com/hypercerts-org/hypercerts-scaffold-atproto](https://github.com/hypercerts-org/hypercerts-scaffold-atproto).
 
-Live demo at [hypercerts-scaffold.vercel.app](https://hypercerts-scaffold.vercel.app). Source: [github.com/hypercerts-org/hypercerts-scaffold-atproto](https://github.com/hypercerts-org/hypercerts-scaffold-atproto).
+## What the app does
 
-## Quick start
+### Sign in with ATProto
+
+Enter your handle (e.g. `yourname.certified.app` or `yourname.bsky.social`) and the app redirects you to your PDS for OAuth authorization. Once approved, you're signed in with a session tied to your DID.
+
+{% figure src="/images/scaffold/sign-in.png" alt="Scaffold sign-in screen showing handle input field" caption="The sign-in screen. Enter your ATProto handle to authenticate via OAuth." /%}
+
+### Home screen
+
+After signing in, the home screen shows your active session — your DID, display name, and handle. From here you can create a new hypercert or view your existing ones.
+
+{% figure src="/images/scaffold/home-authenticated.png" alt="Scaffold home screen showing session info and action buttons" caption="The authenticated home screen with session details and quick actions." /%}
+
+### Create a hypercert
+
+The creation flow is a 6-step wizard with a sidebar stepper that tracks your progress:
+
+**Step 1 — Basic info.** Title, description, work scope tags, start and end dates, and an optional cover image. This creates the core `org.hypercerts.claim.activity` record on your PDS.
+
+{% figure src="/images/scaffold/create-step1.png" alt="Hypercert creation form showing title, description, work scope, and date fields" caption="Step 1: Define the basic claim — what work was done, when, and in what scope." /%}
+
+**Step 2 — Evidence.** Attach supporting documentation — URLs, files, or descriptions that back up the claim.
+
+{% figure src="/images/scaffold/create-step2-evidence.png" alt="Evidence form for attaching supporting documentation" caption="Step 2: Attach evidence to support the claim." /%}
+
+**Step 3 — Location.** Add geographic context to the work — where it happened.
+
+{% figure src="/images/scaffold/create-step3-location.png" alt="Location form for adding geographic context" caption="Step 3: Add location data to anchor the work geographically." /%}
+
+**Step 4 — Measurements.** Add quantitative data — metrics, values, and measurement methods that make the impact concrete.
+
+{% figure src="/images/scaffold/create-step4-measurement.png" alt="Measurement form for adding quantitative impact data" caption="Step 4: Add measurements to quantify the impact." /%}
+
+**Step 5 — Evaluations.** Add third-party assessments of the work.
+
+{% figure src="/images/scaffold/create-step5-evaluation.png" alt="Evaluation form for adding third-party assessments" caption="Step 5: Add evaluations from third-party assessors." /%}
+
+**Step 6 — Done.** Review the completed hypercert and create another or view your collection.
+
+{% figure src="/images/scaffold/create-step6-complete.png" alt="Completion screen showing the finished hypercert" caption="Step 6: The hypercert is created and stored on your PDS." /%}
+
+### Browse your hypercerts
+
+The hypercerts page shows all your claims in a card grid. Each card displays the title, description, creation date, work scope tags, and cover image. Click any card to view its full details.
+
+{% figure src="/images/scaffold/hypercerts-list.png" alt="Grid of hypercert cards showing titles, descriptions, and work scope tags" caption="Your hypercerts displayed as cards with metadata and work scope tags." /%}
+
+### Edit your profile
+
+The profile page lets you update your Certified profile — display name, bio, pronouns, website, avatar, and banner image. Changes are written directly to your PDS.
+
+{% figure src="/images/scaffold/profile.png" alt="Profile editing form with display name, bio, and avatar fields" caption="Edit your Certified profile. Changes are stored on your PDS." /%}
+
+{% callout type="note" %}
+Screenshots needed: To add the screenshots above, capture each screen from [hypercerts-scaffold.vercel.app](https://hypercerts-scaffold.vercel.app) and save them to `documentation/public/images/scaffold/`. Use the filenames referenced in each figure tag.
+{% /callout %}
+
+## Run it locally
 
 1. Clone and install:
 
@@ -59,18 +112,6 @@ Use `127.0.0.1` not `localhost` for local development. ATProto OAuth requires IP
 | `REDIS_PORT` | Redis port |
 | `REDIS_PASSWORD` | Redis password |
 | `NEXT_PUBLIC_PDS_URL` | PDS URL (e.g. `https://pds-eu-west4.test.certified.app`) |
-
-## Architecture
-
-The scaffold uses a layered architecture:
-
-- **Browser**: OAuthProvider + SessionProvider + React Query manage client state
-- **Next.js API routes**: Handle auth callbacks, cert operations, profile management
-- **Hypercerts SDK** (`@hypercerts-org/sdk-core`): Manages OAuth sessions and repository operations
-- **Redis**: Stores sessions
-- **PDS**: Stores user data (profiles, hypercerts)
-
-All user data lives on the PDS. Redis only holds session tokens.
 
 ## Key patterns
 
