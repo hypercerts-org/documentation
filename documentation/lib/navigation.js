@@ -9,7 +9,7 @@ export const navigation = [
     ],
   },
   {
-    section: 'Core Concepts',
+    section: 'Understand',
     children: [
       { title: "Why We're Building Hypercerts", path: '/getting-started/why-were-building-hypercerts' },
       { title: 'Introduction to Impact Claims', path: '/getting-started/introduction-to-impact-claims' },
@@ -17,6 +17,8 @@ export const navigation = [
       { title: 'Deep Dive: The Work Scope', path: '/deep-dive-the-work-scope' },
       { title: 'Why ATProto?', path: '/getting-started/why-atproto' },
       { title: 'The Hypercerts Infrastructure', path: '/getting-started/the-hypercerts-infrastructure' },
+      { title: 'Architecture Overview', path: '/architecture/overview' },
+      { title: 'Data Flow & Lifecycle', path: '/architecture/data-flow-and-lifecycle' },
     ],
   },
   {
@@ -47,6 +49,15 @@ export const navigation = [
     ],
   },
   {
+    section: 'Guides',
+    children: [
+      { title: 'Creating Your First Hypercert', path: '/tutorials/creating-your-first-hypercert' },
+      { title: 'Working with Evaluations', path: '/tutorials/working-with-evaluations' },
+      { title: 'Common Use Cases', path: '/tutorials/common-use-cases' },
+      { title: 'Building on Hypercerts', path: '/reference/building-on-hypercerts' },
+    ],
+  },
+  {
     section: 'Tools',
     children: [
       { title: 'Hypercerts CLI', path: '/tools/hypercerts-cli' },
@@ -55,28 +66,12 @@ export const navigation = [
     ],
   },
   {
-    section: 'Architecture',
-    children: [
-      { title: 'Architecture Overview', path: '/architecture/overview' },
-      { title: 'Data Flow & Lifecycle', path: '/architecture/data-flow-and-lifecycle' },
-    ],
-  },
-  {
-    section: 'Tutorials',
-    children: [
-      { title: 'Creating Your First Hypercert', path: '/tutorials/creating-your-first-hypercert' },
-      { title: 'Working with Evaluations', path: '/tutorials/working-with-evaluations' },
-      { title: 'Common Use Cases', path: '/tutorials/common-use-cases' },
-    ],
-  },
-  {
     section: 'Reference',
     children: [
-      { title: 'Building on Hypercerts', path: '/reference/building-on-hypercerts' },
-      { title: 'Glossary', path: '/reference/glossary' },
-      { title: 'FAQ', path: '/reference/faq' },
       { title: 'Error Handling & Constraints', path: '/reference/error-handling' },
       { title: 'Testing & Security', path: '/reference/testing-and-security' },
+      { title: 'Glossary', path: '/reference/glossary' },
+      { title: 'FAQ', path: '/reference/faq' },
     ],
   },
 ];
