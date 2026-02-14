@@ -175,37 +175,11 @@ To unlock value recognition networks, hypercerts must move freely across platfor
 
 #### The Data Layer: AT Protocol
 
-To make value recognition networks possible, contributions need to live in a system where they can be stored, referenced, and shared across many different platforms. Hypercerts require a data layer that is open, portable, and not controlled by any single institution.
+The Hypercerts Protocol is built on AT Protocol (ATProto), the decentralized social data layer that also powers Bluesky. ATProto gives Hypercerts three essential properties: portable, user-controlled data stored on Personal or Shared Data Servers; shared schemas (lexicons) that make hypercert data interoperable across applications; and a decentralized trust-graph built on persistent identities.
 
-That's why the Hypercerts Protocol is built on top of AT Protocol (ATProto), the decentralized social data layer that also powers Bluesky.
+For a full explanation of why ATProto was chosen and how it compares to alternatives, see [Why ATProto?](/getting-started/why-atproto).
 
-ATProto gives Hypercerts three essential properties:
-
-**1. Portable, user-controlled data**\
-Hypercerts are stored in data repositories on Personal or Shared Data Servers (PDS or SDS).\
-A PDS holds the data for an individual user; an SDS extends this model to organizations, allowing multiple people to write to the same repository with access control.
-
-Users can choose where their data lives:
-
-* on servers run by the Hypercerts Foundation,
-* on servers run by other platforms, or
-* on servers they self-host.
-
-This ensures contributors, evaluators, and funders retain full control over their own data. They can switch hosting providers at any time without losing their records, and without needing permission from any platform. Applications read from PDS and SDS—they do not own or lock in the underlying data.
-
-**2. Shared schemas across applications**\
-ATProto allows different applications to use common data schemas. Hypercerts rely on these shared schemas to describe contributions, evidence, and evaluations in a consistent, machine-readable format.
-
-Because the structure is standardized across the network, any application built on ATProto can understand and work with hypercert data. A contribution recorded in one application can be evaluated in another, viewed in a third, and incorporated into funding mechanisms elsewhere — without custom integrations or duplicated data.
-
-Shared schemas ensure that the information around impact is interoperable from the start, enabling a growing ecosystem of tools and platforms to build on the same underlying records.
-
-**3. A decentralized trust-graph for impact**\
-ATProto provides persistent identities for both individuals and organizations. These identities can receive endorsements and badges, and over time they accumulate a visible record of their activity: the contributions they make, the evaluations they provide, and the hypercerts they are associated with. Together, these signals form a durable trust-graph — a reputation layer that follows users and organizations across platforms.
-
-Funding mechanisms can use this trust-graph to guide their decisions. Instead of relying on isolated applications, private networks, or opaque institutional histories, funders can draw from a shared, ecosystem-wide view of identity, contribution, and credibility. This makes evaluation more robust, reduces dependence on centralized gatekeepers, and enables new funding models that leverage trust built across many different contexts.
-
-Together, these capabilities make ATProto the ideal data layer for Hypercerts: contributions remain portable, interoperable, and connected through a shared trust-graph. But while most of the information that powers value recognition networks can — and should — live in this flexible data layer, some elements benefit from stronger guarantees. That's where onchain anchoring and tokenization come in.
+While most of the information that powers value recognition networks lives in this flexible data layer, some elements benefit from stronger guarantees. That's where onchain anchoring and tokenization come in.
 
 #### The Ownership & Funding Layer: Onchain
 

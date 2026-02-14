@@ -60,7 +60,11 @@ export default function Layout({ children, frontmatter }) {
             </svg>
           </button>
           <Link href="/" className="layout-logo">
-            Hypercerts Protocol
+            <img
+              src="/images/hypercerts_logo_horizontal.svg"
+              alt="Hypercerts"
+              className="layout-logo-img"
+            />
           </Link>
         </div>
       </header>
