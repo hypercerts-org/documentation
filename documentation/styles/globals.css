@@ -7,6 +7,68 @@
   padding: 0;
 }
 
+/* ===== Scrollbar Styling ===== */
+/* Webkit (Chrome, Safari, Edge) */
+.sidebar::-webkit-scrollbar,
+.toc::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track,
+.toc::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb,
+.toc::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 3px;
+}
+
+.sidebar:hover::-webkit-scrollbar-thumb,
+.toc:hover::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover,
+.toc::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* Code block horizontal scrollbar */
+.layout-content pre::-webkit-scrollbar {
+  height: 6px;
+}
+
+.layout-content pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.layout-content pre::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 3px;
+}
+
+.layout-content pre::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Firefox */
+.sidebar,
+.toc {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.sidebar:hover,
+.toc:hover {
+  scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
+}
+
+.layout-content pre {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.12) transparent;
+}
 /* ===== Design Tokens ===== */
 :root {
   /* Font stacks */
