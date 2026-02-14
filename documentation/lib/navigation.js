@@ -46,6 +46,14 @@ export const navigation = [
     ],
   },
   {
+    section: 'Tools',
+    children: [
+      { title: 'Hypercerts CLI', path: '/tools/hypercerts-cli' },
+      { title: 'Scaffold Starter App', path: '/tools/scaffold' },
+      { title: 'Hyperboard', path: '/tools/hyperboard' },
+    ],
+  },
+  {
     section: 'Tutorials',
     children: [
       { title: 'Creating Your First Hypercert', path: '/tutorials/creating-your-first-hypercert' },
