@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import Layout from '../components/Layout';
 import { Callout } from '../components/Callout';
 import { Columns } from '../components/Columns';
 import { Column } from '../components/Column';
@@ -12,5 +13,9 @@ const components = {
 };
 
 export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} components={components} />;
+  return (
+    <Layout frontmatter={pageProps.markdoc?.frontmatter}>
+      <Component {...pageProps} components={components} />
+    </Layout>
+  );
 }

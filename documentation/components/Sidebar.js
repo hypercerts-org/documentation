@@ -1,0 +1,144 @@
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { navigation } from '../lib/navigation';
+
+function isActive(path, currentPath) {
+  return path === currentPath;
+}
+
+function isChildActive(item, currentPath) {
+  if (item.path && isActive(item.path, currentPath)) return true;
+  if (item.children) {
+    return item.children.some((child) => isChildActive(child, currentPath));
+  }
+  return false;
+}
+
+function NavItem({ item, currentPath, depth = 0 }) {
+  const hasChildren = item.children && item.children.length > 0;
+  const active = item.path && isActive(item.path, currentPath);
+  const childActive = hasChildren && isChildActive(item, currentPath);
+  const [expanded, setExpanded] = useState(childActive || active);
+
+  useEffect(() => {
+    if (childActive || active) {
+      setExpanded(true);
+    }
+  }, [childActive, active]);
+
+  return (
+    <li className="sidebar-nav-item">
+      <div className="sidebar-nav-link-row">
+        {item.path ? (
+          <Link
+            href={item.path}
+            className={`sidebar-link${active ? ' sidebar-link-active' : ''}`}
+            style={{ paddingLeft: `${12 + depth * 16}px` }}
+          >
+            {item.title}
+          </Link>
+        ) : (
+          <span
+            className="sidebar-link"
+            style={{ paddingLeft: `${12 + depth * 16}px` }}
+          >
+            {item.title}
+          </span>
+        )}
+        {hasChildren && (
+          <button
+            className="sidebar-expand-btn"
+            onClick={() => setExpanded(!expanded)}
+            aria-label={expanded ? 'Collapse' : 'Expand'}
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              style={{
+                transform: expanded ? 'rotate(90deg)' : 'rotate(0deg)',
+                transition: 'transform 0.15s ease',
+              }}
+            >
+              <path
+                d="M6 4l4 4-4 4"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        )}
+      </div>
+      {hasChildren && expanded && (
+        <ul className="sidebar-nav-children">
+          {item.children.map((child) => (
+            <NavItem
+              key={child.path || child.title}
+              item={child}
+              currentPath={currentPath}
+              depth={depth + 1}
+            />
+          ))}
+        </ul>
+      )}
+    </li>
+  );
+}
+
+function NavSection({ item, currentPath }) {
+  if (item.section) {
+    return (
+      <li className="sidebar-section">
+        <h3 className="sidebar-section-header">{item.section}</h3>
+        <ul className="sidebar-section-list">
+          {item.children.map((child) => (
+            <NavItem
+              key={child.path || child.title}
+              item={child}
+              currentPath={currentPath}
+            />
+          ))}
+        </ul>
+      </li>
+    );
+  }
+  return <NavItem item={item} currentPath={currentPath} />;
+}
+
+export function Sidebar({ isOpen, onClose }) {
+  const router = useRouter();
+  const currentPath = router.asPath.split('#')[0].split('?')[0];
+
+  // Close sidebar on route change (mobile)
+  useEffect(() => {
+    const handleRouteChange = () => {
+      if (onClose) onClose();
+    };
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => router.events.off('routeChangeComplete', handleRouteChange);
+  }, [router, onClose]);
+
+  return (
+    <>
+      {/* Mobile overlay */}
+      {isOpen && (
+        <div className="sidebar-overlay" onClick={onClose} />
+      )}
+      <nav className={`sidebar${isOpen ? ' sidebar-open' : ''}`}>
+        <ul className="sidebar-nav">
+          {navigation.map((item, i) => (
+            <NavSection
+              key={item.section || item.path || i}
+              item={item}
+              currentPath={currentPath}
+            />
+          ))}
+        </ul>
+      </nav>
+    </>
+  );
+}
