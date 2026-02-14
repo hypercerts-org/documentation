@@ -13,7 +13,7 @@ Your Certified identity works across every application built on the Hypercerts P
 
 The Hypercerts Protocol is built on AT Protocol — the same decentralized data layer that powers Bluesky. But most Hypercerts users are not Bluesky users. They are researchers, land stewards, open-source maintainers, funders, and evaluators. Asking them to "sign up for Bluesky" to use a funding platform would be confusing and jarring.
 
-Certified solves this. Users create an account at [certified.app](https://certified.app) and immediately have an identity that works with any Hypercerts application — no knowledge of Bluesky, ATProto, or decentralized protocols required.
+Certified solves this. Users create an account at [certified.app](https://certified.app) and immediately have an identity that works across the ecosystem — no knowledge of Bluesky, ATProto, or decentralized protocols required.
 
 ## What you get
 
@@ -30,4 +30,4 @@ If you already have a Bluesky account, you don't need a Certified account. Your 
 
 ## The app.certified namespace
 
-You'll see `app.certified.*` in some lexicon names — for example, [`app.certified.location`](/lexicons/general-lexicons/location) defines how geographic locations are represented. These are general-purpose schemas maintained by the Certified team and available to any application on AT Protocol, not just Hypercerts.
+You'll see `app.certified.*` in some lexicon names — for example, [`app.certified.location`](/lexicons/general-lexicons/location) defines how geographic locations are represented. These are general-purpose schemas available to any application on AT Protocol, not just Hypercerts.
