@@ -42,7 +42,7 @@ export function TableOfContents() {
     const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
     const docHeight = document.documentElement.scrollHeight;
-    const offset = 100; // header height + buffer
+    const offset = windowHeight * 0.35;
 
     // If scrolled to the bottom, activate the last heading
     if (scrollY + windowHeight >= docHeight - 10) {
