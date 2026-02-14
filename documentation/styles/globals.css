@@ -465,18 +465,18 @@ a.sidebar-link-active:hover {
 .toc {
   position: sticky;
   top: calc(var(--header-height) + var(--space-6));
-  padding: 0 var(--space-4);
+  padding: 0 var(--space-4) 0 var(--space-12);
   max-height: calc(100vh - var(--header-height) - var(--space-12));
   overflow-y: auto;
 }
 
 .toc-title {
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--color-text-secondary);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-3);
 }
 
 .toc-list {
@@ -485,11 +485,11 @@ a.sidebar-link-active:hover {
 
 .toc-link {
   display: block;
-  padding: var(--space-2) 0;
-  font-size: 14px;
+  padding: var(--space-1) 0;
+  font-size: 13px;
   color: var(--color-text-secondary);
   text-decoration: none;
-  line-height: 1.4;
+  line-height: 20px;
   transition: color var(--transition-fast);
 }
 
@@ -500,7 +500,6 @@ a.sidebar-link-active:hover {
 
 .toc-link-active {
   color: var(--color-link);
-  font-weight: 500;
 }
 
 .toc-link-h3 {
