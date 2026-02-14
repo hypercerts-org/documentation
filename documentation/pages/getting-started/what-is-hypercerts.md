@@ -1,62 +1,62 @@
 ---
 title: What are Hypercerts?
-description: A protocol for recording, evaluating, and funding impact work.
+description: Living digital records of impact that help you track, share, and get recognized for the work you do.
 ---
 
 # What are Hypercerts?
 
-Hypercerts is an open protocol for recording who did what, when, where, and with what evidence — then connecting that record to evaluations and funding. Each record is called a **hypercert**.
+A hypercert is a living digital record of impact. It's how you track the work you've done — and how others can see, evaluate, and support it.
 
-A hypercert is a structured digital claim that says: *"This person or team did this work, during this time period, in this scope."* Other people can then attach evidence, measurements, and evaluations to that claim. Funders can use these enriched claims to make better decisions about what to support.
+Think of it like this: you do meaningful work — restoring a forest, maintaining open-source software, running a community program, publishing research. A hypercert captures that work in a structured way that anyone can verify. Over time, other people can add to it: attaching evidence, measurements, and evaluations that make the record richer and more trustworthy.
 
-## What a hypercert contains
+## What goes into a hypercert
 
-Every hypercert starts as an **activity claim** — the core record. It captures four dimensions:
+At its core, a hypercert answers four questions:
 
-- **Who** — the contributors who did the work
-- **What** — the work scope (e.g., "documentation", "reforestation", "open-source maintenance")
-- **When** — the time period the work covers
-- **Where** — the geographic location, if applicable
+- **Who** did the work?
+- **What** did they do?
+- **When** did it happen?
+- **Where** did it take place?
 
-From there, additional records can be attached:
+That's the starting point. From there, the record grows as people add more context:
 
-- **Evidence** — links, files, or descriptions that back up the claim
-- **Measurements** — quantitative data (e.g., "142 issues resolved", "50 hectares restored")
-- **Evaluations** — third-party assessments from domain experts
-- **Contributions** — details about individual contributors and their roles
-- **Rights** — what rights holders have (display, transfer, etc.)
+- **Evidence** — photos, links, documents, or descriptions that show the work happened
+- **Measurements** — numbers that make the impact concrete ("142 issues resolved", "50 hectares restored")
+- **Evaluations** — independent assessments from people with domain expertise
+- **Contributions** — who specifically was involved and what they did
+- **Rights** — what rights come with the hypercert (display, transfer, etc.)
 
-All of these records are stored on [AT Protocol](/getting-started/why-atproto), a decentralized data layer. They are cryptographically signed, publicly verifiable, and owned by the people who created them.
+A hypercert isn't a static document you file and forget. It's a living record that accumulates evidence and trust over time.
 
-## How it works
+## How people use them
 
-1. A contributor creates a hypercert on their Personal Data Server (PDS)
-2. They attach evidence and measurements to substantiate the claim
-3. Independent evaluators assess the work and create evaluation records on their own PDS
-4. Funders discover enriched claims through indexers and platforms
-5. Optionally, the hypercert is tokenized on-chain for ownership and funding
+**If you're doing the work**, you create a hypercert to make your contributions visible. Instead of writing reports that sit in a folder, you have a verifiable record that any platform in the ecosystem can display.
 
-Because the data lives on ATProto, hypercerts are **portable** (not locked into any single platform), **interoperable** (any app can read and write them using shared schemas), and **verifiable** (anyone can check the cryptographic signatures).
+**If you're evaluating work**, you add your assessment to someone else's hypercert. Your evaluation lives on your own data server — it's your reputation on the line, attached to their work.
 
-## Who uses hypercerts
+**If you're funding work**, you can see the full picture before making a decision: the original claim, the evidence behind it, and what independent evaluators think. No more guessing.
 
-- **Projects** create hypercerts to make their work visible and fundable
-- **Evaluators** assess claims to help funders make informed decisions
-- **Funders** use enriched claims to direct resources to high-impact work
-- **Platforms** build tools on top of the protocol — funding platforms, dashboards, evaluation tools
+**If you're building a platform**, you can read and write hypercerts using shared schemas. A funding platform, a project dashboard, and an evaluation tool can all work with the same data.
 
-## Example
+## An example
 
-A reforestation project creates a hypercert:
+Say a team restores mangrove forests in the Sundarbans. They create a hypercert:
 
-> **Title:** Mangrove restoration in Sundarbans, 2025
-> **Work scope:** Reforestation
-> **Time period:** January–December 2025
-> **Measurement:** 50 hectares restored (verified by satellite imagery)
-> **Evaluation:** "High-quality restoration with strong community engagement" — assessed by an independent ecologist
+> **Mangrove restoration in Sundarbans, 2025**
+>
+> 50 hectares restored over 12 months. Satellite imagery confirms canopy coverage. An independent ecologist evaluates the work as "high-quality restoration with strong community engagement."
 
-This hypercert lives on the project's PDS. Any platform in the ecosystem can display it. Any evaluator can add their assessment. Any funder can see the full picture — the claim, the evidence, and the evaluations — and decide whether to fund it.
+That record lives on the team's own data server. It's not locked into any single platform. Any app in the ecosystem can display it. Any evaluator can add their take. Any funder can look at the full picture and decide whether to support the next phase.
 
 {% callout type="note" %}
-Hypercerts are not limited to environmental work. They can represent any contribution: open-source software, scientific research, journalism, community organizing, digital public goods, and more.
+Hypercerts aren't just for environmental work. People use them for open-source software, scientific research, journalism, community organizing, digital public goods — any work where impact matters but is hard to make visible.
 {% /callout %}
+
+## Why it's built this way
+
+Hypercerts are built on [AT Protocol](/getting-started/why-atproto), the same decentralized data layer that powers Bluesky. This means:
+
+- **You own your data.** Your hypercerts live on your Personal Data Server, not on someone else's platform.
+- **It's portable.** You can move your data to a different server anytime. No lock-in.
+- **It's verifiable.** Every record is cryptographically signed. Anyone can check that it hasn't been tampered with.
+- **It works everywhere.** Any app that speaks the Hypercerts protocol can read and display your records.
