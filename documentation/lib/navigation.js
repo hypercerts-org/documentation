@@ -68,6 +68,14 @@ export const navigation = [
       { title: 'Common Use Cases', path: '/tutorials/common-use-cases' },
     ],
   },
+  {
+    section: 'Reference',
+    children: [
+      { title: 'Glossary', path: '/reference/glossary' },
+      { title: 'FAQ', path: '/reference/faq' },
+      { title: 'Error Handling & Constraints', path: '/reference/error-handling' },
+    ],
+  },
 ];
 
 /**
