@@ -51,7 +51,7 @@ That's the starting record. Over the following months, the team adds measurement
 Because hypercerts are built on [AT Protocol](/getting-started/why-atproto), the record lives on the team's own [Personal Data Server](/getting-started/the-hypercerts-infrastructure) — not on a single platform. Any app in the ecosystem can read and display it. To learn more about how this works, see [Why ATProto?](/getting-started/why-atproto) and [The Hypercerts Infrastructure](/getting-started/the-hypercerts-infrastructure).
 
 {% callout type="note" %}
-Hypercerts aren't just for environmental work. People use them for open-source software, scientific research, journalism, community organizing, digital public goods — any work where impact matters but is hard to make visible.
+Hypercerts aren't just for environmental work. People use them for open-source software, scientific research, journalism, community organizing, digital public goods — any work where impact matters but is hard to make visible. See [Common Use Cases](/tutorials/common-use-cases) for more examples.
 {% /callout %}
 
 ## Why it's built this way
