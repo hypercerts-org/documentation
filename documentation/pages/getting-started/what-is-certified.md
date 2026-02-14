@@ -30,4 +30,4 @@ If you already have a Bluesky account, you don't need a Certified account. Your 
 
 ## The app.certified namespace
 
-You'll see `app.certified.*` in some lexicon names — for example, [`app.certified.location`](/lexicons/general-lexicons/location) defines how geographic locations are attached to hypercerts. Despite the name, these are ecosystem-wide schemas shared by all Hypercerts applications, not specific to the Certified platform.
+You'll see `app.certified.*` in some lexicon names — for example, [`app.certified.location`](/lexicons/general-lexicons/location) defines how geographic locations are represented. These are general-purpose schemas maintained by the Certified team and available to any application on AT Protocol, not just Hypercerts.
