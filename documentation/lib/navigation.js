@@ -41,26 +41,12 @@ export const navigation = [
   {
     section: 'Reference',
     children: [
-      { title: 'Introduction to Lexicons', path: '/lexicons/introduction-to-lexicons' },
       {
-        title: 'General Lexicons',
-        path: '/lexicons/general-lexicons',
+        title: 'Lexicons',
+        path: '/lexicons/introduction-to-lexicons',
         children: [
-          { title: 'Shared Defs', path: '/lexicons/general-lexicons/shared-defs' },
-          { title: 'Location', path: '/lexicons/general-lexicons/location' },
-        ],
-      },
-      {
-        title: 'Hypercerts Lexicons',
-        path: '/lexicons/hypercerts-lexicons',
-        children: [
-          { title: 'Activity Claim', path: '/lexicons/hypercerts-lexicons/activity-claim' },
-          { title: 'Contribution', path: '/lexicons/hypercerts-lexicons/contribution' },
-          { title: 'Evaluation', path: '/lexicons/hypercerts-lexicons/evaluation' },
-          { title: 'Measurement', path: '/lexicons/hypercerts-lexicons/measurement' },
-          { title: 'Evidence', path: '/lexicons/hypercerts-lexicons/evidence' },
-          { title: 'Rights', path: '/lexicons/hypercerts-lexicons/rights' },
-          { title: 'Collection', path: '/lexicons/hypercerts-lexicons/collection' },
+          { title: 'General Lexicons', path: '/lexicons/general-lexicons' },
+          { title: 'Hypercerts Lexicons', path: '/lexicons/hypercerts-lexicons' },
         ],
       },
       { title: 'Error Handling & Constraints', path: '/reference/error-handling' },
