@@ -1,15 +1,21 @@
 import { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/router';
 
 export function TableOfContents() {
   const [headings, setHeadings] = useState([]);
   const [activeId, setActiveId] = useState('');
   const observerRef = useRef(null);
+  const router = useRouter();
+  const currentPath = router.asPath.split('#')[0].split('?')[0];
 
-  // Extract H2 headings from the DOM after render
+  // Extract H2 headings from the DOM after render — re-run on route change
   useEffect(() => {
     if (typeof window === "undefined") return;
     const article = document.querySelector('.layout-content article');
-    if (!article) return;
+    if (!article) {
+      setHeadings([]);
+      return;
+    }
 
     const h2Elements = article.querySelectorAll('h2');
     const items = Array.from(h2Elements).map((el) => {
@@ -23,7 +29,8 @@ export function TableOfContents() {
       return { id: el.id, text: el.textContent };
     });
     setHeadings(items);
-  }, []);
+    setActiveId('');
+  }, [currentPath]);
 
   // Scroll spy using IntersectionObserver
   useEffect(() => {
