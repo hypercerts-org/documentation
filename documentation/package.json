@@ -1,0 +1,18 @@
+{
+  "name": "hypercerts-docs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hypercerts Protocol Documentation",
+  "scripts": {
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@markdoc/markdoc": "^0.5.4",
+    "@markdoc/next.js": "^0.5.0",
+    "next": "^16.1.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  }
+}
