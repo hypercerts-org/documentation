@@ -5,6 +5,7 @@ export const navigation = [
     children: [
       { title: 'Quickstart', path: '/getting-started/quickstart' },
       { title: 'What is Certified?', path: '/getting-started/what-is-certified' },
+      { title: 'Account & Identity Setup', path: '/getting-started/account-and-identity' },
     ],
   },
   {
