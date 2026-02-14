@@ -40,13 +40,15 @@ A hypercert isn't a static document you file and forget. It's a living record th
 
 ## An example
 
-Say a team restores mangrove forests in the Sundarbans. They create a hypercert:
+Say a team runs a coastal reforestation project. They create a hypercert:
 
-> **Mangrove restoration in Sundarbans, 2025**
+> **Coastal mangrove restoration, 2025**
 >
 > 50 hectares restored over 12 months. Satellite imagery confirms canopy coverage. An independent ecologist evaluates the work as "high-quality restoration with strong community engagement."
 
-That record lives on the team's own data server. It's not locked into any single platform. Any app in the ecosystem can display it. Any evaluator can add their take. Any funder can look at the full picture and decide whether to support the next phase.
+That's the starting record. Over the following months, the team adds measurement data as new satellite imagery comes in. An independent evaluator reviews the project and attaches their assessment. A funder browsing the ecosystem sees the full picture — the claim, the evidence, and the evaluation — and decides to support the next phase.
+
+Because hypercerts are built on [AT Protocol](/getting-started/why-atproto), the record lives on the team's own [Personal Data Server](/getting-started/the-hypercerts-infrastructure) — not on a single platform. Any app in the ecosystem can read and display it. To learn more about how this works, see [Why ATProto?](/getting-started/why-atproto) and [The Hypercerts Infrastructure](/getting-started/the-hypercerts-infrastructure).
 
 {% callout type="note" %}
 Hypercerts aren't just for environmental work. People use them for open-source software, scientific research, journalism, community organizing, digital public goods — any work where impact matters but is hard to make visible.
@@ -54,9 +56,9 @@ Hypercerts aren't just for environmental work. People use them for open-source s
 
 ## Why it's built this way
 
-Hypercerts are built on [AT Protocol](/getting-started/why-atproto), the same decentralized data layer that powers Bluesky. This means:
+Hypercerts are built on [AT Protocol](/getting-started/why-atproto), a decentralized data layer that also powers Bluesky. This gives hypercerts some important properties:
 
-- **You own your data.** Your hypercerts live on your Personal Data Server, not on someone else's platform.
+- **You own your data.** Your hypercerts live on your [Personal Data Server](/getting-started/the-hypercerts-infrastructure), not on someone else's platform.
 - **It's portable.** You can move your data to a different server anytime. No lock-in.
 - **It's verifiable.** Every record is cryptographically signed. Anyone can check that it hasn't been tampered with.
-- **It works everywhere.** Any app that speaks the Hypercerts protocol can read and display your records.
+- **It works everywhere.** Any app that speaks the Hypercerts protocol can read and display your records. Learn more in the [Architecture Overview](/architecture/overview).
