@@ -4,12 +4,16 @@ import { Callout } from '../components/Callout';
 import { Columns } from '../components/Columns';
 import { Column } from '../components/Column';
 import { Figure } from '../components/Figure';
+import { Heading } from '../components/Heading';
+import { CardLink } from '../components/CardLink';
 
 const components = {
   Callout,
   Columns,
   Column,
   Figure,
+  Heading,
+  CardLink,
 };
 
 export default function App({ Component, pageProps }) {
