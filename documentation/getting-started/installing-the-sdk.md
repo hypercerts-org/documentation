@@ -1,3 +1,0 @@
-# Installing the SDK
-
-<br>
