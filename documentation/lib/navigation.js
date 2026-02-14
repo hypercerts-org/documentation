@@ -55,6 +55,12 @@ export const navigation = [
     ],
   },
   {
+    section: 'Architecture',
+    children: [
+      { title: 'Architecture Overview', path: '/architecture/overview' },
+    ],
+  },
+  {
     section: 'Tutorials',
     children: [
       { title: 'Creating Your First Hypercert', path: '/tutorials/creating-your-first-hypercert' },
