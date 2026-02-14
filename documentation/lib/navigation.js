@@ -3,6 +3,7 @@ export const navigation = [
   {
     section: 'Get Started',
     children: [
+      { title: 'What is Hypercerts?', path: '/getting-started/what-is-hypercerts' },
       { title: 'Quickstart', path: '/getting-started/quickstart' },
       { title: 'What is Certified?', path: '/getting-started/what-is-certified' },
       { title: 'Account & Identity Setup', path: '/getting-started/account-and-identity' },
