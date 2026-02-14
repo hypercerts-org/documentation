@@ -460,7 +460,7 @@ a.sidebar-link-active:hover {
   flex: 1;
   min-width: 0;
   max-width: var(--content-max-width);
-  padding: var(--space-8) var(--space-10);
+  padding: var(--space-8) var(--space-6) var(--space-8) var(--space-12);
 }
 
 .layout-content article {
