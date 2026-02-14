@@ -6,6 +6,7 @@ export const navigation = [
       { title: "Why We're Building Hypercerts", path: '/getting-started/why-were-building-hypercerts' },
       { title: 'Introduction to Impact Claims', path: '/getting-started/introduction-to-impact-claims' },
       { title: 'The Impact and Work Space', path: '/getting-started/the-impact-and-work-space' },
+      { title: 'Why ATProto?', path: '/getting-started/why-atproto' },
       { title: 'The Hypercerts Infrastructure', path: '/getting-started/the-hypercerts-infrastructure' },
       { title: 'Installing the SDK', path: '/getting-started/installing-the-sdk' },
     ],
