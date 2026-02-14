@@ -262,13 +262,25 @@ img {
   text-decoration: none;
 }
 
+.layout-content .breadcrumbs-link {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  text-decoration-color: unset;
+  text-underline-offset: unset;
+}
+
+.layout-content .breadcrumbs-link:hover {
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
 .breadcrumbs-text {
   color: var(--color-text-secondary);
 }
 
 .breadcrumbs-current {
-  color: var(--color-text-primary);
-  font-weight: 500;
+  color: var(--color-text-secondary);
+  font-weight: 400;
 }
 /* ===== Layout Container ===== */
 .layout-container {
