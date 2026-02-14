@@ -655,18 +655,18 @@ a.sidebar-link-active:hover {
 }
 
 /* Lists */
-.layout-content ul,
-.layout-content ol {
+.layout-content article ul,
+.layout-content article ol {
   margin-bottom: var(--space-4);
   padding-left: var(--space-6);
 }
 
-.layout-content li {
+.layout-content article li {
   margin: 8px 0;
   line-height: 1.65;
 }
 
-.layout-content li > p {
+.layout-content article li > p {
   margin: 0;
 }
 
