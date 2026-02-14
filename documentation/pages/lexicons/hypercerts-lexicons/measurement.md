@@ -31,3 +31,37 @@ Measurements provide inputs for analysis and later evaluation. They help ground 
 | `evidenceURI`           | `array`  | ❌        | URIs to supporting evidence or data                                           |                                                                                     |
 | `location`              | `ref`    | ❌        | A strong reference to the location where the measurement was taken            | References must conform to `app.certified.location`                                 |
 | `createdAt`             | `string` | ✅        | Client-declared timestamp when this record was originally created             |                                                                                     |
+
+## Code Example
+
+{% callout %}
+The SDK is in active development. Package names and API methods may change.
+{% /callout %}
+
+Create a measurement record:
+
+```typescript
+import { BskyAgent } from '@atproto/api'
+
+const agent = new BskyAgent({ service: 'https://pds.example.com' })
+await agent.login({ identifier: 'your-handle', password: 'your-app-password' })
+
+const response = await agent.api.com.atproto.repo.createRecord({
+  repo: agent.session.did,
+  collection: 'org.hypercerts.claim.measurement',
+  record: {
+    // DIDs of the entity that measured this data
+    measurers: ['did:plc:measurer1'],
+    // The metric being measured
+    metric: 'issues-resolved',
+    // The measured value
+    value: '142',
+    // Short identifier for the measurement methodology
+    measurementMethodType: 'automated-count',
+    // Timestamp when this record was created
+    createdAt: new Date().toISOString(),
+  },
+})
+
+console.log('Created:', response.data.uri)
+```

@@ -24,3 +24,35 @@ A contribution made toward a hypercert's impact.
 | `endDate`      | `string` | ❌        | When this contribution finished. This should be a subset of the hypercert timeframe.                                                                                    |          |
 
 ***
+
+## Code Example
+
+{% callout %}
+The SDK is in active development. Package names and API methods may change.
+{% /callout %}
+
+Create a contribution record:
+
+```typescript
+import { BskyAgent } from '@atproto/api'
+
+const agent = new BskyAgent({ service: 'https://pds.example.com' })
+await agent.login({ identifier: 'your-handle', password: 'your-app-password' })
+
+const response = await agent.api.com.atproto.repo.createRecord({
+  repo: agent.session.did,
+  collection: 'org.hypercerts.claim.contribution',
+  record: {
+    // List of contributors (DIDs, names, or pseudonyms)
+    contributors: ['did:plc:abc123'],
+    // Role or title of the contributor(s)
+    role: 'lead-developer',
+    // What the contribution concretely achieved
+    description: 'Led the development of core features',
+    // Timestamp when this record was created
+    createdAt: new Date().toISOString(),
+  },
+})
+
+console.log('Created:', response.data.uri)
+```

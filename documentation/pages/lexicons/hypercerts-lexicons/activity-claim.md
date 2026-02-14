@@ -71,3 +71,43 @@ In both cases, each component can be precisely identified:
 * _**Where**_**:**
   1. _empty_ for software maintenance
   2. geographic coordinates identifying the specific forest location
+
+## Code Example
+
+{% callout %}
+The SDK is in active development. Package names and API methods may change.
+{% /callout %}
+
+Create an activity claim record:
+
+```typescript
+import { BskyAgent } from '@atproto/api'
+
+const agent = new BskyAgent({ service: 'https://pds.example.com' })
+await agent.login({ identifier: 'your-handle', password: 'your-app-password' })
+
+const response = await agent.api.com.atproto.repo.createRecord({
+  repo: agent.session.did,
+  collection: 'org.hypercerts.claim.activity',
+  record: {
+    // Title of the hypercert
+    title: 'Open Source Library Maintenance',
+    // Short description of the impact work
+    shortDescription: 'Maintained and improved the core library throughout 2025',
+    // Logical scope of the work
+    workScope: {
+      allOf: ['library-maintenance'],
+      anyOf: [],
+      noneOf: [],
+    },
+    // When the work began
+    startDate: '2025-01-01T00:00:00Z',
+    // When the work ended
+    endDate: '2025-12-31T23:59:59Z',
+    // Timestamp when this record was created
+    createdAt: new Date().toISOString(),
+  },
+})
+
+console.log('Created:', response.data.uri)
+```
