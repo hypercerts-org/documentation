@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { navigation } from '../lib/navigation';
@@ -113,13 +113,18 @@ export function Sidebar({ isOpen, onClose, collapsed, onToggleCollapse }) {
   const router = useRouter();
   const currentPath = router.asPath.split('#')[0].split('?')[0];
 
+  const onCloseRef = useRef(onClose);
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  });
+
   useEffect(() => {
     const handleRouteChange = () => {
-      if (onClose) onClose();
+      if (onCloseRef.current) onCloseRef.current();
     };
     router.events.on('routeChangeComplete', handleRouteChange);
     return () => router.events.off('routeChangeComplete', handleRouteChange);
-  }, [router, onClose]);
+  }, [router]);
 
   return (
     <>

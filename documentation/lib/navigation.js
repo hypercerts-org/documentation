@@ -30,7 +30,7 @@ export const navigation = [
           { title: 'Contribution', path: '/lexicons/hypercerts-lexicons/contribution' },
           { title: 'Evaluation', path: '/lexicons/hypercerts-lexicons/evaluation' },
           { title: 'Measurement', path: '/lexicons/hypercerts-lexicons/measurement' },
-          { title: 'Evidence', path: '/lexicons/hypercerts-lexicons/attachment' },
+          { title: 'Evidence', path: '/lexicons/hypercerts-lexicons/evidence' },
           { title: 'Rights', path: '/lexicons/hypercerts-lexicons/rights' },
           { title: 'Collection', path: '/lexicons/hypercerts-lexicons/collection' },
         ],

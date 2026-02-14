@@ -18,6 +18,7 @@ export default function Layout({ children, frontmatter }) {
     : 'Hypercerts Protocol';
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const stored = localStorage.getItem('sidebar-collapsed');
     if (stored === 'true') {
       setSidebarCollapsed(true);
@@ -27,7 +28,9 @@ export default function Layout({ children, frontmatter }) {
   const toggleCollapsed = () => {
     const next = !sidebarCollapsed;
     setSidebarCollapsed(next);
-    localStorage.setItem('sidebar-collapsed', String(next));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('sidebar-collapsed', String(next));
+    }
   };
 
   return (

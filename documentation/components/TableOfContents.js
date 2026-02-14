@@ -7,6 +7,7 @@ export function TableOfContents() {
 
   // Extract H2 headings from the DOM after render
   useEffect(() => {
+    if (typeof window === "undefined") return;
     const article = document.querySelector('.layout-content article');
     if (!article) return;
 
@@ -54,6 +55,7 @@ export function TableOfContents() {
     return () => {
       if (observerRef.current) {
         observerRef.current.disconnect();
+        observerRef.current = null;
       }
     };
   }, [headings]);
