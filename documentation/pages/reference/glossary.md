@@ -31,7 +31,7 @@ A record describing a specific contributor's role in an activity claim. Lexicon:
 
 #### DID (Decentralized Identifier)
 
-A persistent, cryptographically verifiable identifier for a person or organization. Format: `did:plc:...` or `did:web:...`.
+A persistent, cryptographically verifiable identifier for a person or organization. Format: `did:plc:...`. Resolved via the PLC directory.
 
 #### Evaluation
 

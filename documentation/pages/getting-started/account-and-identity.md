@@ -10,7 +10,7 @@ Understand how AT Protocol identities work and configure your account for develo
 ## What you'll learn
 
 - How DIDs provide permanent, portable identity
-- When to use `did:plc` vs `did:web`
+- How `did:plc` identifiers work
 - How to set up custom domain handles for organizations
 - How to use app passwords for secure API access
 
@@ -18,21 +18,13 @@ Understand how AT Protocol identities work and configure your account for develo
 
 Every participant in the Hypercerts ecosystem has a DID (Decentralized Identifier). Your DID is your permanent identity — it stays the same even if you change servers, handles, or PDS providers.
 
-DIDs can represent individuals or organizations. When you create a Certified account or Bluesky account, you get a `did:plc` identifier managed by the PLC directory. For organizations that want full control, `did:web` identities are hosted on your own domain.
+DIDs can represent individuals or organizations. When you create a Certified account or Bluesky account, you get a `did:plc` identifier managed by the PLC directory.
 
-## Choosing an identity type
+## Your DID
 
-**did:plc (recommended for most users)**
+All Hypercerts identities use `did:plc` — a managed identifier that supports account recovery and PDS migration. You get one automatically when you sign up at [certified.app](https://certified.app) or [bsky.app](https://bsky.app).
 
-Managed identities that support account recovery and PDS migration. Created automatically when you sign up at [certified.app](https://certified.app) or [bsky.app](https://bsky.app). Best for individuals and teams getting started.
-
-**did:web (for organizations)**
-
-Self-hosted identities tied to your domain (e.g., `did:web:numpy.org`). You control the DID document and cryptographic keys. Best for established organizations that want full sovereignty over their identity infrastructure.
-
-{% callout type="note" %}
-Most developers should start with `did:plc`. You can always migrate to `did:web` later as your needs evolve.
-{% /callout %}
+Your `did:plc` identifier looks like `did:plc:z72i7hdynmk6r22z27h6tvur`. It is resolved via the [PLC directory](https://plc.directory), which maps it to your current PDS, public keys, and handle.
 
 ## Personal Data Servers (PDS)
 

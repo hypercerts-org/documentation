@@ -135,8 +135,7 @@ If someone modifies the activity claim, its CID changes. Your evaluation still p
 
 DIDs are cryptographically verifiable, and handles can be verified via DNS or the PLC directory.
 
-- **did:plc**: Resolved via the [PLC directory](https://plc.directory). The DID document contains the public key for signature verification.
-- **did:web**: Resolved via HTTPS from your domain (e.g., `did:web:example.com`). You control the DID document by hosting it at `https://example.com/.well-known/did.json`.
+- **did:plc**: Resolved via the [PLC directory](https://plc.directory). The DID document contains the public key for signature verification, the user's current PDS, and their handle.
 
 Always verify the DID matches the expected identity before trusting a record.
 
