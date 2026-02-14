@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -9,12 +9,26 @@ import { Breadcrumbs } from './Breadcrumbs';
 
 export default function Layout({ children, frontmatter }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const router = useRouter();
   const currentPath = router.asPath.split('#')[0].split('?')[0];
   const { prev, next } = getPrevNext(currentPath);
   const pageTitle = frontmatter?.title
     ? `${frontmatter.title} - Hypercerts Protocol`
     : 'Hypercerts Protocol';
+
+  useEffect(() => {
+    const stored = localStorage.getItem('sidebar-collapsed');
+    if (stored === 'true') {
+      setSidebarCollapsed(true);
+    }
+  }, []);
+
+  const toggleCollapsed = () => {
+    const next = !sidebarCollapsed;
+    setSidebarCollapsed(next);
+    localStorage.setItem('sidebar-collapsed', String(next));
+  };
 
   return (
     <>
@@ -26,7 +40,6 @@ export default function Layout({ children, frontmatter }) {
         )}
       </Head>
 
-      {/* Header */}
       <header className="layout-header">
         <div className="layout-header-inner">
           <button
@@ -49,18 +62,18 @@ export default function Layout({ children, frontmatter }) {
         </div>
       </header>
 
-      {/* Main layout */}
       <div className="layout-container">
         <Sidebar
           isOpen={sidebarOpen}
           onClose={() => setSidebarOpen(false)}
+          collapsed={sidebarCollapsed}
+          onToggleCollapse={toggleCollapsed}
         />
 
         <main className="layout-content">
           <Breadcrumbs />
           <article>{children}</article>
 
-          {/* Pagination */}
           {(prev || next) && (
             <nav className="pagination" aria-label="Page navigation">
               <div className="pagination-prev">

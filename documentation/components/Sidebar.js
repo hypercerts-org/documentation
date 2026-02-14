@@ -33,15 +33,15 @@ function NavItem({ item, currentPath, depth = 0 }) {
         {item.path ? (
           <Link
             href={item.path}
-            className={`sidebar-link${active ? ' sidebar-link-active' : ''}`}
-            style={{ paddingLeft: `${12 + depth * 16}px` }}
+            className={`sidebar-link${active ? ' sidebar-link-active' : ''}${childActive ? ' sidebar-link-parent-active' : ''}`}
+            style={{ paddingLeft: `${16 + depth * 16}px` }}
           >
             {item.title}
           </Link>
         ) : (
           <span
-            className="sidebar-link"
-            style={{ paddingLeft: `${12 + depth * 16}px` }}
+            className={`sidebar-link${childActive ? ' sidebar-link-parent-active' : ''}`}
+            style={{ paddingLeft: `${16 + depth * 16}px` }}
           >
             {item.title}
           </span>
@@ -109,11 +109,10 @@ function NavSection({ item, currentPath }) {
   return <NavItem item={item} currentPath={currentPath} />;
 }
 
-export function Sidebar({ isOpen, onClose }) {
+export function Sidebar({ isOpen, onClose, collapsed, onToggleCollapse }) {
   const router = useRouter();
   const currentPath = router.asPath.split('#')[0].split('?')[0];
 
-  // Close sidebar on route change (mobile)
   useEffect(() => {
     const handleRouteChange = () => {
       if (onClose) onClose();
@@ -124,20 +123,44 @@ export function Sidebar({ isOpen, onClose }) {
 
   return (
     <>
-      {/* Mobile overlay */}
       {isOpen && (
         <div className="sidebar-overlay" onClick={onClose} />
       )}
-      <nav className={`sidebar${isOpen ? ' sidebar-open' : ''}`}>
-        <ul className="sidebar-nav">
-          {navigation.map((item, i) => (
-            <NavSection
-              key={item.section || item.path || i}
-              item={item}
-              currentPath={currentPath}
-            />
-          ))}
-        </ul>
+      <nav className={`sidebar${isOpen ? ' sidebar-open' : ''}${collapsed ? ' sidebar-collapsed' : ''}`}>
+        {/* Toggle button — always in the sidebar */}
+        <button
+          className="sidebar-collapse-btn"
+          onClick={onToggleCollapse}
+          aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+          title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+        >
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            {collapsed ? (
+              <>
+                <line x1="3" y1="3" x2="3" y2="15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M8 5l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </>
+            ) : (
+              <>
+                <path d="M10 5L6 9l4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <line x1="15" y1="3" x2="15" y2="15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              </>
+            )}
+          </svg>
+        </button>
+
+        {/* Nav content — hidden when collapsed */}
+        <div className="sidebar-content">
+          <ul className="sidebar-nav">
+            {navigation.map((item, i) => (
+              <NavSection
+                key={item.section || item.path || i}
+                item={item}
+                currentPath={currentPath}
+              />
+            ))}
+          </ul>
+        </div>
       </nav>
     </>
   );
