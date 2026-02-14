@@ -5,7 +5,7 @@ description: Living digital records of impact that help you track, share, and ge
 
 # What are Hypercerts?
 
-A hypercert is a living digital record of impact. It's how you track the work you've done — and how others can see, evaluate, and support it.
+A hypercert is a living digital record of impact. It allows you to track the work you've done — and how others can see, evaluate, and support it.
 
 Think of it like this: you do meaningful work — restoring a forest, maintaining open-source software, running a community program, publishing research. A hypercert captures that work in a structured way that anyone can verify. Over time, other people can add to it: attaching evidence, measurements, and evaluations that make the record richer and more trustworthy.
 
