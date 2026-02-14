@@ -31,3 +31,21 @@ At their core, hypercerts are digital records that describe who did what, when, 
 Ready to jump in? Start by understanding the [hypercerts infrastructure](getting-started/the-hypercerts-infrastructure), or explore our [lexicons](lexicons/introduction-to-lexicons).
 {% /column %}
 {% /columns %}
+
+## Quick Start
+
+{% card-link title="Why We're Building Hypercerts" href="/getting-started/why-were-building-hypercerts" %}
+Understand the motivation behind the hypercerts protocol
+{% /card-link %}
+
+{% card-link title="Introduction to Impact Claims" href="/getting-started/introduction-to-impact-claims" %}
+Learn about impact claims and how they work
+{% /card-link %}
+
+{% card-link title="The Hypercerts Infrastructure" href="/getting-started/the-hypercerts-infrastructure" %}
+Explore the technical architecture
+{% /card-link %}
+
+{% card-link title="Introduction to Lexicons" href="/lexicons/introduction-to-lexicons" %}
+Understand the data schemas that power hypercerts
+{% /card-link %}
