@@ -1,48 +1,49 @@
-import { useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/router';
+import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/router";
 
 export function TableOfContents() {
   const [headings, setHeadings] = useState([]);
-  const [activeId, setActiveId] = useState('');
+  const [activeId, setActiveId] = useState("");
   const observerRef = useRef(null);
   const router = useRouter();
-  const currentPath = router.asPath.split('#')[0].split('?')[0];
+  const currentPath = router.asPath.split("#")[0].split("?")[0];
 
-  // Extract H2 headings from the DOM after render — re-run on route change
+  // Extract H2 and H3 headings from the DOM after render
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const article = document.querySelector('.layout-content article');
+    const article = document.querySelector(".layout-content article");
     if (!article) {
       setHeadings([]);
       return;
     }
 
-    const h2Elements = article.querySelectorAll('h2');
-    const items = Array.from(h2Elements).map((el) => {
-      // Ensure each heading has an id for anchor linking
+    const elements = article.querySelectorAll("h2, h3");
+    const items = Array.from(elements).map((el) => {
       if (!el.id) {
         el.id = el.textContent
           .toLowerCase()
-          .replace(/[^a-z0-9]+/g, '-')
-          .replace(/(^-|-$)/g, '');
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/(^-|-$)/g, "");
       }
-      return { id: el.id, text: el.textContent };
+      return {
+        id: el.id,
+        text: el.textContent,
+        level: el.tagName === "H3" ? 3 : 2,
+      };
     });
     setHeadings(items);
-    setActiveId('');
+    setActiveId("");
   }, [currentPath]);
 
   // Scroll spy using IntersectionObserver
   useEffect(() => {
     if (headings.length === 0) return;
 
-    // Disconnect previous observer
     if (observerRef.current) {
       observerRef.current.disconnect();
     }
 
     const callback = (entries) => {
-      // Find the first heading that is intersecting
       const visibleEntries = entries.filter((e) => e.isIntersecting);
       if (visibleEntries.length > 0) {
         setActiveId(visibleEntries[0].target.id);
@@ -50,7 +51,7 @@ export function TableOfContents() {
     };
 
     observerRef.current = new IntersectionObserver(callback, {
-      rootMargin: '-80px 0px -60% 0px',
+      rootMargin: "-80px 0px -60% 0px",
       threshold: 0,
     });
 
@@ -67,25 +68,26 @@ export function TableOfContents() {
     };
   }, [headings]);
 
-  if (headings.length === 0) return null;
+  if (headings.length < 2) return null;
 
   return (
     <nav className="toc" aria-label="Table of contents">
       <h4 className="toc-title">On this page</h4>
       <ul className="toc-list">
-        {headings.map(({ id, text }) => (
+        {headings.map(({ id, text, level }) => (
           <li key={id}>
             <a
               href={`#${id}`}
-              className={`toc-link${activeId === id ? ' toc-link-active' : ''}`}
+              className={`toc-link${level === 3 ? " toc-link-h3" : ""}${
+                activeId === id ? " toc-link-active" : ""
+              }`}
               onClick={(e) => {
                 e.preventDefault();
                 const target = document.getElementById(id);
                 if (target) {
-                  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  target.scrollIntoView({ behavior: "smooth", block: "start" });
                   setActiveId(id);
-                  // Update URL hash without scroll jump
-                  history.pushState(null, '', `#${id}`);
+                  history.pushState(null, "", `#${id}`);
                 }
               }}
             >

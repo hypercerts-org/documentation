@@ -27,52 +27,63 @@ function NavItem({ item, currentPath, depth = 0 }) {
     }
   }, [childActive, active]);
 
+  const handleToggle = (e) => {
+    if (hasChildren) {
+      e.preventDefault();
+      setExpanded(!expanded);
+    }
+  };
+
+  const paddingLeft = `${12 + depth * 12}px`;
+
+  const chevron = hasChildren ? (
+    <svg
+      className="sidebar-chevron"
+      width="12"
+      height="12"
+      viewBox="0 0 16 16"
+      fill="none"
+      style={{
+        transform: expanded ? "rotate(90deg)" : "rotate(0deg)",
+        transition: "transform 0.15s ease",
+      }}
+    >
+      <path
+        d="M6 4l4 4-4 4"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ) : null;
+
   return (
     <li className="sidebar-nav-item">
-      <div className="sidebar-nav-link-row">
-        {item.path ? (
-          <Link
-            href={item.path}
-            className={`sidebar-link${active ? ' sidebar-link-active' : ''}${childActive ? ' sidebar-link-parent-active' : ''}`}
-            style={{ paddingLeft: `${16 + depth * 16}px` }}
-          >
-            {item.title}
-          </Link>
-        ) : (
-          <span
-            className={`sidebar-link${childActive ? ' sidebar-link-parent-active' : ''}`}
-            style={{ paddingLeft: `${16 + depth * 16}px` }}
-          >
-            {item.title}
-          </span>
-        )}
-        {hasChildren && (
-          <button
-            className="sidebar-expand-btn"
-            onClick={() => setExpanded(!expanded)}
-            aria-label={expanded ? 'Collapse' : 'Expand'}
-          >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              style={{
-                transform: expanded ? 'rotate(90deg)' : 'rotate(0deg)',
-                transition: 'transform 0.15s ease',
-              }}
-            >
-              <path
-                d="M6 4l4 4-4 4"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-        )}
-      </div>
+      {item.path ? (
+        <Link
+          href={item.path}
+          className={`sidebar-link${active ? " sidebar-link-active" : ""}${
+            childActive ? " sidebar-link-parent-active" : ""
+          }`}
+          style={{ paddingLeft }}
+          onClick={hasChildren && !item.path ? handleToggle : undefined}
+        >
+          {chevron}
+          {item.title}
+        </Link>
+      ) : (
+        <span
+          className={`sidebar-link sidebar-link-toggle${
+            childActive ? " sidebar-link-parent-active" : ""
+          }`}
+          style={{ paddingLeft }}
+          onClick={handleToggle}
+        >
+          {chevron}
+          {item.title}
+        </span>
+      )}
       {hasChildren && expanded && (
         <ul className="sidebar-nav-children">
           {item.children.map((child) => (
