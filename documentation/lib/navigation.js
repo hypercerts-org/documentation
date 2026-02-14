@@ -45,6 +45,13 @@ export const navigation = [
       },
     ],
   },
+  {
+    section: 'Tutorials',
+    children: [
+      { title: 'Common Use Cases', path: '/tutorials/common-use-cases' },
+      { title: 'Working with Evaluations', path: '/tutorials/working-with-evaluations' },
+    ],
+  },
 ];
 
 /**
