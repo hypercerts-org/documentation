@@ -179,19 +179,17 @@ The Hypercerts Protocol is built on AT Protocol (ATProto), the decentralized soc
 
 For a full explanation of why ATProto was chosen and how it compares to alternatives, see [Why ATProto?](/getting-started/why-atproto).
 
-While most of the information that powers value recognition networks lives in this flexible data layer, some elements benefit from stronger guarantees. That's where onchain anchoring and tokenization come in.
+While most of the information that powers value recognition networks lives in this flexible data layer, some elements benefit from stronger guarantees. That's where onchain anchoring comes in — and eventually, tokenization.
 
 #### The Ownership & Funding Layer: Onchain
 
-ATProto provides the open, user-controlled data layer where contributions, evidence, evaluations, and trust signals live. But funding mechanisms often require something more: clear ownership, strong guarantees about immutability, and the ability to transfer or trade rights.
+ATProto provides the open, user-controlled data layer where contributions, evidence, evaluations, and trust signals live. But funding requires a stronger guarantee: funders need to know that what they're paying for won't change after the fact.
 
-This is where blockchains complement ATProto.
+The planned approach is **freeze-then-fund**. Before a hypercert can be funded, its ATProto records will be frozen — a cryptographic snapshot taken and anchored on-chain. A hypercert cannot be funded if its contents are still changing, because the funder might end up paying for something different than what they committed to. This ensures funders know exactly what they're supporting.
 
-Onchain anchoring allows certain parts of a hypercert — such as its ownership or the final version of its metadata — to be secured with cryptographic guarantees. Tokenization adds the ability to represent hypercerts as transferable certificates, enabling mechanisms like milestone-based payouts, retroactive rewards, collective funding pools, or entirely new funding models built around tradable impact certificates.
+The tokenization layer — including token standards, smart contract design, and chain selection — is not yet implemented. The theory and architecture are sound: once frozen and anchored, hypercerts can be funded through various mechanisms (milestone-based payouts, retroactive rewards, collective funding pools, or entirely new funding models built around tradable impact certificates). The protocol is intended to be chain-agnostic, with different token standards for different use cases — from non-transferable recognition to fully tradable certificates — and these tokens can live on whichever blockchain best fits the needs of a project or community.
 
-Different token standards can be used for different use cases — from non-transferable recognition to fully tradable certificates — and these tokens can live on whichever blockchain best fits the needs of a project or community.
-
-In other words, ATProto provides the open, decentralized data layer where contributions and evidence live, while onchain components provide the guarantees and flexibility needed to connect that data to real funding flows across many chains and mechanisms.
+But the specific on-chain implementation is being designed. In other words, ATProto provides the open, decentralized data layer where contributions and evidence live, while on-chain components will provide the guarantees and flexibility needed to connect that data to real funding flows across many chains and mechanisms.
 
 ## Where We're Headed
 
