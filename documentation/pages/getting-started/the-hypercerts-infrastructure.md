@@ -4,7 +4,7 @@ title: The Hypercerts Infrastructure
 
 # The Hypercerts Infrastructure
 
-Hypercerts runs on a two-layer architecture: AT Protocol for data and blockchain for ownership.
+Hypercerts runs on a two-layer architecture: AT Protocol for data and planned on-chain anchoring for ownership and funding.
 
 For the rationale behind choosing ATProto, see [Why ATProto?](/getting-started/why-atproto).
 
@@ -16,17 +16,17 @@ AT Protocol stores all hypercert-related data — activity claims, contributions
 
 Because ATProto uses shared schemas (lexicons), any application can read and write hypercert data without custom integrations. A claim created in one app is immediately evaluable in another and fundable in a third. The data layer is open, portable, and interoperable by design.
 
-#### The ownership layer: blockchain
+#### The funding layer: on-chain anchoring (planned)
 
-Blockchain handles tokenization, ownership transfers, and funding flows. When a hypercert is tokenized, a smart contract mints an NFT that points to the AT-URI of the activity claim. The token represents fractional ownership of the impact rights described in that claim. Funders purchase tokens on-chain. Revenue flows through smart contracts. Immutability guarantees are enforced by the blockchain.
+When a hypercert is ready for funding, its ATProto records will be frozen and anchored on-chain. This freeze-then-fund model protects funders: they must know exactly what they are paying for. If the claim contents could change after funding, a funder might end up paying for a different hypercert than what they committed to.
 
-Blockchain is expensive and inflexible for rich data — you can't store evaluations, evidence blobs, or evolving trust signals on-chain. But it excels at ownership, scarcity, and programmable money.
+The intended design: when ready for funding, a snapshot of the claim's state is taken, its CID is anchored on-chain, and the frozen claim becomes fundable. The specific on-chain mechanisms — token standards, smart contracts, chain choices — are being designed. The tokenization layer is not yet implemented, but the theory is sound: blockchain excels at ownership, scarcity, and programmable money, while ATProto handles rich, evolving data.
 
 #### How the layers connect
 
-A hypercert starts as an activity claim on ATProto. The claim has an AT-URI like `at://did:plc:abc123/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a`. When tokenized, the smart contract stores this URI in the token metadata. On-chain events (mints, transfers, sales) can be referenced back from ATProto records — an evaluation might note that a claim was funded by a specific address.
+A hypercert starts as an activity claim on ATProto. The claim has an AT-URI like `at://did:plc:abc123/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a`. In the planned design, when the claim is ready for funding, its state will be frozen and its CID anchored on-chain. On-chain funding events can be referenced back from ATProto records — an evaluation might note that a specific frozen version of a claim was funded.
 
-The two layers are loosely coupled. A claim can exist on ATProto without ever being tokenized. A token can point to a claim that continues accumulating evaluations and evidence over time. Neither layer owns the other — they complement each other.
+The two layers are loosely coupled. A claim can exist on ATProto without ever being frozen for funding. A frozen claim can continue accumulating new evaluations and evidence over time — those new records reference the frozen claim but don't modify it. Neither layer owns the other — they complement each other.
 
 For definitions of DID, PDS, Lexicon, XRPC, and Repository, see the [Glossary](/reference/glossary).
 
@@ -50,11 +50,11 @@ Carol is a funder looking for high-quality documentation work. She uses an app t
 
 Carol's app shows her Alice's claim with Bob's evaluation attached. Because Bob's DID has a strong track record (he's authored 200+ credible evaluations), the app weights his assessment highly. Carol decides to fund Alice's work.
 
-#### 4. Ownership is anchored on-chain
+#### 4. The hypercert is frozen and funded (planned)
 
-Carol's funding app triggers a smart contract that mints an NFT representing fractional ownership of Alice's hypercert. The token metadata includes the AT-URI of Alice's claim. Carol purchases the token on-chain. The transaction is recorded on the blockchain.
+In the intended design, Carol's funding app will freeze Alice's hypercert — taking a snapshot of its current state — and anchor that snapshot on-chain. Carol then funds the frozen hypercert. Because the claim was frozen before funding, Carol knows exactly what she is paying for: the claim contents cannot change after she commits funds.
 
-Alice's claim continues to exist on ATProto. New evaluations, evidence, and measurements can be added over time. The on-chain token points to the claim, but the claim's data layer remains on ATProto — open, portable, and interoperable.
+Alice's claim continues to exist on ATProto. New evaluations, evidence, and measurements can be added over time — they reference the frozen claim but don't modify it. The frozen snapshot remains immutable on-chain while the living claim evolves on ATProto — open, portable, and interoperable. This is the planned design; the tokenization layer is not yet implemented.
 
 ## Data Integrity and Trust
 
