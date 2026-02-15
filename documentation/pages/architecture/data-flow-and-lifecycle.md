@@ -13,20 +13,20 @@ Every hypercert follows a similar path through the system, though the timeline a
 
 **Creation** happens when a contributor writes an activity claim to their Personal Data Server. The claim gets a unique identifier and becomes part of the contributor's repository.
 
-**Enrichment** adds supporting data. Contribution records link collaborators. Evidence records attach proof of work. Measurement records provide quantitative data. Rights records define what token holders receive. These can live on the same server or different servers.
+**Enrichment** adds supporting data. Contribution records link collaborators. Evidence records attach proof of work. Measurement records provide quantitative data. Rights records define what funders or stakeholders receive. These can live on the same server or different servers.
 
 **Evaluation** brings third-party assessment. Evaluators create evaluation records on their own servers that reference the original claim. Multiple evaluators can independently assess the same work. Evaluations accumulate over time.
 
 **Discovery** makes the hypercert findable. Relays aggregate records from many servers. Indexers build searchable databases. Platforms query indexers to surface hypercerts to users.
 
-**Funding** connects ownership to the claim. The hypercert can be anchored on-chain, creating a token. Funders acquire shares through various mechanisms. On-chain state references the ATProto URI of the original claim.
+**Funding** connects ownership to the claim. Before a hypercert can be funded, its ATProto records will be frozen — a cryptographic snapshot taken and anchored on-chain. This ensures funders know exactly what they are paying for. The cert's core content cannot change after freezing. The specific on-chain funding mechanisms are being designed.
 
-**Accumulation** continues indefinitely. More evaluations arrive. Additional evidence gets attached. The on-chain ownership may transfer. The data layer and ownership layer evolve independently.
+**Accumulation** continues indefinitely. More evaluations arrive. Additional evidence gets attached around the frozen claim. The planned on-chain ownership may transfer. The data layer and ownership layer will evolve independently.
 
 ```
 Creation → Enrichment → Evaluation → Discovery → Funding → Accumulation
    ↓           ↓            ↓            ↓          ↓           ↓
-  PDS      PDS/SDS      Other PDS     Indexer   Blockchain   Ongoing
+  PDS      PDS/SDS      Other PDS     Indexer   On-chain (planned)   Ongoing
 ```
 
 ## Stage 1: Creation
@@ -66,7 +66,7 @@ Supporting data gets attached through additional records that reference the acti
 
 #### Rights Records
 
-`org.hypercerts.claim.rights` records define what token holders receive. Rights can include revenue sharing, governance participation, attribution, or custom terms. These records establish expectations before funding happens.
+`org.hypercerts.claim.rights` records define what funders or stakeholders receive. Rights can include revenue sharing, governance participation, attribution, or custom terms. These records establish expectations before funding happens.
 
 #### Location Records
 
@@ -145,39 +145,45 @@ Many PDS Instances
 
 ## Stage 5: Funding & Ownership
 
-The on-chain layer connects ownership to the claim.
+The planned on-chain layer will connect ownership to the claim.
 
 #### Anchoring
 
-Anchoring links an ATProto record to blockchain state. An application calls a smart contract function, passing the AT-URI of the activity claim. The contract stores the URI and mints a token.
+The planned approach: when a hypercert is ready for funding, its current ATProto state will be frozen. A cryptographic snapshot of the activity claim and its associated records is taken, producing a content identifier (CID). This snapshot CID will be anchored on-chain.
 
-The token represents ownership of the hypercert. The token ID is unique on the blockchain. The token's metadata includes the AT-URI, creating a verifiable link back to the data layer.
+The reason for freezing is critical: a funder must know exactly what they are funding. If the core claim could change after funding, funders would face uncertainty about what they paid for. Freezing ensures the funded claim is immutable.
 
-#### Tokenization
+The on-chain anchor will store the AT-URI and the frozen snapshot CID, creating a verifiable link back to the data layer. The specific smart contract design is being developed.
 
-Tokens can represent full ownership or fractional shares. A hypercert might be divided into 1000 shares, allowing multiple funders to participate. Token holders have rights defined in the `org.hypercerts.claim.rights` record.
+#### Freezing and Immutability
 
-Tokens are transferable. Ownership can change hands without modifying the ATProto records. The data layer and ownership layer evolve independently.
+Once frozen, the core activity claim cannot be modified. The snapshot represents the state of the hypercert at the moment of freezing. This protects funders and creates a stable reference point.
+
+Evidence and evaluations can still accumulate after freezing. These supporting records reference the frozen claim but don't modify it. The claim's reputation can evolve while its core content remains fixed.
+
+The tokenization layer is not yet implemented. The planned design includes representing ownership through on-chain tokens — either full ownership or fractional shares. A hypercert might be divided into shares, allowing multiple funders to participate. The specific token standard and contract architecture are being designed.
+
+Token holders will have rights defined in the `org.hypercerts.claim.rights` record. Tokens will be transferable, allowing ownership to change hands without modifying the ATProto records. The data layer and ownership layer will evolve independently.
 
 #### Funding Mechanisms
 
-Various funding models operate on the ownership layer. Direct purchase transfers tokens from creator to funder. Retroactive funding rewards past work. Impact certificates create markets for outcomes. Quadratic funding amplifies small donations.
+Various funding models are intended for the ownership layer. Planned mechanisms include direct funding (funders acquire shares directly), retroactive funding (rewarding past work), impact certificates (creating markets for outcomes), and quadratic funding (amplifying small donations).
 
-Smart contracts enforce rules and distribute payments. A contract might hold funds in escrow until milestones are met. Another might distribute revenue to token holders proportionally.
+Smart contracts will enforce rules and distribute payments. A contract might hold funds in escrow until milestones are met, or distribute revenue to funders proportionally. The specific implementations are TBD.
 
 #### Multi-Chain Support
 
-Different communities use different chains. A climate hypercert might use Celo. An open-source project might use Optimism. The ATProto data is the same regardless of which chain holds the token.
+The protocol is designed to be chain-agnostic. Different communities may use different chains — a climate hypercert might use Celo, an open-source project might use Optimism. The ATProto data layer remains the same regardless of which chain holds the token. The specific multi-chain architecture is being designed.
 
 ```
-ATProto Layer                         Blockchain Layer
-─────────────                         ────────────────
-Activity Claim                        Token Contract
-at://did:alice/...                    0xHyper...
+ATProto Layer                         On-chain Layer (planned)
+─────────────                         ────────────────────────
+Activity Claim                        Frozen Snapshot
+at://did:alice/...                    CID: bafyreib2rxk3rh6kzwq7...
   ↓                                      ↓
-Evidence, Evaluations              Token ID: 42
-Measurements, Rights               Owner: 0xBob...
-                                   Metadata: { uri: "at://did:alice/..." }
+Evidence, Evaluations              Ownership Record (TBD)
+Measurements, Rights               Funder: 0xBob...
+                                   Metadata: { uri: "at://did:alice/...", cid: "bafyrei..." }
 ```
 
 ## Stage 6: Accumulation
@@ -198,18 +204,18 @@ Evidence records reference the original activity claim. The claim itself doesn't
 
 #### Ownership Transfers
 
-Tokens can transfer on-chain without modifying ATProto records. A funder might sell their shares. A contributor might distribute tokens to collaborators. The ownership layer evolves independently of the data layer.
+In the planned design, tokens will be transferable on-chain without modifying ATProto records. A funder might sell their shares. A contributor might distribute tokens to collaborators. The ownership layer will evolve independently of the data layer.
 
 #### Long-Term Value
 
-The separation of data and ownership enables long-term value accumulation. A hypercert's reputation can grow as evaluations accumulate. Its ownership can become more distributed as tokens transfer. The data remains portable and accessible regardless of ownership changes.
+The separation of data and ownership enables long-term value accumulation. A hypercert's reputation can grow as evaluations accumulate. The frozen on-chain anchor will persist independently, providing a stable reference point. The data remains portable and accessible regardless of ownership changes.
 
 ```
 Time →
 ─────────────────────────────────────────────────────────
 Creation  Evaluation 1  Funding  Evaluation 2  Transfer  Evaluation 3
    ↓          ↓           ↓          ↓            ↓          ↓
-  PDS      PDS-Eva1   Blockchain  PDS-Eva2   Blockchain  PDS-Eva3
+  PDS      PDS-Eva1   On-chain (planned)  PDS-Eva2   On-chain (planned)  PDS-Eva3
 ```
 
 ## Cross-PDS References
