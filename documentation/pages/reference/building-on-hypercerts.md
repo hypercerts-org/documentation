@@ -21,7 +21,7 @@ This guide is for:
 
 ### Funding Platforms
 
-Create platforms that use hypercerts to tokenize contributions and distribute funding. Examples include:
+Create platforms that use hypercerts to structure contributions and distribute funding. Examples include:
 
 - Retroactive funding rounds where evaluators assess completed work
 - Milestone-based grant systems that release funds as work progresses
