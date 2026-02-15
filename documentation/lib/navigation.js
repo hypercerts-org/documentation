@@ -17,7 +17,15 @@ export const navigation = [
       { title: 'The Impact and Work Space', path: '/getting-started/the-impact-and-work-space' },
       { title: 'Deep Dive: The Work Scope', path: '/deep-dive-the-work-scope' },
       { title: 'Why ATProto?', path: '/getting-started/why-atproto' },
-      { title: 'The Hypercerts Infrastructure', path: '/getting-started/the-hypercerts-infrastructure' },
+      {
+        title: 'The Hypercerts Infrastructure',
+        path: '/getting-started/the-hypercerts-infrastructure',
+        children: [
+          { title: 'Indexers & Discovery', path: '/getting-started/infrastructure/indexers-and-discovery' },
+          { title: 'Blockchain Integration', path: '/getting-started/infrastructure/blockchain-integration' },
+          { title: 'Portability & Scaling', path: '/getting-started/infrastructure/portability-and-scaling' },
+        ],
+      },
       { title: 'Architecture Overview', path: '/architecture/overview' },
       { title: 'Data Flow & Lifecycle', path: '/architecture/data-flow-and-lifecycle' },
     ],
