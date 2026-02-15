@@ -6,6 +6,7 @@ import { Column } from '../components/Column';
 import { Figure } from '../components/Figure';
 import { Heading } from '../components/Heading';
 import { CardLink } from '../components/CardLink';
+import { CodeBlock } from '../components/CodeBlock';
 
 const components = {
   Callout,
@@ -14,6 +15,7 @@ const components = {
   Figure,
   Heading,
   CardLink,
+  CodeBlock,
 };
 
 export default function App({ Component, pageProps }) {

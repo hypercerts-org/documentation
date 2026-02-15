@@ -1,6 +1,5 @@
 {
   "buildCommand": "next build --webpack",
   "installCommand": "pnpm install",
-  "framework": "nextjs",
-  "rootDirectory": "documentation"
+  "framework": "nextjs"
 }

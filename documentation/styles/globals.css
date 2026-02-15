@@ -690,16 +690,92 @@ a.sidebar-link-active:hover {
 }
 
 /* Code blocks */
-.layout-content pre {
-  background: #0a2540;
+.codeblock {
+  margin-bottom: var(--space-4);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #1e3a5f;
+}
+
+.codeblock-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: #0d2137;
+  border-bottom: 1px solid #1e3a5f;
+}
+
+.codeblock-lang {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.codeblock-lang-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.codeblock-lang-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #8899aa;
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+.codeblock-copy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #556677;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.codeblock-copy:hover {
+  color: #aabbcc;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.codeblock-pre {
+  margin: 0 !important;
+  padding: 16px !important;
+  background: #011627 !important;
+  border-radius: 0 !important;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.codeblock-pre code {
+  font-family: inherit;
+  font-size: inherit;
+  background: none !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+/* Fallback for any pre not inside a codeblock */
+.layout-content pre:not(.codeblock-pre) {
+  background: #011627;
   padding: var(--space-4);
-  border-radius: var(--radius-sm);
+  border-radius: 8px;
   overflow-x: auto;
   margin-bottom: var(--space-4);
   font-family: var(--font-mono);
   font-size: 13px;
-  line-height: 19px;
-  color: #f5fbff;
+  line-height: 20px;
+  color: #d6deeb;
 }
 
 .layout-content code {
@@ -724,6 +800,7 @@ a.sidebar-link-active:hover {
   border-radius: 0;
   padding: 0;
   font-size: inherit;
+  border: none;
 }
 
 /* Tables */
