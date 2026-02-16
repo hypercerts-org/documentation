@@ -6,13 +6,8 @@ export const navigation = [
       { title: 'What are Hypercerts?', path: '/getting-started/what-is-hypercerts' },
       { title: 'Defining Work Scopes', path: '/getting-started/defining-work-scopes' },
       { title: "Why We're Building Hypercerts", path: '/getting-started/why-were-building-hypercerts' },
-      {
-        title: 'Identity',
-        children: [
-          { title: 'What is Certified?', path: '/getting-started/what-is-certified' },
-          { title: 'Why ATProto?', path: '/getting-started/why-atproto' },
-        ],
-      },
+      { title: 'What is Certified?', path: '/getting-started/what-is-certified' },
+      { title: 'Why ATProto?', path: '/getting-started/why-atproto' },
     ],
   },
   {
