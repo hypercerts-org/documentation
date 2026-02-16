@@ -1,23 +1,23 @@
 export const navigation = [
   { title: 'Welcome', path: '/' },
   {
-    section: 'Build',
+    section: 'Understand',
     children: [
       { title: 'What are Hypercerts?', path: '/getting-started/what-is-hypercerts' },
+      { title: 'Defining Work Scopes', path: '/getting-started/defining-work-scopes' },
+      { title: "Why We're Building Hypercerts", path: '/getting-started/why-were-building-hypercerts' },
+      { title: 'Why ATProto?', path: '/getting-started/why-atproto' },
+    ],
+  },
+  {
+    section: 'Build',
+    children: [
+      { title: 'How Hypercerts Work', path: '/getting-started/how-hypercerts-work' },
       { title: 'Quickstart', path: '/getting-started/quickstart' },
       { title: 'Account & Identity Setup', path: '/getting-started/account-and-identity' },
       { title: 'Creating Your First Hypercert', path: '/tutorials/creating-your-first-hypercert' },
       { title: 'Working with Evaluations', path: '/tutorials/working-with-evaluations' },
       { title: 'Common Use Cases', path: '/tutorials/common-use-cases' },
-    ],
-  },
-  {
-    section: 'Understand',
-    children: [
-      { title: 'How Hypercerts Work', path: '/getting-started/how-hypercerts-work' },
-      { title: 'Defining Work Scopes', path: '/getting-started/defining-work-scopes' },
-      { title: "Why We're Building Hypercerts", path: '/getting-started/why-were-building-hypercerts' },
-      { title: 'Why ATProto?', path: '/getting-started/why-atproto' },
     ],
   },
   {
