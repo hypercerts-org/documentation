@@ -18,6 +18,14 @@ Indexers fetch records, parse them according to their lexicons, and store them i
 - `GET /evaluations?subject=at://did:plc:alice123/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a`
 - `GET /contributors?did=did:plc:alice123`
 
+#### The Hypercerts Indexer: Hyperindex
+
+[Hyperindex](https://github.com/hypercerts-org/hyperindex) is the reference indexer for the Hypercerts ecosystem. It's a Go AT Protocol AppView server that indexes records matching your configured lexicons and exposes them via a GraphQL API.
+
+Hyperindex connects to the network via Jetstream (real-time event stream), indexes matching records to a database (SQLite or PostgreSQL), and provides typed GraphQL queries for all hypercert record types.
+
+For setup instructions and usage, see the [Hyperindex tool page](/tools/hyperindex).
+
 #### Running your own indexer
 
-You can run your own indexer if you want full control over data availability and query performance. The Hypercerts Foundation provides reference indexer implementations. You can also use third-party indexers or build custom indexing logic for your application's specific needs.
+You can run your own indexer if you want full control over data availability and query performance. [Hyperindex](https://github.com/hypercerts-org/hyperindex) is the recommended starting point — clone the repository, register your lexicons, and you have a fully functional indexer with a GraphQL API. You can also build custom indexing logic for your application's specific needs.

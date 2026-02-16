@@ -45,6 +45,7 @@ export const navigation = [
       { title: 'Hypercerts CLI', path: '/tools/hypercerts-cli' },
       { title: 'Scaffold Starter App', path: '/tools/scaffold' },
       { title: 'Hyperboard', path: '/tools/hyperboard' },
+      { title: 'Hyperindex', path: '/tools/hyperindex' },
     ],
   },
   {
