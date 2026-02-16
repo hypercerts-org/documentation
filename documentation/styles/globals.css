@@ -1076,4 +1076,33 @@ a.sidebar-link-active:hover {
   .layout-content h3 {
     font-size: 15px;
   }
+
+  /* Stack pagination on mobile */
+  .pagination {
+    flex-direction: column;
+  }
+
+  .pagination-link {
+    width: 100%;
+  }
+
+  .pagination-link-next {
+    text-align: left;
+  }
+}
+
+/* Small mobile: extra narrow screens */
+@media (max-width: 480px) {
+  .sidebar {
+    width: 85vw;
+    min-width: 85vw;
+  }
+
+  .layout-header-inner {
+    padding: 0 var(--space-3);
+  }
+
+  .layout-content {
+    padding: var(--space-4) var(--space-3);
+  }
 }
