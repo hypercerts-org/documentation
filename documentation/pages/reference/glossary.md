@@ -1,100 +1,74 @@
 ---
 title: Glossary
-description: Key terms and definitions used in the Hypercerts Protocol.
+description: Key terms used in the Hypercerts documentation.
 ---
 
-# {% $markdoc.frontmatter.title %}
+# Glossary
 
-{% $markdoc.frontmatter.description %}
+Terms you'll encounter when building with Hypercerts, ordered by how soon you'll need them.
 
 ---
-
-#### Activity Claim
-
-The central record in the hypercerts data model. Describes who did what, when, and where. Lexicon: `org.hypercerts.claim.activity`.
-
-#### AT Protocol (ATProto)
-
-A decentralized social data protocol. The data layer for Hypercerts. Provides portable identity, shared schemas, and federation.
-
-#### CID
-
-Content Identifier. A cryptographic hash of a record's content, used in strong references to ensure tamper-evidence.
-
-#### Collection
-
-A group of hypercerts with a shared property, where each claim has a weight. Lexicon: `org.hypercerts.claim.collection`.
-
-#### Contribution
-
-A record describing a specific contributor's role in an activity claim. Lexicon: `org.hypercerts.claim.contribution`.
-
-#### DID (Decentralized Identifier)
-
-A DID is a permanent, cryptographically verifiable identifier for a user or organization. It looks like `did:plc:abc123xyz`. When you create an account on [certified.app](https://certified.app) or [Bluesky](https://bsky.app), you get a DID. Your DID never changes, even if you switch servers or handles.
-
-Every record you create carries your DID as the author. This enables persistent identity across platforms — your contribution history, evaluation track record, and trust signals follow you everywhere.
-
-#### Evaluation
-
-A third-party assessment of a hypercert or other claim. Created on the evaluator's own PDS. Lexicon: `org.hypercerts.claim.evaluation`.
-
-#### Evidence
-
-A piece of supporting documentation attached to a hypercert. Can be a URI or uploaded blob. Lexicon: `org.hypercerts.claim.evidence`.
 
 #### Hypercert
 
-A structured digital record of a contribution: who did what, when, where, and with what evidence. The core primitive of the protocol.
+A structured digital record of a contribution: who did what, when, where, and with what evidence. The core primitive of the protocol. Technically, a hypercert is an activity claim record with linked contributions, evidence, measurements, and evaluations.
 
-#### Indexer (App View)
+#### Activity claim
 
-A service that reads from relays and builds queryable views of hypercert data across many PDS instances.
+The central record in the hypercerts data model. Describes the work that was done, when, and in what scope. Created using `repo.hypercerts.create()` in the SDK. Lexicon: `org.hypercerts.claim.activity`.
 
-#### Lexicon
+#### AT-URI
 
-A lexicon is a versioned JSON schema that defines the structure of a record type. For example, `org.hypercerts.claim.activity` defines the fields for an activity claim: title, description, workScope, workTimeframe, rights, etc.
+The permanent, globally unique identifier for a record. Looks like `at://did:plc:abc123/org.hypercerts.claim.activity/3k7`. You'll see these in every API response — they're how records reference each other.
 
-Lexicons enable interoperability. Any app that knows the `org.hypercerts.claim.activity` lexicon can parse activity claims, regardless of which app created them. See [Introduction to Lexicons](/lexicons/introduction-to-lexicons) for details.
+#### DID (Decentralized Identifier)
+
+A permanent identifier for a user or organization. Looks like `did:plc:abc123xyz`. You get one when you create an account on [certified.app](https://certified.app) or [Bluesky](https://bsky.app). Your DID never changes, even if you switch servers or handles. Every record you create carries your DID as the author.
+
+#### CID (Content Identifier)
+
+A cryptographic hash of a record's content. When you reference another record, you include both its AT-URI and CID — this makes the reference tamper-evident. If the record changes, the CID changes, and the mismatch is detectable.
+
+#### Strong reference
+
+A reference to another record that includes both the AT-URI and CID. Used when one record points to another (e.g., an evaluation referencing an activity claim). The CID ensures you're referencing a specific version of the record.
+
+#### Evaluation
+
+A third-party assessment of a hypercert. Created on the evaluator's own account, not the original author's. Lexicon: `org.hypercerts.claim.evaluation`.
+
+#### Evidence
+
+Supporting documentation attached to a hypercert — a URL, uploaded file, or IPFS link. Lexicon: `org.hypercerts.claim.evidence`.
 
 #### Measurement
 
-A quantitative observation attached to a claim. Lexicon: `org.hypercerts.claim.measurement`.
+A quantitative observation attached to a hypercert (e.g., "12 pages written", "50 tons CO₂ reduced"). Lexicon: `org.hypercerts.claim.measurement`.
+
+#### Contribution
+
+A record describing a specific contributor's role in an activity claim, including their DID, role description, and date range. Lexicon: `org.hypercerts.claim.contribution`.
+
+#### Collection
+
+A group of hypercerts with a shared property, where each claim has a weight. Used for projects or portfolios. Lexicon: `org.hypercerts.claim.collection`.
+
+#### Lexicon
+
+A versioned schema that defines the structure of a record type. For example, `org.hypercerts.claim.activity` defines the required and optional fields for an activity claim. Lexicons enable interoperability — any app that knows the schema can read the record. See [Introduction to Lexicons](/lexicons/introduction-to-lexicons).
+
+#### Work scope
+
+The "what" dimension of a hypercert, defined using logical operators (`allOf`, `anyOf`, `noneOf`) to precisely bound the work being claimed. See [Defining Work Scopes](/getting-started/defining-work-scopes) for details.
+
+#### Hypergoat / Hyperindex
+
+The AppView server that indexes hypercert records across the network and exposes them via a GraphQL API at `hypergoat.certified.app/graphql`. This is how applications query hypercert data without reading from individual servers directly.
 
 #### PDS (Personal Data Server)
 
-A PDS is where your data lives. It's a server that stores your repository — the collection of all records you've created. You can host your PDS yourself, use a provider like the Hypercerts Foundation, or switch providers at any time without losing data.
+The server where your records are stored. You interact with it through the SDK — you don't need to manage it directly. You can use the Hypercerts Foundation's PDS, Bluesky's, or self-host one. Records are portable between PDS instances.
 
-Applications read from your PDS via XRPC (the API protocol ATProto uses). They don't own your data — they're views over it. If an app shuts down, your records remain on your PDS.
+#### Certified
 
-#### Relay
-
-An ATProto service that aggregates data from many PDS instances and streams it to indexers.
-
-#### Repository
-
-A repository is a user's collection of records, identified by their DID. It's structured as a Merkle Search Tree (MST) — a content-addressed data structure that provides cryptographic integrity and efficient syncing.
-
-When you create a record, it's added to your repository. The repository is versioned — every change produces a new commit with a unique CID (content hash). This makes the repository tamper-evident and auditable.
-
-#### Rights
-
-A record describing what rights a holder has to a hypercert (display, transfer, etc.). Lexicon: `org.hypercerts.claim.rights`.
-
-#### SDS (Shared Data Server)
-
-Like a PDS but for organizations. Multiple users can write to the same repository.
-
-#### Strong Reference
-
-An ATProto reference that includes both the AT URI and CID of the target record, ensuring the reference is tamper-evident.
-
-#### Work Scope
-
-The "what" dimension of a hypercert, defined using logical operators (allOf, anyOf, noneOf) to precisely bound the work being claimed.
-
-#### XRPC
-
-XRPC is the HTTP-based API protocol ATProto uses. Applications call XRPC methods to read and write records. For example, `com.atproto.repo.createRecord` creates a new record on a PDS. `com.atproto.repo.getRecord` fetches an existing record by AT-URI.
-
-The Hypercerts SDK wraps XRPC calls in a developer-friendly interface — you don't need to construct XRPC requests manually.
+The ATProto identity provider for the Hypercerts ecosystem. When you sign up at [certified.app](https://certified.app), you get a DID, a PDS, and an embedded wallet. See [Account & Identity Setup](/getting-started/account-and-identity).

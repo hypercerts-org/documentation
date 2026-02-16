@@ -1,51 +1,44 @@
 ---
-title: Welcome to the Hypercerts Protocol
+title: Hypercerts Documentation
 ---
 
-# Welcome to the Hypercerts Protocol
+# Hypercerts Documentation
 
-{% columns %}
-{% column %}
-#### What are Hypercerts?
+Hypercerts are structured digital records of contributions — who did what, when, where, and with what evidence. Build applications that create, evaluate, and fund impactful work.
 
-Hypercerts make real value creation legible and fundable.
+---
 
-The current economic system struggles to recognize, track, and reward the people and projects that create collective value — from digital public goods and open-source ecosystems to regenerative land management and community initiatives. Hypercerts are an open, interoperable protocol for making contributions legible, fundable, and coordinated across platforms — turning abstract value creation into structured, shareable, and interoperable data.
-{% /column %}
+## Start building
 
-{% column %}
-{% figure src="/images/hypercerts_for_projects.png" /%}
-{% /column %}
-{% /columns %}
+| | |
+|---|---|
+| **[Quickstart](/getting-started/quickstart)** | Install the SDK and create your first hypercert in under 5 minutes |
+| **[Creating Your First Hypercert](/tutorials/creating-your-first-hypercert)** | Build a complete hypercert with contributions, evidence, and measurements |
+| **[Common Use Cases](/tutorials/common-use-cases)** | Worked examples for open-source, climate, research, and community projects |
+| **[Building on Hypercerts](/reference/building-on-hypercerts)** | Integration patterns for funding platforms, dashboards, and evaluation tools |
 
-At their core, hypercerts are digital records that describe who did what, when, where, and with what evidence — without prescribing a single metric or funding mechanism. By making work visible and traceable, hypercerts enable value recognition networks where contributors, evaluators, and funders can interact constructively. Hypercerts are designed not as a single application or marketplace, but as a shared language and infrastructure that supports experimentation in funding, evaluation, and impact coordination across domains.
+## Understand
 
-{% columns %}
-{% column %}
-{% figure src="/images/hypercert-erd.png" /%}
-{% /column %}
+| | |
+|---|---|
+| **[How Hypercerts Work](/getting-started/how-hypercerts-work)** | The data model — record types, dimensions, and how they connect |
+| **[Defining Work Scopes](/getting-started/defining-work-scopes)** | Use allOf, anyOf, and noneOf to precisely scope your claims |
+| **[Why We're Building Hypercerts](/getting-started/why-were-building-hypercerts)** | The problem, the vision, and what hypercerts unlock |
 
-{% column %}
-#### Dive into the tech
+## Tools
 
-Ready to jump in? Start by understanding the [hypercerts infrastructure](getting-started/the-hypercerts-infrastructure), or explore our [lexicons](lexicons/introduction-to-lexicons).
-{% /column %}
-{% /columns %}
+| | |
+|---|---|
+| **[Hypercerts CLI](/tools/hypercerts-cli)** | Create and manage hypercerts from the command line |
+| **[Scaffold Starter App](/tools/scaffold)** | Next.js reference app with OAuth, creation wizard, and browsing |
+| **[Hyperindex](/tools/hyperindex)** | GraphQL API for querying hypercert records across the network |
+| **[Hyperboard](/tools/hyperboard)** | Visual contributor boards for attribution and funding transparency |
 
-## Quick Start
+## Reference & Architecture
 
-{% card-link title="Why We're Building Hypercerts" href="/getting-started/why-were-building-hypercerts" %}
-Understand the motivation behind the hypercerts protocol
-{% /card-link %}
-
-{% card-link title="Introduction to Impact Claims" href="/getting-started/introduction-to-impact-claims" %}
-Learn about impact claims and how they work
-{% /card-link %}
-
-{% card-link title="The Hypercerts Infrastructure" href="/getting-started/the-hypercerts-infrastructure" %}
-Explore the technical architecture
-{% /card-link %}
-
-{% card-link title="Introduction to Lexicons" href="/lexicons/introduction-to-lexicons" %}
-Understand the data schemas that power hypercerts
-{% /card-link %}
+| | |
+|---|---|
+| **[Lexicons](/lexicons/introduction-to-lexicons)** | Schema definitions for every record type |
+| **[Testing & Deployment](/reference/testing-and-deployment)** | Test locally, understand constraints, and go live |
+| **[Architecture Overview](/architecture/overview)** | How the protocol stack fits together |
+| **[Roadmap](/roadmap)** | Development priorities and phased delivery plan |

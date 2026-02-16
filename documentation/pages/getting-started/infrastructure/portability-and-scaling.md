@@ -47,6 +47,6 @@ ATProto records are public by default. Anyone can read your activity claims, eva
 
 ATProto is adding support for encrypted records. In the future, you'll be able to create private claims visible only to specific DIDs. For example, a contributor might share sensitive evidence with an evaluator without making it public.
 
-#### Access control via smart contracts (planned)
+#### Access control via on-chain tokens (planned)
 
-In the planned design, on-chain tokens could have access control logic — for example, granting read access to private ATProto records only to token holders. This is a potential future feature. See [Planned: Funding & Tokenization](/architecture/planned-funding-and-tokenization) for details.
+In the planned design, on-chain tokens could enforce access control — for example, granting read access to private ATProto records only to token holders. This is a potential future feature. See [Planned: Funding & Tokenization](/architecture/planned-funding-and-tokenization) for details.

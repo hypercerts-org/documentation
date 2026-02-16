@@ -1,52 +1,49 @@
 ---
-title: Frequently Asked Questions
-description: Common questions about the Hypercerts Protocol.
+title: FAQ
+description: Common questions about building with Hypercerts.
 ---
 
-# {% $markdoc.frontmatter.title %}
-
-{% $markdoc.frontmatter.description %}
+# FAQ
 
 ---
 
-## What is a hypercert?
+#### What is a hypercert?
 
-A hypercert is a structured digital record of a contribution. It captures who did what, when, where, and with what evidence. Hypercerts make impact work transparent, verifiable, and fundable.
+A structured digital record of a contribution — who did what, when, where, and with what evidence. You create one with the SDK by calling `repo.hypercerts.create()`. See the [Quickstart](/getting-started/quickstart).
 
-## How is this different from the previous (EVM-based) Hypercerts?
+#### How is this different from the previous (EVM-based) Hypercerts?
 
-The new protocol is built on AT Protocol instead of purely on-chain. This gives data portability, richer schemas, and lower costs. On-chain anchoring for funding is [planned](/architecture/planned-funding-and-tokenization) but not yet implemented.
+The new protocol stores data on AT Protocol instead of purely on-chain. This gives you richer schemas, data portability, and lower costs. On-chain anchoring for funding is [planned](/architecture/planned-funding-and-tokenization) but not yet implemented.
 
-## Do I need a blockchain wallet?
+#### Do I need a blockchain wallet?
 
-Not to create or evaluate hypercerts — you only need an ATProto account (DID). A blockchain wallet will be needed for on-chain funding once the [tokenization layer](/architecture/planned-funding-and-tokenization) is built.
+Not to create or evaluate hypercerts — you only need an account on [certified.app](https://certified.app) or any ATProto provider. A wallet will be needed for on-chain funding once the [tokenization layer](/architecture/planned-funding-and-tokenization) is built.
 
-## Is my data public?
+#### Can I use my Bluesky account?
 
-Yes. All ATProto records are public by default. Do not store sensitive personal information in hypercert records. Anyone can read the data you publish to your PDS.
+Yes. Bluesky accounts are ATProto accounts. Your existing DID and identity work with Hypercerts out of the box.
 
-## Can I delete a hypercert?
+#### Is my data public?
 
-You can delete records from your PDS. However, cached copies may persist in indexers and relays. Once data is published to the network, it should be considered permanent.
+Yes. All records are public by default. Do not store sensitive personal information in hypercert records. See the privacy section in [Testing & Deployment](/reference/testing-and-deployment) for guidance on what to include and what to keep off-protocol.
 
-## Who can evaluate my hypercert?
+#### Can I delete a hypercert?
 
-Anyone with an ATProto account. Evaluations are separate records on the evaluator's PDS, linked via strong references. You don't control who evaluates your work, but you can choose which evaluations to display or acknowledge.
+You can delete records from your account. However, cached copies may persist in indexers temporarily. Once data is published, treat it as potentially permanent.
 
-## How do I fund a hypercert?
+#### Who can evaluate my hypercert?
 
-The on-chain funding layer is not yet implemented. The planned design freezes ATProto records before funding to ensure funders know exactly what they are paying for. See [Planned: Funding & Tokenization](/architecture/planned-funding-and-tokenization) for details.
+Anyone with an ATProto account. Evaluations are separate records created by the evaluator, linked to your hypercert via a strong reference. You don't control who evaluates your work. See [Working with Evaluations](/tutorials/working-with-evaluations).
 
-## Can I use my Bluesky account?
+#### How do I query hypercerts across the network?
 
-Yes. Bluesky accounts are ATProto accounts. Your existing DID works with Hypercerts. You can use the same identity across all ATProto applications.
+Use the [Hyperindex](/tools/hyperindex) GraphQL API at `hypergoat.certified.app/graphql`. It indexes all hypercert records across the network and supports filtering, search, and real-time subscriptions.
 
-## What chains are supported?
+#### How do I fund a hypercert?
 
-The protocol intends to be chain-agnostic. The on-chain layer is not yet implemented — see [Planned: Funding & Tokenization](/architecture/planned-funding-and-tokenization).
+The on-chain funding layer is not yet implemented. The planned design freezes records before funding to ensure funders know exactly what they are paying for. See [Funding & Tokenization](/architecture/planned-funding-and-tokenization).
 
-## How do I get help?
+#### Where do I get help?
 
-{% callout type="note" %}
-For technical support, visit the [GitHub repository](https://github.com/hypercerts-org) or join our community channels. Documentation and examples are available throughout this site.
-{% /callout %}
+- [GitHub](https://github.com/hypercerts-org) — source code, issues, and discussions
+- [Roadmap](/roadmap) — what's being built and what's next

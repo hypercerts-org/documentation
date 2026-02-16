@@ -45,6 +45,30 @@ A typical data flow: a user writes a record to their PDS → the PDS signs it an
 
 ![Data flow through ATProto](/images/architecture-dataflow.svg)
 
+## Security Model
+
+ATProto's cryptographic properties make hypercerts tamper-evident and auditable without a central authority.
+
+#### Signed repositories
+
+Every PDS repository is a Merkle tree signed by the user's DID signing key. Any modification to a record changes the Merkle root, invalidating the signature. This means you can verify a record came from a specific DID, detect if a record was altered after creation, and audit the entire history of a repository.
+
+#### Strong references
+
+When one record references another — for example, an evaluation referencing an activity claim — the reference includes both the AT-URI and the CID (content hash). If the referenced record is modified, its CID changes and the mismatch is detectable. This makes cross-record references tamper-evident.
+
+#### Identity verification
+
+DIDs are cryptographically verifiable. A `did:plc` identifier resolves via the [PLC directory](https://plc.directory) to a DID document containing the public key for signature verification, the user's current PDS, and their handle. Always verify the DID matches the expected identity before trusting a record.
+
+#### Data integrity chain
+
+These properties combine into an auditable chain:
+
+1. Alice creates an activity claim. Her PDS signs the repository, producing CID `bafyA`.
+2. Bob evaluates Alice's claim, referencing `{ uri: "at://alice/...", cid: "bafyA" }`.
+3. Anyone can verify: Alice's signature proves she created the claim, Bob's signature proves he created the evaluation, and the CID proves Bob evaluated the exact version Alice published.
+
 ## Ownership Layer (Planned)
 
 The ownership layer is not yet implemented. The planned design freezes ATProto records and anchors them on-chain before funding, ensuring funders know exactly what they are paying for. For the full planned design — including anchoring, tokenization, and funding mechanisms — see [Planned: Funding & Tokenization](/architecture/planned-funding-and-tokenization).
@@ -69,7 +93,7 @@ Storing rich data on-chain is expensive. A single activity claim with evidence a
 
 #### Why Not Fully Off-Chain?
 
-Mutable records are fine for collaboration, but funding requires immutability. Without on-chain anchoring, there's no way to freeze a hypercert's state and guarantee that the claim a funder evaluates is the same claim they end up funding. Additionally, funding mechanisms like retroactive public goods funding require smart contracts to distribute funds according to rules. See [Planned: Funding & Tokenization](/architecture/planned-funding-and-tokenization) for the planned freeze-then-fund design.
+Mutable records are fine for collaboration, but funding requires immutability. Without on-chain anchoring, there's no way to freeze a hypercert's state and guarantee that the claim a funder evaluates is the same claim they end up funding. Additionally, funding mechanisms like retroactive public goods funding require on-chain logic to distribute funds according to rules. See [Planned: Funding & Tokenization](/architecture/planned-funding-and-tokenization) for the planned freeze-then-fund design.
 
 #### Why ATProto Over IPFS, Ceramic, or Other Alternatives?
 
