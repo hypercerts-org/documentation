@@ -48,6 +48,6 @@ ATProto is the only technology that combines persistent DIDs, shared lexicons, u
 
 ## ATProto + Blockchain: Better Together
 
-ATProto handles the data layer — claims, evidence, evaluations, trust signals. On-chain anchoring is planned to handle the funding layer. The intended design: hypercerts are frozen and anchored on-chain before funding, ensuring funders know exactly what they're paying for. The tokenization layer is not yet implemented — see [Planned: Funding & Tokenization](/architecture/planned-funding-and-tokenization) for the full design.
+ATProto handles the data layer — claims, evidence, evaluations, trust signals. On-chain anchoring is planned to handle the funding layer. The intended design: hypercerts are frozen and anchored on-chain before funding, ensuring funders know exactly what they're paying for. The tokenization layer is not yet implemented — see [Funding & Tokenization](/architecture/funding-and-tokenization) for the full design.
 
 For details on how these two layers work together, see [The Hypercerts Infrastructure](/getting-started/the-hypercerts-infrastructure).

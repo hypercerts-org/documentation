@@ -183,7 +183,7 @@ While most of the information that powers value recognition networks lives in th
 
 #### The Funding Layer: On-chain Anchoring (Planned)
 
-ATProto provides the data layer. But funding requires a stronger guarantee: funders need to know that what they're paying for won't change after the fact. The planned approach is freeze-then-fund — before a hypercert can be funded, its ATProto records are frozen and anchored on-chain. The tokenization layer is not yet implemented. See [Planned: Funding & Tokenization](/architecture/planned-funding-and-tokenization) for the full design.
+ATProto provides the data layer. But funding requires a stronger guarantee: funders need to know that what they're paying for won't change after the fact. The planned approach is freeze-then-fund — before a hypercert can be funded, its ATProto records are frozen and anchored on-chain. The tokenization layer is not yet implemented. See [Funding & Tokenization](/architecture/funding-and-tokenization) for the full design.
 
 ## Where We're Headed
 

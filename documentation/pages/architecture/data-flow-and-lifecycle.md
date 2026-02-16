@@ -19,7 +19,7 @@ Every hypercert follows a similar path through the system, though the timeline a
 
 **Discovery** makes the hypercert findable. Relays aggregate records from many servers. Indexers build searchable databases. Platforms query indexers to surface hypercerts to users.
 
-**Funding** connects ownership to the claim. The on-chain funding layer is [planned but not yet implemented](/architecture/planned-funding-and-tokenization). The intended design freezes ATProto records before funding to ensure funders know exactly what they are paying for.
+**Funding** connects ownership to the claim. The on-chain funding layer is [planned but not yet implemented](/architecture/funding-and-tokenization). The intended design freezes ATProto records before funding to ensure funders know exactly what they are paying for.
 
 **Accumulation** continues indefinitely. More evaluations arrive. Additional evidence gets attached. The data layer continues evolving.
 
@@ -29,7 +29,7 @@ Creation → Enrichment → Evaluation → Discovery → Funding → Accumulatio
   PDS      PDS/SDS      Other PDS     Indexer   On-chain*   Ongoing
 ```
 
-*On-chain layer is planned. See [Planned: Funding & Tokenization](/architecture/planned-funding-and-tokenization).
+*On-chain layer is planned. See [Funding & Tokenization](/architecture/funding-and-tokenization).
 
 ## Stage 1: Creation
 
@@ -149,7 +149,7 @@ Many PDS Instances
 
 The on-chain funding layer is not yet implemented. The planned design: before a hypercert can be funded, its ATProto records are frozen and the snapshot is anchored on-chain. This ensures funders know exactly what they are paying for — the cert's contents cannot change after freezing.
 
-For the full planned design — including anchoring, tokenization, funding mechanisms, and funding readiness patterns — see [Planned: Funding & Tokenization](/architecture/planned-funding-and-tokenization).
+For the full planned design — including anchoring, tokenization, funding mechanisms, and funding readiness patterns — see [Funding & Tokenization](/architecture/funding-and-tokenization).
 
 ## Stage 6: Accumulation
 
