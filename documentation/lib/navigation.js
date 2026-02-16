@@ -18,6 +18,7 @@ export const navigation = [
       { title: 'How Hypercerts Work', path: '/getting-started/how-hypercerts-work' },
       { title: 'Defining Work Scopes', path: '/getting-started/defining-work-scopes' },
       { title: "Why We're Building Hypercerts", path: '/getting-started/why-were-building-hypercerts' },
+      { title: 'Why ATProto?', path: '/getting-started/why-atproto' },
     ],
   },
   {
@@ -48,7 +49,6 @@ export const navigation = [
   {
     section: 'Architecture',
     children: [
-      { title: 'Why ATProto?', path: '/getting-started/why-atproto' },
       {
         title: 'Infrastructure Overview',
         path: '/getting-started/the-hypercerts-infrastructure',
