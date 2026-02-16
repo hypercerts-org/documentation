@@ -1,33 +1,7 @@
 ---
 title: What is Certified?
-description: Certified is the identity provider for the Hypercerts ecosystem.
 ---
 
 # What is Certified?
 
-[Certified](https://certified.app) is the identity provider for the Hypercerts ecosystem. Create one account and you can sign in to every application built on the Hypercerts Protocol — and your hypercerts, evaluations, and other records travel with you across all of them. Think of it as your passport to the world of impact certificates.
-
-## Why Certified exists
-
-The Hypercerts Protocol is built on AT Protocol — the same decentralized data layer that powers Bluesky. But most Hypercerts users are not Bluesky users. They are researchers, land stewards, open-source maintainers, funders, and evaluators. Asking them to "sign in with Bluesky" to use a funding platform would be confusing — it ties a funding tool to a social media brand, and social media doesn't carry the most trustworthy reputation. This is no knock on Bluesky — it's a great platform, just not the right entry point for a funding tool.
-
-Certified solves this. It is a neutral identity provider that isn't directly connected to one specific application. Users create an account at [certified.app](https://certified.app) and immediately have an identity that works across the entire ecosystem — no knowledge of Bluesky, ATProto, or decentralized protocols required.
-
-## What you get
-
-- **Low-friction sign-in** — No usernames, handles, or passwords to remember. Sign in with just your email and a code — that's it.
-- **Ecosystem access** — Your Certified identity is recognized by every application built on the Hypercerts Protocol.
-- **Web3 wallet** — Add your existing wallet to your Certified identity, or get a new embedded wallet.
-- **A DID (Decentralized Identifier)** — Your permanent, portable identity. It stays the same even if you change servers or handles.
-- **A Personal Data Server (PDS)** — Your hypercerts, evaluations, and other records are stored here. You own this data.
-- **Data portability** — You can migrate your data to another PDS at any time. No lock-in.
-
-## Already have a Bluesky account or another AT Protocol account?
-
-{% callout type="note" %}
-If you already have a Bluesky account or another AT Protocol account, you don't need a Certified account. Any AT Protocol identity works with all Hypercerts applications. Log in with your existing handle (e.g., `alice.bsky.social`) — everything just works.
-{% /callout %}
-
-## The app.certified namespace
-
-Beyond identity, Certified contributes shared data schemas to the AT Protocol ecosystem. You'll see `app.certified.*` in some lexicon names — for example, [`app.certified.location`](/lexicons/general-lexicons/location) defines how geographic locations are represented. These are general-purpose schemas available to any application on AT Protocol, not just Hypercerts.
+This content has moved to [Account & Identity Setup](/getting-started/account-and-identity).
