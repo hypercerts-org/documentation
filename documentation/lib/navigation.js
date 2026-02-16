@@ -60,9 +60,9 @@ export const navigation = [
       { title: 'Testing & Deployment', path: '/reference/testing-and-deployment' },
       { title: 'Glossary', path: '/reference/glossary' },
       { title: 'FAQ', path: '/reference/faq' },
+      { title: 'Roadmap', path: '/roadmap' },
     ],
   },
-  { title: 'Roadmap', path: '/roadmap' },
 ];
 
 /**
