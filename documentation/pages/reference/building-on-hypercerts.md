@@ -223,7 +223,7 @@ Propose changes to lexicons through the standard process:
 3. **Implement:** Create a pull request with lexicon updates and tests
 
 {% callout type="note" %}
-The GitHub repository for lexicon proposals will be available soon. Check the [community page](/community) for updates.
+The GitHub repository for lexicon proposals will be available soon. Check the [Hypercerts GitHub](https://github.com/hypercerts-org) for updates.
 {% /callout %}
 
 ### SDK Contributions

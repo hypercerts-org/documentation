@@ -4,8 +4,9 @@ title: General Lexicons
 
 # General Lexicons
 
-## Introduction
+These general lexicons provide common data structures and definitions shared across multiple protocols and applications. They live in the `app.certified` namespace — building blocks that other, more specialized lexicons can reference.
 
-These general lexicons provide common data structures and definitions that can be shared across multiple protocols and applications, including the hypercert claim lexicons. Think of them as the building blocks or primitive types that other, more specialized lexicons can reference and build upon.
-
-By centralizing these common patterns in the `app.certified` lexicon namespace, we avoid duplication across the ecosystem and ensure consistency. When a hypercerts-specific lexicon needs to reference a URI or location, it can simply reference these shared definitions rather than recreating them.
+| Lexicon | Description |
+|---------|-------------|
+| **[Shared Definitions](/lexicons/general-lexicons/shared-defs)** | Reusable types: URIs, blob sizes, image constraints |
+| **[Location](/lexicons/general-lexicons/location)** | Geographic location representation using the Astral Location Protocol |
