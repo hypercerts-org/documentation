@@ -1089,6 +1089,30 @@ a.sidebar-link-active:hover {
   .pagination-link-next {
     text-align: left;
   }
+
+  /* Reduce header height on mobile */
+  :root {
+    --header-height: 56px;
+  }
+
+  .layout-logo-img {
+    height: 24px;
+  }
+
+  /* Compact breadcrumbs on mobile */
+  .breadcrumbs {
+    margin-bottom: var(--space-3);
+  }
+
+  .breadcrumbs-list {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .breadcrumbs-item {
+    white-space: nowrap;
+  }
 }
 
 /* Small mobile: extra narrow screens */
