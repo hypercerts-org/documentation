@@ -22,7 +22,7 @@ export const navigation = [
         path: '/getting-started/the-hypercerts-infrastructure',
         children: [
           { title: 'Indexers & Discovery', path: '/getting-started/infrastructure/indexers-and-discovery' },
-          { title: 'Blockchain Integration', path: '/getting-started/infrastructure/blockchain-integration' },
+          { title: 'Funding & Tokenization (Planned)', path: '/architecture/planned-funding-and-tokenization' },
           { title: 'Portability & Scaling', path: '/getting-started/infrastructure/portability-and-scaling' },
         ],
       },
@@ -64,6 +64,7 @@ export const navigation = [
       { title: 'FAQ', path: '/reference/faq' },
     ],
   },
+  { title: 'Roadmap', path: '/roadmap' },
 ];
 
 /**

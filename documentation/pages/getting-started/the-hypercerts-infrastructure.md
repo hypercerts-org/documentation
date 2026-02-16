@@ -4,7 +4,7 @@ title: The Hypercerts Infrastructure
 
 # The Hypercerts Infrastructure
 
-Hypercerts runs on a two-layer architecture: AT Protocol for data and planned on-chain anchoring for ownership and funding.
+Hypercerts runs on AT Protocol for data. On-chain anchoring for ownership and funding is [planned](/architecture/planned-funding-and-tokenization).
 
 For the rationale behind choosing ATProto, see [Why ATProto?](/getting-started/why-atproto).
 
@@ -18,15 +18,11 @@ Because ATProto uses shared schemas (lexicons), any application can read and wri
 
 #### The funding layer: on-chain anchoring (planned)
 
-When a hypercert is ready for funding, its ATProto records will be frozen and anchored on-chain. This freeze-then-fund model protects funders: they must know exactly what they are paying for. If the claim contents could change after funding, a funder might end up paying for a different hypercert than what they committed to.
-
-The intended design: when ready for funding, a snapshot of the claim's state is taken, its CID is anchored on-chain, and the frozen claim becomes fundable. The specific on-chain mechanisms — token standards, smart contracts, chain choices — are being designed. The tokenization layer is not yet implemented, but the theory is sound: blockchain excels at ownership, scarcity, and programmable money, while ATProto handles rich, evolving data.
+The on-chain funding layer is not yet implemented. The planned design uses a freeze-then-fund model: before a hypercert can be funded, its ATProto records are frozen and anchored on-chain, ensuring funders know exactly what they are paying for. See [Planned: Funding & Tokenization](/architecture/planned-funding-and-tokenization) for the full design.
 
 #### How the layers connect
 
-A hypercert starts as an activity claim on ATProto. The claim has an AT-URI like `at://did:plc:abc123/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a`. In the planned design, when the claim is ready for funding, its state will be frozen and its CID anchored on-chain. On-chain funding events can be referenced back from ATProto records — an evaluation might note that a specific frozen version of a claim was funded.
-
-The two layers are loosely coupled. A claim can exist on ATProto without ever being frozen for funding. A frozen claim can continue accumulating new evaluations and evidence over time — those new records reference the frozen claim but don't modify it. Neither layer owns the other — they complement each other.
+A hypercert starts as an activity claim on ATProto. The claim has an AT-URI like `at://did:plc:abc123/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a`. A claim can exist on ATProto without ever being frozen for funding. The two layers are loosely coupled and complement each other.
 
 For definitions of DID, PDS, Lexicon, XRPC, and Repository, see the [Glossary](/reference/glossary).
 
@@ -52,9 +48,7 @@ Carol's app shows her Alice's claim with Bob's evaluation attached. Because Bob'
 
 #### 4. The hypercert is frozen and funded (planned)
 
-In the intended design, Carol's funding app will freeze Alice's hypercert — taking a snapshot of its current state — and anchor that snapshot on-chain. Carol then funds the frozen hypercert. Because the claim was frozen before funding, Carol knows exactly what she is paying for: the claim contents cannot change after she commits funds.
-
-Alice's claim continues to exist on ATProto. New evaluations, evidence, and measurements can be added over time — they reference the frozen claim but don't modify it. The frozen snapshot remains immutable on-chain while the living claim evolves on ATProto — open, portable, and interoperable. This is the planned design; the tokenization layer is not yet implemented.
+In the planned design, Carol's funding app will freeze Alice's hypercert and anchor the snapshot on-chain. Carol knows exactly what she is paying for because the frozen claim cannot change. The tokenization layer is not yet implemented — see [Planned: Funding & Tokenization](/architecture/planned-funding-and-tokenization) for details.
 
 ## Data Integrity and Trust
 
@@ -75,5 +69,5 @@ Because DIDs are persistent and records are signed, you can trace an author's en
 ## Keep Reading
 
 - [Indexers & Discovery](/getting-started/infrastructure/indexers-and-discovery) — how data is aggregated and queried across the network
-- [Blockchain Integration](/getting-started/infrastructure/blockchain-integration) — minting patterns and on-chain ownership
+- [Funding & Tokenization (Planned)](/architecture/planned-funding-and-tokenization) — freeze-then-fund model and on-chain ownership design
 - [Portability & Scaling](/getting-started/infrastructure/portability-and-scaling) — PDS migration, performance, and privacy

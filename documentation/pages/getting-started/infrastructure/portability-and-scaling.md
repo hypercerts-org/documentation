@@ -33,9 +33,9 @@ A PDS stores one user's data. It doesn't need to scale to millions of users — 
 
 Indexers aggregate data across the network. They need to scale to millions of records. Indexers use standard database scaling techniques: sharding, caching, read replicas. Because indexers are stateless (they derive state from the firehose), you can run multiple indexers in parallel for redundancy and load balancing.
 
-#### Blockchain scalability
+#### On-chain scalability (planned)
 
-On-chain operations (minting, transfers, sales) are expensive. Hypercerts minimize on-chain activity by keeping rich data on ATProto. Only ownership and funding flows touch the blockchain. Layer 2 solutions (Optimism, Arbitrum, Polygon) reduce gas costs for high-volume use cases.
+The on-chain funding and tokenization layer is not yet implemented. When built, on-chain operations will be expensive, so hypercerts will minimize on-chain activity by keeping rich data on ATProto. Only frozen snapshots and funding flows will touch the blockchain. For details on the planned on-chain design, see [Planned: Funding & Tokenization](/architecture/planned-funding-and-tokenization).
 
 ## Privacy and Access Control
 
@@ -47,6 +47,6 @@ ATProto records are public by default. Anyone can read your activity claims, eva
 
 ATProto is adding support for encrypted records. In the future, you'll be able to create private claims visible only to specific DIDs. For example, a contributor might share sensitive evidence with an evaluator without making it public.
 
-#### Access control via smart contracts
+#### Access control via smart contracts (planned)
 
-On-chain tokens can have access control logic. For example, a token might grant read access to private ATProto records only to token holders. This enables "token-gated" data — a hybrid of public ATProto data and private, permissioned access.
+In the planned design, on-chain tokens could have access control logic — for example, granting read access to private ATProto records only to token holders. This is a potential future feature. See [Planned: Funding & Tokenization](/architecture/planned-funding-and-tokenization) for details.
