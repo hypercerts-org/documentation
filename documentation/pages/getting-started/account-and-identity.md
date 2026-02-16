@@ -1,11 +1,11 @@
 ---
 title: Account & Identity Setup
-description: Create your account and configure your identity for building with Hypercerts.
+description: Understand your identity, configure custom domains, and manage credentials.
 ---
 
 # Account & Identity Setup
 
-To build with Hypercerts, you need an AT Protocol account. This gives you a DID (your permanent identity), a PDS (where your data is stored), and access to every application in the ecosystem.
+If you followed the [Quickstart](/getting-started/quickstart), you already have an account. This page explains what that account gives you and how to configure it — custom domain handles for organizations, app passwords for scripts, shared repositories for teams, and account recovery.
 
 ---
 
@@ -13,12 +13,17 @@ To build with Hypercerts, you need an AT Protocol account. This gives you a DID 
 
 Sign up at [certified.app](https://certified.app). You'll get:
 
+- **Low-friction sign-in** — No usernames, handles, or passwords to remember. Sign in with just your email and a code.
 - **A DID** — Your permanent, portable identifier (e.g., `did:plc:z72i7hdynmk6r22z27h6tvur`). It never changes, even if you switch servers or handles.
 - **A PDS** — Your Personal Data Server, where your hypercerts, evaluations, and other records are stored. You own this data.
 - **An embedded wallet** — Add your existing EVM wallet or get a new one.
 - **Ecosystem access** — Your identity works across every Hypercerts application.
 
-Sign-in is email-based — no usernames or passwords to remember.
+### Why Certified?
+
+The Hypercerts Protocol is built on AT Protocol — the same decentralized data layer that powers Bluesky. But most Hypercerts users are not Bluesky users. They are researchers, land stewards, open-source maintainers, funders, and evaluators. Asking them to "sign in with Bluesky" to use a funding platform would be confusing — it ties a funding tool to a social media brand. This is no knock on Bluesky — it's a great platform, just not the right entry point for a funding tool.
+
+Certified is a neutral identity provider that isn't tied to any single application. You create an account and immediately have an identity that works across the entire ecosystem — no knowledge of Bluesky, ATProto, or decentralized protocols required.
 
 {% callout type="note" %}
 Already have a Bluesky account or another AT Protocol account? You don't need a Certified account. Any AT Protocol identity works with all Hypercerts applications. Log in with your existing handle (e.g., `alice.bsky.social`) — everything just works.
@@ -78,7 +83,13 @@ Without your recovery key, account recovery is difficult or impossible. Save it 
 
 ---
 
+## The app.certified namespace
+
+Beyond identity, Certified contributes shared data schemas to the AT Protocol ecosystem. You'll see `app.certified.*` in some lexicon names — for example, [`app.certified.location`](/lexicons/general-lexicons/location) defines how geographic locations are represented. These are general-purpose schemas available to any application on AT Protocol, not just Hypercerts.
+
+---
+
 ## Next steps
 
-- [Quickstart](/getting-started/quickstart) — install the SDK and create your first hypercert
 - [Creating Your First Hypercert](/tutorials/creating-your-first-hypercert) — build a complete hypercert with contributions, evidence, and measurements
+- [Working with Evaluations](/tutorials/working-with-evaluations) — create evaluations of other people's work

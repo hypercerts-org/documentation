@@ -6,6 +6,7 @@ export const navigation = [
       { title: 'What are Hypercerts?', path: '/getting-started/what-is-hypercerts' },
       { title: 'Defining Work Scopes', path: '/getting-started/defining-work-scopes' },
       { title: "Why We're Building Hypercerts", path: '/getting-started/why-were-building-hypercerts' },
+      { title: 'What is Certified?', path: '/getting-started/what-is-certified' },
       { title: 'Why ATProto?', path: '/getting-started/why-atproto' },
     ],
   },
@@ -52,8 +53,27 @@ export const navigation = [
         title: 'Lexicons',
         path: '/lexicons/introduction-to-lexicons',
         children: [
-          { title: 'General Lexicons', path: '/lexicons/general-lexicons' },
-          { title: 'Hypercerts Lexicons', path: '/lexicons/hypercerts-lexicons' },
+          {
+            title: 'General Lexicons',
+            path: '/lexicons/general-lexicons',
+            children: [
+              { title: 'Shared Definitions', path: '/lexicons/general-lexicons/shared-defs' },
+              { title: 'Location', path: '/lexicons/general-lexicons/location' },
+            ],
+          },
+          {
+            title: 'Hypercerts Lexicons',
+            path: '/lexicons/hypercerts-lexicons',
+            children: [
+              { title: 'Activity Claim', path: '/lexicons/hypercerts-lexicons/activity-claim' },
+              { title: 'Contribution', path: '/lexicons/hypercerts-lexicons/contribution' },
+              { title: 'Evidence', path: '/lexicons/hypercerts-lexicons/evidence' },
+              { title: 'Measurement', path: '/lexicons/hypercerts-lexicons/measurement' },
+              { title: 'Evaluation', path: '/lexicons/hypercerts-lexicons/evaluation' },
+              { title: 'Collection', path: '/lexicons/hypercerts-lexicons/collection' },
+              { title: 'Rights', path: '/lexicons/hypercerts-lexicons/rights' },
+            ],
+          },
         ],
       },
       { title: 'Building on Hypercerts', path: '/reference/building-on-hypercerts' },
