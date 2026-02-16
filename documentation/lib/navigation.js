@@ -9,7 +9,6 @@ export const navigation = [
       { title: 'Creating Your First Hypercert', path: '/tutorials/creating-your-first-hypercert' },
       { title: 'Working with Evaluations', path: '/tutorials/working-with-evaluations' },
       { title: 'Common Use Cases', path: '/tutorials/common-use-cases' },
-      { title: 'Building on Hypercerts', path: '/reference/building-on-hypercerts' },
     ],
   },
   {
@@ -19,6 +18,22 @@ export const navigation = [
       { title: 'Defining Work Scopes', path: '/getting-started/defining-work-scopes' },
       { title: "Why We're Building Hypercerts", path: '/getting-started/why-were-building-hypercerts' },
       { title: 'Why ATProto?', path: '/getting-started/why-atproto' },
+    ],
+  },
+  {
+    section: 'Architecture',
+    children: [
+      {
+        title: 'Infrastructure Overview',
+        path: '/getting-started/the-hypercerts-infrastructure',
+        children: [
+          { title: 'Indexers & Discovery', path: '/getting-started/infrastructure/indexers-and-discovery' },
+          { title: 'Portability & Scaling', path: '/getting-started/infrastructure/portability-and-scaling' },
+        ],
+      },
+      { title: 'Architecture Overview', path: '/architecture/overview' },
+      { title: 'Data Flow & Lifecycle', path: '/architecture/data-flow-and-lifecycle' },
+      { title: 'Funding & Tokenization', path: '/architecture/planned-funding-and-tokenization' },
     ],
   },
   {
@@ -41,25 +56,10 @@ export const navigation = [
           { title: 'Hypercerts Lexicons', path: '/lexicons/hypercerts-lexicons' },
         ],
       },
+      { title: 'Building on Hypercerts', path: '/reference/building-on-hypercerts' },
       { title: 'Testing & Deployment', path: '/reference/testing-and-deployment' },
       { title: 'Glossary', path: '/reference/glossary' },
       { title: 'FAQ', path: '/reference/faq' },
-    ],
-  },
-  {
-    section: 'Architecture',
-    children: [
-      {
-        title: 'Infrastructure Overview',
-        path: '/getting-started/the-hypercerts-infrastructure',
-        children: [
-          { title: 'Indexers & Discovery', path: '/getting-started/infrastructure/indexers-and-discovery' },
-          { title: 'Portability & Scaling', path: '/getting-started/infrastructure/portability-and-scaling' },
-        ],
-      },
-      { title: 'Architecture Overview', path: '/architecture/overview' },
-      { title: 'Data Flow & Lifecycle', path: '/architecture/data-flow-and-lifecycle' },
-      { title: 'Funding & Tokenization', path: '/architecture/planned-funding-and-tokenization' },
     ],
   },
   { title: 'Roadmap', path: '/roadmap' },
