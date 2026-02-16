@@ -13,6 +13,14 @@ export const navigation = [
     ],
   },
   {
+    section: 'Understand',
+    children: [
+      { title: 'How Hypercerts Work', path: '/getting-started/how-hypercerts-work' },
+      { title: 'Defining Work Scopes', path: '/getting-started/defining-work-scopes' },
+      { title: "Why We're Building Hypercerts", path: '/getting-started/why-were-building-hypercerts' },
+    ],
+  },
+  {
     section: 'Tools',
     children: [
       { title: 'Hypercerts CLI', path: '/tools/hypercerts-cli' },
@@ -38,24 +46,20 @@ export const navigation = [
     ],
   },
   {
-    section: 'Protocol Deep Dive',
+    section: 'Architecture',
     children: [
-      { title: "Why We're Building Hypercerts", path: '/getting-started/why-were-building-hypercerts' },
-      { title: 'Introduction to Impact Claims', path: '/getting-started/introduction-to-impact-claims' },
-      { title: 'The Impact and Work Space', path: '/getting-started/the-impact-and-work-space' },
-      { title: 'Deep Dive: The Work Scope', path: '/deep-dive-the-work-scope' },
       { title: 'Why ATProto?', path: '/getting-started/why-atproto' },
       {
-        title: 'The Hypercerts Infrastructure',
+        title: 'Infrastructure Overview',
         path: '/getting-started/the-hypercerts-infrastructure',
         children: [
           { title: 'Indexers & Discovery', path: '/getting-started/infrastructure/indexers-and-discovery' },
-          { title: 'Funding & Tokenization (Planned)', path: '/architecture/planned-funding-and-tokenization' },
           { title: 'Portability & Scaling', path: '/getting-started/infrastructure/portability-and-scaling' },
         ],
       },
       { title: 'Architecture Overview', path: '/architecture/overview' },
       { title: 'Data Flow & Lifecycle', path: '/architecture/data-flow-and-lifecycle' },
+      { title: 'Funding & Tokenization', path: '/architecture/planned-funding-and-tokenization' },
     ],
   },
   { title: 'Roadmap', path: '/roadmap' },

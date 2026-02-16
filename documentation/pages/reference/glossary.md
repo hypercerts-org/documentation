@@ -59,7 +59,7 @@ A versioned schema that defines the structure of a record type. For example, `or
 
 #### Work scope
 
-The "what" dimension of a hypercert, defined using logical operators (`allOf`, `anyOf`, `noneOf`) to precisely bound the work being claimed. See [Deep Dive: The Work Scope](/deep-dive-the-work-scope) for the formal specification.
+The "what" dimension of a hypercert, defined using logical operators (`allOf`, `anyOf`, `noneOf`) to precisely bound the work being claimed. See [Defining Work Scopes](/getting-started/defining-work-scopes) for details.
 
 #### Hypergoat / Hyperindex
 

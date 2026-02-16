@@ -17,6 +17,14 @@ Hypercerts are structured digital records of contributions — who did what, whe
 | **[Common Use Cases](/tutorials/common-use-cases)** | Worked examples for open-source, climate, research, and community projects |
 | **[Building on Hypercerts](/reference/building-on-hypercerts)** | Integration patterns for funding platforms, dashboards, and evaluation tools |
 
+## Understand
+
+| | |
+|---|---|
+| **[How Hypercerts Work](/getting-started/how-hypercerts-work)** | The data model — record types, dimensions, and how they connect |
+| **[Defining Work Scopes](/getting-started/defining-work-scopes)** | Use allOf, anyOf, and noneOf to precisely scope your claims |
+| **[Why We're Building Hypercerts](/getting-started/why-were-building-hypercerts)** | The problem, the vision, and what hypercerts unlock |
+
 ## Tools
 
 | | |
@@ -26,20 +34,11 @@ Hypercerts are structured digital records of contributions — who did what, whe
 | **[Hyperindex](/tools/hyperindex)** | GraphQL API for querying hypercert records across the network |
 | **[Hyperboard](/tools/hyperboard)** | Visual contributor boards for attribution and funding transparency |
 
-## Reference
+## Reference & Architecture
 
 | | |
 |---|---|
 | **[Lexicons](/lexicons/introduction-to-lexicons)** | Schema definitions for every record type |
 | **[Testing & Deployment](/reference/testing-and-deployment)** | Test locally, understand constraints, and go live |
-| **[Glossary](/reference/glossary)** | Key terms you'll encounter when building |
-| **[FAQ](/reference/faq)** | Common questions about building with Hypercerts |
-
-## Go deeper
-
-| | |
-|---|---|
 | **[Architecture Overview](/architecture/overview)** | How the protocol stack fits together |
-| **[Data Flow & Lifecycle](/architecture/data-flow-and-lifecycle)** | How a hypercert moves through the system |
-| **[Why ATProto?](/getting-started/why-atproto)** | Why we chose AT Protocol for the data layer |
 | **[Roadmap](/roadmap)** | Development priorities and phased delivery plan |
