@@ -1,11 +1,11 @@
 ---
 title: Account & Identity Setup
-description: Create your account and configure your identity for building with Hypercerts.
+description: Understand your identity, configure custom domains, and manage credentials.
 ---
 
 # Account & Identity Setup
 
-To build with Hypercerts, you need an AT Protocol account. This gives you a DID (your permanent identity), a PDS (where your data is stored), and access to every application in the ecosystem.
+If you followed the [Quickstart](/getting-started/quickstart), you already have an account. This page explains what that account gives you and how to configure it — custom domain handles for organizations, app passwords for scripts, shared repositories for teams, and account recovery.
 
 ---
 
