@@ -34,7 +34,7 @@ export const navigation = [
       },
       { title: 'Architecture Overview', path: '/architecture/overview' },
       { title: 'Data Flow & Lifecycle', path: '/architecture/data-flow-and-lifecycle' },
-      { title: 'Funding & Tokenization', path: '/architecture/planned-funding-and-tokenization' },
+      { title: 'Funding & Tokenization', path: '/architecture/funding-and-tokenization' },
     ],
   },
   {
