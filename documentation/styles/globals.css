@@ -986,6 +986,21 @@ a.sidebar-link-active:hover {
   }
 }
 
+/* Tablet: reduce content padding, narrow sidebar */
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    --sidebar-width: 220px;
+  }
+
+  .layout-content {
+    padding: var(--space-6) var(--space-6);
+  }
+
+  .layout-content h1 {
+    font-size: 28px;
+  }
+}
+
 /* Mobile: sidebar hidden, content full width */
 @media (max-width: 768px) {
   .hamburger-btn {
@@ -1030,5 +1045,35 @@ a.sidebar-link-active:hover {
   .layout-content table {
     display: block;
     overflow-x: auto;
+  }
+
+  /* Increase touch targets for mobile */
+  .sidebar-link {
+    padding: 10px var(--space-3);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .hamburger-btn {
+    padding: var(--space-2);
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Typography scaling for mobile */
+  .layout-content h1 {
+    font-size: 26px;
+    margin-bottom: var(--space-4);
+  }
+
+  .layout-content h2 {
+    font-size: 20px;
+    line-height: 28px;
+    margin-top: var(--space-8);
+  }
+
+  .layout-content h3 {
+    font-size: 15px;
   }
 }
