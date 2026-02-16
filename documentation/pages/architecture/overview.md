@@ -47,7 +47,7 @@ A typical data flow: a user writes a record to their PDS → the PDS signs it an
 
 ## Ownership Layer (Planned)
 
-The ownership layer is not yet implemented. The planned design freezes ATProto records and anchors them on-chain before funding, ensuring funders know exactly what they are paying for. For the full planned design — including anchoring, tokenization, funding mechanisms, and multi-chain support — see [Planned: Funding & Tokenization](/architecture/planned-funding-and-tokenization).
+The ownership layer is not yet implemented. The planned design freezes ATProto records and anchors them on-chain before funding, ensuring funders know exactly what they are paying for. For the full planned design — including anchoring, tokenization, and funding mechanisms — see [Planned: Funding & Tokenization](/architecture/planned-funding-and-tokenization).
 
 ## How the Layers Connect
 

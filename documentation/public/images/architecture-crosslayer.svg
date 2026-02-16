@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 240" fill="none">
+  <style>
+    .card-title { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+    .field-key { font-family: 'SF Mono', 'Fira Code', Menlo, monospace; font-size: 11px; font-weight: 500; }
+    .field-val { font-family: 'SF Mono', 'Fira Code', Menlo, monospace; font-size: 11px; font-weight: 400; }
+    .row-text { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 12px; }
+    .badge { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.04em; }
+  </style>
+
+  <!-- ATProto card -->
+  <rect x="24" y="16" width="288" height="208" rx="10" fill="#0f172a" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="48" y="44" class="card-title" fill="#38bdf8">ATProto Record</text>
+
+  <!-- URI row -->
+  <rect x="40" y="60" width="256" height="28" rx="5" fill="#1e293b"/>
+  <text x="52" y="79" class="field-key" fill="#64748b">URI</text>
+  <text x="84" y="79" class="field-val" fill="#cbd5e1">at://did:plc:alice/…</text>
+
+  <!-- Content row -->
+  <rect x="40" y="96" width="256" height="26" rx="5" fill="transparent" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="52" y="114" class="row-text" fill="#94a3b8">Content: activity claim</text>
+
+  <!-- Evidence row -->
+  <rect x="40" y="128" width="256" height="26" rx="5" fill="transparent" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="52" y="146" class="row-text" fill="#94a3b8">Evidence: [linked records]</text>
+
+  <!-- Evaluations row -->
+  <rect x="40" y="160" width="256" height="26" rx="5" fill="transparent" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="52" y="178" class="row-text" fill="#94a3b8">Evaluations: [accumulating]</text>
+
+  <!-- Frozen badge -->
+  <rect x="40" y="196" width="256" height="16" rx="3" fill="#422006"/>
+  <text x="168" y="208" text-anchor="middle" class="badge" fill="#fbbf24">FROZEN SNAPSHOT</text>
+
+  <!-- Connection -->
+  <line x1="320" y1="120" x2="376" y2="120" stroke="#475569" stroke-width="1"/>
+  <polygon points="373,116 380,120 373,124" fill="#475569"/>
+  <text x="348" y="110" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#64748b" font-weight="500">anchored</text>
+
+  <!-- Blockchain card -->
+  <rect x="388" y="16" width="288" height="208" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1" stroke-dasharray="6 3"/>
+  <text x="412" y="44" class="card-title" fill="#a78bfa">Blockchain Token</text>
+  <rect x="544" y="30" width="52" height="18" rx="4" fill="#1e1b4b" stroke="#4c1d95" stroke-width="1"/>
+  <text x="570" y="43" text-anchor="middle" class="badge" fill="#a78bfa">planned</text>
+
+  <!-- Token ID row -->
+  <rect x="404" y="60" width="256" height="28" rx="5" fill="#0f172a"/>
+  <text x="416" y="79" class="field-key" fill="#64748b">Token ID</text>
+  <text x="480" y="79" class="field-val" fill="#cbd5e1">42</text>
+
+  <!-- Owner row -->
+  <rect x="404" y="96" width="256" height="26" rx="5" fill="transparent" stroke="#334155" stroke-width="1"/>
+  <text x="416" y="114" class="row-text" fill="#94a3b8">Owner: 0xBob…</text>
+
+  <!-- Metadata row -->
+  <rect x="404" y="128" width="256" height="26" rx="5" fill="transparent" stroke="#334155" stroke-width="1"/>
+  <text x="416" y="146" class="row-text" fill="#94a3b8">Metadata: { frozen_uri: "at://…" }</text>
+
+  <!-- Contract row -->
+  <rect x="404" y="160" width="256" height="26" rx="5" fill="transparent" stroke="#334155" stroke-width="1"/>
+  <text x="416" y="178" class="row-text" fill="#94a3b8">Contract: 0xHyper…</text>
+
+  <!-- Anchored badge -->
+  <rect x="404" y="196" width="256" height="16" rx="3" fill="#422006"/>
+  <text x="532" y="208" text-anchor="middle" class="badge" fill="#fbbf24">ANCHORED REFERENCE</text>
+</svg>

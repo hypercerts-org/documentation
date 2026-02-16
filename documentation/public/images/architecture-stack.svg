@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" fill="none">
+  <style>
+    .layer-label { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+    .layer-desc { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 400; }
+    .arrow-text { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 10px; fill: #94a3b8; }
+  </style>
+
+  <!-- Ownership Layer (top) -->
+  <rect x="32" y="16" width="576" height="72" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1" stroke-dasharray="6 3"/>
+  <text x="56" y="46" class="layer-label" fill="#a78bfa">Ownership Layer — Blockchain</text>
+  <text x="56" y="66" class="layer-desc" fill="#94a3b8">Tokenization · Funding flows · Rights</text>
+  <rect x="488" y="32" width="64" height="20" rx="4" fill="#1e1b4b" stroke="#4c1d95" stroke-width="1"/>
+  <text x="520" y="46" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="600" fill="#a78bfa">planned</text>
+
+  <!-- Arrow + label -->
+  <line x1="320" y1="92" x2="320" y2="112" stroke="#475569" stroke-width="1" stroke-dasharray="3 2"/>
+  <polygon points="315,110 320,118 325,110" fill="#475569"/>
+  <text x="334" y="108" class="arrow-text">freeze &amp; anchor</text>
+
+  <!-- Application Layer (middle) -->
+  <rect x="32" y="122" width="576" height="72" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="56" y="152" class="layer-label" fill="#94a3b8">Application Layer</text>
+  <text x="56" y="172" class="layer-desc" fill="#cbd5e1">Funding platforms · Dashboards · Evaluation tools</text>
+
+  <!-- Arrow + label -->
+  <line x1="320" y1="198" x2="320" y2="218" stroke="#475569" stroke-width="1" stroke-dasharray="3 2"/>
+  <polygon points="315,216 320,224 325,216" fill="#475569"/>
+  <text x="334" y="214" class="arrow-text">reads / writes</text>
+
+  <!-- Data Layer (bottom) -->
+  <rect x="32" y="228" width="576" height="72" rx="8" fill="#0f172a" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="56" y="258" class="layer-label" fill="#38bdf8">Data Layer — AT Protocol</text>
+  <text x="56" y="278" class="layer-desc" fill="#94a3b8">PDS / SDS → Relay → App View / Indexer</text>
+</svg>

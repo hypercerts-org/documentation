@@ -149,7 +149,7 @@ Many PDS Instances
 
 The on-chain funding layer is not yet implemented. The planned design: before a hypercert can be funded, its ATProto records are frozen and the snapshot is anchored on-chain. This ensures funders know exactly what they are paying for — the cert's contents cannot change after freezing.
 
-For the full planned design — including anchoring, tokenization, funding mechanisms, funding readiness patterns, and multi-chain support — see [Planned: Funding & Tokenization](/architecture/planned-funding-and-tokenization).
+For the full planned design — including anchoring, tokenization, funding mechanisms, and funding readiness patterns — see [Planned: Funding & Tokenization](/architecture/planned-funding-and-tokenization).
 
 ## Stage 6: Accumulation
 

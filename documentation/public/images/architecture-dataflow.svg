@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 130" fill="none">
+  <style>
+    .node-label { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; }
+    .node-desc { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 400; }
+  </style>
+
+  <!-- User -->
+  <rect x="8" y="24" width="96" height="56" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="56" y="48" text-anchor="middle" class="node-label" fill="#94a3b8">User</text>
+  <text x="56" y="64" text-anchor="middle" class="node-desc" fill="#64748b">writes record</text>
+
+  <!-- Arrow -->
+  <line x1="108" y1="52" x2="140" y2="52" stroke="#475569" stroke-width="1"/>
+  <polygon points="137,48 144,52 137,56" fill="#475569"/>
+
+  <!-- PDS -->
+  <rect x="148" y="24" width="108" height="56" rx="8" fill="#0f172a" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="202" y="48" text-anchor="middle" class="node-label" fill="#38bdf8">PDS</text>
+  <text x="202" y="64" text-anchor="middle" class="node-desc" fill="#64748b">signs &amp; stores</text>
+
+  <!-- Arrow -->
+  <line x1="260" y1="52" x2="292" y2="52" stroke="#475569" stroke-width="1"/>
+  <polygon points="289,48 296,52 289,56" fill="#475569"/>
+
+  <!-- Relay -->
+  <rect x="300" y="24" width="108" height="56" rx="8" fill="#0f172a" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="354" y="48" text-anchor="middle" class="node-label" fill="#38bdf8">Relay</text>
+  <text x="354" y="64" text-anchor="middle" class="node-desc" fill="#64748b">aggregates</text>
+
+  <!-- Arrow -->
+  <line x1="412" y1="52" x2="444" y2="52" stroke="#475569" stroke-width="1"/>
+  <polygon points="441,48 448,52 441,56" fill="#475569"/>
+
+  <!-- Indexer -->
+  <rect x="452" y="24" width="108" height="56" rx="8" fill="#0f172a" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="506" y="48" text-anchor="middle" class="node-label" fill="#38bdf8">Indexer</text>
+  <text x="506" y="64" text-anchor="middle" class="node-desc" fill="#64748b">queries &amp; filters</text>
+
+  <!-- Arrow -->
+  <line x1="564" y1="52" x2="596" y2="52" stroke="#475569" stroke-width="1"/>
+  <polygon points="593,48 600,52 593,56" fill="#475569"/>
+
+  <!-- Application -->
+  <rect x="604" y="24" width="96" height="56" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="652" y="48" text-anchor="middle" class="node-label" fill="#94a3b8">Application</text>
+  <text x="652" y="64" text-anchor="middle" class="node-desc" fill="#64748b">displays data</text>
+
+  <!-- Signed repo annotation -->
+  <line x1="202" y1="84" x2="202" y2="104" stroke="#334155" stroke-width="1" stroke-dasharray="3 2"/>
+  <text x="202" y="118" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#64748b" font-style="italic">signed repository</text>
+</svg>
