@@ -16,6 +16,7 @@ const components = {
   Heading,
   CardLink,
   CodeBlock,
+  Fence: CodeBlock,
 };
 
 export default function App({ Component, pageProps }) {
