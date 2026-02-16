@@ -18,4 +18,4 @@ Additional claims can then be attached to this core activity, including measurem
 
 Claims are standalone. They do not necessarily have to be linked to each other. You can create a measurement claim first, and then later attach it to a specific activity claim, if required.
 
-Hypercerts can exist as a standalone activity claim. In the planned design, a hypercert's records will be frozen and anchored on-chain before it can be funded — this ensures funders know exactly what they are paying for. The tokenization layer is not yet implemented.
+Hypercerts can exist as a standalone activity claim, or they can be [frozen and funded](/architecture/planned-funding-and-tokenization) on-chain (planned).

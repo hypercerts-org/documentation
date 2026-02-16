@@ -15,11 +15,11 @@ A hypercert is a structured digital record of a contribution. It captures who di
 
 ## How is this different from the previous (EVM-based) Hypercerts?
 
-The new protocol is built on AT Protocol instead of purely on-chain. This gives data portability, richer schemas, and lower costs, while planning to use on-chain anchoring to freeze hypercerts before funding. The tokenization layer is not yet implemented, but the architecture is designed for it. The data layer is now decentralized through ATProto, making hypercerts more accessible and flexible.
+The new protocol is built on AT Protocol instead of purely on-chain. This gives data portability, richer schemas, and lower costs. On-chain anchoring for funding is [planned](/architecture/planned-funding-and-tokenization) but not yet implemented.
 
 ## Do I need a blockchain wallet?
 
-Not to create or evaluate hypercerts — you only need an ATProto account (DID). A blockchain wallet will eventually be needed to fund hypercerts on-chain, but the tokenization layer is not yet implemented. The on-chain mechanisms are being designed.
+Not to create or evaluate hypercerts — you only need an ATProto account (DID). A blockchain wallet will be needed for on-chain funding once the [tokenization layer](/architecture/planned-funding-and-tokenization) is built.
 
 ## Is my data public?
 
@@ -35,7 +35,7 @@ Anyone with an ATProto account. Evaluations are separate records on the evaluato
 
 ## How do I fund a hypercert?
 
-The planned approach: before a hypercert can be funded, its ATProto records must be frozen — a cryptographic snapshot is taken and anchored on-chain. This ensures funders know exactly what they are paying for, since the cert's contents cannot change after freezing. The specific on-chain funding mechanisms are being designed. The hypercert data itself lives on ATProto, while the frozen snapshot and funding state will live on-chain. The tokenization layer is not yet implemented.
+The on-chain funding layer is not yet implemented. The planned design freezes ATProto records before funding to ensure funders know exactly what they are paying for. See [Planned: Funding & Tokenization](/architecture/planned-funding-and-tokenization) for details.
 
 ## Can I use my Bluesky account?
 
@@ -43,7 +43,7 @@ Yes. Bluesky accounts are ATProto accounts. Your existing DID works with Hyperce
 
 ## What chains are supported?
 
-The protocol intends to be chain-agnostic for on-chain anchoring and funding. The tokenization layer is not yet implemented, so specific chain support has not been determined. The data layer (ATProto) is independent of any particular blockchain.
+The protocol intends to be chain-agnostic. The on-chain layer is not yet implemented — see [Planned: Funding & Tokenization](/architecture/planned-funding-and-tokenization).
 
 ## How do I get help?
 
