@@ -93,12 +93,13 @@ export function CodeBlock({ content, language, children }) {
           <pre className="codeblock-pre">
             <code>
               {tokens.map((line, i) => {
-                const lineProps = getLineProps({ line, key: i });
+                const { key: lineKey, ...lineProps } = getLineProps({ line, key: i });
                 return (
-                  <span key={i} {...lineProps}>
-                    {line.map((token, j) => (
-                      <span key={j} {...getTokenProps({ token, key: j })} />
-                    ))}
+                  <span key={lineKey} {...lineProps}>
+                    {line.map((token, j) => {
+                      const { key: tokenKey, ...tokenProps } = getTokenProps({ token, key: j });
+                      return <span key={tokenKey} {...tokenProps} />;
+                    })}
                     {'\n'}
                   </span>
                 );
