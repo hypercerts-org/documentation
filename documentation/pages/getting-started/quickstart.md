@@ -56,15 +56,16 @@ const repo = sdk.getRepository(session);
 
 const result = await repo.hypercerts.create({
   title: "NumPy documentation maintenance, Q1 2026",
-  description: "Updated API docs and fixed 15 broken examples.",
+  shortDescription: "Updated API docs and fixed 15 broken examples.",
   workScope: "Documentation",
-  workTimeframeFrom: "2026-01-01",
-  workTimeframeTo: "2026-03-31",
+  startDate: "2026-01-01T00:00:00Z",
+  endDate: "2026-03-31T23:59:59Z",
   rights: {
-    name: "Public Display",
-    type: "display",
-    description: "Right to publicly display this contribution",
+    rightsName: "Public Display",
+    rightsType: "display",
+    rightsDescription: "Right to publicly display this contribution",
   },
+  createdAt: new Date().toISOString(),
 });
 
 console.log(result);
@@ -76,4 +77,4 @@ The response includes an AT-URI — a permanent, globally unique identifier for 
 at://did:plc:abc123/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a
 ```
 
-Other records (evaluations, evidence, measurements) reference your hypercert using this URI. The response also includes a CID (content hash) that makes the reference tamper-evident. See the [Activity Claim lexicon](/lexicons/hypercerts-lexicons/activity-claim) for the complete schema.
+Other records (evaluations, attachments, measurements) reference your hypercert using this URI. The response also includes a CID (content hash) that makes the reference tamper-evident. See the [Activity Claim lexicon](/lexicons/hypercerts-lexicons/activity-claim) for the complete schema.

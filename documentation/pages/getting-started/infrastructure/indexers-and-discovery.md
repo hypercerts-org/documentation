@@ -14,7 +14,7 @@ ATProto is federated — data is distributed across thousands of PDSs. To discov
 
 Indexers fetch records, parse them according to their lexicons, and store them in a queryable database. They provide APIs for searching, filtering, and aggregating hypercert data. For example, an indexer might offer endpoints like:
 
-- `GET /claims?workScope=Documentation&workTimeframeFrom=2026-01-01`
+- `GET /claims?workScope=Documentation&startDate=2026-01-01`
 - `GET /evaluations?subject=at://did:plc:alice123/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a`
 - `GET /contributors?did=did:plc:alice123`
 

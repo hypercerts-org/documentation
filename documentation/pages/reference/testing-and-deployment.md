@@ -45,15 +45,16 @@ const repo = sdk.getRepository(session);
 // Create a test hypercert
 const result = await repo.hypercerts.create({
   title: "Test: reforestation project Q1 2026",
-  description: "Integration test — safe to delete.",
+  shortDescription: "Integration test — safe to delete.",
   workScope: "test",
-  workTimeframeFrom: "2026-01-01",
-  workTimeframeTo: "2026-03-31",
+  startDate: "2026-01-01T00:00:00Z",
+  endDate: "2026-03-31T23:59:59Z",
   rights: {
-    name: "Public Display",
-    type: "display",
-    description: "Right to publicly display this contribution",
+    rightsName: "Public Display",
+    rightsType: "display",
+    rightsDescription: "Right to publicly display this contribution",
   },
+  createdAt: new Date().toISOString(),
 });
 
 console.log("Created:", result.uri);
@@ -83,23 +84,24 @@ When creating or updating records, the PDS validates them against the lexicon sc
 Every record type has required fields. The PDS returns a validation error if any are missing.
 
 ```typescript
-// ❌ Rejected — missing title and workTimeframeFrom
+// ❌ Rejected — missing title and shortDescription
 await repo.hypercerts.create({
-  description: "Built a community garden",
+  createdAt: new Date().toISOString(),
 });
 
 // ✅ Accepted
 await repo.hypercerts.create({
   title: "Community Garden Project",
-  description: "Built a community garden",
+  shortDescription: "Built a community garden",
   workScope: "Urban agriculture",
-  workTimeframeFrom: "2026-01-01",
-  workTimeframeTo: "2026-06-30",
+  startDate: "2026-01-01T00:00:00Z",
+  endDate: "2026-06-30T23:59:59Z",
   rights: {
-    name: "Public Display",
-    type: "display",
-    description: "Right to publicly display this contribution",
+    rightsName: "Public Display",
+    rightsType: "display",
+    rightsDescription: "Right to publicly display this contribution",
   },
+  createdAt: new Date().toISOString(),
 });
 ```
 
@@ -109,10 +111,10 @@ All datetime fields must use ISO 8601 format.
 
 ```typescript
 // ❌ Rejected
-workTimeframeFrom: "01/15/2026"
+startDate: "01/15/2026"
 
 // ✅ Accepted
-workTimeframeFrom: "2026-01-15T00:00:00Z"
+startDate: "2026-01-15T00:00:00Z"
 ```
 
 ### Strong references
@@ -122,14 +124,14 @@ When one record references another (e.g., an evaluation referencing an activity 
 ```typescript
 // ❌ Rejected — missing cid
 const evaluation = {
-  activity: {
+  subject: {
     uri: "at://did:plc:abc123/org.hypercerts.claim.activity/3k7",
   },
 };
 
 // ✅ Accepted
 const evaluation = {
-  activity: {
+  subject: {
     uri: "at://did:plc:abc123/org.hypercerts.claim.activity/3k7",
     cid: "bafyreiabc123...",
   },
@@ -144,7 +146,7 @@ const latest = await repo.hypercerts.get(
 );
 
 const evaluation = {
-  activity: {
+  subject: {
     uri: latest.uri,
     cid: latest.cid,
   },

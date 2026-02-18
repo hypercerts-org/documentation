@@ -28,8 +28,8 @@ To add further information to the individual contributors, separate records with
 
 | Record type | What it adds | Who creates it | Lexicon |
 |-------------|-------------|----------------|---------|
-| **Contributor Details** | Social profile, image, display name | The contributor or project lead | `org.hypercerts.claim.contributorDetails` |
-| **Contribution Information** | What was the role of the contributor, what did they contribute | The contributor or project lead | `org.hypercerts.claim.contributionInformation` |
+| **Contributor Information** | Social profile, image, display name | The contributor or project lead | `org.hypercerts.claim.contributorInformation` |
+| **Contribution Details** | What was the role of the contributor, what did they contribute | The contributor or project lead | `org.hypercerts.claim.contributionDetails` |
 
 ## Records that attach to a hypercert
 
@@ -57,7 +57,7 @@ Often hypercerts belong to each other in a project, e.g. in a multi-year project
 
 | Record type | What it adds | Who creates it | Lexicon |
 |-------------|-------------|----------------|---------|
-| **Collection** | Groups multiple activity claims into a project or portfolio | E.g. the project organizer | `org.hypercerts.claim.collection` |
+| **Collection** | Groups activity claims and/or other collections into a project or portfolio. Supports recursive nesting. | E.g. the project organizer | `org.hypercerts.claim.collection` |
 
 ## How records connect
 
@@ -65,12 +65,12 @@ Records reference each other using **strong references** — a combination of AT
 
 ```text
 Activity Claim (the core record)
-├── Contribution 1
-│   ├── ContributorDetails: Alice
-│   └── ContributionInformation: Lead author
-├── Contribution 2
-│   ├── ContributorDetails: Bob
-│   └── ContributionInformation: Technical reviewer
+├── Contributor 1
+│   ├── ContributorInformation: Alice
+│   └── ContributionDetails: Lead author
+├── Contributor 2
+│   ├── ContributorInformation: Bob
+│   └── ContributionDetails: Technical reviewer
 ├── Attachment: GitHub repository link
 ├── Measurement: 12 pages written
 ├── Measurement: 8,500 words

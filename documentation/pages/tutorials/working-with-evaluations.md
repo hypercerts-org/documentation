@@ -45,21 +45,22 @@ Measurements provide quantitative data that supports your evaluation:
 
 ```typescript
 const measurement = await repo.measurements.create({
-  activity: {
+  subject: {
     uri: "at://did:plc:xyz789/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a",
     cid: "bafyreib2rxk3rh6kzwq...",
   },
   measurers: ["did:plc:evaluator123"],
   metric: "Documentation page views",
+  unit: "views",
   value: "12500",
-  measurementMethodType: "analytics",
-  measurementMethodURI: "https://example.com/analytics-methodology",
+  methodType: "analytics",
+  methodURI: "https://example.com/analytics-methodology",
   evidenceURI: ["https://example.com/analytics-report.pdf"],
   createdAt: new Date().toISOString(),
 });
 ```
 
-You can then reference this measurement in your evaluation's `evaluations` array to link quantitative evidence to your assessment.
+You can then reference this measurement in your evaluation's `measurements` array to link quantitative data to your assessment.
 
 ## Evaluation patterns
 

@@ -56,7 +56,7 @@ Supporting data gets attached through additional records that reference the acti
 
 #### Contribution Records
 
-`org.hypercerts.claim.contribution` records link collaborators to the work. Each contribution record specifies a contributor DID, their role, and a strong reference to the activity claim. Contributions can be created by the original contributor or by collaborators on their own servers.
+Contributors are embedded in the activity claim's `contributors` array. For richer profiles, separate `org.hypercerts.claim.contributorInformation` and `org.hypercerts.claim.contributionDetails` records can be created and referenced. Contributions can be created by the original contributor or by collaborators on their own servers.
 
 #### Attachment Records
 

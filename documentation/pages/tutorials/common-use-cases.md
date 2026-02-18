@@ -21,15 +21,13 @@ const repo = sdk.getRepository(session);
 const result = await repo.hypercerts.create({
   title: "Library maintenance, 2025",
   shortDescription: "Ongoing maintenance of an open-source library",
-  workScope: {
-    allOf: ["Software Development", "Open Source"],
-  },
+  workScope: "Software Development, Open Source",
   startDate: "2025-01-01T00:00:00Z",
   endDate: "2025-12-31T23:59:59Z",
   rights: {
-    name: "Public Display",
-    type: "display",
-    description: "Right to publicly display this contribution",
+    rightsName: "Public Display",
+    rightsType: "display",
+    rightsDescription: "Right to publicly display this contribution",
   },
   createdAt: new Date().toISOString(),
 });
@@ -43,25 +41,25 @@ A conservation group restores degraded forest over several years. They document 
 
 ```typescript
 const locationRef = await repo.locations.create({
-  latitude: 10.42,
-  longitude: -84.10,
-  radius: 500, // meters
+  lpVersion: "1",
+  srs: "http://www.opengis.net/def/crs/OGC/1.3/CRS84",
+  locationType: "coordinate-decimal",
+  location: { string: "-84.10, 10.42" },
+  name: "Restoration site",
   createdAt: new Date().toISOString(),
 });
 
 const result = await repo.hypercerts.create({
   title: "Forest restoration project, 2020–2025",
   shortDescription: "Reforestation and biodiversity recovery in degraded tropical forest",
-  workScope: {
-    allOf: ["Ecosystem Restoration", "Biodiversity Conservation"],
-  },
+  workScope: "Ecosystem Restoration, Biodiversity Conservation",
   startDate: "2020-01-01T00:00:00Z",
   endDate: "2025-12-31T23:59:59Z",
-  location: locationRef,
+  locations: [locationRef],
   rights: {
-    name: "Public Display",
-    type: "display",
-    description: "Right to publicly display this contribution",
+    rightsName: "Public Display",
+    rightsType: "display",
+    rightsDescription: "Right to publicly display this contribution",
   },
   createdAt: new Date().toISOString(),
 });
@@ -77,15 +75,13 @@ A research team completes a multi-year study and wants to document the effort wi
 const result = await repo.hypercerts.create({
   title: "Drug delivery mechanism research, 2022–2024",
   shortDescription: "Novel approaches to improving therapeutic delivery",
-  workScope: {
-    allOf: ["Biomedical Research", "Drug Delivery"],
-  },
+  workScope: "Biomedical Research, Drug Delivery",
   startDate: "2022-03-01T00:00:00Z",
   endDate: "2024-11-30T23:59:59Z",
   rights: {
-    name: "Public Display",
-    type: "display",
-    description: "Right to publicly display this contribution",
+    rightsName: "Public Display",
+    rightsType: "display",
+    rightsDescription: "Right to publicly display this contribution",
   },
   createdAt: new Date().toISOString(),
 });
@@ -101,15 +97,13 @@ A group runs regular workshops teaching practical skills to underrepresented com
 const result = await repo.hypercerts.create({
   title: "Community workshops, 2025",
   shortDescription: "Free skill-building workshops for underrepresented groups",
-  workScope: {
-    allOf: ["Education", "Community Building"],
-  },
+  workScope: "Education, Community Building",
   startDate: "2025-01-01T00:00:00Z",
   endDate: "2025-12-31T23:59:59Z",
   rights: {
-    name: "Public Display",
-    type: "display",
-    description: "Right to publicly display this contribution",
+    rightsName: "Public Display",
+    rightsType: "display",
+    rightsDescription: "Right to publicly display this contribution",
   },
   createdAt: new Date().toISOString(),
 });

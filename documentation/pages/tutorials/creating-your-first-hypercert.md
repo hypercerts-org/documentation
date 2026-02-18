@@ -37,15 +37,13 @@ const hypercert = await repo.hypercerts.create({
   title: "Hypercerts Protocol documentation, Q1 2026",
   shortDescription: "Wrote getting started guides, tutorials, and lexicon reference pages.",
   description: "Created 12 new documentation pages covering quickstart, SDK setup, use cases, evaluations, and architecture. Migrated from GitBook to a custom Next.js + Markdoc site.",
-  workScope: {
-    allOf: ["Documentation", "Hypercerts Protocol"],
-  },
+  workScope: "Documentation, Hypercerts Protocol",
   startDate: "2026-01-01T00:00:00Z",
   endDate: "2026-03-31T23:59:59Z",
   rights: {
-    name: "Public Display",
-    type: "display",
-    description: "Right to publicly display this contribution",
+    rightsName: "Public Display",
+    rightsType: "display",
+    rightsDescription: "Right to publicly display this contribution",
   },
   createdAt: new Date().toISOString(),
 });
@@ -58,31 +56,37 @@ Save the `uri` and `cid` from the response — you'll need them to link other re
 
 ## Add contributions
 
-Contribution records identify who did the work. Create one per role:
+Contributors are embedded directly in the activity claim's `contributors` array. For simple cases, use inline strings:
 
 ```typescript
-const lead = await repo.contributions.create({
-  contributors: ["did:plc:alice123"],
-  role: "Lead author",
-  description: "Wrote the quickstart, SDK setup, and architecture pages.",
+const hypercert = await repo.hypercerts.create({
+  title: "Hypercerts Protocol documentation, Q1 2026",
+  shortDescription: "Wrote getting started guides, tutorials, and lexicon reference pages.",
+  workScope: "Documentation, Hypercerts Protocol",
   startDate: "2026-01-01T00:00:00Z",
   endDate: "2026-03-31T23:59:59Z",
-  createdAt: new Date().toISOString(),
-});
-
-const reviewer = await repo.contributions.create({
-  contributors: ["did:plc:bob456"],
-  role: "Technical reviewer",
-  description: "Reviewed all pages for accuracy against the SDK source code.",
-  startDate: "2026-02-01T00:00:00Z",
-  endDate: "2026-03-31T23:59:59Z",
+  contributors: [
+    {
+      contributorIdentity: { identity: "did:plc:alice123" },
+      contributionWeight: "70",
+      contributionDetails: { role: "Lead author" },
+    },
+    {
+      contributorIdentity: { identity: "did:plc:bob456" },
+      contributionWeight: "30",
+      contributionDetails: { role: "Technical reviewer" },
+    },
+  ],
+  rights: {
+    rightsName: "Public Display",
+    rightsType: "display",
+    rightsDescription: "Right to publicly display this contribution",
+  },
   createdAt: new Date().toISOString(),
 });
 ```
 
-{% callout type="note" %}
-Contributions can live on different PDS instances. If Bob has his own PDS, he can create his contribution record there — it references the same activity claim via its AT-URI.
-{% /callout %}
+For richer contributor profiles, create separate `contributorInformation` and `contributionDetails` records and reference them via strong references. See the [Contribution lexicon](/lexicons/hypercerts-lexicons/contribution) for details.
 
 ## Attach additional information
 
@@ -116,26 +120,28 @@ Measurements attach quantitative data to your hypercert:
 
 ```typescript
 const pageCount = await repo.measurements.create({
-  activity: {
+  subject: {
     uri: hypercert.uri,
     cid: hypercert.cid,
   },
   measurers: ["did:plc:alice123"],
   metric: "Documentation pages written",
+  unit: "pages",
   value: "12",
-  measurementMethodType: "manual-count",
+  methodType: "manual-count",
   createdAt: new Date().toISOString(),
 });
 
 const wordCount = await repo.measurements.create({
-  activity: {
+  subject: {
     uri: hypercert.uri,
     cid: hypercert.cid,
   },
   measurers: ["did:plc:alice123"],
   metric: "Total word count",
+  unit: "words",
   value: "8500",
-  measurementMethodType: "automated-count",
+  methodType: "automated-count",
   evidenceURI: ["https://example.com/word-count-report.csv"],
   createdAt: new Date().toISOString(),
 });

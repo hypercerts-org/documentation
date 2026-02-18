@@ -27,18 +27,40 @@ By making work _precisely scoped and inspectable_, activity claims become stable
 
 **Properties**
 
-| `title`            | `string` | ✅ | Title of the hypercert                                                                                                                                                                                                   |                                                              |
-| ------------------ | -------- | - | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------- |
-| `shortDescription` | `string` | ✅ | Short blurb of the impact work done.                                                                                                                                                                                     |                                                              |
-| `description`      | `string` | ❌ | Optional longer description of the impact work done.                                                                                                                                                                     |                                                              |
-| `image`            | `union`  | ❌ | The cover photo of the hypercert as a URI or image blob                                                                                                                                                                  |                                                              |
-| `workScope`        | `object` | ❌ | Logical scope of the work using label-based conditions. Defined using `allOf`, `anyOf`, `noneOf` arrays of labels. | Object with `allOf`, `anyOf`, `noneOf` arrays of labels        |
-| `startDate`        | `string` | ✅ | When the work began                                                                                                                                                                                                      |                                                              |
-| `endDate`          | `string` | ✅ | When the work ended                                                                                                                                                                                                      |                                                              |
-| `contributions`    | `array`  | ❌ | A strong reference to the contributions done to create the impact in the hypercerts                                                                                                                                      | References must conform to `org.hypercerts.claim.contribution` |
-| `rights`           | `ref`    | ❌ | A strong reference to the rights that this hypercert has                                                                                                                                                                 | References must conform to `org.hypercerts.claim.rights`       |
-| `location`         | `ref`    | ❌ | A strong reference to the location where the work for done hypercert was located                                                                                                                                         | References must conform to `app.certified.location`            |
-| `createdAt`        | `string` | ✅ | Client-declared timestamp when this record was originally created                                                                                                                                                        |                                                              |
+| Property                 | Type     | Required | Description                                                                                                                                              | Comments                                                                              |
+| ------------------------ | -------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `title`                  | `string` | ✅        | Title of the hypercert                                                                                                                                   | Max 256 characters.                                                                   |
+| `shortDescription`       | `string` | ✅        | Short summary of this activity claim, suitable for previews and list views.                                                                              | Max 300 graphemes. Rich text annotations via `shortDescriptionFacets`.                |
+| `shortDescriptionFacets` | `array`  | ❌        | Rich text annotations for `shortDescription` (mentions, URLs, hashtags).                                                                                 | Each item is an `app.bsky.richtext.facet`.                                            |
+| `description`            | `string` | ❌        | Optional longer description of the impact work done.                                                                                                     | Max 3000 graphemes. Rich text annotations via `descriptionFacets`.                    |
+| `descriptionFacets`      | `array`  | ❌        | Rich text annotations for `description` (mentions, URLs, hashtags).                                                                                      | Each item is an `app.bsky.richtext.facet`.                                            |
+| `image`                  | `union`  | ❌        | The cover photo of the hypercert as a URI or image blob                                                                                                  |                                                                                       |
+| `workScope`              | `union`  | ❌        | Defines the scope of work covered by this activity claim. May be a strong reference to a `workScopeExpr` or `ops` record, or an inline `#workScopeString`. | See [Work Scope](#work-scope) below.                                                  |
+| `startDate`              | `string` | ❌        | When the work began                                                                                                                                      | Format: `datetime` (ISO 8601).                                                        |
+| `endDate`                | `string` | ❌        | When the work ended                                                                                                                                      | Format: `datetime` (ISO 8601).                                                        |
+| `contributors`           | `array`  | ❌        | An array of contributor objects, each containing contributor identity, weight, and contribution details.                                                  | Each item is a `#contributor` object. See [Contributor](#contributor-object) below.    |
+| `rights`                 | `ref`    | ❌        | A strong reference to the rights that this hypercert has                                                                                                 | References must conform to `org.hypercerts.claim.rights`.                             |
+| `locations`              | `array`  | ❌        | Strong references to the locations where the work was performed                                                                                          | Each item is a strong reference. Referenced records must conform to `app.certified.location`. |
+| `createdAt`              | `string` | ✅        | Client-declared timestamp when this record was originally created                                                                                        | Format: `datetime`.                                                                   |
+
+### Contributor object
+
+Each entry in the `contributors` array has this structure:
+
+| Property               | Type    | Required | Description                                                                                                                                                     |
+| ---------------------- | ------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `contributorIdentity`  | `union` | ✅        | Contributor identity — either an inline `#contributorIdentity` (with an `identity` string field) or a strong reference to a `contributorInformation` record.    |
+| `contributionWeight`   | `string`| ❌        | Relative weight of this contribution (positive numeric value, stored as string). Weights don't need to sum to a specific total — normalization is up to the app. |
+| `contributionDetails`  | `union` | ❌        | Contribution details — either an inline `#contributorRole` (with a `role` string field) or a strong reference to a `contributionDetails` record.                |
+
+### Work scope
+
+The `workScope` field is a union type. It can be:
+
+- **Inline string** — a `#workScopeString` object with a `scope` field for simple descriptions.
+- **Strong reference** — pointing to a `org.hypercerts.helper.workScopeExpr` record (flat boolean expression with `allOf`/`anyOf`/`noneOf`) or a `org.hypercerts.helper.ops` record (nested boolean logic tree).
+
+If no work scope is defined, the scope is treated as unconstrained.
 
 ***
 
@@ -94,11 +116,10 @@ const response = await agent.api.com.atproto.repo.createRecord({
     title: 'Open Source Library Maintenance',
     // Short description of the impact work
     shortDescription: 'Maintained and improved the core library throughout 2025',
-    // Logical scope of the work
+    // Scope of the work (inline string form)
     workScope: {
-      allOf: ['library-maintenance'],
-      anyOf: [],
-      noneOf: [],
+      $type: 'org.hypercerts.claim.activity#workScopeString',
+      scope: 'library-maintenance',
     },
     // When the work began
     startDate: '2025-01-01T00:00:00Z',

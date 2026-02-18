@@ -47,7 +47,7 @@ A quantitative observation attached to a hypercert (e.g., "12 pages written", "5
 
 #### Contribution
 
-A record describing a specific contributor's role in an activity claim, including their DID, role description, and date range. Lexicon: `org.hypercerts.claim.contribution`.
+Contribution information is split across two lexicons: `org.hypercerts.claim.contributorInformation` (identity, display name, image) and `org.hypercerts.claim.contributionDetails` (role, description, timeframe). Contributors are embedded in the activity claim's `contributors` array, which can reference these records or use inline strings.
 
 #### Collection
 
