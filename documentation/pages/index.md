@@ -22,7 +22,6 @@ Hypercerts are structured digital records of contributions — who did what, whe
 | | |
 |---|---|
 | **[How Hypercerts Work](/getting-started/how-hypercerts-work)** | The data model — record types, dimensions, and how they connect |
-| **[Defining Work Scopes](/getting-started/defining-work-scopes)** | Use allOf, anyOf, and noneOf to precisely scope your claims |
 | **[Why We're Building Hypercerts](/getting-started/why-were-building-hypercerts)** | The problem, the vision, and what hypercerts unlock |
 
 ## Tools

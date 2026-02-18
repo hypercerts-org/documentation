@@ -9,7 +9,7 @@ Install the Hypercerts SDK and create your first hypercert. This guide uses Type
 
 ## Create an account
 
-[Sign up at certified.app](https://certified.app). This gives you an AT Protocol identity and a PDS where your data is stored. (Already have a [Bluesky](https://bsky.app/) account? That works too.)
+[Sign up at certified.app](https://certified.app). This gives you an AT Protocol identity and a PDS where your data is stored. (Already have a Bluesky or other ATProto account? That works too.)
 
 ## Install the SDK
 

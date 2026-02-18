@@ -5,49 +5,63 @@ description: Why the Hypercerts Protocol is built on AT Protocol.
 
 # Why ATProto?
 
-The Hypercerts Protocol is built on AT Protocol (ATProto) — the decentralized social data layer that also powers Bluesky. ATProto gives Hypercerts three essential properties: portable user-controlled data, shared schemas across applications, and a decentralized trust-graph for impact.
+The Hypercerts Protocol is built on the AT Protocol (ATProto) — an open protocol for decentralized social data that also powers Bluesky.
 
-## The Philosophy
+ATProto provides the foundational infrastructure needed to recognize, evaluate, and fund impact across applications — without locking contributions, reputation, or funding histories into any single platform.
 
-#### Portable, user-controlled data
+It gives Hypercerts three essential properties:
 
-Contributions must outlive any single platform. Hypercerts are stored on Personal Data Servers (PDS) or Shared Data Servers (SDS) that users control. Contributors, evaluators, and funders choose where their data lives — on Hypercerts Foundation servers, other providers, or self-hosted — and can switch at any time without losing records or needing anyone's permission. Applications are views over user-owned data, not gatekeepers of it.
+- Portable, user-controlled data
+- Shared schemas readable across applications  
+- A decentralized identity and trust graph for impact
 
-#### Shared schemas across applications
+Together, these make it possible to build new funding systems that are new interoperablefunding not owned by any single institution.
 
-For value recognition networks to work, contributions recorded in one tool must be evaluable in another and fundable in a third — without custom integrations. ATProto's lexicons provide shared data schemas across the entire network. A contribution structured as `org.hypercerts.claim.activity` is readable by any application that knows that lexicon. Interoperability is built in from day one.
+## Portable, user-controlled data
 
-#### A decentralized trust-graph for impact
+Contributions must outlive any single platform.
 
-ATProto provides persistent identities (DIDs) for individuals and organizations. Over time, these identities accumulate contributions, evaluations, and endorsements — forming a durable trust-graph that follows users across platforms. Funders can draw from an ecosystem-wide view of identity and credibility, rather than relying on siloed reputation systems that reset when you switch platforms.
+Hypercert records are stored in **signed user repositories** hosted on Personal Data Servers (PDS). Each repository is cryptographically tied to a user or organization’s DID — not to the server hosting it. Contributors, evaluators, and funders choose where their data is hosted: On Hypercerts Foundation infrastructure, on other third-party providers, or self-hosted servers. 
 
-## For Builders
+They can migrate at any time without losing records or needing anyone’s permission. Repository data is exported and transferred as signed CAR (Content Addressed Archive) files, preserving record integrity and full history across migrations.
 
-#### Data ownership and portability
+Applications are views over user-owned data — not gatekeepers of it.
 
-Your application reads from a user's PDS via XRPC — it does not own the data. A user's repository is identified by their DID, not by the server hosting it. When a user migrates to a new PDS, they update their DID document and all applications automatically follow. You don't need to handle data migrations, backups, or worry about data loss if your platform shuts down.
+## Shared schemas across applications
 
-#### Lexicons and composability
+For impact funding to work across applications, contributions recorded in one application must be evaluable in another and fundable in a third — without bespoke integrations.
 
-Lexicons are versioned, namespaced JSON schemas (e.g., `org.hypercerts.claim.activity`). They define required fields, types, and nested structures. Any app that knows the lexicon can parse the record. Records reference each other via AT-URIs, creating a traversable graph: an evaluation references an activity claim, a funding decision references both. See [Introduction to Lexicons](/lexicons/introduction-to-lexicons) for details.
+ATProto enables this through **lexicons**: shared, namespaced JSON schemas that define how records are structured. For example `org.hypercerts.claim.activity` defines how a contribution is recorded — its fields, evidence, authorship, and metadata.
 
-#### Programmable trust
+Because lexicons are open and namespaced:
 
-Every record carries its author's DID. You can trace an evaluator's entire history across the network — how many evaluations, in which domains, how accurate. This enables programmatic trust scoring: algorithms that weight evaluations based on track record, detect patterns, and surface credible assessments. Because the data is structured and portable, these trust signals can be computed by anyone.
+- Any app can create compatible records  
+- Any app can read and interpret them  
+- No bilateral API integrations are required  
 
-## Why Not Other Technologies?
+Records reference each other via **AT-URIs**, forming a traversable graph: An evaluation references an activity claim, outcomes reference prior contributions, an d funding decision references both. 
 
-| Technology | Limitation for Hypercerts |
-|---|---|
-| **Pure blockchain** | Too expensive for rich data, limited schema flexibility, poor for large blobs |
-| **IPFS / Filecoin** | No identity layer, no mutable state, no schemas — data is just bytes |
-| **Ceramic** | Similar goals but smaller ecosystem, less mature tooling |
-| **Traditional databases** | No portability, no interoperability, platform lock-in |
+Records are distributed through ATProto’s indexing infrastructure and real-time **firehose**, allowing applications to efficiently discover and process records as they are created. All without centralized APIs. Interoperability is built in from day one.
 
-ATProto is the only technology that combines persistent DIDs, shared lexicons, user-controlled data, and a growing ecosystem of interoperable applications in one protocol.
+See: [Introduction to Lexicons](/lexicons/introduction-to-lexicons)
 
-## ATProto + Blockchain: Better Together
+## A decentralized identity & impact trust graph
 
-ATProto handles the data layer — claims, evidence, evaluations, trust signals. On-chain anchoring is planned to handle the funding layer. The intended design: hypercerts are frozen and anchored on-chain before funding, ensuring funders know exactly what they're paying for. The tokenization layer is not yet implemented — see [Funding & Tokenization](/architecture/funding-and-tokenization) for the full design.
+ATProto provides persistent, portable identities via **Decentralized Identifiers (DIDs)** for individuals and organizations. Every record carries its author’s DID and cryptographic signature.
 
-For details on how these two layers work together, see [The Hypercerts Infrastructure](/getting-started/the-hypercerts-infrastructure).
+Over time, these identities accumulate contribution records, evaluations, endorsements, funding decisions, etc. Together, these form a durable **impact trust graph** that persists across platforms.
+
+For example, a funder can analyze:
+
+- Who evaluated a project  
+- What else those evaluators have assessed  
+- In which domains they operate  
+- How their past judgments correlated with outcomes  
+
+Trust becomes computable across the ecosystem — not siloed within individual platforms. Because all records are signed and publicly indexable, trust scoring models can be independently implemented, compared, and audited.
+
+## ATProto + Blockchain: A Hybrid Stack
+
+ATProto handles the rich and evolving data layer — claims, evidence, evaluations, trust signals. Onchain anchoring and tokenization improve the funding layer with immutable and permanent records as well as programmable funding and settlement mechanisms.
+
+For details on how these two layers work together, see [Funding & Tokenization](/architecture/funding-and-tokenization) and [The Hypercerts Infrastructure](/getting-started/the-hypercerts-infrastructure).

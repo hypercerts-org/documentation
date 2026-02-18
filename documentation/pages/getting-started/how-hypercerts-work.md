@@ -1,13 +1,11 @@
 ---
-title: How Hypercerts Work
+title: Hypercerts Core Data Model
 description: The data model behind hypercerts — record types, dimensions, and how they connect.
 ---
 
-# How Hypercerts Work
+# Hypercerts Core Data Model
 
 A hypercert is a collection of linked records that together describe a contribution. This page explains the data model — what records exist, what they contain, and how they connect.
-
----
 
 ## The core record: activity claim
 
@@ -15,36 +13,52 @@ Every hypercert starts with an **activity claim** — the central record that an
 
 | Dimension | Question | Example |
 |-----------|----------|---------|
-| **Contributors** | Who did the work? | `did:plc:alice123`, `did:plc:bob456` |
-| **Work scope** | What was done? | "Documentation", "Reforestation" |
-| **Time of work** | When was it done? | 2026-01-01 to 2026-03-31 |
-| **Rights** | What rights come with this claim? | Public display, transfer |
+| **Contributors** | Who is doing (or did) the work? | `did:plc:alice123`, `did:plc:bob456` |
+| **Work scope** | What are they doing (or what did they do)? | "Documentation", "Reforestation" |
+| **Time of work** | When is it happening (or when did it happen)? | 2026-01-01 to 2026-03-31 |
+| **Location** | Where is it taking (or did it take) place? | GeoJSON location data |
+
+In addition to these core dimensions, the activity claim can define the rights that come with this claim. The basic right is just "public display", e.g. bragging rights about financial or non-financial contributions to impact. If the hypercert is a tokenized, the field can define how the hypercert is allowed to be transfered.
 
 The activity claim is what you create when you call `repo.hypercerts.create()` in the SDK. It gets a permanent AT-URI like `at://did:plc:alice123/org.hypercerts.claim.activity/3k7`.
 
----
+## Additional details
+
+To add further information to the individual contributors, separate records with its own AT-URI can be created. They can then be references from the activity claim.
+
+| Record type | What it adds | Who creates it | Lexicon |
+|-------------|-------------|----------------|---------|
+| **Contributor Details** | Social profile, image, display name | The contributor or project lead | `org.hypercerts.claim.contributorDetails` |
+| **Contribution Information** | What was the role of the contributor, what did they contribute | The contributor or project lead | `org.hypercerts.claim.contributionInformation` |
 
 ## Records that attach to a hypercert
 
-Other records link to the activity claim to add context. Each is a separate record with its own AT-URI — they reference the activity claim, not the other way around.
+Other records link to the activity claim to add context. Again, each is a separate record with its own AT-URI – they reference the activity claim, not the other way around.
 
 {% figure src="/images/hypercert-erd.png" alt="Hypercert record relationships" /%}
 
 | Record type | What it adds | Who creates it | Lexicon |
 |-------------|-------------|----------------|---------|
-| **Contribution** | Who specifically was involved and what role they played | The contributor or project lead | `org.hypercerts.claim.contribution` |
-| **Evidence** | Supporting documentation — URLs, uploaded files, IPFS links | Anyone with evidence | `org.hypercerts.claim.evidence` |
-| **Measurement** | Quantitative data — "12 pages written", "50 tons CO₂ reduced" | The measurer | `org.hypercerts.claim.measurement` |
-| **Evaluation** | An independent assessment of the work | A third-party evaluator | `org.hypercerts.claim.evaluation` |
-| **Collection** | Groups multiple activity claims into a project or portfolio | The project organizer | `org.hypercerts.claim.collection` |
+| **Attachment** | Supporting documentation — URLs, uploaded files, IPFS links | Anyone with additional data | `org.hypercerts.claim.attachment` |
+| **Measurement** | Quantitative data — "12 pages written", "50 tons CO₂ reduced" | E.g. a third-party measurer or the project (self-reported) | `org.hypercerts.claim.measurement` |
+| **Evaluation** | An (independent) assessment of the work | E.g. a third-party evaluator, community members, beneficiaries | `org.hypercerts.claim.evaluation` |
+| **Collection** | Groups multiple activity claims into a project or portfolio | E.g. the project organizer | `org.hypercerts.claim.collection` |
 
-### Records are standalone
+### Additional notes
 
-Records don't have to be created together. You can create a measurement first and attach it to an activity claim later. An evaluator can create an evaluation from their own account — it references your activity claim but lives on their server, not yours.
+- Records don't have to be created together. Users can create a measurement first and link it to an activity claim later. 
+- One records can also be linked to multiple other records, e.g. a measurement in a bioregion is linked to multiple activity claims.
+- An evaluator creates an evaluation from their own account — it references an activity claim but lives in their personal data server..
 
-This means a hypercert grows over time. The core claim stays the same, but evidence, measurements, and evaluations accumulate around it.
+This means a hypercert grows over time – it is a living record. The core claim stays the same, but evidence, measurements, and evaluations accumulate around it.
 
----
+## Grouping hypercerts
+
+Often hypercerts belong to each other in a project, e.g. in a multi-year project a hypercert might represent the work in one year, such that the full project is a collection of multiple hypercerts.
+
+| Record type | What it adds | Who creates it | Lexicon |
+|-------------|-------------|----------------|---------|
+| **Collection** | Groups multiple activity claims into a project or portfolio | E.g. the project organizer | `org.hypercerts.claim.collection` |
 
 ## How records connect
 
@@ -52,9 +66,13 @@ Records reference each other using **strong references** — a combination of AT
 
 ```
 Activity Claim (the core record)
-├── Contribution: Lead author (Alice)
-├── Contribution: Technical reviewer (Bob)
-├── Evidence: GitHub repository link
+├── Contribution 1
+  ├── ContributorDetails: Alice
+  ├── ContributionInformation: Lead author
+├── Contribution 2
+  ├── ContributorDetails: Bob
+  ├── ContributionInformation: Technical reviewer
+├── Attachment: GitHub repository link
 ├── Measurement: 12 pages written
 ├── Measurement: 8,500 words
 └── Evaluation: "High-quality documentation" (by Carol)
@@ -62,24 +80,6 @@ Activity Claim (the core record)
 
 Every arrow in this tree is a strong reference. Anyone can verify the entire chain by checking CIDs.
 
----
-
-## The six dimensions
-
-A complete hypercert defines six dimensions. The first four are in the activity claim itself. The last two come from attached records.
-
-| Dimension | Where it lives | Required? |
-|-----------|---------------|-----------|
-| **Contributors** | Activity claim | Yes |
-| **Work scope** | Activity claim | Yes |
-| **Time of work** | Activity claim | Yes |
-| **Rights** | Activity claim or separate rights record | Yes |
-| **Impact scope** | Evaluations and measurements | No — accumulates over time |
-| **Time of impact** | Evaluations and measurements | No — accumulates over time |
-
-The first four dimensions are defined by the contributor at creation time. Impact scope and time of impact emerge later as evaluators and measurers assess the work's actual effects.
-
----
 
 ## What happens next
 
@@ -87,5 +87,4 @@ Once you understand the data model, you're ready to build:
 
 - **[Quickstart](/getting-started/quickstart)** — create your first activity claim
 - **[Creating Your First Hypercert](/tutorials/creating-your-first-hypercert)** — build a complete hypercert with all record types
-- **[Defining Work Scopes](/getting-started/defining-work-scopes)** — learn the `allOf`/`anyOf`/`noneOf` operators for precise scoping
 - **[Lexicon reference](/lexicons/hypercerts-lexicons)** — field-by-field schema for every record type

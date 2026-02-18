@@ -27,7 +27,3 @@ Certified solves this. It is a neutral identity provider that isn't tied to any 
 {% callout type="note" %}
 If you already have a Bluesky account or another AT Protocol account, you don't need a Certified account. Any AT Protocol identity works with all Hypercerts applications. Log in with your existing handle (e.g., `alice.bsky.social`) — everything just works.
 {% /callout %}
-
-## The app.certified namespace
-
-Beyond identity, Certified contributes shared data schemas to the AT Protocol ecosystem. You'll see `app.certified.*` in some lexicon names — for example, [`app.certified.location`](/lexicons/general-lexicons/location) defines how geographic locations are represented. These are general-purpose schemas available to any application on AT Protocol, not just Hypercerts.

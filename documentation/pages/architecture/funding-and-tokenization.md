@@ -13,8 +13,6 @@ What hypercerts add is a structured, verifiable record of who funded what. Optio
 Funding tracking is available today. The tokenization layer is under active development. For what exists today, see [Architecture Overview](/architecture/overview).
 {% /callout %}
 
----
-
 ## Hypercerts work with any funding mechanism
 
 Funding can be **prospective** (before work begins) or **retroactive** (after outcomes are demonstrated). Different mechanisms suit different contexts, for example:
@@ -29,8 +27,6 @@ Funding can be **prospective** (before work begins) or **retroactive** (after ou
 | **Auction of impact certificates** | Competitive bidding on verified impact claims |
 
 Multiple mechanisms can coexist for the same activity — a project might receive a grant prospectively and sell impact certificates retroactively. Hypercerts allows us to track it accurately without double counting.
-
----
 
 ## Tracking funding
 
@@ -54,8 +50,6 @@ How a funding receipt gets created depends on where the funding happens:
 
 Self-reported receipts are the most accessible option — anyone can create one. But they carry less weight without independent verification. When a funder reports their own contribution, the project can confirm it (and vice versa), strengthening the credibility of the record.
 
----
-
 ## Tokenization
 
 {% callout type="note" %}
@@ -74,8 +68,6 @@ A token can represent either a mutable or a locked claim. If the underlying hype
 | **Rights** | Optional definition of the rights of the owners, set in the hypercert's `org.hypercerts.claim.rights` record |
 
 Tokenization enables programmable funding — smart contract logic can enforce distribution rules, matching formulas, and other mechanisms that would be difficult to coordinate offchain.
-
----
 
 ## Example: from creation to funding
 
@@ -105,7 +97,7 @@ Carol, a climate funder, reviews Alice's claim and Bob's evaluation. She decides
 
 The receipt links to Alice's activity claim, creating a verifiable record that Carol funded this work. The actual payment — whether by bank transfer, credit card, or any other method — happens outside the protocol. Alice verifies the funding receipt.
 
-### Stage 3 — Lock and tokenize (optional)
+### Stage 3 — Lock and tokenize
 
 Alice can lock the hypercert by wrapping it in an onchain token or anchoring it onchain without a token. This can happen at any time; a good time to do so is when the actual work is completed.
 
@@ -130,8 +122,6 @@ Two years later, a second evaluator, Eve, assesses the health of Alice's trees a
 | ERC-1155 Token (15%) | Carol | `0xCc03…3333` |
 | ERC-1155 Token (10%) | Dave | `0xDd04…4444` |
 
----
-
 ## What this enables
 
 | Capability | Description |
@@ -142,8 +132,6 @@ Two years later, a second evaluator, Eve, assesses the health of Alice's trees a
 | **Composable mechanisms** | Different funding models operate on the same underlying data |
 | **Portable proof of funding** | Funders can prove what they funded, whether onchain or offchain |
 | **Independent evolution** | Data and ownership layers evolve separately — evaluations accumulate on ATProto while potential ownership transfers onchain |
-
----
 
 ## See also
 
