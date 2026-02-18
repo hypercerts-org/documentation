@@ -30,6 +30,7 @@ export const navigation = [
         title: "Hypercerts Core Data Model",
         path: "/getting-started/hypercerts-core-data-model",
       },
+      { title: "What is Certified?", path: "/ecosystem/what-is-certified" },
       { title: "Why ATProto?", path: "/getting-started/why-atproto" },
     ],
   },
@@ -138,7 +139,6 @@ export const navigation = [
         title: "Why We Need Hypercerts",
         path: "/ecosystem/why-we-need-hypercerts",
       },
-      { title: "What is Certified?", path: "/ecosystem/what-is-certified" },
     ],
   },
 ];
