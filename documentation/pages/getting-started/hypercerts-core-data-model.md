@@ -63,7 +63,7 @@ Often hypercerts belong to each other in a project, e.g. in a multi-year project
 
 Records reference each other using **strong references** — a combination of AT-URI + CID (content hash). The CID makes the reference tamper-evident: if the referenced record changes, the CID won't match.
 
-```
+```text
 Activity Claim (the core record)
 ├── Contribution 1
 │   ├── ContributorDetails: Alice
