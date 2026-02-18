@@ -79,7 +79,7 @@ Tokenization enables programmable funding — smart contract logic can enforce d
 
 ## Example: from creation to funding
 
-There are many different flows that can be represented with hypercerts, below is one example that follows a hypercert through its lifecycle — from creation to funding, with optional tokenization.
+There are many different flows that can be represented with hypercerts. Below is one example that follows a hypercert through its lifecycle — from creation to funding, with optional tokenization.
 
 ### Stage 1 — Creation and first evaluation
 
