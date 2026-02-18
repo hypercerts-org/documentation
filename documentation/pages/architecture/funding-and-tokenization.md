@@ -113,9 +113,9 @@ If she creates a token, for instance on Ethereum Mainnet, she can distribute som
 
 | Record | Owner | Location |
 |--------|-------|----------|
-| ERC-1155 Token (75%) | Alice | Wallet `0xAa01…1111` |
-| ERC-1155 Token (15%) | Carol | Wallet `0xCc03…3333` |
-| ERC-1155 Token (10%) | Dave | Wallet `0xDd04…4444` |
+| ERC-1155 Token (75%) | Alice | `0xAa01…1111` |
+| ERC-1155 Token (15%) | Carol | `0xCc03…3333` |
+| ERC-1155 Token (10%) | Dave | `0xDd04…4444` |
 
 ### Stage 4 — Retroactive funding
 
