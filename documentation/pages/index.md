@@ -22,7 +22,7 @@ Hypercerts are structured digital records of contributions — who did what, whe
 | | |
 |---|---|
 | **[How Hypercerts Work](/getting-started/hypercerts-core-data-model)** | The data model — record types, dimensions, and how they connect |
-| **[Why We're Building Hypercerts](/getting-started/why-were-building-hypercerts)** | The problem, the vision, and what hypercerts unlock |
+| **[Why We Need Hypercerts](/getting-started/why-we-need-hypercerts)** | The problem, the vision, and what hypercerts unlock |
 
 ## Tools
 

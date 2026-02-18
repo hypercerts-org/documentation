@@ -1,9 +1,9 @@
 ---
-title: "Why do We Need Hypercerts?"
+title: "Why We Need Hypercerts"
 description: Recognizing and rewarding value creators.
 ---
 
-# Why do We Need Hypercerts?
+# Why We Need Hypercerts
 
 ## The Problem
 

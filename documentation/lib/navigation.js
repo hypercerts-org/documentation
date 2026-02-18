@@ -8,8 +8,8 @@ export const navigation = [
         path: "/getting-started/what-is-hypercerts",
       },
       {
-        title: "Why We're Building Hypercerts",
-        path: "/getting-started/why-were-building-hypercerts",
+        title: "Why We Need Hypercerts",
+        path: "/getting-started/why-we-need-hypercerts",
       },
       {
         title: "What is Certified?",
