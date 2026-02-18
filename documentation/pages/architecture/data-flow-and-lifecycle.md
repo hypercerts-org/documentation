@@ -26,7 +26,7 @@ Every hypercert follows a similar path through the system, though the timeline a
 ```
 Creation → Enrichment → Evaluation → Discovery → Funding → Accumulation
    ↓           ↓            ↓            ↓          ↓           ↓
-  PDS      PDS/SDS      Other PDS     Indexer   On-chain*   Ongoing
+  PDS        PDS        Other PDS     Indexer   On-chain*   Ongoing
 ```
 
 *On-chain layer is planned. See [Funding & Tokenization](/architecture/funding-and-tokenization).
@@ -35,7 +35,7 @@ Creation → Enrichment → Evaluation → Discovery → Funding → Accumulatio
 
 A hypercert begins when a contributor creates an activity claim on their PDS.
 
-The contributor writes an `org.hypercerts.claim.activity` record. This record includes required fields like `workScope`, `impactScope`, `timeframe`, and `contributors`. The PDS validates the record against the lexicon schema.
+The contributor writes an `org.hypercerts.claim.activity` record. This record includes fields like `workScope`, `startDate`, `endDate`, and `contributors`. The PDS validates the record against the lexicon schema.
 
 The record receives a unique AT-URI. The format is `at://did:plc:abc123/org.hypercerts.claim.activity/tid` where `did:plc:abc123` is the contributor's DID and `tid` is a timestamp-based identifier.
 

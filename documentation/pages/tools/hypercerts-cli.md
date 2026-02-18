@@ -24,7 +24,7 @@ Choose one of three installation methods:
 curl -sSL https://raw.githubusercontent.com/GainForest/hypercerts-cli/main/install.sh | bash
 ```
 
-2. **Go install** (requires Go 1.25+):
+2. **Go install** (requires Go 1.23+):
 
 ```bash
 go install github.com/GainForest/hypercerts-cli/cmd/hc@v0.1.1

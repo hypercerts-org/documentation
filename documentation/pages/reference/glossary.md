@@ -11,7 +11,7 @@ Terms you'll encounter when building with Hypercerts, ordered by how soon you'll
 
 #### Hypercert
 
-A structured digital record of a contribution: who did what, when, where, and with what supporting documentation. The core primitive of the protocol. Technically, a hypercert is an activity claim record with linked contributions, attachments, measurements, and evaluations.
+A structured digital record of a contribution: who did what, when, where, and with what evidence. The core primitive of the protocol. Technically, a hypercert is an activity claim record with linked contributions, attachments, measurements, and evaluations.
 
 #### Activity claim
 
@@ -61,9 +61,25 @@ A versioned schema that defines the structure of a record type. For example, `or
 
 The "what" dimension of a hypercert, defined using logical operators (`allOf`, `anyOf`, `noneOf`) to precisely bound the work being claimed.
 
-#### Hypergoat / Hyperindex
+#### Hyperindex
 
-The AppView server that indexes hypercert records across the network and exposes them via a GraphQL API at `hypergoat.certified.app/graphql`. This is how applications query hypercert data without reading from individual servers directly.
+The AppView server that indexes hypercert records across the network and exposes them via a GraphQL API at `hyperindex.certified.app/graphql`. This is how applications query hypercert data without reading from individual servers directly.
+
+#### Relay
+
+A server that aggregates repository events from many PDS instances into a single firehose stream. Indexers subscribe to relays to discover new records across the network. Bluesky operates the primary relay at `bsky.network`.
+
+#### Firehose
+
+The real-time stream of all repository changes across the network, provided by relays. Indexers subscribe to the firehose to index new records as they're created. The firehose delivers events in CBOR format.
+
+#### Jetstream
+
+A lightweight, filtered event stream that delivers AT Protocol events in JSON format. Hyperindex uses Jetstream to receive real-time record updates, subscribing only to specific collections like `org.hypercerts.claim.*` to reduce bandwidth.
+
+#### Constellation
+
+An external backlinks service for AT Protocol. Given a record URI, Constellation returns all records that reference it. Used by applications to find evaluations, attachments, and measurements linked to a hypercert — since AT Protocol has no built-in reverse lookup.
 
 #### PDS (Personal Data Server)
 

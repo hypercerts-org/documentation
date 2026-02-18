@@ -32,7 +32,7 @@ Backfill Worker ──→ AT Protocol Relay ──→ Records DB
 git clone https://github.com/hypercerts-org/hyperindex.git
 cd hyperindex
 cp .env.example .env
-go run ./cmd/hypergoat
+go run ./cmd/hyperindex
 ```
 
 Open [http://localhost:8080/graphiql/admin](http://localhost:8080/graphiql/admin) to access the admin interface.
@@ -76,7 +76,7 @@ query {
       node {
         uri
         workScope
-        impactScope
+        startDate
         createdAt
       }
     }

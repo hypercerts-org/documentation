@@ -11,7 +11,7 @@ The Hypercerts Protocol uses AT Protocol for data portability. On-chain anchorin
 
 The protocol operates across three layers that work together to enable portable impact claims with verifiable ownership.
 
-The **Data Layer** is the foundation. AT Protocol stores claims, attachments, and evaluations. Personal Data Servers (PDS) and Shared Data Servers (SDS) host user-controlled records. Relays aggregate data across servers. Indexers build queryable views that applications consume.
+The **Data Layer** is the foundation. AT Protocol stores claims, attachments, and evaluations. Personal Data Servers (PDS) host user-controlled records — organizations can create dedicated PDS accounts for shared repositories. Relays aggregate data across servers. Indexers build queryable views that applications consume.
 
 The **Application Layer** sits on top of the data layer. Funding platforms, dashboards, and evaluation tools live here. These applications read from and write to the data layer below.
 
@@ -37,7 +37,7 @@ Indexers read from relays and build queryable databases. They filter for specifi
 
 #### Lexicons
 
-Lexicons are shared schemas that define record structure. `org.hypercerts.claim.activity` specifies required fields like `workScope`, `impactScope`, and `timeframe`. Any application that knows the lexicon can parse the record. This enables interoperability without custom integrations.
+Lexicons are shared schemas that define record structure. `org.hypercerts.claim.activity` specifies fields like `workScope`, `startDate`, and `endDate`. Any application that knows the lexicon can parse the record. This enables interoperability without custom integrations.
 
 #### The Flow
 

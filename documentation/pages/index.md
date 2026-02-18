@@ -4,7 +4,7 @@ title: Hypercerts Documentation
 
 # Hypercerts Documentation
 
-Hypercerts are portable, attestable records of impact stored on AT Protocol. Build applications that create, evaluate, and fund impactful work.
+Hypercerts are structured digital records of contributions — who did what, when, where, and with what supporting documentation. Build applications that create, evaluate, and fund impactful work.
 
 ---
 

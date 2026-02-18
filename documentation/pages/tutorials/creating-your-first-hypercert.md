@@ -56,7 +56,7 @@ Save the `uri` and `cid` from the response — you'll need them to link other re
 
 ## Add contributions
 
-Contributors are embedded directly in the activity claim's `contributors` array. For simple cases, use inline strings:
+Contributors are embedded directly in the activity claim's `contributors` array. Here's the same create call from above, now with contributors included (in practice you'd include contributors in a single create call — we split it here for readability):
 
 ```typescript
 const hypercert = await repo.hypercerts.create({

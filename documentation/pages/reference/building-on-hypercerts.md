@@ -47,14 +47,12 @@ Build services that help domain experts create structured, verifiable evaluation
 
 ```javascript
 // Example: Create an evaluation
-await agent.cert.evaluation.create({
-  repo: userDid,
-  record: {
-    subject: { uri: claimUri, cid: claimCid },
-    criteria: 'Scientific rigor and reproducibility',
-    score: { value: 8.5, scale: 10 },
-    evaluator: evaluatorDid
-  }
+const evaluation = await repo.evaluations.create({
+  subject: { uri: claimUri, cid: claimCid },
+  evaluators: [evaluatorDid],
+  summary: 'Scientific rigor and reproducibility assessment',
+  score: { value: 8, min: 0, max: 10 },
+  createdAt: new Date().toISOString(),
 });
 ```
 
@@ -97,7 +95,7 @@ Query an indexer to display hypercerts without writing data.
 
 ```javascript
 // Subscribe to new claims
-indexer.subscribe('cert.activityClaim', (claim) => {
+indexer.subscribe('org.hypercerts.claim.activity', (claim) => {
   dashboard.addClaim(claim);
 });
 
@@ -118,38 +116,46 @@ Authenticate users via OAuth and write records to their PDS on their behalf.
 
 ```javascript
 // OAuth flow
-const session = await oauthClient.authorize(userDid);
-const agent = new Agent(session);
+const session = await sdk.callback(callbackParams);
+const repo = sdk.getRepository(session);
 
 // Write to user's PDS
-await agent.cert.activityClaim.create({
-  repo: userDid,
-  record: {
-    workScope: 'Developed open source library',
-    impactScope: 'Software developers worldwide',
-    // ... other fields
-  }
+await repo.hypercerts.create({
+  workScope: 'Developed open source library',
+  title: 'Open source library for data processing',
+  shortDescription: 'Built and maintained a data processing library.',
+  startDate: '2026-01-01T00:00:00Z',
+  endDate: '2026-06-30T23:59:59Z',
+  createdAt: new Date().toISOString(),
 });
 ```
 
 Records are owned by the user's DID. Your platform acts as an interface.
 
-### Write via Platform SDS
+### Write via Organization Account
 
-Run your own Shared Data Server and create records under your platform's DID.
+Create a dedicated organizational account on a PDS and create records under the organization's DID.
 
 **When to use:** Platforms that issue hypercerts on behalf of others, or evaluation services that publish assessments under the platform's authority.
 
 ```javascript
 // Platform creates claim on behalf of contributor
-await platformAgent.cert.activityClaim.create({
-  repo: platformDid,
-  record: {
-    workScope: 'Completed bounty #123',
-    contributors: [contributorDid],
-    issuedBy: platformDid,
-    // ... other fields
-  }
+await repo.hypercerts.create({
+  workScope: 'Completed bounty #123',
+  title: 'Bounty #123: Fix authentication bug',
+  shortDescription: 'Resolved critical authentication vulnerability.',
+  contributors: [
+    {
+      contributorIdentity: {
+        $type: 'org.hypercerts.claim.activity#contributorIdentity',
+        identity: contributorDid,
+      },
+      contributionWeight: '100',
+    },
+  ],
+  startDate: '2026-01-15T00:00:00Z',
+  endDate: '2026-01-20T23:59:59Z',
+  createdAt: new Date().toISOString(),
 });
 ```
 
@@ -167,7 +173,7 @@ To query hypercerts efficiently, run your own indexer:
 ```javascript
 // Pseudocode: Firehose subscription
 relay.subscribe({
-  collections: ['cert.activityClaim', 'cert.evaluation'],
+  collections: ['org.hypercerts.claim.activity', 'org.hypercerts.claim.evaluation'],
   handler: async (event) => {
     const record = event.record;
     await db.insert('claims', {

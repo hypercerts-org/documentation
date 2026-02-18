@@ -236,7 +236,7 @@ Store sensitive data in a private database and reference it by ID if needed.
 
 You can delete records from your PDS at any time. However:
 
-- Indexers (like Hypergoat) may cache records and take time to update
+- Indexers (like Hyperindex) may cache records and take time to update
 - Other users may have already fetched and stored copies
 - The deletion event itself is visible in your repository history
 

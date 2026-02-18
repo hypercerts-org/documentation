@@ -51,10 +51,10 @@ To set up a custom handle, add a DNS TXT record or host a file at `https://your-
 
 ## Organization accounts
 
-For teams with multiple contributors, consider a Shared Data Server (SDS). Multiple people can write to the same repository using their own credentials. This is useful for open-source projects, research labs, and organizations where many people contribute to the same body of work.
+For teams with multiple contributors, create a dedicated organizational account on a PDS. The organization gets its own DID and repository. Team members can write to the organization's repository using app passwords or OAuth scoped to the organizational account. This is useful for open-source projects, research labs, and organizations where many people contribute to the same body of work.
 
 {% callout type="note" %}
-Shared Data Servers are an emerging pattern in the AT Protocol ecosystem. Contact the Hypercerts team if you need multi-contributor access for your organization.
+To set up an organizational account, create an account at [certified.app](https://certified.app) with the organization's email. Use a [custom domain handle](#handles-and-domain-verification) (e.g., `numpy.org`) to prove organizational identity.
 {% /callout %}
 
 ---

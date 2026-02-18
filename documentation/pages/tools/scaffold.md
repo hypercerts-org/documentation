@@ -13,7 +13,7 @@ Live at [hypercerts-scaffold.vercel.app](https://hypercerts-scaffold.vercel.app)
 
 | Category | Technology |
 |----------|------------|
-| Framework | Next.js 16 (App Router), React 19, TypeScript |
+| Framework | Next.js 15 (App Router), React 19, TypeScript |
 | Styling | Tailwind CSS 4, shadcn/ui (Radix primitives) |
 | State Management | TanStack React Query v5 |
 | Auth / Protocol | AT Protocol OAuth, `@atproto/oauth-client-node` |
