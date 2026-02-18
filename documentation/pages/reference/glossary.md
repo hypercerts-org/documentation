@@ -37,9 +37,9 @@ A reference to another record that includes both the AT-URI and CID. Used when o
 
 A third-party assessment of a hypercert. Created on the evaluator's own account, not the original author's. Lexicon: `org.hypercerts.claim.evaluation`.
 
-#### Evidence
+#### Attachment
 
-Supporting documentation attached to a hypercert — a URL, uploaded file, or IPFS link. Lexicon: `org.hypercerts.claim.evidence`.
+Supporting documentation linked to one or more records — a URL, uploaded file, or IPFS link. Can reference any record type, not only activity claims. Lexicon: `org.hypercerts.claim.attachment`.
 
 #### Measurement
 

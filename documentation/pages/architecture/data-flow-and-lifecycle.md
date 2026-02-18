@@ -58,9 +58,9 @@ Supporting data gets attached through additional records that reference the acti
 
 `org.hypercerts.claim.contribution` records link collaborators to the work. Each contribution record specifies a contributor DID, their role, and a strong reference to the activity claim. Contributions can be created by the original contributor or by collaborators on their own servers.
 
-#### Evidence Records
+#### Attachment Records
 
-`org.hypercerts.claim.evidence` records attach proof of work. Evidence can be URLs, file attachments, or structured data. Each evidence record includes a strong reference to the claim it supports.
+`org.hypercerts.claim.attachment` records attach supporting documentation. Attachments can be URLs, file uploads, or structured data. Each attachment record includes a strong reference to the claim it supports.
 
 #### Measurement Records
 

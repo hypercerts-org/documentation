@@ -84,27 +84,31 @@ const reviewer = await repo.contributions.create({
 Contributions can live on different PDS instances. If Bob has his own PDS, he can create his contribution record there — it references the same activity claim via its AT-URI.
 {% /callout %}
 
-## Attach evidence
+## Attach additional information
 
-Evidence records link supporting documentation to your hypercert. The `activity` field is a strong reference (URI + CID) to the activity claim:
+Attachment records link additional information to any record. The `subjects` field is an array of strong references (URI + CID):
 
 ```typescript
-const evidence = await repo.evidence.create({
-  activity: {
-    uri: hypercert.uri,
-    cid: hypercert.cid,
-  },
+const attachment = await repo.attachment.create({
+  subjects: [
+    {
+      uri: hypercert.uri,
+      cid: hypercert.cid,
+    },
+  ],
   title: "Documentation site repository",
   shortDescription: "Source code and content for the Hypercerts Protocol documentation.",
-  content: {
-    $type: "org.hypercerts.defs#uri",
-    uri: "https://github.com/hypercerts-org/hypercerts-atproto-documentation",
-  },
+  content: [
+    {
+      $type: "org.hypercerts.defs#uri",
+      uri: "https://github.com/hypercerts-org/hypercerts-atproto-documentation",
+    },
+  ],
   createdAt: new Date().toISOString(),
 });
 ```
 
-You can create multiple evidence records — one for the repo, one for the deployed site, one for the migration plan, etc.
+You can create multiple attachment records — one for the repo, one for the deployed site, one for the migration plan, etc.
 
 ## Add measurements
 
@@ -145,7 +149,7 @@ Your hypercert now has a complete structure:
 Activity Claim (the core record)
 ├── Contribution: Lead author (Alice)
 ├── Contribution: Technical reviewer (Bob)
-├── Evidence: GitHub repository
+├── Attachment: GitHub repository
 ├── Measurement: 12 pages written
 └── Measurement: 8,500 words
 ```

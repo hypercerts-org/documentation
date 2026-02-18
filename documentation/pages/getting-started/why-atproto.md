@@ -15,7 +15,7 @@ It gives Hypercerts three essential properties:
 - Shared schemas readable across applications  
 - A decentralized identity and trust graph for impact
 
-Together, these make it possible to build new funding systems that are new interoperablefunding not owned by any single institution.
+Together, these make it possible to build new funding systems that are interoperable and not owned by any single institution.
 
 ## Portable, user-controlled data
 
@@ -39,7 +39,7 @@ Because lexicons are open and namespaced:
 - Any app can read and interpret them  
 - No bilateral API integrations are required  
 
-Records reference each other via **AT-URIs**, forming a traversable graph: An evaluation references an activity claim, outcomes reference prior contributions, an d funding decision references both. 
+Records reference each other via **AT-URIs**, forming a traversable graph: An evaluation references an activity claim, outcomes reference prior contributions, and a funding decision references both.
 
 Records are distributed through ATProto’s indexing infrastructure and real-time **firehose**, allowing applications to efficiently discover and process records as they are created. All without centralized APIs. Interoperability is built in from day one.
 

@@ -36,7 +36,7 @@ But because these benefits are shared, the willingness to pay for them isn't con
 
 Often, governments have been the approach we solve this. And in many cases, they still do: public education, healthcare systems, basic research funding, environmental regulation.
 
-But the systems we rely on today were built for a world that was: Slower, simpler, more centralized, less data-rich, and far less interconnected They were not designed for global supply chains, digital ecosystems, environmental instability, decentralized science, or community-run movements.
+But the systems we rely on today were built for a world that was: Slower, simpler, more centralized, less data-rich, and far less interconnected. They were not designed for global supply chains, digital ecosystems, environmental instability, decentralized science, or community-run movements.
 
 And so we're left with a structural mismatch:
 

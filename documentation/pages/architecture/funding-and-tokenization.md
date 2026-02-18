@@ -81,7 +81,7 @@ Alice plants 500 trees in a reforestation project and creates an activity claim 
 |--------|-------|----------|
 | Activity claim | Alice | `at://did:plc:alice/org.hypercerts.claim.activity/3k7` |
 | Measurement | Alice | `at://did:plc:alice/org.hypercerts.claim.measurement/5m1` |
-| Evidence | Alice | `at://did:plc:alice/org.hypercerts.claim.evidence/7e4` |
+| Attachment | Alice | `at://did:plc:alice/org.hypercerts.claim.attachment/7e4` |
 | Evaluation | Bob | `at://did:plc:bob/org.hypercerts.claim.evaluation/9x2` |
 
 At this point, all records are mutable ATProto data. Alice can still update her claim, and Bob can revise his evaluation.

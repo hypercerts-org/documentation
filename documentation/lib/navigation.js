@@ -22,7 +22,7 @@ export const navigation = [
     section: "Build",
     children: [
       {
-        title: "How Hypercerts Work",
+        title: "Hypercerts Core Data Model",
         path: "/getting-started/hypercerts-core-data-model",
       },
       { title: "Quickstart", path: "/getting-started/quickstart" },
@@ -112,8 +112,8 @@ export const navigation = [
                 path: "/lexicons/hypercerts-lexicons/contribution",
               },
               {
-                title: "Evidence",
-                path: "/lexicons/hypercerts-lexicons/evidence",
+                title: "Attachment",
+                path: "/lexicons/hypercerts-lexicons/attachment",
               },
               {
                 title: "Measurement",

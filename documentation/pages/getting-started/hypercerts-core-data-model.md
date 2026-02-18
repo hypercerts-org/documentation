@@ -18,13 +18,13 @@ Every hypercert starts with an **activity claim** — the central record that an
 | **Time of work** | When is it happening (or when did it happen)? | 2026-01-01 to 2026-03-31 |
 | **Location** | Where is it taking (or did it take) place? | GeoJSON location data |
 
-In addition to these core dimensions, the activity claim can define the rights that come with this claim. The basic right is just "public display", e.g. bragging rights about financial or non-financial contributions to impact. If the hypercert is a tokenized, the field can define how the hypercert is allowed to be transfered.
+In addition to these core dimensions, the activity claim can define the rights that come with this claim. The basic right is just "public display", e.g. bragging rights about financial or non-financial contributions to impact. If the hypercert is tokenized, the field can define how the hypercert is allowed to be transferred.
 
 The activity claim is what you create when you call `repo.hypercerts.create()` in the SDK. It gets a permanent AT-URI like `at://did:plc:alice123/org.hypercerts.claim.activity/3k7`.
 
 ## Additional details
 
-To add further information to the individual contributors, separate records with its own AT-URI can be created. They can then be references from the activity claim.
+To add further information to the individual contributors, separate records with their own AT-URI can be created. They can then be referenced from the activity claim.
 
 | Record type | What it adds | Who creates it | Lexicon |
 |-------------|-------------|----------------|---------|
@@ -39,16 +39,15 @@ Other records link to the activity claim to add context. Again, each is a separa
 
 | Record type | What it adds | Who creates it | Lexicon |
 |-------------|-------------|----------------|---------|
-| **Attachment** | Supporting documentation — URLs, uploaded files, IPFS links | Anyone with additional data | `org.hypercerts.claim.attachment` |
+| **Attachment** | Supporting documentation — URLs, uploaded files, IPFS links. Can link to any record type, not only activity claims. | Anyone with additional data | `org.hypercerts.claim.attachment` |
 | **Measurement** | Quantitative data — "12 pages written", "50 tons CO₂ reduced" | E.g. a third-party measurer or the project (self-reported) | `org.hypercerts.claim.measurement` |
 | **Evaluation** | An (independent) assessment of the work | E.g. a third-party evaluator, community members, beneficiaries | `org.hypercerts.claim.evaluation` |
-| **Collection** | Groups multiple activity claims into a project or portfolio | E.g. the project organizer | `org.hypercerts.claim.collection` |
 
 ### Additional notes
 
 - Records don't have to be created together. Users can create a measurement first and link it to an activity claim later. 
-- One records can also be linked to multiple other records, e.g. a measurement in a bioregion is linked to multiple activity claims.
-- An evaluator creates an evaluation from their own account — it references an activity claim but lives in their personal data server..
+- A record can also be linked to multiple other records, e.g. a measurement in a bioregion is linked to multiple activity claims.
+- An evaluator creates an evaluation from their own account — it references an activity claim but lives in their personal data server.
 
 This means a hypercert grows over time – it is a living record. The core claim stays the same, but evidence, measurements, and evaluations accumulate around it.
 
@@ -67,11 +66,11 @@ Records reference each other using **strong references** — a combination of AT
 ```
 Activity Claim (the core record)
 ├── Contribution 1
-  ├── ContributorDetails: Alice
-  ├── ContributionInformation: Lead author
+│   ├── ContributorDetails: Alice
+│   └── ContributionInformation: Lead author
 ├── Contribution 2
-  ├── ContributorDetails: Bob
-  ├── ContributionInformation: Technical reviewer
+│   ├── ContributorDetails: Bob
+│   └── ContributionInformation: Technical reviewer
 ├── Attachment: GitHub repository link
 ├── Measurement: 12 pages written
 ├── Measurement: 8,500 words
