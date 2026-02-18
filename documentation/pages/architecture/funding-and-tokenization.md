@@ -119,7 +119,7 @@ If she creates a token, for instance on Ethereum Mainnet, she can distribute som
 
 ### Stage 4 — Retroactive funding
 
-Two years later, a second evaluator, Eve, assesses the health of Alice's trees and publishes a positive evaluation. Faythe, a climate funder focused on proven outcomes, sees the original claim, both evaluations, and Carol's earlier funding. She decides to fund the project retroactively — either through any classc payment flow with a new funding receipt referencing the same activity claim, or by acquiring tokens if the hypercert was tokenized.
+Two years later, a second evaluator, Eve, assesses the health of Alice's trees and publishes a positive evaluation. Faythe, a climate funder focused on proven outcomes, sees the original claim, both evaluations, and Carol's earlier funding. She decides to fund the project retroactively — either through any classic payment flow with a new funding receipt referencing the same activity claim, or by acquiring tokens if the hypercert was tokenized.
 
 | Record | Owner | Location |
 |--------|-------|----------|
