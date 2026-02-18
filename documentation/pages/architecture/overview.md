@@ -11,7 +11,7 @@ The Hypercerts Protocol uses AT Protocol for data portability. On-chain anchorin
 
 The protocol operates across three layers that work together to enable portable impact claims with verifiable ownership.
 
-The **Data Layer** is the foundation. AT Protocol stores claims, evidence, and evaluations. Personal Data Servers (PDS) and Shared Data Servers (SDS) host user-controlled records. Relays aggregate data across servers. Indexers build queryable views that applications consume.
+The **Data Layer** is the foundation. AT Protocol stores claims, attachments, and evaluations. Personal Data Servers (PDS) and Shared Data Servers (SDS) host user-controlled records. Relays aggregate data across servers. Indexers build queryable views that applications consume.
 
 The **Application Layer** sits on top of the data layer. Funding platforms, dashboards, and evaluation tools live here. These applications read from and write to the data layer below.
 
@@ -75,7 +75,7 @@ The ownership layer is not yet implemented. The planned design freezes ATProto r
 
 ## How the Layers Connect
 
-A hypercert's **content** lives on ATProto. The activity claim, evidence records, measurements, and evaluations are all ATProto records. This data is portable — users control it, can migrate it, and applications can read it without blockchain access.
+A hypercert's **content** lives on ATProto. The activity claim, attachment records, measurements, and evaluations are all ATProto records. This data is portable — users control it, can migrate it, and applications can read it without blockchain access.
 
 A hypercert's **ownership and funding state** will live on-chain once the tokenization layer is built. The planned bridge is a freeze-then-fund mechanism. See [Funding & Tokenization](/architecture/funding-and-tokenization) for the full cross-layer design.
 
@@ -89,7 +89,7 @@ The architecture reflects specific tradeoffs between cost, flexibility, and guar
 
 #### Why Not Fully On-Chain?
 
-Storing rich data on-chain is expensive. A single activity claim with evidence and measurements could cost hundreds of dollars in gas fees. Schema changes require contract upgrades. Large files like images or PDFs are impractical. On-chain storage works for ownership state but not for the full data layer.
+Storing rich data on-chain is expensive. A single activity claim with attachments and measurements could cost hundreds of dollars in gas fees. Schema changes require contract upgrades. Large files like images or PDFs are impractical. On-chain storage works for ownership state but not for the full data layer.
 
 #### Why Not Fully Off-Chain?
 

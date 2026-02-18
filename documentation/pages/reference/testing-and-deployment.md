@@ -159,10 +159,10 @@ Lexicon schemas define maximum lengths for strings (in bytes and Unicode graphem
 
 ### Blob uploads
 
-Blobs (images, documents, evidence files) are uploaded to the PDS separately from records. Size limits depend on the PDS implementation — check your PDS documentation for exact values.
+Blobs (images, documents, attachment files) are uploaded to the PDS separately from records. Size limits depend on the PDS implementation — check your PDS documentation for exact values.
 
 {% callout type="note" %}
-If your evidence files are too large for blob upload, store them externally (e.g., on IPFS or a public URL) and reference them by URI in the evidence record.
+If your attachment files are too large for blob upload, store them externally (e.g., on IPFS or a public URL) and reference them by URI in the attachment record.
 {% /callout %}
 
 ### Validation error summary
@@ -222,7 +222,7 @@ All ATProto records are public. Anyone can read records from any PDS. Never stor
 - Public work descriptions (e.g., "Planted 500 trees in Borneo")
 - Aggregated impact metrics (e.g., "Reduced CO₂ by 50 tons")
 - Public contributor identities (DIDs, handles)
-- Links to public evidence (URLs, IPFS CIDs)
+- Links to public attachments (URLs, IPFS CIDs)
 
 **Keep off-protocol:**
 - Personal contact information (email, phone, address)

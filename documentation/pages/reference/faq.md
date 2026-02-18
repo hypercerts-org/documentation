@@ -9,7 +9,7 @@ description: Common questions about building with Hypercerts.
 
 #### What is a hypercert?
 
-A structured digital record of a contribution — who did what, when, where, and with what evidence. You create one with the SDK by calling `repo.hypercerts.create()`. See the [Quickstart](/getting-started/quickstart).
+A structured digital record of a contribution — who did what, when, where, and with what supporting documentation. You create one with the SDK by calling `repo.hypercerts.create()`. See the [Quickstart](/getting-started/quickstart).
 
 #### How is this different from the previous (EVM-based) Hypercerts?
 

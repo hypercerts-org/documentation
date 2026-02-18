@@ -49,7 +49,7 @@ Other records link to the activity claim to add context. Again, each is a separa
 - A record can also be linked to multiple other records, e.g. a measurement in a bioregion is linked to multiple activity claims.
 - An evaluator creates an evaluation from their own account — it references an activity claim but lives in their personal data server.
 
-This means a hypercert grows over time – it is a living record. The core claim stays the same, but evidence, measurements, and evaluations accumulate around it.
+This means a hypercert grows over time – it is a living record. The core claim stays the same, but attachments, measurements, and evaluations accumulate around it.
 
 ## Grouping hypercerts
 

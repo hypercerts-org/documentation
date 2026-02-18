@@ -19,7 +19,7 @@ AT-URIs use DIDs, not server addresses, so references remain valid after migrati
 
 #### Switching apps
 
-Because data is stored on PDSs, not in application databases, users can switch apps without losing data. A claim created in App A is immediately readable by App B. Evaluations, evidence, and measurements created in different apps all reference the same underlying claims.
+Because data is stored on PDSs, not in application databases, users can switch apps without losing data. A claim created in App A is immediately readable by App B. Evaluations, attachments, and measurements created in different apps all reference the same underlying claims.
 
 This is fundamentally different from traditional platforms, where switching apps means starting over.
 

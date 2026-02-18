@@ -7,7 +7,7 @@ description: A Go command-line tool for managing hypercerts on ATProto.
 
 The Hypercerts CLI (`hc`) is a command-line tool for managing hypercerts on ATProto. You can use it to:
 
-- Create, read, update, and delete all Hypercerts record types (activities, measurements, evaluations, evidence, and more)
+- Create, read, update, and delete all Hypercerts record types (activities, measurements, evaluations, attachments, and more)
 - Authenticate with any ATProto PDS
 - Run interactively with a terminal UI or non-interactively with flags for CI/CD
 - Resolve identities and inspect any record on the network

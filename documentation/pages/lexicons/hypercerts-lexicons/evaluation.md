@@ -21,7 +21,7 @@ An evaluation of a hypercert or other claim.
 | `content`      | `array`  | ❌        | Evaluation data (URIs or blobs) containing detailed reports or methodology          | Each item is a URI or blob. Max 100.                                                               |
 | `measurements` | `array`  | ❌        | References to measurements that contributed to this evaluation                      | Each item is a strong reference. Referenced records must conform to `org.hypercerts.claim.measurement`. Max 100. |
 | `summary`      | `string` | ✅        | Brief evaluation summary                                                            | Max 1000 graphemes.                                                                                |
-| `score`        | `ref`    | ❌        | Optional overall score for this evaluation on a numeric scale                       | See [Score](#score-object) below.                                                                  |
+| `score`        | `object` | ❌        | Optional overall score for this evaluation on a numeric scale                       | Inline `#score` object. See [Score](#score-object) below.                                          |
 | `location`     | `ref`    | ❌        | An optional reference for georeferenced evaluations                                 | Referenced record must conform to `app.certified.location`.                                        |
 | `createdAt`    | `string` | ✅        | Client-declared timestamp when this record was originally created                   |                                                                                                    |
 

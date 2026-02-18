@@ -68,7 +68,7 @@ Lexicons are the schema definitions that specify the structure of all Hypercerts
 | `org.hypercerts.claim.evaluation` | Evaluations of activities by third parties |
 | `org.hypercerts.claim.measurement` | Quantitative data attached to claims |
 | `org.hypercerts.claim.collection` | Projects/portfolios grouping multiple activities |
-| `org.hypercerts.claim.attachment` | Evidence, reports, documentation |
+| `org.hypercerts.claim.attachment` | Attachments, reports, documentation |
 | `org.hypercerts.funding.receipt` | Funding flow records |
 
 {% callout type="note" %}
@@ -97,7 +97,7 @@ A developer toolkit (TypeScript/JavaScript) for creating, reading, and managing 
 - Create, update, and delete hypercert records
 - Query records by collection, DID, or custom filters
 - Manage contributor relationships and weights
-- Handle blob uploads (images, documents, evidence)
+- Handle blob uploads (images, documents, attachments)
 - Validate records against lexicon schemas
 
 **Design principles:**

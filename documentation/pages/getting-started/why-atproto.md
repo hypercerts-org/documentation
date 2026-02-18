@@ -21,7 +21,7 @@ Together, these make it possible to build new funding systems that are interoper
 
 Contributions must outlive any single platform.
 
-Hypercert records are stored in **signed user repositories** hosted on Personal Data Servers (PDS). Each repository is cryptographically tied to a user or organization’s DID — not to the server hosting it. Contributors, evaluators, and funders choose where their data is hosted: On Hypercerts Foundation infrastructure, on other third-party providers, or self-hosted servers. 
+Hypercert records are stored in **signed user repositories** hosted on Personal Data Servers (PDS). Each repository is cryptographically tied to a user or organization’s DID — not to the server hosting it. Contributors, evaluators, and funders choose where their data is hosted: on Hypercerts Foundation infrastructure, on other third-party providers, or self-hosted servers. 
 
 They can migrate at any time without losing records or needing anyone’s permission. Repository data is exported and transferred as signed CAR (Content Addressed Archive) files, preserving record integrity and full history across migrations.
 
@@ -31,7 +31,7 @@ Applications are views over user-owned data — not gatekeepers of it.
 
 For impact funding to work across applications, contributions recorded in one application must be evaluable in another and fundable in a third — without bespoke integrations.
 
-ATProto enables this through **lexicons**: shared, namespaced JSON schemas that define how records are structured. For example `org.hypercerts.claim.activity` defines how a contribution is recorded — its fields, evidence, authorship, and metadata.
+ATProto enables this through **lexicons**: shared, namespaced JSON schemas that define how records are structured. For example `org.hypercerts.claim.activity` defines how a contribution is recorded — its fields, attachments, authorship, and metadata.
 
 Because lexicons are open and namespaced:
 
@@ -62,6 +62,6 @@ Trust becomes computable across the ecosystem — not siloed within individual p
 
 ## ATProto + Blockchain: A Hybrid Stack
 
-ATProto handles the rich and evolving data layer — claims, evidence, evaluations, trust signals. Onchain anchoring and tokenization improve the funding layer with immutable and permanent records as well as programmable funding and settlement mechanisms.
+ATProto handles the rich and evolving data layer — claims, attachments, evaluations, trust signals. Onchain anchoring and tokenization improve the funding layer with immutable and permanent records as well as programmable funding and settlement mechanisms.
 
 For details on how these two layers work together, see [Funding & Tokenization](/architecture/funding-and-tokenization) and [The Hypercerts Infrastructure](/getting-started/the-hypercerts-infrastructure).

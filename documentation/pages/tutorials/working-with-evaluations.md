@@ -60,7 +60,7 @@ const measurement = await repo.measurements.create({
 });
 ```
 
-You can then reference this measurement in your evaluation's `measurements` array to link quantitative data to your assessment.
+You can then reference this measurement in your evaluation's `measurements` array (an array of strong references) to link quantitative data to your assessment.
 
 ## Evaluation patterns
 

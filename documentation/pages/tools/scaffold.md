@@ -5,7 +5,7 @@ description: A Next.js starter app for building on ATProto with the Hypercerts S
 
 # Scaffold Starter App
 
-The Hypercerts Scaffold is a working Next.js app that demonstrates how to build on ATProto with the Hypercerts SDK. It handles OAuth authentication, profile management, and the full hypercert creation workflow — from basic claims through evidence, locations, measurements, and evaluations.
+The Hypercerts Scaffold is a working Next.js app that demonstrates how to build on ATProto with the Hypercerts SDK. It handles OAuth authentication, profile management, and the full hypercert creation workflow — from basic claims through attachments, locations, measurements, and evaluations.
 
 Live at [hypercerts-scaffold.vercel.app](https://hypercerts-scaffold.vercel.app). Source: [github.com/hypercerts-org/hypercerts-scaffold-atproto](https://github.com/hypercerts-org/hypercerts-scaffold-atproto).
 
@@ -45,10 +45,10 @@ The creation flow is a 5-step wizard with a sidebar stepper that tracks your pro
 ![Hypercert creation form showing title, description, work scope, and date fields](/images/scaffold/create-cert.png)
 *Step 1: Define the basic claim — what work was done, when, and in what scope.*
 
-**Step 2 — Evidence.** Attach supporting documentation — URLs, files, or descriptions that back up the claim.
+**Step 2 — Attachments.** Attach supporting documentation — URLs, files, or descriptions that back up the claim.
 
 ![Evidence form for attaching supporting documentation](/images/scaffold/add-evidence.png)
-*Step 2: Attach evidence to support the claim.*
+*Step 2: Attach supporting documentation to back up the claim.*
 
 **Step 3 — Location.** Add geographic context to the work — where it happened.
 
@@ -172,11 +172,11 @@ Server component pages like `app/hypercerts/page.tsx` and `app/hypercerts/[hyper
 
 ### Constellation Backlinks
 
-ATProto has no built-in reverse lookup — given a hypercert URI, there is no native way to find which evidence, evaluations, or measurements reference it. The scaffold uses [Constellation](https://constellation.microcosm.blue), an external backlinks service, to solve this.
+ATProto has no built-in reverse lookup — given a hypercert URI, there is no native way to find which attachments, evaluations, or measurements reference it. The scaffold uses [Constellation](https://constellation.microcosm.blue), an external backlinks service, to solve this.
 
 Constellation indexes ATProto records and returns all records that reference a given subject URI. The scaffold queries three source paths:
 
-- Evidence: `org.hypercerts.claim.attachment:subjects[com.atproto.repo.strongRef].uri`
+- Attachments: `org.hypercerts.claim.attachment:subjects[com.atproto.repo.strongRef].uri`
 - Evaluations: `org.hypercerts.claim.evaluation:subject.uri`
 - Measurements: `org.hypercerts.claim.measurement:subject.uri`
 

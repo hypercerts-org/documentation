@@ -79,7 +79,7 @@ You can think of it as a small, standardized piece of information that captures 
 * a community event or educational program
 * any action that creates positive impact
 
-Each hypercert links this claim with whatever evidence or context is available: documentation, measurements, expert assessments, community input, or other data that helps evaluate the contribution.
+Each hypercert links this claim with whatever attachments or context are available: documentation, measurements, expert assessments, community input, or other data that helps evaluate the contribution.
 
 Hypercerts don't judge whether something is valuable. They don't impose a single metric or worldview. They simply make contributions legible – to people, organizations, communities, and increasingly, AI systems.
 
@@ -94,7 +94,7 @@ For hypercerts to support many funding mechanisms and evaluation models, each on
 A hypercert typically includes:
 
 1. Contribution Metadata: A structured description of who did what, when, and where. This anchors the contribution in time, space, and authorship.
-2. Evidence: Links to documentation, measurements, reports, data, or other materials that help others understand and verify what happened.
+2. Attachments: Links to documentation, measurements, reports, data, or other materials that help others understand and verify what happened.
 3. Evaluations: Assessments from domain experts, peers, communities, or automated systems. These are not embedded inside the hypercert, but referenced — and they accumulate over time.
 4. Attribution and Ownership: A record of who holds which share of the contribution, allowing both contributors and funders to prove their role in creating the result.
 

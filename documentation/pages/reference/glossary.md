@@ -11,7 +11,7 @@ Terms you'll encounter when building with Hypercerts, ordered by how soon you'll
 
 #### Hypercert
 
-A structured digital record of a contribution: who did what, when, where, and with what evidence. The core primitive of the protocol. Technically, a hypercert is an activity claim record with linked contributions, evidence, measurements, and evaluations.
+A structured digital record of a contribution: who did what, when, where, and with what supporting documentation. The core primitive of the protocol. Technically, a hypercert is an activity claim record with linked contributions, attachments, measurements, and evaluations.
 
 #### Activity claim
 

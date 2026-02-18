@@ -82,7 +82,7 @@ Help funders track their investments:
 
 Build AI systems that participate in the ecosystem:
 
-- Measurement bots that extract metrics from evidence
+- Measurement bots that extract metrics from attachments
 - Consistency checkers that flag suspicious claims
 - Evaluation assistants that help experts assess work
 - Discovery agents that match funders with relevant projects

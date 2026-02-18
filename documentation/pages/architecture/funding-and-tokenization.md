@@ -75,7 +75,7 @@ There are many different flows that can be represented with hypercerts. Below is
 
 ### Stage 1 — Creation and first evaluation
 
-Alice plants 500 trees in a reforestation project and creates an activity claim on her PDS, along with measurements and evidence. Bob, an environmental auditor, evaluates the activity claim and its attached measurements of the new trees and evidence from his own PDS.
+Alice plants 500 trees in a reforestation project and creates an activity claim on her PDS, along with measurements and attachments. Bob, an environmental auditor, evaluates the activity claim and its attached measurements of the new trees and attachments from his own PDS.
 
 | Record | Owner | Location |
 |--------|-------|----------|

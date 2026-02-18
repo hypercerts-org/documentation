@@ -1,11 +1,11 @@
 ---
 title: Creating Your First Hypercert
-description: A step-by-step guide to creating a complete hypercert with contributions, evidence, and measurements.
+description: A step-by-step guide to creating a complete hypercert with contributions, attachments, and measurements.
 ---
 
 # Creating Your First Hypercert
 
-The [Quickstart](/getting-started/quickstart) shows how to create a minimal hypercert in one code block. This tutorial goes deeper — you'll create a complete hypercert with contributions, evidence, and measurements.
+The [Quickstart](/getting-started/quickstart) shows how to create a minimal hypercert in one code block. This tutorial goes deeper — you'll create a complete hypercert with contributions, attachments, and measurements.
 
 We'll document a real scenario: a team that wrote documentation for the Hypercerts Protocol in Q1 2026.
 
@@ -67,14 +67,26 @@ const hypercert = await repo.hypercerts.create({
   endDate: "2026-03-31T23:59:59Z",
   contributors: [
     {
-      contributorIdentity: { identity: "did:plc:alice123" },
+      contributorIdentity: {
+        $type: "org.hypercerts.claim.activity#contributorIdentity",
+        identity: "did:plc:alice123",
+      },
       contributionWeight: "70",
-      contributionDetails: { role: "Lead author" },
+      contributionDetails: {
+        $type: "org.hypercerts.claim.activity#contributorRole",
+        role: "Lead author",
+      },
     },
     {
-      contributorIdentity: { identity: "did:plc:bob456" },
+      contributorIdentity: {
+        $type: "org.hypercerts.claim.activity#contributorIdentity",
+        identity: "did:plc:bob456",
+      },
       contributionWeight: "30",
-      contributionDetails: { role: "Technical reviewer" },
+      contributionDetails: {
+        $type: "org.hypercerts.claim.activity#contributorRole",
+        role: "Technical reviewer",
+      },
     },
   ],
   rights: {
@@ -93,7 +105,7 @@ For richer contributor profiles, create separate `contributorInformation` and `c
 Attachment records link additional information to any record. The `subjects` field is an array of strong references (URI + CID):
 
 ```typescript
-const attachment = await repo.attachment.create({
+const attachment = await repo.attachments.create({
   subjects: [
     {
       uri: hypercert.uri,
@@ -160,6 +172,6 @@ Activity Claim (the core record)
 └── Measurement: 8,500 words
 ```
 
-All of these records are linked via strong references (URI + CID), making the entire structure tamper-evident and verifiable. Anyone can discover the contributions, evidence, and measurements attached to your hypercert by following these references.
+All of these records are linked via strong references (URI + CID), making the entire structure tamper-evident and verifiable. Anyone can discover the contributions, attachments, and measurements attached to your hypercert by following these references.
 
 Third parties can now [evaluate your hypercert](/tutorials/working-with-evaluations) by creating evaluation records on their own PDS.

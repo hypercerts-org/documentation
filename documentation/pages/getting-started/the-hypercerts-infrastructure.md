@@ -12,7 +12,7 @@ For the rationale behind choosing ATProto, see [Why ATProto?](/getting-started/w
 
 #### The data layer: AT Protocol
 
-AT Protocol stores all hypercert-related data — activity claims, contributions, evaluations, measurements, evidence, and trust signals. This data lives on Personal Data Servers (PDS) controlled by users, not platforms. Contributors create claims on their PDS. Evaluators reference those claims from their own PDS. Funders query indexers that aggregate data across the network.
+AT Protocol stores all hypercert-related data — activity claims, contributions, evaluations, measurements, attachments, and trust signals. This data lives on Personal Data Servers (PDS) controlled by users, not platforms. Contributors create claims on their PDS. Evaluators reference those claims from their own PDS. Funders query indexers that aggregate data across the network.
 
 Because ATProto uses shared schemas (lexicons), any application can read and write hypercert data without custom integrations. A claim created in one app is immediately evaluable in another and fundable in a third. The data layer is open, portable, and interoperable by design.
 

@@ -91,5 +91,5 @@ Beyond identity, Certified contributes shared data schemas to the AT Protocol ec
 
 ## Next steps
 
-- [Creating Your First Hypercert](/tutorials/creating-your-first-hypercert) — build a complete hypercert with contributions, evidence, and measurements
+- [Creating Your First Hypercert](/tutorials/creating-your-first-hypercert) — build a complete hypercert with contributions, attachments, and measurements
 - [Working with Evaluations](/tutorials/working-with-evaluations) — create evaluations of other people's work

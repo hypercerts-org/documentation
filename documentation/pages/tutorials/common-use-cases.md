@@ -33,7 +33,7 @@ const result = await repo.hypercerts.create({
 });
 ```
 
-After creating the hypercert, the team attaches contribution records for individual maintainers with roles (core developer, documentation lead, community manager). They add evidence linking to the repository, release notes, and commit history. Organizations that depend on the library can fund this work retroactively.
+After creating the hypercert, the team attaches contribution records for individual maintainers with roles (core developer, documentation lead, community manager). They add attachments linking to the repository, release notes, and commit history. Organizations that depend on the library can fund this work retroactively.
 
 ## Regenerative land stewardship
 
@@ -65,7 +65,7 @@ const result = await repo.hypercerts.create({
 });
 ```
 
-The group attaches measurement records tracking hectares restored, native species planted, and carbon sequestration estimates. Evidence includes satellite imagery, biodiversity surveys, and field reports. Climate funders or impact investors can review the full record before deciding to support the next phase.
+The group attaches measurement records tracking hectares restored, native species planted, and carbon sequestration estimates. Attachments include satellite imagery, biodiversity surveys, and field reports. Climate funders or impact investors can review the full record before deciding to support the next phase.
 
 ## Scientific research
 
@@ -87,7 +87,7 @@ const result = await repo.hypercerts.create({
 });
 ```
 
-The team creates contribution records for each researcher — principal investigator, postdoctoral researchers, graduate students. Evidence links to the published paper (via DOI), lab notebooks, and experimental protocols. Evaluation records capture peer review outcomes. Research foundations or industry partners interested in the field can fund the work.
+The team creates contribution records for each researcher — principal investigator, postdoctoral researchers, graduate students. Attachments link to the published paper (via DOI), lab notebooks, and experimental protocols. Evaluation records capture peer review outcomes. Research foundations or industry partners interested in the field can fund the work.
 
 ## Community event organization
 
@@ -109,4 +109,4 @@ const result = await repo.hypercerts.create({
 });
 ```
 
-The organizers attach measurement records tracking total attendees, completion rates, and outcomes. Contribution records identify instructors, venue hosts, and curriculum developers. Evidence includes workshop materials and participant feedback. Organizations with community investment programs can review the record and decide to fund future sessions.
+The organizers attach measurement records tracking total attendees, completion rates, and outcomes. Contribution records identify instructors, venue hosts, and curriculum developers. Attachments include workshop materials and participant feedback. Organizations with community investment programs can review the record and decide to fund future sessions.
