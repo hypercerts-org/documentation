@@ -23,7 +23,7 @@ export const navigation = [
     children: [
       {
         title: "How Hypercerts Work",
-        path: "/getting-started/how-hypercerts-work",
+        path: "/getting-started/hypercerts-core-data-model",
       },
       { title: "Quickstart", path: "/getting-started/quickstart" },
       {
