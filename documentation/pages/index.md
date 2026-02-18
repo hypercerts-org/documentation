@@ -23,6 +23,7 @@ Hypercerts are portable, attestable records of impact stored on AT Protocol. Bui
 |---|---|
 | **[What are Hypercerts?](/getting-started/what-is-hypercerts)** | The record structure, how people use them, and why they're built on ATProto |
 | **[Hypercerts Core Data Model](/getting-started/hypercerts-core-data-model)** | Record types, dimensions, and how they connect |
+| **[What is Certified?](/ecosystem/what-is-certified)** | The identity provider for the Hypercerts ecosystem |
 | **[Architecture Overview](/architecture/overview)** | How the protocol stack fits together |
 
 ## Tools
