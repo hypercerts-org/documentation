@@ -4,11 +4,11 @@ title: Hypercerts Documentation
 
 # Hypercerts Documentation
 
-Hypercerts are structured digital records of contributions — who did what, when, where, and with what supporting documentation. Build applications that create, evaluate, and fund impactful work.
+Hypercerts are portable, attestable records of impact stored on AT Protocol. Build applications that create, evaluate, and fund impactful work.
 
 ---
 
-## Start building
+## Get started
 
 | | |
 |---|---|
@@ -17,27 +17,28 @@ Hypercerts are structured digital records of contributions — who did what, whe
 | **[Common Use Cases](/tutorials/common-use-cases)** | Worked examples for open-source, climate, research, and community projects |
 | **[Building on Hypercerts](/reference/building-on-hypercerts)** | Integration patterns for funding platforms, dashboards, and evaluation tools |
 
-## Understand
+## Core concepts
 
 | | |
 |---|---|
-| **[Hypercerts Core Data Model](/getting-started/hypercerts-core-data-model)** | The data model — record types, dimensions, and how they connect |
-| **[Why We Need Hypercerts](/getting-started/why-we-need-hypercerts)** | The problem, the vision, and what hypercerts unlock |
+| **[What are Hypercerts?](/getting-started/what-is-hypercerts)** | The record structure, how people use them, and why they're built on ATProto |
+| **[Hypercerts Core Data Model](/getting-started/hypercerts-core-data-model)** | Record types, dimensions, and how they connect |
+| **[Architecture Overview](/architecture/overview)** | How the protocol stack fits together |
 
 ## Tools
 
 | | |
 |---|---|
-| **[Hypercerts CLI](/tools/hypercerts-cli)** | Create and manage hypercerts from the command line |
 | **[Scaffold Starter App](/tools/scaffold)** | Next.js reference app with OAuth, creation wizard, and browsing |
+| **[Hypercerts CLI](/tools/hypercerts-cli)** | Create and manage hypercerts from the command line |
 | **[Hyperindex](/tools/hyperindex)** | GraphQL API for querying hypercert records across the network |
 | **[Hyperboard](/tools/hyperboard)** | Visual contributor boards for attribution and funding transparency |
 
-## Reference & Architecture
+## Reference
 
 | | |
 |---|---|
 | **[Lexicons](/lexicons/introduction-to-lexicons)** | Schema definitions for every record type |
 | **[Testing & Deployment](/reference/testing-and-deployment)** | Test locally, understand constraints, and go live |
-| **[Architecture Overview](/architecture/overview)** | How the protocol stack fits together |
+| **[Glossary](/reference/glossary)** | Key terms used across the documentation |
 | **[Roadmap](/roadmap)** | Development priorities and phased delivery plan |

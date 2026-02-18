@@ -137,5 +137,4 @@ Two years later, a second evaluator, Eve, assesses the health of Alice's trees a
 
 - [Architecture Overview](/architecture/overview) — how the full protocol stack fits together
 - [Data Flow & Lifecycle](/architecture/data-flow-and-lifecycle) — how a hypercert moves through the system
-- [The Hypercerts Infrastructure](/getting-started/the-hypercerts-infrastructure) — the two-layer architecture
 - [Roadmap](/roadmap) — current build priorities and development phases

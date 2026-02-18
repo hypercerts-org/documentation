@@ -53,7 +53,7 @@ The activity claim is the starting record. Two additional pieces of information 
 Hypercerts are designed to live beyond any single platform.
 This is why we built hypercerts on [AT Protocol](/getting-started/why-atproto), a decentralized data layer that also powers Bluesky. This gives hypercerts some important properties:
 
-- **You own your data.** Your hypercerts live on your [Personal Data Server (PDS)](/getting-started/the-hypercerts-infrastructure) or on a hosted PDS of your choice, not on a single platform.
+- **You own your data.** Your hypercerts live on your [Personal Data Server (PDS)](/architecture/overview) or on a hosted PDS of your choice, not on a single platform.
 - **It's portable.** You can move your data to a different server anytime. No lock-in.
 - **It's verifiable.** Every record is cryptographically signed. Anyone can check that it hasn't been tampered with.
 - **It works everywhere.** Any app that speaks the Hypercerts protocol can read and display your records. Learn more in the [Architecture Overview](/architecture/overview).

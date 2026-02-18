@@ -1,30 +1,8 @@
 export const navigation = [
   { title: "Welcome", path: "/" },
   {
-    section: "Understand",
+    section: "Get Started",
     children: [
-      {
-        title: "What are Hypercerts?",
-        path: "/getting-started/what-is-hypercerts",
-      },
-      {
-        title: "Why We Need Hypercerts",
-        path: "/getting-started/why-we-need-hypercerts",
-      },
-      {
-        title: "What is Certified?",
-        path: "/getting-started/what-is-certified",
-      },
-      { title: "Why ATProto?", path: "/getting-started/why-atproto" },
-    ],
-  },
-  {
-    section: "Build",
-    children: [
-      {
-        title: "Hypercerts Core Data Model",
-        path: "/getting-started/hypercerts-core-data-model",
-      },
       { title: "Quickstart", path: "/getting-started/quickstart" },
       {
         title: "Account & Identity Setup",
@@ -42,26 +20,34 @@ export const navigation = [
     ],
   },
   {
-    section: "Architecture",
+    section: "Core Concepts",
     children: [
       {
-        title: "Infrastructure Overview",
-        path: "/getting-started/the-hypercerts-infrastructure",
-        children: [
-          {
-            title: "Indexers & Discovery",
-            path: "/getting-started/infrastructure/indexers-and-discovery",
-          },
-          {
-            title: "Portability & Scaling",
-            path: "/getting-started/infrastructure/portability-and-scaling",
-          },
-        ],
+        title: "What are Hypercerts?",
+        path: "/getting-started/what-is-hypercerts",
       },
+      {
+        title: "Hypercerts Core Data Model",
+        path: "/getting-started/hypercerts-core-data-model",
+      },
+      { title: "Why ATProto?", path: "/getting-started/why-atproto" },
+    ],
+  },
+  {
+    section: "Architecture",
+    children: [
       { title: "Architecture Overview", path: "/architecture/overview" },
       {
         title: "Data Flow & Lifecycle",
         path: "/architecture/data-flow-and-lifecycle",
+      },
+      {
+        title: "Indexers & Discovery",
+        path: "/architecture/indexers-and-discovery",
+      },
+      {
+        title: "Portability & Scaling",
+        path: "/architecture/portability-and-scaling",
       },
       {
         title: "Funding & Tokenization",
@@ -72,10 +58,10 @@ export const navigation = [
   {
     section: "Tools",
     children: [
-      { title: "Hypercerts CLI", path: "/tools/hypercerts-cli" },
       { title: "Scaffold Starter App", path: "/tools/scaffold" },
-      { title: "Hyperboard", path: "/tools/hyperboard" },
+      { title: "Hypercerts CLI", path: "/tools/hypercerts-cli" },
       { title: "Hyperindex", path: "/tools/hyperindex" },
+      { title: "Hyperboard", path: "/tools/hyperboard" },
     ],
   },
   {
@@ -143,6 +129,16 @@ export const navigation = [
       { title: "Glossary", path: "/reference/glossary" },
       { title: "FAQ", path: "/reference/faq" },
       { title: "Roadmap", path: "/roadmap" },
+    ],
+  },
+  {
+    section: "Ecosystem & Vision",
+    children: [
+      {
+        title: "Why We Need Hypercerts",
+        path: "/ecosystem/why-we-need-hypercerts",
+      },
+      { title: "What is Certified?", path: "/ecosystem/what-is-certified" },
     ],
   },
 ];

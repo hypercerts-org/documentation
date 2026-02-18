@@ -68,6 +68,6 @@ Because DIDs are persistent and records are signed, you can trace an author's en
 
 ## Keep Reading
 
-- [Indexers & Discovery](/getting-started/infrastructure/indexers-and-discovery) — how data is aggregated and queried across the network
+- [Indexers & Discovery](/architecture/indexers-and-discovery) — how data is aggregated and queried across the network
 - [Funding & Tokenization](/architecture/funding-and-tokenization) — freeze-then-fund model and on-chain ownership design
-- [Portability & Scaling](/getting-started/infrastructure/portability-and-scaling) — PDS migration, performance, and privacy
+- [Portability & Scaling](/architecture/portability-and-scaling) — PDS migration, performance, and privacy
