@@ -26,7 +26,7 @@ The Hypercerts Protocol is built on AT Protocol — the same decentralized data 
 Certified is a neutral identity provider that isn't tied to any single application. You create an account and immediately have an identity that works across the entire ecosystem — no knowledge of Bluesky, ATProto, or decentralized protocols required.
 
 {% callout type="note" %}
-Already have a Bluesky account or another AT Protocol account? You don't need a Certified account. Any AT Protocol identity works with all Hypercerts applications. Log in with your existing handle (e.g., `alice.bsky.social`) — everything just works.
+Hypercerts is fully interoperable with the AT Protocol ecosystem. If you already have a Bluesky account or any other ATProto identity, log in with your existing handle (e.g., `alice.bsky.social`) and use all Hypercerts applications — no additional account needed.
 {% /callout %}
 
 ---

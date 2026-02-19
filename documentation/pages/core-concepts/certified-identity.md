@@ -45,10 +45,10 @@ Handles are not needed to log in to the Hypercerts ecosystem, but every user has
 
 For setup details, see [Account & Identity Setup](/architecture/account-and-identity).
 
-## You don't need Certified
+## Full AT Protocol interoperability
 
 {% callout type="note" %}
-Any AT Protocol identity works with all Hypercerts applications. If you already have a Bluesky account or another ATProto account, log in with your existing handle (e.g., `alice.bsky.social`) — everything just works. Certified is one provider among many.
+Hypercerts is fully interoperable with the AT Protocol ecosystem. If you already have a Bluesky account or any other ATProto identity, you can log in with your existing handle (e.g., `alice.bsky.social`) and use all Hypercerts applications — no additional account needed.
 {% /callout %}
 
 ## Wallet linkage
