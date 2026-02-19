@@ -39,6 +39,15 @@ export const navigation = [
     ],
   },
   {
+    section: "Tools",
+    children: [
+      { title: "Scaffold Starter App", path: "/tools/scaffold" },
+      { title: "Hypercerts CLI", path: "/tools/hypercerts-cli" },
+      { title: "Hyperindex", path: "/tools/hyperindex" },
+      { title: "Hyperboard", path: "/tools/hyperboard" },
+    ],
+  },
+  {
     section: "Architecture",
     children: [
       { title: "Architecture Overview", path: "/architecture/overview" },
@@ -62,15 +71,6 @@ export const navigation = [
         title: "Funding & Tokenization",
         path: "/architecture/funding-and-tokenization",
       },
-    ],
-  },
-  {
-    section: "Tools",
-    children: [
-      { title: "Scaffold Starter App", path: "/tools/scaffold" },
-      { title: "Hypercerts CLI", path: "/tools/hypercerts-cli" },
-      { title: "Hyperindex", path: "/tools/hyperindex" },
-      { title: "Hyperboard", path: "/tools/hyperboard" },
     ],
   },
   {
