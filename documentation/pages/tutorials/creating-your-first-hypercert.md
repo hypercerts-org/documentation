@@ -1,11 +1,11 @@
 ---
 title: Creating Your First Hypercert
-description: A step-by-step guide to creating a complete hypercert with contributions, attachments, and measurements.
+description: A step-by-step guide to creating a complete hypercert with contributions and attachments.
 ---
 
 # Creating Your First Hypercert
 
-The [Quickstart](/getting-started/quickstart) shows how to create a minimal hypercert in one code block. This tutorial goes deeper — you'll create a complete hypercert with contributions, attachments, and measurements.
+The [Quickstart](/getting-started/quickstart) shows how to create a minimal hypercert in one code block. This tutorial goes deeper — you'll create a complete hypercert with contributions and attachments.
 
 We'll document a real scenario: a team that wrote documentation for the Hypercerts Protocol in Q1 2026.
 
@@ -126,39 +126,6 @@ const attachment = await repo.attachments.create({
 
 You can create multiple attachment records — one for the repo, one for the deployed site, one for the migration plan, etc.
 
-## Add measurements
-
-Measurements attach quantitative data to your hypercert:
-
-```typescript
-const pageCount = await repo.measurements.create({
-  subject: {
-    uri: hypercert.uri,
-    cid: hypercert.cid,
-  },
-  measurers: ["did:plc:alice123"],
-  metric: "Documentation pages written",
-  unit: "pages",
-  value: "12",
-  methodType: "manual-count",
-  createdAt: new Date().toISOString(),
-});
-
-const wordCount = await repo.measurements.create({
-  subject: {
-    uri: hypercert.uri,
-    cid: hypercert.cid,
-  },
-  measurers: ["did:plc:alice123"],
-  metric: "Total word count",
-  unit: "words",
-  value: "8500",
-  methodType: "automated-count",
-  evidenceURI: ["https://example.com/word-count-report.csv"],
-  createdAt: new Date().toISOString(),
-});
-```
-
 ## What you've built
 
 Your hypercert now has a complete structure:
@@ -167,11 +134,11 @@ Your hypercert now has a complete structure:
 Activity Claim (the core record)
 ├── Contribution: Lead author (Alice)
 ├── Contribution: Technical reviewer (Bob)
-├── Attachment: GitHub repository
-├── Measurement: 12 pages written
-└── Measurement: 8,500 words
+└── Attachment: GitHub repository
 ```
 
-All of these records are linked via strong references (URI + CID), making the entire structure tamper-evident and verifiable. Anyone can discover the contributions, attachments, and measurements attached to your hypercert by following these references.
+All of these records are linked via strong references (URI + CID), making the entire structure tamper-evident and verifiable. Anyone can discover the contributions and attachments attached to your hypercert by following these references.
 
-Third parties can now [evaluate your hypercert](/tutorials/working-with-evaluations) by creating evaluation records on their own PDS.
+## Next steps
+
+Third parties can now [evaluate your hypercert](/tutorials/working-with-evaluations) by creating evaluation records and measurements on their own PDS.
