@@ -39,7 +39,7 @@ Your DID resolves via the [PLC directory](https://plc.directory) to a DID docume
 
 Certified exists because most Hypercerts users are not Bluesky users. Researchers, land stewards, open-source maintainers, and funders need an entry point that doesn't require knowledge of ATProto or decentralized protocols. Certified provides that — a neutral identity provider that isn't tied to any single application.
 
-### Handles
+### Handles (your public username)
 
 Handles are not needed to log in to the Hypercerts ecosystem, but every user has one. They serve as human-readable names for publicly addressing others and for interacting with other applications in the AT Protocol ecosystem that haven't implemented email-based login with Certified. Your handle (e.g., `alice.certified.app`) is human-readable but not permanent — it's a pointer to your DID. Organizations can use **custom domain handles** (e.g., `numpy.org`) to prove organizational identity through DNS verification.
 
