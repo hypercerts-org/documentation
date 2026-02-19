@@ -1,32 +1,69 @@
 ---
-title: What is Certified?
-description: Certified is the identity provider for the Hypercerts ecosystem.
+title: Certified Identity
+description: How identity works in the Hypercerts ecosystem — DIDs, signing, portability, and wallet linkage.
 ---
 
-# What is Certified?
+# Certified Identity
 
-[Certified](https://certified.app) is the identity provider for the Hypercerts ecosystem. Create one account and you can sign in to every application built on the Hypercerts Protocol — and your hypercerts, evaluations, and other records travel with you across all of them. Think of it as your passport to the world of impact certificates.
+Every hypercert record has an author. Every evaluation carries a signature. Every funding receipt traces back to a DID. Identity is a core primitive of the protocol — it determines who owns records, who can be trusted, and who receives funding.
 
-## Why Certified exists
+## Identity in the Hypercerts Protocol
 
-Certified is a neutral identity provider that isn't tied to any single application — it gives Hypercerts users an entry point that doesn't require knowledge of Bluesky, ATProto, or decentralized protocols. For the full background on why a dedicated identity provider exists alongside Bluesky, see [Account & Identity Setup](/getting-started/account-and-identity#why-certified).
+The Hypercerts Protocol uses AT Protocol's identity system. Every participant — whether an individual contributor, an evaluator, or an organization — is identified by a **DID (Decentralized Identifier)**.
 
-## What you get
+A DID like `did:plc:z72i7hdynmk6r22z27h6tvur` is:
 
-- **Low-friction sign-in** — No usernames, handles, or passwords to remember. Sign in with just your email and a code.
-- **Ecosystem access** — Your Certified identity is recognized by every application built on the Hypercerts Protocol.
-- **Web3 wallet** — Add your existing wallet to your Certified identity, or get a new embedded wallet.
-- **A DID (Decentralized Identifier)** — Your permanent, portable identity. It stays the same even if you change servers or handles.
-- **A Personal Data Server (PDS)** — Your hypercerts, evaluations, and other records are stored here. You own this data.
-- **Data portability** — You can migrate your data to another PDS at any time. No lock-in.
+- **Permanent** — it never changes, even if you switch servers or handles
+- **Portable** — your records, reputation, and history follow your DID across platforms
+- **Cryptographically verifiable** — every record you create is signed by your DID's key pair, and anyone can verify the signature
 
-## Already have a Bluesky account or another AT Protocol account?
+Your DID resolves via the [PLC directory](https://plc.directory) to a DID document containing your current PDS, public signing keys, and handle.
+
+## How identity connects to the protocol
+
+| Layer | How identity is used |
+|-------|---------------------|
+| **Data** | Every record (activity claims, evaluations, measurements) carries the author's DID. The PDS signs records into a Merkle tree, making authorship tamper-evident. |
+| **Trust** | Evaluators build reputation tied to their DID. Applications can weight evaluations based on the evaluator's history and credentials. |
+| **Funding** | Funding receipts link funder DIDs to the work they support. Wallet linkage (via [IdentityLink](https://identitylink.vercel.app)) connects DIDs to EVM addresses for onchain payments. |
+| **Portability** | Switching PDS providers doesn't change your DID. Your entire history — claims, evaluations, contributions — migrates with you. |
+
+## Certified: the reference identity provider
+
+[Certified](https://certified.app) is the identity provider built for the Hypercerts ecosystem. It provisions the full identity stack in a single sign-up:
+
+- **A DID** — your permanent identifier
+- **A PDS** — your Personal Data Server, where records are stored
+- **An embedded wallet** — EVM wallet linked to your DID for onchain funding
+- **Low-friction sign-in** — email and code, no passwords or protocol knowledge required
+
+Certified exists because most Hypercerts users are not Bluesky users. Researchers, land stewards, open-source maintainers, and funders need an entry point that doesn't require knowledge of ATProto or decentralized protocols. Certified provides that — a neutral identity provider that isn't tied to any single application.
+
+### Handles and organizational identity
+
+Your handle (e.g., `alice.certified.app`) is human-readable but not permanent — it's a pointer to your DID. Organizations can use **custom domain handles** (e.g., `numpy.org`) to prove organizational identity through DNS verification.
+
+For setup details, see [Account & Identity Setup](/getting-started/account-and-identity).
+
+## You don't need Certified
 
 {% callout type="note" %}
-If you already have a Bluesky account or another AT Protocol account, you don't need a Certified account. Any AT Protocol identity works with all Hypercerts applications. Log in with your existing handle (e.g., `alice.bsky.social`) — everything just works.
+Any AT Protocol identity works with all Hypercerts applications. If you already have a Bluesky account or another ATProto account, log in with your existing handle (e.g., `alice.bsky.social`) — everything just works. Certified is one provider among many.
 {% /callout %}
+
+## Wallet linkage
+
+To receive onchain funding, a DID needs to be linked to an EVM wallet address. This is handled by **IdentityLink** — a cryptographic attestation system that:
+
+1. Authenticates the user via ATProto OAuth
+2. Connects an EVM wallet (EOA, Smart Wallet, or Safe)
+3. Signs an EIP-712 typed message proving ownership
+4. Stores the attestation in the user's PDS
+
+The attestation is self-sovereign (stored in your PDS, not a central database) and verifiable by anyone. See the [Roadmap](/roadmap) for current IdentityLink status.
 
 ## Next steps
 
-- [Account & Identity Setup](/getting-started/account-and-identity) — configure your account, set up custom domain handles, and manage credentials
+- [Account & Identity Setup](/getting-started/account-and-identity) — create an account, configure custom domains, manage app passwords, and set up organization accounts
+- [Architecture Overview](/architecture/overview) — how identity fits into the protocol stack
 - [Quickstart](/getting-started/quickstart) — create your first hypercert

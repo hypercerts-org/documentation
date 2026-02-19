@@ -1,9 +1,9 @@
 ---
-title: Hypercerts Core Data Model
+title: Core Data Model
 description: The data model behind hypercerts — record types, dimensions, and how they connect.
 ---
 
-# Hypercerts Core Data Model
+# Core Data Model
 
 A hypercert is a collection of linked records that together describe a contribution. This page explains the data model — what records exist, what they contain, and how they connect.
 

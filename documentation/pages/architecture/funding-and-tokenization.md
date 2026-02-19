@@ -1,9 +1,9 @@
 ---
-title: "Funding & Tokenization"
+title: "Funding & Value Flow"
 description: How hypercerts track funding of activities and optionally wrap claims in onchain tokens.
 ---
 
-# Funding & Tokenization
+# Funding & Value Flow
 
 Hypercerts track the funding of activities without prescribing how funds flow. Any payment technology works — credit cards, PayPal, bank transfers, onchain payments. Any funding mechanism works — grants, crowdfunding, retroactive funding, and more.
 

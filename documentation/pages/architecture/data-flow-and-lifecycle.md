@@ -29,7 +29,7 @@ Creation → Enrichment → Evaluation → Discovery → Funding → Accumulatio
   PDS        PDS        Other PDS     Indexer   On-chain*   Ongoing
 ```
 
-*On-chain layer is planned. See [Funding & Tokenization](/architecture/funding-and-tokenization).
+*On-chain layer is planned. See [Funding & Value Flow](/architecture/funding-and-tokenization).
 
 ## Stage 1: Creation
 
@@ -149,7 +149,7 @@ Many PDS Instances
 
 The on-chain funding layer is not yet implemented. The planned design: before a hypercert can be funded, its ATProto records are frozen and the snapshot is anchored on-chain. This ensures funders know exactly what they are paying for — the cert's contents cannot change after freezing.
 
-For the full planned design — including anchoring, tokenization, funding mechanisms, and funding readiness patterns — see [Funding & Tokenization](/architecture/funding-and-tokenization).
+For the full planned design — including anchoring, tokenization, funding mechanisms, and funding readiness patterns — see [Funding & Value Flow](/architecture/funding-and-tokenization).
 
 ## Stage 6: Accumulation
 

@@ -24,10 +24,10 @@ Hypercerts are structured digital records of contributions — who did what, whe
 | | |
 |---|---|
 | **[What are Hypercerts?](/getting-started/what-is-hypercerts)** | The record structure, how people use them, and why they're built on ATProto |
-| **[Hypercerts Core Data Model](/getting-started/hypercerts-core-data-model)** | Record types, dimensions, and how they connect |
-| **[What is Certified?](/ecosystem/what-is-certified)** | The identity provider for the Hypercerts ecosystem |
+| **[Core Data Model](/getting-started/hypercerts-core-data-model)** | Record types, dimensions, and how they connect |
+| **[Certified Identity](/ecosystem/what-is-certified)** | How identity works — DIDs, signing, portability, and wallet linkage |
 | **[Why ATProto?](/getting-started/why-atproto)** | Why the protocol is built on AT Protocol |
-| **[Funding & Tokenization](/architecture/funding-and-tokenization)** | How hypercerts track funding and optionally wrap claims in onchain tokens |
+| **[Funding & Value Flow](/architecture/funding-and-tokenization)** | How hypercerts track funding and optionally wrap claims in onchain tokens |
 
 ## Tools
 

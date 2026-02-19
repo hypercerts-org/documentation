@@ -41,7 +41,7 @@ Use the [Hyperindex](/tools/hyperindex) GraphQL API at `hyperindex.certified.app
 
 #### How do I fund a hypercert?
 
-The on-chain funding layer is not yet implemented. The planned design freezes records before funding to ensure funders know exactly what they are paying for. See [Funding & Tokenization](/architecture/funding-and-tokenization).
+The on-chain funding layer is not yet implemented. The planned design freezes records before funding to ensure funders know exactly what they are paying for. See [Funding & Value Flow](/architecture/funding-and-tokenization).
 
 #### Where do I get help?
 

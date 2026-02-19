@@ -31,13 +31,13 @@ export const navigation = [
         path: "/getting-started/what-is-hypercerts",
       },
       {
-        title: "Hypercerts Core Data Model",
+        title: "Core Data Model",
         path: "/getting-started/hypercerts-core-data-model",
       },
-      { title: "What is Certified?", path: "/ecosystem/what-is-certified" },
+      { title: "Certified Identity", path: "/ecosystem/what-is-certified" },
       { title: "Why ATProto?", path: "/getting-started/why-atproto" },
       {
-        title: "Funding & Tokenization",
+        title: "Funding & Value Flow",
         path: "/architecture/funding-and-tokenization",
       },
     ],
