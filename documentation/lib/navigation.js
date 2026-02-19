@@ -5,10 +5,6 @@ export const navigation = [
     children: [
       { title: "Quickstart", path: "/getting-started/quickstart" },
       {
-        title: "Account & Identity Setup",
-        path: "/getting-started/account-and-identity",
-      },
-      {
         title: "Creating Your First Hypercert",
         path: "/tutorials/creating-your-first-hypercert",
       },
@@ -57,6 +53,10 @@ export const navigation = [
       {
         title: "Funding & Tokenization",
         path: "/architecture/funding-and-tokenization",
+      },
+      {
+        title: "Account & Identity Setup",
+        path: "/getting-started/account-and-identity",
       },
     ],
   },
