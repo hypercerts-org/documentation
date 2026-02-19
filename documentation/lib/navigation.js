@@ -39,6 +39,10 @@ export const navigation = [
     children: [
       { title: "Architecture Overview", path: "/architecture/overview" },
       {
+        title: "Account & Identity Setup",
+        path: "/getting-started/account-and-identity",
+      },
+      {
         title: "Data Flow & Lifecycle",
         path: "/architecture/data-flow-and-lifecycle",
       },
@@ -53,10 +57,6 @@ export const navigation = [
       {
         title: "Funding & Tokenization",
         path: "/architecture/funding-and-tokenization",
-      },
-      {
-        title: "Account & Identity Setup",
-        path: "/getting-started/account-and-identity",
       },
     ],
   },
