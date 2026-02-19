@@ -36,6 +36,10 @@ export const navigation = [
       },
       { title: "What is Certified?", path: "/ecosystem/what-is-certified" },
       { title: "Why ATProto?", path: "/getting-started/why-atproto" },
+      {
+        title: "Funding & Tokenization",
+        path: "/architecture/funding-and-tokenization",
+      },
     ],
   },
   {
@@ -66,10 +70,6 @@ export const navigation = [
       {
         title: "Portability & Scaling",
         path: "/architecture/portability-and-scaling",
-      },
-      {
-        title: "Funding & Tokenization",
-        path: "/architecture/funding-and-tokenization",
       },
     ],
   },

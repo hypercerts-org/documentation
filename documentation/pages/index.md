@@ -27,6 +27,7 @@ Hypercerts are structured digital records of contributions — who did what, whe
 | **[Hypercerts Core Data Model](/getting-started/hypercerts-core-data-model)** | Record types, dimensions, and how they connect |
 | **[What is Certified?](/ecosystem/what-is-certified)** | The identity provider for the Hypercerts ecosystem |
 | **[Why ATProto?](/getting-started/why-atproto)** | Why the protocol is built on AT Protocol |
+| **[Funding & Tokenization](/architecture/funding-and-tokenization)** | How hypercerts track funding and optionally wrap claims in onchain tokens |
 
 ## Tools
 
@@ -46,7 +47,6 @@ Hypercerts are structured digital records of contributions — who did what, whe
 | **[Data Flow & Lifecycle](/architecture/data-flow-and-lifecycle)** | How a hypercert moves from creation through evaluation to funding |
 | **[Indexers & Discovery](/architecture/indexers-and-discovery)** | How indexers make hypercerts findable across the network |
 | **[Portability & Scaling](/architecture/portability-and-scaling)** | Migration, performance, and privacy |
-| **[Funding & Tokenization](/architecture/funding-and-tokenization)** | The planned on-chain funding layer |
 
 ## Reference
 
