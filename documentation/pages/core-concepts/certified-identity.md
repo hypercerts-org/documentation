@@ -45,7 +45,7 @@ Handles are not needed to log in to the Hypercerts ecosystem, but every user has
 
 For setup details, see [Account & Identity Setup](/architecture/account-and-identity).
 
-## Full AT Protocol interoperability
+## Compatible with Bluesky and other AT Protocol accounts
 
 {% callout type="note" %}
 Hypercerts is fully interoperable with the AT Protocol ecosystem. If you already have a Bluesky account or any other ATProto identity, you can log in with your existing handle (e.g., `alice.bsky.social`) and use all Hypercerts applications — no additional account needed.
