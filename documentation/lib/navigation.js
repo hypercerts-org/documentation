@@ -17,6 +17,10 @@ export const navigation = [
         title: "Building on Hypercerts",
         path: "/reference/building-on-hypercerts",
       },
+      {
+        title: "Testing & Deployment",
+        path: "/reference/testing-and-deployment",
+      },
     ],
   },
   {
@@ -122,10 +126,6 @@ export const navigation = [
             ],
           },
         ],
-      },
-      {
-        title: "Testing & Deployment",
-        path: "/reference/testing-and-deployment",
       },
       { title: "Glossary", path: "/reference/glossary" },
       { title: "FAQ", path: "/reference/faq" },
