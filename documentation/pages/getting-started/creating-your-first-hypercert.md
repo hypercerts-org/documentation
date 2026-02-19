@@ -141,4 +141,4 @@ All of these records are linked via strong references (URI + CID), making the en
 
 ## Next steps
 
-Third parties can now [evaluate your hypercert](/tutorials/working-with-evaluations) by creating evaluation records and measurements on their own PDS.
+Third parties can now [evaluate your hypercert](/getting-started/working-with-evaluations) by creating evaluation records and measurements on their own PDS.

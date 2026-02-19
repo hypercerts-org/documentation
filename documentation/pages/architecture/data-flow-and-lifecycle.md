@@ -19,7 +19,7 @@ Every hypercert follows a similar path through the system, though the timeline a
 
 **Discovery** makes the hypercert findable. Relays aggregate records from many servers. Indexers build searchable databases. Platforms query indexers to surface hypercerts to users.
 
-**Funding** connects ownership to the claim. The on-chain funding layer is [planned but not yet implemented](/architecture/funding-and-tokenization). The intended design freezes ATProto records before funding to ensure funders know exactly what they are paying for.
+**Funding** connects ownership to the claim. The on-chain funding layer is [planned but not yet implemented](/core-concepts/funding-and-value-flow). The intended design freezes ATProto records before funding to ensure funders know exactly what they are paying for.
 
 **Accumulation** continues indefinitely. More evaluations arrive. Additional attachments get attached. The data layer continues evolving.
 
@@ -29,7 +29,7 @@ Creation → Enrichment → Evaluation → Discovery → Funding → Accumulatio
   PDS        PDS        Other PDS     Indexer   On-chain*   Ongoing
 ```
 
-*On-chain layer is planned. See [Funding & Value Flow](/architecture/funding-and-tokenization).
+*On-chain layer is planned. See [Funding & Value Flow](/core-concepts/funding-and-value-flow).
 
 ## Stage 1: Creation
 
@@ -149,7 +149,7 @@ Many PDS Instances
 
 The on-chain funding layer is not yet implemented. The planned design: before a hypercert can be funded, its ATProto records are frozen and the snapshot is anchored on-chain. This ensures funders know exactly what they are paying for — the cert's contents cannot change after freezing.
 
-For the full planned design — including anchoring, tokenization, funding mechanisms, and funding readiness patterns — see [Funding & Value Flow](/architecture/funding-and-tokenization).
+For the full planned design — including anchoring, tokenization, funding mechanisms, and funding readiness patterns — see [Funding & Value Flow](/core-concepts/funding-and-value-flow).
 
 ## Stage 6: Accumulation
 
@@ -218,4 +218,4 @@ For the overall architecture and how layers connect, see [Architecture Overview]
 
 For details on specific record types and their schemas, see [Introduction to Lexicons](/lexicons/introduction-to-lexicons).
 
-For a practical walkthrough of creating a hypercert, see [Creating Your First Hypercert](/tutorials/creating-your-first-hypercert).
+For a practical walkthrough of creating a hypercert, see [Creating Your First Hypercert](/getting-started/creating-your-first-hypercert).

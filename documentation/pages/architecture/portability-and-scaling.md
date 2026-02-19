@@ -35,7 +35,7 @@ Indexers aggregate data across the network. They need to scale to millions of re
 
 #### On-chain scalability (planned)
 
-The on-chain funding and tokenization layer is not yet implemented. When built, on-chain operations will be expensive, so hypercerts will minimize on-chain activity by keeping rich data on ATProto. Only frozen snapshots and funding flows will touch the blockchain. For details on the planned on-chain design, see [Funding & Value Flow](/architecture/funding-and-tokenization).
+The on-chain funding and tokenization layer is not yet implemented. When built, on-chain operations will be expensive, so hypercerts will minimize on-chain activity by keeping rich data on ATProto. Only frozen snapshots and funding flows will touch the blockchain. For details on the planned on-chain design, see [Funding & Value Flow](/core-concepts/funding-and-value-flow).
 
 ## Privacy and Access Control
 
@@ -49,4 +49,4 @@ ATProto is adding support for encrypted records. In the future, you'll be able t
 
 #### Access control via on-chain tokens (planned)
 
-In the planned design, on-chain tokens could enforce access control — for example, granting read access to private ATProto records only to token holders. This is a potential future feature. See [Funding & Value Flow](/architecture/funding-and-tokenization) for details.
+In the planned design, on-chain tokens could enforce access control — for example, granting read access to private ATProto records only to token holders. This is a potential future feature. See [Funding & Value Flow](/core-concepts/funding-and-value-flow) for details.

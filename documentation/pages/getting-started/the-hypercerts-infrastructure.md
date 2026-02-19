@@ -4,9 +4,9 @@ title: The Hypercerts Infrastructure
 
 # The Hypercerts Infrastructure
 
-Hypercerts runs on AT Protocol for data. On-chain anchoring for ownership and funding is [planned](/architecture/funding-and-tokenization).
+Hypercerts runs on AT Protocol for data. On-chain anchoring for ownership and funding is [planned](/core-concepts/funding-and-value-flow).
 
-For the rationale behind choosing ATProto, see [Why ATProto?](/getting-started/why-atproto).
+For the rationale behind choosing ATProto, see [Why ATProto?](/core-concepts/why-atproto).
 
 ## The Two-Layer Architecture
 
@@ -18,7 +18,7 @@ Because ATProto uses shared schemas (lexicons), any application can read and wri
 
 #### The funding layer: on-chain anchoring (planned)
 
-The on-chain funding layer is not yet implemented. The planned design uses a freeze-then-fund model: before a hypercert can be funded, its ATProto records are frozen and anchored on-chain, ensuring funders know exactly what they are paying for. See [Funding & Value Flow](/architecture/funding-and-tokenization) for the full design.
+The on-chain funding layer is not yet implemented. The planned design uses a freeze-then-fund model: before a hypercert can be funded, its ATProto records are frozen and anchored on-chain, ensuring funders know exactly what they are paying for. See [Funding & Value Flow](/core-concepts/funding-and-value-flow) for the full design.
 
 #### How the layers connect
 
@@ -48,7 +48,7 @@ Carol's app shows her Alice's claim with Bob's evaluation attached. Because Bob'
 
 #### 4. The hypercert is frozen and funded (planned)
 
-In the planned design, Carol's funding app will freeze Alice's hypercert and anchor the snapshot on-chain. Carol knows exactly what she is paying for because the frozen claim cannot change. The tokenization layer is not yet implemented — see [Funding & Value Flow](/architecture/funding-and-tokenization) for details.
+In the planned design, Carol's funding app will freeze Alice's hypercert and anchor the snapshot on-chain. Carol knows exactly what she is paying for because the frozen claim cannot change. The tokenization layer is not yet implemented — see [Funding & Value Flow](/core-concepts/funding-and-value-flow) for details.
 
 ## Data Integrity and Trust
 
@@ -69,5 +69,5 @@ Because DIDs are persistent and records are signed, you can trace an author's en
 ## Keep Reading
 
 - [Indexers & Discovery](/architecture/indexers-and-discovery) — how data is aggregated and queried across the network
-- [Funding & Value Flow](/architecture/funding-and-tokenization) — freeze-then-fund model and on-chain ownership design
+- [Funding & Value Flow](/core-concepts/funding-and-value-flow) — freeze-then-fund model and on-chain ownership design
 - [Portability & Scaling](/architecture/portability-and-scaling) — PDS migration, performance, and privacy

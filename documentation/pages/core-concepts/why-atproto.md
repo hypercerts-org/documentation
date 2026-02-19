@@ -64,4 +64,4 @@ Trust becomes computable across the ecosystem — not siloed within individual p
 
 ATProto handles the rich and evolving data layer — claims, attachments, evaluations, trust signals. Onchain anchoring and tokenization improve the funding layer with immutable and permanent records as well as programmable funding and settlement mechanisms.
 
-For details on how these two layers work together, see [Funding & Value Flow](/architecture/funding-and-tokenization) and [Architecture Overview](/architecture/overview).
+For details on how these two layers work together, see [Funding & Value Flow](/core-concepts/funding-and-value-flow) and [Architecture Overview](/architecture/overview).

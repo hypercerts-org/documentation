@@ -85,5 +85,5 @@ Every arrow in this tree is a strong reference. Anyone can verify the entire cha
 Once you understand the data model, you're ready to build:
 
 - **[Quickstart](/getting-started/quickstart)** — create your first activity claim
-- **[Creating Your First Hypercert](/tutorials/creating-your-first-hypercert)** — build a complete hypercert with all record types
+- **[Creating Your First Hypercert](/getting-started/creating-your-first-hypercert)** — build a complete hypercert with all record types
 - **[Lexicon reference](/lexicons/hypercerts-lexicons)** — field-by-field schema for every record type

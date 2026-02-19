@@ -106,4 +106,4 @@ docker compose up --build
 
 - [GitHub repository](https://github.com/hypercerts-org/hyperindex) — source code, issues, and documentation
 - [Indexers & Discovery](/architecture/indexers-and-discovery) — how indexers fit into the Hypercerts architecture
-- [Building on Hypercerts](/reference/building-on-hypercerts) — integration patterns for platforms and tools
+- [Building on Hypercerts](/getting-started/building-on-hypercerts) — integration patterns for platforms and tools

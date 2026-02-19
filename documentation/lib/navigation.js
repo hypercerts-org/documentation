@@ -6,20 +6,20 @@ export const navigation = [
       { title: "Quickstart", path: "/getting-started/quickstart" },
       {
         title: "Creating Your First Hypercert",
-        path: "/tutorials/creating-your-first-hypercert",
+        path: "/getting-started/creating-your-first-hypercert",
       },
       {
         title: "Working with Evaluations",
-        path: "/tutorials/working-with-evaluations",
+        path: "/getting-started/working-with-evaluations",
       },
-      { title: "Common Use Cases", path: "/tutorials/common-use-cases" },
+      { title: "Common Use Cases", path: "/getting-started/common-use-cases" },
       {
         title: "Building on Hypercerts",
-        path: "/reference/building-on-hypercerts",
+        path: "/getting-started/building-on-hypercerts",
       },
       {
         title: "Testing & Deployment",
-        path: "/reference/testing-and-deployment",
+        path: "/getting-started/testing-and-deployment",
       },
     ],
   },
@@ -28,17 +28,20 @@ export const navigation = [
     children: [
       {
         title: "What are Hypercerts?",
-        path: "/getting-started/what-is-hypercerts",
+        path: "/core-concepts/what-is-hypercerts",
       },
       {
         title: "Core Data Model",
-        path: "/getting-started/hypercerts-core-data-model",
+        path: "/core-concepts/hypercerts-core-data-model",
       },
-      { title: "Certified Identity", path: "/ecosystem/what-is-certified" },
-      { title: "Why ATProto?", path: "/getting-started/why-atproto" },
+      {
+        title: "Certified Identity",
+        path: "/core-concepts/certified-identity",
+      },
+      { title: "Why ATProto?", path: "/core-concepts/why-atproto" },
       {
         title: "Funding & Value Flow",
-        path: "/architecture/funding-and-tokenization",
+        path: "/core-concepts/funding-and-value-flow",
       },
     ],
   },
@@ -57,7 +60,7 @@ export const navigation = [
       { title: "Architecture Overview", path: "/architecture/overview" },
       {
         title: "Account & Identity Setup",
-        path: "/getting-started/account-and-identity",
+        path: "/architecture/account-and-identity",
       },
       {
         title: "Data Flow & Lifecycle",

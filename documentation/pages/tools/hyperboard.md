@@ -52,6 +52,6 @@ Hyperboard reads contributor data directly from ATProto repositories. The underl
 
 ## Next steps
 
-- [Creating Your First Hypercert](/tutorials/creating-your-first-hypercert) — build a hypercert with contributors that Hyperboard can display
-- [Hypercerts Core Data Model](/getting-started/hypercerts-core-data-model) — understand the record types behind a Hyperboard
+- [Creating Your First Hypercert](/getting-started/creating-your-first-hypercert) — build a hypercert with contributors that Hyperboard can display
+- [Core Data Model](/core-concepts/hypercerts-core-data-model) — understand the record types behind a Hyperboard
 - [Architecture Overview](/architecture/overview) — how the protocol stack fits together

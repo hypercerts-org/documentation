@@ -5,7 +5,7 @@ description: How the Hypercerts Protocol stack fits together.
 
 # Architecture Overview
 
-The Hypercerts Protocol uses AT Protocol for data portability. On-chain anchoring for ownership and funding is [planned](/architecture/funding-and-tokenization).
+The Hypercerts Protocol uses AT Protocol for data portability. On-chain anchoring for ownership and funding is [planned](/core-concepts/funding-and-value-flow).
 
 ## The Hypercerts Stack
 
@@ -15,7 +15,7 @@ The **Data Layer** is the foundation. AT Protocol stores claims, attachments, an
 
 The **Application Layer** sits on top of the data layer. Funding platforms, dashboards, and evaluation tools live here. These applications read from and write to the data layer below.
 
-The **Ownership Layer** is planned but not yet implemented. The intended design uses a freeze-then-fund model where hypercerts are frozen and anchored on-chain before funding — ensuring funders know exactly what they are paying for. See [Funding & Value Flow](/architecture/funding-and-tokenization) for details.
+The **Ownership Layer** is planned but not yet implemented. The intended design uses a freeze-then-fund model where hypercerts are frozen and anchored on-chain before funding — ensuring funders know exactly what they are paying for. See [Funding & Value Flow](/core-concepts/funding-and-value-flow) for details.
 
 ![The Hypercerts Stack](/images/architecture-stack.svg)
 
@@ -71,13 +71,13 @@ These properties combine into an auditable chain:
 
 ## Ownership Layer (Planned)
 
-The ownership layer is not yet implemented. The planned design freezes ATProto records and anchors them on-chain before funding, ensuring funders know exactly what they are paying for. For the full planned design — including anchoring, tokenization, and funding mechanisms — see [Funding & Value Flow](/architecture/funding-and-tokenization).
+The ownership layer is not yet implemented. The planned design freezes ATProto records and anchors them on-chain before funding, ensuring funders know exactly what they are paying for. For the full planned design — including anchoring, tokenization, and funding mechanisms — see [Funding & Value Flow](/core-concepts/funding-and-value-flow).
 
 ## How the Layers Connect
 
 A hypercert's **content** lives on ATProto. The activity claim, attachment records, measurements, and evaluations are all ATProto records. This data is portable — users control it, can migrate it, and applications can read it without blockchain access.
 
-A hypercert's **ownership and funding state** will live on-chain once the tokenization layer is built. The planned bridge is a freeze-then-fund mechanism. See [Funding & Value Flow](/architecture/funding-and-tokenization) for the full cross-layer design.
+A hypercert's **ownership and funding state** will live on-chain once the tokenization layer is built. The planned bridge is a freeze-then-fund mechanism. See [Funding & Value Flow](/core-concepts/funding-and-value-flow) for the full cross-layer design.
 
 {% callout type="note" %}
 The separation matters. ATProto provides data portability — users can switch servers, applications can read across the network, and records outlive any single platform. On-chain anchoring will provide ownership and funding guarantees. Neither layer can provide both properties alone.
@@ -93,7 +93,7 @@ Storing rich data on-chain is expensive. A single activity claim with attachment
 
 #### Why Not Fully Off-Chain?
 
-Mutable records are fine for collaboration, but funding requires immutability. Without on-chain anchoring, there's no way to freeze a hypercert's state and guarantee that the claim a funder evaluates is the same claim they end up funding. Additionally, funding mechanisms like retroactive public goods funding require on-chain logic to distribute funds according to rules. See [Funding & Value Flow](/architecture/funding-and-tokenization) for the planned freeze-then-fund design.
+Mutable records are fine for collaboration, but funding requires immutability. Without on-chain anchoring, there's no way to freeze a hypercert's state and guarantee that the claim a funder evaluates is the same claim they end up funding. Additionally, funding mechanisms like retroactive public goods funding require on-chain logic to distribute funds according to rules. See [Funding & Value Flow](/core-concepts/funding-and-value-flow) for the planned freeze-then-fund design.
 
 #### Why ATProto Over IPFS, Ceramic, or Other Alternatives?
 
@@ -109,18 +109,18 @@ Each layer does what it does best. ATProto handles identity, data portability, a
 
 **Cross-platform evaluation.** An evaluator on Platform A can assess a contribution created on Platform B. The evaluation is stored on the evaluator's PDS, references the original claim via AT-URI, and is visible to any application that queries the indexer. This works today with the ATProto data layer.
 
-**Retroactive funding.** Planned — see [Funding & Value Flow](/architecture/funding-and-tokenization).
+**Retroactive funding.** Planned — see [Funding & Value Flow](/core-concepts/funding-and-value-flow).
 
 **Portable reputation.** A contributor's entire history — all claims, contributions, and evaluations — follows them across platforms. Their DID is the persistent identifier. Applications can compute trust scores based on the full history. This works today with the ATProto data layer.
 
-**Composable funding mechanisms.** Planned — see [Funding & Value Flow](/architecture/funding-and-tokenization).
+**Composable funding mechanisms.** Planned — see [Funding & Value Flow](/core-concepts/funding-and-value-flow).
 
 ## Next Steps
 
 For a detailed walkthrough of how a hypercert moves through the system, see [Data Flow & Lifecycle](/architecture/data-flow-and-lifecycle).
 
-For the planned on-chain funding and tokenization design, see [Funding & Value Flow](/architecture/funding-and-tokenization).
+For the planned on-chain funding and tokenization design, see [Funding & Value Flow](/core-concepts/funding-and-value-flow).
 
 To understand the specific record types and their schemas, see [Introduction to Lexicons](/lexicons/introduction-to-lexicons).
 
-To learn why ATProto was chosen for the data layer, see [Why ATProto?](/getting-started/why-atproto).
+To learn why ATProto was chosen for the data layer, see [Why ATProto?](/core-concepts/why-atproto).

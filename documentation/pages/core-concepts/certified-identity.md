@@ -43,7 +43,7 @@ Certified exists because most Hypercerts users are not Bluesky users. Researcher
 
 Your handle (e.g., `alice.certified.app`) is human-readable but not permanent — it's a pointer to your DID. Organizations can use **custom domain handles** (e.g., `numpy.org`) to prove organizational identity through DNS verification.
 
-For setup details, see [Account & Identity Setup](/getting-started/account-and-identity).
+For setup details, see [Account & Identity Setup](/architecture/account-and-identity).
 
 ## You don't need Certified
 
@@ -64,6 +64,6 @@ The attestation is self-sovereign (stored in your PDS, not a central database) a
 
 ## Next steps
 
-- [Account & Identity Setup](/getting-started/account-and-identity) — create an account, configure custom domains, manage app passwords, and set up organization accounts
+- [Account & Identity Setup](/architecture/account-and-identity) — create an account, configure custom domains, manage app passwords, and set up organization accounts
 - [Architecture Overview](/architecture/overview) — how identity fits into the protocol stack
 - [Quickstart](/getting-started/quickstart) — create your first hypercert

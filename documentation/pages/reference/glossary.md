@@ -87,4 +87,4 @@ The server where your records are stored. You interact with it through the SDK â
 
 #### Certified
 
-The ATProto identity provider for the Hypercerts ecosystem. When you sign up at [certified.app](https://certified.app), you get a DID, a PDS, and an embedded wallet. See [Account & Identity Setup](/getting-started/account-and-identity).
+The ATProto identity provider for the Hypercerts ecosystem. When you sign up at [certified.app](https://certified.app), you get a DID, a PDS, and an embedded wallet. See [Account & Identity Setup](/architecture/account-and-identity).
