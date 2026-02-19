@@ -41,7 +41,7 @@ Certified exists because most Hypercerts users are not Bluesky users. Researcher
 
 ### Handles
 
-Handles are not needed for the Hypercerts ecosystem, but every user has one. They exist so you can interact with other applications in the AT Protocol ecosystem that haven't implemented email-based login with Certified. Your handle (e.g., `alice.certified.app`) is human-readable but not permanent — it's a pointer to your DID. Organizations can use **custom domain handles** (e.g., `numpy.org`) to prove organizational identity through DNS verification.
+Handles are not needed to log in to the Hypercerts ecosystem, but every user has one. They serve as human-readable names for publicly addressing others and for interacting with other applications in the AT Protocol ecosystem that haven't implemented email-based login with Certified. Your handle (e.g., `alice.certified.app`) is human-readable but not permanent — it's a pointer to your DID. Organizations can use **custom domain handles** (e.g., `numpy.org`) to prove organizational identity through DNS verification.
 
 For setup details, see [Account & Identity Setup](/architecture/account-and-identity).
 
