@@ -56,3 +56,9 @@ Hypercerts are structured digital records of contributions — who did what, whe
 | **[Glossary](/reference/glossary)** | Key terms used across the documentation |
 | **[FAQ](/reference/faq)** | Common questions about building with Hypercerts |
 | **[Roadmap](/roadmap)** | Development priorities and phased delivery plan |
+
+## Ecosystem & Vision
+
+| | |
+|---|---|
+| **[Why We Need Hypercerts](/ecosystem/why-we-need-hypercerts)** | The problem hypercerts solve and why they matter |
