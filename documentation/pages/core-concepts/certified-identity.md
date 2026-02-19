@@ -25,7 +25,7 @@ Your DID resolves via the [PLC directory](https://plc.directory) to a DID docume
 |-------|---------------------|
 | **Data** | Every record (activity claims, evaluations, measurements) carries the author's DID. The PDS signs records into a Merkle tree, making authorship tamper-evident. |
 | **Trust** | Evaluators build reputation tied to their DID. Applications can weight evaluations based on the evaluator's history and credentials. |
-| **Funding** | Funding receipts link funder DIDs to the work they support. Wallet linkage (via [IdentityLink](https://identitylink.vercel.app)) connects DIDs to EVM addresses for onchain payments. |
+| **Funding** | Funding receipts link funder DIDs to the work they support. Wallet linkage (work-in-progress) connects DIDs to onchain addresses for payment flows and tokenization. |
 | **Portability** | Switching PDS providers doesn't change your DID. Your entire history — claims, evaluations, contributions — migrates with you. |
 
 ## Certified: the reference identity provider
@@ -34,14 +34,14 @@ Your DID resolves via the [PLC directory](https://plc.directory) to a DID docume
 
 - **A DID** — your permanent identifier
 - **A PDS** — your Personal Data Server, where records are stored
-- **An embedded wallet** — EVM wallet linked to your DID for onchain funding
+- **An embedded wallet** — EVM wallet linked to your DID for onchain funding (work-in-progress)
 - **Low-friction sign-in** — email and code, no passwords or protocol knowledge required
 
 Certified exists because most Hypercerts users are not Bluesky users. Researchers, land stewards, open-source maintainers, and funders need an entry point that doesn't require knowledge of ATProto or decentralized protocols. Certified provides that — a neutral identity provider that isn't tied to any single application.
 
-### Handles and organizational identity
+### Handles
 
-Your handle (e.g., `alice.certified.app`) is human-readable but not permanent — it's a pointer to your DID. Organizations can use **custom domain handles** (e.g., `numpy.org`) to prove organizational identity through DNS verification.
+Handles are not needed for the Hypercerts ecosystem, but every user has one. They exist so you can interact with other applications in the AT Protocol ecosystem that haven't implemented email-based login with Certified. Your handle (e.g., `alice.certified.app`) is human-readable but not permanent — it's a pointer to your DID. Organizations can use **custom domain handles** (e.g., `numpy.org`) to prove organizational identity through DNS verification.
 
 For setup details, see [Account & Identity Setup](/architecture/account-and-identity).
 

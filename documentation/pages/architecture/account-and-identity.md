@@ -13,7 +13,7 @@ If you followed the [Quickstart](/getting-started/quickstart), you already have 
 
 Sign up at [certified.app](https://certified.app). You'll get:
 
-- **Low-friction sign-in** — No usernames, handles, or passwords to remember. Sign in with just your email and a code.
+- **Low-friction sign-in** — Sign in with just your email and a code. No passwords or protocol knowledge required.
 - **A DID** — Your permanent, portable identifier (e.g., `did:plc:z72i7hdynmk6r22z27h6tvur`). It never changes, even if you switch servers or handles.
 - **A PDS** — Your Personal Data Server, where your hypercerts, evaluations, and other records are stored. You own this data.
 - **An embedded wallet** — Add your existing EVM wallet or get a new one.
@@ -41,7 +41,7 @@ Every record you create carries your DID as the author. If you change PDS provid
 
 ## Handles and domain verification
 
-Your handle is a human-readable name like `alice.certified.app`. Unlike your DID, your handle can change — it's a pointer to your DID, not your identity itself.
+Handles are not needed for the Hypercerts ecosystem, but every user has one. They exist so you can interact with other applications in the AT Protocol ecosystem that haven't implemented email-based login with Certified. Your handle is a human-readable name like `alice.certified.app`. Unlike your DID, your handle can change — it's a pointer to your DID, not your identity itself.
 
 **Organizations should use custom domain handles.** A handle like `numpy.org` proves organizational identity — anyone can verify that the DID behind `numpy.org` is controlled by whoever controls the domain.
 
