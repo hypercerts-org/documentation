@@ -34,7 +34,7 @@ Your DID resolves via the [PLC directory](https://plc.directory) to a DID docume
 
 - **A DID** — your permanent identifier
 - **A PDS** — your Personal Data Server, where records are stored
-- **An embedded wallet** — onchain wallet linked to your DID for funding (work-in-progress)
+- **An embedded wallet** — EVM wallet linked to your DID for onchain funding (work-in-progress)
 - **Low-friction sign-in** — email and code, no passwords or protocol knowledge required
 
 Certified exists because most Hypercerts users are not Bluesky users. Researchers, land stewards, open-source maintainers, and funders need an entry point that doesn't require knowledge of ATProto or decentralized protocols. Certified provides that — a neutral identity provider that isn't tied to any single application.
@@ -45,22 +45,22 @@ Handles are not needed to log in to the Hypercerts ecosystem, but every user has
 
 For setup details, see [Account & Identity Setup](/architecture/account-and-identity).
 
-## Wallet linkage (work-in-progress)
-
-To receive onchain funding, a DID needs to be linked to a wallet address. This is handled by **IdentityLink** — a cryptographic attestation system that:
-
-1. Authenticates the user via ATProto OAuth
-2. Connects a wallet address
-3. Signs a typed message proving ownership
-4. Stores the attestation in the user's PDS
-
-The attestation is self-sovereign (stored in your PDS, not a central database) and verifiable by anyone. See the [Roadmap](/roadmap) for current IdentityLink status.
-
 ## Compatible with Bluesky and other AT Protocol accounts
 
 {% callout type="note" %}
-If users already have a Bluesky account or another AT Protocol account, they don't need a Certified account. Any AT Protocol identity works with all Hypercerts applications. They just log in with their existing handle (e.g., `alice.bsky.social`) — everything just works.
+Hypercerts is fully interoperable with the AT Protocol ecosystem. If you already have a Bluesky account or any other ATProto identity, you can log in with your existing handle (e.g., `alice.bsky.social`) and use all Hypercerts applications — no additional account needed.
 {% /callout %}
+
+## Wallet linkage
+
+To receive onchain funding, a DID needs to be linked to an EVM wallet address. This is handled by **IdentityLink** — a cryptographic attestation system that:
+
+1. Authenticates the user via ATProto OAuth
+2. Connects an EVM wallet (EOA, Smart Wallet, or Safe)
+3. Signs an EIP-712 typed message proving ownership
+4. Stores the attestation in the user's PDS
+
+The attestation is self-sovereign (stored in your PDS, not a central database) and verifiable by anyone. See the [Roadmap](/roadmap) for current IdentityLink status.
 
 ## Next steps
 

@@ -16,7 +16,7 @@ Sign up at [certified.app](https://certified.app). You'll get:
 - **Low-friction sign-in** — Sign in with just your email and a code. No passwords or protocol knowledge required.
 - **A DID** — Your permanent, portable identifier (e.g., `did:plc:z72i7hdynmk6r22z27h6tvur`). It never changes, even if you switch servers or handles.
 - **A PDS** — Your Personal Data Server, where your hypercerts, evaluations, and other records are stored. You own this data.
-- **An embedded wallet** — Add your existing onchain wallet or get a new one.
+- **An embedded wallet** — Add your existing EVM wallet or get a new one.
 - **Ecosystem access** — Your identity works across every Hypercerts application.
 
 ### Why Certified?
