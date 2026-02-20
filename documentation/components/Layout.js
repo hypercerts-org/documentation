@@ -7,10 +7,12 @@ import { TableOfContents } from './TableOfContents';
 import { getPrevNext } from '../lib/navigation';
 import { Breadcrumbs } from './Breadcrumbs';
 import { ThemeToggle } from './ThemeToggle';
+import { SearchDialog } from './SearchDialog';
 
 export default function Layout({ children, frontmatter }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const router = useRouter();
   const currentPath = router.asPath.split('#')[0].split('?')[0];
   const { prev, next } = getPrevNext(currentPath);
@@ -24,6 +26,17 @@ export default function Layout({ children, frontmatter }) {
     if (stored === 'true') {
       setSidebarCollapsed(true);
     }
+  }, []);
+
+  useEffect(() => {
+    const handler = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setSearchOpen(prev => !prev);
+      }
+    };
+    document.addEventListener('keydown', handler);
+    return () => document.removeEventListener('keydown', handler);
   }, []);
 
   const toggleCollapsed = () => {
@@ -79,6 +92,17 @@ export default function Layout({ children, frontmatter }) {
             />
             <span className="layout-logo-badge">Docs</span>
           </Link>
+          <button
+            className="search-pill"
+            onClick={() => setSearchOpen(true)}
+            type="button"
+          >
+            <svg className="search-pill-icon" viewBox="0 0 20 20" fill="none" width="16" height="16">
+              <path d="M12.01 12a4.25 4.25 0 1 0-6.02-6 4.25 4.25 0 0 0 6.02 6Zm0 0 3.24 3.25" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
+            </svg>
+            <span className="search-pill-text">Find something...</span>
+            <kbd className="search-pill-kbd"><span>⌘</span>K</kbd>
+          </button>
           <div style={{ flex: 1 }} />
           <ThemeToggle />
         </div>
@@ -122,6 +146,7 @@ export default function Layout({ children, frontmatter }) {
           <TableOfContents />
         </aside>
       </div>
+      <SearchDialog isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
 }
