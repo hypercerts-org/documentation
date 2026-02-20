@@ -222,6 +222,18 @@ html.dark .toc:hover {
   scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
 }
 
+html.dark .toc-item {
+  border-left-color: oklch(0.30 0.005 260);
+}
+
+html.dark .toc-item-active {
+  border-left-color: oklch(0.85 0.005 260);
+}
+
+html.dark .toc-link-active {
+  color: oklch(0.90 0.005 260);
+}
+
 html.dark .layout-content p code,
 html.dark .layout-content li code,
 html.dark .layout-content td code,
@@ -873,7 +885,6 @@ a.sidebar-link-active:hover {
 .layout-content {
   flex: 1;
   min-width: 0;
-  max-width: var(--content-max-width);
   padding: var(--space-6) var(--space-8) var(--space-8) 72px;
 }
 
@@ -883,40 +894,39 @@ a.sidebar-link-active:hover {
 
 /* ===== Table of Contents (Right Sidebar) ===== */
 .layout-toc {
-  width: var(--toc-width);
-  min-width: var(--toc-width);
   flex-shrink: 0;
+  width: 220px;
+  min-width: 220px;
 }
 
 .toc {
   position: sticky;
-  top: calc(var(--header-height) + var(--space-6));
-  padding: 0 var(--space-4) 0 var(--space-12);
+  top: calc(var(--header-height) + var(--space-8));
+  padding: var(--space-8) var(--space-4) 0 0;
   max-height: calc(100vh - var(--header-height) - var(--space-12));
   overflow-y: auto;
-}
-
-.toc-title {
-  font-size: 12px;
-  font-weight: 600;
-  font-family: var(--font-display);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-3);
 }
 
 .toc-list {
   list-style: none;
 }
 
+.toc-item {
+  border-left: 2px solid var(--color-border);
+  padding: var(--space-2) var(--space-4);
+  transition: border-color var(--transition-fast);
+}
+
+.toc-item-active {
+  border-left-color: var(--color-text-heading);
+}
+
 .toc-link {
   display: block;
-  padding: var(--space-1) 0;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text-secondary);
   text-decoration: none;
-  line-height: 20px;
+  line-height: 1.5;
   transition: color var(--transition-fast);
 }
 
@@ -926,11 +936,10 @@ a.sidebar-link-active:hover {
 }
 
 .toc-link-active {
-  color: var(--color-link);
+  color: var(--color-text-heading);
 }
 
 .toc-link-h3 {
-  padding-left: 12px;
   font-size: 13px;
 }
 
