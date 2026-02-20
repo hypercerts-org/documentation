@@ -798,6 +798,9 @@ html.dark .header-divider {
 }
 
 .sidebar-section-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
@@ -805,6 +808,18 @@ html.dark .header-divider {
   color: var(--color-text-secondary);
   padding: var(--space-1) var(--space-5);
   margin-bottom: var(--space-3);
+}
+
+.sidebar-section-icon {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.sidebar-section-icon svg {
+  width: 16px;
+  height: 16px;
 }
 
 .sidebar-section-list {
