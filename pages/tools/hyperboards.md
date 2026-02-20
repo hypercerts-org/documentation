@@ -62,7 +62,6 @@ Replace `BOARD_ID` with your board's identifier from the dashboard.
 |-----------|------------|
 | Framework | Next.js, TypeScript |
 | Data | ATProto repositories via Hypercerts SDK |
-| Backend | Supabase, GraphQL |
 | Embedding | iframe widget |
 
 ## See also
