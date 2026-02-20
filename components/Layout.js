@@ -86,16 +86,7 @@ export default function Layout({ children, frontmatter }) {
             </svg>
           </button>
           <Link href="/" className="layout-logo">
-            <img
-              src="/images/hypercerts_logo_horizontal.svg"
-              alt="Hypercerts"
-              className="layout-logo-img"
-            />
-            <img
-              src="/images/hypercerts_logo_horizontal_white.svg"
-              alt="Hypercerts"
-              className="layout-logo-img layout-logo-img-dark"
-            />
+            <span className="layout-logo-text">hypercerts</span>
             <span className="layout-logo-badge">Docs</span>
           </Link>
           <span className="header-divider" aria-hidden="true" />
