@@ -6,7 +6,7 @@ title: The Hypercerts Infrastructure
 
 Hypercerts runs on AT Protocol for data. On-chain anchoring for ownership and funding is [planned](/core-concepts/funding-and-value-flow).
 
-For the rationale behind choosing ATProto, see [Why ATProto?](/core-concepts/why-atproto).
+For the rationale behind choosing ATProto, see [Why AT Protocol?](/core-concepts/why-at-protocol).
 
 ## The Two-Layer Architecture
 

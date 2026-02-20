@@ -34,7 +34,6 @@ Your DID resolves via the [PLC directory](https://plc.directory) to a DID docume
 
 - **A DID** — your permanent identifier
 - **A PDS** — your Personal Data Server, where records are stored
-- **An embedded wallet** — EVM wallet linked to your DID for onchain funding (work-in-progress)
 - **Low-friction sign-in** — email and code, no passwords or protocol knowledge required
 
 Certified exists because most Hypercerts users are not Bluesky users. Researchers, land stewards, open-source maintainers, and funders need an entry point that doesn't require knowledge of ATProto or decentralized protocols. Certified provides that — a neutral identity provider that isn't tied to any single application.
@@ -53,7 +52,7 @@ Hypercerts is fully interoperable with the AT Protocol ecosystem. If you already
 
 ## Wallet linkage
 
-To receive onchain funding, a DID needs to be linked to an EVM wallet address. This is handled by **IdentityLink** — a cryptographic attestation system that:
+To receive onchain funding, a DID needs to be linked to an onchain wallet address. This is handled by **IdentityLink** — a cryptographic attestation system that binds a DID to one or more onchain addresses via a signed proof stored in your PDS. For the Ethereum ecosystem this looks like:
 
 1. Authenticates the user via ATProto OAuth
 2. Connects an EVM wallet (EOA, Smart Wallet, or Safe)
@@ -67,3 +66,5 @@ The attestation is self-sovereign (stored in your PDS, not a central database) a
 - [Account & Identity Setup](/architecture/account-and-identity) — create an account, configure custom domains, manage app passwords, and set up organization accounts
 - [Architecture Overview](/architecture/overview) — how identity fits into the protocol stack
 - [Quickstart](/getting-started/quickstart) — create your first hypercert
+
+Next: [Why AT Protocol?](/core-concepts/why-at-protocol) — how identity and records stay portable across apps.

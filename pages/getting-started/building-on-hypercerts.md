@@ -28,14 +28,6 @@ Create platforms that use hypercerts to structure contributions and distribute f
 - Crowdfunding campaigns where backers receive fractional rights to impact claims
 - Quadratic funding mechanisms that allocate matching pools based on community support
 
-```javascript
-// Example: Query hypercerts for a funding round
-const claims = await indexer.query({
-  collection: 'at://did:plc:round123/cert.collection/round-1',
-  status: 'completed'
-});
-```
-
 ### Evaluation Tools
 
 Build services that help domain experts create structured, verifiable evaluations:
@@ -46,13 +38,11 @@ Build services that help domain experts create structured, verifiable evaluation
 - Educational outcome measurement for learning programs
 
 ```javascript
-// Example: Create an evaluation
-const evaluation = await repo.evaluations.create({
-  subject: { uri: claimUri, cid: claimCid },
+// Example: Create an evaluation via the SDK
+const evaluation = await repo.hypercerts.addEvaluation({
+  subjectUri: claimUri,
   evaluators: [evaluatorDid],
-  summary: 'Scientific rigor and reproducibility assessment',
-  score: { value: 8, min: 0, max: 10 },
-  createdAt: new Date().toISOString(),
+  summary: "Scientific rigor and reproducibility assessment",
 });
 ```
 
@@ -65,7 +55,7 @@ Aggregate and display hypercerts across the ecosystem:
 - Impact maps visualizing geographic distribution of work
 - Timeline views tracking contribution history
 
-Read-only integrations require only an indexer connection—no PDS needed.
+Read-only integrations require only an indexer connection — no PDS needed.
 
 ### Impact Portfolios
 
@@ -93,20 +83,26 @@ Query an indexer to display hypercerts without writing data.
 
 **When to use:** Dashboards, explorers, analytics tools that only need to read existing data.
 
-```javascript
-// Subscribe to new claims
-indexer.subscribe('org.hypercerts.claim.activity', (claim) => {
-  dashboard.addClaim(claim);
-});
-
-// Query by criteria
-const claims = await indexer.query({
-  workScope: { contains: 'climate' },
-  createdAfter: '2025-01-01'
-});
+```graphql
+# Example: Query hypercerts from Hyperindex
+query {
+  activityClaims(
+    where: { workScope_contains: "climate" }
+    orderBy: createdAt
+    orderDirection: desc
+  ) {
+    uri
+    title
+    shortDescription
+    workScope
+    startDate
+    endDate
+    createdAt
+  }
+}
 ```
 
-No authentication required. Simplest integration path.
+No authentication required. Simplest integration path. See [Hyperindex](/tools/hyperindex) for the full GraphQL API.
 
 ### Write via User PDS
 
@@ -121,12 +117,17 @@ const repo = sdk.getRepository(session);
 
 // Write to user's PDS
 await repo.hypercerts.create({
-  workScope: 'Developed open source library',
-  title: 'Open source library for data processing',
-  shortDescription: 'Built and maintained a data processing library.',
-  startDate: '2026-01-01T00:00:00Z',
-  endDate: '2026-06-30T23:59:59Z',
-  createdAt: new Date().toISOString(),
+  title: "Open source library for data processing",
+  shortDescription: "Built and maintained a data processing library.",
+  description: "Developed the core architecture and maintained the library through 3 major releases.",
+  workScope: "Software Development",
+  startDate: "2026-01-01T00:00:00Z",
+  endDate: "2026-06-30T23:59:59Z",
+  rights: {
+    name: "Public Display",
+    type: "display",
+    description: "Right to publicly display this contribution",
+  },
 });
 ```
 
@@ -141,21 +142,24 @@ Create a dedicated organizational account on a PDS and create records under the 
 ```javascript
 // Platform creates claim on behalf of contributor
 await repo.hypercerts.create({
-  workScope: 'Completed bounty #123',
-  title: 'Bounty #123: Fix authentication bug',
-  shortDescription: 'Resolved critical authentication vulnerability.',
-  contributors: [
+  title: "Bounty #123: Fix authentication bug",
+  shortDescription: "Resolved critical authentication vulnerability.",
+  description: "Identified and patched a session fixation vulnerability in the OAuth callback handler.",
+  workScope: "Security, Bug Fix",
+  startDate: "2026-01-15T00:00:00Z",
+  endDate: "2026-01-20T23:59:59Z",
+  rights: {
+    name: "Public Display",
+    type: "display",
+    description: "Right to publicly display this contribution",
+  },
+  contributions: [
     {
-      contributorIdentity: {
-        $type: 'org.hypercerts.claim.activity#contributorIdentity',
-        identity: contributorDid,
-      },
-      contributionWeight: '100',
+      contributors: [contributorDid],
+      contributionDetails: "Bug fix author",
+      weight: "100",
     },
   ],
-  startDate: '2026-01-15T00:00:00Z',
-  endDate: '2026-01-20T23:59:59Z',
-  createdAt: new Date().toISOString(),
 });
 ```
 
@@ -165,7 +169,7 @@ Your platform owns the records. Useful for curated or verified claims.
 
 To query hypercerts efficiently, run your own indexer:
 
-1. **Subscribe to the relay firehose** for hypercert lexicon records (`cert.*`)
+1. **Subscribe to the relay firehose** for hypercert lexicon records
 2. **Parse and validate** incoming records against lexicon schemas
 3. **Store in a queryable database** (PostgreSQL, MongoDB, etc.)
 4. **Expose an API** for your application to query
@@ -173,16 +177,19 @@ To query hypercerts efficiently, run your own indexer:
 ```javascript
 // Pseudocode: Firehose subscription
 relay.subscribe({
-  collections: ['org.hypercerts.claim.activity', 'org.hypercerts.claim.evaluation'],
+  collections: [
+    'org.hypercerts.claim.activity',
+    'org.hypercerts.claim.evaluation',
+  ],
   handler: async (event) => {
     const record = event.record;
     await db.insert('claims', {
       uri: event.uri,
       cid: event.cid,
       did: event.did,
-      data: record
+      data: record,
     });
-  }
+  },
 });
 ```
 
@@ -202,10 +209,10 @@ Always include CID when referencing records. This ensures tamper-evidence and al
 
 ```javascript
 // Good: includes CID
-{ uri: 'at://did:plc:abc/cert.activityClaim/123', cid: 'bafyreiabc...' }
+{ uri: "at://did:plc:abc/org.hypercerts.claim.activity/123", cid: "bafyreiabc..." }
 
 // Bad: URI only (no tamper-evidence)
-{ uri: 'at://did:plc:abc/cert.activityClaim/123' }
+{ uri: "at://did:plc:abc/org.hypercerts.claim.activity/123" }
 ```
 
 ### Respect Data Ownership

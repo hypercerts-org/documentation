@@ -13,13 +13,13 @@ Every hypercert follows a similar path through the system, though the timeline a
 
 **Creation** happens when a contributor writes an activity claim to their Personal Data Server. The claim gets a unique identifier and becomes part of the contributor's repository.
 
-**Enrichment** adds supporting data. Contribution records link collaborators. Attachment records attach proof of work. Measurement records provide quantitative data. Rights records define what funders or stakeholders receive. These can live on the same server or different servers.
+**Enrichment** adds supporting data. Contribution records link collaborators. Attachment records attach proof of work. Measurement records provide quantitative data. Rights records define the terms of the claim. Collection records group claims into projects. These can live on the same server or different servers.
 
 **Evaluation** brings third-party assessment. Evaluators create evaluation records on their own servers that reference the original claim. Multiple evaluators can independently assess the same work. Evaluations accumulate over time.
 
 **Discovery** makes the hypercert findable. Relays aggregate records from many servers. Indexers build searchable databases. Platforms query indexers to surface hypercerts to users.
 
-**Funding** connects ownership to the claim. The on-chain funding layer is [planned but not yet implemented](/core-concepts/funding-and-value-flow). The intended design freezes ATProto records before funding to ensure funders know exactly what they are paying for.
+**Funding** connects funders to the claim. Funding receipts (`org.hypercerts.funding.receipt`) record who funded what, how much, and when — this works today on ATProto. Optionally, the claim can be frozen and anchored on-chain for tokenized funding. The on-chain tokenization layer is [planned but not yet implemented](/core-concepts/funding-and-value-flow).
 
 **Accumulation** continues indefinitely. More evaluations arrive. Additional attachments get attached. The data layer continues evolving.
 
@@ -68,11 +68,19 @@ Contributors are embedded in the activity claim's `contributors` array. For rich
 
 #### Rights Records
 
-`org.hypercerts.claim.rights` records define what funders or stakeholders receive. Rights can include revenue sharing, governance participation, attribution, or custom terms. These records establish expectations before funding happens.
+`org.hypercerts.claim.rights` records define the rights associated with a hypercert — for example, public display rights, attribution licenses, or transferability terms. The activity claim references a rights record via a strong reference. Rights are defined using a name, type, and description, with an optional attached legal document.
 
 #### Location Records
 
 `app.certified.location` records anchor work geographically. A location record can specify a point, a region, or multiple areas. This enables geographic filtering and regional funding mechanisms.
+
+#### Collection Records
+
+`org.hypercerts.claim.collection` records group multiple activity claims into a project or portfolio. Each collection has weighted items (strong references to activity claims or other collections), supporting recursive nesting. A collection with `type="project"` represents a multi-year project composed of individual activity claims.
+
+#### Funding Receipts
+
+`org.hypercerts.funding.receipt` records track funding events. A receipt records who funded which activity, how much, through which payment rail, and when. Receipts reference the activity claim they fund. See [Funding & Value Flow](/core-concepts/funding-and-value-flow) for details.
 
 #### Cross-Server References
 

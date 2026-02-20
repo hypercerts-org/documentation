@@ -1,9 +1,9 @@
 ---
-title: Why ATProto?
+title: Why AT Protocol?
 description: Why the Hypercerts Protocol is built on AT Protocol.
 ---
 
-# Why ATProto?
+# Why AT Protocol?
 
 The Hypercerts Protocol is built on the AT Protocol (ATProto) — an open protocol for decentralized social data that also powers Bluesky.
 
@@ -21,7 +21,7 @@ Together, these make it possible to build new funding systems that are interoper
 
 Contributions must outlive any single platform.
 
-Hypercert records are stored in **signed user repositories** hosted on Personal Data Servers (PDS). Each repository is cryptographically tied to a user or organization’s DID — not to the server hosting it. Contributors, evaluators, and funders choose where their data is hosted: on Hypercerts Foundation infrastructure, on other third-party providers, or self-hosted servers. 
+Hypercert records are stored in **signed user repositories** hosted on Personal Data Servers (PDS). Each repository is cryptographically tied to a user or organization’s DID — not to the server hosting it. Contributors, evaluators, and funders choose where their data is hosted: on Hypercerts Foundation infrastructure, on other third-party providers, or on self-hosted servers. 
 
 They can migrate at any time without losing records or needing anyone’s permission. Repository data is exported and transferred as signed CAR (Content Addressed Archive) files, preserving record integrity and full history across migrations.
 
@@ -41,7 +41,7 @@ Because lexicons are open and namespaced:
 
 Records reference each other via **AT-URIs**, forming a traversable graph: An evaluation references an activity claim, outcomes reference prior contributions, and a funding decision references both.
 
-Records are distributed through ATProto’s indexing infrastructure and real-time **firehose**, allowing applications to efficiently discover and process records as they are created. All without centralized APIs. Interoperability is built in from day one.
+Records are distributed through ATProto’s indexing infrastructure and real-time **firehose**, allowing applications to discover and process new claims and evaluations as they are created — without proprietary APIs. Interoperability is built in from day one.
 
 See: [Introduction to Lexicons](/lexicons/introduction-to-lexicons)
 
@@ -62,6 +62,6 @@ Trust becomes computable across the ecosystem — not siloed within individual p
 
 ## ATProto + Blockchain: A Hybrid Stack
 
-ATProto handles the rich and evolving data layer — claims, attachments, evaluations, trust signals. Onchain anchoring and tokenization improve the funding layer with immutable and permanent records as well as programmable funding and settlement mechanisms.
+The design principle: keep rich, evolving contribution data offchain (ATProto) and use onchain systems only where immutability and settlement matter. ATProto handles the data layer — claims, attachments, evaluations, trust signals. Onchain anchoring and tokenization handle the funding layer — immutable snapshots, programmable funding, and settlement mechanisms.
 
-For details on how these two layers work together, see [Funding & Value Flow](/core-concepts/funding-and-value-flow) and [Architecture Overview](/architecture/overview).
+Next: [Funding & Value Flow](/core-concepts/funding-and-value-flow) — how funding and settlement attach to the data.

@@ -1,34 +1,116 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 460" fill="none">
   <style>
-    .layer-label { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
-    .layer-desc { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 400; }
-    .arrow-text { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 10px; fill: #94a3b8; }
+    .layer-label { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+    .layer-desc { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 400; }
+    .node-label { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; }
+    .node-desc { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 400; }
+    .arrow-text { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 10px; fill: #64748b; }
+    .badge { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.04em; }
+    .lexicon-label { font-family: 'SF Mono', 'Fira Code', Menlo, monospace; font-size: 9px; font-weight: 500; }
   </style>
 
-  <!-- Ownership Layer (top) -->
-  <rect x="32" y="16" width="576" height="72" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1" stroke-dasharray="6 3"/>
-  <text x="56" y="46" class="layer-label" fill="#a78bfa">Ownership Layer — Blockchain</text>
-  <text x="56" y="66" class="layer-desc" fill="#94a3b8">Tokenization · Funding flows · Rights</text>
-  <rect x="488" y="32" width="64" height="20" rx="4" fill="#1e1b4b" stroke="#4c1d95" stroke-width="1"/>
-  <text x="520" y="46" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="600" fill="#a78bfa">planned</text>
+  <!-- ============================================ -->
+  <!-- OWNERSHIP LAYER (top) -->
+  <!-- ============================================ -->
+  <rect x="32" y="16" width="656" height="80" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1" stroke-dasharray="6 3"/>
+  <text x="56" y="42" class="layer-label" fill="#a78bfa">Ownership Layer</text>
+  <rect x="198" y="30" width="64" height="20" rx="4" fill="#1e1b4b" stroke="#4c1d95" stroke-width="1"/>
+  <text x="230" y="44" text-anchor="middle" class="badge" fill="#a78bfa">planned</text>
 
-  <!-- Arrow + label -->
-  <line x1="320" y1="92" x2="320" y2="112" stroke="#475569" stroke-width="1" stroke-dasharray="3 2"/>
-  <polygon points="315,110 320,118 325,110" fill="#475569"/>
-  <text x="334" y="108" class="arrow-text">freeze &amp; anchor</text>
+  <!-- Ownership components -->
+  <rect x="56" y="56" width="136" height="28" rx="5" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="124" y="75" text-anchor="middle" class="node-desc" fill="#94a3b8">Tokenization</text>
 
-  <!-- Application Layer (middle) -->
-  <rect x="32" y="122" width="576" height="72" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
-  <text x="56" y="152" class="layer-label" fill="#94a3b8">Application Layer</text>
-  <text x="56" y="172" class="layer-desc" fill="#cbd5e1">Funding platforms · Dashboards · Evaluation tools</text>
+  <rect x="208" y="56" width="136" height="28" rx="5" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="276" y="75" text-anchor="middle" class="node-desc" fill="#94a3b8">Funding Flows</text>
 
-  <!-- Arrow + label -->
-  <line x1="320" y1="198" x2="320" y2="218" stroke="#475569" stroke-width="1" stroke-dasharray="3 2"/>
-  <polygon points="315,216 320,224 325,216" fill="#475569"/>
-  <text x="334" y="214" class="arrow-text">reads / writes</text>
+  <rect x="360" y="56" width="136" height="28" rx="5" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="428" y="75" text-anchor="middle" class="node-desc" fill="#94a3b8">On-chain Rights</text>
 
-  <!-- Data Layer (bottom) -->
-  <rect x="32" y="228" width="576" height="72" rx="8" fill="#0f172a" stroke="#1e3a5f" stroke-width="1"/>
-  <text x="56" y="258" class="layer-label" fill="#38bdf8">Data Layer — AT Protocol</text>
-  <text x="56" y="278" class="layer-desc" fill="#94a3b8">PDS / SDS → Relay → App View / Indexer</text>
+  <!-- Arrow: Ownership → Application -->
+  <line x1="360" y1="100" x2="360" y2="126" stroke="#475569" stroke-width="1" stroke-dasharray="3 2"/>
+  <polygon points="355,123 360,131 365,123" fill="#475569"/>
+  <text x="374" y="118" class="arrow-text">freeze &amp; anchor</text>
+
+  <!-- ============================================ -->
+  <!-- APPLICATION LAYER (middle) -->
+  <!-- ============================================ -->
+  <rect x="32" y="132" width="656" height="100" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="56" y="158" class="layer-label" fill="#e2e8f0">Application Layer</text>
+
+  <!-- Application nodes -->
+  <rect x="56" y="170" width="120" height="48" rx="6" fill="#0f172a" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="116" y="191" text-anchor="middle" class="node-label" fill="#cbd5e1">Platforms</text>
+  <text x="116" y="206" text-anchor="middle" class="node-desc" fill="#64748b">Funding &amp; dashboards</text>
+
+  <rect x="192" y="170" width="120" height="48" rx="6" fill="#0f172a" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="252" y="191" text-anchor="middle" class="node-label" fill="#cbd5e1">Evaluation Tools</text>
+  <text x="252" y="206" text-anchor="middle" class="node-desc" fill="#64748b">Review &amp; scoring</text>
+
+  <rect x="328" y="170" width="120" height="48" rx="6" fill="#0f172a" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="388" y="191" text-anchor="middle" class="node-label" fill="#cbd5e1">Custom Apps</text>
+  <text x="388" y="206" text-anchor="middle" class="node-desc" fill="#64748b">Your application</text>
+
+  <!-- SDK + Hyperindex boxes (tools) -->
+  <rect x="472" y="170" width="100" height="48" rx="6" fill="#172554" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="522" y="189" text-anchor="middle" class="node-label" fill="#38bdf8">SDK</text>
+  <text x="522" y="204" text-anchor="middle" class="node-desc" fill="#64748b">reads &amp; writes</text>
+
+  <rect x="584" y="170" width="100" height="48" rx="6" fill="#172554" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="634" y="189" text-anchor="middle" class="node-label" fill="#38bdf8">Hyperindex</text>
+  <text x="634" y="204" text-anchor="middle" class="node-desc" fill="#64748b">GraphQL queries</text>
+
+  <!-- Arrow: Application → Data -->
+  <line x1="360" y1="236" x2="360" y2="262" stroke="#475569" stroke-width="1" stroke-dasharray="3 2"/>
+  <polygon points="355,259 360,267 365,259" fill="#475569"/>
+  <text x="374" y="254" class="arrow-text">reads / writes</text>
+
+  <!-- ============================================ -->
+  <!-- DATA LAYER (bottom) -->
+  <!-- ============================================ -->
+  <rect x="32" y="268" width="656" height="172" rx="10" fill="#0f172a" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="56" y="294" class="layer-label" fill="#38bdf8">Data Layer — AT Protocol</text>
+
+  <!-- PDS nodes -->
+  <rect x="56" y="308" width="88" height="52" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="100" y="330" text-anchor="middle" class="node-label" fill="#cbd5e1">PDS</text>
+  <text x="100" y="346" text-anchor="middle" class="node-desc" fill="#64748b">User records</text>
+
+  <rect x="160" y="308" width="88" height="52" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="204" y="330" text-anchor="middle" class="node-label" fill="#cbd5e1">PDS</text>
+  <text x="204" y="346" text-anchor="middle" class="node-desc" fill="#64748b">Org records</text>
+
+  <!-- Arrow: PDS → Relay -->
+  <line x1="256" y1="334" x2="296" y2="334" stroke="#475569" stroke-width="1"/>
+  <polygon points="293,330 300,334 293,338" fill="#475569"/>
+
+  <!-- Relay -->
+  <rect x="304" y="308" width="120" height="52" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="364" y="328" text-anchor="middle" class="node-label" fill="#cbd5e1">Relay</text>
+  <text x="364" y="344" text-anchor="middle" class="node-desc" fill="#64748b">Firehose stream</text>
+
+  <!-- Arrow: Relay → Indexer -->
+  <line x1="428" y1="334" x2="468" y2="334" stroke="#475569" stroke-width="1"/>
+  <polygon points="465,330 472,334 465,338" fill="#475569"/>
+
+  <!-- Indexer -->
+  <rect x="476" y="308" width="120" height="52" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="536" y="328" text-anchor="middle" class="node-label" fill="#cbd5e1">Indexer</text>
+  <text x="536" y="344" text-anchor="middle" class="node-desc" fill="#64748b">Queryable views</text>
+
+  <!-- Constellation -->
+  <rect x="612" y="308" width="64" height="52" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="644" y="330" text-anchor="middle" class="node-desc" fill="#94a3b8">Back-</text>
+  <text x="644" y="344" text-anchor="middle" class="node-desc" fill="#94a3b8">links</text>
+
+  <!-- Lexicons bar -->
+  <rect x="56" y="376" width="620" height="48" rx="6" fill="#172554" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="76" y="397" class="node-label" fill="#38bdf8">Lexicons</text>
+  <text x="76" y="413" class="node-desc" fill="#64748b">Shared schemas that define record structure across the network</text>
+
+  <!-- Lexicon NSIDs -->
+  <text x="376" y="397" class="lexicon-label" fill="#475569">org.hypercerts.claim.activity</text>
+  <text x="376" y="413" class="lexicon-label" fill="#475569">org.hypercerts.claim.evaluation</text>
+  <text x="560" y="397" class="lexicon-label" fill="#475569">...measurement</text>
+  <text x="560" y="413" class="lexicon-label" fill="#475569">...attachment</text>
 </svg>

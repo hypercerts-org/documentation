@@ -79,7 +79,7 @@ You can think of it as a small, standardized piece of information that captures 
 * a community event or educational program
 * any action that creates positive impact
 
-Each hypercert links this claim with whatever attachments or context are available: documentation, measurements, expert assessments, community input, or other data that helps evaluate the contribution.
+Each hypercert links this claim with whatever attachments or context is available: documentation, measurements, expert assessments, community input, or other data that helps evaluate the contribution.
 
 Hypercerts don't judge whether something is valuable. They don't impose a single metric or worldview. They simply make contributions legible – to people, organizations, communities, and increasingly, AI systems.
 
