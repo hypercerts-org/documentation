@@ -378,6 +378,10 @@ img {
   width: auto;
 }
 
+.layout-logo-img-dark {
+  display: none;
+}
+
 .layout-logo-badge {
   font-family: var(--font-display);
   font-size: 13px;
