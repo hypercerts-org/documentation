@@ -6,7 +6,7 @@ title: Collection
 
 ## Description
 
-A collection/group of hypercerts that have a specific property.
+A collection groups multiple items — activity claims and/or other collections — into a project or portfolio. Collections support recursive nesting, so a collection can contain other collections.
 
 ## Lexicon
 
@@ -14,22 +14,26 @@ A collection/group of hypercerts that have a specific property.
 
 **Key:** `tid`
 
-| Property           | Type     | Required | Description                                                             | Comments                          |
-| ------------------ | -------- | -------- | ----------------------------------------------------------------------- | --------------------------------- |
-| `title`            | `string` | ✅        | The title of this collection                                            |                                   |
-| `shortDescription` | `string` | ❌        | A short description of this collection                                  |                                   |
-| `coverPhoto`       | `union`  | ❌        | The cover photo of this collection (either in URI format or in a blob). |                                   |
-| `claims`           | `array`  | ✅        | Array of claims with their associated weights in this collection        | Each item references `#claimItem` |
-| `createdAt`        | `string` | ✅        | Client-declared timestamp when this record was originally created       |                                   |
+| Property           | Type     | Required | Description                                                                      | Comments                                                                                      |
+| ------------------ | -------- | -------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `type`             | `string` | ❌        | The type of this collection (e.g. `favorites`, `project`, or any other type)     |                                                                                               |
+| `title`            | `string` | ✅        | The title of this collection                                                     | Max 80 graphemes.                                                                             |
+| `shortDescription` | `string` | ❌        | Short summary of this collection, suitable for previews and list views           | Max 300 graphemes.                                                                            |
+| `description`      | `ref`    | ❌        | Rich-text description, represented as a Leaflet linear document                  | References `pub.leaflet.pages.linearDocument#main`.                                           |
+| `avatar`           | `union`  | ❌        | The collection's avatar/profile image as a URI or image blob                     |                                                                                               |
+| `banner`           | `union`  | ❌        | Larger horizontal image to display behind the collection view                    |                                                                                               |
+| `items`            | `array`  | ✅        | Array of items in this collection with optional weights                          | Each item is an `#item` object. See [Item](#item-object) below.                               |
+| `location`         | `ref`    | ❌        | A strong reference to the location where the collection's activities were performed | Referenced record must conform to `app.certified.location`.                                |
+| `createdAt`        | `string` | ✅        | Client-declared timestamp when this record was originally created                |                                                                                               |
 
-**Defs**
+### Item object
 
-**claimItem**
+Each entry in the `items` array has this structure:
 
-| Property | Type     | Required | Description                                                                                                                                                                                                  | Comments |
-| -------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- |
-| `claim`  | `ref`    | ✅        | A strong reference to a hypercert claim record. This claim must conform to the lexicon org.hypercerts.claim.activity                                                                                         |          |
-| `weight` | `string` | ✅        | The weight/importance of this hypercert claim in the collection (a percentage from 0-100, stored as a string to avoid float precision issues). The total claim weights should add up to 100. |          |
+| Property         | Type     | Required | Description                                                                                                                                                   |
+| ---------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `itemIdentifier` | `ref`    | ✅        | Strong reference to an item in this collection. Items can be activity claims (`org.hypercerts.claim.activity`) or other collections (`org.hypercerts.claim.collection`). |
+| `itemWeight`     | `string` | ❌        | Optional weight for this item (positive numeric value stored as string). Weights don't need to sum to a specific total — normalization is up to the consuming app. |
 
 ## Code Example
 
@@ -53,21 +57,21 @@ const response = await agent.api.com.atproto.repo.createRecord({
     title: 'Q1 2025 Open Source Contributions',
     // Short description of the collection
     shortDescription: 'All open source maintenance work in Q1 2025',
-    // Array of claims with their associated weights
-    claims: [
+    // Array of items with optional weights
+    items: [
       {
-        claim: {
+        itemIdentifier: {
           uri: 'at://did:plc:abc123/org.hypercerts.claim.activity/tid1',
           cid: 'bafyrei...',
         },
-        weight: '50',
+        itemWeight: '50',
       },
       {
-        claim: {
+        itemIdentifier: {
           uri: 'at://did:plc:abc123/org.hypercerts.claim.activity/tid2',
           cid: 'bafyrei...',
         },
-        weight: '50',
+        itemWeight: '50',
       },
     ],
     // Timestamp when this record was created

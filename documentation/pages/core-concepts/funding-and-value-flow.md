@@ -1,9 +1,9 @@
 ---
-title: "Funding & Tokenization"
+title: "Funding & Value Flow"
 description: How hypercerts track funding of activities and optionally wrap claims in onchain tokens.
 ---
 
-# Funding & Tokenization
+# Funding & Value Flow
 
 Hypercerts track the funding of activities without prescribing how funds flow. Any payment technology works — credit cards, PayPal, bank transfers, onchain payments. Any funding mechanism works — grants, crowdfunding, retroactive funding, and more.
 
@@ -12,8 +12,6 @@ What hypercerts add is a structured, verifiable record of who funded what. Optio
 {% callout type="note" %}
 Funding tracking is available today. The tokenization layer is under active development. For what exists today, see [Architecture Overview](/architecture/overview).
 {% /callout %}
-
----
 
 ## Hypercerts work with any funding mechanism
 
@@ -29,8 +27,6 @@ Funding can be **prospective** (before work begins) or **retroactive** (after ou
 | **Auction of impact certificates** | Competitive bidding on verified impact claims |
 
 Multiple mechanisms can coexist for the same activity — a project might receive a grant prospectively and sell impact certificates retroactively. Hypercerts allows us to track it accurately without double counting.
-
----
 
 ## Tracking funding
 
@@ -54,8 +50,6 @@ How a funding receipt gets created depends on where the funding happens:
 
 Self-reported receipts are the most accessible option — anyone can create one. But they carry less weight without independent verification. When a funder reports their own contribution, the project can confirm it (and vice versa), strengthening the credibility of the record.
 
----
-
 ## Tokenization
 
 {% callout type="note" %}
@@ -75,21 +69,19 @@ A token can represent either a mutable or a locked claim. If the underlying hype
 
 Tokenization enables programmable funding — smart contract logic can enforce distribution rules, matching formulas, and other mechanisms that would be difficult to coordinate offchain.
 
----
-
 ## Example: from creation to funding
 
 There are many different flows that can be represented with hypercerts. Below is one example that follows a hypercert through its lifecycle — from creation to funding, with optional tokenization.
 
 ### Stage 1 — Creation and first evaluation
 
-Alice plants 500 trees in a reforestation project and creates an activity claim on her PDS, along with measurements and evidence. Bob, an environmental auditor, evaluates the activity claim and its attached measurements of the new trees and evidence from his own PDS.
+Alice plants 500 trees in a reforestation project and creates an activity claim on her PDS, along with measurements and attachments. Bob, an environmental auditor, evaluates the activity claim and its attached measurements of the new trees and attachments from his own PDS.
 
 | Record | Owner | Location |
 |--------|-------|----------|
 | Activity claim | Alice | `at://did:plc:alice/org.hypercerts.claim.activity/3k7` |
 | Measurement | Alice | `at://did:plc:alice/org.hypercerts.claim.measurement/5m1` |
-| Evidence | Alice | `at://did:plc:alice/org.hypercerts.claim.evidence/7e4` |
+| Attachment | Alice | `at://did:plc:alice/org.hypercerts.claim.attachment/7e4` |
 | Evaluation | Bob | `at://did:plc:bob/org.hypercerts.claim.evaluation/9x2` |
 
 At this point, all records are mutable ATProto data. Alice can still update her claim, and Bob can revise his evaluation.
@@ -105,7 +97,7 @@ Carol, a climate funder, reviews Alice's claim and Bob's evaluation. She decides
 
 The receipt links to Alice's activity claim, creating a verifiable record that Carol funded this work. The actual payment — whether by bank transfer, credit card, or any other method — happens outside the protocol. Alice verifies the funding receipt.
 
-### Stage 3 — Lock and tokenize (optional)
+### Stage 3 — Lock and tokenize
 
 Alice can lock the hypercert by wrapping it in an onchain token or anchoring it onchain without a token. This can happen at any time; a good time to do so is when the actual work is completed.
 
@@ -130,8 +122,6 @@ Two years later, a second evaluator, Eve, assesses the health of Alice's trees a
 | ERC-1155 Token (15%) | Carol | `0xCc03…3333` |
 | ERC-1155 Token (10%) | Dave | `0xDd04…4444` |
 
----
-
 ## What this enables
 
 | Capability | Description |
@@ -143,11 +133,8 @@ Two years later, a second evaluator, Eve, assesses the health of Alice's trees a
 | **Portable proof of funding** | Funders can prove what they funded, whether onchain or offchain |
 | **Independent evolution** | Data and ownership layers evolve separately — evaluations accumulate on ATProto while potential ownership transfers onchain |
 
----
-
 ## See also
 
 - [Architecture Overview](/architecture/overview) — how the full protocol stack fits together
 - [Data Flow & Lifecycle](/architecture/data-flow-and-lifecycle) — how a hypercert moves through the system
-- [The Hypercerts Infrastructure](/getting-started/the-hypercerts-infrastructure) — the two-layer architecture
 - [Roadmap](/roadmap) — current build priorities and development phases

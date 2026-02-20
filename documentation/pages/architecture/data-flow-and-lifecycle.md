@@ -5,7 +5,7 @@ description: How a hypercert moves from creation through evaluation to funding.
 
 # Data Flow & Lifecycle
 
-A hypercert flows through six stages from creation to ongoing accumulation of evidence and funding.
+A hypercert flows through six stages from creation to ongoing accumulation of attachments and funding.
 
 ## The Lifecycle of a Hypercert
 
@@ -13,29 +13,29 @@ Every hypercert follows a similar path through the system, though the timeline a
 
 **Creation** happens when a contributor writes an activity claim to their Personal Data Server. The claim gets a unique identifier and becomes part of the contributor's repository.
 
-**Enrichment** adds supporting data. Contribution records link collaborators. Evidence records attach proof of work. Measurement records provide quantitative data. Rights records define what funders or stakeholders receive. These can live on the same server or different servers.
+**Enrichment** adds supporting data. Contribution records link collaborators. Attachment records attach proof of work. Measurement records provide quantitative data. Rights records define what funders or stakeholders receive. These can live on the same server or different servers.
 
 **Evaluation** brings third-party assessment. Evaluators create evaluation records on their own servers that reference the original claim. Multiple evaluators can independently assess the same work. Evaluations accumulate over time.
 
 **Discovery** makes the hypercert findable. Relays aggregate records from many servers. Indexers build searchable databases. Platforms query indexers to surface hypercerts to users.
 
-**Funding** connects ownership to the claim. The on-chain funding layer is [planned but not yet implemented](/architecture/funding-and-tokenization). The intended design freezes ATProto records before funding to ensure funders know exactly what they are paying for.
+**Funding** connects ownership to the claim. The on-chain funding layer is [planned but not yet implemented](/core-concepts/funding-and-value-flow). The intended design freezes ATProto records before funding to ensure funders know exactly what they are paying for.
 
-**Accumulation** continues indefinitely. More evaluations arrive. Additional evidence gets attached. The data layer continues evolving.
+**Accumulation** continues indefinitely. More evaluations arrive. Additional attachments get attached. The data layer continues evolving.
 
 ```
 Creation → Enrichment → Evaluation → Discovery → Funding → Accumulation
    ↓           ↓            ↓            ↓          ↓           ↓
-  PDS      PDS/SDS      Other PDS     Indexer   On-chain*   Ongoing
+  PDS        PDS        Other PDS     Indexer   On-chain*   Ongoing
 ```
 
-*On-chain layer is planned. See [Funding & Tokenization](/architecture/funding-and-tokenization).
+*On-chain layer is planned. See [Funding & Value Flow](/core-concepts/funding-and-value-flow).
 
 ## Stage 1: Creation
 
 A hypercert begins when a contributor creates an activity claim on their PDS.
 
-The contributor writes an `org.hypercerts.claim.activity` record. This record includes required fields like `workScope`, `impactScope`, `timeframe`, and `contributors`. The PDS validates the record against the lexicon schema.
+The contributor writes an `org.hypercerts.claim.activity` record. This record includes fields like `workScope`, `startDate`, `endDate`, and `contributors`. The PDS validates the record against the lexicon schema.
 
 The record receives a unique AT-URI. The format is `at://did:plc:abc123/org.hypercerts.claim.activity/tid` where `did:plc:abc123` is the contributor's DID and `tid` is a timestamp-based identifier.
 
@@ -56,11 +56,11 @@ Supporting data gets attached through additional records that reference the acti
 
 #### Contribution Records
 
-`org.hypercerts.claim.contribution` records link collaborators to the work. Each contribution record specifies a contributor DID, their role, and a strong reference to the activity claim. Contributions can be created by the original contributor or by collaborators on their own servers.
+Contributors are embedded in the activity claim's `contributors` array. For richer profiles, separate `org.hypercerts.claim.contributorInformation` and `org.hypercerts.claim.contributionDetails` records can be created and referenced. Contributions can be created by the original contributor or by collaborators on their own servers.
 
-#### Evidence Records
+#### Attachment Records
 
-`org.hypercerts.claim.evidence` records attach proof of work. Evidence can be URLs, file attachments, or structured data. Each evidence record includes a strong reference to the claim it supports.
+`org.hypercerts.claim.attachment` records attach supporting documentation. Attachments can be URLs, file uploads, or structured data. Each attachment record includes a strong reference to the claim it supports.
 
 #### Measurement Records
 
@@ -76,12 +76,12 @@ Supporting data gets attached through additional records that reference the acti
 
 #### Cross-Server References
 
-These records can live on different PDS instances. A contributor on PDS-A can create an activity claim. A collaborator on PDS-B can create a contribution record that references it. An evaluator on PDS-C can attach evidence. Strong references ensure the connections are tamper-evident.
+These records can live on different PDS instances. A contributor on PDS-A can create an activity claim. A collaborator on PDS-B can create a contribution record that references it. A collaborator on PDS-C can create an attachment. Strong references ensure the connections are tamper-evident.
 
 ```
 PDS-A (Alice)                    PDS-B (Bob)                     PDS-C (Carol)
 ─────────────                    ───────────                     ─────────────
-activity claim                   contribution record             evidence record
+activity claim                   contribution record             attachment record
 at://did:alice/...               at://did:bob/...                at://did:carol/...
                                  subject: at://did:alice/...     subject: at://did:alice/...
 ```
@@ -149,7 +149,7 @@ Many PDS Instances
 
 The on-chain funding layer is not yet implemented. The planned design: before a hypercert can be funded, its ATProto records are frozen and the snapshot is anchored on-chain. This ensures funders know exactly what they are paying for — the cert's contents cannot change after freezing.
 
-For the full planned design — including anchoring, tokenization, funding mechanisms, and funding readiness patterns — see [Funding & Tokenization](/architecture/funding-and-tokenization).
+For the full planned design — including anchoring, tokenization, funding mechanisms, and funding readiness patterns — see [Funding & Value Flow](/core-concepts/funding-and-value-flow).
 
 ## Stage 6: Accumulation
 
@@ -161,11 +161,11 @@ New evaluations arrive over time. A hypercert funded in 2024 might receive evalu
 
 Indexers pick up new evaluations and update their databases. Applications can show the evolving assessment history. Funders can see how perceptions of the work change over time.
 
-#### Additional Evidence
+#### Additional Attachments
 
-Contributors can attach more evidence as outcomes become clear. A research project might add published papers. A climate initiative might add measurement data showing carbon reduction.
+Contributors can attach more supporting documentation as outcomes become clear. A research project might add published papers. A climate initiative might add measurement data showing carbon reduction.
 
-Evidence records reference the original activity claim. The claim itself doesn't change — evidence accumulates around it.
+Attachment records reference the original activity claim. The claim itself doesn't change — attachments accumulate around it.
 
 #### Long-Term Value
 
@@ -174,7 +174,7 @@ The separation of data and ownership enables long-term value accumulation. A hyp
 ```
 Time →
 ─────────────────────────────────────────────────────────
-Creation  Evaluation 1  Discovery  Evaluation 2  Evidence  Evaluation 3
+Creation  Evaluation 1  Discovery  Evaluation 2  Attachment  Evaluation 3
    ↓          ↓           ↓           ↓            ↓          ↓
   PDS      PDS-Eva1     Indexer    PDS-Eva2      PDS       PDS-Eva3
 ```
@@ -204,13 +204,13 @@ This enables trust across servers. A record on PDS-A can safely reference a reco
 
 The lifecycle supports use cases that span time, servers, and participants.
 
-**Retroactive funding** works because creation and funding are separate stages. A contributor can create a claim in January, accumulate evidence and evaluations through the year, and receive funding in December. The data layer preserves the full history.
+**Retroactive funding** works because creation and funding are separate stages. A contributor can create a claim in January, accumulate attachments and evaluations through the year, and receive funding in December. The data layer preserves the full history.
 
 **Cross-platform collaboration** works because enrichment happens across servers. A contributor on Platform A can work with a collaborator on Platform B. Their contribution records reference the same activity claim. Indexers aggregate both records.
 
 **Independent evaluation** works because evaluators control their own data. An evaluator doesn't need permission from the contributor or any platform. They create a record on their server that references the claim. Applications can discover and display it.
 
-**Evolving reputation** works because accumulation is ongoing. A hypercert's value isn't fixed at creation. Evaluations arrive over time. Evidence accumulates. The full history is queryable.
+**Evolving reputation** works because accumulation is ongoing. A hypercert's value isn't fixed at creation. Evaluations arrive over time. Attachments accumulate. The full history is queryable.
 
 ## Next Steps
 
@@ -218,4 +218,4 @@ For the overall architecture and how layers connect, see [Architecture Overview]
 
 For details on specific record types and their schemas, see [Introduction to Lexicons](/lexicons/introduction-to-lexicons).
 
-For a practical walkthrough of creating a hypercert, see [Creating Your First Hypercert](/tutorials/creating-your-first-hypercert).
+For a practical walkthrough of creating a hypercert, see [Creating Your First Hypercert](/getting-started/creating-your-first-hypercert).

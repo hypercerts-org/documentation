@@ -4,21 +4,21 @@ title: The Hypercerts Infrastructure
 
 # The Hypercerts Infrastructure
 
-Hypercerts runs on AT Protocol for data. On-chain anchoring for ownership and funding is [planned](/architecture/funding-and-tokenization).
+Hypercerts runs on AT Protocol for data. On-chain anchoring for ownership and funding is [planned](/core-concepts/funding-and-value-flow).
 
-For the rationale behind choosing ATProto, see [Why ATProto?](/getting-started/why-atproto).
+For the rationale behind choosing ATProto, see [Why ATProto?](/core-concepts/why-atproto).
 
 ## The Two-Layer Architecture
 
 #### The data layer: AT Protocol
 
-AT Protocol stores all hypercert-related data — activity claims, contributions, evaluations, measurements, evidence, and trust signals. This data lives on Personal Data Servers (PDS) controlled by users, not platforms. Contributors create claims on their PDS. Evaluators reference those claims from their own PDS. Funders query indexers that aggregate data across the network.
+AT Protocol stores all hypercert-related data — activity claims, contributions, evaluations, measurements, attachments, and trust signals. This data lives on Personal Data Servers (PDS) controlled by users, not platforms. Contributors create claims on their PDS. Evaluators reference those claims from their own PDS. Funders query indexers that aggregate data across the network.
 
 Because ATProto uses shared schemas (lexicons), any application can read and write hypercert data without custom integrations. A claim created in one app is immediately evaluable in another and fundable in a third. The data layer is open, portable, and interoperable by design.
 
 #### The funding layer: on-chain anchoring (planned)
 
-The on-chain funding layer is not yet implemented. The planned design uses a freeze-then-fund model: before a hypercert can be funded, its ATProto records are frozen and anchored on-chain, ensuring funders know exactly what they are paying for. See [Funding & Tokenization](/architecture/funding-and-tokenization) for the full design.
+The on-chain funding layer is not yet implemented. The planned design uses a freeze-then-fund model: before a hypercert can be funded, its ATProto records are frozen and anchored on-chain, ensuring funders know exactly what they are paying for. See [Funding & Value Flow](/core-concepts/funding-and-value-flow) for the full design.
 
 #### How the layers connect
 
@@ -48,7 +48,7 @@ Carol's app shows her Alice's claim with Bob's evaluation attached. Because Bob'
 
 #### 4. The hypercert is frozen and funded (planned)
 
-In the planned design, Carol's funding app will freeze Alice's hypercert and anchor the snapshot on-chain. Carol knows exactly what she is paying for because the frozen claim cannot change. The tokenization layer is not yet implemented — see [Funding & Tokenization](/architecture/funding-and-tokenization) for details.
+In the planned design, Carol's funding app will freeze Alice's hypercert and anchor the snapshot on-chain. Carol knows exactly what she is paying for because the frozen claim cannot change. The tokenization layer is not yet implemented — see [Funding & Value Flow](/core-concepts/funding-and-value-flow) for details.
 
 ## Data Integrity and Trust
 
@@ -68,6 +68,6 @@ Because DIDs are persistent and records are signed, you can trace an author's en
 
 ## Keep Reading
 
-- [Indexers & Discovery](/getting-started/infrastructure/indexers-and-discovery) — how data is aggregated and queried across the network
-- [Funding & Tokenization](/architecture/funding-and-tokenization) — freeze-then-fund model and on-chain ownership design
-- [Portability & Scaling](/getting-started/infrastructure/portability-and-scaling) — PDS migration, performance, and privacy
+- [Indexers & Discovery](/architecture/indexers-and-discovery) — how data is aggregated and queried across the network
+- [Funding & Value Flow](/core-concepts/funding-and-value-flow) — freeze-then-fund model and on-chain ownership design
+- [Portability & Scaling](/architecture/portability-and-scaling) — PDS migration, performance, and privacy

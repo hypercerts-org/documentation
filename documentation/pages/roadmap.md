@@ -31,7 +31,7 @@ The Hypercerts infrastructure divides into six functional areas. Each area has a
 |-----------|----------|--------|-------|
 | Lexicons | 🔴 Critical | Active | Hypercerts Foundation |
 | Hypercerts SDK | 🔴 Critical | In Progress | Community |
-| Hypergoat AppView | 🔴 Critical | Active | GainForest → Foundation |
+| Hyperindex AppView | 🔴 Critical | Active | GainForest → Foundation |
 | IdentityLink | 🟠 High | Live | GainForest → Foundation |
 | EVM Indexer | 🟠 High | Planned | TBD |
 | Evaluators | 🟠 High | Active | Hypercerts Collective |
@@ -68,7 +68,7 @@ Lexicons are the schema definitions that specify the structure of all Hypercerts
 | `org.hypercerts.claim.evaluation` | Evaluations of activities by third parties |
 | `org.hypercerts.claim.measurement` | Quantitative data attached to claims |
 | `org.hypercerts.claim.collection` | Projects/portfolios grouping multiple activities |
-| `org.hypercerts.claim.attachment` | Evidence, reports, documentation |
+| `org.hypercerts.claim.attachment` | Attachments, reports, documentation |
 | `org.hypercerts.funding.receipt` | Funding flow records |
 
 {% callout type="note" %}
@@ -97,7 +97,7 @@ A developer toolkit (TypeScript/JavaScript) for creating, reading, and managing 
 - Create, update, and delete hypercert records
 - Query records by collection, DID, or custom filters
 - Manage contributor relationships and weights
-- Handle blob uploads (images, documents, evidence)
+- Handle blob uploads (images, documents, attachments)
 - Validate records against lexicon schemas
 
 **Design principles:**
@@ -111,7 +111,7 @@ A developer toolkit (TypeScript/JavaScript) for creating, reading, and managing 
 
 ```
 Hypercerts SDK
-    ├── → Hypergoat AppView (queries)
+    ├── → Hyperindex AppView (queries)
     ├── → ATProto PDS (record management)
     ├── → IdentityLink (DID-wallet resolution)
     └── → EVM chains (tokenization, funding)
@@ -181,7 +181,7 @@ Lightweight annotations using ATProto's labeler pattern. Use cases include quali
 
 ## Application layer
 
-### Hypergoat AppView 🔵
+### Hyperindex AppView 🔵
 
 **Priority:** 🔴 Critical · **Status:** Active · **Owner:** GainForest → Foundation
 
@@ -200,8 +200,8 @@ The primary AppView server that indexes hypercert records and exposes them via a
 | Search | Full-text search across hypercert content |
 
 **Endpoints:**
-- GraphQL: `hypergoat.certified.app/graphql`
-- GraphiQL: `hypergoat.certified.app/graphiql`
+- GraphQL: `hyperindex.certified.app/graphql`
+- GraphiQL: `hyperindex.certified.app/graphiql`
 
 ### Frontends 🟢
 
@@ -218,7 +218,7 @@ Applications built on the infrastructure, governed by the Hypercerts Collective:
 1. User creates a hypercert record via a frontend (Ma Earth, hyperboards.org, etc.)
 2. Frontend writes the record to the user's PDS
 3. PDS syncs to the network via the relay
-4. Hypergoat indexes the record
+4. Hyperindex indexes the record
 5. Record becomes available for queries and evaluations
 
 ---
@@ -270,7 +270,7 @@ User's PDS record → StorageLink → Filecoin Cloud (immutable backup)
 An indexer that tracks onchain events related to Hypercerts (token mints, transfers, funding distributions). Creates a unified view across ATProto records and blockchain state — indexing tokenization events, tracking funding flows, and enabling queries like "show all funded activities for this project."
 
 ```
-Blockchain events → EVM Indexer → Hypergoat (unified view)
+Blockchain events → EVM Indexer → Hyperindex (unified view)
 ```
 
 ---
@@ -294,7 +294,7 @@ Most applications will be built via AI coding assistants. Infrastructure must be
 
 | Action | Priority | Status |
 |--------|----------|--------|
-| Add OpenAPI spec for Hypergoat | High | Todo |
+| Add OpenAPI spec for Hyperindex | High | Todo |
 | Create `AGENTS.md` in repos | High | Todo |
 | Ensure all lexicon fields have descriptions | High | In Progress |
 | Add JSDoc to all SDK public methods | High | Todo |
@@ -320,7 +320,7 @@ Open governance body for the ATProto impact ecosystem. Coordinates decisions abo
 
 ### Lexicon Indexing Requests (LIRs)
 
-Formal proposals to add lexicons to Hypergoat's indexing. The community decides what becomes shared infrastructure.
+Formal proposals to add lexicons to Hyperindex's indexing. The community decides what becomes shared infrastructure.
 
 | LIR | Description | Status |
 |-----|-------------|--------|
@@ -332,7 +332,7 @@ Formal proposals to add lexicons to Hypergoat's indexing. The community decides 
 
 | Component | Current owner | Future owner |
 |-----------|--------------|--------------|
-| Hypergoat AppView | GainForest | Foundation + Community |
+| Hyperindex AppView | GainForest | Foundation + Community |
 | IdentityLink | GainForest | Foundation + Community |
 | Impact Indexer | GainForest | Foundation + Community |
 | Lexicon Repos | Various | Hypercerts Collective coordination |
@@ -366,7 +366,7 @@ Formal proposals to add lexicons to Hypergoat's indexing. The community decides 
 ## Next steps
 
 1. **Finalize Lexicon v1.0** — Lock core schemas for `org.hypercerts.claim.*` to enable stable SDK development
-2. **Productionize Hypergoat** — Harden for production traffic, add caching, improve query performance
+2. **Productionize Hyperindex** — Harden for production traffic, add caching, improve query performance
 3. **SDK alpha release** — Publish `@hypercerts/sdk` with core CRUD operations
 4. **AI documentation sprint** — OpenAPI spec, `AGENTS.md` files, copy-pasteable examples
 5. **IdentityLink integration** — Complete EIP-712 attestation flow with certified.app frontend
@@ -379,7 +379,7 @@ Formal proposals to add lexicons to Hypergoat's indexing. The community decides 
 | Resource | URL |
 |----------|-----|
 | Lexicon Documentation | [impactindexer.org/lexicon](https://impactindexer.org/lexicon) |
-| Hypergoat API | [hypergoat.certified.app/graphql](https://hypergoat.certified.app/graphql) |
+| Hyperindex API | [hyperindex.certified.app/graphql](https://hyperindex.certified.app/graphql) |
 | IdentityLink | [identitylink.vercel.app](https://identitylink.vercel.app) |
 | Governance Repo | [tangled.org/gainforest.earth/hypercollective](https://tangled.org/gainforest.earth/hypercollective) |
 | Hypercerts Foundation | [hypercerts.org](https://hypercerts.org) |

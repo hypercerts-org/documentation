@@ -24,26 +24,35 @@ This field is mandatory to prevent ambiguity about coordinate systems and axis o
 
 ### Location Type
 
-| locationType property | Description                       |
-| --------------------- | --------------------------------- |
-| coordinate-decimal    |                                   |
-| geojson-point         | A point saved in a geojson file.  |
+| locationType property  | Description                                                                 |
+| ---------------------- | --------------------------------------------------------------------------- |
+| `coordinate-decimal`   | Decimal coordinates (e.g. `10.42, -84.10`)                                 |
+| `geojson-point`        | A point saved in GeoJSON format                                            |
+| `geojson`              | A GeoJSON geometry (polygon, multipolygon, etc.)                           |
+| `h3`                   | An H3 hexagonal hierarchical index                                         |
+| `geohash`              | A geohash string                                                           |
+| `wkt`                  | Well-Known Text geometry representation                                    |
+| `address`              | A street address or place name                                             |
+| `scaledCoordinates`    | Coordinates with explicit scale factor                                     |
+
+See the [Location Protocol spec](https://spec.decentralizedgeo.org/specification/location-types/#location-type-registry) for the full registry.
 
 ## Lexicon
 
 **Lexicon ID:** `app.certified.location`
 
-**Description:** A location reference for use across AT Protocol applications. For location claims, we follow the
+**Description:** A location reference for use across AT Protocol applications.
 
-**Key:** `any`
+**Key:** `tid`
 
-### **Properties**
+### Properties
 
-| `lpVersion`    | `string`                                     | ✅ | The version of the Location Protocol                                                                                    |                                              |
-| -------------- | -------------------------------------------- | - | ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| `srs`          | `string`                                     | ✅ | The [Spatial Reference System](#spatial-reference-systems) **URI** that defines the coordinate system.       | http://www.opengis.net/def/crs/OGC/1.3/CRS84 |
-| `locationType` | `string`                                     | ✅ | An identifier for the [format](#location-type) of the location data (e.g., coordinate-decimal, geojson-point) | "coordinate-decimal", "geojson-point"        |
-| `location`     | `union` | ✅ | The location of where the work was performed as a URI or blob.                                                          |                                              |
-| `createdAt`    | `string`                                     | ✅ | Client-declared timestamp when this record was originally created                                                       |                                              |
-| `name`         | `string`                                     | ❌ | Optional name for this location                                                                                         |                                              |
-| `description`  | `string`                                     | ❌ | Optional description for this location                                                                                  |                                              |
+| Property       | Type     | Required | Description                                                                                             | Comments                                       |
+| -------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| `lpVersion`    | `string` | ✅        | The version of the Location Protocol                                                                    | Max 10 characters.                             |
+| `srs`          | `string` | ✅        | The [Spatial Reference System](#spatial-reference-systems) URI that defines the coordinate system        | e.g. `http://www.opengis.net/def/crs/OGC/1.3/CRS84` |
+| `locationType` | `string` | ✅        | An identifier for the [format](#location-type) of the location data                                    | See table above for known values.              |
+| `location`     | `union`  | ✅        | The location data as a URI, blob, or inline string                                                      |                                                |
+| `name`         | `string` | ❌        | Optional name for this location                                                                         | Max 100 graphemes.                             |
+| `description`  | `string` | ❌        | Optional description for this location                                                                  | Max 500 graphemes.                             |
+| `createdAt`    | `string` | ✅        | Client-declared timestamp when this record was originally created                                       |                                                |

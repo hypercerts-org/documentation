@@ -12,7 +12,7 @@ Describes the rights that a user has to the hypercert, such as whether it can be
 
 **Lexicon ID:** `org.hypercerts.claim.rights`
 
-**Key:** `any`
+**Key:** `tid`
 
 **Properties**
 

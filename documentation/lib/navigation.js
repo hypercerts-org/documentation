@@ -1,86 +1,147 @@
 export const navigation = [
-  { title: 'Welcome', path: '/' },
+  { title: "Welcome", path: "/" },
   {
-    section: 'Understand',
+    section: "Get Started",
     children: [
-      { title: 'What are Hypercerts?', path: '/getting-started/what-is-hypercerts' },
-      { title: 'Defining Work Scopes', path: '/getting-started/defining-work-scopes' },
-      { title: "Why We're Building Hypercerts", path: '/getting-started/why-were-building-hypercerts' },
-      { title: 'What is Certified?', path: '/getting-started/what-is-certified' },
-      { title: 'Why ATProto?', path: '/getting-started/why-atproto' },
-    ],
-  },
-  {
-    section: 'Build',
-    children: [
-      { title: 'How Hypercerts Work', path: '/getting-started/how-hypercerts-work' },
-      { title: 'Quickstart', path: '/getting-started/quickstart' },
-      { title: 'Account & Identity Setup', path: '/getting-started/account-and-identity' },
-      { title: 'Creating Your First Hypercert', path: '/tutorials/creating-your-first-hypercert' },
-      { title: 'Working with Evaluations', path: '/tutorials/working-with-evaluations' },
-      { title: 'Common Use Cases', path: '/tutorials/common-use-cases' },
-    ],
-  },
-  {
-    section: 'Architecture',
-    children: [
+      { title: "Quickstart", path: "/getting-started/quickstart" },
       {
-        title: 'Infrastructure Overview',
-        path: '/getting-started/the-hypercerts-infrastructure',
-        children: [
-          { title: 'Indexers & Discovery', path: '/getting-started/infrastructure/indexers-and-discovery' },
-          { title: 'Portability & Scaling', path: '/getting-started/infrastructure/portability-and-scaling' },
-        ],
+        title: "Creating Your First Hypercert",
+        path: "/getting-started/creating-your-first-hypercert",
       },
-      { title: 'Architecture Overview', path: '/architecture/overview' },
-      { title: 'Data Flow & Lifecycle', path: '/architecture/data-flow-and-lifecycle' },
-      { title: 'Funding & Tokenization', path: '/architecture/funding-and-tokenization' },
+      {
+        title: "Working with Evaluations",
+        path: "/getting-started/working-with-evaluations",
+      },
+      { title: "Common Use Cases", path: "/getting-started/common-use-cases" },
+      {
+        title: "Building on Hypercerts",
+        path: "/getting-started/building-on-hypercerts",
+      },
+      {
+        title: "Testing & Deployment",
+        path: "/getting-started/testing-and-deployment",
+      },
     ],
   },
   {
-    section: 'Tools',
-    children: [
-      { title: 'Hypercerts CLI', path: '/tools/hypercerts-cli' },
-      { title: 'Scaffold Starter App', path: '/tools/scaffold' },
-      { title: 'Hyperboard', path: '/tools/hyperboard' },
-      { title: 'Hyperindex', path: '/tools/hyperindex' },
-    ],
-  },
-  {
-    section: 'Reference',
+    section: "Core Concepts",
     children: [
       {
-        title: 'Lexicons',
-        path: '/lexicons/introduction-to-lexicons',
+        title: "What are Hypercerts?",
+        path: "/core-concepts/what-is-hypercerts",
+      },
+      {
+        title: "Core Data Model",
+        path: "/core-concepts/hypercerts-core-data-model",
+      },
+      {
+        title: "Certified Identity",
+        path: "/core-concepts/certified-identity",
+      },
+      { title: "Why ATProto?", path: "/core-concepts/why-atproto" },
+      {
+        title: "Funding & Value Flow",
+        path: "/core-concepts/funding-and-value-flow",
+      },
+    ],
+  },
+  {
+    section: "Tools",
+    children: [
+      { title: "Scaffold Starter App", path: "/tools/scaffold" },
+      { title: "Hypercerts CLI", path: "/tools/hypercerts-cli" },
+      { title: "Hyperindex", path: "/tools/hyperindex" },
+      { title: "Hyperboard", path: "/tools/hyperboard" },
+    ],
+  },
+  {
+    section: "Architecture",
+    children: [
+      { title: "Architecture Overview", path: "/architecture/overview" },
+      {
+        title: "Account & Identity Setup",
+        path: "/architecture/account-and-identity",
+      },
+      {
+        title: "Data Flow & Lifecycle",
+        path: "/architecture/data-flow-and-lifecycle",
+      },
+      {
+        title: "Indexers & Discovery",
+        path: "/architecture/indexers-and-discovery",
+      },
+      {
+        title: "Portability & Scaling",
+        path: "/architecture/portability-and-scaling",
+      },
+    ],
+  },
+  {
+    section: "Reference",
+    children: [
+      {
+        title: "Lexicons",
+        path: "/lexicons/introduction-to-lexicons",
         children: [
           {
-            title: 'General Lexicons',
-            path: '/lexicons/general-lexicons',
+            title: "General Lexicons",
+            path: "/lexicons/general-lexicons",
             children: [
-              { title: 'Shared Definitions', path: '/lexicons/general-lexicons/shared-defs' },
-              { title: 'Location', path: '/lexicons/general-lexicons/location' },
+              {
+                title: "Shared Definitions",
+                path: "/lexicons/general-lexicons/shared-defs",
+              },
+              {
+                title: "Location",
+                path: "/lexicons/general-lexicons/location",
+              },
             ],
           },
           {
-            title: 'Hypercerts Lexicons',
-            path: '/lexicons/hypercerts-lexicons',
+            title: "Hypercerts Lexicons",
+            path: "/lexicons/hypercerts-lexicons",
             children: [
-              { title: 'Activity Claim', path: '/lexicons/hypercerts-lexicons/activity-claim' },
-              { title: 'Contribution', path: '/lexicons/hypercerts-lexicons/contribution' },
-              { title: 'Evidence', path: '/lexicons/hypercerts-lexicons/evidence' },
-              { title: 'Measurement', path: '/lexicons/hypercerts-lexicons/measurement' },
-              { title: 'Evaluation', path: '/lexicons/hypercerts-lexicons/evaluation' },
-              { title: 'Collection', path: '/lexicons/hypercerts-lexicons/collection' },
-              { title: 'Rights', path: '/lexicons/hypercerts-lexicons/rights' },
+              {
+                title: "Activity Claim",
+                path: "/lexicons/hypercerts-lexicons/activity-claim",
+              },
+              {
+                title: "Contribution",
+                path: "/lexicons/hypercerts-lexicons/contribution",
+              },
+              {
+                title: "Attachment",
+                path: "/lexicons/hypercerts-lexicons/attachment",
+              },
+              {
+                title: "Measurement",
+                path: "/lexicons/hypercerts-lexicons/measurement",
+              },
+              {
+                title: "Evaluation",
+                path: "/lexicons/hypercerts-lexicons/evaluation",
+              },
+              {
+                title: "Collection",
+                path: "/lexicons/hypercerts-lexicons/collection",
+              },
+              { title: "Rights", path: "/lexicons/hypercerts-lexicons/rights" },
             ],
           },
         ],
       },
-      { title: 'Building on Hypercerts', path: '/reference/building-on-hypercerts' },
-      { title: 'Testing & Deployment', path: '/reference/testing-and-deployment' },
-      { title: 'Glossary', path: '/reference/glossary' },
-      { title: 'FAQ', path: '/reference/faq' },
-      { title: 'Roadmap', path: '/roadmap' },
+      { title: "Glossary", path: "/reference/glossary" },
+      { title: "FAQ", path: "/reference/faq" },
+      { title: "Roadmap", path: "/roadmap" },
+    ],
+  },
+  {
+    section: "Ecosystem & Vision",
+    children: [
+      {
+        title: "Why We Need Hypercerts",
+        path: "/ecosystem/why-we-need-hypercerts",
+      },
     ],
   },
 ];

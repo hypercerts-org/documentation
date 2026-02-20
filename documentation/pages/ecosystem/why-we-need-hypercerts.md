@@ -1,9 +1,9 @@
 ---
-title: "Why We're Building Hypercerts"
+title: "Why We Need Hypercerts"
 description: Recognizing and rewarding value creators.
 ---
 
-# Why we're building Hypercerts
+# Why We Need Hypercerts
 
 ## The Problem
 
@@ -36,7 +36,7 @@ But because these benefits are shared, the willingness to pay for them isn't con
 
 Often, governments have been the approach we solve this. And in many cases, they still do: public education, healthcare systems, basic research funding, environmental regulation.
 
-But the systems we rely on today were built for a world that was: Slower, simpler, more centralized, less data-rich, and far less interconnected They were not designed for global supply chains, digital ecosystems, environmental instability, decentralized science, or community-run movements.
+But the systems we rely on today were built for a world that was: slower, simpler, more centralized, less data-rich, and far less interconnected. They were not designed for global supply chains, digital ecosystems, environmental instability, decentralized science, or community-run movements.
 
 And so we're left with a structural mismatch:
 
@@ -79,7 +79,7 @@ You can think of it as a small, standardized piece of information that captures 
 * a community event or educational program
 * any action that creates positive impact
 
-Each hypercert links this claim with whatever evidence or context is available: documentation, measurements, expert assessments, community input, or other data that helps evaluate the contribution.
+Each hypercert links this claim with whatever attachments or context are available: documentation, measurements, expert assessments, community input, or other data that helps evaluate the contribution.
 
 Hypercerts don't judge whether something is valuable. They don't impose a single metric or worldview. They simply make contributions legible – to people, organizations, communities, and increasingly, AI systems.
 
@@ -94,7 +94,7 @@ For hypercerts to support many funding mechanisms and evaluation models, each on
 A hypercert typically includes:
 
 1. Contribution Metadata: A structured description of who did what, when, and where. This anchors the contribution in time, space, and authorship.
-2. Evidence: Links to documentation, measurements, reports, data, or other materials that help others understand and verify what happened.
+2. Attachments: Links to documentation, measurements, reports, data, or other materials that help others understand and verify what happened.
 3. Evaluations: Assessments from domain experts, peers, communities, or automated systems. These are not embedded inside the hypercert, but referenced — and they accumulate over time.
 4. Attribution and Ownership: A record of who holds which share of the contribution, allowing both contributors and funders to prove their role in creating the result.
 
@@ -169,22 +169,6 @@ Crowdfunding groups, DAOs, community funds, and citizen coalitions buy hypercert
 
 Governments also have strong reasons to buy or hold hypercerts. They fund significant amounts of public-value work — from environmental restoration to digital infrastructure, scientific initiatives, and social programs. Hypercerts give governments a verifiable way to show how public resources were used and what outcomes were achieved. This supports transparency, improves procurement and grant making, strengthens performance-based budgeting, and gives citizens a clearer understanding of government effectiveness.
 
-## The Hypercerts Architecture (For Builders and Technically Interested Readers)
-
-To unlock value recognition networks, hypercerts must move freely across platforms, accumulate evaluations over time, and connect seamlessly to funding systems. This is not possible with traditional data silos, proprietary databases, or isolated reporting tools.
-
-#### The Data Layer: AT Protocol
-
-The Hypercerts Protocol is built on AT Protocol (ATProto), the decentralized social data layer that also powers Bluesky. ATProto gives Hypercerts three essential properties: portable, user-controlled data stored on Personal or Shared Data Servers; shared schemas (lexicons) that make hypercert data interoperable across applications; and a decentralized trust-graph built on persistent identities.
-
-For a full explanation of why ATProto was chosen and how it compares to alternatives, see [Why ATProto?](/getting-started/why-atproto).
-
-While most of the information that powers value recognition networks lives in this flexible data layer, some elements benefit from stronger guarantees. That's where onchain anchoring comes in — and eventually, tokenization.
-
-#### The Funding Layer: On-chain Anchoring (Planned)
-
-ATProto provides the data layer. But funding requires a stronger guarantee: funders need to know that what they're paying for won't change after the fact. The planned approach is freeze-then-fund — before a hypercert can be funded, its ATProto records are frozen and anchored on-chain. The tokenization layer is not yet implemented. See [Funding & Tokenization](/architecture/funding-and-tokenization) for the full design.
-
 ## Where We're Headed
 
 We're building toward a world where:
@@ -194,12 +178,3 @@ We're building toward a world where:
 * Evaluators are recognized and rewarded — with clear incentives and sustainable business models for producing high-quality assessments.
 
 This is the foundation for value recognition networks: systems that make collective value legible and reward the people who create it.
-
-## Start Building With Us
-
-Hypercerts are an open protocol, and the ecosystem is growing. We are especially interested in hearing from you if:
-
-* you operate or build a funding platform, or
-* you are a funder in an impact domain such as climate, science, digital public goods, open-source, journalism, or community programs.
-
-If you want to help build the infrastructure that recognizes and rewards collective value, we'd love to collaborate.

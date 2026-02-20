@@ -11,7 +11,7 @@ Terms you'll encounter when building with Hypercerts, ordered by how soon you'll
 
 #### Hypercert
 
-A structured digital record of a contribution: who did what, when, where, and with what evidence. The core primitive of the protocol. Technically, a hypercert is an activity claim record with linked contributions, evidence, measurements, and evaluations.
+A structured digital record of a contribution: who did what, when, where, and with what evidence. The core primitive of the protocol. Technically, a hypercert is an activity claim record with linked contributions, attachments, measurements, and evaluations.
 
 #### Activity claim
 
@@ -37,9 +37,9 @@ A reference to another record that includes both the AT-URI and CID. Used when o
 
 A third-party assessment of a hypercert. Created on the evaluator's own account, not the original author's. Lexicon: `org.hypercerts.claim.evaluation`.
 
-#### Evidence
+#### Attachment
 
-Supporting documentation attached to a hypercert — a URL, uploaded file, or IPFS link. Lexicon: `org.hypercerts.claim.evidence`.
+Supporting documentation linked to one or more records — a URL, uploaded file, or IPFS link. Can reference any record type, not only activity claims. Lexicon: `org.hypercerts.claim.attachment`.
 
 #### Measurement
 
@@ -47,7 +47,7 @@ A quantitative observation attached to a hypercert (e.g., "12 pages written", "5
 
 #### Contribution
 
-A record describing a specific contributor's role in an activity claim, including their DID, role description, and date range. Lexicon: `org.hypercerts.claim.contribution`.
+Contribution information is split across two lexicons: `org.hypercerts.claim.contributorInformation` (identity, display name, image) and `org.hypercerts.claim.contributionDetails` (role, description, timeframe). Contributors are embedded in the activity claim's `contributors` array, which can reference these records or use inline strings.
 
 #### Collection
 
@@ -59,11 +59,27 @@ A versioned schema that defines the structure of a record type. For example, `or
 
 #### Work scope
 
-The "what" dimension of a hypercert, defined using logical operators (`allOf`, `anyOf`, `noneOf`) to precisely bound the work being claimed. See [Defining Work Scopes](/getting-started/defining-work-scopes) for details.
+The "what" dimension of a hypercert, defined using logical operators (`allOf`, `anyOf`, `noneOf`) to precisely bound the work being claimed.
 
-#### Hypergoat / Hyperindex
+#### Hyperindex
 
-The AppView server that indexes hypercert records across the network and exposes them via a GraphQL API at `hypergoat.certified.app/graphql`. This is how applications query hypercert data without reading from individual servers directly.
+The AppView server that indexes hypercert records across the network and exposes them via a GraphQL API at `hyperindex.certified.app/graphql`. This is how applications query hypercert data without reading from individual servers directly.
+
+#### Relay
+
+A server that aggregates repository events from many PDS instances into a single firehose stream. Indexers subscribe to relays to discover new records across the network. Bluesky operates the primary relay at `bsky.network`.
+
+#### Firehose
+
+The real-time stream of all repository changes across the network, provided by relays. Indexers subscribe to the firehose to index new records as they're created. The firehose delivers events in CBOR format.
+
+#### Jetstream
+
+A lightweight, filtered event stream that delivers AT Protocol events in JSON format. Hyperindex uses Jetstream to receive real-time record updates, subscribing only to specific collections like `org.hypercerts.claim.*` to reduce bandwidth.
+
+#### Constellation
+
+An external backlinks service for AT Protocol. Given a record URI, Constellation returns all records that reference it. Used by applications to find evaluations, attachments, and measurements linked to a hypercert — since AT Protocol has no built-in reverse lookup.
 
 #### PDS (Personal Data Server)
 
@@ -71,4 +87,4 @@ The server where your records are stored. You interact with it through the SDK �
 
 #### Certified
 
-The ATProto identity provider for the Hypercerts ecosystem. When you sign up at [certified.app](https://certified.app), you get a DID, a PDS, and an embedded wallet. See [Account & Identity Setup](/getting-started/account-and-identity).
+The ATProto identity provider for the Hypercerts ecosystem. When you sign up at [certified.app](https://certified.app), you get a DID, a PDS, and an embedded wallet. See [Account & Identity Setup](/architecture/account-and-identity).

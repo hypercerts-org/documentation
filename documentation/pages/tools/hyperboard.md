@@ -49,3 +49,9 @@ Because the data lives on ATProto, the board is verifiable. Anyone can inspect t
 {% callout type="note" %}
 Hyperboard reads contributor data directly from ATProto repositories. The underlying records are cryptographically signed and publicly verifiable — anyone can independently confirm who contributed to a hypercert.
 {% /callout %}
+
+## Next steps
+
+- [Creating Your First Hypercert](/getting-started/creating-your-first-hypercert) — build a hypercert with contributors that Hyperboard can display
+- [Core Data Model](/core-concepts/hypercerts-core-data-model) — understand the record types behind a Hyperboard
+- [Architecture Overview](/architecture/overview) — how the protocol stack fits together

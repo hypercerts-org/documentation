@@ -13,7 +13,7 @@ If you followed the [Quickstart](/getting-started/quickstart), you already have 
 
 Sign up at [certified.app](https://certified.app). You'll get:
 
-- **Low-friction sign-in** — No usernames, handles, or passwords to remember. Sign in with just your email and a code.
+- **Low-friction sign-in** — Sign in with just your email and a code. No passwords or protocol knowledge required.
 - **A DID** — Your permanent, portable identifier (e.g., `did:plc:z72i7hdynmk6r22z27h6tvur`). It never changes, even if you switch servers or handles.
 - **A PDS** — Your Personal Data Server, where your hypercerts, evaluations, and other records are stored. You own this data.
 - **An embedded wallet** — Add your existing EVM wallet or get a new one.
@@ -26,7 +26,7 @@ The Hypercerts Protocol is built on AT Protocol — the same decentralized data 
 Certified is a neutral identity provider that isn't tied to any single application. You create an account and immediately have an identity that works across the entire ecosystem — no knowledge of Bluesky, ATProto, or decentralized protocols required.
 
 {% callout type="note" %}
-Already have a Bluesky account or another AT Protocol account? You don't need a Certified account. Any AT Protocol identity works with all Hypercerts applications. Log in with your existing handle (e.g., `alice.bsky.social`) — everything just works.
+Hypercerts is fully interoperable with the AT Protocol ecosystem. If you already have a Bluesky account or any other ATProto identity, log in with your existing handle (e.g., `alice.bsky.social`) and use all Hypercerts applications — no additional account needed.
 {% /callout %}
 
 ---
@@ -39,9 +39,9 @@ Every record you create carries your DID as the author. If you change PDS provid
 
 ---
 
-## Handles and domain verification
+## Handles (your public username) and domain verification
 
-Your handle is a human-readable name like `alice.certified.app`. Unlike your DID, your handle can change — it's a pointer to your DID, not your identity itself.
+Handles are not needed to log in to the Hypercerts ecosystem, but every user has one. They serve as human-readable names for publicly addressing others and for interacting with other applications in the AT Protocol ecosystem that haven't implemented email-based login with Certified. Your handle is a human-readable name like `alice.certified.app`. Unlike your DID, your handle can change — it's a pointer to your DID, not your identity itself.
 
 **Organizations should use custom domain handles.** A handle like `numpy.org` proves organizational identity — anyone can verify that the DID behind `numpy.org` is controlled by whoever controls the domain.
 
@@ -51,10 +51,10 @@ To set up a custom handle, add a DNS TXT record or host a file at `https://your-
 
 ## Organization accounts
 
-For teams with multiple contributors, consider a Shared Data Server (SDS). Multiple people can write to the same repository using their own credentials. This is useful for open-source projects, research labs, and organizations where many people contribute to the same body of work.
+For teams with multiple contributors, create a dedicated organizational account on a PDS. The organization gets its own DID and repository. Team members can write to the organization's repository using app passwords or OAuth scoped to the organizational account. This is useful for open-source projects, research labs, and organizations where many people contribute to the same body of work.
 
 {% callout type="note" %}
-Shared Data Servers are an emerging pattern in the AT Protocol ecosystem. Contact the Hypercerts team if you need multi-contributor access for your organization.
+To set up an organizational account, create an account at [certified.app](https://certified.app) with the organization's email. Use a [custom domain handle](#handles-and-domain-verification) (e.g., `numpy.org`) to prove organizational identity.
 {% /callout %}
 
 ---
@@ -91,5 +91,5 @@ Beyond identity, Certified contributes shared data schemas to the AT Protocol ec
 
 ## Next steps
 
-- [Creating Your First Hypercert](/tutorials/creating-your-first-hypercert) — build a complete hypercert with contributions, evidence, and measurements
-- [Working with Evaluations](/tutorials/working-with-evaluations) — create evaluations of other people's work
+- [Creating Your First Hypercert](/getting-started/creating-your-first-hypercert) — build a complete hypercert with contributions, attachments, and measurements
+- [Working with Evaluations](/getting-started/working-with-evaluations) — create evaluations of other people's work
