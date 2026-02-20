@@ -98,6 +98,13 @@ export default function Layout({ children, frontmatter }) {
             />
             <span className="layout-logo-badge">Docs</span>
           </Link>
+          <span className="header-divider" aria-hidden="true" />
+          <nav className="header-nav" aria-label="Main navigation">
+            <Link href="/getting-started/quickstart" className="header-nav-link">Docs</Link>
+            <Link href="/tools/scaffold" className="header-nav-link">Tools</Link>
+            <a href="https://github.com/gainforest/hypercerts" className="header-nav-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </nav>
+          <span className="header-divider" aria-hidden="true" />
           <button
             className="search-icon-btn"
             onClick={() => setSearchOpen(true)}
