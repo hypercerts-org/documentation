@@ -251,7 +251,8 @@ html.dark .layout-content td {
 }
 
 html.dark .layout-content blockquote {
-  border-left-color: oklch(0.35 0.01 260);
+  border-left-color: oklch(0.40 0.01 260);
+  background: oklch(0.16 0.005 260);
 }
 
 html.dark .pagination {
@@ -989,6 +990,14 @@ a.sidebar-link-active:hover {
   margin-bottom: var(--space-2);
 }
 
+/* Scroll margin so anchor links clear the sticky header */
+.layout-content h1,
+.layout-content h2,
+.layout-content h3,
+.layout-content h4 {
+  scroll-margin-top: calc(var(--header-height) + var(--space-6));
+}
+
 /* Bold text */
 .layout-content strong,
 .layout-content b {
@@ -1028,7 +1037,7 @@ a.sidebar-link-active:hover {
   opacity: 1;
 }
 .layout-content p {
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-5);
 }
 
 .layout-content article > p:last-child {
@@ -1068,7 +1077,7 @@ a.sidebar-link-active:hover {
 
 /* Code blocks */
 .codeblock {
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-6);
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid #1e3a5f;
@@ -1148,7 +1157,7 @@ a.sidebar-link-active:hover {
   padding: var(--space-4);
   border-radius: var(--radius-lg);
   overflow-x: auto;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-6);
   font-family: var(--font-mono);
   font-size: 13px;
   line-height: 20px;
@@ -1166,7 +1175,7 @@ a.sidebar-link-active:hover {
 .layout-content td code,
 .layout-content th code {
   background: var(--color-bg-subtle);
-  padding: 1px 4px;
+  padding: 2px 6px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--color-border);
 }
@@ -1211,12 +1220,14 @@ a.sidebar-link-active:hover {
 
 /* Blockquotes */
 .layout-content blockquote {
-  border-left: 1px solid oklch(0.80 0.01 260);
-  padding: 5px 0 5px 10px;
-  margin: var(--space-4) 0;
+  border-left: 3px solid var(--color-border-strong);
+  padding: var(--space-4) var(--space-5);
+  margin: var(--space-6) 0;
   color: var(--color-text-secondary);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 1.6;
+  background: var(--color-bg-subtle);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
 }
 
 /* Horizontal rules */
