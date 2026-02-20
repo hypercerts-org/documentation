@@ -122,14 +122,10 @@ You can create multiple attachment records — one for the repo, one for the dep
 
 Your hypercert now has a complete structure:
 
-```
+```text
 Activity Claim (the core record)
-├── Contributor 1
-│   ├── ContributorInformation: Alice
-│   └── ContributionDetails: Lead author (weight 70)
-├── Contributor 2
-│   ├── ContributorInformation: Bob
-│   └── ContributionDetails: Technical reviewer (weight 30)
+├── Contribution: Alice (did:plc:alice123), Lead author, weight 70
+├── Contribution: Bob (did:plc:bob456), Technical reviewer, weight 30
 └── Attachment: GitHub repository
 ```
 

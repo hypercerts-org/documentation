@@ -56,7 +56,7 @@ Self-reported receipts are the most accessible option — anyone can create one.
 Tokenization is under active development. This section describes the planned architecture.
 {% /callout %}
 
-A hypercert can optionally be wrapped in an onchain token. This gives funders a programmable proof of their contribution. Tokenization is an optional wrapper around a claim snapshot; the canonical record remains the ATProto data.
+A hypercert can optionally be wrapped in an onchain token. This gives funders a programmable proof of their contribution. Tokenization is an optional wrapper around a claim snapshot; the canonical record remains the AT Protocol data.
 
 A token can represent either a mutable or a locked claim. If the underlying hypercert is locked before tokenization, funders get a stronger guarantee — the claim they reviewed is exactly the claim they funded, and it cannot change after the fact. If the claim is not locked (which can make sense for prospective funding, where the work hasn't happened yet), funders should be clearly informed that the data behind their token may still evolve.
 

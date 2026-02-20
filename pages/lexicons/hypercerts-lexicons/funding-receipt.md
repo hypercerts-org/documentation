@@ -16,7 +16,7 @@ Records a funding receipt for a payment from one user to another. It may be reco
 
 | Property | Type | Required | Description | Comments |
 | --- | --- | --- | --- | --- |
-| `from` | `ref` | ✅ | DID of the sender who transferred the funds | References `app.certified.defs#did`. Leave empty if sender wants to stay anonymous. |
+| `from` | `ref` | ❌ | DID of the sender who transferred the funds | References `app.certified.defs#did`. Omit if the sender wants to stay anonymous. |
 | `to` | `string` | ✅ | The recipient of the funds | Can be identified by DID or a clear-text name. |
 | `amount` | `string` | ✅ | Amount of funding received | |
 | `currency` | `string` | ✅ | Currency of the payment | E.g. EUR, USD, ETH. |
@@ -32,8 +32,8 @@ Records a funding receipt for a payment from one user to another. It may be reco
 
 ## Code Example
 
-{% callout %}
-The SDK is in active development. Package names and API methods may change.
+{% callout type="note" %}
+This example uses the low-level `@atproto/api` with app passwords for brevity. For production, use OAuth — see the [Quickstart](/getting-started/quickstart) and [SDK reference](/tools/sdk).
 {% /callout %}
 
 Create a funding receipt:

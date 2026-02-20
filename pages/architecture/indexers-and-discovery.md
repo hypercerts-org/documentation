@@ -41,7 +41,11 @@ The GraphQL field names are derived from lexicon NSIDs — `org.hypercerts.claim
 
 ATProto has no built-in reverse lookup — given a hypercert URI, there is no native way to find which attachments, evaluations, or measurements reference it. [Constellation](https://constellation.microcosm.blue) is an external backlinks service that solves this.
 
-Constellation indexes ATProto records and returns all records that reference a given subject URI. For example, given an activity claim URI, it returns all evaluations, measurements, and attachments that reference it. The [Scaffold Starter App](/tools/scaffold) uses Constellation for this purpose.
+Constellation indexes AT Protocol records and returns all records that reference a given subject URI. For example, given an activity claim URI, it returns all evaluations, measurements, and attachments that reference it. The [Scaffold Starter App](/tools/scaffold) uses Constellation for this purpose.
+
+{% callout type="note" %}
+Constellation's API is under active development and may change. No known instances have a full network backfill yet.
+{% /callout %}
 
 ## The Hypercerts Indexer: Hyperindex
 

@@ -64,7 +64,7 @@ console.log("Created:", result.hypercertUri);
 console.log("CID:", result.hypercertCid);
 ```
 
-The returned `cid` is a content hash. If the record changes, the CID changes — this is how you verify data integrity.
+The returned `hypercertCid` is a content hash. If the record changes, the CID changes — this is how you verify data integrity.
 
 ### Clean up test data
 

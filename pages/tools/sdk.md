@@ -116,17 +116,21 @@ queryClient.invalidateQueries({ queryKey: atprotoKeys.profile(did) });
 
 If your app also uses Wagmi for onchain operations, share a single `QueryClient`:
 
-```typescript
+```tsx
 const queryClient = new QueryClient();
 const atproto = createATProtoReact({ config, queryClient });
 
-<QueryClientProvider client={queryClient}>
-  <WagmiProvider config={wagmiConfig}>
-    <atproto.Provider>
-      <App />
-    </atproto.Provider>
-  </WagmiProvider>
-</QueryClientProvider>
+function AppRoot() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <WagmiProvider config={wagmiConfig}>
+        <atproto.Provider>
+          <App />
+        </atproto.Provider>
+      </WagmiProvider>
+    </QueryClientProvider>
+  );
+}
 ```
 
 ## Repository API

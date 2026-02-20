@@ -19,7 +19,7 @@ Every hypercert follows a similar path through the system, though the timeline a
 
 **Discovery** makes the hypercert findable. Relays aggregate records from many servers. Indexers build searchable databases. Platforms query indexers to surface hypercerts to users.
 
-**Funding** connects funders to the claim. Funding receipts (`org.hypercerts.funding.receipt`) record who funded what, how much, and when — this works today on ATProto. Optionally, the claim can be frozen and anchored on-chain for tokenized funding. The on-chain tokenization layer is [planned but not yet implemented](/core-concepts/funding-and-value-flow).
+**Funding** connects funders to the claim. Funding receipts (`org.hypercerts.funding.receipt`) record who funded what, how much, and when — this works today on AT Protocol. Optionally, the claim can be frozen and anchored on-chain for tokenized funding. The on-chain tokenization layer is [planned but not yet implemented](/core-concepts/funding-and-value-flow).
 
 **Accumulation** continues indefinitely. More evaluations arrive. Additional attachments get attached. The data layer continues evolving.
 
