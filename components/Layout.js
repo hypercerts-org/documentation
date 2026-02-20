@@ -69,6 +69,7 @@ export default function Layout({ children, frontmatter }) {
       </Head>
 
       <header className="layout-header">
+        <a href="#main-content" className="skip-to-content">Skip to content</a>
         <div className="layout-header-inner">
           <button
             className="hamburger-btn"
@@ -98,6 +99,16 @@ export default function Layout({ children, frontmatter }) {
             <span className="layout-logo-badge">Docs</span>
           </Link>
           <button
+            className="search-icon-btn"
+            onClick={() => setSearchOpen(true)}
+            type="button"
+            aria-label="Search"
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M12.01 12a4.25 4.25 0 1 0-6.02-6 4.25 4.25 0 0 0 6.02 6Zm0 0 3.24 3.25" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
+            </svg>
+          </button>
+          <button
             className="search-pill"
             onClick={() => setSearchOpen(true)}
             type="button"
@@ -121,7 +132,7 @@ export default function Layout({ children, frontmatter }) {
           onToggleCollapse={toggleCollapsed}
         />
 
-        <main className="layout-content">
+        <main className="layout-content" id="main-content">
           <Breadcrumbs />
           <article>{children}</article>
 
