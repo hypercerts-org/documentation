@@ -21,7 +21,7 @@
 
 .sidebar-content::-webkit-scrollbar-thumb,
 .toc::-webkit-scrollbar-thumb {
-  background: transparent;
+  background: rgba(0, 0, 0, 0.08);
   border-radius: 3px;
 }
 
@@ -57,7 +57,7 @@
 .sidebar-content,
 .toc {
   scrollbar-width: thin;
-  scrollbar-color: transparent transparent;
+  scrollbar-color: rgba(0, 0, 0, 0.08) transparent;
 }
 
 .sidebar-content:hover,
@@ -83,11 +83,11 @@
   --color-bg-subtle: oklch(0.96 0.005 260);
   --color-border: oklch(0.91 0.005 260);
   --color-border-strong: oklch(0.86 0.008 260);
-  --color-text-primary: oklch(0.40 0.015 260);
+  --color-text-primary: oklch(0.30 0.015 260);
   --color-text-heading: oklch(0.20 0.01 260);
   --color-text-title: oklch(0.16 0.005 260);
   --color-text-secondary: oklch(0.55 0.01 260);
-  --color-text-sidebar: oklch(0.40 0.015 260);
+  --color-text-sidebar: oklch(0.35 0.015 260);
 
   /* Accent */
   --color-link: oklch(0.50 0.18 260);
@@ -107,7 +107,7 @@
   /* Layout */
   --sidebar-width: 250px;
   --toc-width: 250px;
-  --content-max-width: 920px;
+  --content-max-width: 768px;
   --header-height: 64px;
 
   /* Spacing (8px grid) */
@@ -711,7 +711,7 @@ a.sidebar-link-active:hover {
   flex: 1;
   min-width: 0;
   max-width: var(--content-max-width);
-  padding: var(--space-6) 0 var(--space-8) 72px;
+  padding: var(--space-6) var(--space-8) var(--space-8) 72px;
 }
 
 .layout-content article {
@@ -840,13 +840,14 @@ a.sidebar-link-active:hover {
   letter-spacing: -0.01em;
   color: var(--color-text-heading);
   line-height: 32px;
-  margin-top: var(--space-12);
+  margin-top: 56px;
   margin-bottom: var(--space-4);
 }
 
 .layout-content h3 {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
+  letter-spacing: -0.005em;
   color: var(--color-text-heading);
   line-height: 1.4;
   margin-top: var(--space-8);
@@ -1414,6 +1415,20 @@ html.dark .search-overlay {
   color: var(--color-text-secondary);
 }
 
+.search-result-item-selected {
+  background: var(--hover-bg);
+}
+
+.search-result-section {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-secondary);
+  padding: 8px 12px 4px;
+  margin-top: 4px;
+}
+
 /* ===== Responsive ===== */
 
 /* Tablet: TOC hidden */
@@ -1520,7 +1535,7 @@ html.dark .search-overlay {
   }
 
   .layout-content h3 {
-    font-size: 15px;
+    font-size: 17px;
   }
 
   /* Stack pagination on mobile */
