@@ -108,7 +108,7 @@
   --sidebar-width: 250px;
   --toc-width: 250px;
   --content-max-width: 768px;
-  --header-height: 64px;
+  --header-height: 56px;
 
   /* Spacing (8px grid) */
   --space-1: 4px;
@@ -471,6 +471,21 @@ img {
   color: var(--color-text-primary);
 }
 
+/* Focus-visible styles for interactive header elements */
+.hamburger-btn:focus-visible,
+.search-pill:focus-visible,
+.search-icon-btn:focus-visible,
+.theme-toggle:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.sidebar-collapse-btn:focus-visible,
+.sidebar-expand-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
 .theme-toggle-sun {
   display: block;
 }
@@ -595,6 +610,31 @@ html.dark .search-pill {
 
 html.dark .header-divider {
   background: oklch(0.30 0.005 260);
+}
+
+/* GitHub icon link in header */
+.header-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  background: none;
+  text-decoration: none;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.header-icon-link:hover {
+  background: var(--hover-bg);
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.header-icon-link:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
 }
 
 /* ===== Breadcrumbs ===== */
@@ -1744,11 +1784,6 @@ html.dark .search-overlay {
 
   .pagination-link-next {
     text-align: left;
-  }
-
-  /* Reduce header height on mobile */
-  :root {
-    --header-height: 56px;
   }
 
   .layout-logo-img {
