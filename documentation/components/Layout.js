@@ -71,6 +71,7 @@ export default function Layout({ children, frontmatter }) {
               alt="Hypercerts"
               className="layout-logo-img"
             />
+            <span className="layout-logo-badge">Docs</span>
           </Link>
         </div>
       </header>
