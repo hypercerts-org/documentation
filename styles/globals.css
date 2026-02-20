@@ -324,7 +324,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 a {
-  color: var(--color-link);
+  color: var(--color-text-title);
   text-decoration: none;
 }
 
@@ -678,7 +678,7 @@ html.dark .header-divider {
 }
 
 .breadcrumbs-link:hover {
-  color: var(--color-link);
+  color: var(--color-text-title);
   text-decoration: none;
 }
 
@@ -835,14 +835,14 @@ a.sidebar-link:hover {
 }
 
 .sidebar-link-active {
-  color: var(--color-link);
+  color: var(--color-text-title);
   font-weight: 500;
   background: var(--active-bg);
 }
 
 a.sidebar-link-active:hover {
   background: var(--active-bg);
-  color: var(--color-link);
+  color: var(--color-text-title);
 }
 
 /* Parent nav item whose children contain the active page */
@@ -990,7 +990,7 @@ a.sidebar-link-active:hover {
 .pagination-title {
   display: block;
   font-size: 14px;
-  color: var(--color-link);
+  color: var(--color-text-title);
   font-weight: 500;
 }
 
@@ -1073,7 +1073,7 @@ a.sidebar-link-active:hover {
 }
 
 .heading-anchor:hover {
-  color: var(--color-link);
+  color: var(--color-text-title);
   text-decoration: none;
 }
 
@@ -1106,7 +1106,7 @@ a.sidebar-link-active:hover {
 
 /* Links inside content */
 .layout-content a {
-  color: var(--color-link);
+  color: var(--color-text-title);
   text-decoration: none;
   transition: color 0.15s ease;
 }
