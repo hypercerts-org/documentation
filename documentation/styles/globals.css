@@ -389,6 +389,42 @@ img {
   background: var(--hover-bg);
 }
 
+/* Theme toggle */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.theme-toggle:hover {
+  background: var(--hover-bg);
+  color: var(--color-text-primary);
+}
+
+.theme-toggle-sun {
+  display: block;
+}
+
+.theme-toggle-moon {
+  display: none;
+}
+
+html.dark .theme-toggle-sun {
+  display: none;
+}
+
+html.dark .theme-toggle-moon {
+  display: block;
+}
+
 /* ===== Breadcrumbs ===== */
 .breadcrumbs {
   margin-bottom: var(--space-6);
