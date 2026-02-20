@@ -376,11 +376,17 @@ img {
   opacity: 0.8;
 }
 
+.layout-logo-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
 .layout-logo-text {
   font-family: var(--font-display);
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--color-text-title);
 }
 
