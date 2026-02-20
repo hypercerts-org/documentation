@@ -100,7 +100,7 @@ export default function Layout({ children, frontmatter }) {
             <Link href="/getting-started/quickstart" className="header-nav-link">Docs</Link>
             <Link href="/tools/scaffold" className="header-nav-link">Tools</Link>
           </nav>
-          <span className="header-divider" aria-hidden="true" />
+          <div style={{ flex: 1 }} />
           <button
             className="search-icon-btn"
             onClick={() => setSearchOpen(true)}
@@ -122,7 +122,6 @@ export default function Layout({ children, frontmatter }) {
             <span className="search-pill-text">Find something...</span>
             <kbd className="search-pill-kbd"><span>⌘</span>K</kbd>
           </button>
-          <div style={{ flex: 1 }} />
           <ThemeToggle />
           <a
             href="https://github.com/hypercerts-org"
