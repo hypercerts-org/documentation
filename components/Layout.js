@@ -88,10 +88,10 @@ export default function Layout({ children, frontmatter }) {
           <Link href="/" className="layout-logo">
             <img
               src="/images/hypercerts_logo.png"
-              alt=""
+              alt="Hypercerts logo"
               className="layout-logo-icon"
             />
-            <span className="layout-logo-text">hypercerts</span>
+            <span className="layout-logo-text">Hypercerts</span>
             <span className="layout-logo-badge">Docs</span>
           </Link>
           <span className="header-divider" aria-hidden="true" />
