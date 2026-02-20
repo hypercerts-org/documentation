@@ -168,8 +168,6 @@ html.dark .layout-header {
   border-bottom-color: oklch(0.95 0 0 / 0.1);
 }
 
-
-
 html.dark .layout-logo-badge {
   border-color: oklch(0.95 0 0 / 0.15);
   color: var(--color-text-secondary);
@@ -277,7 +275,6 @@ html.dark .pagination-link:hover {
 html.dark .breadcrumbs-separator {
   color: oklch(0.45 0.01 260);
 }
-
 
 html.dark .layout-content hr {
   border-top-color: oklch(0.25 0.005 260);
@@ -798,9 +795,6 @@ html.dark .header-divider {
 }
 
 .sidebar-section-header {
-  display: flex;
-  align-items: center;
-  gap: 6px;
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
@@ -808,18 +802,6 @@ html.dark .header-divider {
   color: var(--color-text-secondary);
   padding: var(--space-1) var(--space-5);
   margin-bottom: var(--space-3);
-}
-
-.sidebar-section-icon {
-  display: inline-flex;
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
-}
-
-.sidebar-section-icon svg {
-  width: 16px;
-  height: 16px;
 }
 
 .sidebar-section-list {
@@ -1821,8 +1803,6 @@ html.dark .search-overlay {
   .pagination-link-next {
     text-align: left;
   }
-
-
 
   .hero-banner {
     margin: calc(-1 * var(--space-6)) calc(-1 * var(--space-4)) var(--space-6) calc(-1 * var(--space-4));

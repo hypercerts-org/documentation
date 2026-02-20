@@ -93,15 +93,7 @@ function NavSection({ item, currentPath }) {
   if (item.section) {
     return (
       <li className="sidebar-section">
-        <h3 className="sidebar-section-header">
-          {item.icon && (
-            <span
-              className="sidebar-section-icon"
-              dangerouslySetInnerHTML={{ __html: item.icon }}
-            />
-          )}
-          {item.section}
-        </h3>
+        <h3 className="sidebar-section-header">{item.section}</h3>
         <ul className="sidebar-section-list">
           {item.children.map((child) => (
             <NavItem
