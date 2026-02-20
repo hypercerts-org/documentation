@@ -188,7 +188,7 @@ html.dark .sidebar-nav-children {
 }
 
 html.dark .sidebar-collapse-btn {
-  background: var(--color-bg);
+  background: transparent;
 }
 
 html.dark .sidebar-content::-webkit-scrollbar-thumb,
@@ -753,7 +753,7 @@ html.dark .header-divider {
   justify-content: center;
   width: 28px;
   height: 28px;
-  background: var(--color-bg);
+  background: transparent;
   border: 1px solid transparent;
   border-radius: var(--radius-sm);
   cursor: pointer;
@@ -763,9 +763,9 @@ html.dark .header-divider {
 }
 
 .sidebar-collapse-btn:hover {
-  background: var(--hover-bg);
-  border-color: var(--color-border);
-  color: var(--color-text-primary);
+  background: transparent;
+  border-color: transparent;
+  color: var(--color-text-secondary);
 }
 
 /* When collapsed, center the button */
