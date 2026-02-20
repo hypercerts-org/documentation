@@ -9,10 +9,6 @@ Hyperboards creates visual contributor boards backed by ATProto data. Build a bo
 
 Live at [hyperboards.org](https://hyperboards.org). Source: [github.com/hypercerts-org/hyperboards](https://github.com/hypercerts-org/hyperboards).
 
-{% callout type="note" %}
-Hyperboards is in beta. Sign in with your ATProto handle to create and manage boards.
-{% /callout %}
-
 ## What it does
 
 Hyperboards turns hypercert data into shareable, embeddable visualizations. Each board is a treemap layout that shows contributors, their roles, and relative weights at a glance.
@@ -33,7 +29,7 @@ Because boards pull data from ATProto repositories, the contributor information 
 
 ## Embedding
 
-Add a Hyperboard to any website:
+Add a board to any website:
 
 ```html
 <iframe
@@ -55,14 +51,6 @@ Replace `BOARD_ID` with your board's identifier from the dashboard.
 **Impact portfolios** — Contributors can link to boards as portable proof of their work. Because the underlying records are signed, the attribution is credible across platforms.
 
 **Recognition** — Publicly acknowledge contributors in a visual, shareable format that is not locked into any single platform.
-
-## Tech stack
-
-| Component | Technology |
-|-----------|------------|
-| Framework | Next.js, TypeScript |
-| Data | ATProto repositories via Hypercerts SDK |
-| Embedding | iframe widget |
 
 ## See also
 
