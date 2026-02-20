@@ -153,8 +153,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: var(--color-text-primary);
   background: var(--color-bg);
-  line-height: 1.65;
+  line-height: 1.6;
   font-size: 16px;
+  font-weight: 400;
 }
 
 a {
@@ -579,6 +580,7 @@ a.sidebar-link-active:hover {
 .layout-content h1 {
   font-size: 32px;
   font-weight: 700;
+  letter-spacing: -0.02em;
   color: var(--color-text-title);
   line-height: 1.25;
   margin-top: 0;
@@ -588,6 +590,7 @@ a.sidebar-link-active:hover {
 .layout-content h2 {
   font-size: 24px;
   font-weight: 700;
+  letter-spacing: -0.01em;
   color: var(--color-text-heading);
   line-height: 32px;
   margin-top: var(--space-12);
@@ -667,7 +670,7 @@ a.sidebar-link-active:hover {
 
 .layout-content article li {
   margin: 8px 0;
-  line-height: 1.65;
+  line-height: 1.6;
 }
 
 .layout-content article li > p {
