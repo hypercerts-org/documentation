@@ -1409,7 +1409,7 @@ a.sidebar-link-active:hover {
   gap: var(--space-2);
   margin-top: var(--space-6);
   padding: 10px 24px;
-  background: var(--color-accent);
+  background: oklch(0.15 0 0);
   font-family: var(--font-display);
   font-size: 15px;
   font-weight: 600;
@@ -1418,8 +1418,22 @@ a.sidebar-link-active:hover {
 }
 
 .hero-cta:hover {
-  background: var(--color-link-hover);
+  background: oklch(0.25 0 0);
   transform: translateY(-1px);
+}
+
+html.dark .hero-cta {
+  background: oklch(0.90 0 0);
+  color: oklch(0.15 0 0);
+}
+
+html.dark .hero-cta:hover {
+  background: oklch(0.95 0 0);
+}
+
+html.dark .layout-content a.hero-cta,
+html.dark .layout-content a.hero-cta:hover {
+  color: oklch(0.15 0 0);
 }
 
 /* ===== Component: CardLink ===== */
