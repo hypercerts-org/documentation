@@ -154,6 +154,19 @@ export function Sidebar({ isOpen, onClose, collapsed, onToggleCollapse }) {
           </svg>
         </button>
 
+        {/* Mobile close button — shown only when drawer is open */}
+        {isOpen && (
+          <button
+            className="sidebar-close-btn"
+            onClick={onClose}
+            aria-label="Close navigation"
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+          </button>
+        )}
+
         {/* Nav content — hidden when collapsed */}
         <div className="sidebar-content">
           <ul className="sidebar-nav">

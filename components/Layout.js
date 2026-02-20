@@ -90,6 +90,11 @@ export default function Layout({ children, frontmatter }) {
               alt="Hypercerts"
               className="layout-logo-img"
             />
+            <img
+              src="/images/hypercerts_logo_horizontal_white.svg"
+              alt="Hypercerts"
+              className="layout-logo-img layout-logo-img-dark"
+            />
             <span className="layout-logo-badge">Docs</span>
           </Link>
           <button
