@@ -128,7 +128,7 @@ export default function Layout({ children, frontmatter }) {
           <div style={{ flex: 1 }} />
           <ThemeToggle />
           <a
-            href="https://github.com/gainforest/hypercerts"
+            href="https://github.com/hypercerts-org"
             className="header-icon-link"
             target="_blank"
             rel="noopener noreferrer"
