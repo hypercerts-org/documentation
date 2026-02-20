@@ -94,7 +94,6 @@ export default function Layout({ children, frontmatter }) {
               className="layout-logo-icon"
             />
             <span className="layout-logo-text">Hypercerts</span>
-            <span className="layout-logo-badge">Docs</span>
           </Link>
           <span className="header-divider" aria-hidden="true" />
           <nav className="header-nav" aria-label="Main navigation">
