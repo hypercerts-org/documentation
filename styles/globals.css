@@ -395,6 +395,26 @@ img {
   line-height: 1;
 }
 
+/* Skip to content link */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  text-decoration: none;
+}
+
+.skip-to-content:focus {
+  position: static;
+  display: block;
+  padding: 8px 16px;
+  background: var(--color-accent);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  z-index: 999;
+  text-align: center;
+}
+
 .hamburger-btn {
   display: none;
   align-items: center;
@@ -408,6 +428,25 @@ img {
 }
 
 .hamburger-btn:hover {
+  background: var(--hover-bg);
+}
+
+/* Mobile search icon button */
+.search-icon-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-1);
+  color: var(--color-text-primary);
+  border-radius: var(--radius-sm);
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.search-icon-btn:hover {
   background: var(--hover-bg);
 }
 
