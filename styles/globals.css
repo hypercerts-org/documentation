@@ -535,6 +535,67 @@ html.dark .theme-toggle-moon {
   }
 }
 
+/* Search pill affordance shadow */
+.search-pill {
+  box-shadow: 0 1px 3px oklch(0 0 0 / 0.06);
+}
+
+.search-pill:hover {
+  box-shadow: 0 1px 4px oklch(0 0 0 / 0.10);
+}
+
+html.dark .search-pill {
+  box-shadow: 0 1px 3px oklch(0 0 0 / 0.2);
+}
+
+/* Header nav links */
+.header-nav {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+}
+
+.header-nav-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.header-nav-link:hover {
+  background: var(--hover-bg);
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+/* Header group dividers */
+.header-divider {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .header-divider {
+    display: block;
+    width: 1px;
+    height: 20px;
+    background: var(--color-border);
+    margin: 0 var(--space-2);
+  }
+}
+
+html.dark .header-divider {
+  background: oklch(0.30 0.005 260);
+}
+
 /* ===== Breadcrumbs ===== */
 .breadcrumbs {
   margin-bottom: var(--space-6);
