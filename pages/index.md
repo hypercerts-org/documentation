@@ -37,7 +37,7 @@ Hypercerts are structured digital records of contributions — who did what, whe
 | **[Scaffold Starter App](/tools/scaffold)** | A Next.js starter app for building on ATProto with the Hypercerts SDK |
 | **[Hypercerts CLI](/tools/hypercerts-cli)** | A Go command-line tool for managing hypercerts on ATProto |
 | **[Hyperindex](/tools/hyperindex)** | ATProto indexer that indexes hypercert records and exposes them via GraphQL |
-| **[Hyperboard](/tools/hyperboard)** | A visual board that showcases the contributors to a hypercert |
+| **[Hyperboards](/tools/hyperboards)** | Visual contributor boards on ATProto — see who built what, beautifully |
 
 ## Architecture
 
