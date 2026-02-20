@@ -1561,6 +1561,10 @@ html.dark .search-overlay {
     display: flex;
   }
 
+  .search-icon-btn {
+    display: flex;
+  }
+
   .sidebar {
     position: fixed;
     top: var(--header-height);
