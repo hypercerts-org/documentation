@@ -272,9 +272,6 @@ html.dark .breadcrumbs-separator {
   color: oklch(0.45 0.01 260);
 }
 
-html.dark .layout-content a {
-  text-decoration-color: oklch(0.65 0.15 260 / 0.4);
-}
 
 html.dark .layout-content hr {
   border-top-color: oklch(0.25 0.005 260);
@@ -327,7 +324,6 @@ a {
 
 a:hover {
   color: var(--color-link-hover);
-  text-decoration: underline;
 }
 
 a:focus-visible {
@@ -1103,16 +1099,13 @@ a.sidebar-link-active:hover {
 /* Links inside content */
 .layout-content a {
   color: var(--color-link);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  text-decoration-color: rgba(5, 112, 222, 0.4);
-  transition: text-decoration-color 0.15s ease, color 0.15s ease;
+  text-decoration: none;
+  transition: color 0.15s ease;
 }
 
 .layout-content a:hover {
   color: var(--color-link-hover);
-  text-decoration: underline;
-  text-decoration-color: var(--color-link-hover);
+  text-decoration: none;
 }
 
 /* Code blocks */
