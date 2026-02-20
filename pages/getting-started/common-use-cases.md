@@ -21,51 +21,65 @@ const repo = sdk.getRepository(session);
 const result = await repo.hypercerts.create({
   title: "Library maintenance, 2025",
   shortDescription: "Ongoing maintenance of an open-source library",
+  description: "Fixed 47 bugs, reviewed 120 pull requests, updated documentation, and provided community support on Discord.",
   workScope: "Software Development, Open Source",
   startDate: "2025-01-01T00:00:00Z",
   endDate: "2025-12-31T23:59:59Z",
   rights: {
-    rightsName: "Public Display",
-    rightsType: "display",
-    rightsDescription: "Right to publicly display this contribution",
+    name: "Public Display",
+    type: "display",
+    description: "Right to publicly display this contribution",
   },
-  createdAt: new Date().toISOString(),
+  contributions: [
+    {
+      contributors: ["did:plc:alice123"],
+      contributionDetails: "Core developer",
+      weight: "50",
+    },
+    {
+      contributors: ["did:plc:bob456"],
+      contributionDetails: "Documentation lead",
+      weight: "30",
+    },
+    {
+      contributors: ["did:plc:carol789"],
+      contributionDetails: "Community manager",
+      weight: "20",
+    },
+  ],
 });
 ```
 
-After creating the hypercert, the team attaches contribution records for individual maintainers with roles (core developer, documentation lead, community manager). They add attachments linking to the repository, release notes, and commit history. Organizations that depend on the library can fund this work retroactively.
+After creating the hypercert, the team attaches links to the repository, release notes, and commit history. Organizations that depend on the library can fund this work retroactively.
 
 ## Regenerative land stewardship
 
 A conservation group restores degraded forest over several years. They document the work with location data and measurements.
 
 ```typescript
-const locationRef = await repo.locations.create({
-  lpVersion: "1",
-  srs: "http://www.opengis.net/def/crs/OGC/1.3/CRS84",
-  locationType: "coordinate-decimal",
-  location: { string: "-84.10, 10.42" },
-  name: "Restoration site",
-  createdAt: new Date().toISOString(),
-});
-
 const result = await repo.hypercerts.create({
   title: "Forest restoration project, 2020–2025",
   shortDescription: "Reforestation and biodiversity recovery in degraded tropical forest",
+  description: "Restored 200 hectares of degraded tropical forest through native species planting, invasive species removal, and community stewardship programs.",
   workScope: "Ecosystem Restoration, Biodiversity Conservation",
   startDate: "2020-01-01T00:00:00Z",
   endDate: "2025-12-31T23:59:59Z",
-  locations: [locationRef],
   rights: {
-    rightsName: "Public Display",
-    rightsType: "display",
-    rightsDescription: "Right to publicly display this contribution",
+    name: "Public Display",
+    type: "display",
+    description: "Right to publicly display this contribution",
   },
-  createdAt: new Date().toISOString(),
+  locations: [{
+    lpVersion: "1",
+    srs: "EPSG:4326",
+    locationType: "coordinate-decimal",
+    location: "-84.10, 10.42",
+    name: "Restoration site",
+  }],
 });
 ```
 
-The group attaches measurement records tracking hectares restored, native species planted, and carbon sequestration estimates. Attachments include satellite imagery, biodiversity surveys, and field reports. Climate funders or impact investors can review the full record before deciding to support the next phase.
+The group then adds measurement records tracking hectares restored, native species planted, and carbon sequestration estimates. Attachments include satellite imagery, biodiversity surveys, and field reports. Climate funders or impact investors can review the full record before deciding to support the next phase.
 
 ## Scientific research
 
@@ -75,19 +89,36 @@ A research team completes a multi-year study and wants to document the effort wi
 const result = await repo.hypercerts.create({
   title: "Drug delivery mechanism research, 2022–2024",
   shortDescription: "Novel approaches to improving therapeutic delivery",
+  description: "Developed and tested three novel nanoparticle-based drug delivery mechanisms, resulting in two published papers and one patent application.",
   workScope: "Biomedical Research, Drug Delivery",
   startDate: "2022-03-01T00:00:00Z",
   endDate: "2024-11-30T23:59:59Z",
   rights: {
-    rightsName: "Public Display",
-    rightsType: "display",
-    rightsDescription: "Right to publicly display this contribution",
+    name: "Public Display",
+    type: "display",
+    description: "Right to publicly display this contribution",
   },
-  createdAt: new Date().toISOString(),
+  contributions: [
+    {
+      contributors: ["did:plc:pi001"],
+      contributionDetails: "Principal investigator",
+      weight: "40",
+    },
+    {
+      contributors: ["did:plc:postdoc002"],
+      contributionDetails: "Postdoctoral researcher",
+      weight: "35",
+    },
+    {
+      contributors: ["did:plc:grad003"],
+      contributionDetails: "Graduate student",
+      weight: "25",
+    },
+  ],
 });
 ```
 
-The team creates contribution records for each researcher — principal investigator, postdoctoral researchers, graduate students. Attachments link to the published paper (via DOI), lab notebooks, and experimental protocols. Evaluation records capture peer review outcomes. Research foundations or industry partners interested in the field can fund the work.
+Attachments link to the published paper (via DOI), lab notebooks, and experimental protocols. Evaluation records capture peer review outcomes. Research foundations or industry partners interested in the field can fund the work.
 
 ## Community event organization
 
@@ -97,16 +128,16 @@ A group runs regular workshops teaching practical skills to underrepresented com
 const result = await repo.hypercerts.create({
   title: "Community workshops, 2025",
   shortDescription: "Free skill-building workshops for underrepresented groups",
+  description: "Organized and delivered 24 free workshops covering web development, data literacy, and career skills to 450 participants from underrepresented communities.",
   workScope: "Education, Community Building",
   startDate: "2025-01-01T00:00:00Z",
   endDate: "2025-12-31T23:59:59Z",
   rights: {
-    rightsName: "Public Display",
-    rightsType: "display",
-    rightsDescription: "Right to publicly display this contribution",
+    name: "Public Display",
+    type: "display",
+    description: "Right to publicly display this contribution",
   },
-  createdAt: new Date().toISOString(),
 });
 ```
 
-The organizers attach measurement records tracking total attendees, completion rates, and outcomes. Contribution records identify instructors, venue hosts, and curriculum developers. Attachments include workshop materials and participant feedback. Organizations with community investment programs can review the record and decide to fund future sessions.
+The organizers add measurement records tracking total attendees, completion rates, and outcomes. Contribution records identify instructors, venue hosts, and curriculum developers. Attachments include workshop materials and participant feedback. Organizations with community investment programs can review the record and decide to fund future sessions.

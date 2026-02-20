@@ -13,7 +13,7 @@ The protocol operates across three layers that work together to enable portable 
 
 The **Data Layer** is the foundation. AT Protocol stores claims, attachments, and evaluations. Personal Data Servers (PDS) host user-controlled records — organizations can create dedicated PDS accounts for shared repositories. Relays aggregate data across servers. Indexers build queryable views that applications consume.
 
-The **Application Layer** sits on top of the data layer. Funding platforms, dashboards, and evaluation tools live here. These applications read from and write to the data layer below.
+The **Application Layer** sits on top of the data layer. Funding platforms, dashboards, and evaluation tools live here. These applications read from and write to the data layer using the [Hypercerts SDK](/tools/sdk) and [Hyperindex](/tools/hyperindex).
 
 The **Ownership Layer** is planned but not yet implemented. The intended design uses a freeze-then-fund model where hypercerts are frozen and anchored on-chain before funding — ensuring funders know exactly what they are paying for. See [Funding & Value Flow](/core-concepts/funding-and-value-flow) for details.
 
@@ -37,7 +37,7 @@ Indexers read from relays and build queryable databases. They filter for specifi
 
 #### Lexicons
 
-Lexicons are shared schemas that define record structure. `org.hypercerts.claim.activity` specifies fields like `workScope`, `startDate`, and `endDate`. Any application that knows the lexicon can parse the record. This enables interoperability without custom integrations.
+Lexicons are shared schemas that define record structure. For example, `org.hypercerts.claim.activity` specifies fields like `workScope`, `startDate`, and `endDate`. Other lexicons define attachments, measurements, evaluations, rights, funding receipts, and collections. Any application that knows the lexicons can parse any record. This enables interoperability without custom integrations. See [Introduction to Lexicons](/lexicons/introduction-to-lexicons) for the full set.
 
 #### The Flow
 
@@ -123,4 +123,4 @@ For the planned on-chain funding and tokenization design, see [Funding & Value F
 
 To understand the specific record types and their schemas, see [Introduction to Lexicons](/lexicons/introduction-to-lexicons).
 
-To learn why ATProto was chosen for the data layer, see [Why ATProto?](/core-concepts/why-atproto).
+To learn why ATProto was chosen for the data layer, see [Why AT Protocol?](/core-concepts/why-at-protocol).

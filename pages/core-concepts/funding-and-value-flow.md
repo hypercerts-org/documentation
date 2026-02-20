@@ -26,7 +26,7 @@ Funding can be **prospective** (before work begins) or **retroactive** (after ou
 | **Sale of impact certificates** | Funders purchase certificates representing completed work |
 | **Auction of impact certificates** | Competitive bidding on verified impact claims |
 
-Multiple mechanisms can coexist for the same activity — a project might receive a grant prospectively and sell impact certificates retroactively. Hypercerts allows us to track it accurately without double counting.
+Multiple mechanisms can coexist for the same activity — a project might receive a grant prospectively and sell impact certificates retroactively. Hypercerts tracks this accurately without double counting: every funding receipt references the specific activity claim it funds, and each claim can only be wrapped in one onchain token (the single-wrap constraint). This makes it possible to compute total funding per claim across all receipts.
 
 ## Tracking funding
 
@@ -56,7 +56,7 @@ Self-reported receipts are the most accessible option — anyone can create one.
 Tokenization is under active development. This section describes the planned architecture.
 {% /callout %}
 
-A hypercert can optionally be wrapped in an onchain token. This gives funders a programmable proof of their contribution.
+A hypercert can optionally be wrapped in an onchain token. This gives funders a programmable proof of their contribution. Tokenization is an optional wrapper around a claim snapshot; the canonical record remains the ATProto data.
 
 A token can represent either a mutable or a locked claim. If the underlying hypercert is locked before tokenization, funders get a stronger guarantee — the claim they reviewed is exactly the claim they funded, and it cannot change after the fact. If the claim is not locked (which can make sense for prospective funding, where the work hasn't happened yet), funders should be clearly informed that the data behind their token may still evolve.
 
@@ -95,7 +95,7 @@ Carol, a climate funder, reviews Alice's claim and Bob's evaluation. She decides
 | Funding receipt | Carol | `at://did:plc:carol/org.hypercerts.funding.receipt/2f8` |
 | Verification | Alice | `at://did:plc:alice/org.hypercerts.acknowledgement/3f2` |
 
-The receipt links to Alice's activity claim, creating a verifiable record that Carol funded this work. The actual payment — whether by bank transfer, credit card, or any other method — happens outside the protocol. Alice verifies the funding receipt.
+The receipt links to Alice's activity claim, creating a verifiable record that Carol funded this work. The actual payment — whether by bank transfer, credit card, or any other method — happens outside the protocol. Alice creates an acknowledgement — a record confirming the receipt's accuracy — to strengthen the credibility of Carol's funding claim.
 
 ### Stage 3 — Lock and tokenize
 
@@ -138,3 +138,5 @@ Two years later, a second evaluator, Eve, assesses the health of Alice's trees a
 - [Architecture Overview](/architecture/overview) — how the full protocol stack fits together
 - [Data Flow & Lifecycle](/architecture/data-flow-and-lifecycle) — how a hypercert moves through the system
 - [Roadmap](/roadmap) — current build priorities and development phases
+
+Next: [Hypercerts SDK](/tools/sdk) — the TypeScript SDK for building on the Hypercerts protocol.

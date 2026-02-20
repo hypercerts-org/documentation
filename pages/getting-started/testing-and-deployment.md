@@ -21,12 +21,15 @@ Point your SDK to the local instance instead of production:
 import { createATProtoSDK } from "@hypercerts-org/sdk-core";
 
 const sdk = createATProtoSDK({
-  service: "http://localhost:2583", // Local PDS
   oauth: {
-    clientId: "https://your-app.com/client-metadata.json",
-    redirectUri: "https://your-app.com/callback",
+    clientId: "http://localhost/",
+    redirectUri: "http://127.0.0.1:3000/api/auth/callback",
     scope: "atproto",
+    jwksUri: "http://127.0.0.1:3000/.well-known/jwks.json",
+    jwkPrivate: process.env.ATPROTO_JWK_PRIVATE!,
+    developmentMode: true,
   },
+  handleResolver: "http://localhost:2583", // Local PDS
 });
 ```
 
@@ -46,19 +49,19 @@ const repo = sdk.getRepository(session);
 const result = await repo.hypercerts.create({
   title: "Test: reforestation project Q1 2026",
   shortDescription: "Integration test — safe to delete.",
+  description: "Test record for verifying SDK integration.",
   workScope: "test",
   startDate: "2026-01-01T00:00:00Z",
   endDate: "2026-03-31T23:59:59Z",
   rights: {
-    rightsName: "Public Display",
-    rightsType: "display",
-    rightsDescription: "Right to publicly display this contribution",
+    name: "Public Display",
+    type: "display",
+    description: "Right to publicly display this contribution",
   },
-  createdAt: new Date().toISOString(),
 });
 
-console.log("Created:", result.uri);
-console.log("CID:", result.cid);
+console.log("Created:", result.hypercertUri);
+console.log("CID:", result.hypercertCid);
 ```
 
 The returned `cid` is a content hash. If the record changes, the CID changes — this is how you verify data integrity.
@@ -68,7 +71,7 @@ The returned `cid` is a content hash. If the record changes, the CID changes —
 Delete test records when you're done to keep your repository clean:
 
 ```typescript
-await repo.hypercerts.delete(result.uri);
+await repo.hypercerts.delete(result.hypercertUri);
 ```
 
 Deletion removes the record from your PDS. Cached copies may persist in indexers temporarily.
@@ -84,24 +87,24 @@ When creating or updating records, the PDS validates them against the lexicon sc
 Every record type has required fields. The PDS returns a validation error if any are missing.
 
 ```typescript
-// ❌ Rejected — missing title and shortDescription
+// ❌ Rejected — missing required fields
 await repo.hypercerts.create({
-  createdAt: new Date().toISOString(),
+  title: "Community Garden Project",
 });
 
 // ✅ Accepted
 await repo.hypercerts.create({
   title: "Community Garden Project",
   shortDescription: "Built a community garden",
+  description: "Established a half-acre community garden serving 30 families.",
   workScope: "Urban agriculture",
   startDate: "2026-01-01T00:00:00Z",
   endDate: "2026-06-30T23:59:59Z",
   rights: {
-    rightsName: "Public Display",
-    rightsType: "display",
-    rightsDescription: "Right to publicly display this contribution",
+    name: "Public Display",
+    type: "display",
+    description: "Right to publicly display this contribution",
   },
-  createdAt: new Date().toISOString(),
 });
 ```
 
@@ -254,12 +257,12 @@ Use OAuth for production applications. OAuth lets users authorize your app witho
 
 ```bash
 # .env (never commit this file)
-ATPROTO_CLIENT_SECRET=your-client-secret-here
+ATPROTO_JWK_PRIVATE='{"keys":[{"kty":"EC","crv":"P-256",...}]}'
 ```
 
 ```typescript
-const secret = process.env.ATPROTO_CLIENT_SECRET;
-if (!secret) throw new Error("ATPROTO_CLIENT_SECRET not set");
+const jwk = process.env.ATPROTO_JWK_PRIVATE;
+if (!jwk) throw new Error("ATPROTO_JWK_PRIVATE not set");
 ```
 
 ---
