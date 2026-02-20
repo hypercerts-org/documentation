@@ -168,13 +168,7 @@ html.dark .layout-header {
   border-bottom-color: oklch(0.95 0 0 / 0.1);
 }
 
-html.dark .layout-logo-img {
-  display: none;
-}
 
-html.dark .layout-logo-img-dark {
-  display: block;
-}
 
 html.dark .layout-logo-badge {
   border-color: oklch(0.95 0 0 / 0.15);
@@ -382,13 +376,12 @@ img {
   opacity: 0.8;
 }
 
-.layout-logo-img {
-  height: 28px;
-  width: auto;
-}
-
-.layout-logo-img-dark {
-  display: none;
+.layout-logo-text {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text-title);
 }
 
 .layout-logo-badge {
@@ -1794,9 +1787,7 @@ html.dark .search-overlay {
     text-align: left;
   }
 
-  .layout-logo-img {
-    height: 24px;
-  }
+
 
   .hero-banner {
     margin: calc(-1 * var(--space-6)) calc(-1 * var(--space-4)) var(--space-6) calc(-1 * var(--space-4));
