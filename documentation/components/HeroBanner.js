@@ -6,7 +6,7 @@ export function HeroBanner({ title, children }) {
       <DotPattern />
       <div className="hero-banner-content">
         {title && <h1 className="hero-title">{title}</h1>}
-        {children && <p className="hero-subtitle">{children}</p>}
+        {children && <div className="hero-subtitle">{children}</div>}
       </div>
     </div>
   );
