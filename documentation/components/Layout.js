@@ -6,6 +6,7 @@ import { Sidebar } from './Sidebar';
 import { TableOfContents } from './TableOfContents';
 import { getPrevNext } from '../lib/navigation';
 import { Breadcrumbs } from './Breadcrumbs';
+import { ThemeToggle } from './ThemeToggle';
 
 export default function Layout({ children, frontmatter }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -47,6 +48,11 @@ export default function Layout({ children, frontmatter }) {
         {frontmatter?.description && (
           <meta name="description" content={frontmatter.description} />
         )}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var d=document.documentElement;var t=localStorage.getItem('theme');if(t==='dark'){d.classList.add('dark')}else if(t==='light'){d.classList.remove('dark')}else if(window.matchMedia('(prefers-color-scheme:dark)').matches){d.classList.add('dark')}}catch(e){}})()`
+          }}
+        />
       </Head>
 
       <header className="layout-header">
@@ -73,6 +79,8 @@ export default function Layout({ children, frontmatter }) {
             />
             <span className="layout-logo-badge">Docs</span>
           </Link>
+          <div style={{ flex: 1 }} />
+          <ThemeToggle />
         </div>
       </header>
 
