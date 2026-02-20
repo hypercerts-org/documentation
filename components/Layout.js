@@ -57,6 +57,8 @@ export default function Layout({ children, frontmatter }) {
           href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Geist+Mono:wght@400;500&display=swap"
         />
         <title>{pageTitle}</title>
+        <link rel="icon" href="/images/hypercerts_logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/images/hypercerts_logo.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {frontmatter?.description && (
           <meta name="description" content={frontmatter.description} />
