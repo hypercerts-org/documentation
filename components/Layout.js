@@ -147,6 +147,20 @@ export default function Layout({ children, frontmatter }) {
 
         <main className="layout-content" id="main-content">
           <Breadcrumbs />
+          {frontmatter?.draft === true && (
+            <div style={{
+              backgroundColor: '#fef3c7',
+              color: '#92400e',
+              border: '1px solid #fcd34d',
+              borderRadius: '6px',
+              padding: '12px 16px',
+              fontSize: '14px',
+              fontWeight: '500',
+              marginBottom: '24px'
+            }}>
+              📝 This page is a draft and is not listed in the sidebar navigation.
+            </div>
+          )}
           <article>{children}</article>
 
           {(prev || next) && (
