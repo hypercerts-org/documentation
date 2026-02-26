@@ -85,10 +85,12 @@ export function TableOfContents() {
 
   return (
     <nav className="toc" aria-label="Table of contents">
-      <h4 className="toc-title">On this page</h4>
-      <ul className="toc-list">
+      <div className="toc-list">
         {headings.map(({ id, text, level }) => (
-          <li key={id}>
+          <div
+            key={id}
+            className={`toc-item${activeId === id ? " toc-item-active" : ""}`}
+          >
             <a
               href={`#${id}`}
               className={`toc-link${level === 3 ? " toc-link-h3" : ""}${
@@ -110,9 +112,9 @@ export function TableOfContents() {
             >
               {text}
             </a>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </nav>
   );
 }

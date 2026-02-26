@@ -1,3 +1,7 @@
-export function CardGrid({ children }) {
-  return <div className="card-grid">{children}</div>;
+export function CardGrid({ children, columns }) {
+  return (
+    <div className="card-grid" style={columns === 1 ? { gridTemplateColumns: "1fr" } : undefined}>
+      {children}
+    </div>
+  );
 }
