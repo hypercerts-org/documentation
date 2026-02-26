@@ -16,7 +16,7 @@ Sign up at [certified.app](https://certified.app). You'll get:
 - **Low-friction sign-in** — Sign in with just your email and a code. No passwords or protocol knowledge required.
 - **A DID** — Your permanent, portable identifier (e.g., `did:plc:z72i7hdynmk6r22z27h6tvur`). It never changes, even if you switch servers or handles.
 - **A PDS** — Your Personal Data Server, where your hypercerts, evaluations, and other records are stored. You own this data.
-- **An embedded wallet** — Add your existing EVM wallet or get a new one.
+- **An (embedded) wallet** — Add your existing EVM wallet or get a new one.
 - **Ecosystem access** — Your identity works across every Hypercerts application.
 
 ### Why Certified?
@@ -59,11 +59,17 @@ To set up an organizational account, create an account at [certified.app](https:
 
 ---
 
-## App passwords
+## Authentication
 
-For scripts, CLI tools, and server-side applications, use app passwords instead of your main password. App passwords are scoped credentials that can be revoked independently.
+### OAuth (for applications)
 
-Create one in your account settings at [certified.app](https://certified.app). Give it a descriptive name (e.g., "CI/CD pipeline" or "Local development"). If a credential is compromised, revoke just that app password — your main account stays secure.
+Applications authenticate users via AT Protocol OAuth. The [Hypercerts SDK](/tools/sdk) handles the full OAuth flow — authorization, token management, and session restoration. Users authorize your app through their PDS and never share credentials with your application. See the [Quickstart](/getting-started/quickstart) for the SDK setup.
+
+### App passwords (for scripts and CLI)
+
+For scripts, CLI tools, and server-side automation, use app passwords instead of your main password. App passwords are scoped credentials that can be revoked independently.
+
+Create one in your account settings at [certified.app](https://certified.app). Give it a descriptive name (e.g., "CI/CD pipeline" or "Local development"). If a credential is compromised, revoke just that app password — your main account stays secure. The [Hypercerts CLI](/tools/hypercerts-cli) uses app passwords for authentication.
 
 {% callout type="warning" %}
 Never commit app passwords to version control. Use environment variables or a secrets manager.
@@ -85,7 +91,7 @@ Without your recovery key, account recovery is difficult or impossible. Save it 
 
 ## The app.certified namespace
 
-Beyond identity, Certified contributes shared data schemas to the AT Protocol ecosystem. You'll see `app.certified.*` in some lexicon names — for example, [`app.certified.location`](/lexicons/general-lexicons/location) defines how geographic locations are represented. These are general-purpose schemas available to any application on AT Protocol, not just Hypercerts.
+Beyond identity, Certified contributes shared data schemas to the AT Protocol ecosystem. You'll see `app.certified.*` in some lexicon names — for example, [`app.certified.location`](/lexicons/certified-lexicons/location) defines how geographic locations are represented. These are general-purpose schemas available to any application on AT Protocol, not just Hypercerts.
 
 ---
 

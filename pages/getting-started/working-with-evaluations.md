@@ -20,51 +20,46 @@ const sdk = createATProtoSDK({
   },
 });
 
-const session = await sdk.restoreSession("did:plc:abc123...");
+const session = await sdk.restoreSession("did:plc:evaluator123");
 const repo = sdk.getRepository(session);
 
 // Create an evaluation of an activity claim
-const evaluation = await repo.evaluations.create({
-  subject: {
-    uri: "at://did:plc:xyz789/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a",
-    cid: "bafyreib2rxk3rh6kzwq...",
-  },
+const evaluation = await repo.hypercerts.addEvaluation({
+  subjectUri: "at://did:plc:xyz789/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a",
   evaluators: ["did:plc:evaluator123"],
   summary: "Verified documentation updates. All 15 examples tested and working. High quality contribution with clear impact on developer experience.",
-  createdAt: new Date().toISOString(),
 });
 
-console.log(evaluation);
+console.log(evaluation.uri);
 ```
 
-The `subject` field is a strong reference (URI + CID) to the claim being evaluated. The `evaluators` array contains DIDs of those conducting the assessment.
+The `subjectUri` is the AT-URI of the claim being evaluated. The `evaluators` array contains DIDs of those conducting the assessment.
 
 ## Add measurements
 
 Measurements provide quantitative data that supports your evaluation:
 
 ```typescript
-const measurement = await repo.measurements.create({
-  subject: {
-    uri: "at://did:plc:xyz789/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a",
-    cid: "bafyreib2rxk3rh6kzwq...",
-  },
-  measurers: ["did:plc:evaluator123"],
+const measurement = await repo.hypercerts.addMeasurement({
+  subject: "at://did:plc:xyz789/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a",
   metric: "Documentation page views",
   unit: "views",
   value: "12500",
+  measurers: ["did:plc:evaluator123"],
   methodType: "analytics",
   methodURI: "https://example.com/analytics-methodology",
   evidenceURI: ["https://example.com/analytics-report.pdf"],
-  createdAt: new Date().toISOString(),
+  comment: "Page view data collected over the first 30 days after publication.",
 });
 ```
 
-You can then reference this measurement in your evaluation's `measurements` array (an array of strong references) to link quantitative data to your assessment.
+The `subject` field accepts an AT-URI string or a strong reference. The SDK resolves it to a full strong reference (URI + CID) automatically.
+
+You can then reference this measurement in an evaluation's `measurements` array (an array of strong references) to link quantitative data to your assessment.
 
 ## Evaluation patterns
 
-**Expert review:** Domain experts assess technical quality, methodology, and impact. Their DID becomes a portable credential—other projects can discover and trust evaluations from recognized experts.
+**Expert review:** Domain experts assess technical quality, methodology, and impact. Their DID becomes a portable credential — other projects can discover and trust evaluations from recognized experts.
 
 **Community assessment:** Multiple stakeholders provide independent evaluations. The diversity of evaluator DIDs creates a richer signal than any single assessment.
 

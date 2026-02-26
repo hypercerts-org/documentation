@@ -18,7 +18,7 @@ pnpm add @hypercerts-org/sdk-core
 ```
 
 {% callout type="note" %}
-Building a React app? Install `@hypercerts-org/sdk-react @hypercerts-org/sdk-core @tanstack/react-query` instead. See the [React SDK docs](https://github.com/hypercerts-org/hypercerts-sdk/tree/develop/packages/sdk-react) for usage.
+Building a React app? Install `@hypercerts-org/sdk-react @hypercerts-org/sdk-core @tanstack/react-query` instead. See [Hypercerts SDK — React hooks](/tools/sdk#react-hooks) for setup and available hooks.
 {% /callout %}
 
 ## Authenticate
@@ -57,24 +57,28 @@ const repo = sdk.getRepository(session);
 const result = await repo.hypercerts.create({
   title: "NumPy documentation maintenance, Q1 2026",
   shortDescription: "Updated API docs and fixed 15 broken examples.",
+  description: "Rewrote 12 API reference pages, fixed 15 broken code examples, and added a new getting started guide.",
   workScope: "Documentation",
   startDate: "2026-01-01T00:00:00Z",
   endDate: "2026-03-31T23:59:59Z",
   rights: {
-    rightsName: "Public Display",
-    rightsType: "display",
-    rightsDescription: "Right to publicly display this contribution",
+    name: "Public Display",
+    type: "display",
+    description: "Right to publicly display this contribution",
   },
-  createdAt: new Date().toISOString(),
 });
 
 console.log(result);
 ```
 
-The response includes an AT-URI — a permanent, globally unique identifier for this record:
+The response includes AT-URIs for all created records — the hypercert itself and the rights record the SDK created automatically:
 
-```
-at://did:plc:abc123/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a
+```typescript
+console.log(result.hypercertUri);
+// → at://did:plc:abc123/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a
+
+console.log(result.rightsUri);
+// → at://did:plc:abc123/org.hypercerts.claim.rights/4m3k5j6h7g8f9d0a
 ```
 
-Other records (evaluations, attachments, measurements) reference your hypercert using this URI. The response also includes a CID (content hash) that makes the reference tamper-evident. See the [Activity Claim lexicon](/lexicons/hypercerts-lexicons/activity-claim) for the complete schema.
+Each AT-URI is a permanent, globally unique identifier. Other records (evaluations, attachments, measurements) reference your hypercert using its URI. The response also includes CIDs (content hashes) that make references tamper-evident. See the [Activity Claim lexicon](/lexicons/hypercerts-lexicons/activity-claim) for the complete schema.

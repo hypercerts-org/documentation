@@ -12,6 +12,6 @@ An ATProto lexicon is essentially a schema or template that defines what data ca
 
 All lexicons follow the principle that "everything is a claim" - whether it's a hypercert, a measurement, or an attachment, each represents a verifiable assertion stored on the ATProto network. This creates a composable system where claims can reference and build upon each other while maintaining clear data structures and relationships.
 
-[**General Lexicons**](general-lexicons/) provide foundational building blocks that can be shared across multiple protocols. These include common data types, standardized location references, and other universal concepts that extend beyond hypercerts alone.
+[**Certified Lexicons**](certified-lexicons/) provide foundational building blocks that can be shared across multiple protocols. These include common data types, standardized location references, profiles, badges, and other universal concepts that extend beyond hypercerts alone.
 
 [**Hypercerts Lexicons**](hypercerts-lexicons/) contain the core claim types specific to impact tracking. These lexicons define how to structure and relate different types of impact claims - from the central activity claim (the hypercert itself) to supporting claims like measurements, attachments, and evaluations.

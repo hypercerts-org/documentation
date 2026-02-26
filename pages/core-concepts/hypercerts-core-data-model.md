@@ -7,6 +7,10 @@ description: The data model behind hypercerts — record types, dimensions, and 
 
 A hypercert is a collection of linked records that together describe a contribution. This page explains the data model — what records exist, what they contain, and how they connect.
 
+{% callout type="note" %}
+A hypercert is not one record. It's a bundle of records linked by strong references. The activity claim is the anchor; everything else — contributions, attachments, measurements, evaluations — adds context around it.
+{% /callout %}
+
 ## The core record: activity claim
 
 Every hypercert starts with an **activity claim** — the central record that answers four questions:
@@ -34,6 +38,8 @@ To add further information to the individual contributors, separate records with
 ## Records that attach to a hypercert
 
 Other records link to the activity claim to add context. Again, each is a separate record with its own AT-URI – they reference the activity claim, not the other way around.
+
+The following diagram shows record types and how they reference the activity claim. Records can be created by different people and live in different repositories.
 
 {% figure src="/images/hypercert-erd.png" alt="Hypercert record relationships" /%}
 
@@ -80,6 +86,12 @@ Activity Claim (the core record)
 Every arrow in this tree is a strong reference. Anyone can verify the entire chain by checking CIDs.
 
 
+## Mutability
+
+Activity claims and their linked records are mutable on ATProto by default — authors can update their records as work evolves. Strong references use a CID (content hash) to pin a specific version, so references remain tamper-evident even if the original record is later updated. A full history of edits will be available so that changes are transparent and auditable (work-in-progress).
+
+When a hypercert is ready for funding, it can be locked by anchoring a snapshot onchain. Once locked, the claim cannot change — funders know exactly what they are funding. See [Funding & Value Flow](/core-concepts/funding-and-value-flow) for the full design.
+
 ## What happens next
 
 Once you understand the data model, you're ready to build:
@@ -87,3 +99,5 @@ Once you understand the data model, you're ready to build:
 - **[Quickstart](/getting-started/quickstart)** — create your first activity claim
 - **[Creating Your First Hypercert](/getting-started/creating-your-first-hypercert)** — build a complete hypercert with all record types
 - **[Lexicon reference](/lexicons/hypercerts-lexicons)** — field-by-field schema for every record type
+
+Next: [Certified Identity](/core-concepts/certified-identity) — who authors records and how signatures work.

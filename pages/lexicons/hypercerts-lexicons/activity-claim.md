@@ -96,8 +96,8 @@ In both cases, each component can be precisely identified:
 
 ## Code Example
 
-{% callout %}
-The SDK is in active development. Package names and API methods may change.
+{% callout type="note" %}
+This example uses the low-level `@atproto/api` with app passwords for brevity. For production, use OAuth — see the [Quickstart](/getting-started/quickstart) and [SDK reference](/tools/sdk).
 {% /callout %}
 
 Create an activity claim record:
