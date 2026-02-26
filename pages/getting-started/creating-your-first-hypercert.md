@@ -124,9 +124,16 @@ Your hypercert now has a complete structure:
 
 ```text
 Activity Claim (the core record)
-├── Contribution: Alice (did:plc:alice123), Lead author, weight 70
-├── Contribution: Bob (did:plc:bob456), Technical reviewer, weight 30
-└── Attachment: GitHub repository
+├── Contributor 1
+│   ├── ContributorInformation: Alice
+│   └── ContributionDetails: Lead author
+├── Contributor 2
+│   ├── ContributorInformation: Bob
+│   └── ContributionDetails: Technical reviewer
+├── Attachment: GitHub repository link
+├── Measurement: 12 pages written
+├── Measurement: 8,500 words
+└── Evaluation: "High-quality documentation" (by Carol)
 ```
 
 Every arrow in this tree is a **strong reference** (AT-URI + CID). The CID is a content hash — if a referenced record changes, the hash won't match, making the entire structure tamper-evident. Anyone can verify the chain and discover the contributions and attachments linked to your hypercert by following these references.
