@@ -92,7 +92,9 @@ The ecosystem works because platforms follow shared conventions:
 
 ### Use Standard Lexicons
 
-Do not create custom record types for data that fits existing schemas. If you need to extend a lexicon, propose changes to the standard rather than forking.
+Use the standard `org.hypercerts.*` and `app.certified.*` lexicons for data that fits them — this is what makes your data interoperable across the ecosystem. Default indexers subscribe to these namespaces, so records using standard lexicons are automatically discoverable. If you need additional fields to extend the standard lexicons, create a sidecar record that references the standard record via a strong reference. Since sidecars are likely application-specific, default indexers won't see them unless explicitly configured to index your namespace.
+
+You're also free to create new lexicons for use cases that don't fit the original schemas — ATProto is designed for this.
 
 ### Use Strong References
 
