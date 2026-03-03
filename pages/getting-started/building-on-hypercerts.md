@@ -38,11 +38,17 @@ Build services that help domain experts create structured, verifiable evaluation
 - Educational outcome measurement for learning programs
 
 ```javascript
-// Example: Create an evaluation via the SDK
-const evaluation = await repo.hypercerts.addEvaluation({
-  subjectUri: claimUri,
-  evaluators: [evaluatorDid],
-  summary: "Scientific rigor and reproducibility assessment",
+// Example: Create an evaluation
+const evaluation = await agent.com.atproto.repo.createRecord({
+  repo: agent.session.did,
+  collection: "org.hypercerts.claim.evaluation",
+  record: {
+    subject: { uri: claimUri, cid: claimCid },
+    evaluators: [evaluatorDid],
+    summary: "Scientific rigor and reproducibility assessment",
+    $type: "org.hypercerts.claim.evaluation",
+    createdAt: new Date().toISOString(),
+  },
 });
 ```
 

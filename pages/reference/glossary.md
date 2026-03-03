@@ -15,7 +15,7 @@ A structured digital record of a contribution: who did what, when, where, and wi
 
 #### Activity claim
 
-The central record in the hypercerts data model. Describes the work that was done, when, and in what scope. Created using `repo.hypercerts.create()` in the SDK. Lexicon: `org.hypercerts.claim.activity`.
+The central record in the hypercerts data model. Describes the work that was done, when, and in what scope. Lexicon: `org.hypercerts.claim.activity`.
 
 #### AT-URI
 
@@ -83,7 +83,7 @@ An external backlinks service for AT Protocol. Given a record URI, Constellation
 
 #### PDS (Personal Data Server)
 
-The server where your records are stored. You interact with it through the SDK — you don't need to manage it directly. You can use the Hypercerts Foundation's PDS, Bluesky's, or self-host one. Records are portable between PDS instances.
+The server where your records are stored. You interact with it through the ATProto API — you don't need to manage it directly. You can use the Hypercerts Foundation's PDS, Bluesky's, or self-host one. Records are portable between PDS instances.
 
 #### Certified
 

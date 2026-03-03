@@ -1104,13 +1104,16 @@ a.sidebar-link-active:hover {
 /* Links inside content */
 .layout-content a {
   color: var(--color-text-title);
-  text-decoration: none;
-  transition: color 0.15s ease;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: color-mix(in oklch, var(--color-text-title) 40%, transparent);
+  transition: text-decoration-color 0.15s ease, color 0.15s ease;
 }
 
 .layout-content a:hover {
   color: var(--color-link-hover);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: var(--color-link-hover);
 }
 
 /* Code blocks */

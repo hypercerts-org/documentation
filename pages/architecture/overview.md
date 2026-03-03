@@ -13,7 +13,7 @@ The protocol operates across three layers that work together to enable portable 
 
 The **Data Layer** is the foundation. AT Protocol stores claims, attachments, and evaluations. Personal Data Servers (PDS) host user-controlled records — organizations can create dedicated PDS accounts for shared repositories. Relays aggregate data across servers. Indexers build queryable views that applications consume.
 
-The **Application Layer** sits on top of the data layer. Funding platforms, dashboards, and evaluation tools live here. These applications read from and write to the data layer using the [Hypercerts SDK](/tools/sdk) and [Hyperindex](/tools/hyperindex).
+The **Application Layer** sits on top of the data layer. Funding platforms, dashboards, and evaluation tools live here. These applications read from and write to the data layer using the [ATProto API](https://atproto.com/docs) and [Hyperindex](/tools/hyperindex).
 
 The **Ownership Layer** is planned but not yet implemented. The intended design uses a freeze-then-fund model where hypercerts are frozen and anchored on-chain before funding — ensuring funders know exactly what they are paying for. See [Funding & Value Flow](/core-concepts/funding-and-value-flow) for details.
 
@@ -26,6 +26,8 @@ ATProto components form a pipeline from user-controlled storage to globally quer
 #### Personal Data Servers (PDS)
 
 A PDS stores a user's records — activity claims, contributions, evaluations. Each record gets a unique AT-URI like `at://did:plc:abc123/org.hypercerts.claim.activity/tid`. The PDS signs records and includes them in the user's repository. Users can migrate to a different PDS by updating their DID document.
+
+The [ePDS (extended PDS)](/architecture/account-and-identity#oauth-for-epds) adds email/passwordless login on top of the standard PDS for applications that need it.
 
 #### Relays
 

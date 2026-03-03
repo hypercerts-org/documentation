@@ -11,21 +11,16 @@ We'll document a real scenario: a team that wrote documentation for the Hypercer
 
 ## Set up
 
-Assumes you've completed the [Quickstart](/getting-started/quickstart). You need an authenticated SDK session:
+Assumes you've completed the [Quickstart](/getting-started/quickstart). You need an authenticated ATProto session:
 
 ```typescript
-import { createATProtoSDK } from "@hypercerts-org/sdk-core";
+import { AtpAgent } from "@atproto/api";
 
-const sdk = createATProtoSDK({
-  oauth: {
-    clientId: "https://your-app.com/client-metadata.json",
-    redirectUri: "https://your-app.com/callback",
-    scope: "atproto",
-  },
+const agent = new AtpAgent({ service: "https://bsky.social" });
+await agent.login({
+  identifier: "your-handle.certified.app",
+  password: "your-app-password",
 });
-
-const session = await sdk.callback(callbackParams);
-const repo = sdk.getRepository(session);
 ```
 
 ## Create the activity claim
@@ -33,88 +28,117 @@ const repo = sdk.getRepository(session);
 The activity claim is the core record — it describes what work was done, when, and in what scope.
 
 ```typescript
-const result = await repo.hypercerts.create({
-  title: "Hypercerts Protocol documentation, Q1 2026",
-  shortDescription: "Wrote getting started guides, tutorials, and lexicon reference pages.",
-  description: "Created 12 new documentation pages covering quickstart, SDK setup, use cases, evaluations, and architecture. Migrated from GitBook to a custom Next.js + Markdoc site.",
-  workScope: "Documentation, Hypercerts Protocol",
-  startDate: "2026-01-01T00:00:00Z",
-  endDate: "2026-03-31T23:59:59Z",
-  rights: {
-    name: "Public Display",
-    type: "display",
-    description: "Right to publicly display this contribution",
+const result = await agent.com.atproto.repo.createRecord({
+  repo: agent.session.did,
+  collection: "org.hypercerts.claim.activity",
+  record: {
+    title: "Hypercerts Protocol documentation, Q1 2026",
+    shortDescription: "Wrote getting started guides, tutorials, and lexicon reference pages.",
+    description: "Created 12 new documentation pages covering quickstart, use cases, evaluations, and architecture. Migrated from GitBook to a custom Next.js + Markdoc site.",
+    workScope: { allOf: ["Documentation", "Hypercerts Protocol"] },
+    startDate: "2026-01-01T00:00:00Z",
+    endDate: "2026-03-31T23:59:59Z",
+    $type: "org.hypercerts.claim.activity",
+    createdAt: new Date().toISOString(),
   },
 });
 
-console.log(result.hypercertUri);
+console.log(result.data.uri);
 // → at://did:plc:abc123/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a
 ```
 
-Save the `hypercertUri` and `hypercertCid` from the response — you'll need them to link other records to this hypercert.
+Save the `uri` and `cid` from the response — you'll need them to link other records to this hypercert.
 
 ## Add contributions
 
 You can include contributors directly in the `create()` call. Here's the same hypercert, now with two contributors:
 
 ```typescript
-const result = await repo.hypercerts.create({
-  title: "Hypercerts Protocol documentation, Q1 2026",
-  shortDescription: "Wrote getting started guides, tutorials, and lexicon reference pages.",
-  description: "Created 12 new documentation pages covering quickstart, SDK setup, use cases, evaluations, and architecture.",
-  workScope: "Documentation, Hypercerts Protocol",
-  startDate: "2026-01-01T00:00:00Z",
-  endDate: "2026-03-31T23:59:59Z",
-  rights: {
-    name: "Public Display",
-    type: "display",
-    description: "Right to publicly display this contribution",
+const result = await agent.com.atproto.repo.createRecord({
+  repo: agent.session.did,
+  collection: "org.hypercerts.claim.activity",
+  record: {
+    title: "Hypercerts Protocol documentation, Q1 2026",
+    shortDescription: "Wrote getting started guides, tutorials, and lexicon reference pages.",
+    description: "Created 12 new documentation pages covering quickstart, use cases, evaluations, and architecture.",
+    workScope: { allOf: ["Documentation", "Hypercerts Protocol"] },
+    startDate: "2026-01-01T00:00:00Z",
+    endDate: "2026-03-31T23:59:59Z",
+    $type: "org.hypercerts.claim.activity",
+    createdAt: new Date().toISOString(),
   },
-  contributions: [
-    {
-      contributors: ["did:plc:alice123"],
-      contributionDetails: "Lead author",
-      weight: "70",
-    },
-    {
-      contributors: ["did:plc:bob456"],
-      contributionDetails: "Technical reviewer",
-      weight: "30",
-    },
-  ],
+});
+
+// Add contributions as separate records
+await agent.com.atproto.repo.createRecord({
+  repo: agent.session.did,
+  collection: "org.hypercerts.claim.contribution",
+  record: {
+    subject: { uri: result.data.uri, cid: result.data.cid },
+    contributors: ["did:plc:alice123"],
+    contributionDetails: "Lead author",
+    weight: "70",
+    $type: "org.hypercerts.claim.contribution",
+    createdAt: new Date().toISOString(),
+  },
+});
+
+await agent.com.atproto.repo.createRecord({
+  repo: agent.session.did,
+  collection: "org.hypercerts.claim.contribution",
+  record: {
+    subject: { uri: result.data.uri, cid: result.data.cid },
+    contributors: ["did:plc:bob456"],
+    contributionDetails: "Technical reviewer",
+    weight: "30",
+    $type: "org.hypercerts.claim.contribution",
+    createdAt: new Date().toISOString(),
+  },
 });
 ```
 
 Each contribution has:
-- `contributors` — an array of DIDs (or strong references to `contributorInformation` records for richer profiles)
-- `contributionDetails` — a role string (or a `CreateContributionDetailsParams` object for structured details with role, description, and timeframe)
+- `contributors` — an array of DIDs
+- `contributionDetails` — a role description string
 - `weight` — relative weight of this contribution (weights don't need to sum to 100)
 
 You can also add contributors to an existing hypercert after creation:
 
 ```typescript
-await repo.hypercerts.addContribution({
-  hypercertUri: result.hypercertUri,
-  contributors: ["did:plc:carol789"],
-  contributionDetails: "Editor",
-  weight: "20",
+await agent.com.atproto.repo.createRecord({
+  repo: agent.session.did,
+  collection: "org.hypercerts.claim.contribution",
+  record: {
+    subject: { uri: result.data.uri, cid: result.data.cid },
+    contributors: ["did:plc:carol789"],
+    contributionDetails: "Editor",
+    weight: "20",
+    $type: "org.hypercerts.claim.contribution",
+    createdAt: new Date().toISOString(),
+  },
 });
 ```
 
 ## Attach supporting documentation
 
-Attachments link supporting documents, reports, or URLs to any record. Use `addAttachment()` on the repository:
+Attachments link supporting documents, reports, or URLs to any record. Create an attachment record that references the hypercert:
 
 ```typescript
-await repo.hypercerts.addAttachment({
-  subjects: result.hypercertUri,
-  title: "Documentation site repository",
-  content: "https://github.com/hypercerts-org/hypercerts-atproto-documentation",
-  shortDescription: "Source code and content for the Hypercerts Protocol documentation.",
+await agent.com.atproto.repo.createRecord({
+  repo: agent.session.did,
+  collection: "org.hypercerts.claim.attachment",
+  record: {
+    subjects: [{ uri: result.data.uri, cid: result.data.cid }],
+    title: "Documentation site repository",
+    content: "https://github.com/hypercerts-org/hypercerts-atproto-documentation",
+    shortDescription: "Source code and content for the Hypercerts Protocol documentation.",
+    $type: "org.hypercerts.claim.attachment",
+    createdAt: new Date().toISOString(),
+  },
 });
 ```
 
-The `subjects` field accepts a single AT-URI, a strong reference, or an array of either. The `content` field accepts a URL string, a `Blob` for file uploads, or an array of both.
+The `subjects` field is an array of strong references (AT-URI + CID). The `content` field accepts a URL string or a blob reference.
 
 You can create multiple attachment records — one for the repo, one for the deployed site, one for the migration plan, etc.
 

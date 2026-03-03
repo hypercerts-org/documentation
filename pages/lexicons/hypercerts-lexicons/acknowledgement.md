@@ -27,7 +27,7 @@ Acknowledges the inclusion of one record (subject) within another (context). Typ
 ## Code Example
 
 {% callout type="note" %}
-This example uses the low-level `@atproto/api` with app passwords for brevity. For production, use OAuth — see the [Quickstart](/getting-started/quickstart) and [SDK reference](/tools/sdk).
+This example uses the low-level `@atproto/api` with app passwords for brevity. For production, use OAuth — see the [Quickstart](/getting-started/quickstart).
 {% /callout %}
 
 Acknowledge inclusion in an activity claim:

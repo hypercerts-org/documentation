@@ -38,7 +38,7 @@ Measurements provide inputs for analysis and later evaluation. They help ground 
 ## Code Example
 
 {% callout type="note" %}
-This example uses the low-level `@atproto/api` with app passwords for brevity. For production, use OAuth — see the [Quickstart](/getting-started/quickstart) and [SDK reference](/tools/sdk).
+This example uses the low-level `@atproto/api` with app passwords for brevity. For production, use OAuth — see the [Quickstart](/getting-started/quickstart).
 {% /callout %}
 
 Create a measurement record:

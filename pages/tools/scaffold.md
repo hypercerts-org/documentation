@@ -1,11 +1,11 @@
 ---
 title: Scaffold Starter App
-description: A Next.js starter app for building on ATProto with the Hypercerts SDK.
+description: A Next.js starter app for building on ATProto with the Hypercerts protocol.
 ---
 
 # Scaffold Starter App
 
-The Hypercerts Scaffold is a working Next.js app that demonstrates how to build on ATProto with the Hypercerts SDK. It handles OAuth authentication, profile management, and the full hypercert creation workflow — from basic claims through attachments, locations, measurements, and evaluations.
+The Hypercerts Scaffold is a working Next.js app that demonstrates how to build on ATProto with the Hypercerts protocol. It handles OAuth authentication, profile management, and the full hypercert creation workflow — from basic claims through attachments, locations, measurements, and evaluations.
 
 Live at [hypercerts-scaffold.vercel.app](https://hypercerts-scaffold.vercel.app). Source: [github.com/hypercerts-org/hypercerts-scaffold-atproto](https://github.com/hypercerts-org/hypercerts-scaffold-atproto).
 
@@ -17,7 +17,7 @@ Live at [hypercerts-scaffold.vercel.app](https://hypercerts-scaffold.vercel.app)
 | Styling | Tailwind CSS 4, shadcn/ui (Radix primitives) |
 | State Management | TanStack React Query v5 |
 | Auth / Protocol | AT Protocol OAuth, `@atproto/oauth-client-node` |
-| Hypercerts SDK | `@hypercerts-org/sdk-core` (pre-release) |
+
 | Infrastructure | Redis (session + OAuth state storage) |
 
 ## What the app does
@@ -141,9 +141,9 @@ The scaffold implements ATProto OAuth with DPoP-bound tokens. The flow involves 
 
 **4–6 — Authorization.** The browser redirects to the PDS where the user grants consent. The PDS redirects back to `/api/auth/callback` with an authorization code.
 
-**7–9 — Session creation.** The server exchanges the code for a DPoP-bound session via `sdk.callback()`. The session (tokens, refresh token, DID) is persisted to Redis (`session:<did>`, no TTL) and a `user-did` httpOnly cookie is set in the browser.
+**7–9 — Session creation.** The server exchanges the code for a DPoP-bound session via the OAuth client's `callback()` method. The session (tokens, refresh token, DID) is persisted to Redis (`session:<did>`, no TTL) and a `user-did` httpOnly cookie is set in the browser.
 
-**10–12 — Session restore.** On subsequent requests, the server reads the `user-did` cookie and calls `sdk.restoreSession(did)` to load the session from Redis, auto-refreshing expired tokens. This call is wrapped in React's `cache()` so multiple server components in the same render only hit Redis once.
+**10–12 — Session restore.** On subsequent requests, the server reads the `user-did` cookie and calls `oauthClient.restore(did)` to load the session from Redis, auto-refreshing expired tokens. This call is wrapped in React's `cache()` so multiple server components in the same render only hit Redis once.
 
 **Logout.** `GET /api/auth/logout` revokes tokens with the PDS, deletes the Redis session, and clears the cookie.
 
@@ -168,7 +168,7 @@ All data fetching happens server-side. The ATProto session lives in Redis, acces
 
 The app exposes server-side logic to client components through two patterns: **API Routes** (`app/api/`) for operations that need FormData like file uploads, and **Server Actions** (`lib/create-actions.ts`) for simpler operations called directly without an HTTP round-trip. Client components use TanStack React Query hooks (in `queries/`) to call both.
 
-Server component pages like `app/hypercerts/page.tsx` and `app/hypercerts/[hypercertUri]/page.tsx` skip this entirely — they call the SDK directly on the server and pass fetched data as props to client components.
+Server component pages like `app/hypercerts/page.tsx` and `app/hypercerts/[hypercertUri]/page.tsx` skip this entirely — they call the ATProto client directly on the server and pass fetched data as props to client components.
 
 ### Constellation Backlinks
 
@@ -213,7 +213,7 @@ hypercerts-scaffold/
 │
 ├── lib/
 │   ├── config.ts                     # Centralized config, env validation, URL detection
-│   ├── hypercerts-sdk.ts             # SDK singleton initialization
+│   ├── atproto-client.ts             # ATProto client initialization
 │   ├── atproto-session.ts            # Session restore helpers (server-only, cached)
 │   ├── redis.ts                      # Redis client singleton (server-only)
 │   ├── redis-state-store.ts          # Redis-backed OAuth state + session stores
@@ -257,7 +257,7 @@ hypercerts-scaffold/
 ├── scripts/
 │   └── generate-jwk.mjs             # JWK key pair generator (ES256)
 │
-└── vendor/                           # Packed SDK tarballs (pre-release)
+└── vendor/                           # Packed dependency tarballs (pre-release)
 ```
 
 `app/` contains pages (server components by default) and API routes. `lib/` is split: top-level files are server-only, while `lib/api/` is the client-side fetch layer that browser code calls. `providers/` has one server component (`SignedInProvider`, which handles the auth gate and renders the Navbar) and one client component (`AllProviders`, which sets up the TanStack Query client). `queries/` is entirely client-side TanStack Query hooks. `components/` is entirely client-side React components.
