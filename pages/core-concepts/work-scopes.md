@@ -5,7 +5,7 @@ description: How work scopes make hypercerts machine-readable, composable, and q
 
 # Work Scopes
 
-Work scopes describe what work a hypercert covers. Every activity claim has a `workScope` field that can be either a simple string list or a structured CEL expression for machine-evaluable logic.
+Work scopes describe what work a hypercert covers. Every activity claim has a `workScope` field that can be either a simple string list or a structured [CEL](https://github.com/google/cel-spec) expression for machine-evaluable logic.
 
 ## The simple case
 
@@ -25,7 +25,7 @@ Simple string lists work for individual hypercerts, but they're hard to query at
 
 ## CEL architecture
 
-[CEL (Common Expression Language)](https://github.com/google/cel-spec) is an open-source expression language for evaluating conditions in distributed systems. The design uses two complementary layers:
+The design uses two complementary layers:
 
 1. **Vocabulary layer** — `workScopeTag` records define what each tag *means* (e.g., what `mangrove_restoration` refers to, its description, hierarchy, and links to external ontologies).
 2. **Composition layer** — `celExpression` objects compose those tags into evaluable logic on activity records (e.g., "this work includes mangrove restoration AND environmental education, AND is in Kenya").
@@ -198,6 +198,5 @@ CEL doesn't need to run onchain. The evaluation layer belongs alongside the ATPr
 
 ## Further reading
 
-- [CEL specification](https://github.com/google/cel-spec)
 - [Core Data Model](/core-concepts/hypercerts-core-data-model) — how records connect
 - [Activity Claim lexicon](/lexicons/hypercerts-lexicons/activity-claim) — the `workScope` field in context
