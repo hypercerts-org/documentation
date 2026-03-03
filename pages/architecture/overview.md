@@ -27,6 +27,8 @@ ATProto components form a pipeline from user-controlled storage to globally quer
 
 A PDS stores a user's records — activity claims, contributions, evaluations. Each record gets a unique AT-URI like `at://did:plc:abc123/org.hypercerts.claim.activity/tid`. The PDS signs records and includes them in the user's repository. Users can migrate to a different PDS by updating their DID document.
 
+The [ePDS (extended PDS)](/architecture/account-and-identity#oauth-for-epds) adds email/passwordless login on top of the standard PDS for applications that need it.
+
 #### Relays
 
 Relays (formerly called BGS) aggregate data across many PDS instances. When a user writes a new record to their PDS, the relay picks it up and makes it available to downstream consumers. Relays provide a firehose of all network activity.

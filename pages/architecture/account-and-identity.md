@@ -65,6 +65,16 @@ To set up an organizational account, create an account at [certified.app](https:
 
 Applications authenticate users via AT Protocol OAuth. The AT Protocol client libraries handle the full OAuth flow — authorization, token management, and session restoration. Users authorize your app through their PDS and never share credentials with your application. See the [Quickstart](/getting-started/quickstart) for the authentication setup.
 
+### OAuth (for ePDS)
+The ePDS (extended PDS) adds email/passwordless login on top of the standard PDS, without modifying the underlying AT Protocol PDS code. When a user authenticates, the ePDS Auth Service handles the OTP flow and then issues a standard AT Protocol authorization code back to your app.
+
+Because of this architecture, the standard ATProto OAuth client libraries won't work with ePDS — you'll need to implement [PAR](https://datatracker.ietf.org/doc/html/rfc9126), [DPoP](https://datatracker.ietf.org/doc/html/rfc9449), and [PKCE](https://datatracker.ietf.org/doc/html/rfc7636) directly.
+
+{% callout type="note" %}
+A ready-made skill that implements the full ePDS OAuth flow is available at `.agents/skills/epds-login/SKILL.md` in the [ePDS repository](https://github.com/hypercerts-org/ePDS). See the [ePDS architecture documentation](https://github.com/hypercerts-org/ePDS/blob/main/docs/architecture.md) for a full explanation.
+{% /callout %}
+
+
 ### App passwords (for scripts and CLI)
 
 For scripts, CLI tools, and server-side automation, use app passwords instead of your main password. App passwords are scoped credentials that can be revoked independently.
