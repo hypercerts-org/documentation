@@ -84,25 +84,6 @@ To query hypercerts efficiently, run your own indexer:
 3. **Store in a queryable database** (PostgreSQL, MongoDB, etc.)
 4. **Expose an API** for your application to query
 
-```javascript
-// Pseudocode: Firehose subscription
-relay.subscribe({
-  collections: [
-    'org.hypercerts.claim.activity',
-    'org.hypercerts.claim.evaluation',
-  ],
-  handler: async (event) => {
-    const record = event.record;
-    await db.insert('claims', {
-      uri: event.uri,
-      cid: event.cid,
-      did: event.did,
-      data: record,
-    });
-  },
-});
-```
-
 For relay subscription details, see the [ATProto documentation](https://atproto.com/specs/event-stream).
 
 ## Interoperability Principles
