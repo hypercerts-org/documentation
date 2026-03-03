@@ -30,7 +30,7 @@ For definitions of DID, PDS, Lexicon, XRPC, and Repository, see the [Glossary](/
 
 #### 1. A contributor creates a hypercert
 
-Alice is a software engineer who contributed to NumPy documentation in Q1 2026. She uses an app built on ATProto to create an activity claim. The claim is structured according to the `org.hypercerts.claim.activity` lexicon and stored on her PDS at `alice.certified.app`.
+Alice is a software engineer who contributed to NumPy documentation in Q1 2026. She uses an app built on hypercerts to create an activity claim. The claim is structured according to the `org.hypercerts.claim.activity` lexicon and stored on her PDS at `alice.certified.app`.
 
 The claim gets an AT-URI: `at://did:plc:alice123/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a`. This URI is permanent and globally unique.
 
