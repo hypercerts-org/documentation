@@ -59,7 +59,7 @@ Read-only integrations require only an indexer connection — no PDS needed.
 
 ### Impact Portfolios
 
-Help funders track their investments:
+Help funders track their contributions:
 
 - Aggregate all hypercerts a funder has supported
 - Monitor evaluation updates for funded work
@@ -75,96 +75,6 @@ Build AI systems that participate in the ecosystem:
 - Evaluation assistants that help experts assess work
 - Discovery agents that match funders with relevant projects
 
-## Integration Patterns
-
-### Read-Only Integration
-
-Query an indexer to display hypercerts without writing data.
-
-**When to use:** Dashboards, explorers, analytics tools that only need to read existing data.
-
-```graphql
-# Example: Query hypercerts from Hyperindex
-query {
-  activityClaims(
-    where: { workScope_contains: "climate" }
-    orderBy: createdAt
-    orderDirection: desc
-  ) {
-    uri
-    title
-    shortDescription
-    workScope
-    startDate
-    endDate
-    createdAt
-  }
-}
-```
-
-No authentication required. Simplest integration path. See [Hyperindex](/tools/hyperindex) for the full GraphQL API.
-
-### Write via User PDS
-
-Authenticate users via OAuth and write records to their PDS on their behalf.
-
-**When to use:** Tools where users create their own hypercerts, evaluations, or measurements through your interface.
-
-```javascript
-// OAuth flow
-const session = await sdk.callback(callbackParams);
-const repo = sdk.getRepository(session);
-
-// Write to user's PDS
-await repo.hypercerts.create({
-  title: "Open source library for data processing",
-  shortDescription: "Built and maintained a data processing library.",
-  description: "Developed the core architecture and maintained the library through 3 major releases.",
-  workScope: "Software Development",
-  startDate: "2026-01-01T00:00:00Z",
-  endDate: "2026-06-30T23:59:59Z",
-  rights: {
-    name: "Public Display",
-    type: "display",
-    description: "Right to publicly display this contribution",
-  },
-});
-```
-
-Records are owned by the user's DID. Your platform acts as an interface.
-
-### Write via Organization Account
-
-Create a dedicated organizational account on a PDS and create records under the organization's DID.
-
-**When to use:** Platforms that issue hypercerts on behalf of others, or evaluation services that publish assessments under the platform's authority.
-
-```javascript
-// Platform creates claim on behalf of contributor
-await repo.hypercerts.create({
-  title: "Bounty #123: Fix authentication bug",
-  shortDescription: "Resolved critical authentication vulnerability.",
-  description: "Identified and patched a session fixation vulnerability in the OAuth callback handler.",
-  workScope: "Security, Bug Fix",
-  startDate: "2026-01-15T00:00:00Z",
-  endDate: "2026-01-20T23:59:59Z",
-  rights: {
-    name: "Public Display",
-    type: "display",
-    description: "Right to publicly display this contribution",
-  },
-  contributions: [
-    {
-      contributors: [contributorDid],
-      contributionDetails: "Bug fix author",
-      weight: "100",
-    },
-  ],
-});
-```
-
-Your platform owns the records. Useful for curated or verified claims.
-
 ## Running an Indexer
 
 To query hypercerts efficiently, run your own indexer:
@@ -174,25 +84,6 @@ To query hypercerts efficiently, run your own indexer:
 3. **Store in a queryable database** (PostgreSQL, MongoDB, etc.)
 4. **Expose an API** for your application to query
 
-```javascript
-// Pseudocode: Firehose subscription
-relay.subscribe({
-  collections: [
-    'org.hypercerts.claim.activity',
-    'org.hypercerts.claim.evaluation',
-  ],
-  handler: async (event) => {
-    const record = event.record;
-    await db.insert('claims', {
-      uri: event.uri,
-      cid: event.cid,
-      did: event.did,
-      data: record,
-    });
-  },
-});
-```
-
 For relay subscription details, see the [ATProto documentation](https://atproto.com/specs/event-stream).
 
 ## Interoperability Principles
@@ -201,11 +92,13 @@ The ecosystem works because platforms follow shared conventions:
 
 ### Use Standard Lexicons
 
-Do not create custom record types for data that fits existing schemas. If you need to extend a lexicon, propose changes to the standard rather than forking.
+Use the standard `org.hypercerts.*` and `app.certified.*` lexicons for data that fits them — this is what makes your data interoperable across the ecosystem. Default indexers subscribe to these namespaces, so records using standard lexicons are automatically discoverable. If you need additional fields to extend the standard lexicons, create a sidecar record that references the standard record via a strong reference. Since sidecars are likely application-specific, default indexers won't see them unless explicitly configured to index your namespace.
+
+You're also free to create new lexicons for use cases that don't fit the original schemas — ATProto is designed for this.
 
 ### Use Strong References
 
-Always include CID when referencing records. This ensures tamper-evidence and allows verification.
+Always include CID when referencing records. The CID is a content hash of the record at the time you referenced it — if the record is later modified, the CID won't match, making tampering detectable.
 
 ```javascript
 // Good: includes CID
@@ -214,43 +107,6 @@ Always include CID when referencing records. This ensures tamper-evidence and al
 // Bad: URI only (no tamper-evidence)
 { uri: "at://did:plc:abc/org.hypercerts.claim.activity/123" }
 ```
-
-### Respect Data Ownership
-
-Records belong to the DID that created them. Do not modify or delete records you do not own. If you disagree with a claim, create an evaluation or measurement that references it.
-
-### Build for Federation
-
-Do not assume all data lives on one PDS. Your indexer should aggregate from multiple sources. Your queries should work across the entire network.
-
-## Contributing to the Protocol
-
-The Hypercerts Protocol evolves through community contribution.
-
-### Lexicon Evolution
-
-Propose changes to lexicons through the standard process:
-
-1. **Propose:** Open an issue describing the change and use case
-2. **Discuss:** Community reviews and refines the proposal
-3. **Implement:** Create a pull request with lexicon updates and tests
-
-{% callout type="note" %}
-The GitHub repository for lexicon proposals will be available soon. Check the [Hypercerts GitHub](https://github.com/hypercerts-org) for updates.
-{% /callout %}
-
-### SDK Contributions
-
-The Hypercerts SDK is open source. Contributions welcome:
-
-- Bug fixes and performance improvements
-- New helper functions for common operations
-- Better TypeScript types and documentation
-- Examples and tutorials
-
-### Running a Relay
-
-Help decentralize the network by running a relay node. Relays aggregate events from PDSs and make them available to indexers.
 
 ## Next Steps
 
