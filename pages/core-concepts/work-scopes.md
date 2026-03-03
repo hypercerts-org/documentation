@@ -1,23 +1,31 @@
 ---
-title: CEL Work Scopes
-description: How CEL (Common Expression Language) makes hypercert work scopes machine-readable, composable, and queryable.
+title: Work Scopes
+description: How work scopes make hypercerts machine-readable, composable, and queryable.
 ---
 
-# CEL Work Scopes
+# Work Scopes
 
-Hypercert work scopes describe what work was done. A CEL expression alongside the human-readable work scope makes hypercerts machine-verifiable, composable, and queryable.
+Work scopes describe what work a hypercert covers. Every activity claim has a `workScope` field that can be either a simple string list or a structured CEL expression for machine-evaluable logic.
 
-[CEL (Common Expression Language)](https://github.com/google/cel-spec) is an open-source expression language built by Google for evaluating conditions in distributed systems. It's used by Kubernetes, Firebase, and Google Cloud IAM.
+## The simple case
+
+Most hypercerts use a simple string list for work scopes:
+
+```json
+{
+  "workScope": { "allOf": ["Documentation", "Open Source"] }
+}
+```
+
+This is what the [Quickstart](/getting-started/quickstart) uses. It's human-readable and sufficient for many use cases.
 
 ## Why structured scopes matter
 
-A community in coastal Kenya mints a hypercert for "mangrove restoration and environmental education." A collective in Uganda creates one for "agroforestry with beekeeping." A drone operator in the Amazon documents "biodiversity monitoring in the Negro River region." These are all legible to a person reading them one at a time. They're invisible to any system trying to connect funders to relevant work at scale.
+Simple string lists work for individual hypercerts, but they're hard to query at scale. As the network grows, connecting funders to relevant work, detecting overlapping claims, and matching evaluators to their domains all require machine-readable structure. Free-form text is legible to a person reading one claim at a time — it's invisible to any system trying to operate across thousands of claims.
 
-As the Hypercerts Protocol grows on ATProto — with actions, evaluations, and evidence living as persistent, portable records — the richer the network becomes, the harder it is to find, compare, validate, and compose claims when the most important field is unstructured text.
+## CEL architecture
 
-## Architecture: two layers
-
-The design uses two complementary layers:
+[CEL (Common Expression Language)](https://github.com/google/cel-spec) is an open-source expression language for evaluating conditions in distributed systems. The design uses two complementary layers:
 
 1. **Vocabulary layer** — `workScopeTag` records define what each tag *means* (e.g., what `mangrove_restoration` refers to, its description, hierarchy, and links to external ontologies).
 2. **Composition layer** — `celExpression` objects compose those tags into evaluable logic on activity records (e.g., "this work includes mangrove restoration AND environmental education, AND is in Kenya").
@@ -129,49 +137,20 @@ The `workScope` field on `org.hypercerts.claim.activity` accepts two variants:
 
 ## What CEL unlocks
 
-### Funder matching
+{% callout type="note" %}
+The CEL evaluation runtime is planned. The lexicon schemas are defined, but appview-side evaluation is not yet implemented.
+{% /callout %}
 
-Funders can define their criteria as CEL expressions and the appview matches them against existing hypercerts:
+Once the evaluation runtime is in place, structured scopes enable:
 
-```cel
-// "All mangrove work in East Africa"
-scope.has("mangrove_restoration") && location.country in ["KE", "TZ", "MZ", "MG"]
-```
-
-### Evaluation matching
-
-An auditor who verified mangrove survival rates can express applicability as a CEL condition, and the appview automatically matches it to relevant hypercerts:
-
-```cel
-scope.has("mangrove_restoration")
-  && location.country == "KE"
-  && time.end >= timestamp("2025-01-01T00:00:00Z")
-```
-
-### Overlap detection
-
-When someone mints a new hypercert, CEL can check whether the claimed work scope overlaps with existing claims:
-
-```cel
-existing.scope.overlaps(new.scope)
-  && existing.time.start < new.time.end
-  && new.time.start < existing.time.end
-  && existing.location.region == new.location.region
-```
-
-### Measurement-based queries
-
-Because CEL can access linked measurement records, funders can write queries that go beyond tags:
-
-```cel
-// "Agroforestry that planted 500+ verified trees"
-scope.has("agroforestry")
-  && measurements.exists(m, m.metric == "trees_planted" && m.value >= 500)
-```
+- **Funder matching** — funders define criteria as CEL expressions, and the appview matches them against existing hypercerts automatically.
+- **Evaluation matching** — evaluators express their domain expertise as CEL conditions, and the system surfaces relevant claims for review.
+- **Overlap detection** — when a new hypercert is created, CEL can check whether the claimed work scope overlaps with existing claims in the same time and location.
+- **Measurement-based queries** — because CEL can access linked measurement records, queries can go beyond tags (e.g., "agroforestry projects that planted 500+ verified trees").
 
 ## CEL context schema (v1)
 
-Every CEL expression evaluates against a typed context. Each variable maps to data already present in the activity record and its linked records.
+This schema is planned — it defines the runtime context that appviews will provide when evaluating CEL expressions. Every CEL expression evaluates against a typed context. Each variable maps to data already present in the activity record and its linked records.
 
 | Variable | Type | Source | Description |
 |----------|------|--------|-------------|
@@ -193,7 +172,7 @@ Every CEL expression evaluates against a typed context. Each variable maps to da
 
 ## Starter tag vocabulary
 
-`workScopeTag` records are published as ATProto records that anyone can reference via strong references. [Certified](https://certified.ink) publishes curated tag sets for specific domains. Here's an example for regenerative work:
+`workScopeTag` records are published as ATProto records that anyone can reference via strong references. [Certified](https://certified.app) publishes curated tag sets for specific domains. Here's an example for regenerative work:
 
 | Domain | Example tags |
 |--------|-------------|
