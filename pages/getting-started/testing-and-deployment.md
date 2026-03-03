@@ -33,30 +33,7 @@ Create dedicated test accounts — never use production identities for testing. 
 
 ### Create and verify a test record
 
-Create a record, then read it back to confirm it was stored correctly:
-
-```typescript
-// Create a test hypercert
-const result = await agent.com.atproto.repo.createRecord({
-  repo: agent.session.did,
-  collection: "org.hypercerts.claim.activity",
-  record: {
-    title: "Test: reforestation project Q1 2026",
-    shortDescription: "Integration test — safe to delete.",
-    description: "Test record for verifying integration.",
-    workScope: { allOf: ["test"] },
-    startDate: "2026-01-01T00:00:00Z",
-    endDate: "2026-03-31T23:59:59Z",
-    $type: "org.hypercerts.claim.activity",
-    createdAt: new Date().toISOString(),
-  },
-});
-
-console.log("Created:", result.data.uri);
-console.log("CID:", result.data.cid);
-```
-
-The returned CID is a content hash. If the record changes, the CID changes — this is how you verify data integrity.
+Create a record using the same `createRecord` call from the [Quickstart](/getting-started/quickstart), then read it back to confirm it was stored correctly. The returned CID is a content hash — if the record changes, the CID changes, which is how you verify data integrity.
 
 ### Clean up test data
 
@@ -78,89 +55,19 @@ Deletion removes the record from your PDS. Cached copies may persist in indexers
 
 ## Record constraints
 
-When creating or updating records, the PDS validates them against the lexicon schema. Records that violate constraints are rejected.
+The PDS itself is schema-agnostic — it will accept any record with a valid `$type`. Validation against lexicon schemas happens downstream: indexers and app views ignore or reject malformed records, and client libraries may validate before submission. To ensure your records are indexed and usable across the ecosystem, they should conform to the lexicon schemas.
 
 ### Required fields
 
-Every record type has required fields. The PDS returns a validation error if any are missing.
-
-```typescript
-// ❌ Rejected — missing required fields
-await agent.com.atproto.repo.createRecord({
-  repo: agent.session.did,
-  collection: "org.hypercerts.claim.activity",
-  record: {
-    title: "Community Garden Project",
-    $type: "org.hypercerts.claim.activity",
-  },
-});
-
-// ✅ Accepted
-await agent.com.atproto.repo.createRecord({
-  repo: agent.session.did,
-  collection: "org.hypercerts.claim.activity",
-  record: {
-    title: "Community Garden Project",
-    shortDescription: "Built a community garden",
-    description: "Established a half-acre community garden serving 30 families.",
-    workScope: { allOf: ["Urban agriculture"] },
-    startDate: "2026-01-01T00:00:00Z",
-    endDate: "2026-06-30T23:59:59Z",
-    $type: "org.hypercerts.claim.activity",
-    createdAt: new Date().toISOString(),
-  },
-});
-```
+Every record type has required fields defined in its lexicon. Records missing required fields will be accepted by the PDS but ignored by indexers. See the [lexicon reference](/lexicons/hypercerts-lexicons) for required fields per record type.
 
 ### Datetime format
 
-All datetime fields must use ISO 8601 format.
-
-```typescript
-// ❌ Rejected
-startDate: "01/15/2026"
-
-// ✅ Accepted
-startDate: "2026-01-15T00:00:00Z"
-```
+All datetime fields must use ISO 8601 format (e.g., `2026-01-15T00:00:00Z`).
 
 ### Strong references
 
-When one record references another (e.g., an evaluation referencing an activity claim), the reference must include both the AT-URI and the CID. This makes the reference tamper-evident.
-
-```typescript
-// ❌ Rejected — missing cid
-const evaluation = {
-  subject: {
-    uri: "at://did:plc:abc123/org.hypercerts.claim.activity/3k7",
-  },
-};
-
-// ✅ Accepted
-const evaluation = {
-  subject: {
-    uri: "at://did:plc:abc123/org.hypercerts.claim.activity/3k7",
-    cid: "bafyreiabc123...",
-  },
-};
-```
-
-If the referenced record is updated after you create the reference, the CID will no longer match. Fetch the latest version to get the current CID:
-
-```typescript
-const latest = await agent.com.atproto.repo.getRecord({
-  repo: "did:plc:abc123",
-  collection: "org.hypercerts.claim.activity",
-  rkey: "3k7",
-});
-
-const evaluation = {
-  subject: {
-    uri: latest.data.uri,
-    cid: latest.data.cid,
-  },
-};
-```
+When one record references another (e.g., an evaluation referencing an activity claim), the reference must include both the AT-URI and the CID. The CID is a content hash — if the referenced record is later modified, the CID won't match, making tampering detectable. If you need the current CID, fetch the record with `getRecord` before creating the reference.
 
 ### String and array limits
 
@@ -174,9 +81,9 @@ Blobs (images, documents, attachment files) are uploaded to the PDS separately f
 If your attachment files are too large for blob upload, store them externally (e.g., on IPFS or a public URL) and reference them by URI in the attachment record.
 {% /callout %}
 
-### Validation error summary
+### Common issues
 
-| Error | Cause | Fix |
+| Issue | Cause | Fix |
 |-------|-------|-----|
 | Missing required field | Record omits a field the lexicon marks as required | Include all required fields — see the [lexicon reference](/lexicons/hypercerts-lexicons) |
 | Invalid datetime | Datetime not in ISO 8601 format | Use format: `2026-01-15T00:00:00Z` |
@@ -189,33 +96,7 @@ If your attachment files are too large for blob upload, store them externally (e
 
 ## Rate limits
 
-PDS implementations impose rate limits on API requests. Specific limits vary by PDS — check your provider's documentation.
-
-If you hit a rate limit, retry with exponential backoff:
-
-```typescript
-async function withRetry(fn, maxRetries = 3) {
-  for (let attempt = 0; attempt < maxRetries; attempt++) {
-    try {
-      return await fn();
-    } catch (error) {
-      const isRateLimit = error.message?.includes("rate limit");
-      const hasRetriesLeft = attempt < maxRetries - 1;
-      if (isRateLimit && hasRetriesLeft) {
-        const delay = Math.pow(2, attempt) * 1000; // 1s, 2s, 4s
-        await new Promise((resolve) => setTimeout(resolve, delay));
-      } else {
-        throw error;
-      }
-    }
-  }
-}
-
-// Usage
-const result = await withRetry(() =>
-  agent.com.atproto.repo.createRecord({ /* ... */ })
-);
-```
+PDS implementations impose rate limits on API requests. Specific limits vary by PDS — check your provider's documentation. If you hit a rate limit, retry with exponential backoff.
 
 ---
 
