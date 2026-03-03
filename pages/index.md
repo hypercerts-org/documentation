@@ -12,7 +12,7 @@ Structured digital records of contributions — who did what, when, where, and w
 
 {% card-grid columns=1 %}
 {% card-link title="Quickstart" href="/getting-started/quickstart" icon="<svg viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z\"/></svg>" %}
-Install the SDK and create your first hypercert in under 5 minutes
+Create your first hypercert in under 5 minutes
 {% /card-link %}
 {% card-link title="Creating Your First Hypercert" href="/getting-started/creating-your-first-hypercert" icon="<svg viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z\"/></svg>" %}
 Step-by-step guide to creating a complete hypercert with contributions and attachments
@@ -54,9 +54,6 @@ How hypercerts track funding of activities and optionally wrap claims in onchain
 ## Tools
 
 {% card-grid %}
-{% card-link title="Hypercerts SDK" href="/tools/sdk" icon="<svg viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5\"/></svg>" %}
-TypeScript SDK for ATProto authentication, repository operations, and React integration
-{% /card-link %}
 {% card-link title="Scaffold Starter App" href="/tools/scaffold" icon="<svg viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z\"/></svg>" %}
 Next.js reference app with OAuth, creation wizard, and browsing
 {% /card-link %}

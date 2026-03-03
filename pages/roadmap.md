@@ -30,7 +30,6 @@ The Hypercerts infrastructure divides into six functional areas. Each area has a
 | Component | Priority | Status | Owner |
 |-----------|----------|--------|-------|
 | Lexicons | 🔴 Critical | Active | Hypercerts Foundation |
-| Hypercerts SDK | 🔴 Critical | In Progress | Community |
 | Hyperindex AppView | 🔴 Critical | Active | GainForest → Foundation |
 | IdentityLink | 🟠 High | Live | GainForest → Foundation |
 | EVM Indexer | 🟠 High | Planned | TBD |
@@ -43,7 +42,7 @@ The Hypercerts infrastructure divides into six functional areas. Each area has a
 
 ---
 
-## Lexicons & SDK 🔵
+## Lexicons 🔵
 
 ### Lexicons
 
@@ -78,44 +77,6 @@ Lexicons are the schema definitions that specify the structure of all Hypercerts
 **Resources:**
 - Repository: [github.com/hypercerts-org/hypercerts-lexicon](https://github.com/hypercerts-org/hypercerts-lexicon)
 - Documentation: [impactindexer.org/lexicon](https://impactindexer.org/lexicon)
-
----
-
-### Hypercerts SDK
-
-**Priority:** 🔴 Critical · **Status:** In Progress · **Owner:** Community
-
-A developer toolkit (TypeScript/JavaScript) for creating, reading, and managing Hypercerts records without needing deep ATProto expertise. The SDK handles authentication, record creation, validation against lexicons, and common operations.
-
-**Primary goals:**
-
-1. **Support AI agent coding** — Most future development will happen via AI coding assistants. The SDK must be self-documenting, predictable, and generate clear errors.
-2. **Ensure lexicon quality** — Validates records against lexicons at creation time, preventing malformed data from entering the network.
-
-**Core functions:**
-
-- Create, update, and delete hypercert records
-- Query records by collection, DID, or custom filters
-- Manage contributor relationships and weights
-- Handle blob uploads (images, documents, attachments)
-- Validate records against lexicon schemas
-
-**Design principles:**
-
-- **Fully typed** — Complete TypeScript definitions for IDE hints and AI introspection
-- **Self-documenting** — JSDoc comments on every public method
-- **Predictable patterns** — Consistent naming, return types, error handling
-- **Introspectable** — Schema information exposed programmatically
-
-**Connects to:**
-
-```
-Hypercerts SDK
-    ├── → Hyperindex AppView (queries)
-    ├── → ATProto PDS (record management)
-    ├── → IdentityLink (DID-wallet resolution)
-    └── → EVM chains (tokenization, funding)
-```
 
 ---
 
@@ -286,7 +247,6 @@ Most applications will be built via AI coding assistants. Infrastructure must be
 | Component | Requirements |
 |-----------|-------------|
 | Lexicons | Complete field descriptions, clear constraints, examples, consistent patterns |
-| SDK | Full TypeScript types, JSDoc comments, predictable patterns, clear errors |
 | AppView | GraphQL introspection, complete schema docs, consistent queries |
 | Docs | OpenAPI/JSON Schema, `AGENTS.md` files, copy-pasteable examples |
 
@@ -297,7 +257,6 @@ Most applications will be built via AI coding assistants. Infrastructure must be
 | Add OpenAPI spec for Hyperindex | High | Todo |
 | Create `AGENTS.md` in repos | High | Todo |
 | Ensure all lexicon fields have descriptions | High | In Progress |
-| Add JSDoc to all SDK public methods | High | Todo |
 | Publish example workflows | Medium | Todo |
 | Create MCP (Model Context Protocol) server | Medium | Todo |
 
@@ -344,7 +303,7 @@ Formal proposals to add lexicons to Hyperindex's indexing. The community decides
 ### Phase 1: Make it work (current)
 
 - End-to-end staging tests: create activity → evaluate → fund → distribute
-- Integration tests across SDK → AppView → IdentityLink → EVM
+- Integration tests across AppView → IdentityLink → EVM
 - Basic functionality before optimization
 
 ### Phase 2: Make it right (next)
@@ -352,7 +311,7 @@ Formal proposals to add lexicons to Hyperindex's indexing. The community decides
 - Deploy to real users (Ma Earth, GainForest, community)
 - Gather feedback on pain points and missing features
 - Iterate on lexicon design based on actual usage
-- Improve SDK ergonomics based on developer feedback
+- Improve developer experience based on feedback
 
 ### Phase 3: Make it fast (future)
 
@@ -365,12 +324,11 @@ Formal proposals to add lexicons to Hyperindex's indexing. The community decides
 
 ## Next steps
 
-1. **Finalize Lexicon v1.0** — Lock core schemas for `org.hypercerts.claim.*` to enable stable SDK development
+1. **Finalize Lexicon v1.0** — Lock core schemas for `org.hypercerts.claim.*` to enable stable application development
 2. **Productionize Hyperindex** — Harden for production traffic, add caching, improve query performance
-3. **SDK alpha release** — Publish `@hypercerts/sdk` with core CRUD operations
-4. **AI documentation sprint** — OpenAPI spec, `AGENTS.md` files, copy-pasteable examples
-5. **IdentityLink integration** — Complete EIP-712 attestation flow with certified.app frontend
-6. **Infrastructure transitions** — Begin handoff to Foundation stewardship
+3. **AI documentation sprint** — OpenAPI spec, `AGENTS.md` files, copy-pasteable examples
+4. **IdentityLink integration** — Complete EIP-712 attestation flow with certified.app frontend
+5. **Infrastructure transitions** — Begin handoff to Foundation stewardship
 
 ---
 

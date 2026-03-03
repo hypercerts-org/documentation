@@ -24,7 +24,7 @@ Every hypercert starts with an **activity claim** — the central record that an
 
 In addition to these core dimensions, the activity claim can define the rights that come with this claim. The basic right is just "public display", e.g. bragging rights about financial or non-financial contributions to impact. If the hypercert is tokenized, the field can define how the hypercert is allowed to be transferred.
 
-The activity claim is what you create when you call `repo.hypercerts.create()` in the SDK. It gets a permanent AT-URI like `at://did:plc:alice123/org.hypercerts.claim.activity/3k7`.
+The activity claim is the core record you create when making a hypercert. It gets a permanent AT-URI like `at://did:plc:alice123/org.hypercerts.claim.activity/3k7`.
 
 ## Additional details
 

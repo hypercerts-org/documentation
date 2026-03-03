@@ -38,11 +38,17 @@ Build services that help domain experts create structured, verifiable evaluation
 - Educational outcome measurement for learning programs
 
 ```javascript
-// Example: Create an evaluation via the SDK
-const evaluation = await repo.hypercerts.addEvaluation({
-  subjectUri: claimUri,
-  evaluators: [evaluatorDid],
-  summary: "Scientific rigor and reproducibility assessment",
+// Example: Create an evaluation
+const evaluation = await agent.com.atproto.repo.createRecord({
+  repo: agent.session.did,
+  collection: "org.hypercerts.claim.evaluation",
+  record: {
+    subject: { uri: claimUri, cid: claimCid },
+    evaluators: [evaluatorDid],
+    summary: "Scientific rigor and reproducibility assessment",
+    $type: "org.hypercerts.claim.evaluation",
+    createdAt: new Date().toISOString(),
+  },
 });
 ```
 
@@ -111,22 +117,23 @@ Authenticate users via OAuth and write records to their PDS on their behalf.
 **When to use:** Tools where users create their own hypercerts, evaluations, or measurements through your interface.
 
 ```javascript
-// OAuth flow
-const session = await sdk.callback(callbackParams);
-const repo = sdk.getRepository(session);
+// Authenticate via ATProto OAuth
+const agent = new AtpAgent({ service: userPdsUrl });
+await agent.resumeSession(savedSession);
 
 // Write to user's PDS
-await repo.hypercerts.create({
-  title: "Open source library for data processing",
-  shortDescription: "Built and maintained a data processing library.",
-  description: "Developed the core architecture and maintained the library through 3 major releases.",
-  workScope: "Software Development",
-  startDate: "2026-01-01T00:00:00Z",
-  endDate: "2026-06-30T23:59:59Z",
-  rights: {
-    name: "Public Display",
-    type: "display",
-    description: "Right to publicly display this contribution",
+await agent.com.atproto.repo.createRecord({
+  repo: agent.session.did,
+  collection: "org.hypercerts.claim.activity",
+  record: {
+    title: "Open source library for data processing",
+    shortDescription: "Built and maintained a data processing library.",
+    description: "Developed the core architecture and maintained the library through 3 major releases.",
+    workScope: { allOf: ["Software Development"] },
+    startDate: "2026-01-01T00:00:00Z",
+    endDate: "2026-06-30T23:59:59Z",
+    $type: "org.hypercerts.claim.activity",
+    createdAt: new Date().toISOString(),
   },
 });
 ```
@@ -140,26 +147,20 @@ Create a dedicated organizational account on a PDS and create records under the 
 **When to use:** Platforms that issue hypercerts on behalf of others, or evaluation services that publish assessments under the platform's authority.
 
 ```javascript
-// Platform creates claim on behalf of contributor
-await repo.hypercerts.create({
-  title: "Bounty #123: Fix authentication bug",
-  shortDescription: "Resolved critical authentication vulnerability.",
-  description: "Identified and patched a session fixation vulnerability in the OAuth callback handler.",
-  workScope: "Security, Bug Fix",
-  startDate: "2026-01-15T00:00:00Z",
-  endDate: "2026-01-20T23:59:59Z",
-  rights: {
-    name: "Public Display",
-    type: "display",
-    description: "Right to publicly display this contribution",
+// Platform creates claim under its own DID
+await agent.com.atproto.repo.createRecord({
+  repo: agent.session.did,
+  collection: "org.hypercerts.claim.activity",
+  record: {
+    title: "Bounty #123: Fix authentication bug",
+    shortDescription: "Resolved critical authentication vulnerability.",
+    description: "Identified and patched a session fixation vulnerability in the OAuth callback handler.",
+    workScope: { allOf: ["Security", "Bug Fix"] },
+    startDate: "2026-01-15T00:00:00Z",
+    endDate: "2026-01-20T23:59:59Z",
+    $type: "org.hypercerts.claim.activity",
+    createdAt: new Date().toISOString(),
   },
-  contributions: [
-    {
-      contributors: [contributorDid],
-      contributionDetails: "Bug fix author",
-      weight: "100",
-    },
-  ],
 });
 ```
 
@@ -238,15 +239,6 @@ Propose changes to lexicons through the standard process:
 {% callout type="note" %}
 The GitHub repository for lexicon proposals will be available soon. Check the [Hypercerts GitHub](https://github.com/hypercerts-org) for updates.
 {% /callout %}
-
-### SDK Contributions
-
-The Hypercerts SDK is open source. Contributions welcome:
-
-- Bug fixes and performance improvements
-- New helper functions for common operations
-- Better TypeScript types and documentation
-- Examples and tutorials
 
 ### Running a Relay
 

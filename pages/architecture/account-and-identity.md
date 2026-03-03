@@ -63,7 +63,7 @@ To set up an organizational account, create an account at [certified.app](https:
 
 ### OAuth (for applications)
 
-Applications authenticate users via AT Protocol OAuth. The [Hypercerts SDK](/tools/sdk) handles the full OAuth flow — authorization, token management, and session restoration. Users authorize your app through their PDS and never share credentials with your application. See the [Quickstart](/getting-started/quickstart) for the SDK setup.
+Applications authenticate users via AT Protocol OAuth. The AT Protocol client libraries handle the full OAuth flow — authorization, token management, and session restoration. Users authorize your app through their PDS and never share credentials with your application. See the [Quickstart](/getting-started/quickstart) for the authentication setup.
 
 ### App passwords (for scripts and CLI)
 

@@ -39,7 +39,7 @@ By making work _precisely scoped and inspectable_, activity claims become stable
 | `startDate`              | `string` | ❌        | When the work began                                                                                                                                      | Format: `datetime` (ISO 8601).                                                        |
 | `endDate`                | `string` | ❌        | When the work ended                                                                                                                                      | Format: `datetime` (ISO 8601).                                                        |
 | `contributors`           | `array`  | ❌        | An array of contributor objects, each containing contributor identity, weight, and contribution details.                                                  | Each item is a `#contributor` object. See [Contributor](#contributor-object) below.    |
-| `rights`                 | `ref`    | ❌        | A strong reference to the rights that this hypercert has                                                                                                 | References must conform to `org.hypercerts.claim.rights`. The SDK accepts inline rights objects (e.g., `{ rightsName, rightsType, rightsDescription }`) and handles creating the separate rights record internally. |
+| `rights`                 | `ref`    | ❌        | A strong reference to the rights that this hypercert has                                                                                                 | References must conform to `org.hypercerts.claim.rights`. Create the rights record separately and reference it here. |
 | `locations`              | `array`  | ❌        | Strong references to the locations where the work was performed                                                                                          | Each item is a strong reference. Referenced records must conform to `app.certified.location`. |
 | `createdAt`              | `string` | ✅        | Client-declared timestamp when this record was originally created                                                                                        | Format: `datetime`.                                                                   |
 
@@ -97,7 +97,7 @@ In both cases, each component can be precisely identified:
 ## Code Example
 
 {% callout type="note" %}
-This example uses the low-level `@atproto/api` with app passwords for brevity. For production, use OAuth — see the [Quickstart](/getting-started/quickstart) and [SDK reference](/tools/sdk).
+This example uses the low-level `@atproto/api` with app passwords for brevity. For production, use OAuth — see the [Quickstart](/getting-started/quickstart).
 {% /callout %}
 
 Create an activity claim record:

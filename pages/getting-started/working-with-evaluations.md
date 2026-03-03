@@ -10,50 +10,63 @@ Evaluations are third-party assessments of hypercerts and other claims. They liv
 ## Create an evaluation
 
 ```typescript
-import { createATProtoSDK } from "@hypercerts-org/sdk-core";
+import { AtpAgent } from "@atproto/api";
 
-const sdk = createATProtoSDK({
-  oauth: {
-    clientId: "https://your-app.com/client-metadata.json",
-    redirectUri: "https://your-app.com/callback",
-    scope: "atproto",
+const agent = new AtpAgent({ service: "https://bsky.social" });
+await agent.login({
+  identifier: "evaluator.certified.app",
+  password: "your-app-password",
+});
+
+// Create an evaluation of an activity claim
+const evaluation = await agent.com.atproto.repo.createRecord({
+  repo: agent.session.did,
+  collection: "org.hypercerts.claim.evaluation",
+  record: {
+    subject: {
+      uri: "at://did:plc:xyz789/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a",
+      cid: "bafyreiabc123...",
+    },
+    evaluators: ["did:plc:evaluator123"],
+    summary: "Verified documentation updates. All 15 examples tested and working. High quality contribution with clear impact on developer experience.",
+    $type: "org.hypercerts.claim.evaluation",
+    createdAt: new Date().toISOString(),
   },
 });
 
-const session = await sdk.restoreSession("did:plc:evaluator123");
-const repo = sdk.getRepository(session);
-
-// Create an evaluation of an activity claim
-const evaluation = await repo.hypercerts.addEvaluation({
-  subjectUri: "at://did:plc:xyz789/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a",
-  evaluators: ["did:plc:evaluator123"],
-  summary: "Verified documentation updates. All 15 examples tested and working. High quality contribution with clear impact on developer experience.",
-});
-
-console.log(evaluation.uri);
+console.log(evaluation.data.uri);
 ```
 
-The `subjectUri` is the AT-URI of the claim being evaluated. The `evaluators` array contains DIDs of those conducting the assessment.
+The `subject` is a strong reference (AT-URI + CID) to the claim being evaluated. The `evaluators` array contains DIDs of those conducting the assessment.
 
 ## Add measurements
 
 Measurements provide quantitative data that supports your evaluation:
 
 ```typescript
-const measurement = await repo.hypercerts.addMeasurement({
-  subject: "at://did:plc:xyz789/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a",
-  metric: "Documentation page views",
-  unit: "views",
-  value: "12500",
-  measurers: ["did:plc:evaluator123"],
-  methodType: "analytics",
-  methodURI: "https://example.com/analytics-methodology",
-  evidenceURI: ["https://example.com/analytics-report.pdf"],
-  comment: "Page view data collected over the first 30 days after publication.",
+const measurement = await agent.com.atproto.repo.createRecord({
+  repo: agent.session.did,
+  collection: "org.hypercerts.claim.measurement",
+  record: {
+    subject: {
+      uri: "at://did:plc:xyz789/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a",
+      cid: "bafyreiabc123...",
+    },
+    metric: "Documentation page views",
+    unit: "views",
+    value: "12500",
+    measurers: ["did:plc:evaluator123"],
+    methodType: "analytics",
+    methodURI: "https://example.com/analytics-methodology",
+    evidenceURI: ["https://example.com/analytics-report.pdf"],
+    comment: "Page view data collected over the first 30 days after publication.",
+    $type: "org.hypercerts.claim.measurement",
+    createdAt: new Date().toISOString(),
+  },
 });
 ```
 
-The `subject` field accepts an AT-URI string or a strong reference. The SDK resolves it to a full strong reference (URI + CID) automatically.
+The `subject` field is a strong reference (AT-URI + CID) to the claim being measured.
 
 You can then reference this measurement in an evaluation's `measurements` array (an array of strong references) to link quantitative data to your assessment.
 

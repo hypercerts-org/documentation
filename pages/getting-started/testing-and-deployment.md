@@ -15,21 +15,15 @@ This page covers how to test your Hypercerts integration locally, the validation
 
 Run a local PDS to avoid polluting production data. Self-host a test instance using the [ATProto PDS distribution](https://github.com/bluesky-social/pds) and follow the [ATProto self-hosting guide](https://atproto.com/guides/self-hosting).
 
-Point your SDK to the local instance instead of production:
+Point your ATProto client to the local instance instead of production:
 
 ```typescript
-import { createATProtoSDK } from "@hypercerts-org/sdk-core";
+import { AtpAgent } from "@atproto/api";
 
-const sdk = createATProtoSDK({
-  oauth: {
-    clientId: "http://localhost/",
-    redirectUri: "http://127.0.0.1:3000/api/auth/callback",
-    scope: "atproto",
-    jwksUri: "http://127.0.0.1:3000/.well-known/jwks.json",
-    jwkPrivate: process.env.ATPROTO_JWK_PRIVATE!,
-    developmentMode: true,
-  },
-  handleResolver: "http://localhost:2583", // Local PDS
+const agent = new AtpAgent({ service: "http://localhost:2583" }); // Local PDS
+await agent.login({
+  identifier: "test-user.test",
+  password: "test-password",
 });
 ```
 
@@ -39,39 +33,43 @@ Create dedicated test accounts — never use production identities for testing. 
 
 ### Create and verify a test record
 
-Create a record with the SDK, then read it back to confirm it was stored correctly:
+Create a record, then read it back to confirm it was stored correctly:
 
 ```typescript
-const session = await sdk.callback(callbackParams);
-const repo = sdk.getRepository(session);
-
 // Create a test hypercert
-const result = await repo.hypercerts.create({
-  title: "Test: reforestation project Q1 2026",
-  shortDescription: "Integration test — safe to delete.",
-  description: "Test record for verifying SDK integration.",
-  workScope: "test",
-  startDate: "2026-01-01T00:00:00Z",
-  endDate: "2026-03-31T23:59:59Z",
-  rights: {
-    name: "Public Display",
-    type: "display",
-    description: "Right to publicly display this contribution",
+const result = await agent.com.atproto.repo.createRecord({
+  repo: agent.session.did,
+  collection: "org.hypercerts.claim.activity",
+  record: {
+    title: "Test: reforestation project Q1 2026",
+    shortDescription: "Integration test — safe to delete.",
+    description: "Test record for verifying integration.",
+    workScope: { allOf: ["test"] },
+    startDate: "2026-01-01T00:00:00Z",
+    endDate: "2026-03-31T23:59:59Z",
+    $type: "org.hypercerts.claim.activity",
+    createdAt: new Date().toISOString(),
   },
 });
 
-console.log("Created:", result.hypercertUri);
-console.log("CID:", result.hypercertCid);
+console.log("Created:", result.data.uri);
+console.log("CID:", result.data.cid);
 ```
 
-The returned `hypercertCid` is a content hash. If the record changes, the CID changes — this is how you verify data integrity.
+The returned CID is a content hash. If the record changes, the CID changes — this is how you verify data integrity.
 
 ### Clean up test data
 
 Delete test records when you're done to keep your repository clean:
 
 ```typescript
-await repo.hypercerts.delete(result.hypercertUri);
+const uri = new URL(result.data.uri);
+const rkey = uri.pathname.split("/").pop();
+await agent.com.atproto.repo.deleteRecord({
+  repo: agent.session.did,
+  collection: "org.hypercerts.claim.activity",
+  rkey,
+});
 ```
 
 Deletion removes the record from your PDS. Cached copies may persist in indexers temporarily.
@@ -88,22 +86,28 @@ Every record type has required fields. The PDS returns a validation error if any
 
 ```typescript
 // ❌ Rejected — missing required fields
-await repo.hypercerts.create({
-  title: "Community Garden Project",
+await agent.com.atproto.repo.createRecord({
+  repo: agent.session.did,
+  collection: "org.hypercerts.claim.activity",
+  record: {
+    title: "Community Garden Project",
+    $type: "org.hypercerts.claim.activity",
+  },
 });
 
 // ✅ Accepted
-await repo.hypercerts.create({
-  title: "Community Garden Project",
-  shortDescription: "Built a community garden",
-  description: "Established a half-acre community garden serving 30 families.",
-  workScope: "Urban agriculture",
-  startDate: "2026-01-01T00:00:00Z",
-  endDate: "2026-06-30T23:59:59Z",
-  rights: {
-    name: "Public Display",
-    type: "display",
-    description: "Right to publicly display this contribution",
+await agent.com.atproto.repo.createRecord({
+  repo: agent.session.did,
+  collection: "org.hypercerts.claim.activity",
+  record: {
+    title: "Community Garden Project",
+    shortDescription: "Built a community garden",
+    description: "Established a half-acre community garden serving 30 families.",
+    workScope: { allOf: ["Urban agriculture"] },
+    startDate: "2026-01-01T00:00:00Z",
+    endDate: "2026-06-30T23:59:59Z",
+    $type: "org.hypercerts.claim.activity",
+    createdAt: new Date().toISOString(),
   },
 });
 ```
@@ -144,14 +148,16 @@ const evaluation = {
 If the referenced record is updated after you create the reference, the CID will no longer match. Fetch the latest version to get the current CID:
 
 ```typescript
-const latest = await repo.hypercerts.get(
-  "at://did:plc:abc123/org.hypercerts.claim.activity/3k7"
-);
+const latest = await agent.com.atproto.repo.getRecord({
+  repo: "did:plc:abc123",
+  collection: "org.hypercerts.claim.activity",
+  rkey: "3k7",
+});
 
 const evaluation = {
   subject: {
-    uri: latest.uri,
-    cid: latest.cid,
+    uri: latest.data.uri,
+    cid: latest.data.cid,
   },
 };
 ```
@@ -207,7 +213,7 @@ async function withRetry(fn, maxRetries = 3) {
 
 // Usage
 const result = await withRetry(() =>
-  repo.hypercerts.create({ /* ... */ })
+  agent.com.atproto.repo.createRecord({ /* ... */ })
 );
 ```
 
@@ -249,7 +255,7 @@ If you accidentally publish PII, delete the record immediately and contact index
 
 ## Authentication in production
 
-Use OAuth for production applications. OAuth lets users authorize your app without sharing credentials. See the [Quickstart](/getting-started/quickstart) for the SDK OAuth setup and the [ATProto OAuth spec](https://atproto.com/specs/oauth) for the full protocol details.
+Use OAuth for production applications. OAuth lets users authorize your app without sharing credentials. See the [Quickstart](/getting-started/quickstart) for the authentication setup and the [ATProto OAuth spec](https://atproto.com/specs/oauth) for the full protocol details.
 
 {% callout type="warning" %}
 **Never commit credentials to version control.** Use `.env` files (added to `.gitignore`) for local development and secret management tools (Vercel env vars, AWS Secrets Manager, etc.) for production.

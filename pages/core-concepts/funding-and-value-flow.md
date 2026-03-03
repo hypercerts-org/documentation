@@ -139,4 +139,3 @@ Two years later, a second evaluator, Eve, assesses the health of Alice's trees a
 - [Data Flow & Lifecycle](/architecture/data-flow-and-lifecycle) — how a hypercert moves through the system
 - [Roadmap](/roadmap) — current build priorities and development phases
 
-Next: [Hypercerts SDK](/tools/sdk) — the TypeScript SDK for building on the Hypercerts protocol.
