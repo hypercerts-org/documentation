@@ -68,7 +68,7 @@ Applications authenticate users via AT Protocol OAuth. The AT Protocol client li
 ### OAuth (for ePDS)
 The ePDS (extended PDS) adds email/passwordless login on top of the standard PDS, without modifying the underlying AT Protocol PDS code. When a user authenticates, the ePDS Auth Service handles the OTP flow and then issues a standard AT Protocol authorization code back to your app.
 
-Because of this architecture, the standard ATProto OAuth client libraries won't work with ePDS — you'll need to implement [PAR](https://datatracker.ietf.org/doc/html/rfc9126), [DPoP](https://datatracker.ietf.org/doc/html/rfc9449), and [PKCE](https://datatracker.ietf.org/doc/html/rfc7636) directly.
+Because of this architecture, the standard ATProto OAuth client libraries won't work with ePDS — you'll need to implement [PAR](https://datatracker.ietf.org/doc/html/rfc9126), [DPoP](https://datatracker.ietf.org/doc/html/rfc9449), and [PKCE](https://datatracker.ietf.org/doc/html/rfc7636) directly. [`@atproto/oauth-client-node`](https://github.com/bluesky-social/atproto/tree/main/packages/oauth/oauth-client-node) does not handle ePDS's email/OTP flow and cannot be used as-is. The [ePDS demo](https://github.com/hypercerts-org/ePDS/tree/main/packages/demo) is a Next.js app that implements the above and shows a complete working example.
 
 {% callout type="note" %}
 A ready-made skill that implements the full ePDS OAuth flow is available at `.agents/skills/epds-login/SKILL.md` in the [ePDS repository](https://github.com/hypercerts-org/ePDS). See the [ePDS architecture documentation](https://github.com/hypercerts-org/ePDS/blob/main/docs/architecture.md) for a full explanation.
