@@ -59,7 +59,7 @@ Read-only integrations require only an indexer connection — no PDS needed.
 
 ### Impact Portfolios
 
-Help funders track their investments:
+Help funders track their contributions:
 
 - Aggregate all hypercerts a funder has supported
 - Monitor evaluation updates for funded work
