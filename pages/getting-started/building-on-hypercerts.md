@@ -98,7 +98,7 @@ You're also free to create new lexicons for use cases that don't fit the origina
 
 ### Use Strong References
 
-Always include CID when referencing records. This ensures tamper-evidence and allows verification.
+Always include CID when referencing records. The CID is a content hash of the record at the time you referenced it — if the record is later modified, the CID won't match, making tampering detectable.
 
 ```javascript
 // Good: includes CID
@@ -107,43 +107,6 @@ Always include CID when referencing records. This ensures tamper-evidence and al
 // Bad: URI only (no tamper-evidence)
 { uri: "at://did:plc:abc/org.hypercerts.claim.activity/123" }
 ```
-
-### Respect Data Ownership
-
-Records belong to the DID that created them. Do not modify or delete records you do not own. If you disagree with a claim, create an evaluation or measurement that references it.
-
-### Build for Federation
-
-Do not assume all data lives on one PDS. Your indexer should aggregate from multiple sources. Your queries should work across the entire network.
-
-## Contributing to the Protocol
-
-The Hypercerts Protocol evolves through community contribution.
-
-### Lexicon Evolution
-
-Propose changes to lexicons through the standard process:
-
-1. **Propose:** Open an issue describing the change and use case
-2. **Discuss:** Community reviews and refines the proposal
-3. **Implement:** Create a pull request with lexicon updates and tests
-
-{% callout type="note" %}
-The GitHub repository for lexicon proposals will be available soon. Check the [Hypercerts GitHub](https://github.com/hypercerts-org) for updates.
-{% /callout %}
-
-### SDK Contributions
-
-The Hypercerts SDK is open source. Contributions welcome:
-
-- Bug fixes and performance improvements
-- New helper functions for common operations
-- Better TypeScript types and documentation
-- Examples and tutorials
-
-### Running a Relay
-
-Help decentralize the network by running a relay node. Relays aggregate events from PDSs and make them available to indexers.
 
 ## Next Steps
 
