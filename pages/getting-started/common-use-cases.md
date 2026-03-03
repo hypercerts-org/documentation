@@ -9,7 +9,24 @@ Hypercerts work for any kind of impact work. This page shows four common scenari
 
 ## Open-source software maintenance
 
-A team maintains a widely-used library. They create a hypercert covering a year of maintenance — bug fixes, documentation updates, and community support. The activity claim captures the work scope ("Software Development", "Open Source"), the time period, and a description of what was done.
+A team maintains a widely-used library. They create a hypercert covering a year of maintenance — bug fixes, documentation updates, and community support.
+
+```typescript
+const result = await agent.com.atproto.repo.createRecord({
+  repo: agent.session.did,
+  collection: "org.hypercerts.claim.activity",
+  record: {
+    title: "Library maintenance, 2025",
+    shortDescription: "Ongoing maintenance of an open-source library",
+    description: "Fixed 47 bugs, reviewed 120 pull requests, updated documentation, and provided community support on Discord.",
+    workScope: { allOf: ["Software Development", "Open Source"] },
+    startDate: "2025-01-01T00:00:00Z",
+    endDate: "2025-12-31T23:59:59Z",
+    $type: "org.hypercerts.claim.activity",
+    createdAt: new Date().toISOString(),
+  },
+});
+```
 
 The team then attaches links to the repository, release notes, and commit history. Contribution records identify who did what — core developers, documentation leads, community managers. Organizations that depend on the library can fund this work retroactively.
 
