@@ -21,7 +21,7 @@ This is what the [Quickstart](/getting-started/quickstart) uses. It's human-read
 
 ## Why structured scopes matter
 
-Simple string lists work for individual hypercerts, but they're hard to query at scale. As the network grows, connecting funders to relevant work, detecting overlapping claims, and matching evaluators to their domains all require machine-readable structure. Free-form text is legible to a person reading one claim at a time — it's invisible to any system trying to operate across thousands of claims.
+Simple string lists work for individual hypercerts, but they're hard to query at scale. As the Hypercerts Protocol grows on ATProto — with actions, evaluations, and evidence living as persistent, portable records — the richer the network becomes, the harder it is to find, compare, validate, and compose claims when the most important field is unstructured text.
 
 ## CEL architecture
 
