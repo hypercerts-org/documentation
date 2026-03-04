@@ -7,7 +7,7 @@ description: Living digital records of impact that help you track, share, and ge
 
 A hypercert is a living record of impact work — a verifiable claim that grows as the creator and others add measurements, evaluations, and supporting evidence.
 
-Think of it like this: you do meaningful work — restoring a forest, maintaining open-source software, running a community program, publishing research. A hypercert captures that work in a structured, verifiable record. Over time, others enrich it with measurements and evaluations — making it more trustworthy and more useful for recognition and funding.
+Think of it like this: you do meaningful work — restoring a forest, maintaining open-source software, running a community program, publishing research. A hypercert captures that work in a structured, verifiable record. Over time, the creator and others enrich it with measurements and evaluations — making it more trustworthy and more useful for recognition and funding.
 
 ## The structure of a hypercert
 
