@@ -26,7 +26,6 @@ That's the starting point. From there, the record grows as people add more conte
 - **Contributions** — additional information about who was involved and what they contributed
 - **Rights** — what rights are attached to the hypercert (e.g. public display)
 
-Each record is signed by its author and can be independently verified as unmodified. A hypercert is not written by one party — evaluations and measurements can come from others and live on their personal data servers.
 
 
 ## What a hypercert is not
