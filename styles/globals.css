@@ -1301,6 +1301,11 @@ a.sidebar-link-active:hover {
   background: var(--color-info-bg);
 }
 
+.callout--note {
+  border-left: 4px solid var(--color-info);
+  background: var(--color-info-bg);
+}
+
 .callout--warning {
   border-left: 4px solid var(--color-warning);
   background: var(--color-warning-bg);
