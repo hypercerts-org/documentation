@@ -25,7 +25,12 @@ await agent.login({
 
 ## Create the activity claim
 
-The activity claim is the core record — it describes what work was done, when, and in what scope.
+The activity claim is the core record — it describes what work was done, when, and in what scope. Here's how each field maps to the [activity lexicon](/lexicons/hypercerts-lexicons/activity-claim):
+
+- **Contributors** can be identified inline with a DID or by referencing a [`contributorInformation`](/lexicons/hypercerts-lexicons/activity-claim) record that includes a display name and image. Each contributor can also have a weight and role.
+- **Work scopes** can be a simple free-form string (`{ scope: "Documentation" }`) or a structured [CEL expression](/core-concepts/work-scopes) for machine-evaluable queries across the network.
+- **Time** is expressed as `startDate` and `endDate` in ISO 8601 format.
+- **Locations** are separate [`app.certified.location`](/lexicons/hypercerts-lexicons/activity-claim) records referenced from the activity claim. They support coordinates, GeoJSON, and other formats.
 
 ```typescript
 const result = await agent.com.atproto.repo.createRecord({
@@ -35,7 +40,7 @@ const result = await agent.com.atproto.repo.createRecord({
     title: "Hypercerts Protocol documentation, Q1 2026",
     shortDescription: "Wrote getting started guides, tutorials, and lexicon reference pages.",
     description: "Created 12 new documentation pages covering quickstart, use cases, evaluations, and architecture. Migrated from GitBook to a custom Next.js + Markdoc site.",
-    workScope: { allOf: ["Documentation", "Hypercerts Protocol"] },
+    workScope: { $type: "org.hypercerts.claim.activity#workScopeString", scope: "Documentation, Hypercerts Protocol" },
     startDate: "2026-01-01T00:00:00Z",
     endDate: "2026-03-31T23:59:59Z",
     $type: "org.hypercerts.claim.activity",
@@ -61,7 +66,7 @@ const result = await agent.com.atproto.repo.createRecord({
     title: "Hypercerts Protocol documentation, Q1 2026",
     shortDescription: "Wrote getting started guides, tutorials, and lexicon reference pages.",
     description: "Created 12 new documentation pages covering quickstart, use cases, evaluations, and architecture.",
-    workScope: { allOf: ["Documentation", "Hypercerts Protocol"] },
+    workScope: { $type: "org.hypercerts.claim.activity#workScopeString", scope: "Documentation, Hypercerts Protocol" },
     startDate: "2026-01-01T00:00:00Z",
     endDate: "2026-03-31T23:59:59Z",
     $type: "org.hypercerts.claim.activity",

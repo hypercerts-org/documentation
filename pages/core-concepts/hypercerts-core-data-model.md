@@ -5,11 +5,11 @@ description: The data model behind hypercerts — record types, dimensions, and 
 
 # Core Data Model
 
-A hypercert is a collection of linked records that together describe a contribution. This page explains the data model — what records exist, what they contain, and how they connect.
+*Last updated: March 5, 2026*
 
-{% callout type="note" %}
-A hypercert is not one record. It's a bundle of records linked by strong references. The activity claim is the anchor; everything else — contributions, attachments, measurements, evaluations — adds context around it.
-{% /callout %}
+A hypercert is an [activity claim](/lexicons/hypercerts-lexicons/activity-claim) with linked records that describe work done. The activity claim is the anchor — contributions, attachments, measurements, and evaluations reference it to add context.
+
+This page explains what records exist, what they contain, and how they connect.
 
 ## The core record: activity claim
 
@@ -17,14 +17,12 @@ Every hypercert starts with an **activity claim** — the central record that an
 
 | Dimension | Question | Example |
 |-----------|----------|---------|
-| **Contributors** | Who is doing (or did) the work? | `did:plc:alice123`, `did:plc:bob456` |
-| **Work scope** | What are they doing (or what did they do)? | "Documentation", "Reforestation" |
-| **Time of work** | When is it happening (or when did it happen)? | 2026-01-01 to 2026-03-31 |
-| **Location** | Where is it taking (or did it take) place? | GeoJSON location data |
+| **Contributors** | Who is doing (or did) the work? | Alice, Bob |
+| **Work scope** | What are they doing (or what did they do)? | Documentation, Reforestation |
+| **Time of work** | When is it happening (or when did it happen)? | January – March 2026 |
+| **Location** | Where is it taking (or did it take) place? | Coastal Kenya |
 
-In addition to these core dimensions, the activity claim can define the rights that come with this claim. The basic right is just "public display", e.g. bragging rights about financial or non-financial contributions to impact. If the hypercert is tokenized, the field can define how the hypercert is allowed to be transferred.
-
-The activity claim is the core record you create when making a hypercert. It gets a permanent AT-URI like `at://did:plc:alice123/org.hypercerts.claim.activity/3k7`.
+The activity claim gets a permanent AT-URI like `at://did:plc:alice123/org.hypercerts.claim.activity/3k7`.
 
 ## Additional details
 
@@ -41,7 +39,9 @@ Other records link to the activity claim to add context. Again, each is a separa
 
 The following diagram shows record types and how they reference the activity claim. Records can be created by different people and live in different repositories.
 
-{% figure src="/images/hypercert-erd.png" alt="Hypercert record relationships" /%}
+{% figure src="/images/hypercert-erd.svg" alt="Hypercert record relationships" /%}
+
+The diagram includes a **token** entity — tokenization (anchoring a hypercert onchain) is not yet implemented.
 
 | Record type | What it adds | Who creates it | Lexicon |
 |-------------|-------------|----------------|---------|
@@ -59,7 +59,7 @@ This means a hypercert grows over time – it is a living record. The core claim
 
 ## Grouping hypercerts
 
-Often hypercerts belong to each other in a project, e.g. in a multi-year project a hypercert might represent the work in one year, such that the full project is a collection of multiple hypercerts.
+Hypercerts can be grouped into **collections**. A multi-year project might have one hypercert per year, with a collection representing the full project. But collections are flexible — anyone can create one for any purpose. Someone might curate a personal collection of hypercerts they find interesting, or an organization might group all their hypercerts together. A hypercert can belong to many collections.
 
 | Record type | What it adds | Who creates it | Lexicon |
 |-------------|-------------|----------------|---------|
@@ -67,7 +67,7 @@ Often hypercerts belong to each other in a project, e.g. in a multi-year project
 
 ## How records connect
 
-Records reference each other using **strong references** — a combination of AT-URI + CID (content hash). The CID makes the reference tamper-evident: if the referenced record changes, the CID won't match.
+Records reference each other using [strong references](/reference/glossary#strong-reference) — if a referenced record is modified after the reference was created, the change is detectable.
 
 ```text
 Activity Claim (the core record)
@@ -83,14 +83,12 @@ Activity Claim (the core record)
 └── Evaluation: "High-quality documentation" (by Carol)
 ```
 
-Every arrow in this tree is a strong reference. Anyone can verify the entire chain by checking CIDs.
 
 
 ## Mutability
 
-Activity claims and their linked records are mutable on ATProto by default — authors can update their records as work evolves. Strong references use a CID (content hash) to pin a specific version, so references remain tamper-evident even if the original record is later updated. A full history of edits will be available so that changes are transparent and auditable (work-in-progress).
+Activity claims and their linked records are currently immutable once created. Record versioning and edit history will be supported in a future release, along with the ability to lock a hypercert at a specific version for funding.
 
-When a hypercert is ready for funding, it can be locked by anchoring a snapshot onchain. Once locked, the claim cannot change — funders know exactly what they are funding. See [Funding & Value Flow](/core-concepts/funding-and-value-flow) for the full design.
 
 ## What happens next
 
