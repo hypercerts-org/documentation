@@ -31,7 +31,7 @@ That's the starting point. From there, the record grows as people add more conte
 ## What a hypercert is not
 
 - **Not a grant application** — it records work that has been done or is in progress, not a request for funding
-- **Not a token** — it's a data record
+- **Not a token** — it's a data record, though onchain tokenization for funding is planned
 - **Not a single document** — it’s a collection of linked records that can grow over time
 
 ## How people use them
