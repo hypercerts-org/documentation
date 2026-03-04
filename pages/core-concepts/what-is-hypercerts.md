@@ -5,9 +5,9 @@ description: Living digital records of impact that help you track, share, and ge
 
 # What are Hypercerts?
 
-A hypercert is a living record of a contribution, enriched over time with attachments, measurements, and evaluations.
+A hypercert is a living record of impact work — a verifiable claim that grows as the creator and others add measurements, evaluations, and supporting evidence.
 
-Think of it like this: you do meaningful work — restoring a forest, maintaining open-source software, running a community program, publishing research. A hypercert captures that work in a structured record that anyone can verify. Over time, you and others enrich it by attaching supporting documentation, measurements, and evaluations — making the record more trustworthy and more useful for recognition and funding.
+Think of it like this: you do meaningful work — restoring a forest, maintaining open-source software, running a community program, publishing research. A hypercert captures that work in a structured, verifiable record. Over time, others enrich it with measurements and evaluations — making it more trustworthy and more useful for recognition and funding.
 
 ## The structure of a hypercert
 
@@ -24,15 +24,15 @@ That's the starting point. From there, the record grows as people add more conte
 - **Measurements** — quantitative indicators that make the impact concrete ("142 issues resolved", "50 hectares restored"), which can be outputs or outcomes depending on the domain
 - **Evaluations** — independent qualitative or quantitative assessments from domain experts, community members, beneficiaries, etc.
 - **Contributions** — additional information about who was involved and what they contributed
-- **Rights** — what rights are attached to the hypercert (display, transfer, etc.), especially relevant if the hypercert is tokenized and can be owned 
+- **Rights** — what rights are attached to the hypercert (e.g. public display)
 
 Each record is signed by its author and can be independently verified as unmodified. A hypercert is not written by one party — evaluations and measurements can come from others and live on their personal data servers.
 
 
 ## What a hypercert is not
 
-- **Not a grant application** — it records work that has been done (or is planned), it is not a direct request for funding. That said, hypercerts can be used as a grant application
-- **Not a token** — though a hypercert can optionally be wrapped in an onchain token for funding purposes
+- **Not a grant application** — it records work that has been done or is in progress, not a request for funding
+- **Not a token** — it's a data record, though onchain tokenization for funding is planned
 - **Not a single document** — it’s a collection of linked records that can grow over time
 
 ## How people use them
@@ -53,7 +53,7 @@ Say a team runs a coastal reforestation project. They create a hypercert:
 >
 > 50 hectares restored over 12 months (the activity claim). Satellite imagery confirms canopy coverage. An independent ecologist evaluates the work as "high-quality restoration with strong community engagement."
 
-The activity claim is the starting record. Two additional pieces of information are pointing to this record right from the start. Over the following months, the team adds measurement data as new satellite imagery comes in. An independent evaluator reviews the project and attaches their assessment. As new data comes in, the record evolves. A funder browsing the ecosystem sees the full picture — the claim, the attachments, and the evaluation — and decides to support the next phase.
+The activity claim is the starting record. Over the following months, the team adds measurement data as new satellite imagery comes in. An independent evaluator reviews the project and attaches their assessment. A funder browsing the ecosystem sees the full picture — the claim, the evidence, and the evaluation — and decides to support the next phase.
 
 ## Why it's built this way
 
