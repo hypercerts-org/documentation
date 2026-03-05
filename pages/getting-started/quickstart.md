@@ -49,7 +49,7 @@ The activity claim is the core record — it describes what work was done, when,
 - **Contributors** are embedded directly in the activity claim as a `contributors` array. Each entry has a `contributorIdentity` (inline DID string, or a strong reference to a [`contributorInformation`](/lexicons/hypercerts-lexicons/contributor-information) record), an optional `contributionWeight`, and an optional `contributionDetails` (inline role string, or a strong reference to an [`org.hypercerts.claim.contribution`](/lexicons/hypercerts-lexicons/contribution) record for richer detail).
 - **Work scopes** can be a simple free-form string (`{ scope: "Documentation" }`) or a structured [CEL expression](/core-concepts/work-scopes) for machine-evaluable queries across the network.
 - **Time** is expressed as `startDate` and `endDate` in ISO 8601 format.
-- **Locations** are separate [`app.certified.location`](/lexicons/hypercerts-lexicons/activity-claim) records referenced from the activity claim. They support coordinates, GeoJSON, and other formats.
+- **Locations** are separate [`app.certified.location`](/lexicons/certified-lexicons/location) records referenced from the activity claim. They support coordinates, GeoJSON, and other formats.
 
 ```typescript
 const result = await session.agent.com.atproto.repo.createRecord({
