@@ -1,17 +1,17 @@
 ---
 title: "Funding & Value Flow"
-description: How hypercerts track funding of activities and optionally wrap claims in onchain tokens.
+description: How hypercerts track the funding of activities.
 ---
 
 # Funding & Value Flow
 
-Hypercerts track the funding of activities without prescribing how funds flow. Any payment technology works — credit cards, PayPal, bank transfers, onchain payments. Any funding mechanism works — grants, crowdfunding, retroactive funding, and more.
-
-What hypercerts add is a structured, verifiable record of who funded what. Optionally, a hypercert can be wrapped in an onchain token, enabling programmable funding and transferable proof of contribution.
-
 {% callout type="note" %}
-Funding tracking is available today. The tokenization layer is under active development. For what exists today, see [Architecture Overview](/architecture/overview).
+Funding is under active development.
 {% /callout %}
+
+Hypercerts track the funding of activities without prescribing how funds flow — any payment method and any funding mechanism works.
+
+What hypercerts add is a structured, verifiable record of who funded what.
 
 ## Hypercerts work with any funding mechanism
 
@@ -26,29 +26,29 @@ Funding can be **prospective** (before work begins) or **retroactive** (after ou
 | **Sale of impact certificates** | Funders purchase certificates representing completed work |
 | **Auction of impact certificates** | Competitive bidding on verified impact claims |
 
-Multiple mechanisms can coexist for the same activity — a project might receive a grant prospectively and sell impact certificates retroactively. Hypercerts tracks this accurately without double counting: every funding receipt references the specific activity claim it funds, and each claim can only be wrapped in one onchain token (the single-wrap constraint). This makes it possible to compute total funding per claim across all receipts.
+Multiple mechanisms can coexist for the same activity — a project might receive a grant prospectively and sell impact certificates retroactively. Hypercerts tracks this accurately without double counting: every funding receipt references the specific activity claim it funds, making it possible to compute total funding per claim across all receipts.
 
 ## Tracking funding
 
+{% callout type="note" %}
+Funding tracking is in active development. Receipts and acknowledgements exist today.
+{% /callout %}
+
 Hypercerts separate the *tracking* of funding from the *flow* of funds. Any existing payment infrastructure can work with hypercerts — the protocol simply records the fact that funding happened.
 
-The protocol tracks funding through the `org.hypercerts.funding.receipt` record. A funding receipt records who funded which activity, how much, and when — creating a verifiable funding trail on ATProto.
+The protocol tracks funding through the `org.hypercerts.funding.receipt` record. A funding receipt records who funded which activity, how much, and when — creating a verifiable funding trail. The receipt references the activity claim it funds, linking the funding record to the work it supports.
 
-The receipt references the activity claim it funds, linking the funding record to the work it supports.
+Funding receipts are typically created by a **facilitator** — a payment processor, grant platform, funding app, or other intermediary that processes the payment and creates the receipt. The facilitator acts as a neutral third party, giving the receipt more credibility than a self-reported claim.
+
+| Scenario | Facilitator | Verification |
+|----------|-------------|--------------|
+| **Onchain funding** | A funding app verifies the transaction and creates the receipt, linking the transaction hash and chain ID | Verifiable onchain |
+| **Card / bank transfer** | A payment processor settles the payment and creates the receipt | Trust in the processor |
+| **Grant platform** | The grant platform records the award and creates the receipt on behalf of the funder | Trust in the platform |
+
+The funder or the contributor can then create an **acknowledgement** — a counter-signature confirming the receipt's accuracy — to strengthen its credibility.
 
 The protocol does not enforce that projects or funders disclose their funding — creating a receipt is voluntary. Funders can also choose to remain anonymous in the public record; a receipt can track a contribution without revealing the funder's identity.
-
-### Who creates the receipt
-
-How a funding receipt gets created depends on where the funding happens:
-
-| Scenario | Who creates the receipt | Verification |
-|----------|------------------------|--------------|
-| **Onchain funding** | The funding transaction is linked directly in the receipt (transaction hash, chain ID) | Verifiable onchain |
-| **Third-party oracle** | An intermediary — a payment processor, grant platform, or fiscal sponsor — creates the receipt on behalf of the funder | Trust in the oracle |
-| **Self-reported** | The project or funder creates the receipt themselves | Ideally verified by the counterparty |
-
-Self-reported receipts are the most accessible option — anyone can create one. But they carry less weight without independent verification. When a funder reports their own contribution, the project can confirm it (and vice versa), strengthening the credibility of the record.
 
 ## Tokenization
 
@@ -58,7 +58,7 @@ Tokenization is under active development. This section describes the planned arc
 
 A hypercert can optionally be wrapped in an onchain token. This gives funders a programmable proof of their contribution. Tokenization is an optional wrapper around a claim snapshot; the canonical record remains the AT Protocol data.
 
-A token can represent either a mutable or a locked claim. If the underlying hypercert is locked before tokenization, funders get a stronger guarantee — the claim they reviewed is exactly the claim they funded, and it cannot change after the fact. If the claim is not locked (which can make sense for prospective funding, where the work hasn't happened yet), funders should be clearly informed that the data behind their token may still evolve.
+When locking is available, a claim can be frozen before tokenization. This gives funders a stronger guarantee — the claim they reviewed is exactly the claim they funded, and it cannot change after the fact.
 
 | Property | Detail |
 |----------|--------|
@@ -71,71 +71,38 @@ Tokenization enables programmable funding — smart contract logic can enforce d
 
 ## Example: from creation to funding
 
-There are many different flows that can be represented with hypercerts. Below is one example that follows a hypercert through its lifecycle — from creation to funding, with optional tokenization.
+There are many different flows that can be represented with hypercerts. Below is one example that follows a hypercert from creation to funding.
 
-### Stage 1 — Creation and first evaluation
+### Stage 1 — Creation and evaluation
 
-Alice plants 500 trees in a reforestation project and creates an activity claim on her PDS, along with measurements and attachments. Bob, an environmental auditor, evaluates the activity claim and its attached measurements of the new trees and attachments from his own PDS.
-
-| Record | Owner | Location |
-|--------|-------|----------|
-| Activity claim | Alice | `at://did:plc:alice/org.hypercerts.claim.activity/3k7` |
-| Measurement | Alice | `at://did:plc:alice/org.hypercerts.claim.measurement/5m1` |
-| Attachment | Alice | `at://did:plc:alice/org.hypercerts.claim.attachment/7e4` |
-| Evaluation | Bob | `at://did:plc:bob/org.hypercerts.claim.evaluation/9x2` |
-
-At this point, all records are mutable ATProto data. Alice can still update her claim, and Bob can revise his evaluation.
+Alice plants 500 trees in a reforestation project and creates an activity claim with measurements and attachments. Bob, an environmental auditor, evaluates the claim from his own PDS. See [Creating Your First Hypercert](/getting-started/creating-your-first-hypercert) for a walkthrough.
 
 ### Stage 2 — Funding
 
-Carol, a climate funder, reviews Alice's claim and Bob's evaluation. She decides to fund Alice's work through her organization's grant program. A funding receipt is created on ATProto, recording Carol's contribution and referencing Alice's activity claim.
+Carol, a climate funder, reviews Alice's claim and Bob's evaluation. She decides to fund Alice's work through her organization's grant platform. The payment facilitator processes the payment and creates a funding receipt, recording Carol's contribution and referencing Alice's activity claim.
 
-| Record | Owner | Location |
-|--------|-------|----------|
-| Funding receipt | Carol | `at://did:plc:carol/org.hypercerts.funding.receipt/2f8` |
-| Verification | Alice | `at://did:plc:alice/org.hypercerts.acknowledgement/3f2` |
+| Record | Owner |
+|--------|-------|
+| Funding receipt | Payment facilitator |
+| Acknowledgement | Alice or Carol |
 
-The receipt links to Alice's activity claim, creating a verifiable record that Carol funded this work. The actual payment — whether by bank transfer, credit card, or any other method — happens outside the protocol. Alice creates an acknowledgement — a record confirming the receipt's accuracy — to strengthen the credibility of Carol's funding claim.
+Either party can then create an acknowledgement — a counter-signature confirming the receipt's accuracy — to strengthen its credibility.
 
-### Stage 3 — Lock and tokenize
+### Stage 3 — Locking
 
-Alice can lock the hypercert by wrapping it in an onchain token or anchoring it onchain without a token. This can happen at any time; a good time to do so is when the actual work is completed.
+{% callout type="note" %}
+Locking is planned but not yet implemented.
+{% /callout %}
 
-If she creates a token, for instance on Ethereum Mainnet, she can distribute some to Carol in recognition of her earlier funding. Another funder, Dave, can then fund the activity by acquiring tokens — directly receiving proof of his contribution.
-
-| Record | Owner | Location |
-|--------|-------|----------|
-| ERC-1155 Token (75%) | Alice | `0xAa01…1111` |
-| ERC-1155 Token (15%) | Carol | `0xCc03…3333` |
-| ERC-1155 Token (10%) | Dave | `0xDd04…4444` |
+Alice locks the claim, freezing it so its contents can't change. This gives future funders a guarantee — the claim they review is exactly the claim they'll be funding.
 
 ### Stage 4 — Retroactive funding
 
-Two years later, a second evaluator, Eve, assesses the health of Alice's trees and publishes a positive evaluation. Faythe, a climate funder focused on proven outcomes, sees the original claim, both evaluations, and Carol's earlier funding. She decides to fund the project retroactively — either through any classic payment flow with a new funding receipt referencing the same activity claim, or by acquiring tokens if the hypercert was tokenized.
+Two years later, Eve assesses the health of Alice's trees and publishes a positive evaluation. Grace, a climate funder focused on proven outcomes, sees the original claim, both evaluations, and Carol's earlier funding. She funds the project retroactively with a new funding receipt referencing the same activity claim.
 
-| Record | Owner | Location |
-|--------|-------|----------|
-| Measurement | Eve | `at://did:plc:eve/org.hypercerts.claim.measurement/2x1` |
-| Evaluation | Eve | `at://did:plc:eve/org.hypercerts.claim.evaluation/2f2` |
-| ERC-1155 Token (50%) | Alice | `0xAa01…1111` |
-| ERC-1155 Token (25%) | Faythe | `0xFf06…6666` |
-| ERC-1155 Token (15%) | Carol | `0xCc03…3333` |
-| ERC-1155 Token (10%) | Dave | `0xDd04…4444` |
-
-## What this enables
-
-| Capability | Description |
-|------------|-------------|
-| **Works with any payment technology** | Credit cards, bank transfers, onchain payments — the protocol tracks the funding, not the payment |
-| **Works with any funding mechanism** | Grants, prizes, quadratic funding, impact certificates — any mechanism can create funding receipts |
-| **Prospective and retroactive funding** | Fund planned work or reward demonstrated outcomes |
-| **Composable mechanisms** | Different funding models operate on the same underlying data |
-| **Portable proof of funding** | Funders can prove what they funded, whether onchain or offchain |
-| **Independent evolution** | Data and ownership layers evolve separately — evaluations accumulate on ATProto while potential ownership transfers onchain |
 
 ## See also
 
 - [Architecture Overview](/architecture/overview) — how the full protocol stack fits together
 - [Data Flow & Lifecycle](/architecture/data-flow-and-lifecycle) — how a hypercert moves through the system
-- [Roadmap](/roadmap) — current build priorities and development phases
 
