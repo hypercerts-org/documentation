@@ -15,7 +15,7 @@ Sign up at [certified.app](https://certified.app). You'll get:
 
 - **Low-friction sign-in** — Sign in with just your email and a code. No passwords or protocol knowledge required.
 - **A DID** — Your permanent, portable identifier (e.g., `did:plc:z72i7hdynmk6r22z27h6tvur`). It never changes, even if you switch servers or handles.
-- **A PDS** — Your Personal Data Server, where your hypercerts, evaluations, and other records are stored. You own this data.
+- **A Repository** — Your own collection on the certified PDS, where your hypercerts, evaluations, and other records are stored. You own this data and you can migrate it between servers.
 - **An (embedded) wallet** — Add your existing EVM wallet or get a new one.
 - **Ecosystem access** — Your identity works across every Hypercerts application.
 
@@ -45,7 +45,11 @@ Handles are not needed to log in to the Hypercerts ecosystem, but every user has
 
 **Organizations should use custom domain handles.** A handle like `numpy.org` proves organizational identity — anyone can verify that the DID behind `numpy.org` is controlled by whoever controls the domain.
 
-To set up a custom handle, add a DNS TXT record or host a file at `https://your-domain.com/.well-known/atproto-did`. See the [AT Protocol handle documentation](https://atproto.com/specs/handle) for details.
+To set up a custom handle, add a DNS TXT record or host a file at `https://your-domain.com/.well-known/atproto-did`. See the [AT Protocol handle documentation](https://atproto.com/specs/handle) for details and this [tutorial](https://blueskyweb.zendesk.com/hc/en-us/articles/19001802873101-How-to-Set-your-Domain-as-your-Handle) from bluesky for a step-by-step guide.
+
+{% callout type="note" %}
+If you sign up using your email on certified.app you will initially be given a random handle like `1lasdk.certified.app`. You can change your handle by going to your profile settings and clicking on "Change handle" on [certified.app](https://certified.app).
+{% /callout %}
 
 ---
 
@@ -83,18 +87,6 @@ Create one in your account settings at [certified.app](https://certified.app). G
 
 {% callout type="warning" %}
 Never commit app passwords to version control. Use environment variables or a secrets manager.
-{% /callout %}
-
----
-
-## Account recovery
-
-Your `did:plc` identity includes a recovery key. If you lose access to your account, you can use this key to prove ownership and regain control.
-
-When you create an account, you'll be prompted to save your recovery key. Store it somewhere safe — a password manager, encrypted backup, or physical paper in a secure location.
-
-{% callout type="warning" %}
-Without your recovery key, account recovery is difficult or impossible. Save it when prompted.
 {% /callout %}
 
 ---
