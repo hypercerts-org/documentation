@@ -23,13 +23,9 @@ The permanent, globally unique identifier for a record. Looks like `at://did:plc
 
 A permanent identifier for a user or organization. Looks like `did:plc:abc123xyz`. You get one when you create an account on [certified.app](https://certified-app-hypercerts-foundation.vercel.app) or [Bluesky](https://bsky.app). Your DID never changes, even if you switch servers or handles. Every record you create carries your DID as the author.
 
-#### CID (Content Identifier)
-
-A cryptographic hash of a record's content. When you reference another record, you include both its AT-URI and CID — this makes the reference tamper-evident. If the record changes, the CID changes, and the mismatch is detectable.
-
 #### Strong reference
 
-A reference to another record that includes both the AT-URI and CID. Used when one record points to another (e.g., an evaluation referencing an activity claim). The CID ensures you're referencing a specific version of the record.
+A reference to another record that includes both the AT-URI and a content hash (CID). Used when one record points to another (e.g., an evaluation referencing an activity claim). The CID makes the reference tamper-evident — if the target record changes, the hash won't match.
 
 #### Evaluation
 
@@ -62,18 +58,6 @@ The "what" dimension of a hypercert — what work is being claimed. Can be a sim
 #### Hyperindex
 
 A reference indexer that indexes hypercert records across the network and exposes them via a GraphQL API. Other indexers exist — see [Indexers & Discovery](/architecture/indexers-and-discovery).
-
-#### Relay
-
-A server that aggregates repository events from many PDS instances into a single firehose stream. Indexers subscribe to relays to discover new records across the network. Bluesky operates the primary relay at `bsky.network`.
-
-#### Firehose
-
-The real-time stream of all repository changes across the network, provided by relays. Indexers subscribe to the firehose to index new records as they're created.
-
-#### Jetstream
-
-A lightweight, filtered event stream that delivers AT Protocol events in JSON format. Hyperindex uses Jetstream to receive real-time record updates.
 
 #### PDS (Personal Data Server)
 
