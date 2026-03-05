@@ -54,6 +54,6 @@ Replace `BOARD_ID` with your board's identifier from the dashboard.
 
 ## See also
 
-- [Creating Your First Hypercert](/getting-started/creating-your-first-hypercert) — build a hypercert with contributors that Hyperboards can display
+- [Quickstart](/getting-started/quickstart) — build a hypercert with contributors that Hyperboards can display
 - [Core Data Model](/core-concepts/hypercerts-core-data-model) — understand the record types behind a board
 - [Scaffold Starter App](/tools/scaffold) — another example of building on ATProto with the Hypercerts protocol
