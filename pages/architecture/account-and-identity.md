@@ -47,6 +47,9 @@ Handles are not needed to log in to the Hypercerts ecosystem, but every user has
 
 To set up a custom handle, add a DNS TXT record or host a file at `https://your-domain.com/.well-known/atproto-did`. See the [AT Protocol handle documentation](https://atproto.com/specs/handle) for details.
 
+{% callout type="note" %}
+If you sign up using your email on certified.app you will initially be given a random handle like `1lasdk.certified.app`. You can change your handle by going to your profile settings and clicking on "Change handle" on [certified.app](https://certified.app).
+{% /callout %}
 ---
 
 ## Organization accounts
