@@ -5,8 +5,6 @@ description: Key terms used in the Hypercerts documentation.
 
 # Glossary
 
-Terms you'll encounter when building with Hypercerts, ordered by how soon you'll need them.
-
 ---
 
 #### Hypercert
@@ -35,23 +33,23 @@ A reference to another record that includes both the AT-URI and CID. Used when o
 
 #### Evaluation
 
-A third-party assessment of a hypercert. Created on the evaluator's own account, not the original author's. Lexicon: `org.hypercerts.claim.evaluation`.
+A third-party assessment of a hypercert. Created on the evaluator's own account, not the original author's. Lexicon: `org.hypercerts.context.evaluation`.
 
 #### Attachment
 
-Supporting documentation linked to one or more records — a URL, uploaded file, or IPFS link. Can reference any record type, not only activity claims. Lexicon: `org.hypercerts.claim.attachment`.
+Supporting documentation linked to one or more records — a URL, uploaded file, or IPFS link. Can reference any record type, not only activity claims. Lexicon: `org.hypercerts.context.attachment`.
 
 #### Measurement
 
-A quantitative observation attached to a hypercert (e.g., "12 pages written", "50 tons CO₂ reduced"). Lexicon: `org.hypercerts.claim.measurement`.
+A quantitative observation attached to a hypercert (e.g., "12 pages written", "50 tons CO₂ reduced"). Lexicon: `org.hypercerts.context.measurement`.
 
 #### Contribution
 
-Contribution information is split across two lexicons: `org.hypercerts.claim.contributorInformation` (identity, display name, image) and `org.hypercerts.claim.contributionDetails` (role, description, timeframe). Contributors are embedded in the activity claim's `contributors` array, which can reference these records or use inline strings.
+Contribution information is split across two lexicons: `org.hypercerts.claim.contributorInformation` (identity, display name, image) and `org.hypercerts.claim.contribution` (role, description, timeframe). Contributors can also be provided inline as a DID string without a separate record.
 
 #### Collection
 
-A group of hypercerts with a shared property, where each claim has a weight. Used for projects or portfolios. Lexicon: `org.hypercerts.claim.collection`.
+A named group of hypercerts and/or other collections, with an optional weight per item. Each collection has a `type` (e.g., "favorites", "project") so the same hypercert can appear in different collections for different purposes. Lexicon: `org.hypercerts.collection`.
 
 #### Lexicon
 
@@ -59,11 +57,11 @@ A versioned schema that defines the structure of a record type. For example, `or
 
 #### Work scope
 
-The "what" dimension of a hypercert, defined using logical operators (`allOf`, `anyOf`, `noneOf`) to precisely bound the work being claimed.
+The "what" dimension of a hypercert — what work is being claimed. Can be a simple free-text string or a structured [CEL expression](https://github.com/google/cel-spec) for machine-evaluable scopes. See [Work Scopes](/core-concepts/work-scopes).
 
 #### Hyperindex
 
-The AppView server that indexes hypercert records across the network and exposes them via a GraphQL API at `hyperindex.certified.app/graphql`. This is how applications query hypercert data without reading from individual servers directly.
+A reference indexer that indexes hypercert records across the network and exposes them via a GraphQL API. Other indexers exist — see [Indexers & Discovery](/architecture/indexers-and-discovery).
 
 #### Relay
 
