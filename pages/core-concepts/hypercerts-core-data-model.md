@@ -26,11 +26,11 @@ The activity claim gets a permanent AT-URI like `at://did:plc:alice123/org.hyper
 
 The activity claim has a `contributors` array. Each entry is a contributor object with three fields:
 
-- **`contributorIdentity`** — either an inline identity string (a DID) or a strong reference to an `org.hypercerts.claim.contributorInformation` record with a full social profile
+- **`contributorIdentity`** — either an inline identity object (`#contributorIdentity`, containing an `identity` DID string) or a strong reference to an `org.hypercerts.claim.contributorInformation` record with a full social profile
 - **`contributionWeight`** — an optional relative weight string (e.g. `"1"`, `"0.5"`)
-- **`contributionDetails`** — either an inline role string or a strong reference to an `org.hypercerts.claim.contribution` record with structured contribution data
+- **`contributionDetails`** — either an inline role object (`#contributorRole`, containing a `role` string) or a strong reference to an `org.hypercerts.claim.contribution` record with structured contribution data
 
-Simple cases use inline strings directly in the activity claim. Richer profiles use separate records that the contributor or project lead creates independently.
+Simple cases use inline objects directly in the activity claim. Richer profiles use separate records that the contributor or project lead creates independently.
 
 | Record type | What it adds | Who creates it | Lexicon |
 |-------------|-------------|----------------|---------|
@@ -76,9 +76,9 @@ Records reference each other using [strong references](/reference/glossary#stron
 ```text
 Activity Claim (the core record)
 ├── contributors[0]
-│   ├── contributorIdentity: Alice (inline DID or ref to ContributorInformation)
+│   ├── contributorIdentity: {identity: "did:plc:alice..."} (inline #contributorIdentity or ref to ContributorInformation)
 │   ├── contributionWeight: "1"
-│   └── contributionDetails: Lead author (inline role or ref to Contribution)
+│   └── contributionDetails: {role: "Lead author"} (inline #contributorRole or ref to Contribution)
 ├── contributors[1]
 │   ├── contributorIdentity: → ContributorInformation record (Bob)
 │   └── contributionDetails: → Contribution record (Technical reviewer, Jan-Mar)
