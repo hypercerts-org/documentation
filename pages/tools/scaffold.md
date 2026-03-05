@@ -9,15 +9,16 @@ The Hypercerts Scaffold is a working Next.js app that demonstrates how to build 
 
 Live at [hypercerts-scaffold.vercel.app](https://hypercerts-scaffold.vercel.app). Source: [github.com/hypercerts-org/hypercerts-scaffold-atproto](https://github.com/hypercerts-org/hypercerts-scaffold-atproto).
 
+The repo is also indexed on [deepwiki](https://deepwiki.com/hypercerts-org/hypercerts-scaffold-atproto) in case you are interested to dive deeper into the docs and setup.
+
 ## Tech Stack
 
 | Category | Technology |
 |----------|------------|
-| Framework | Next.js 15 (App Router), React 19, TypeScript |
+| Framework | Next.js 16 (App Router), React 19, TypeScript |
 | Styling | Tailwind CSS 4, shadcn/ui (Radix primitives) |
 | State Management | TanStack React Query v5 |
 | Auth / Protocol | AT Protocol OAuth, `@atproto/oauth-client-node` |
-
 | Infrastructure | Redis (session + OAuth state storage) |
 
 ## What the app does
@@ -25,6 +26,8 @@ Live at [hypercerts-scaffold.vercel.app](https://hypercerts-scaffold.vercel.app)
 ### Sign in with ATProto
 
 Enter your handle (e.g. `yourname.certified.app` or `yourname.bsky.social`) and the app redirects you to your PDS for OAuth authorization. Once approved, you're signed in with a session tied to your DID.
+
+Alternatively, the sign-in dialog has an **Email** tab (visible when `NEXT_PUBLIC_EPDS_URL` is configured). Entering your email authenticates via the ePDS — if no account is registered with that email, the ePDS creates one for you automatically.
 
 ![Scaffold sign-in screen showing handle input field](/images/scaffold/sign-in.png)
 *The sign-in screen. Enter your ATProto handle to authenticate via OAuth.*
@@ -94,6 +97,7 @@ The profile page lets you update your Certified profile — display name, bio, p
 | `REDIS_PORT` | Redis port |
 | `REDIS_PASSWORD` | Redis password |
 | `NEXT_PUBLIC_PDS_URL` | PDS URL (e.g. `https://pds-eu-west4.test.certified.app`) |
+| `NEXT_PUBLIC_EPDS_URL` | ePDS URL (e.g. `https://epds1.test.certified.app`) (optional only if you want email/passwordless login) |
 
 {% callout type="note" %}
 Redis is the default session store, but you can use any persistent storage (Supabase, Postgres, DynamoDB, etc.). You just need to implement the `NodeSavedStateStore` and `NodeSavedSessionStore` interfaces from `@atproto/oauth-client-node`. See `lib/redis-state-store.ts` for the reference implementation.
@@ -188,17 +192,23 @@ hypercerts-scaffold/
 ├── app/
 │   ├── layout.tsx                    # Root layout (server component, wraps providers)
 │   ├── page.tsx                      # Landing page (server component)
+│   ├── loading.tsx                   # Root loading state
+│   ├── robots.ts                     # Robots meta
+│   ├── sitemap.ts                    # Sitemap generation
 │   ├── client-metadata.json/
 │   │   └── route.ts                  # OAuth client metadata endpoint (RFC 7591)
 │   ├── jwks.json/
 │   │   └── route.ts                  # JWKS public key endpoint for OAuth
 │   ├── api/
-│   │   ├── auth/
-│   │   │   ├── login/route.ts        # POST — initiate OAuth login
+│   │   ├── oauth/
+│   │   │   ├── login/route.ts        # POST — initiate OAuth login (handle)
 │   │   │   ├── callback/route.ts     # GET — OAuth callback, sets session
-│   │   │   └── logout/route.ts       # GET — revoke session, clear cookie
+│   │   │   ├── logout/route.ts       # GET — revoke session, clear cookie
+│   │   │   └── epds/
+│   │   │       ├── login/route.ts    # POST — initiate ePDS email login (PAR + PKCE)
+│   │   │       └── callback/route.ts # GET — ePDS token exchange
 │   │   ├── certs/
-│   │   │   ├── create/route.ts       # POST — create hypercert (FormData)
+│   │   │   ├── route.ts              # POST — create hypercert
 │   │   │   ├── add-location/route.ts # POST — attach location to hypercert
 │   │   │   └── add-attachment/route.ts # POST — attach evidence/files
 │   │   └── profile/
@@ -206,51 +216,75 @@ hypercerts-scaffold/
 │   │       └── bsky/update/route.ts  # POST — update Bluesky profile
 │   ├── hypercerts/
 │   │   ├── page.tsx                  # List all hypercerts (server component)
-│   │   ├── create/page.tsx           # Multi-step creation wizard (client component)
-│   │   └── [hypercertUri]/page.tsx   # Hypercert detail view (server component)
-│   ├── profile/page.tsx              # Certified profile editor
+│   │   ├── loading.tsx
+│   │   ├── create/
+│   │   │   ├── page.tsx              # Multi-step creation wizard
+│   │   │   └── layout.tsx
+│   │   └── [hypercertUri]/
+│   │       ├── page.tsx              # Hypercert detail view (server component)
+│   │       ├── loading.tsx
+│   │       ├── edit/page.tsx         # Edit hypercert
+│   │       └── add/[type]/page.tsx   # Add evidence/evaluation/measurement/etc.
+│   ├── profile/
+│   │   ├── page.tsx                  # Certified profile editor
+│   │   └── loading.tsx
 │   └── bsky-profile/page.tsx         # Bluesky profile editor
 │
 ├── lib/
 │   ├── config.ts                     # Centralized config, env validation, URL detection
-│   ├── atproto-client.ts             # ATProto client initialization
+│   ├── hypercerts-sdk.ts             # NodeOAuthClient initialization + Redis stores
 │   ├── atproto-session.ts            # Session restore helpers (server-only, cached)
+│   ├── atproto-writes.ts             # StrongRef resolution, location creation, blob upload
+│   ├── atproto-branding.ts           # OAuth page CSS/logo branding
+│   ├── epds-config.ts                # Derives ePDS OAuth endpoints from NEXT_PUBLIC_EPDS_URL
+│   ├── epds-helpers.ts               # PKCE + DPoP utilities for ePDS flow
+│   ├── repo-context.ts               # getRepoContext() — authenticated Agent + DID context
 │   ├── redis.ts                      # Redis client singleton (server-only)
 │   ├── redis-state-store.ts          # Redis-backed OAuth state + session stores
 │   ├── create-actions.ts             # Server Actions ("use server")
+│   ├── record-validation.ts          # Generic lexicon record validation
 │   ├── blob-utils.ts                 # Blob/image URL resolution (server-only)
-│   ├── utils.ts                      # Shared utilities (cn, validators)
+│   ├── contribution-helpers.ts       # Contributor/contribution utilities
 │   ├── types.ts                      # Core TypeScript types
+│   ├── utils.ts                      # Shared utilities (cn, validators)
 │   └── api/                          # Client-side API layer
 │       ├── client.ts                 # Base fetch wrappers (JSON, FormData)
 │       ├── auth.ts                   # Auth API functions
 │       ├── hypercerts.ts             # Hypercert API functions
-│       ├── profile.ts               # Profile API functions
-│       ├── query-keys.ts            # Centralized TanStack Query key factory
+│       ├── profile.ts                # Profile API functions
+│       ├── bsky-profile.ts           # Bluesky profile API functions
+│       ├── types.ts                  # Shared API types
+│       ├── query-keys.ts             # Centralized TanStack Query key factory
 │       └── external/
 │           ├── bluesky.ts            # Bluesky public API (search, profiles)
 │           └── constellation.ts      # Constellation backlinks API
 │
 ├── providers/
 │   ├── AllProviders.tsx              # QueryClientProvider (client component)
-│   └── SignedInProvider.tsx           # Auth gate + Navbar (server component)
+│   ├── AuthErrorToast.tsx            # Auth error toast notifications
+│   └── SignedInProvider.tsx          # Auth gate + Navbar (server component)
 │
 ├── queries/                          # TanStack Query hooks (all client-side)
+│   ├── use-active-profile-query.tsx
 │   ├── auth/                         # Login/logout mutations
-│   ├── hypercerts/                   # Create, attach, list queries/mutations
+│   ├── hypercerts/                   # Create, edit, delete, attach queries/mutations
 │   ├── profile/                      # Profile update mutations
 │   └── external/                     # Bluesky search, Constellation queries
 │
 ├── components/
-│   ├── ui/                           # shadcn/ui primitives (button, dialog, etc.)
+│   ├── ui/                           # shadcn/ui primitives
 │   ├── navbar.tsx                    # Top navigation
-│   ├── login-dialog.tsx              # Login form
+│   ├── login-dialog.tsx              # Login form (handle + email tab toggle)
 │   ├── hypercerts-create-form.tsx    # Create wizard wrapper
+│   ├── hypercerts-edit-form.tsx      # Edit hypercert form
 │   ├── evidence-form.tsx             # Evidence step
 │   ├── locations-form.tsx            # Location step
 │   ├── measurement-form.tsx          # Measurement step
 │   ├── evaluation-form.tsx           # Evaluation step
+│   ├── contributions-form.tsx        # Contributors step
 │   ├── hypercert-detail-view.tsx     # Detail page client component
+│   ├── hypercert-*-section.tsx       # Collapsible detail sections (evidence, evaluations, etc.)
+│   ├── delete-confirm-dialog.tsx     # Delete confirmation
 │   ├── profile-form.tsx              # Certified profile form
 │   └── bsky-profile-form.tsx         # Bluesky profile form
 │
