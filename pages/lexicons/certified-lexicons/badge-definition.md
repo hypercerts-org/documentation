@@ -12,4 +12,4 @@ Badge definitions can optionally specify an allowlist of DIDs that are permitted
 
 Once created, a badge definition can be referenced by multiple badge award records. This separation allows the badge's visual identity and meaning to be defined once and reused many times.
 
-For the full schema, see the [Hyperscan lexicon browser](https://www.hyperscan.dev/agents/lexicon/app.certified.badge.definition).
+For the full schema, see [`app.certified.badge.definition`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/app/certified/badge/definition.json) in the lexicon repo.

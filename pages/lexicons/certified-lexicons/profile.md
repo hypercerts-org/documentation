@@ -12,4 +12,4 @@ The profile includes display name, avatar, banner image, description, website UR
 
 Profiles are optional but recommended for any account that will be creating or interacting with hypercerts, badges, or other social records. They make it easier for others to recognize and understand who is behind an account.
 
-For the full schema, see the [Hyperscan lexicon browser](https://www.hyperscan.dev/agents/lexicon/app.certified.actor.profile).
+For the full schema, see [`app.certified.actor.profile`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/app/certified/actor/profile.json) in the lexicon repo.

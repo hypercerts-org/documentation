@@ -12,7 +12,7 @@ This page covers two related lexicons that work together to represent contributo
 
 Stores identity information for a contributor: display name, identifier (like a GitHub username or email), and an optional profile image. This record can be created once and referenced from multiple activity claims, making it easy to maintain consistent contributor identity across projects.
 
-For the full schema, see the [Hyperscan lexicon browser](https://www.hyperscan.dev/agents/lexicon/org.hypercerts.claim.contributorInformation).
+For the full schema, see [`org.hypercerts.claim.contributorInformation`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/org/hypercerts/claim/contributorInformation.json) in the lexicon repo.
 
 ## Contribution Details
 
@@ -22,4 +22,4 @@ Stores details about a specific contribution, including the contributor's role, 
 
 Together, these lexicons allow you to represent contributors either inline (with simple strings) or as rich, referenceable records with detailed metadata. Contributors are referenced from the activity claim's `contributors` array, which also supports contribution weights to indicate relative effort or impact.
 
-For the full schema, see the [Hyperscan lexicon browser](https://www.hyperscan.dev/agents/lexicon/org.hypercerts.claim.contributionDetails).
+For the full schema, see [`org.hypercerts.claim.contributionDetails`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/org/hypercerts/claim/contribution.json) in the lexicon repo.

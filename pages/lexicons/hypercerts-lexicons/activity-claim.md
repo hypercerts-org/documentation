@@ -12,4 +12,4 @@ An activity claim defines work using four core dimensions: who performed it, wha
 
 The activity claim supports rich descriptions with text formatting, cover images, contributor lists with weights and roles, work scope definitions, time ranges, location references, and rights declarations. It's designed to be flexible enough to represent everything from open-source software maintenance to forest stewardship to research projects.
 
-For the full schema, see the [Hyperscan lexicon browser](https://www.hyperscan.dev/agents/lexicon/org.hypercerts.claim.activity).
+For the full schema, see [`org.hypercerts.claim.activity`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/org/hypercerts/claim/activity.json) in the lexicon repo.

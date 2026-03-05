@@ -12,4 +12,4 @@ Measurements support methodology traceability through optional fields for method
 
 Like attachments and evaluations, measurements live in the context namespace, meaning anyone can contribute measurements to existing claims. This enables collaborative impact tracking where different parties can add their own data points to build a richer picture of outcomes and impact.
 
-For the full schema, see the [Hyperscan lexicon browser](https://www.hyperscan.dev/agents/lexicon/org.hypercerts.context.measurement).
+For the full schema, see [`org.hypercerts.context.measurement`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/org/hypercerts/context/measurement.json) in the lexicon repo.

@@ -12,4 +12,4 @@ A rights record specifies whether the hypercert is transferable, whether it can 
 
 Rights records are created separately from activity claims and referenced via strong reference. This allows the same rights definition to be reused across multiple claims, and makes it easy to update rights without modifying the core claim record.
 
-For the full schema, see the [Hyperscan lexicon browser](https://www.hyperscan.dev/agents/lexicon/org.hypercerts.claim.rights).
+For the full schema, see [`org.hypercerts.claim.rights`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/org/hypercerts/claim/rights.json) in the lexicon repo.

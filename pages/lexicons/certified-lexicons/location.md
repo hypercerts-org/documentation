@@ -12,4 +12,4 @@ Each location record includes a Spatial Reference System (SRS) URI to prevent am
 
 Locations can be referenced from activity claims (to indicate where work took place), measurements (to indicate where data was collected), and other records. The protocol is designed to be implementation-agnostic and follows OGC standards for spatial reference systems.
 
-For the full schema, see the [Hyperscan lexicon browser](https://www.hyperscan.dev/agents/lexicon/app.certified.location).
+For the full schema, see [`app.certified.location`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/app/certified/location.json) in the lexicon repo.

@@ -12,4 +12,4 @@ Each collection has a title, description, and an array of strong references to t
 
 Collections are useful for representing things like grant programs (which fund multiple projects), research initiatives (which produce multiple outputs), or organizational portfolios (which encompass multiple activities). Because collections can reference other collections, you can build arbitrarily deep hierarchies to match your organizational needs.
 
-For the full schema, see the [Hyperscan lexicon browser](https://www.hyperscan.dev/agents/lexicon/org.hypercerts.claim.collection).
+For the full schema, see [`org.hypercerts.claim.collection`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/org/hypercerts/collection.json) in the lexicon repo.

@@ -12,4 +12,4 @@ Evaluations enable plural evaluation — multiple parties can independently asse
 
 An evaluation can reference multiple records (for example, assessing a collection and all its constituent claims), and can cite specific measurements as evidence. This creates a traceable chain from raw data through measurements to final assessments.
 
-For the full schema, see the [Hyperscan lexicon browser](https://www.hyperscan.dev/agents/lexicon/org.hypercerts.context.evaluation).
+For the full schema, see [`org.hypercerts.context.evaluation`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/org/hypercerts/context/evaluation.json) in the lexicon repo.

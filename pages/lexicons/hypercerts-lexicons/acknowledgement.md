@@ -12,4 +12,4 @@ Acknowledgements are created in the acknowledging actor's own repository, making
 
 This enables consent-based relationships in the hypercerts ecosystem. Rather than assuming that being listed as a contributor or funder implies agreement, acknowledgements make consent explicit and auditable. They also enable dispute resolution — if someone is incorrectly listed, they can create a rejection acknowledgement.
 
-For the full schema, see the [Hyperscan lexicon browser](https://www.hyperscan.dev/agents/lexicon/org.hypercerts.context.acknowledgement).
+For the full schema, see [`org.hypercerts.context.acknowledgement`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/org/hypercerts/context/acknowledgement.json) in the lexicon repo.

@@ -12,4 +12,4 @@ Attachments are useful for providing evidence, documentation, or additional cont
 
 Because attachments live in the context namespace, they can be created by anyone — not just the original claim creator. This enables collaborative documentation and third-party evidence gathering.
 
-For the full schema, see the [Hyperscan lexicon browser](https://www.hyperscan.dev/agents/lexicon/org.hypercerts.context.attachment).
+For the full schema, see [`org.hypercerts.context.attachment`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/org/hypercerts/context/attachment.json) in the lexicon repo.

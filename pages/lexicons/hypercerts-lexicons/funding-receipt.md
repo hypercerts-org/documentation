@@ -12,4 +12,4 @@ Each receipt includes the funder's DID, the recipient's DID, the amount and curr
 
 Funding receipts enable transparent funding tracking and make it possible to see who funded what work. They're designed to be simple and flexible enough to represent everything from traditional grants to crypto payments to in-kind contributions.
 
-For the full schema, see the [Hyperscan lexicon browser](https://www.hyperscan.dev/agents/lexicon/org.hypercerts.funding.receipt).
+For the full schema, see [`org.hypercerts.funding.receipt`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/org/hypercerts/funding/receipt.json) in the lexicon repo.
