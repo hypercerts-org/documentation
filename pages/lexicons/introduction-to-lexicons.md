@@ -14,4 +14,4 @@ All lexicons follow the principle that "everything is a claim" - whether it's a 
 
 [**Certified Lexicons**](certified-lexicons/) provide foundational building blocks that can be shared across multiple protocols. These include common data types, standardized location references, profiles, badges, and other universal concepts that extend beyond hypercerts alone.
 
-[**Hypercerts Lexicons**](hypercerts-lexicons/) contain the core claim types specific to impact tracking. These lexicons define how to structure and relate different types of impact claims - from the central activity claim (the hypercert itself) to supporting claims like measurements, attachments, and evaluations.
+[**Hypercerts Lexicons**](hypercerts-lexicons/) contain the core claim types specific to impact tracking. These lexicons define how to structure and relate different types of impact claims. The central record is the activity claim (the hypercert itself), which lives in the `org.hypercerts.claim` namespace. Supporting records like measurements, attachments, evaluations, and acknowledgements live in the `org.hypercerts.context` namespace, enabling anyone to add context to existing claims.

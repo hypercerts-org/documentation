@@ -4,22 +4,8 @@ title: Profile
 
 # Profile
 
-## Description
+`app.certified.actor.profile`
 
-A declaration of a Certified account profile. This is a singleton record (key: `self`) — each account has exactly one profile record.
+A user profile in the Certified ecosystem. This is a singleton record — each account has exactly one, stored with the key `self`. Includes display name, avatar, banner image, description, website URL, and pronouns.
 
-## Lexicon
-
-**Lexicon ID:** `app.certified.actor.profile`
-
-**Key:** `literal:self`
-
-| Property | Type | Required | Description | Comments |
-| --- | --- | --- | --- | --- |
-| `displayName` | `string` | ❌ | Display name for the account | Max 64 graphemes, 640 characters. |
-| `description` | `string` | ❌ | Free-form profile description text | Max 256 graphemes, 2560 characters. |
-| `pronouns` | `string` | ❌ | Free-form pronouns text | Max 20 graphemes, 200 characters. |
-| `website` | `string` | ❌ | Website URL | Format: `uri`. |
-| `avatar` | `union` | ❌ | Small image displayed next to posts from this account | Accepts `org.hypercerts.defs#uri` or `org.hypercerts.defs#smallImage`. |
-| `banner` | `union` | ❌ | Larger horizontal image displayed behind the profile view | Accepts `org.hypercerts.defs#uri` or `org.hypercerts.defs#largeImage`. |
-| `createdAt` | `string` | ❌ | Client-declared timestamp when this record was created | Format: `datetime`. |
+For the full schema, see [`app.certified.actor.profile`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/app/certified/actor/profile.json) in the lexicon repo.

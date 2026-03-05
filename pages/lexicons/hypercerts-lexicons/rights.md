@@ -4,54 +4,8 @@ title: Rights
 
 # Rights
 
-## Description
+`org.hypercerts.claim.rights`
 
-Describes the rights that a user has to the hypercert, such as whether it can be sold, transferred, and under what conditions.
+Describes the rights associated with a hypercert — whether it can be sold, transferred, and under what conditions. Rights are defined as a separate record and referenced from an activity claim, so the same rights definition can be reused across multiple claims.
 
-## Lexicon
-
-**Lexicon ID:** `org.hypercerts.claim.rights`
-
-**Key:** `tid`
-
-**Properties**
-
-| Property            | Type     | Required | Description                                                       | Comments    |
-| ------------------- | -------- | -------- | ----------------------------------------------------------------- | ----------- |
-| `rightsName`        | `string` | ✅        | Full name of the rights                                           |             |
-| `rightsType`        | `string` | ✅        | Short rights identifier for easier search                         |             |
-| `rightsDescription` | `string` | ✅        | Description of the rights of this hypercert                       |             |
-| `attachment`        | `union`  | ❌        | An attachment to define the rights further, e.g. a legal document | URI or blob |
-| `createdAt`         | `string` | ✅        | Client-declared timestamp when this record was originally created |             |
-
-## Code Example
-
-{% callout type="note" %}
-This example uses the low-level `@atproto/api` with app passwords for brevity. For production, use OAuth — see the [Quickstart](/getting-started/quickstart).
-{% /callout %}
-
-Create a rights record:
-
-```typescript
-import { BskyAgent } from '@atproto/api'
-
-const agent = new BskyAgent({ service: 'https://pds.example.com' })
-await agent.login({ identifier: 'your-handle', password: 'your-app-password' })
-
-const response = await agent.api.com.atproto.repo.createRecord({
-  repo: agent.session.did,
-  collection: 'org.hypercerts.claim.rights',
-  record: {
-    // Full name of the rights
-    rightsName: 'Public Display',
-    // Short rights identifier for easier search
-    rightsType: 'display',
-    // Description of the rights
-    rightsDescription: 'Right to publicly display this hypercert as proof of contribution',
-    // Timestamp when this record was created
-    createdAt: new Date().toISOString(),
-  },
-})
-
-console.log('Created:', response.data.uri)
-```
+For the full schema, see [`org.hypercerts.claim.rights`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/org/hypercerts/claim/rights.json) in the lexicon repo.

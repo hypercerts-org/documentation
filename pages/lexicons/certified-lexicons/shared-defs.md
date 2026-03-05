@@ -2,28 +2,12 @@
 title: Shared Definitions
 ---
 
-# Shared Defs
+# Shared Definitions
 
-## Description
+`app.certified.defs`
 
-Common type definitions shared across the Hypercerts ecosystem. Defines reusable data types like URIs, blobs, and images with specific size constraints.
+Common type definitions used across the certified ecosystem. Currently defines the `did` type, which represents a Decentralized Identifier.
 
-## Lexicon
+The `did` type is used throughout the certified and hypercerts lexicons to reference accounts and actors. It ensures consistent formatting and validation of DIDs across all record types.
 
-**Lexicon ID:** `org.hypercerts.defs`
-
-| Def          | Type     | Description                               | Comments                                |
-| ------------ | -------- | ----------------------------------------- | --------------------------------------- |
-| `uri`        | `object` | Object containing a URI to external data  | Has `uri` property (string, format uri) |
-| `smallBlob`  | `object` | Object containing a blob to external data | Has `blob` property (blob, up to 10MB)  |
-| `largeBlob`  | `object` | Object containing a blob to external data | Has `blob` property (blob, up to 100MB) |
-| `smallImage` | `object` | Object containing a small image           | Has `image` property (blob, up to 5MB)  |
-| `largeImage` | `object` | Object containing a large image           | Has `image` property (blob, up to 10MB) |
-
-## Certified Definitions
-
-**Lexicon ID:** `app.certified.defs`
-
-| Def   | Type     | Description                          | Comments                                           |
-| ----- | -------- | ------------------------------------ | -------------------------------------------------- |
-| `did` | `object` | A Decentralized Identifier (DID)     | Has `did` property (string, format did, max 256 chars) |
+For the full schema, see [`app.certified.defs`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/app/certified/defs.json) in the lexicon repo.
