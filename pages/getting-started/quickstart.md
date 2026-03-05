@@ -14,7 +14,7 @@ Create your first hypercert. This guide uses TypeScript and Node.js v20+.
 ## Install dependencies
 
 ```bash
-pnpm add @atproto/oauth-client-node
+pnpm add @atproto/oauth-client-node @atproto/jwk-jose @atproto/api
 ```
 
 {% callout type="info" %}
@@ -27,10 +27,31 @@ Authentication uses AT Protocol OAuth. Your app needs a client metadata document
 
 ```typescript
 import { NodeOAuthClient } from "@atproto/oauth-client-node";
+import { JoseKey } from "@atproto/jwk-jose";
+import { Agent } from "@atproto/api";
 
 const client = new NodeOAuthClient({
-  clientMetadata: "https://your-app.example.com/client-metadata.json",
-  // ... session store, keyset, etc.
+  clientMetadata: {
+    client_id: "https://your-app.example.com/client-metadata.json",
+    client_name: "My App",
+    client_uri: "https://your-app.example.com",
+    redirect_uris: ["https://your-app.example.com/callback"],
+    grant_types: ["authorization_code", "refresh_token"],
+    scope: "atproto transition:generic",
+    response_types: ["code"],
+    application_type: "web",
+    token_endpoint_auth_method: "private_key_jwt",
+    token_endpoint_auth_signing_alg: "RS256",
+    dpop_bound_access_tokens: true,
+    jwks_uri: "https://your-app.example.com/jwks.json",
+  },
+  keyset: await Promise.all([
+    JoseKey.fromImportable(process.env.PRIVATE_KEY_1, "key1"),
+    JoseKey.fromImportable(process.env.PRIVATE_KEY_2, "key2"),
+    JoseKey.fromImportable(process.env.PRIVATE_KEY_3, "key3"),
+  ]),
+  stateStore: { /* ... your state store implementation */ },
+  sessionStore: { /* ... your session store implementation */ },
 });
 
 // Redirect the user to their PDS to authorize
@@ -38,6 +59,9 @@ const url = await client.authorize("alice.certified.app");
 
 // After the user approves, exchange the callback params for a session
 const { session } = await client.callback(new URLSearchParams(callbackQuery));
+
+// Wrap the session in an Agent to make authenticated calls
+const agent = new Agent(session);
 ```
 
 See the [AT Protocol OAuth documentation](https://atproto.com/specs/oauth) for full details on client metadata, session storage, and keyset configuration. For further info on how to set up OAuth you can check out [AT Protos node.js implementation tutorial](https://atproto.com/guides/oauth-cli-tutorial) or the [scaffold app](/tools/scaffold).
@@ -52,8 +76,8 @@ The activity claim is the core record — it describes what work was done, when,
 - **Locations** are separate [`app.certified.location`](/lexicons/certified-lexicons/location) records referenced from the activity claim. They support coordinates, GeoJSON, and other formats.
 
 ```typescript
-const result = await session.agent.com.atproto.repo.createRecord({
-  repo: session.did,
+const result = await agent.com.atproto.repo.createRecord({
+  repo: agent.did,
   collection: "org.hypercerts.claim.activity",
   record: {
     $type: "org.hypercerts.claim.activity",
@@ -84,8 +108,8 @@ Each AT-URI is a permanent, globally unique identifier. Other records (evaluatio
 Contributors are embedded directly in the activity claim's `contributors` array. Each entry uses inline identity and role objects:
 
 ```typescript
-const result = await session.agent.com.atproto.repo.createRecord({
-  repo: session.did,
+const result = await agent.com.atproto.repo.createRecord({
+  repo: agent.did,
   collection: "org.hypercerts.claim.activity",
   record: {
     $type: "org.hypercerts.claim.activity",
@@ -136,8 +160,8 @@ Each contributor entry has:
 Attachments link supporting documents, reports, or URLs to any record. Create an attachment record that references the hypercert:
 
 ```typescript
-await session.agent.com.atproto.repo.createRecord({
-  repo: session.did,
+await agent.com.atproto.repo.createRecord({
+  repo: agent.did,
   collection: "org.hypercerts.context.attachment",
   record: {
     $type: "org.hypercerts.context.attachment",
@@ -162,8 +186,8 @@ The `subjects` field is an array of strong references (AT-URI + CID). The `conte
 Measurements record quantitative data about the work. Create a measurement record that references the hypercert:
 
 ```typescript
-await session.agent.com.atproto.repo.createRecord({
-  repo: session.did,
+await agent.com.atproto.repo.createRecord({
+  repo: agent.did,
   collection: "org.hypercerts.context.measurement",
   record: {
     $type: "org.hypercerts.context.measurement",
@@ -186,13 +210,13 @@ Required fields are `metric`, `value`, and `unit`. The `subjects` array links th
 Evaluations are third-party assessments of the work. They reference the hypercert via a single `subject` strong reference and are typically created by someone other than the hypercert author:
 
 ```typescript
-await session.agent.com.atproto.repo.createRecord({
-  repo: session.did,
+await agent.com.atproto.repo.createRecord({
+  repo: agent.did,
   collection: "org.hypercerts.context.evaluation",
   record: {
     $type: "org.hypercerts.context.evaluation",
     subject: { uri: result.data.uri, cid: result.data.cid },
-    evaluators: ["did:plc:carol789"],
+    evaluators: [{ did: "did:plc:ragtjsm2j2vknwkz3zp4oxrd" }],
     summary: "High-quality documentation with clear examples and thorough coverage.",
     score: { min: 1, max: 5, value: 4 },
     content: [
