@@ -11,37 +11,13 @@ The Hypercerts Protocol uses AT Protocol for data portability. On-chain anchorin
 
 The protocol operates across three layers.
 
-The **Data Layer** is the foundation. AT Protocol stores claims, attachments, and evaluations. Personal Data Servers (PDS) host user-controlled records — organizations can create dedicated PDS accounts for shared repositories. Relays aggregate data across servers. Indexers build queryable views that applications consume.
+The **Data Layer** is the foundation. AT Protocol stores claims, attachments, and evaluations. Personal Data Servers (PDS) host user-controlled records. Relays aggregate data across servers. Indexers build queryable views that applications consume. Records flow from a user's PDS through relays to indexers, where applications can query them. For the full pipeline, see [Data Flow & Lifecycle](/architecture/data-flow-and-lifecycle).
 
 The **Application Layer** sits on top of the data layer. Funding platforms, dashboards, and evaluation tools live here. These applications read from and write to the data layer using the [ATProto API](https://atproto.com/docs) and [Hyperindex](/tools/hyperindex).
 
 The **Ownership Layer** is planned but not yet implemented. The intended design freezes hypercerts and anchors them on-chain before funding — ensuring funders know exactly what they are paying for. See [Funding & Value Flow](/core-concepts/funding-and-value-flow) for details.
 
 ![The Hypercerts Stack](/images/architecture-stack.svg)
-
-## Data Layer Deep Dive
-
-ATProto components form a pipeline from user-controlled storage to globally queryable views.
-
-#### Personal Data Servers (PDS)
-
-A PDS stores a user's records — activity claims, contributions, evaluations. Each record gets a unique AT-URI like `at://did:plc:abc123/org.hypercerts.claim.activity/tid`. The PDS signs records and includes them in the user's repository. Users can migrate to a different PDS by updating their DID document.
-
-The [ePDS (extended PDS)](/architecture/account-and-identity#oauth-for-epds) adds email/passwordless login on top of the standard PDS for applications that need it.
-
-#### Relays
-
-Relays aggregate data across many PDS instances. When a user writes a new record to their PDS, the relay picks it up and makes it available to downstream consumers. Relays provide a firehose of all network activity.
-
-#### App Views and Indexers
-
-Indexers read from relays and build queryable databases. They filter for specific record types, resolve references between records, and expose APIs that applications use. Different indexers can build different views of the same underlying data.
-
-#### Lexicons
-
-Lexicons are shared schemas that define record structure. Any application that knows the lexicons can parse any record — this enables interoperability without custom integrations. See [Introduction to Lexicons](/lexicons/introduction-to-lexicons) for the full set.
-
-![Data flow through ATProto](/images/architecture-dataflow.svg)
 
 ## Security Model
 
