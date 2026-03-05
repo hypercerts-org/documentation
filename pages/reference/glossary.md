@@ -13,7 +13,7 @@ A structured digital record of a contribution: who did what, when, where, and wi
 
 #### Activity claim
 
-The central record in the hypercerts data model. Describes the work that was done, when, and in what scope. Lexicon: `org.hypercerts.claim.activity`.
+The central record in the hypercerts data model. Describes the work that was done, when, and in what scope.
 
 #### AT-URI
 
@@ -33,27 +33,27 @@ A reference to another record that includes both the AT-URI and CID. Used when o
 
 #### Evaluation
 
-A third-party assessment of a hypercert. Created on the evaluator's own account, not the original author's. Lexicon: `org.hypercerts.context.evaluation`.
+A third-party assessment of a hypercert. Created on the evaluator's own account, not the original author's.
 
 #### Attachment
 
-Supporting documentation linked to one or more records — a URL, uploaded file, or IPFS link. Can reference any record type, not only activity claims. Lexicon: `org.hypercerts.context.attachment`.
+Supporting documentation linked to one or more records — a URL, uploaded file, or IPFS link.
 
 #### Measurement
 
-A quantitative observation attached to a hypercert (e.g., "12 pages written", "50 tons CO₂ reduced"). Lexicon: `org.hypercerts.context.measurement`.
+A quantitative observation attached to a hypercert (e.g., "12 pages written", "50 tons CO₂ reduced").
 
 #### Contribution
 
-Contribution information is split across two lexicons: `org.hypercerts.claim.contributorInformation` (identity, display name, image) and `org.hypercerts.claim.contribution` (role, description, timeframe). Contributors can also be provided inline as a DID string without a separate record.
+Who contributed to a hypercert. Can be as simple as a DID string, or a richer record with display name, image, role, and timeframe.
 
 #### Collection
 
-A named group of hypercerts and/or other collections, with an optional weight per item. Each collection has a `type` (e.g., "favorites", "project") so the same hypercert can appear in different collections for different purposes. Lexicon: `org.hypercerts.collection`.
+A named group of hypercerts and/or other collections, with an optional weight per item. Each collection has a `type` (e.g., "favorites", "project") so the same hypercert can appear in different collections for different purposes.
 
 #### Lexicon
 
-A versioned schema that defines the structure of a record type. For example, `org.hypercerts.claim.activity` defines the required and optional fields for an activity claim. Lexicons enable interoperability — any app that knows the schema can read the record. See [Introduction to Lexicons](/lexicons/introduction-to-lexicons).
+A versioned schema that defines the structure of a record type. Lexicons enable interoperability — any app that knows the schema can read the record. See [Introduction to Lexicons](/lexicons/introduction-to-lexicons).
 
 #### Work scope
 
@@ -69,11 +69,11 @@ A server that aggregates repository events from many PDS instances into a single
 
 #### Firehose
 
-The real-time stream of all repository changes across the network, provided by relays. Indexers subscribe to the firehose to index new records as they're created. The firehose delivers events in CBOR format.
+The real-time stream of all repository changes across the network, provided by relays. Indexers subscribe to the firehose to index new records as they're created.
 
 #### Jetstream
 
-A lightweight, filtered event stream that delivers AT Protocol events in JSON format. Hyperindex uses Jetstream to receive real-time record updates, subscribing only to specific collections like `org.hypercerts.claim.*` to reduce bandwidth.
+A lightweight, filtered event stream that delivers AT Protocol events in JSON format. Hyperindex uses Jetstream to receive real-time record updates.
 
 #### PDS (Personal Data Server)
 
