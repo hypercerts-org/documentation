@@ -35,4 +35,4 @@ This means trust becomes computable. A funder can trace who evaluated a project,
 
 ## Data layer + ownership layer
 
-ATProto handles the data — claims, evaluations, trust signals. On-chain anchoring (planned) will handle funding and settlement where immutability matters. See [Architecture Overview](/architecture/overview) for how the layers fit together.
+The design principle: keep rich, evolving contribution data off-chain (ATProto) and use on-chain systems only where immutability and settlement matter. ATProto handles the data layer — claims, attachments, evaluations, trust signals. On-chain anchoring and tokenization handle the funding layer — immutable snapshots, programmable funding, and settlement mechanisms. See [Architecture Overview](/architecture/overview) for how the layers fit together.
