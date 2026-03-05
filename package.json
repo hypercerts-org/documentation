@@ -4,8 +4,8 @@
   "private": true,
   "description": "Hypercerts Protocol Documentation",
   "scripts": {
-    "dev": "next dev --webpack",
-    "build": "next build --webpack",
+    "dev": "node lib/generate-last-updated.js && next dev --webpack",
+    "build": "node lib/generate-last-updated.js && next build --webpack",
     "start": "next start"
   },
   "dependencies": {

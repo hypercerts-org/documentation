@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { Sidebar } from './Sidebar';
 import { TableOfContents } from './TableOfContents';
 import { getPrevNext } from '../lib/navigation';
+import { LastUpdated } from './LastUpdated';
 import { Breadcrumbs } from './Breadcrumbs';
 import { ThemeToggle } from './ThemeToggle';
 import { SearchDialog } from './SearchDialog';
@@ -147,7 +148,9 @@ export default function Layout({ children, frontmatter }) {
 
         <main className="layout-content" id="main-content">
           <Breadcrumbs />
+          <LastUpdated />
           <article>{children}</article>
+
 
           {(prev || next) && (
             <nav className="pagination" aria-label="Page navigation">

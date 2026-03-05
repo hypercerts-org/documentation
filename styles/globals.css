@@ -939,11 +939,20 @@ a.sidebar-link-active:hover {
   font-size: 13px;
 }
 
+/* ===== Last Updated ===== */
+.last-updated {
+  margin-top: var(--space-12);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: var(--color-text-secondary);
+}
 /* ===== Pagination ===== */
 .pagination {
   display: flex;
   justify-content: space-between;
-  margin-top: var(--space-12);
+  margin-top: var(--space-6);
   padding-top: var(--space-6);
   border-top: 1px solid var(--color-border);
   gap: var(--space-4);
