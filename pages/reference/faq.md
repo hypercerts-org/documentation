@@ -17,7 +17,7 @@ The new protocol stores data on AT Protocol instead of purely on-chain. This giv
 
 #### Do I need a blockchain wallet?
 
-Not to create or evaluate hypercerts — you only need an account on [certified.app](https://certified.app) or any ATProto provider. A wallet will be needed for on-chain funding once the [tokenization layer](/core-concepts/funding-and-value-flow) is built.
+Not to create or evaluate hypercerts — you only need an account on [certified.app](https://certified-app-hypercerts-foundation.vercel.app) or any ATProto provider. A wallet will be needed for on-chain funding once the [tokenization layer](/core-concepts/funding-and-value-flow) is built.
 
 #### Can I use my Bluesky account?
 

@@ -45,11 +45,7 @@ Handles are not needed to log in to the Hypercerts ecosystem, but every user has
 
 **Organizations should use custom domain handles.** A handle like `numpy.org` proves organizational identity — anyone can verify that the DID behind `numpy.org` is controlled by whoever controls the domain.
 
-To set up a custom handle, add a DNS TXT record or host a file at `https://your-domain.com/.well-known/atproto-did`. See the [AT Protocol handle documentation](https://atproto.com/specs/handle) for details and this [tutorial](https://blueskyweb.zendesk.com/hc/en-us/articles/19001802873101-How-to-Set-your-Domain-as-your-Handle) from bluesky for a step-by-step guide.
-
-{% callout type="note" %}
-If you sign up using your email on certified.app you will initially be given a random handle like `1lasdk.epds1.test.certified.app`. You can change your handle by going to your profile and clicking on the pencil icon near user handle on [certified.app](https://certified-app-hypercerts-foundation.vercel.app).
-{% /callout %}
+To set up a custom handle, add a DNS TXT record or host a file at `https://your-domain.com/.well-known/atproto-did`. See the [AT Protocol handle documentation](https://atproto.com/specs/handle) for details.
 
 ---
 
