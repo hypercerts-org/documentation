@@ -27,7 +27,7 @@ For the full lifecycle — creation, enrichment, evaluation, discovery, funding,
 
 ## Why It's Trustworthy
 
-Every PDS repository is a Merkle tree signed by the user's DID key. Modify a record and the signature breaks. When one record references another (e.g., an evaluation pointing to an activity claim), the reference includes a content hash — if the target changes, the mismatch is detectable. DIDs resolve via the [PLC directory](https://plc.directory) to a public key, so signatures are independently verifiable.
+Every PDS repository is a Merkle tree signed by the user's DID key — any third-party tampering is detectable because the signature won't match. When one record references another (e.g., an evaluation pointing to an activity claim), the reference includes a content hash, so you can tell if the target was modified after the reference was created. DIDs resolve via the [PLC directory](https://plc.directory) to a public key, so signatures are independently verifiable.
 
 This means: Alice creates a hypercert and her PDS signs it. Bob evaluates it, referencing Alice's record by URI and content hash. Anyone can verify Alice authored the claim, Bob authored the evaluation, and Bob evaluated the exact version Alice published.
 
