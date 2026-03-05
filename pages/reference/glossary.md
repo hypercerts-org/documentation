@@ -75,14 +75,10 @@ The real-time stream of all repository changes across the network, provided by r
 
 A lightweight, filtered event stream that delivers AT Protocol events in JSON format. Hyperindex uses Jetstream to receive real-time record updates, subscribing only to specific collections like `org.hypercerts.claim.*` to reduce bandwidth.
 
-#### Constellation
-
-An external backlinks service for AT Protocol. Given a record URI, Constellation returns all records that reference it. Used by applications to find evaluations, attachments, and measurements linked to a hypercert — since AT Protocol has no built-in reverse lookup.
-
 #### PDS (Personal Data Server)
 
 The server where your records are stored. You interact with it through the ATProto API — you don't need to manage it directly. You can use the Hypercerts Foundation's PDS, Bluesky's, or self-host one. Records are portable between PDS instances.
 
 #### Certified
 
-The ATProto identity provider for the Hypercerts ecosystem. When you sign up at [certified.app](https://certified-app-hypercerts-foundation.vercel.app), you get a DID, a PDS, and an embedded wallet. See [Account & Identity Setup](/architecture/account-and-identity).
+A neutral ATProto identity provider for the Hypercerts ecosystem — not tied to any single application. When you sign up at [certified.app](https://certified-app-hypercerts-foundation.vercel.app), you get a DID, a PDS, and an embedded wallet. If you already have a Bluesky or other ATProto account, you can use that instead. See [Account & Identity Setup](/architecture/account-and-identity).
