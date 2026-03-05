@@ -81,4 +81,4 @@ The server where your records are stored. You interact with it through the ATPro
 
 #### Certified
 
-A neutral ATProto identity provider for the Hypercerts ecosystem — not tied to any single application. When you sign up at [certified.app](https://certified-app-hypercerts-foundation.vercel.app), you get a DID, a PDS, and an embedded wallet. If you already have a Bluesky or other ATProto account, you can use that instead. See [Account & Identity Setup](/architecture/account-and-identity).
+The identity provider for the Hypercerts ecosystem. We built Certified to give the ecosystem a unified entry point — one account that works across all Hypercerts applications. When you sign up at [certified.app](https://certified-app-hypercerts-foundation.vercel.app), you get a DID, a PDS, and an embedded wallet. See [Account & Identity Setup](/architecture/account-and-identity).
