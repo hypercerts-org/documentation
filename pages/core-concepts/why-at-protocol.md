@@ -5,7 +5,11 @@ description: Why the Hypercerts Protocol is built on AT Protocol.
 
 # Why AT Protocol?
 
-The Hypercerts Protocol is built on [AT Protocol](https://atproto.com/docs) — the same open protocol for decentralized data that powers Bluesky. It gives hypercerts three properties that matter for impact funding: portable data, shared schemas, and a trust graph rooted in cryptographic identity.
+The Hypercerts Protocol is built on [AT Protocol](https://atproto.com/docs) — the same open protocol for decentralized data that powers Bluesky.
+
+In Hypercerts v0.1, every hypercert was an on-chain token — publishing one required a wallet, gas fees, and a blockchain transaction. This created friction for the contributors, researchers, and organizations the protocol is designed to serve. By moving the data layer to ATProto, creating a hypercert is now a free API call. On-chain anchoring is reserved for where it actually matters: funding and settlement.
+
+ATProto gives hypercerts three properties that matter for impact funding: portable data, shared schemas, and a trust graph rooted in cryptographic identity.
 
 ## Portable, user-controlled data
 
