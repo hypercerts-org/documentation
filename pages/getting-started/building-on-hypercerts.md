@@ -41,12 +41,12 @@ Build services that help domain experts create structured, verifiable evaluation
 // Example: Create an evaluation
 const evaluation = await agent.com.atproto.repo.createRecord({
   repo: agent.session.did,
-  collection: "org.hypercerts.claim.evaluation",
+  collection: "org.hypercerts.context.evaluation",
   record: {
     subject: { uri: claimUri, cid: claimCid },
-    evaluators: [evaluatorDid],
+    evaluators: [{ did: "did:plc:ragtjsm2j2vknwkz3zp4oxrd" }],
     summary: "Scientific rigor and reproducibility assessment",
-    $type: "org.hypercerts.claim.evaluation",
+    $type: "org.hypercerts.context.evaluation",
     createdAt: new Date().toISOString(),
   },
 });
@@ -98,7 +98,7 @@ The ecosystem works because platforms follow shared conventions:
 
 ### Use Standard Lexicons
 
-Use the standard `org.hypercerts.*` and `app.certified.*` lexicons for data that fits them — this is what makes your data interoperable across the ecosystem. Default indexers subscribe to these namespaces, so records using standard lexicons are automatically discoverable. If you need additional fields to extend the standard lexicons, create a sidecar record that references the standard record via a strong reference. Since sidecars are likely application-specific, default indexers won't see them unless explicitly configured to index your namespace.
+Use the standard `org.hypercerts.*` and `app.certified.*` lexicons for data that fits them — this is what makes your data interoperable across the ecosystem. Default indexers subscribe to these namespaces, so records using standard lexicons are automatically discoverable. If you need additional fields to extend the standard lexicons, create a [sidecar record](https://atproto.com/guides/lexicon-style-guide#design-patterns) that references the standard record via a strong reference. Since sidecars are likely application-specific, default indexers won't see them unless explicitly configured to index your namespace.
 
 You're also free to create new lexicons for use cases that don't fit the original schemas — ATProto is designed for this.
 
