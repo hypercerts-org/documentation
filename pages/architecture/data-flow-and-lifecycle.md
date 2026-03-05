@@ -226,4 +226,4 @@ For the overall architecture and how layers connect, see [Architecture Overview]
 
 For details on specific record types and their schemas, see [Introduction to Lexicons](/lexicons/introduction-to-lexicons).
 
-For a practical walkthrough of creating a hypercert, see [Creating Your First Hypercert](/getting-started/creating-your-first-hypercert).
+For a practical walkthrough of creating a hypercert, see [Quickstart](/getting-started/quickstart).

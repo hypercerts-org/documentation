@@ -14,9 +14,7 @@ Structured digital records of contributions — who did what, when, where, and w
 {% card-link title="Quickstart" href="/getting-started/quickstart" icon="<svg viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z\"/></svg>" %}
 Create your first hypercert in under 5 minutes
 {% /card-link %}
-{% card-link title="Creating Your First Hypercert" href="/getting-started/creating-your-first-hypercert" icon="<svg viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z\"/></svg>" %}
-Step-by-step guide to creating a complete hypercert with contributions and attachments
-{% /card-link %}
+
 {% card-link title="Working with Evaluations" href="/getting-started/working-with-evaluations" icon="<svg viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z\"/></svg>" %}
 Evaluate hypercerts and build trust in the ecosystem
 {% /card-link %}

@@ -93,7 +93,7 @@ Activity claims and their linked records are currently immutable once created. R
 Once you understand the data model, you're ready to build:
 
 - **[Quickstart](/getting-started/quickstart)** — create your first activity claim
-- **[Creating Your First Hypercert](/getting-started/creating-your-first-hypercert)** — build a complete hypercert with all record types
+- **[Quickstart](/getting-started/quickstart)** — build a complete hypercert with all record types
 - **[Lexicon reference](/lexicons/hypercerts-lexicons)** — field-by-field schema for every record type
 
 Next: [Certified Identity](/core-concepts/certified-identity) — who authors records and how signatures work.
