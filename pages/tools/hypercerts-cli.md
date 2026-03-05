@@ -12,7 +12,7 @@ The Hypercerts CLI (`hc`) is a command-line tool for managing hypercerts on ATPr
 - Run interactively with a terminal UI or non-interactively with flags for CI/CD
 - Resolve identities and inspect any record on the network
 
-Built in Go on [bluesky-social/indigo](https://github.com/bluesky-social/indigo) with interactive forms powered by [Charm](https://charm.sh) libraries. Source: [github.com/GainForest/hypercerts-cli](https://github.com/GainForest/hypercerts-cli).
+Built using Go on [bluesky-social/indigo](https://github.com/bluesky-social/indigo) with interactive forms powered by [Charm](https://charm.sh) libraries. Source: [github.com/GainForest/hypercerts-cli](https://github.com/GainForest/hypercerts-cli).
 
 ## Install
 
@@ -100,15 +100,19 @@ Every record type supports `create`, `ls`, `get`, `edit`, `delete` with the same
 | Command | Record Type | Alias |
 |---------|------------|-------|
 | `hc activity` | `org.hypercerts.claim.activity` | — |
-| `hc measurement` | `org.hypercerts.claim.measurement` | `hc meas` |
+| `hc measurement` | `org.hypercerts.context.measurement` | `hc meas` |
 | `hc location` | `app.certified.location` | `hc loc` |
-| `hc attachment` | `org.hypercerts.claim.attachment` | `hc attach` |
+| `hc attachment` | `org.hypercerts.context.attachment` | `hc attach` |
 | `hc rights` | `org.hypercerts.claim.rights` | — |
-| `hc evaluation` | `org.hypercerts.claim.evaluation` | `hc eval` |
-| `hc collection` | `org.hypercerts.claim.collection` | `hc coll` |
+| `hc evaluation` | `org.hypercerts.context.evaluation` | `hc eval` |
+| `hc collection` | `org.hypercerts.collection` | `hc coll` |
 | `hc contributor` | `org.hypercerts.claim.contributorInformation` | `hc contrib` |
 | `hc funding` | `org.hypercerts.funding.receipt` | `hc fund` |
-| `hc workscope` | `org.hypercerts.helper.workScopeTag` | `hc ws` |
+| `hc workscope` | `org.hypercerts.workscope.tag` | `hc ws` |
+
+{% callout type="note" %}
+The CLI is currently being updated to reflect the latest lexicon namespaces shown above. This migration is currently ongoing.
+{% /callout %}
 
 ## Generic operations
 

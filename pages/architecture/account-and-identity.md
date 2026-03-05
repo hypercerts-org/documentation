@@ -11,7 +11,7 @@ If you followed the [Quickstart](/getting-started/quickstart), you already have 
 
 ## Create an account
 
-Sign up at [certified.app](https://certified.app). You'll get:
+Sign up at [certified.app](https://certified-app-hypercerts-foundation.vercel.app/). You'll get:
 
 - **Low-friction sign-in** — Sign in with just your email and a code. No passwords or protocol knowledge required.
 - **A DID** — Your permanent, portable identifier (e.g., `did:plc:z72i7hdynmk6r22z27h6tvur`). It never changes, even if you switch servers or handles.
@@ -45,11 +45,7 @@ Handles are not needed to log in to the Hypercerts ecosystem, but every user has
 
 **Organizations should use custom domain handles.** A handle like `numpy.org` proves organizational identity — anyone can verify that the DID behind `numpy.org` is controlled by whoever controls the domain.
 
-To set up a custom handle, add a DNS TXT record or host a file at `https://your-domain.com/.well-known/atproto-did`. See the [AT Protocol handle documentation](https://atproto.com/specs/handle) for details and this [tutorial](https://blueskyweb.zendesk.com/hc/en-us/articles/19001802873101-How-to-Set-your-Domain-as-your-Handle) from bluesky for a step-by-step guide.
-
-{% callout type="note" %}
-If you sign up using your email on certified.app you will initially be given a random handle like `1lasdk.certified.app`. You can change your handle by going to your profile settings and clicking on "Change handle" on [certified.app](https://certified.app).
-{% /callout %}
+To set up a custom handle, add a DNS TXT record or host a file at `https://your-domain.com/.well-known/atproto-did`. See the [AT Protocol handle documentation](https://atproto.com/specs/handle) for details.
 
 ---
 
@@ -58,7 +54,7 @@ If you sign up using your email on certified.app you will initially be given a r
 For teams with multiple contributors, create a dedicated organizational account on a PDS. The organization gets its own DID and repository. Team members can write to the organization's repository using app passwords or OAuth scoped to the organizational account. This is useful for open-source projects, research labs, and organizations where many people contribute to the same body of work.
 
 {% callout type="note" %}
-To set up an organizational account, create an account at [certified.app](https://certified.app) with the organization's email. Use a [custom domain handle](#handles-and-domain-verification) (e.g., `numpy.org`) to prove organizational identity.
+To set up an organizational account, create an account at [certified.app](https://certified-app-hypercerts-foundation.vercel.app) with the organization's email. Use a [custom domain handle](#handles-and-domain-verification) (e.g., `numpy.org`) to prove organizational identity.
 {% /callout %}
 
 ---
@@ -83,7 +79,7 @@ A ready-made skill that implements the full ePDS OAuth flow is available at `.ag
 
 For scripts, CLI tools, and server-side automation, use app passwords instead of your main password. App passwords are scoped credentials that can be revoked independently.
 
-Create one in your account settings at [certified.app](https://certified.app). Give it a descriptive name (e.g., "CI/CD pipeline" or "Local development"). If a credential is compromised, revoke just that app password — your main account stays secure. The [Hypercerts CLI](/tools/hypercerts-cli) uses app passwords for authentication.
+Create one in your account settings at [certified.app](https://certified-app-hypercerts-foundation.vercel.app). Give it a descriptive name (e.g., "CI/CD pipeline" or "Local development"). If a credential is compromised, revoke just that app password — your main account stays secure. The [Hypercerts CLI](/tools/hypercerts-cli) uses app passwords for authentication.
 
 {% callout type="warning" %}
 Never commit app passwords to version control. Use environment variables or a secrets manager.
