@@ -29,7 +29,7 @@ To add further information to the individual contributors, separate records with
 | Record type | What it adds | Who creates it | Lexicon |
 |-------------|-------------|----------------|---------|
 | **Contributor Information** | Social profile, image, display name | The contributor or project lead | `org.hypercerts.claim.contributorInformation` |
-| **Contribution Details** | What was the role of the contributor, what did they contribute | The contributor or project lead | `org.hypercerts.claim.contributionDetails` |
+| **Contribution Details** | What was the role of the contributor, what did they contribute | The contributor or project lead | `org.hypercerts.claim.contribution` |
 
 ## Records that attach to a hypercert
 
@@ -61,7 +61,7 @@ Hypercerts can be grouped into **collections**. A multi-year project might have 
 
 | Record type | What it adds | Who creates it | Lexicon |
 |-------------|-------------|----------------|---------|
-| **Collection** | Groups activity claims and/or other collections into a project or portfolio. Supports recursive nesting. | E.g. the project organizer | `org.hypercerts.claim.collection` |
+| **Collection** | Groups activity claims and/or other collections into a project or portfolio. Supports recursive nesting. | E.g. the project organizer | `org.hypercerts.collection` |
 
 ## How records connect
 
