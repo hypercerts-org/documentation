@@ -6,10 +6,8 @@ title: Location
 
 `app.certified.location`
 
-A location reference using the Astral Location Protocol. Locations can be represented in multiple formats: decimal coordinates, GeoJSON geometries, H3 hexagonal indices, geohashes, Well-Known Text, street addresses, or scaled coordinates.
+A location record implementing the [Astral Location Protocol](https://spec.decentralizedgeo.org/) — a standardized framework for creating, sharing, and verifying location information in decentralized systems. This lexicon is the ATProto implementation of that spec.
 
-Each location record includes a Spatial Reference System (SRS) URI to prevent ambiguity about coordinate systems and axis order. This ensures that coordinate values are interpreted correctly by any application consuming the data.
-
-Locations can be referenced from activity claims (to indicate where work took place), measurements (to indicate where data was collected), and other records. The protocol is designed to be implementation-agnostic and follows OGC standards for spatial reference systems.
+Locations can be represented in multiple formats: decimal coordinates, GeoJSON geometries, H3 hexagonal indices, geohashes, Well-Known Text, street addresses, or scaled coordinates. Each record includes a Spatial Reference System (SRS) URI so coordinate values are unambiguous. See the [location type registry](https://spec.decentralizedgeo.org/specification/location-types/#location-type-registry) for the full list of supported formats.
 
 For the full schema, see [`app.certified.location`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/app/certified/location.json) in the lexicon repo.
