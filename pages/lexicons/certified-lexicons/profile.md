@@ -4,22 +4,12 @@ title: Profile
 
 # Profile
 
-## Description
+`app.certified.actor.profile`
 
-A declaration of a Certified account profile. This is a singleton record (key: `self`) — each account has exactly one profile record.
+A user profile on certified.app. This is a singleton record — each account has exactly one profile, stored with the key `self`.
 
-## Lexicon
+The profile includes display name, avatar, banner image, description, website URL, and pronouns. It's the basic identity layer for users in the certified ecosystem, providing human-readable information about an account beyond its DID.
 
-**Lexicon ID:** `app.certified.actor.profile`
+Profiles are optional but recommended for any account that will be creating or interacting with hypercerts, badges, or other social records. They make it easier for others to recognize and understand who is behind an account.
 
-**Key:** `literal:self`
-
-| Property | Type | Required | Description | Comments |
-| --- | --- | --- | --- | --- |
-| `displayName` | `string` | ❌ | Display name for the account | Max 64 graphemes, 640 characters. |
-| `description` | `string` | ❌ | Free-form profile description text | Max 256 graphemes, 2560 characters. |
-| `pronouns` | `string` | ❌ | Free-form pronouns text | Max 20 graphemes, 200 characters. |
-| `website` | `string` | ❌ | Website URL | Format: `uri`. |
-| `avatar` | `union` | ❌ | Small image displayed next to posts from this account | Accepts `org.hypercerts.defs#uri` or `org.hypercerts.defs#smallImage`. |
-| `banner` | `union` | ❌ | Larger horizontal image displayed behind the profile view | Accepts `org.hypercerts.defs#uri` or `org.hypercerts.defs#largeImage`. |
-| `createdAt` | `string` | ❌ | Client-declared timestamp when this record was created | Format: `datetime`. |
+For the full schema, see the [Hyperscan lexicon browser](https://www.hyperscan.dev/agents/lexicon/app.certified.actor.profile).

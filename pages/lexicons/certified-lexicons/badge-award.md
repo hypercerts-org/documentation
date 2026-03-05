@@ -4,19 +4,12 @@ title: Badge Award
 
 # Badge Award
 
-## Description
+`app.certified.badge.award`
 
-Records a badge award to a user, project, or activity claim. References a [badge definition](/lexicons/certified-lexicons/badge-definition) and a subject (either an account DID or a specific AT Protocol record).
+Awards a badge to a user, project, or activity claim. Each award references a badge definition and a subject — either an account DID (for user badges) or a strong reference to a specific record like an activity claim (for project or work badges).
 
-## Lexicon
+Badge awards can include an optional note explaining why the badge was given. This creates a public record of recognition that can be verified by anyone.
 
-**Lexicon ID:** `app.certified.badge.award`
+Recipients can respond to badge awards using the badge response lexicon, allowing them to accept or reject badges and assign relative weights to accepted badges. This enables consent-based recognition where recipients have control over what badges appear on their profile.
 
-**Key:** `tid`
-
-| Property | Type | Required | Description | Comments |
-| --- | --- | --- | --- | --- |
-| `badge` | `ref` | ✅ | Reference to the badge definition for this award | References `app.certified.badge.definition`. |
-| `subject` | `union` | ✅ | Entity the badge is awarded to | Accepts `app.certified.defs#did` (an account) or `com.atproto.repo.strongRef` (a specific record, e.g. an activity claim). |
-| `note` | `string` | ❌ | Optional statement explaining the reason for this badge award | |
-| `createdAt` | `string` | ✅ | Client-declared timestamp when this record was originally created | Format: `datetime`. |
+For the full schema, see the [Hyperscan lexicon browser](https://www.hyperscan.dev/agents/lexicon/app.certified.badge.award).
