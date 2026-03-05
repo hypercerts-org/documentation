@@ -52,7 +52,7 @@ Hypercerts is fully interoperable with the AT Protocol ecosystem. If you already
 
 ## Wallet linkage
 
-To receive onchain funding, a DID needs to be linked to an onchain wallet address. This is handled by **IdentityLink** — a cryptographic attestation system that binds a DID to one or more onchain addresses via a signed proof stored in your PDS. For the Ethereum ecosystem this looks like:
+To receive onchain funding, a DID needs to be linked to an onchain wallet address. This is handled by [**IdentityLink**](https://identitylink.vercel.app/) — a cryptographic attestation system that binds a DID to one or more onchain addresses via a signed proof stored in your PDS. For the Ethereum ecosystem this looks like:
 
 1. Authenticates the user via ATProto OAuth
 2. Connects an EVM wallet (EOA, Smart Wallet, or Safe)
