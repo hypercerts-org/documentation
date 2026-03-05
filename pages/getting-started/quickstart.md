@@ -14,11 +14,11 @@ Create your first hypercert. This guide uses TypeScript and Node.js v20+.
 ## Install dependencies
 
 ```bash
-pnpm add @atproto/api
+pnpm add @atproto/oauth-client-node
 ```
 
-{% callout type="note" %}
-Building a React app? Install `@tanstack/react-query` alongside `@atproto/api` for data fetching and caching.
+{% callout type="info" %}
+Building a React app? Use `@atproto/oauth-client-browser` instead, alongside `@tanstack/react-query` for data fetching and caching.
 {% /callout %}
 
 ## Authenticate
@@ -26,33 +26,38 @@ Building a React app? Install `@tanstack/react-query` alongside `@atproto/api` f
 Authentication uses AT Protocol OAuth. Your app needs a client metadata document hosted at a public URL:
 
 ```typescript
-import { AtpAgent } from "@atproto/api";
+import { NodeOAuthClient } from "@atproto/oauth-client-node";
 
-const agent = new AtpAgent({ service: "https://bsky.social" });
-
-// Log in with your credentials
-await agent.login({
-  identifier: "alice.certified.app",
-  password: "your-app-password",
+const client = new NodeOAuthClient({
+  clientMetadata: "https://your-app.example.com/client-metadata.json",
+  // ... session store, keyset, etc.
 });
+
+// Redirect the user to their PDS to authorize
+const url = await client.authorize("alice.certified.app");
+
+// After the user approves, exchange the callback params for a session
+const { session } = await client.callback(new URLSearchParams(callbackQuery));
 ```
 
-For session management in production applications, use AT Protocol OAuth. See the [AT Protocol OAuth documentation](https://atproto.com/specs/oauth) for details.
+See the [AT Protocol OAuth documentation](https://atproto.com/specs/oauth) for full details on client metadata, session storage, and keyset configuration. For further info on how to set up OAuth you can check out [AT Protos node.js implementation tutorial](https://atproto.com/guides/oauth-cli-tutorial) or the [scaffold app](/tools/scaffold).
 
 ## Create your first hypercert
 
 ```typescript
-const result = await agent.com.atproto.repo.createRecord({
-  repo: agent.session.did,
+const result = await session.agent.com.atproto.repo.createRecord({
+  repo: session.did,
   collection: "org.hypercerts.claim.activity",
   record: {
+    $type: "org.hypercerts.claim.activity",
     title: "NumPy documentation maintenance, Q1 2026",
     shortDescription: "Updated API docs and fixed 15 broken examples.",
-    description: "Rewrote 12 API reference pages, fixed 15 broken code examples, and added a new getting started guide.",
-    workScope: { allOf: ["Documentation"] },
+    workScope: {
+      $type: "org.hypercerts.claim.activity#workScopeString",
+      scope: "Documentation",
+    },
     startDate: "2026-01-01T00:00:00Z",
     endDate: "2026-03-31T23:59:59Z",
-    $type: "org.hypercerts.claim.activity",
     createdAt: new Date().toISOString(),
   },
 });
@@ -156,11 +161,11 @@ Add third-party assessments of the work. Evaluations are authored by evaluators 
 
 | Field | Description |
 |---|---|
-| **Evaluators** | DIDS or handles of the users who contributed to this evaluation |
+| **Evaluators** | DIDs or handles of the users who contributed to this evaluation |
 | **Summary** | A brief written assessment of the work. Max 1,000 characters. Example: `High-quality documentation with clear examples and thorough coverage.` |
 | **Score** *(optional)* | A numeric score on a defined scale. Set a minimum, maximum, and value — e.g. min 1, max 5, value 4. |
 | **Content** *(optional)* | Links to detailed evaluation reports or methodology documents — URLs or file uploads. |
-| **Measurement** *(optional)* | URI to the measurement that is tied to this evaluation. Could be a normal url as well |
+| **Measurement** *(optional)* | URI to the measurement tied to this evaluation. It can also be a normal URL. |
 
 ### Step 7 — Done
 
