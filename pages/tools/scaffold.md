@@ -97,7 +97,7 @@ The profile page lets you update your Certified profile — display name, bio, p
 | `REDIS_PORT` | Redis port |
 | `REDIS_PASSWORD` | Redis password |
 | `NEXT_PUBLIC_PDS_URL` | PDS URL (e.g. `https://pds-eu-west4.test.certified.app`) |
-| `NEXT_PUBLIC_EPDS_URL` | ePDS URL (e.g. `https://epds1.test.certified.app`) (optional only if you want email/passwordless login) |
+| `NEXT_PUBLIC_EPDS_URL` | ePDS URL (e.g. `https://epds1.test.certified.app`) (optional; required only for email/passwordless login) |
 
 {% callout type="note" %}
 Redis is the default session store, but you can use any persistent storage (Supabase, Postgres, DynamoDB, etc.). You just need to implement the `NodeSavedStateStore` and `NodeSavedSessionStore` interfaces from `@atproto/oauth-client-node`. See `lib/redis-state-store.ts` for the reference implementation.
