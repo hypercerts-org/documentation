@@ -31,8 +31,8 @@ Records reference each other via AT-URIs, forming a traversable graph: an evalua
 
 ATProto provides persistent, portable identities via Decentralized Identifiers (DIDs). Every record carries its author's DID and cryptographic signature. Over time, these identities accumulate contribution records, evaluations, endorsements, and funding decisions — forming a durable impact trust graph that persists across platforms.
 
-This means trust becomes computable. A funder can trace who evaluated a project, what else those evaluators have assessed, and how their past judgments correlated with outcomes. Because all records are signed and publicly indexable, trust models can be independently implemented and audited.
+Trust becomes computable across the ecosystem — not siloed within individual platforms. A funder can trace who evaluated a project, what else those evaluators have assessed, and how their past judgments correlated with outcomes. Because all records are signed and publicly indexable, trust models can be independently implemented, compared, and audited.
 
 ## Data layer + ownership layer
 
-ATProto handles the data — claims, evaluations, trust signals. On-chain anchoring (planned) will handle funding and settlement where immutability matters. See [Architecture Overview](/architecture/overview) for how the layers fit together.
+The design principle: keep rich, evolving contribution data off-chain (ATProto) and use on-chain systems only where immutability and settlement matter. ATProto handles the data layer — claims, attachments, evaluations, trust signals. On-chain anchoring and tokenization handle the funding layer — immutable snapshots, programmable funding, and settlement mechanisms. See [Architecture Overview](/architecture/overview) for how the layers fit together.
