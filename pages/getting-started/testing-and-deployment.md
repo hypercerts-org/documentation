@@ -138,19 +138,7 @@ If you accidentally publish PII, delete the record immediately and contact index
 
 Use OAuth for production applications. OAuth lets users authorize your app without sharing credentials. See the [Quickstart](/getting-started/quickstart) for the authentication setup and the [ATProto OAuth spec](https://atproto.com/specs/oauth) for the full protocol details.
 
-{% callout type="warning" %}
-**Never commit credentials to version control.** Use `.env` files (added to `.gitignore`) for local development and secret management tools (Vercel env vars, AWS Secrets Manager, etc.) for production.
-{% /callout %}
-
-```bash
-# .env (never commit this file)
-ATPROTO_JWK_PRIVATE='{"keys":[{"kty":"EC","crv":"P-256",...}]}'
-```
-
-```typescript
-const jwk = process.env.ATPROTO_JWK_PRIVATE;
-if (!jwk) throw new Error("ATPROTO_JWK_PRIVATE not set");
-```
+Instead of using generic [transitional](https://atproto.com/specs/oauth#authorization-scopes) permission scopes like `transition:generic` use [granular scopes](https://atproto.com/specs/permission) as much as possible. Example: `repo:org.hypercerts.claim.activity?action=create&action=update`.
 
 ---
 
@@ -163,7 +151,7 @@ Before deploying to production:
 - [ ] **Verified your DID and handle** — Confirmed your DID resolves correctly and your handle matches your intended identity.
 - [ ] **Stored credentials securely** — No secrets in source code. Environment variables or secret management in production.
 - [ ] **Reviewed records for accidental PII** — No sensitive personal data in any record fields.
-- [ ] **Tested cross-PDS references** — If your app references records from other PDSs, verified those references resolve correctly.
+- [ ] **Tested cross-PDS references** — If your app references records from other PDSs or repositories, verified those references resolve correctly.
 - [ ] **Implemented error handling** — Your app handles validation errors, rate limits, and network failures gracefully.
 
 ---
