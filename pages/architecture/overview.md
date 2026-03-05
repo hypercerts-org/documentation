@@ -5,58 +5,36 @@ description: How the Hypercerts Protocol stack fits together.
 
 # Architecture Overview
 
-The Hypercerts Protocol uses AT Protocol for data portability. On-chain anchoring for ownership and funding is [planned](/core-concepts/funding-and-value-flow).
+The Hypercerts Protocol is built on [AT Protocol](https://atproto.com/docs) — the same decentralized data layer that powers Bluesky. Users own their data, applications are interoperable, and records are cryptographically signed.
 
-## The Hypercerts Stack
-
-The protocol operates across three layers.
-
-The **Data Layer** is the foundation. AT Protocol stores claims, attachments, and evaluations. Personal Data Servers (PDS) host user-controlled records. Relays aggregate data across servers. Indexers build queryable views that applications consume.
-
-The **Application Layer** sits on top of the data layer. Funding platforms, dashboards, and evaluation tools live here. These applications read from and write to the data layer using the [ATProto API](https://atproto.com/docs) and [Hyperindex](/tools/hyperindex).
-
-The **Ownership Layer** is planned but not yet implemented. The intended design freezes hypercerts and anchors them on-chain before funding — ensuring funders know exactly what they are paying for. See [Funding & Value Flow](/core-concepts/funding-and-value-flow) for details.
+## Three Layers
 
 ![The Hypercerts Stack](/images/architecture-stack.svg)
 
-## Data Layer
+**Data.** All hypercert records — activity claims, contributions, attachments, evaluations, measurements — live on AT Protocol. Each user's data is stored on a Personal Data Server (PDS) they control. Shared schemas called [lexicons](/lexicons/introduction-to-lexicons) define the structure of every record type, so any application can read any record. Users can switch PDS providers without losing data. See [Account & Identity](/architecture/account-and-identity) and [Portability & Data Access](/architecture/portability-and-scaling).
 
-ATProto components form a pipeline from user-controlled storage to globally queryable views.
+**Applications.** Funding platforms, dashboards, and evaluation tools read from and write to the data layer. They query [indexers](/architecture/indexers-and-discovery) that aggregate records from across the network into searchable databases. Different indexers can build different views of the same underlying data.
 
-**Personal Data Servers (PDS)** store a user's records — activity claims, contributions, evaluations. Each record gets a unique AT-URI. The PDS signs records and includes them in the user's repository. Users can migrate to a different PDS by updating their DID document. The [ePDS](/architecture/account-and-identity#oauth-for-epds) adds email/passwordless login for applications that need it.
+**Ownership (planned).** On-chain anchoring for funding and tokenization is not yet implemented. The intended design freezes a hypercert's ATProto records and anchors them on-chain before funding — so funders know exactly what they're paying for. See [Funding & Value Flow](/core-concepts/funding-and-value-flow).
 
-**Relays** aggregate data across many PDS instances. When a user writes a new record, the relay picks it up and makes it available to downstream consumers via a firehose stream.
+## How Data Flows
 
-**Indexers** read from relays and build queryable databases. They filter for specific record types, resolve references between records, and expose APIs that applications use. Different indexers can build different views of the same data. See [Indexers & Discovery](/architecture/indexers-and-discovery).
-
-**Lexicons** are shared schemas that define record structure. Any application that knows the lexicons can parse any record — this enables interoperability without custom integrations. See [Introduction to Lexicons](/lexicons/introduction-to-lexicons).
-
-For the full pipeline — how a hypercert moves from creation through enrichment, evaluation, discovery, and funding — see [Data Flow & Lifecycle](/architecture/data-flow-and-lifecycle).
+A user writes a record to their PDS. The PDS signs it and adds it to the user's repository. A relay picks up the new record and streams it to indexers. Indexers update their databases. Applications query indexers to display the data.
 
 ![Data flow through ATProto](/images/architecture-dataflow.svg)
 
-## Security Model
+For the full lifecycle — creation, enrichment, evaluation, discovery, funding, and accumulation — see [Data Flow & Lifecycle](/architecture/data-flow-and-lifecycle).
 
-ATProto's cryptographic properties make hypercerts tamper-evident and auditable without a central authority.
+## Why It's Trustworthy
 
-**Signed repositories.** Every PDS repository is a Merkle tree signed by the user's DID signing key. Any modification to a record changes the Merkle root, invalidating the signature. This means you can verify a record came from a specific DID, detect if a record was altered after creation, and audit the entire history of a repository.
+Every PDS repository is a Merkle tree signed by the user's DID key. Modify a record and the signature breaks. When one record references another (e.g., an evaluation pointing to an activity claim), the reference includes a content hash — if the target changes, the mismatch is detectable. DIDs resolve via the [PLC directory](https://plc.directory) to a public key, so signatures are independently verifiable.
 
-**Strong references.** When one record references another — for example, an evaluation referencing an activity claim — the reference includes both the AT-URI and the CID (content hash). If the referenced record is modified, its CID changes and the mismatch is detectable.
+This means: Alice creates a hypercert and her PDS signs it. Bob evaluates it, referencing Alice's record by URI and content hash. Anyone can verify Alice authored the claim, Bob authored the evaluation, and Bob evaluated the exact version Alice published.
 
-**Identity verification.** DIDs are cryptographically verifiable. A `did:plc` identifier resolves via the [PLC directory](https://plc.directory) to a DID document containing the public key for signature verification, the user's current PDS, and their handle. See [Account & Identity](/architecture/account-and-identity).
+## Why This Architecture
 
-These properties combine into an auditable chain: Alice creates an activity claim and her PDS signs the repository, producing a CID. Bob evaluates Alice's claim, referencing both the AT-URI and that CID. Anyone can verify Alice's signature proves she created the claim, Bob's signature proves he created the evaluation, and the CID proves Bob evaluated the exact version Alice published.
+**Why not fully on-chain?** Storing rich data on-chain is expensive — a single activity claim with attachments could cost hundreds of dollars in gas. On-chain works for ownership state, not for the full data layer.
 
-## Key Design Decisions
+**Why not fully off-chain?** Funding requires immutability. Without on-chain anchoring, there's no way to guarantee that what a funder evaluated is what they end up funding.
 
-**Why not fully on-chain?** Rich data is expensive to store on-chain. A single activity claim with attachments could cost hundreds of dollars in gas. On-chain storage works for ownership state but not for the full data layer.
-
-**Why not fully off-chain?** Funding requires immutability. Without on-chain anchoring, there's no way to freeze a hypercert and guarantee that what a funder evaluated is what they end up funding.
-
-**Why ATProto?** It combines persistent DIDs, shared schemas, user-controlled data, and a growing ecosystem. IPFS has no identity layer or schemas. Ceramic has similar goals but a smaller ecosystem. The Bluesky network demonstrates ATProto scales to millions of users. See [Why AT Protocol?](/core-concepts/why-at-protocol).
-
-## What This Enables
-
-**Cross-platform evaluation.** An evaluator on Platform A can assess a contribution created on Platform B. The evaluation references the original claim via AT-URI and is visible to any application that queries an indexer.
-
-**Portable reputation.** A contributor's entire history — claims, contributions, evaluations — follows them across platforms via their DID. See [Portability & Data Access](/architecture/portability-and-scaling).
+**Why ATProto?** Persistent DIDs, shared schemas, user-controlled data, and a growing ecosystem. IPFS has no identity layer or schemas. Ceramic has similar goals but a smaller ecosystem. Bluesky demonstrates ATProto scales to millions of users. See [Why AT Protocol?](/core-concepts/why-at-protocol).
