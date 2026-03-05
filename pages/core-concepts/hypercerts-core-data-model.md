@@ -5,8 +5,6 @@ description: The data model behind hypercerts — record types, dimensions, and 
 
 # Core Data Model
 
-*Last updated: March 5, 2026*
-
 A hypercert is an [activity claim](/lexicons/hypercerts-lexicons/activity-claim) with linked records that describe work done. The activity claim is the anchor — contributions, attachments, measurements, and evaluations reference it to add context.
 
 This page explains what records exist, what they contain, and how they connect.
