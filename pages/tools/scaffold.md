@@ -9,7 +9,7 @@ The Hypercerts Scaffold is a working Next.js app that demonstrates how to build 
 
 Live at [hypercerts-scaffold.vercel.app](https://hypercerts-scaffold.vercel.app). Source: [github.com/hypercerts-org/hypercerts-scaffold-atproto](https://github.com/hypercerts-org/hypercerts-scaffold-atproto).
 
-The repo is also indexed on [deepwiki](https://deepwiki.com/hypercerts-org/hypercerts-scaffold-atproto) in case you are interested to dive deeper into the docs and setup.
+The repo is also indexed on [deepwiki](https://deepwiki.com/hypercerts-org/hypercerts-scaffold-atproto) if you want to dive deeper into the docs and setup.
 
 ## Tech Stack
 
@@ -141,15 +141,15 @@ The scaffold implements ATProto OAuth with DPoP-bound tokens. The flow involves 
 ![Sequence diagram showing the ATProto OAuth flow between Browser, Scaffold Server, Auth Server (PDS), and Redis](/images/scaffold/oauth-flow.png)
 *The ATProto OAuth flow — from login initiation through session creation and subsequent request authentication.*
 
-**1–3 — Login initiation.** The browser sends the user's handle to `POST /api/auth/login`. The server resolves the handle to a DID, discovers their PDS, and generates an authorization URL. Temporary OAuth state is stored in Redis (`oauth-state:<id>`, 10-minute TTL) to prevent CSRF.
+**1–3 — Login initiation.** The browser sends the user's handle to `POST /api/oauth/login`. The server resolves the handle to a DID, discovers their PDS, and generates an authorization URL. Temporary OAuth state is stored in Redis (`oauth-state:<id>`, 10-minute TTL) to prevent CSRF.
 
-**4–6 — Authorization.** The browser redirects to the PDS where the user grants consent. The PDS redirects back to `/api/auth/callback` with an authorization code.
+**4–6 — Authorization.** The browser redirects to the PDS where the user grants consent. The PDS redirects back to `/api/oauth/callback` with an authorization code.
 
 **7–9 — Session creation.** The server exchanges the code for a DPoP-bound session via the OAuth client's `callback()` method. The session (tokens, refresh token, DID) is persisted to Redis (`session:<did>`, no TTL) and a `user-did` httpOnly cookie is set in the browser.
 
 **10–12 — Session restore.** On subsequent requests, the server reads the `user-did` cookie and calls `oauthClient.restore(did)` to load the session from Redis, auto-refreshing expired tokens. This call is wrapped in React's `cache()` so multiple server components in the same render only hit Redis once.
 
-**Logout.** `GET /api/auth/logout` revokes tokens with the PDS, deletes the Redis session, and clears the cookie.
+**Logout.** `GET /api/oauth/logout` revokes tokens with the PDS, deletes the Redis session, and clears the cookie.
 
 **Discovery endpoints.** Before any of this works, the PDS needs to discover the app's identity. Two endpoints handle this:
 
