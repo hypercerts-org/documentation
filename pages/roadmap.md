@@ -66,7 +66,7 @@ Lexicons are the schema definitions that specify the structure of all Hypercerts
 | `org.hypercerts.claim.activity` | Core hypercert records tracking impact work |
 | `org.hypercerts.claim.evaluation` | Evaluations of activities by third parties |
 | `org.hypercerts.claim.measurement` | Quantitative data attached to claims |
-| `org.hypercerts.claim.collection` | Projects/portfolios grouping multiple activities |
+| `org.hypercerts.collection` | Projects/portfolios grouping multiple activities |
 | `org.hypercerts.claim.attachment` | Attachments, reports, documentation |
 | `org.hypercerts.funding.receipt` | Funding flow records |
 
