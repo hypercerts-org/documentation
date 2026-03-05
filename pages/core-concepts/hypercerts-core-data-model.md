@@ -24,12 +24,18 @@ The activity claim gets a permanent AT-URI like `at://did:plc:alice123/org.hyper
 
 ## Additional details
 
-To add further information to the individual contributors, separate records with their own AT-URI can be created. They can then be referenced from the activity claim.
+The activity claim has a `contributors` array. Each entry is a contributor object with three fields:
+
+- **`contributorIdentity`** — either an inline identity object (`#contributorIdentity`, containing an `identity` DID string) or a strong reference to an `org.hypercerts.claim.contributorInformation` record with a full social profile
+- **`contributionWeight`** — an optional relative weight string (e.g. `"1"`, `"0.5"`)
+- **`contributionDetails`** — either an inline role object (`#contributorRole`, containing a `role` string) or a strong reference to an `org.hypercerts.claim.contribution` record with structured contribution data
+
+Simple cases use inline objects directly in the activity claim. Richer profiles use separate records that the contributor or project lead creates independently.
 
 | Record type | What it adds | Who creates it | Lexicon |
 |-------------|-------------|----------------|---------|
 | **Contributor Information** | Social profile, image, display name | The contributor or project lead | `org.hypercerts.claim.contributorInformation` |
-| **Contribution Details** | What was the role of the contributor, what did they contribute | The contributor or project lead | `org.hypercerts.claim.contributionDetails` |
+| **Contribution** | Structured role and contribution data | The contributor or project lead | `org.hypercerts.claim.contribution` |
 
 ## Records that attach to a hypercert
 
@@ -61,7 +67,7 @@ Hypercerts can be grouped into **collections**. A multi-year project might have 
 
 | Record type | What it adds | Who creates it | Lexicon |
 |-------------|-------------|----------------|---------|
-| **Collection** | Groups activity claims and/or other collections into a project or portfolio. Supports recursive nesting. | E.g. the project organizer | `org.hypercerts.claim.collection` |
+| **Collection** | Groups activity claims and/or other collections into a project or portfolio. Supports recursive nesting. | E.g. the project organizer | `org.hypercerts.collection` |
 
 ## How records connect
 
@@ -69,12 +75,13 @@ Records reference each other using [strong references](/reference/glossary#stron
 
 ```text
 Activity Claim (the core record)
-├── Contributor 1
-│   ├── ContributorInformation: Alice
-│   └── ContributionDetails: Lead author
-├── Contributor 2
-│   ├── ContributorInformation: Bob
-│   └── ContributionDetails: Technical reviewer
+├── contributors[0]
+│   ├── contributorIdentity: {identity: "did:plc:alice..."} (inline #contributorIdentity or ref to ContributorInformation)
+│   ├── contributionWeight: "1"
+│   └── contributionDetails: {role: "Lead author"} (inline #contributorRole or ref to Contribution)
+├── contributors[1]
+│   ├── contributorIdentity: → ContributorInformation record (Bob)
+│   └── contributionDetails: → Contribution record (Technical reviewer, Jan-Mar)
 ├── Attachment: GitHub repository link
 ├── Measurement: 12 pages written
 ├── Measurement: 8,500 words

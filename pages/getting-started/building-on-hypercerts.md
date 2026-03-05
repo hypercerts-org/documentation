@@ -114,6 +114,7 @@ Always include CID when referencing records. The CID is a content hash of the re
 { uri: "at://did:plc:abc/org.hypercerts.claim.activity/123" }
 ```
 
+
 ## Next Steps
 
 - Read the [Lexicons reference](/lexicons/introduction-to-lexicons) to understand the data model
