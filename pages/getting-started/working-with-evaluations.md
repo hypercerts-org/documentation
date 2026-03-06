@@ -76,7 +76,7 @@ You can then reference this measurement in an evaluation's `measurements` array 
 
 **Community assessment:** Multiple stakeholders provide independent evaluations. The diversity of evaluator DIDs creates a richer signal than any single assessment.
 
-**Automated evaluation:** Scripts and bots can publish evaluations based on API metrics, external data sources, or other programmatic checks. The evaluator DID identifies the automation system and its operator.
+**Automated evaluation:** Scripts and bots can publish evaluations based on API metrics, external data sources, or other programmatic checks. The evaluator DID identifies the automation system and its operator. See [Agent Endpoints](/tools/agent-endpoints) for machine-readable schemas and guides.
 
 ## Trust and reputation
 
