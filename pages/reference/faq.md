@@ -37,7 +37,7 @@ Anyone with an ATProto account. Evaluations are separate records created by the 
 
 #### How do I query hypercerts across the network?
 
-Use the [Hyperindex](/tools/hyperindex) GraphQL API at `https://api.hi.gainforest.app/graphql`. It indexes all hypercert records across the network and supports filtering, search, and real-time subscriptions.
+Use the [Hyperindex](/tools/hyperindex) GraphQL API at `https://api.hi.gainforest.app/graphql`. It indexes all hypercert records across the network and supports filtering, search, and real-time subscriptions. For machine-readable access to schemas and guides, see [Agent Endpoints](/tools/agent-endpoints).
 
 #### How do I fund a hypercert?
 
