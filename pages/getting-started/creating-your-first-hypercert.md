@@ -1,9 +1,9 @@
 ---
-title: Creating Your First Hypercert
+title: Using Code
 description: Create a hypercert using TypeScript and the ATProto API.
 ---
 
-# Creating Your First Hypercert
+# Using Code
 
 This guide walks through creating a complete hypercert using code. Make sure you've completed the [setup steps](/getting-started/quickstart) first. Prefer a UI? See [Using the Scaffold App](/getting-started/using-the-scaffold-app).
 

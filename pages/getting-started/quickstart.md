@@ -1,13 +1,13 @@
 ---
-title: Quickstart
+title: Creating Your First Hypercert
 description: Get set up to create hypercerts — via code or the Scaffold app.
 ---
 
-# Quickstart
+# Creating Your First Hypercert
 
 There are two ways to create a hypercert:
 
-- **[Creating Your First Hypercert](/getting-started/creating-your-first-hypercert)** — using TypeScript and the ATProto API directly
+- **[Using Code](/getting-started/creating-your-first-hypercert)** — TypeScript and the ATProto API
 - **[Using the Scaffold App](/getting-started/using-the-scaffold-app)** — a guided UI wizard, no code required
 
 Both approaches create the same records on your PDS. Pick whichever fits your workflow.
