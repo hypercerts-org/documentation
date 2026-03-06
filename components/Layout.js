@@ -148,8 +148,10 @@ export default function Layout({ children, frontmatter }) {
 
         <main className="layout-content" id="main-content">
           <Breadcrumbs />
-          <LastUpdated />
-          <article>{children}</article>
+          <article>
+            {children}
+            <LastUpdated />
+          </article>
 
 
           {(prev || next) && (
