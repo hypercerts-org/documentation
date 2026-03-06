@@ -26,4 +26,4 @@ curl https://www.hyperscan.dev/agents/guides/create-hypercert
 curl https://www.hyperscan.dev/agents/stats
 ```
 
-All responses are `text/markdown` — no HTML parsing needed.
+All responses are `text/markdown` — no HTML parsing needed. It's a regular HTTP endpoint, so any HTTP client, `fetch` call, or browser works.
