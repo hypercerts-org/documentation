@@ -81,8 +81,6 @@ Build AI systems that participate in the ecosystem:
 - Evaluation assistants that help experts assess work
 - Discovery agents that match funders with relevant projects
 
-The [Agent Endpoints](/tools/agent-endpoints) provide machine-readable access to lexicon schemas, write guides, and network data — a good starting point for any agent integration.
-
 ## Running an Indexer
 
 To query hypercerts efficiently, run your own indexer:

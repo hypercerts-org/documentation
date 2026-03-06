@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import lastUpdated from '../lib/lastUpdated.json';
 
@@ -6,16 +7,26 @@ export function LastUpdated() {
   const currentPath = router.asPath.split('#')[0].split('?')[0];
   const date = lastUpdated[currentPath];
 
-  if (!date) return null;
+  useEffect(() => {
+    if (!date) return;
 
-  return (
-    <p className="last-updated">
-      Last updated{' '}
-      {new Date(date).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })}
-    </p>
-  );
+    // Remove any existing last-updated element
+    const existing = document.querySelector('.last-updated');
+    if (existing) existing.remove();
+
+    const article = document.querySelector('.layout-content article');
+    if (!article) return;
+
+    const el = document.createElement('p');
+    el.className = 'last-updated';
+    el.textContent = `Last updated ${new Date(date).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })}`;
+
+    article.appendChild(el);
+  }, [date, currentPath]);
+
+  return null;
 }

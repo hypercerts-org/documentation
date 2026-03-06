@@ -873,7 +873,7 @@ a.sidebar-link-active:hover {
 .sidebar-nav-children {
   list-style: none;
   margin-left: 20px;
-  padding-left: 12px;
+  padding-left: 24px;
   border-left: 1px solid var(--color-border);
 }
 
@@ -937,6 +937,7 @@ a.sidebar-link-active:hover {
 
 .toc-link-h3 {
   font-size: 13px;
+  padding-left: 24px;
 }
 
 /* ===== Last Updated ===== */
