@@ -10,6 +10,7 @@ import { CodeBlock } from '../components/CodeBlock';
 import { DotPattern } from '../components/DotPattern';
 import { HeroBanner } from '../components/HeroBanner';
 import { CardGrid } from '../components/CardGrid';
+import { Analytics } from '@vercel/analytics/next';
 
 const components = {
   Callout,
@@ -29,6 +30,7 @@ export default function App({ Component, pageProps }) {
   return (
     <Layout frontmatter={pageProps.markdoc?.frontmatter}>
       <Component {...pageProps} components={components} />
+      <Analytics />
     </Layout>
   );
 }
