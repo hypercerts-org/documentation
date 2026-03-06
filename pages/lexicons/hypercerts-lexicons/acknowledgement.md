@@ -14,16 +14,6 @@ Acknowledgements are created in the acknowledging actor's own repository, making
 
 This enables consent-based relationships in the hypercerts ecosystem. Rather than assuming that being listed as a contributor or funder implies agreement, acknowledgements make consent explicit and auditable. They also enable dispute resolution — if someone is incorrectly listed, they can create a rejection acknowledgement.
 
-## Key fields
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `subject` | strong reference | The record being acknowledged (e.g. an activity claim, a funding receipt, an evaluation) |
-| `context` | URI or strong reference | Optional. The broader context — e.g. the collection that includes an activity, or the activity that includes a contributor |
-| `acknowledged` | boolean | `true` = accepted, `false` = rejected |
-| `comment` | string | Optional note explaining the decision |
-| `createdAt` | datetime | When the acknowledgement was created |
-
 ## Use case: contributor acknowledges inclusion in an activity
 
 Alice creates an activity claim listing Bob as a contributor. Bob wants to confirm he actually participated.
