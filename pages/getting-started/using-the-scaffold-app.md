@@ -1,11 +1,11 @@
 ---
-title: Using the Scaffold App
+title: Using the UI
 description: Create a hypercert using the Scaffold app — no code required.
 ---
 
-# Using the Scaffold App
+# Using the UI
 
-The [Scaffold app](https://hypercerts-scaffold.vercel.app) lets you create a full hypercert through a guided wizard — no code required. For the code-based approach, see [Creating Your First Hypercert](/getting-started/creating-your-first-hypercert).
+The [Scaffold app](https://hypercerts-scaffold.vercel.app) lets you create a full hypercert through a guided wizard — no code required. For the code-based approach, see [Using Code](/getting-started/creating-your-first-hypercert).
 
 ### Step 1 — Sign in
 
