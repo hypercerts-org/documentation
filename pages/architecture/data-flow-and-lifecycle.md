@@ -56,7 +56,7 @@ Supporting data gets attached through additional records that reference the acti
 
 #### Contribution Records
 
-Contributors are embedded in the activity claim's `contributors` array. For richer profiles, separate `org.hypercerts.claim.contributorInformation` and `org.hypercerts.claim.contributionDetails` records can be created and referenced. Contributions can be created by the original contributor or by collaborators on their own servers.
+Contributors are embedded in the activity claim's `contributors` array. For richer profiles, separate `org.hypercerts.claim.contributorInformation` and `org.hypercerts.claim.contribution` records can be created and referenced. Contributions can be created by the original contributor or by collaborators on their own servers.
 
 #### Attachment Records
 
@@ -76,7 +76,7 @@ Contributors are embedded in the activity claim's `contributors` array. For rich
 
 #### Collection Records
 
-`org.hypercerts.claim.collection` records group multiple activity claims into a project or portfolio. Each collection has weighted items (strong references to activity claims or other collections), supporting recursive nesting. A collection with `type="project"` represents a multi-year project composed of individual activity claims.
+`org.hypercerts.collection` records group multiple activity claims into a project or portfolio. Each collection has weighted items (strong references to activity claims or other collections), supporting recursive nesting. A collection with `type="project"` represents a multi-year project composed of individual activity claims.
 
 #### Funding Receipts
 
