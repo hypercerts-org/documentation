@@ -16,16 +16,16 @@ This enables consent-based relationships in the hypercerts ecosystem. Rather tha
 
 ## Use case: contributor acknowledges inclusion in an activity
 
-Alice creates an activity claim listing Bob as a contributor. Bob wants to confirm he actually participated.
+Alice creates an activity claim about her research project and lists Einstein as a contributor. Einstein needs to confirm he actually participated — otherwise anyone could claim he worked on their project.
 
-1. Alice creates an `org.hypercerts.claim.activity` record on her PDS, listing Bob in the `contributors` array
-2. Bob sees he's been listed (via an indexer or notification)
-3. Bob creates an `org.hypercerts.context.acknowledgement` on **his own PDS** with:
+1. Alice creates an `org.hypercerts.claim.activity` record on her PDS, listing Einstein in the `contributors` array
+2. Einstein sees he's been listed (via an indexer or notification)
+3. Einstein creates an `org.hypercerts.context.acknowledgement` on **his own PDS** with:
    - `subject` → strong reference to Alice's activity claim
    - `acknowledged` → `true`
-   - `comment` → `"Confirming my role as technical reviewer"`
+   - `comment` → `"Confirming my role as theoretical physics advisor"`
 
-If Bob was listed incorrectly, he'd set `acknowledged` to `false` instead — creating a visible rejection that indexers and applications can surface.
+If Einstein never actually contributed, he'd set `acknowledged` to `false` instead — creating a visible rejection that indexers and applications can surface. No more claiming Einstein co-authored your term paper.
 
 ## Use case: funder confirms a funding receipt
 
