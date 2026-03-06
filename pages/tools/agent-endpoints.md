@@ -5,13 +5,13 @@ description: Machine-readable reference for AI agents and developers building on
 
 # Agent Endpoints
 
-If you're building with hypercerts and need to check something — latest lexicon schemas, field names, how funding works, example code — point your agent or browser at:
+If you're building with hypercerts — creating records, querying the network, or integrating into an existing platform — point your agent or browser at:
 
 ```bash
 curl https://www.hyperscan.dev/agents
 ```
 
-The endpoint returns a self-describing markdown document listing all available endpoints, write guides, lexicon schemas, and examples. It's designed for AI agents and scripts but works just as well for developers debugging or fact-checking against the latest schemas.
+The endpoint returns a self-describing markdown document with everything an agent needs to build: lexicon schemas, step-by-step write guides, example payloads, and live network data. It's also useful for developers debugging or fact-checking against the latest schemas.
 
 From there you can drill into specific resources:
 
