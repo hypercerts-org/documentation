@@ -27,6 +27,32 @@ Hyperboards turns hypercert data into shareable, embeddable visualizations. Each
 
 Because boards pull data from ATProto repositories, the contributor information is cryptographically signed and publicly verifiable. Anyone can inspect the underlying records and confirm who contributed to a hypercert.
 
+## How weights become tile sizes
+
+Hyperboards normalizes contributor weights into proportional tile areas using this formula:
+
+```
+tileArea = contributorWeight / sumOfAllWeights
+```
+
+For example, if three contributors have weights `"70"`, `"20"`, and `"10"`:
+
+| Contributor | Weight | Calculation | Tile Area |
+|-------------|--------|-------------|-----------|
+| Alice       | 70     | 70 / 100    | 70%       |
+| Bob         | 20     | 20 / 100    | 20%       |
+| Carol       | 10     | 10 / 100    | 10%       |
+
+D3 recomputes tile positions from the weights on every render.
+
+**Missing or invalid weights:** Contributors without a `contributionWeight` default to a weight of 1. There are two fallback layers: (1) if `contributionWeight` is undefined or null, the string `"1"` is used; (2) if the string cannot be parsed as a number (e.g. empty string), the number `1` is used. Contributors are never excluded — they always appear on the board with at least a weight of 1.
+
+**Drag-to-resize behavior:** When you drag to resize tiles in the editor, this directly updates the `contributionWeight` stored in the contributor's ATProto activity record on their PDS. There is no separate layout layer — the weight IS the layout. Weights are rounded to one decimal place on save.
+
+**Choosing weights for visual clarity:** For boards with many contributors, using percentage-style weights (summing to 100) makes the visual proportions intuitive. For boards with few contributors, simple multipliers (like `"3"`, `"2"`, `"1"`) work well.
+
+For methods to calculate contributor weights, see [Choosing contribution weights](/lexicons/hypercerts-lexicons/contribution#choosing-contribution-weights).
+
 ## Embedding
 
 Add a board to any website:
