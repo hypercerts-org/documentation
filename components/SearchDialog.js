@@ -1,16 +1,24 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/router';
-import { flattenNavigation } from '../lib/navigation';
+import FlexSearch from 'flexsearch';
 
-// Fuzzy match: all characters of query appear in text in order (case-insensitive)
-function fuzzyMatch(query, text) {
-  const q = query.toLowerCase();
-  const t = text.toLowerCase();
-  let qi = 0;
-  for (let ti = 0; ti < t.length && qi < q.length; ti++) {
-    if (t[ti] === q[qi]) qi++;
-  }
-  return qi === q.length;
+// Module-level variables to persist across dialog opens
+let searchData = null;
+let searchIndex = null;
+let isLoading = false;
+
+// Generate a context snippet with the matched term highlighted
+function getSnippet(body, query, contextChars = 60) {
+  const lower = body.toLowerCase();
+  const idx = lower.indexOf(query.toLowerCase());
+  if (idx === -1) return '';
+  const start = Math.max(0, idx - contextChars);
+  const end = Math.min(body.length, idx + query.length + contextChars);
+  let snippet = '';
+  if (start > 0) snippet += '...';
+  snippet += body.slice(start, end);
+  if (end < body.length) snippet += '...';
+  return snippet;
 }
 
 // Paths for the curated quick links shown in the empty state
@@ -26,31 +34,116 @@ const QUICK_LINK_PATHS = [
 export function SearchDialog({ isOpen, onClose }) {
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [loading, setLoading] = useState(false);
+  const [results, setResults] = useState([]);
   const inputRef = useRef(null);
   const itemRefs = useRef([]);
   const router = useRouter();
-  const allPages = flattenNavigation();
+  const debounceTimerRef = useRef(null);
+
+  // Load search index on first open
+  useEffect(() => {
+    if (isOpen && !searchData && !isLoading) {
+      isLoading = true;
+      setLoading(true);
+      fetch('/search-index.json')
+        .then(res => res.json())
+        .then(data => {
+          searchData = data;
+          // Create FlexSearch index
+          searchIndex = new FlexSearch.Document({
+            document: {
+              id: 'path',
+              index: ['title', 'description', 'headings', 'body'],
+            },
+            tokenize: 'forward',
+          });
+          // Add all entries to the index
+          data.forEach(entry => {
+            searchIndex.add(entry);
+          });
+          setLoading(false);
+          isLoading = false;
+        })
+        .catch(err => {
+          console.error('Failed to load search index:', err);
+          setLoading(false);
+          isLoading = false;
+        });
+    }
+  }, [isOpen]);
 
   // Quick links for empty state
-  const quickLinks = QUICK_LINK_PATHS
-    .map(p => allPages.find(page => page.path === p))
-    .filter(Boolean);
-
-  // Filter and sort results using fuzzy matching
-  const trimmedQuery = query.trim();
-  const results = trimmedQuery.length > 0
-    ? allPages
-        .filter(p => fuzzyMatch(trimmedQuery, p.title))
-        .sort((a, b) => {
-          const aExact = a.title.toLowerCase().includes(trimmedQuery.toLowerCase());
-          const bExact = b.title.toLowerCase().includes(trimmedQuery.toLowerCase());
-          if (aExact && !bExact) return -1;
-          if (!aExact && bExact) return 1;
-          return 0;
-        })
+  const quickLinks = searchData
+    ? QUICK_LINK_PATHS
+        .map(p => searchData.find(page => page.path === p))
+        .filter(Boolean)
     : [];
 
+  // Perform search with debouncing
+  useEffect(() => {
+    const trimmedQuery = query.trim();
+    
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+    }
+
+    if (!trimmedQuery || !searchIndex || !searchData) {
+      setResults([]);
+      return;
+    }
+
+    debounceTimerRef.current = setTimeout(() => {
+      // Search the index
+      const searchResults = searchIndex.search(trimmedQuery, { limit: 20, enrich: true });
+      
+      // Merge and deduplicate results by path, prioritizing field order
+      const pathMap = new Map();
+      const fieldPriority = { title: 1, description: 2, headings: 3, body: 4 };
+      
+      searchResults.forEach(fieldResult => {
+        const field = fieldResult.field;
+        const priority = fieldPriority[field] || 999;
+        
+        fieldResult.result.forEach(item => {
+          const path = item.id;
+          if (!pathMap.has(path) || pathMap.get(path).priority > priority) {
+            const entry = searchData.find(e => e.path === path);
+            if (entry) {
+              pathMap.set(path, {
+                ...entry,
+                priority,
+                matchedField: field,
+              });
+            }
+          }
+        });
+      });
+      
+      // Convert to array and sort by priority
+      const mergedResults = Array.from(pathMap.values()).sort((a, b) => a.priority - b.priority);
+      
+      // Generate snippets for body matches
+      mergedResults.forEach(result => {
+        if (result.matchedField === 'body' && result.body) {
+          result.snippet = getSnippet(result.body, trimmedQuery);
+        } else if (result.description) {
+          result.snippet = result.description;
+        }
+      });
+      
+      setResults(mergedResults);
+    }, 150);
+
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, [query]);
+
   // Group results by section
+  const trimmedQuery = query.trim();
   const groupedResults = results.reduce((acc, page) => {
     const section = page.section || 'General';
     if (!acc[section]) acc[section] = [];
@@ -107,6 +200,27 @@ export function SearchDialog({ isOpen, onClose }) {
   // Build a flat index counter for refs across groups
   let refIndex = 0;
 
+  // Helper to highlight matched term in snippet
+  const highlightSnippet = (snippet, query) => {
+    if (!snippet || !query) return snippet;
+    const lower = snippet.toLowerCase();
+    const queryLower = query.toLowerCase();
+    const idx = lower.indexOf(queryLower);
+    if (idx === -1) return snippet;
+    
+    const before = snippet.slice(0, idx);
+    const match = snippet.slice(idx, idx + query.length);
+    const after = snippet.slice(idx + query.length);
+    
+    return (
+      <>
+        {before}
+        <mark>{match}</mark>
+        {after}
+      </>
+    );
+  };
+
   return (
     <div className="search-overlay" onClick={onClose}>
       <div className="search-dialog" onClick={(e) => e.stopPropagation()}>
@@ -137,7 +251,10 @@ export function SearchDialog({ isOpen, onClose }) {
           <kbd className="search-input-kbd">ESC</kbd>
         </div>
         <div className="search-results">
-          {!hasQuery ? (
+          {loading ? (
+            /* Loading state */
+            <div className="search-no-results">Loading...</div>
+          ) : !hasQuery ? (
             /* Empty state: show Quick Links */
             <ul className="search-results-list">
               <li>
@@ -178,6 +295,11 @@ export function SearchDialog({ isOpen, onClose }) {
                             type="button"
                           >
                             <span className="search-result-title">{page.title}</span>
+                            {page.snippet && (
+                              <span className="search-result-snippet">
+                                {highlightSnippet(page.snippet, trimmedQuery)}
+                              </span>
+                            )}
                             <span className="search-result-path">{page.path}</span>
                           </button>
                         </li>
