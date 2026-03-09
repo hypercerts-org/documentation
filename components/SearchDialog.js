@@ -109,7 +109,7 @@ export function SearchDialog({ isOpen, onClose }) {
         const priority = fieldPriority[field] || 999;
         
         fieldResult.result.forEach(item => {
-          const path = item.id;
+          const path = typeof item === 'object' ? item.id : item;
           if (!pathMap.has(path) || pathMap.get(path).priority > priority) {
             const entry = searchData.find(e => e.path === path);
             if (entry) {
