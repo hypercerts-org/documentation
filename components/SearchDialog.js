@@ -58,9 +58,12 @@ export function SearchDialog({ isOpen, onClose }) {
             },
             tokenize: 'forward',
           });
-          // Add all entries to the index
+          // Add all entries to the index — join headings array into string for FlexSearch
           data.forEach(entry => {
-            searchIndex.add(entry);
+            searchIndex.add({
+              ...entry,
+              headings: Array.isArray(entry.headings) ? entry.headings.join(' ') : (entry.headings || ''),
+            });
           });
           setLoading(false);
           isLoading = false;
