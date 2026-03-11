@@ -5,83 +5,28 @@ description: Learn how to evaluate hypercerts and build trust in the ecosystem.
 
 # Working with Evaluations
 
-Evaluations are third-party assessments of hypercerts and other claims. They live on the evaluator's own PDS, not embedded in the original claim, and accumulate over time as different actors provide their perspectives.
+Evaluations are third-party assessments of hypercerts. They live on the evaluator's own PDS — not embedded in the original claim — and accumulate over time as different parties provide their perspectives.
 
-## Create an evaluation
+An evaluation references the claim it assesses via a strong reference (AT-URI + CID), includes the evaluator's DID, a summary, and optionally a numeric score and linked measurements. The collection is `org.hypercerts.context.evaluation`. Creating one follows the same `createRecord` pattern shown in the [Quickstart](/getting-started/quickstart).
 
-```typescript
-import { AtpAgent } from "@atproto/api";
+## Measurements
 
-const agent = new AtpAgent({ service: "https://bsky.social" });
-await agent.login({
-  identifier: "evaluator.certified.app",
-  password: "your-app-password",
-});
+Measurements provide quantitative data that can support an evaluation. A measurement records what was measured (the metric), the unit, the value, and optionally the methodology and evidence URIs. The collection is `org.hypercerts.context.measurement`.
 
-// Create an evaluation of an activity claim
-const evaluation = await agent.com.atproto.repo.createRecord({
-  repo: agent.session.did,
-  collection: "org.hypercerts.claim.evaluation",
-  record: {
-    subject: {
-      uri: "at://did:plc:xyz789/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a",
-      cid: "bafyreiabc123...",
-    },
-    evaluators: ["did:plc:evaluator123"],
-    summary: "Verified documentation updates. All 15 examples tested and working. High quality contribution with clear impact on developer experience.",
-    $type: "org.hypercerts.claim.evaluation",
-    createdAt: new Date().toISOString(),
-  },
-});
-
-console.log(evaluation.data.uri);
-```
-
-The `subject` is a strong reference (AT-URI + CID) to the claim being evaluated. The `evaluators` array contains DIDs of those conducting the assessment.
-
-## Add measurements
-
-Measurements provide quantitative data that supports your evaluation:
-
-```typescript
-const measurement = await agent.com.atproto.repo.createRecord({
-  repo: agent.session.did,
-  collection: "org.hypercerts.claim.measurement",
-  record: {
-    subject: {
-      uri: "at://did:plc:xyz789/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a",
-      cid: "bafyreiabc123...",
-    },
-    metric: "Documentation page views",
-    unit: "views",
-    value: "12500",
-    measurers: ["did:plc:evaluator123"],
-    methodType: "analytics",
-    methodURI: "https://example.com/analytics-methodology",
-    evidenceURI: ["https://example.com/analytics-report.pdf"],
-    comment: "Page view data collected over the first 30 days after publication.",
-    $type: "org.hypercerts.claim.measurement",
-    createdAt: new Date().toISOString(),
-  },
-});
-```
-
-The `subject` field is a strong reference (AT-URI + CID) to the claim being measured.
-
-You can then reference this measurement in an evaluation's `measurements` array (an array of strong references) to link quantitative data to your assessment.
+You can link measurements to an evaluation via its `measurements` array (an array of strong references), creating a traceable chain from raw data to assessment.
 
 ## Evaluation patterns
 
-**Expert review:** Domain experts assess technical quality, methodology, and impact. Their DID becomes a portable credential — other projects can discover and trust evaluations from recognized experts.
+**Expert review.** Domain experts assess technical quality, methodology, and impact. Their DID becomes a portable credential — other projects can discover and trust evaluations from recognized experts.
 
-**Community assessment:** Multiple stakeholders provide independent evaluations. The diversity of evaluator DIDs creates a richer signal than any single assessment.
+**Community assessment.** Multiple stakeholders provide independent evaluations. The diversity of evaluator DIDs creates a richer signal than any single assessment.
 
-**Automated evaluation:** Scripts and bots can publish evaluations based on API metrics, external data sources, or other programmatic checks. The evaluator DID identifies the automation system and its operator.
+**Automated evaluation.** Scripts and bots can publish evaluations based on API metrics, external data sources, or other programmatic checks. The evaluator DID identifies the automation system and its operator.
 
 ## Trust and reputation
 
-Every evaluation is signed by its creator's DID, creating accountability. Unlike anonymous reviews, evaluators build portable reputation across the ecosystem. A DID with a history of rigorous, accurate evaluations becomes a trusted signal. Projects can filter evaluations by evaluator identity, weight them differently, or build custom trust graphs based on their values and domain expertise.
+Every evaluation is signed by its creator's DID. Unlike anonymous reviews, evaluators build portable reputation across the ecosystem — a DID with a history of rigorous, accurate evaluations becomes a trusted signal. Applications can filter evaluations by evaluator identity, weight them differently, or build custom trust graphs.
 
 {% callout type="note" %}
-Evaluations are append-only. You can't delete someone else's evaluation of your work, and they can't delete yours. This creates a permanent, multi-perspective record of how claims are assessed over time.
+On ATProto, you control your own records but not anyone else's. You can't delete someone else's evaluation of your work, and they can't delete yours. This creates a multi-perspective record of how claims are assessed over time.
 {% /callout %}
