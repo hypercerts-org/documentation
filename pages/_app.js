@@ -7,6 +7,7 @@ import { Figure } from '../components/Figure';
 import { Heading } from '../components/Heading';
 import { CardLink } from '../components/CardLink';
 import { CodeBlock } from '../components/CodeBlock';
+import { Link } from '../components/Link';
 import { DotPattern } from '../components/DotPattern';
 import { HeroBanner } from '../components/HeroBanner';
 import { CardGrid } from '../components/CardGrid';
@@ -21,6 +22,7 @@ const components = {
   CardLink,
   CodeBlock,
   Fence: CodeBlock,
+  Link,
   DotPattern,
   HeroBanner,
   CardGrid,
