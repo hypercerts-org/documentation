@@ -7,9 +7,9 @@ description: Create your first hypercert in under 5 minutes.
 
 Create your first hypercert. This guide uses TypeScript and Node.js v20+.
 
-<!-- ## Create an account
+## Create an account
 
-[Sign up at certified.app](https://certified-app-hypercerts-foundation.vercel.app). This gives you an AT Protocol identity and a PDS where your data is stored. (Already have a Bluesky or other ATProto account? That works too.) -->
+[Sign up at certified.app](https://certified.app). This gives you an AT Protocol identity and a PDS where your data is stored. (Already have a Bluesky or other ATProto account? That works too.)
 
 ## Install dependencies
 
