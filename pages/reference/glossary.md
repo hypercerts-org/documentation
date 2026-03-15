@@ -21,7 +21,7 @@ The permanent, globally unique identifier for a record. Looks like `at://did:plc
 
 #### DID (Decentralized Identifier)
 
-A permanent identifier for a user or organization. Looks like `did:plc:abc123xyz`. You get one when you create an account on [certified.app](https://certified-app-hypercerts-foundation.vercel.app) or [Bluesky](https://bsky.app). Your DID never changes, even if you switch servers or handles. Every record you create carries your DID as the author.
+A permanent identifier for a user or organization. Looks like `did:plc:abc123xyz`. You get one when you create an account on [certified.app](https://certified.app) or [Bluesky](https://bsky.app). Your DID never changes, even if you switch servers or handles. Every record you create carries your DID as the author.
 
 #### Strong reference
 
@@ -65,4 +65,4 @@ The server where your records are stored. You interact with it through the ATPro
 
 #### Certified
 
-The identity provider for the Hypercerts ecosystem. We built Certified to give the ecosystem a unified entry point — one account that works across all Hypercerts applications. When you sign up at [certified.app](https://certified-app-hypercerts-foundation.vercel.app), you get a DID, a PDS, and an embedded wallet. See [Account & Identity Setup](/architecture/account-and-identity).
+The identity provider for the Hypercerts ecosystem. We built Certified to give the ecosystem a unified entry point — one account that works across all Hypercerts applications. When you sign up at [certified.app](https://certified.app), you get a DID, a PDS, and an embedded wallet. See [Account & Identity Setup](/architecture/account-and-identity).

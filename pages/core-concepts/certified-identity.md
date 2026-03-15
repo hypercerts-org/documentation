@@ -30,7 +30,7 @@ Your DID resolves via the [PLC directory](https://plc.directory) to a DID docume
 
 ## Certified: the reference identity provider
 
-[Certified](https://certified-app-hypercerts-foundation.vercel.app) is the identity provider built for the Hypercerts ecosystem. It provisions the full identity stack in a single sign-up:
+[Certified](https://certified.app) is the identity provider built for the Hypercerts ecosystem. It provisions the full identity stack in a single sign-up:
 
 - **A DID** — your permanent identifier
 - **A PDS** — your Personal Data Server, where records are stored
