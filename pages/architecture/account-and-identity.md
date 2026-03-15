@@ -57,7 +57,7 @@ If you sign up using your email on certified.app you will initially be given a r
 For teams with multiple contributors, create a dedicated organizational account on a PDS. The organization gets its own DID and repository. Team members can write to the organization's repository using app passwords or OAuth scoped to the organizational account. This is useful for open-source projects, research labs, and organizations where many people contribute to the same body of work.
 
 {% callout type="note" %}
-To set up an organizational account, create an account at [certified.app](https://certified.app) with the organization's email. Use a [custom domain handle](#handles-and-domain-verification) (e.g., `numpy.org`) to prove organizational identity.
+To set up an organizational account, create an account at [certified.app](https://certified.app) with the organization's email. Use a [custom domain handle](#handles-your-public-username-and-domain-verification) (e.g., `numpy.org`) to prove organizational identity.
 {% /callout %}
 
 ---
