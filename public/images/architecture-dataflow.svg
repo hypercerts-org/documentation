@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 130" fill="none">
   <style>
-    .node-label { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; }
-    .node-desc { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 400; }
+    .node-label { font-family: Switzer, system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; }
+    .node-desc { font-family: Switzer, system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 400; }
   </style>
 
   <!-- User -->
@@ -47,5 +47,5 @@
 
   <!-- Signed repo annotation -->
   <line x1="202" y1="84" x2="202" y2="104" stroke="#334155" stroke-width="1" stroke-dasharray="3 2"/>
-  <text x="202" y="118" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#64748b" font-style="italic">signed repository</text>
+  <text x="202" y="118" text-anchor="middle" font-family="Switzer, system-ui, sans-serif" font-size="10" fill="#64748b" font-style="italic">signed repository</text>
 </svg>

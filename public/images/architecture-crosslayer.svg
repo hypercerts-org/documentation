@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 240" fill="none">
   <style>
-    .card-title { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
-    .field-key { font-family: 'SF Mono', 'Fira Code', Menlo, monospace; font-size: 11px; font-weight: 500; }
-    .field-val { font-family: 'SF Mono', 'Fira Code', Menlo, monospace; font-size: 11px; font-weight: 400; }
-    .row-text { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 12px; }
-    .badge { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.04em; }
+    .card-title { font-family: Switzer, system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+    .field-key { font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 11px; font-weight: 500; }
+    .field-val { font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 11px; font-weight: 400; }
+    .row-text { font-family: Switzer, system-ui, -apple-system, sans-serif; font-size: 12px; }
+    .badge { font-family: Switzer, system-ui, -apple-system, sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.04em; }
   </style>
 
   <!-- ATProto card -->
@@ -35,7 +35,7 @@
   <!-- Connection -->
   <line x1="320" y1="120" x2="376" y2="120" stroke="#475569" stroke-width="1"/>
   <polygon points="373,116 380,120 373,124" fill="#475569"/>
-  <text x="348" y="110" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#64748b" font-weight="500">anchored</text>
+  <text x="348" y="110" text-anchor="middle" font-family="Switzer, system-ui, sans-serif" font-size="10" fill="#64748b" font-weight="500">anchored</text>
 
   <!-- Blockchain card -->
   <rect x="388" y="16" width="288" height="208" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1" stroke-dasharray="6 3"/>

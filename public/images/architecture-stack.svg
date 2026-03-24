@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 460" fill="none">
   <style>
-    .layer-label { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
-    .layer-desc { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 400; }
-    .node-label { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; }
-    .node-desc { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 400; }
-    .arrow-text { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 10px; fill: #64748b; }
-    .badge { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.04em; }
-    .lexicon-label { font-family: 'SF Mono', 'Fira Code', Menlo, monospace; font-size: 9px; font-weight: 500; }
+    .layer-label { font-family: Switzer, system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+    .layer-desc { font-family: Switzer, system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 400; }
+    .node-label { font-family: Switzer, system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; }
+    .node-desc { font-family: Switzer, system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 400; }
+    .arrow-text { font-family: Switzer, system-ui, -apple-system, sans-serif; font-size: 10px; fill: #64748b; }
+    .badge { font-family: Switzer, system-ui, -apple-system, sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.04em; }
+    .lexicon-label { font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 9px; font-weight: 500; }
   </style>
 
   <!-- ============================================ -->

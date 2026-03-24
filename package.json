@@ -4,14 +4,15 @@
   "private": true,
   "description": "Hypercerts Protocol Documentation",
   "scripts": {
-    "dev": "node lib/generate-last-updated.js && next dev --webpack",
-    "build": "node lib/generate-last-updated.js && next build --webpack",
+    "dev": "node lib/generate-search-index.js && node lib/generate-last-updated.js && next dev --webpack",
+    "build": "node lib/generate-search-index.js && node lib/generate-last-updated.js && next build --webpack",
     "start": "next start"
   },
   "dependencies": {
     "@markdoc/markdoc": "^0.5.4",
     "@markdoc/next.js": "^0.5.0",
     "@vercel/analytics": "^1.6.1",
+    "flexsearch": "^0.8.212",
     "next": "^16.1.6",
     "prism-react-renderer": "^2.4.1",
     "react": "^19.2.4",
