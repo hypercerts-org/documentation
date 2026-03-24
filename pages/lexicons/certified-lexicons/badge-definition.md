@@ -1,5 +1,6 @@
 ---
 title: Badge Definition
+description: Lexicon reference for the Badge Definition record type in Certified.
 ---
 
 # Badge Definition

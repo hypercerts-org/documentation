@@ -1,5 +1,6 @@
 ---
 title: Collection
+description: Lexicon reference for the Collection record type in Hypercerts.
 ---
 
 # Collection

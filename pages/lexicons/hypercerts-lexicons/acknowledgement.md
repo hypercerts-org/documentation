@@ -1,5 +1,6 @@
 ---
 title: Acknowledgement
+description: Lexicon reference for the Acknowledgement record type in Hypercerts.
 ---
 
 # Acknowledgement

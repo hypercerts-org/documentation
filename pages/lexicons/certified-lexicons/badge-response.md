@@ -1,5 +1,6 @@
 ---
 title: Badge Response
+description: Lexicon reference for the Badge Response record type in Certified.
 ---
 
 # Badge Response

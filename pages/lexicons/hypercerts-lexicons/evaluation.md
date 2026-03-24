@@ -1,5 +1,6 @@
 ---
 title: Evaluation
+description: Lexicon reference for the Evaluation record type in Hypercerts.
 ---
 
 # Evaluation

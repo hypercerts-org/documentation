@@ -1,5 +1,6 @@
 ---
 title: Shared Definitions
+description: Reusable type definitions shared across Certified lexicons.
 ---
 
 # Shared Definitions
