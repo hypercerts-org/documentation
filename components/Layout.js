@@ -25,9 +25,9 @@ export default function Layout({ children, frontmatter }) {
   const { prev, next } = getPrevNext(currentPath);
 
   const title = frontmatter?.title;
-  const pageTitle = title
-    ? `${title} - ${SITE_NAME}`
-    : SITE_NAME;
+  const pageTitle = !title || title === SITE_NAME
+    ? SITE_NAME
+    : `${title} - ${SITE_NAME}`;
   const description = frontmatter?.description || DEFAULT_DESCRIPTION;
   const canonicalUrl = `${SITE_URL}${currentPath === '/' ? '' : currentPath}`;
 
