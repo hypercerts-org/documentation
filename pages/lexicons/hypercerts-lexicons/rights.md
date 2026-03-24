@@ -1,5 +1,6 @@
 ---
 title: Rights
+description: Lexicon reference for the Rights record type in Hypercerts.
 ---
 
 # Rights

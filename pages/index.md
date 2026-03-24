@@ -1,5 +1,6 @@
 ---
 title: Hypercerts Documentation
+description: Documentation for the Hypercerts Protocol — structured, verifiable records of impact work built on AT Protocol.
 ---
 
 # Hypercerts Protocol

@@ -10,6 +10,12 @@ import { Breadcrumbs } from './Breadcrumbs';
 import { ThemeToggle } from './ThemeToggle';
 import { SearchDialog } from './SearchDialog';
 
+const SITE_URL = 'https://docs.hypercerts.org';
+const SITE_NAME = 'Hypercerts Documentation';
+const DEFAULT_DESCRIPTION =
+  'Documentation for the Hypercerts Protocol — structured, verifiable records of impact work built on AT Protocol.';
+const OG_IMAGE = `${SITE_URL}/images/hypercerts_logo.png`;
+
 export default function Layout({ children, frontmatter }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -17,9 +23,33 @@ export default function Layout({ children, frontmatter }) {
   const router = useRouter();
   const currentPath = router.asPath.split('#')[0].split('?')[0];
   const { prev, next } = getPrevNext(currentPath);
-  const pageTitle = frontmatter?.title
-    ? `${frontmatter.title} - Hypercerts Protocol`
-    : 'Hypercerts Protocol';
+
+  const title = frontmatter?.title;
+  const pageTitle = title
+    ? `${title} - ${SITE_NAME}`
+    : SITE_NAME;
+  const description = frontmatter?.description || DEFAULT_DESCRIPTION;
+  const canonicalUrl = `${SITE_URL}${currentPath === '/' ? '' : currentPath}`;
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: title || SITE_NAME,
+    description,
+    url: canonicalUrl,
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_URL}/images/hypercerts_logo.png`,
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonicalUrl,
+    },
+  };
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -55,9 +85,30 @@ export default function Layout({ children, frontmatter }) {
         <link rel="icon" href="/images/hypercerts_logo.png" type="image/png" />
         <link rel="apple-touch-icon" href="/images/hypercerts_logo.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {frontmatter?.description && (
-          <meta name="description" content={frontmatter.description} />
-        )}
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonicalUrl} />
+
+        {/* Open Graph */}
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:site_name" content={SITE_NAME} />
+        <meta property="og:image" content={OG_IMAGE} />
+        <meta property="og:locale" content="en_US" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={OG_IMAGE} />
+
+        {/* JSON-LD structured data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var d=document.documentElement;var t=localStorage.getItem('theme');if(t==='dark'){d.classList.add('dark')}else if(t==='light'){d.classList.remove('dark')}else if(window.matchMedia('(prefers-color-scheme:dark)').matches){d.classList.add('dark')}}catch(e){}})()`

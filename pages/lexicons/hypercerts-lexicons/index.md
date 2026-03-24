@@ -1,5 +1,6 @@
 ---
 title: Hypercerts Lexicons
+description: Lexicon reference for Hypercerts record types — activity claims, contributions, evaluations, and more.
 ---
 
 # Hypercerts Lexicons

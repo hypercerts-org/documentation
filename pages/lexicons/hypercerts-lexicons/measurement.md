@@ -1,5 +1,6 @@
 ---
 title: Measurement
+description: Lexicon reference for the Measurement record type in Hypercerts.
 ---
 
 # Measurement

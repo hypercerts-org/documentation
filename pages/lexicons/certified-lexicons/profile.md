@@ -1,5 +1,6 @@
 ---
 title: Profile
+description: Lexicon reference for the Profile record type in Certified.
 ---
 
 # Profile

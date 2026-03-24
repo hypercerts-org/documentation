@@ -1,5 +1,6 @@
 ---
 title: Location
+description: Lexicon reference for the Location record type in Certified.
 ---
 
 # Location

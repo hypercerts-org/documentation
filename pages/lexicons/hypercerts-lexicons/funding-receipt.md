@@ -1,5 +1,6 @@
 ---
 title: Funding Receipt
+description: Lexicon reference for the Funding Receipt record type in Hypercerts.
 ---
 
 # Funding Receipt

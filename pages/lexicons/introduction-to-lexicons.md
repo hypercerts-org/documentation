@@ -1,5 +1,6 @@
 ---
 title: Introduction to Lexicons
+description: Understand lexicons — the shared schemas that define record types in the Hypercerts Protocol.
 ---
 
 # Introduction to Lexicons

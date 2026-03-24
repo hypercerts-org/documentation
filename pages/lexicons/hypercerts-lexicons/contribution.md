@@ -1,5 +1,6 @@
 ---
 title: Contribution
+description: Lexicon reference for the Contribution record type in Hypercerts.
 ---
 
 # Contribution

@@ -1,5 +1,6 @@
 ---
 title: Badge Award
+description: Lexicon reference for the Badge Award record type in Certified.
 ---
 
 # Badge Award

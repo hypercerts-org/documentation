@@ -1,5 +1,6 @@
 ---
 title: Certified Lexicons
+description: Lexicon reference for Certified identity records — profiles, locations, and badges.
 ---
 
 # Certified Lexicons

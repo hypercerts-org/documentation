@@ -1,5 +1,6 @@
 ---
 title: Attachment
+description: Lexicon reference for the Attachment record type in Hypercerts.
 ---
 
 # Attachment

@@ -1,5 +1,6 @@
 ---
 title: Activity Claim
+description: Lexicon reference for the Activity Claim record type — the core record of a hypercert.
 ---
 
 # Activity Claim
