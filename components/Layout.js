@@ -11,7 +11,7 @@ import { ThemeToggle } from './ThemeToggle';
 import { SearchDialog } from './SearchDialog';
 
 const SITE_URL = 'https://docs.hypercerts.org';
-const SITE_NAME = 'Hypercerts Protocol';
+const SITE_NAME = 'Hypercerts Documentation';
 const DEFAULT_DESCRIPTION =
   'Documentation for the Hypercerts Protocol — structured, verifiable records of impact work built on AT Protocol.';
 const OG_IMAGE = `${SITE_URL}/images/hypercerts_logo.png`;
