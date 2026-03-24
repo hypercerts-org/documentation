@@ -51,12 +51,6 @@ export default function Layout({ children, frontmatter }) {
   return (
     <>
       <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Geist+Mono:wght@400;500&display=swap"
-        />
         <title>{pageTitle}</title>
         <link rel="icon" href="/images/hypercerts_logo.png" type="image/png" />
         <link rel="apple-touch-icon" href="/images/hypercerts_logo.png" />
@@ -90,11 +84,10 @@ export default function Layout({ children, frontmatter }) {
           </button>
           <Link href="/" className="layout-logo">
             <img
-              src="/images/hypercerts_logo.png"
-              alt="Hypercerts logo"
+              src="/images/hypercerts_logo.svg"
+              alt="Hypercerts"
               className="layout-logo-icon"
             />
-            <span className="layout-logo-text">Hypercerts</span>
           </Link>
           <span className="header-divider" aria-hidden="true" />
           <nav className="header-nav" aria-label="Main navigation">

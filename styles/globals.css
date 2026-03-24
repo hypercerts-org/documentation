@@ -1,3 +1,36 @@
+/* ===== Fonts ===== */
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url('/fonts/InstrumentSerif-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url('/fonts/InstrumentSerif-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/fonts/Switzer-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Director';
+  src: url('/fonts/Director-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ===== Reset ===== */
 *,
 *::before,
@@ -72,11 +105,10 @@
 /* ===== Design Tokens ===== */
 :root {
   /* Font stacks */
-  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Helvetica, Arial, sans-serif;
-  --font-display: 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-mono: 'Geist Mono', 'Source Code Pro', SFMono-Regular, Menlo, Monaco,
-    Consolas, monospace;
+  --font-body: 'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-secondary: 'Director', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
 
   /* Neutrals */
   --color-bg: oklch(0.995 0.001 260);
@@ -305,7 +337,7 @@ html {
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--color-text-primary);
@@ -315,9 +347,13 @@ body {
   font-weight: 400;
 }
 
-h1, h2, h3, h4, h5, h6,
-.sidebar-section-header {
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
+  font-weight: 400;
+}
+
+.sidebar-section-header {
+  font-family: var(--font-body);
 }
 
 a {
@@ -374,8 +410,8 @@ img {
 }
 
 .layout-logo-icon {
-  width: 22px;
   height: 22px;
+  width: auto;
   flex-shrink: 0;
 }
 
@@ -388,7 +424,7 @@ img {
 }
 
 .layout-logo-badge {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -543,7 +579,7 @@ html.dark .theme-toggle-moon {
   gap: 2px;
   margin-left: 8px;
   font-size: 11px;
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   color: oklch(0.55 0.01 260);
   pointer-events: none;
 }
@@ -1004,7 +1040,7 @@ a.sidebar-link-active:hover {
 /* ===== Typography ===== */
 .layout-content h1 {
   font-size: 32px;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: -0.02em;
   color: var(--color-text-title);
   line-height: 1.25;
@@ -1014,7 +1050,7 @@ a.sidebar-link-active:hover {
 
 .layout-content h2 {
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: -0.01em;
   color: var(--color-text-heading);
   line-height: 32px;
@@ -1024,8 +1060,8 @@ a.sidebar-link-active:hover {
 
 .layout-content h3 {
   font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.005em;
+  font-weight: 400;
+  letter-spacing: 0;
   color: var(--color-text-heading);
   line-height: 1.4;
   margin-top: var(--space-8);
@@ -1034,7 +1070,7 @@ a.sidebar-link-active:hover {
 
 .layout-content h4 {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--color-text-heading);
   line-height: 1.5;
   margin-top: var(--space-6);
@@ -1124,6 +1160,20 @@ a.sidebar-link-active:hover {
   color: var(--color-link-hover);
   text-decoration: underline;
   text-decoration-color: var(--color-link-hover);
+}
+
+.layout-content .card-link,
+.layout-content .card-link:hover {
+  text-decoration: none;
+}
+
+.layout-content ul:not(.contains-task-list) li a {
+  text-decoration: none;
+}
+
+.layout-content ul:not(.contains-task-list) li a:hover {
+  text-decoration: none;
+  color: var(--color-link-hover);
 }
 
 /* Code blocks */
@@ -1425,7 +1475,7 @@ a.sidebar-link-active:hover {
   margin-top: var(--space-6);
   padding: 10px 24px;
   background: oklch(0.15 0 0);
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 15px;
   font-weight: 600;
   border-radius: 9999px;
@@ -1511,7 +1561,7 @@ html.dark .layout-content a.hero-cta:hover {
 
 .card-link-title {
   display: block;
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 16px;
   font-weight: 500;
   color: var(--color-text-heading);
@@ -1582,7 +1632,7 @@ html.dark .search-overlay {
   background: none;
   outline: none;
   font-size: 16px;
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   color: var(--color-text-primary);
 }
 
@@ -1623,7 +1673,7 @@ html.dark .search-overlay {
   border-radius: var(--radius-md);
   cursor: pointer;
   text-align: left;
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   transition: background var(--transition-fast);
 }
 
@@ -1829,7 +1879,7 @@ html.dark .search-result-snippet mark {
   }
 
   .layout-content h3 {
-    font-size: 17px;
+    font-size: 15px;
   }
 
   /* Stack pagination on mobile */
