@@ -46,4 +46,3 @@ The on-chain funding layer is not yet implemented. The planned design freezes re
 #### Where do I get help?
 
 - [GitHub](https://github.com/hypercerts-org) — source code, issues, and discussions
-- [Roadmap](/roadmap) — what's being built and what's next

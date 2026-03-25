@@ -59,7 +59,7 @@ To receive onchain funding, a DID needs to be linked to an onchain wallet addres
 3. Signs an EIP-712 typed message proving ownership
 4. Stores the attestation in the user's PDS
 
-The attestation is self-sovereign (stored in your PDS, not a central database) and verifiable by anyone. See the [Roadmap](/roadmap) for current IdentityLink status.
+The attestation is self-sovereign (stored in your PDS, not a central database) and verifiable by anyone.
 
 ## Next steps
 
