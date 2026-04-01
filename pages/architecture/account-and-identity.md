@@ -71,10 +71,10 @@ Applications authenticate users via AT Protocol OAuth. The AT Protocol client li
 ### OAuth (for ePDS)
 The ePDS (extended PDS) adds email/passwordless login on top of the standard PDS, without modifying the underlying AT Protocol PDS code. When a user authenticates, the ePDS Auth Service handles the OTP flow and then issues a standard AT Protocol authorization code back to your app.
 
-Because of this architecture, the standard ATProto OAuth client libraries won't work with ePDS — you'll need to implement [PAR](https://datatracker.ietf.org/doc/html/rfc9126), [DPoP](https://datatracker.ietf.org/doc/html/rfc9449), and [PKCE](https://datatracker.ietf.org/doc/html/rfc7636) directly. [`@atproto/oauth-client-node`](https://github.com/bluesky-social/atproto/tree/main/packages/oauth/oauth-client-node) does not handle ePDS's email/OTP flow and cannot be used as-is. The [ePDS demo](https://github.com/hypercerts-org/ePDS/tree/main/packages/demo) is a Next.js app that implements the above and shows a complete working example.
+You can integrate ePDS with [`@atproto/oauth-client-node`](https://github.com/bluesky-social/atproto/tree/main/packages/oauth/oauth-client-node). If your app already has an email field, start OAuth normally and add `login_hint=<email>` to the authorization URL before redirecting the user. If your app just has a sign-in button, redirect the user normally and let ePDS collect the email itself. You can also optionally add `epds_handle_mode` to the authorization URL to control how new users get handles.
 
 {% callout type="note" %}
-A ready-made skill that implements the full ePDS OAuth flow is available at `.agents/skills/epds-login/SKILL.md` in the [ePDS repository](https://github.com/hypercerts-org/ePDS). See the [ePDS architecture documentation](https://github.com/hypercerts-org/ePDS/blob/main/docs/architecture.md) for a full explanation.
+See [ePDS (extended PDS)](/architecture/epds) for integration examples, handle mode configuration, and client metadata options. A ready-made skill that implements the full ePDS OAuth flow is available at `.agents/skills/epds-login/SKILL.md` in the [ePDS repository](https://github.com/hypercerts-org/ePDS).
 {% /callout %}
 
 
