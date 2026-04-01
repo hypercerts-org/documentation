@@ -60,11 +60,11 @@ Contributors are embedded in the activity claim's `contributors` array. For rich
 
 #### Attachment Records
 
-`org.hypercerts.claim.attachment` records attach supporting documentation. Attachments can be URLs, file uploads, or structured data. Each attachment record includes a strong reference to the claim it supports.
+`org.hypercerts.context.attachment` records attach supporting documentation. Attachments can be URLs, file uploads, or structured data. Each attachment record includes a strong reference to the claim it supports.
 
 #### Measurement Records
 
-`org.hypercerts.claim.measurement` records provide quantitative data. A measurement specifies what was measured, the value, the unit, and the methodology. Multiple measurements can track different metrics.
+`org.hypercerts.context.measurement` records provide quantitative data. A measurement specifies what was measured, the value, the unit, and the methodology. Multiple measurements can track different metrics.
 
 #### Rights Records
 
@@ -98,7 +98,7 @@ at://did:alice/...               at://did:bob/...                at://did:carol/
 
 Third parties assess the work by creating evaluation records on their own servers.
 
-An evaluator creates an `org.hypercerts.claim.evaluation` record on their PDS. The evaluation includes a `subject` field with a strong reference to the activity claim. Strong references include both the AT-URI and the CID (content hash), ensuring the evaluation references a specific version of the claim.
+An evaluator creates an `org.hypercerts.context.evaluation` record on their PDS. The evaluation includes a `subject` field with a strong reference to the activity claim. Strong references include both the AT-URI and the CID (content hash), ensuring the evaluation references a specific version of the claim.
 
 The evaluation record includes the evaluator's assessment. This can be a score, a category, structured feedback, or a link to a detailed report. The lexicon allows flexible evaluation formats.
 

@@ -1,6 +1,6 @@
 {
   "/architecture/account-and-identity": "2026-04-01T13:47:13+06:00",
-  "/architecture/data-flow-and-lifecycle": "2026-03-05T20:17:36+06:00",
+  "/architecture/data-flow-and-lifecycle": "2026-04-01T19:28:36+06:00",
   "/architecture/epds": "2026-04-01T13:47:13+06:00",
   "/architecture/indexers-and-discovery": "2026-03-05T04:01:13+08:00",
   "/architecture/overview": "2026-03-05T20:46:24+08:00",
@@ -9,14 +9,14 @@
   "/core-concepts/certified-identity": "2026-03-14T20:43:33-07:00",
   "/core-concepts/common-use-cases": "2026-03-05T12:52:26+08:00",
   "/core-concepts/funding-and-value-flow": "2026-03-05T17:11:22+06:00",
-  "/core-concepts/hypercerts-core-data-model": "2026-03-05T20:17:43+06:00",
+  "/core-concepts/hypercerts-core-data-model": "2026-04-01T19:28:36+06:00",
   "/core-concepts/what-is-hypercerts": "2026-03-05T03:40:14+08:00",
   "/core-concepts/why-at-protocol": "2026-03-05T21:06:04+08:00",
   "/ecosystem/why-we-need-hypercerts": "2026-02-20T12:49:43+01:00",
   "/getting-started/building-on-hypercerts": "2026-03-06T22:56:46+08:00",
   "/getting-started/quickstart": "2026-03-14T20:43:33-07:00",
   "/getting-started/testing-and-deployment": "2026-03-05T14:36:55+06:00",
-  "/getting-started/working-with-evaluations": "2026-03-06T22:56:46+08:00",
+  "/getting-started/working-with-evaluations": "2026-04-01T19:28:36+06:00",
   "/": "2026-03-24T12:56:03-07:00",
   "/lexicons/certified-lexicons/badge-award": "2026-03-24T12:56:03-07:00",
   "/lexicons/certified-lexicons/badge-definition": "2026-03-24T12:56:03-07:00",
@@ -42,5 +42,5 @@
   "/tools/hyperboards": "2026-03-09T15:56:42+08:00",
   "/tools/hypercerts-cli": "2026-03-05T12:30:00+06:00",
   "/tools/hyperindex": "2026-02-20T19:42:03+08:00",
-  "/tools/scaffold": "2026-03-05T15:58:36+06:00"
+  "/tools/scaffold": "2026-04-01T19:28:36+06:00"
 }

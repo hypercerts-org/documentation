@@ -193,7 +193,7 @@ Every CEL expression evaluates against a typed context. Each variable maps to da
 
 ## Starter tag vocabulary
 
-`workScopeTag` records are published as ATProto records that anyone can reference via strong references. [Certified](https://certified.ink) publishes curated tag sets for specific domains. Here's an example for regenerative work:
+`workScopeTag` records are published as ATProto records that anyone can reference via strong references. [Certified](https://certified.app) publishes curated tag sets for specific domains. Here's an example for regenerative work:
 
 | Domain | Example tags |
 |--------|-------------|

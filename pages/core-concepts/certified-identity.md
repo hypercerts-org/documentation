@@ -25,7 +25,7 @@ Your DID resolves via the [PLC directory](https://plc.directory) to a DID docume
 |-------|---------------------|
 | **Data** | Every record (activity claims, evaluations, measurements) carries the author's DID. The PDS signs records into a Merkle tree, making authorship tamper-evident. |
 | **Trust** | Evaluators build reputation tied to their DID. Applications can weight evaluations based on the evaluator's history and credentials. |
-| **Funding** | Funding receipts link funder DIDs to the work they support. Wallet linkage (work-in-progress) connects DIDs to onchain addresses for payment flows and tokenization. |
+| **Funding** | Funding receipts link funder DIDs to the work they support. Wallet linkage (work-in-progress) connects DIDs to on-chain addresses for payment flows and tokenization. |
 | **Portability** | Switching PDS providers doesn't change your DID. Your entire history — claims, evaluations, contributions — migrates with you. |
 
 ## Certified: the reference identity provider
@@ -52,7 +52,7 @@ Hypercerts is fully interoperable with the AT Protocol ecosystem. If you already
 
 ## Wallet linkage
 
-To receive onchain funding, a DID needs to be linked to an onchain wallet address. This is handled by [**IdentityLink**](https://identitylink.vercel.app/) — a cryptographic attestation system that binds a DID to one or more onchain addresses via a signed proof stored in your PDS. For the Ethereum ecosystem this looks like:
+To receive on-chain funding, a DID needs to be linked to an on-chain wallet address. This is handled by [**IdentityLink**](https://identitylink.vercel.app/) — a cryptographic attestation system that binds a DID to one or more on-chain addresses via a signed proof stored in your PDS. For the Ethereum ecosystem this looks like:
 
 1. Authenticates the user via ATProto OAuth
 2. Connects an EVM wallet (EOA, Smart Wallet, or Safe)

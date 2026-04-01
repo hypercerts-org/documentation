@@ -194,7 +194,7 @@ A system for linking ATProto DIDs to Ethereum/EVM wallet addresses via cryptogra
 
 **Flow:**
 
-```
+```text
 1. User authenticates with ATProto via OAuth
 2. User connects EVM wallet
 3. User signs EIP-712 typed message
@@ -220,7 +220,7 @@ A system for linking ATProto DIDs to Ethereum/EVM wallet addresses via cryptogra
 
 A service that creates immutable backups of hypercert records on decentralized storage (Filecoin/IPFS). ATProto repositories are mutable — records can be updated or deleted. For high-stakes impact claims, immutable archival provides permanence, verifiability, and compliance with funding mechanisms that require immutable records.
 
-```
+```text
 User's PDS record → StorageLink → Filecoin Cloud (immutable backup)
 ```
 
@@ -230,7 +230,7 @@ User's PDS record → StorageLink → Filecoin Cloud (immutable backup)
 
 An indexer that tracks onchain events related to Hypercerts (token mints, transfers, funding distributions). Creates a unified view across ATProto records and blockchain state — indexing tokenization events, tracking funding flows, and enabling queries like "show all funded activities for this project."
 
-```
+```text
 Blockchain events → EVM Indexer → Hyperindex (unified view)
 ```
 

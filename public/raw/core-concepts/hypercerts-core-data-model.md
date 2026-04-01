@@ -45,13 +45,13 @@ The following diagram shows record types and how they reference the activity cla
 
 {% figure src="/images/hypercert-erd.svg" alt="Hypercert record relationships" /%}
 
-The diagram includes a **token** entity — tokenization (anchoring a hypercert onchain) is not yet implemented.
+The diagram includes a **token** entity — tokenization (anchoring a hypercert on-chain) is not yet implemented.
 
 | Record type | What it adds | Who creates it | Lexicon |
 |-------------|-------------|----------------|---------|
-| **Attachment** | Supporting documentation — URLs, uploaded files, IPFS links. Can link to any record type, not only activity claims. | Anyone with additional data | `org.hypercerts.claim.attachment` |
-| **Measurement** | Quantitative data — "12 pages written", "50 tons CO₂ reduced" | E.g. a third-party measurer or the project (self-reported) | `org.hypercerts.claim.measurement` |
-| **Evaluation** | An (independent) assessment of the work | E.g. a third-party evaluator, community members, beneficiaries | `org.hypercerts.claim.evaluation` |
+| **Attachment** | Supporting documentation — URLs, uploaded files, IPFS links. Can link to any record type, not only activity claims. | Anyone with additional data | `org.hypercerts.context.attachment` |
+| **Measurement** | Quantitative data — "12 pages written", "50 tons CO₂ reduced" | E.g. a third-party measurer or the project (self-reported) | `org.hypercerts.context.measurement` |
+| **Evaluation** | An (independent) assessment of the work | E.g. a third-party evaluator, community members, beneficiaries | `org.hypercerts.context.evaluation` |
 
 ### Additional notes
 

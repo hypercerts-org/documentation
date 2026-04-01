@@ -21,7 +21,7 @@ await agent.login({
 // Create an evaluation of an activity claim
 const evaluation = await agent.com.atproto.repo.createRecord({
   repo: agent.session.did,
-  collection: "org.hypercerts.claim.evaluation",
+  collection: "org.hypercerts.context.evaluation",
   record: {
     subject: {
       uri: "at://did:plc:xyz789/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a",
@@ -29,7 +29,7 @@ const evaluation = await agent.com.atproto.repo.createRecord({
     },
     evaluators: ["did:plc:evaluator123"],
     summary: "Verified documentation updates. All 15 examples tested and working. High quality contribution with clear impact on developer experience.",
-    $type: "org.hypercerts.claim.evaluation",
+    $type: "org.hypercerts.context.evaluation",
     createdAt: new Date().toISOString(),
   },
 });
@@ -46,7 +46,7 @@ Measurements provide quantitative data that supports your evaluation:
 ```typescript
 const measurement = await agent.com.atproto.repo.createRecord({
   repo: agent.session.did,
-  collection: "org.hypercerts.claim.measurement",
+  collection: "org.hypercerts.context.measurement",
   record: {
     subject: {
       uri: "at://did:plc:xyz789/org.hypercerts.claim.activity/3k2j4h5g6f7d8s9a",
@@ -60,7 +60,7 @@ const measurement = await agent.com.atproto.repo.createRecord({
     methodURI: "https://example.com/analytics-methodology",
     evidenceURI: ["https://example.com/analytics-report.pdf"],
     comment: "Page view data collected over the first 30 days after publication.",
-    $type: "org.hypercerts.claim.measurement",
+    $type: "org.hypercerts.context.measurement",
     createdAt: new Date().toISOString(),
   },
 });

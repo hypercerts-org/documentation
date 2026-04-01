@@ -180,14 +180,14 @@ ATProto has no built-in reverse lookup — given a hypercert URI, there is no na
 
 Constellation indexes ATProto records and returns all records that reference a given subject URI. The scaffold queries three source paths:
 
-- Attachments: `org.hypercerts.claim.attachment:subjects[com.atproto.repo.strongRef].uri`
-- Evaluations: `org.hypercerts.claim.evaluation:subject.uri`
-- Measurements: `org.hypercerts.claim.measurement:subject.uri`
+- Attachments: `org.hypercerts.context.attachment:subjects[com.atproto.repo.strongRef].uri`
+- Evaluations: `org.hypercerts.context.evaluation:subject.uri`
+- Measurements: `org.hypercerts.context.measurement:subject.uri`
 
 The query hooks follow a two-step pattern: fetch backlink URIs from Constellation, then fetch each record's full data via Server Actions. This split is necessary because Constellation returns record identifiers, not record contents.
 
 ## Project structure
-```
+```text
 hypercerts-scaffold/
 ├── app/
 │   ├── layout.tsx                    # Root layout (server component, wraps providers)

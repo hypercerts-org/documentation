@@ -31,7 +31,7 @@ Because boards pull data from ATProto repositories, the contributor information 
 
 Hyperboards normalizes contributor weights into proportional tile areas using this formula:
 
-```
+```text
 tileArea = contributorWeight / sumOfAllWeights
 ```
 

@@ -18,7 +18,7 @@ Built in Go on [bluesky-social/indigo](https://github.com/bluesky-social/indigo)
 
 Hyperindex connects to the AT Protocol network via Jetstream (a real-time event stream). It watches for records matching your configured lexicons, parses them, and stores them in a queryable database (SQLite or PostgreSQL). It then exposes a GraphQL API for querying the indexed data.
 
-```
+```text
 Jetstream ──→ Consumer ──→ Records DB ──→ GraphQL API
                  │
            Activity Log ──→ Admin Dashboard

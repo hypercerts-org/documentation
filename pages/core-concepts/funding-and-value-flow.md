@@ -42,7 +42,7 @@ Funding receipts are typically created by a **facilitator** — a payment proces
 
 | Scenario | Facilitator | Verification |
 |----------|-------------|--------------|
-| **Onchain funding** | A funding app verifies the transaction and creates the receipt, linking the transaction hash and chain ID | Verifiable onchain |
+| **On-chain funding** | A funding app verifies the transaction and creates the receipt, linking the transaction hash and chain ID | Verifiable on-chain |
 | **Card / bank transfer** | A payment processor settles the payment and creates the receipt | Trust in the processor |
 | **Grant platform** | The grant platform records the award and creates the receipt on behalf of the funder | Trust in the platform |
 
@@ -56,7 +56,7 @@ The protocol does not enforce that projects or funders disclose their funding �
 Tokenization is under active development. This section describes the planned architecture.
 {% /callout %}
 
-A hypercert can optionally be wrapped in an onchain token. This gives funders a programmable proof of their contribution. Tokenization is an optional wrapper around a claim snapshot; the canonical record remains the AT Protocol data.
+A hypercert can optionally be wrapped in an on-chain token. This gives funders a programmable proof of their contribution. Tokenization is an optional wrapper around a claim snapshot; the canonical record remains the AT Protocol data.
 
 When locking is available, a claim can be frozen before tokenization. This gives funders a stronger guarantee — the claim they reviewed is exactly the claim they funded, and it cannot change after the fact.
 
@@ -105,4 +105,3 @@ Two years later, Eve assesses the health of Alice's trees and publishes a positi
 
 - [Architecture Overview](/architecture/overview) — how the full protocol stack fits together
 - [Data Flow & Lifecycle](/architecture/data-flow-and-lifecycle) — how a hypercert moves through the system
-
