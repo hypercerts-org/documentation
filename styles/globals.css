@@ -980,6 +980,7 @@ a.sidebar-link-active:hover {
 .page-tools {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: var(--space-3);
   margin-bottom: var(--space-6);
 }
@@ -989,6 +990,7 @@ a.sidebar-link-active:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: var(--space-2);
   min-height: 32px;
   padding: 0 var(--space-3);
   border: 1px solid var(--color-border);
@@ -1005,11 +1007,25 @@ a.sidebar-link-active:hover {
   cursor: pointer;
 }
 
+.page-tools-button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.page-tools-icon {
+  flex-shrink: 0;
+}
+
 .page-tools-button:hover,
 .page-tools-link:hover {
   border-color: var(--color-link);
   color: var(--color-link);
   text-decoration: none;
+}
+
+.page-tools-button:disabled:hover {
+  border-color: var(--color-border);
+  color: var(--color-text-secondary);
 }
 
 .page-tools-button:focus-visible,

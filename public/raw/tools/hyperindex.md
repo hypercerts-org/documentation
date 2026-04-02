@@ -16,15 +16,15 @@ Built in Go on [bluesky-social/indigo](https://github.com/bluesky-social/indigo)
 
 ## How it works
 
-Hyperindex connects to the AT Protocol network via Jetstream (a real-time event stream). It watches for records matching your configured lexicons, parses them, and stores them in a queryable database (SQLite or PostgreSQL). It then exposes a GraphQL API for querying the indexed data.
+Hyperindex is **Tap-first** (recommended). Tap handles ingestion and Hyperindex consumes Tap events, stores records, and exposes them via GraphQL.
 
 ```text
-Jetstream ──→ Consumer ──→ Records DB ──→ GraphQL API
-                 │
-           Activity Log ──→ Admin Dashboard
-
-Backfill Worker ──→ AT Protocol Relay ──→ Records DB
+ATProto Relay ──→ Tap ──→ Hyperindex Consumer ──→ Records DB ──→ GraphQL API
+                                     │
+                               Activity Log ──→ Admin Dashboard
 ```
+
+Jetstream mode still exists as a legacy/non-Tap mode, but Tap is the preferred setup.
 
 ## Quick start
 
@@ -39,7 +39,10 @@ Open [http://localhost:8080/graphiql/admin](http://localhost:8080/graphiql/admin
 
 ## Register lexicons
 
-Lexicons define the AT Protocol record types you want to index. Register them via the Admin GraphQL API at `/graphiql/admin`:
+Lexicons define the AT Protocol record types you want to index. You can register them via:
+
+1. Admin GraphQL API at `/graphiql/admin`
+2. Client admin UI at `https://<client-url>/lexicons` (you must log in with an admin DID)
 
 ```graphql
 mutation {
@@ -82,6 +85,22 @@ query {
     }
   }
 }
+
+# With typed filter queries (title contains "Hypercerts")
+query {
+  orgHypercertsClaimActivity(
+    first: 10
+    where: { title: { contains: "Hypercerts" } }
+  ) {
+    edges {
+      node {
+        uri
+        title
+        createdAt
+      }
+    }
+  }
+}
 ```
 
 ## Endpoints
@@ -95,6 +114,147 @@ query {
 | `/graphiql/admin` | GraphQL playground (admin API) |
 | `/health` | Health check |
 | `/stats` | Server statistics |
+
+## Deployment configuration
+
+Use this section when deploying Hyperindex (backend, Tap, and client). It lists the environment variables you should set first for a reliable initial deployment, followed by optional variables for advanced tuning.
+
+### Baseline deployment variables
+
+These are the variables you should set first to get a stable deployment running.
+
+### Hyperindex backend
+
+| Variable | Example | What it is for |
+|---|---|---|
+| `HOST` | `0.0.0.0` | Makes the app reachable in container runtime |
+| `PORT` | `8080` | App port |
+| `DATABASE_URL` | `sqlite:/data/hypergoat.db` | Main indexed-records database |
+| `EXTERNAL_BASE_URL` | `https://hyperindex.example.com` | Public backend URL used by frontend/admin flows and GraphiQL links |
+| `SECRET_KEY_BASE` | `<long-random-secret>` | Session/signing secret |
+| `ADMIN_DIDS` | `did:plc:...` | DIDs with admin privileges |
+| `TRUST_PROXY_HEADERS` | `true` | Trust forwarded auth headers from client proxy |
+| `TAP_ENABLED` | `true` | Enables Tap mode |
+| `TAP_URL` | `ws://tap.railway.internal:2480` | Tap websocket endpoint |
+| `TAP_ADMIN_PASSWORD` | `<same-as-tap-service>` | Tap admin auth secret |
+| `TAP_DISABLE_ACKS` | `true` or `false` | Controls ACK behavior for Tap consumer; set to `true` if ACK mode causes websocket reconnect/drop loops |
+
+> `TAP_DISABLE_ACKS` is configured on the **backend/indexer** service.
+> **Note on `TAP_DISABLE_ACKS`**
+>
+> In some deployments, ACK mode (`TAP_DISABLE_ACKS=false`) can cause repeated websocket disconnect loops (for example: `connection reset by peer`, `close 1006`, frequent reconnect backoff).
+> If you see that pattern, set `TAP_DISABLE_ACKS=true` on the **Hyperindex backend** to stabilize ingestion first, then investigate Tap resource/config compatibility before re-enabling ACK mode.
+
+### Tap service
+
+| Variable | Example | What it is for |
+|---|---|---|
+| `TAP_DATABASE_URL` | `sqlite:///data/tap.db` | Persists Tap cursor/state |
+| `TAP_ADMIN_PASSWORD` | `<shared-secret>` | Protects Tap admin routes |
+| `TAP_COLLECTION_FILTERS` | `app.gainforest.*,app.certified.*,org.hypercerts.*` | Filters ingested record collections |
+| `TAP_SIGNAL_COLLECTION` | `app.certified.actor.profile` | Signal collection for repo discovery |
+| `TAP_FULL_NETWORK` | `true` / `false` | Full network tracking toggle |
+
+> `TAP_FULL_NETWORK=true` enables full-network tracking and triggers a broad historical backfill across discoverable repos.
+
+### Client (Next.js)
+
+| Variable | Example | What it is for |
+|---|---|---|
+| `NEXT_PUBLIC_API_URL` | `https://hyperindex.example.com` | Browser-side URL of your Hyperindex backend |
+| `HYPERINDEX_URL` | `https://hyperindex.example.com` | Server-side URL of your Hyperindex backend (used by Next API proxy routes) |
+| `PUBLIC_URL` | `https://hyperindex-frontend.example.com` | Client frontend URL used for OAuth client metadata and auth redirects |
+| `COOKIE_SECRET` | `<long-random-secret>` | Session encryption |
+| `ATPROTO_JWK_PRIVATE` | `<jwk-json>` | Confidential OAuth signing key |
+
+### Optional variables
+
+Set these only when needed.
+
+### Backend
+- `ALLOWED_ORIGINS`
+
+### Tap
+- `TAP_FIREHOSE_PARALLELISM`
+- `TAP_RESYNC_PARALLELISM`
+- `TAP_OUTBOX_PARALLELISM`
+- `TAP_MAX_DB_CONNS`
+- `TAP_OUTBOX_CAPACITY`
+- `TAP_NO_REPLAY`
+- `TAP_REPO_FETCH_TIMEOUT`
+
+### Client
+- Additional auth/provider-specific settings depending on deployment model
+
+## Common pitfalls
+
+- **Wrong variable on wrong service**
+  - `TAP_COLLECTION_FILTERS`, `TAP_SIGNAL_COLLECTION`, `TAP_FULL_NETWORK` belong to **Tap**
+  - `TAP_DISABLE_ACKS`, `TAP_ENABLED`, `TAP_URL` belong to **Hyperindex backend**
+
+- **Client works but admin requests fail**
+  - `HYPERINDEX_URL` is missing on the client deployment
+  - `NEXT_PUBLIC_API_URL` alone is not enough for server-side proxy routes
+
+- **`admin privileges required` while logged in**
+  - `TRUST_PROXY_HEADERS` is missing/false
+  - Logged-in DID is not present in `ADMIN_DIDS`
+
+- **Trailing slash URL issues**
+  - `PUBLIC_URL` must **not** include a trailing slash.
+  - Use:
+    - `https://hyperindex-frontend.example.com` ✅
+    - `https://hyperindex-frontend.example.com/` ❌
+  - A trailing slash can cause OAuth client metadata lookup errors (for example: `client_metadata not found`).
+
+- **Healthcheck confusion**
+  - Backend healthcheck should be `/health`
+  - Frontend usually uses `/` unless you explicitly add a `/health` route
+
+## Deploy on Railway
+
+### 1) Deploy Hyperindex backend
+
+1. Create a Railway service from the repository
+2. Attach a persistent volume mounted to `/data`
+3. Set healthcheck path to `/health`
+4. Add backend variables from the baseline list above
+5. Deploy
+
+### 2) Deploy Tap
+
+1. Create a Railway service from image:
+   `ghcr.io/bluesky-social/indigo/tap:latest` (or a pinned tag)
+2. Attach a persistent volume mounted to `/data`
+3. Add Tap variables from the baseline list above
+4. Deploy
+
+### 3) Connect backend to Tap
+
+Set on backend service:
+
+- `TAP_ENABLED=true`
+- `TAP_URL=ws://<tap-private-host>:2480`
+- `TAP_ADMIN_PASSWORD=<same-as-tap-service>`
+
+Redeploy backend after updating these values.
+
+### 4) Deploy client (Next.js)
+
+Deploy client on Railway/Vercel/etc and set:
+
+- `NEXT_PUBLIC_API_URL=<hyperindex-backend-public-url>`
+- `HYPERINDEX_URL=<hyperindex-backend-public-url>`
+- auth/session vars (`PUBLIC_URL`, `COOKIE_SECRET`, `ATPROTO_JWK_PRIVATE`) as needed
+
+### Railway-specific DB path notes
+
+For mounted volumes at `/data`:
+
+- Backend SQLite:
+  - `DATABASE_URL=sqlite:/data/hypergoat.db`
+- Tap SQLite:
+  - `TAP_DATABASE_URL=sqlite:///data/tap.db`
 
 ## Running with Docker
 
