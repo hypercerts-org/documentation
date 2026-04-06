@@ -4,8 +4,8 @@
   "private": true,
   "description": "Hypercerts Protocol Documentation",
   "scripts": {
-    "dev": "node lib/generate-search-index.js && node lib/generate-last-updated.js && node lib/generate-sitemap.js && next dev --webpack",
-    "build": "node lib/generate-search-index.js && node lib/generate-last-updated.js && node lib/generate-sitemap.js && next build --webpack",
+    "dev": "node lib/generate-search-index.js && node lib/generate-last-updated.js && node lib/generate-sitemap.js && node lib/generate-raw-pages.js && next dev --webpack",
+    "build": "node lib/generate-search-index.js && node lib/generate-last-updated.js && node lib/generate-sitemap.js && node lib/generate-raw-pages.js && next build --webpack",
     "start": "next start"
   },
   "dependencies": {

@@ -9,6 +9,7 @@ import { LastUpdated } from './LastUpdated';
 import { Breadcrumbs } from './Breadcrumbs';
 import { ThemeToggle } from './ThemeToggle';
 import { SearchDialog } from './SearchDialog';
+import { CopyRawButton } from './CopyRawButton';
 
 const SITE_URL = 'https://docs.hypercerts.org';
 const SITE_NAME = 'Hypercerts Documentation';
@@ -192,6 +193,7 @@ export default function Layout({ children, frontmatter }) {
 
         <main className="layout-content" id="main-content">
           <Breadcrumbs />
+          {frontmatter && <CopyRawButton />}
           <LastUpdated />
           <article>{children}</article>
 
