@@ -9,6 +9,7 @@ import { LastUpdated } from './LastUpdated';
 import { Breadcrumbs } from './Breadcrumbs';
 import { ThemeToggle } from './ThemeToggle';
 import { SearchDialog } from './SearchDialog';
+import { AnnouncementBanner } from './AnnouncementBanner';
 import { CopyRawButton } from './CopyRawButton';
 
 const SITE_URL = 'https://docs.hypercerts.org';
@@ -116,6 +117,8 @@ export default function Layout({ children, frontmatter }) {
           }}
         />
       </Head>
+
+      <AnnouncementBanner />
 
       <header className="layout-header">
         <a href="#main-content" className="skip-to-content">Skip to content</a>

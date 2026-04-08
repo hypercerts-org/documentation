@@ -195,6 +195,86 @@ html.dark {
   --focus-ring: 0 0 0 4px oklch(0.65 0.15 260 / 0.36);
 }
 
+/* ===== Announcement Banner ===== */
+.announcement-banner {
+  background: #B3A0E0;
+  color: #0b0b0b;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  position: relative;
+  z-index: 101;
+}
+
+.announcement-banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: 0.5rem var(--space-8);
+  max-width: 100%;
+}
+
+.announcement-banner-date {
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0.75;
+  font-size: 0.78rem;
+  letter-spacing: 0.01em;
+}
+
+.announcement-banner-text {
+  text-align: center;
+}
+
+.announcement-banner-text strong {
+  font-weight: 600;
+}
+
+.announcement-banner-link {
+  color: #0b0b0b;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.announcement-banner-link:hover {
+  color: #0b0b0b;
+}
+
+.announcement-banner-close {
+  background: none;
+  border: none;
+  color: #14334C;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.announcement-banner-close:hover {
+  color: #14334C;
+  background: rgba(20, 51, 76, 0.12);
+}
+
+html.dark .announcement-banner {
+  background: #B3A0E0;
+}
+
+@media (max-width: 768px) {
+  .announcement-banner-inner {
+    padding: 0.5rem var(--space-3);
+    gap: var(--space-2);
+  }
+  .announcement-banner-date {
+    display: none;
+  }
+}
+
 html.dark .layout-header {
   background: oklch(0.13 0.005 260 / 0.7);
   border-bottom-color: oklch(0.95 0 0 / 0.1);
