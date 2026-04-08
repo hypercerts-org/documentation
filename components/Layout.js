@@ -9,6 +9,7 @@ import { LastUpdated } from './LastUpdated';
 import { Breadcrumbs } from './Breadcrumbs';
 import { ThemeToggle } from './ThemeToggle';
 import { SearchDialog } from './SearchDialog';
+import { AnnouncementBanner } from './AnnouncementBanner';
 
 export default function Layout({ children, frontmatter }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -70,6 +71,8 @@ export default function Layout({ children, frontmatter }) {
           }}
         />
       </Head>
+
+      <AnnouncementBanner />
 
       <header className="layout-header">
         <a href="#main-content" className="skip-to-content">Skip to content</a>
