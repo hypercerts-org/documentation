@@ -1164,7 +1164,7 @@ a.sidebar-link-active:hover {
 
 .pagination-link:hover {
   border-color: var(--color-link);
-  box-shadow: 0 2px 8px rgba(5, 112, 222, 0.12);
+  box-shadow: 0 2px 8px oklch(0.50 0.18 295 / 0.15);
   text-decoration: none;
   transform: translateY(-1px);
 }
