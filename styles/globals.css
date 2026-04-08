@@ -165,8 +165,8 @@ html.dark {
 
 /* ===== Announcement Banner ===== */
 .announcement-banner {
-  background: oklch(0.25 0.07 260);
-  color: oklch(0.95 0 0);
+  background: #B3A0E0;
+  color: #0b0b0b;
   font-size: 0.84rem;
   line-height: 1.5;
   position: relative;
@@ -199,7 +199,7 @@ html.dark {
 }
 
 .announcement-banner-link {
-  color: oklch(0.85 0.12 85);
+  color: #0b0b0b;
   text-decoration: underline;
   text-underline-offset: 2px;
   font-weight: 500;
@@ -207,13 +207,13 @@ html.dark {
 }
 
 .announcement-banner-link:hover {
-  color: oklch(0.92 0.14 85);
+  color: #0b0b0b;
 }
 
 .announcement-banner-close {
   background: none;
   border: none;
-  color: oklch(0.95 0 0 / 0.6);
+  color: #14334C;
   cursor: pointer;
   padding: 0.25rem;
   border-radius: 4px;
@@ -225,12 +225,12 @@ html.dark {
 }
 
 .announcement-banner-close:hover {
-  color: oklch(0.95 0 0);
-  background: oklch(0.95 0 0 / 0.12);
+  color: #14334C;
+  background: rgba(20, 51, 76, 0.12);
 }
 
 html.dark .announcement-banner {
-  background: oklch(0.20 0.06 260);
+  background: #B3A0E0;
 }
 
 @media (max-width: 768px) {
