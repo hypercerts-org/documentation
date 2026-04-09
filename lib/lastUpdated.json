@@ -1,7 +1,7 @@
 {
   "/architecture/account-and-identity": "2026-04-01T13:47:13+06:00",
   "/architecture/data-flow-and-lifecycle": "2026-04-01T19:28:36+06:00",
-  "/architecture/epds": "2026-04-01T13:47:13+06:00",
+  "/architecture/epds": "2026-04-09T20:32:32Z",
   "/architecture/indexers-and-discovery": "2026-03-05T04:01:13+08:00",
   "/architecture/overview": "2026-03-05T20:46:24+08:00",
   "/architecture/portability-and-scaling": "2026-03-05T13:01:42+08:00",
@@ -36,12 +36,13 @@
   "/lexicons/hypercerts-lexicons/measurement": "2026-03-24T12:56:03-07:00",
   "/lexicons/hypercerts-lexicons/rights": "2026-03-24T12:56:03-07:00",
   "/lexicons/introduction-to-lexicons": "2026-03-24T12:56:03-07:00",
+  "/reference/certified-services": "2026-04-09T20:32:32Z",
   "/reference/faq": "2026-04-01T19:28:36+06:00",
   "/reference/glossary": "2026-03-14T20:43:33-07:00",
   "/reference/release-notes-v0-11-0": "2026-04-08T16:50:34+02:00",
-  "/roadmap": "2026-04-01T19:28:36+06:00",
+  "/roadmap": "2026-04-09T20:32:32Z",
   "/tools/hyperboards": "2026-04-01T19:28:36+06:00",
   "/tools/hypercerts-cli": "2026-03-05T12:30:00+06:00",
   "/tools/hyperindex": "2026-04-03T00:18:36+06:00",
-  "/tools/scaffold": "2026-04-01T19:28:36+06:00"
+  "/tools/scaffold": "2026-04-09T20:32:32Z"
 }

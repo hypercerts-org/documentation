@@ -13,7 +13,7 @@ Certified operates several [ePDS](/architecture/epds) instances across productio
 |---|---|---|
 | [`certified.one`](https://certified.one) | Production ePDS | End users and production apps |
 | [`dev.certified.app`](https://dev.certified.app) | Staging ePDS | App developers' staging environments |
-| `*.test.certified.app` | Test ePDS instances | HyperCerts core development; bleeding-edge testing |
+| `*.test.certified.app` | Test ePDS instances | Hypercerts core development; bleeding-edge testing |
 
 Note the distinction between `certified.one` (the production ePDS backend) and [`certified.app`](https://certified.app) (the frontend app for managing `certified.one` identities and other AT Protocol identities).
 
@@ -37,7 +37,7 @@ If you're building an app on top of Hypercerts and deploying it to production, t
 
 Anything under the `test.certified.app` domain is **strictly for use in testing**. These instances run the latest bleeding-edge ePDS code and are not suitable for production or even staging workloads.
 
-These instances are mainly used by the HyperCerts core development team. However, because development happens in public, anyone else who wants to run against the latest bleeding-edge code is welcome to test on them as well — **as long as you understand the risks of doing so** (data may be wiped, services may be unavailable, breaking changes may ship without notice, etc.).
+These instances are mainly used by the Hypercerts core development team. However, because development happens in public, anyone else who wants to run against the latest bleeding-edge code is welcome to test on them as well — **as long as you understand the risks of doing so** (data may be wiped, services may be unavailable, breaking changes may ship without notice, etc.).
 
 ### Current test instances
 
@@ -48,7 +48,7 @@ These instances are mainly used by the HyperCerts core development team. However
 
 ### Naming scheme
 
-Hostnames under `test.certified.app` correspond to individual test ePDS instances. New instances may be spun up and old ones retired as the core team's testing needs evolve, so treat the list above as a point-in-time snapshot rather than a stable contract. If you need to run against a specific test instance, confirm with the HyperCerts core team that it is still active.
+Hostnames under `test.certified.app` correspond to individual test ePDS instances. New instances may be spun up and old ones retired as the core team's testing needs evolve, so treat the list above as a point-in-time snapshot rather than a stable contract. If you need to run against a specific test instance, confirm with the Hypercerts core team that it is still active.
 
 ## Which one should I use?
 
@@ -57,4 +57,4 @@ Hostnames under `test.certified.app` correspond to individual test ePDS instance
 | Signing up as an end user | [`certified.app`](https://certified.app) (frontend for `certified.one`) |
 | Deploying an app to production | `certified.one` |
 | Staging environment for an app built on Hypercerts | `dev.certified.app` |
-| Contributing to HyperCerts core / testing bleeding-edge ePDS changes | An active `*.test.certified.app` instance (currently `epds1.test.certified.app`) |
+| Contributing to Hypercerts core / testing bleeding-edge ePDS changes | An active `*.test.certified.app` instance (currently `epds1.test.certified.app`) |
