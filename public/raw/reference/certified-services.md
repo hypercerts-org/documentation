@@ -1,0 +1,60 @@
+---
+title: Certified services
+description: Overview of the Certified-operated ePDS instances (production, staging, and test) and which one to use in which scenario.
+---
+
+# Certified services
+
+Certified operates several [ePDS](/architecture/epds) instances across production, staging, and test environments. This page explains what each one is for and which you should use in which scenario.
+
+## Quick reference
+
+| Service | Environment | Who it's for |
+|---|---|---|
+| [`certified.one`](https://certified.one) | Production ePDS | End users and production apps |
+| [`dev.certified.app`](https://dev.certified.app) | Staging ePDS | App developers' staging environments |
+| `*.test.certified.app` | Test ePDS instances | HyperCerts core development; bleeding-edge testing |
+
+Note the distinction between `certified.one` (the production ePDS backend) and [`certified.app`](https://certified.app) (the frontend app for managing `certified.one` identities and other AT Protocol identities).
+
+## Production: `certified.one`
+
+`certified.one` **is** the production ePDS. It's the user-facing service behind the Certified frontend at [`certified.app`](https://certified.app), and the endpoint that production applications should point at when they need to authenticate users via Certified.
+
+If you're building an app on top of Hypercerts and deploying it to production, this is the ePDS URL your users' sessions will be issued against.
+
+## Staging: `dev.certified.app`
+
+`dev.certified.app` is a staging ePDS. It's the final testing ground for ePDS changes before they are promoted to the production instance at `certified.one`.
+
+- Any changes to `dev.certified.app` are announced ahead of time.
+- It can generally be treated as a fairly stable service.
+- However, by design it is **not guaranteed** to be as stable as production.
+
+**Recommendation:** most developers building apps on top of Hypercerts should point their staging environments at `dev.certified.app`. It gives you an environment that closely tracks what will soon be in production, without risking your users against an instance that may change without warning.
+
+## Test instances: `*.test.certified.app`
+
+Anything under the `test.certified.app` domain is **strictly for use in testing**. These instances run the latest bleeding-edge ePDS code and are not suitable for production or even staging workloads.
+
+These instances are mainly used by the HyperCerts core development team. However, because development happens in public, anyone else who wants to run against the latest bleeding-edge code is welcome to test on them as well — **as long as you understand the risks of doing so** (data may be wiped, services may be unavailable, breaking changes may ship without notice, etc.).
+
+### Current test instances
+
+| Instance | Status |
+|---|---|
+| `epds1.test.certified.app` | Active |
+| `pds-eu-west4.test.certified.app` | Deprecated — do not use for new work |
+
+### Naming scheme
+
+Hostnames under `test.certified.app` correspond to individual test ePDS instances. New instances may be spun up and old ones retired as the core team's testing needs evolve, so treat the list above as a point-in-time snapshot rather than a stable contract. If you need to run against a specific test instance, confirm with the HyperCerts core team that it is still active.
+
+## Which one should I use?
+
+| Scenario | Use |
+|---|---|
+| Signing up as an end user | [`certified.app`](https://certified.app) (frontend for `certified.one`) |
+| Deploying an app to production | `certified.one` |
+| Staging environment for an app built on Hypercerts | `dev.certified.app` |
+| Contributing to HyperCerts core / testing bleeding-edge ePDS changes | An active `*.test.certified.app` instance (currently `epds1.test.certified.app`) |

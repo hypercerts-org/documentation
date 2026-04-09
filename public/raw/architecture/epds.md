@@ -7,7 +7,7 @@ description: How the ePDS adds email/OTP login on top of AT Protocol without cha
 
 The ePDS adds email-based, passwordless sign-in on top of a standard AT Protocol PDS. Users enter their email, receive a one-time code, and end up with a normal AT Protocol session tied to a DID.
 
-Certified hosts an ePDS instance at [certified.one](https://certified.one).
+Certified operates several ePDS instances — `certified.one` (production), `dev.certified.app` (staging), and test instances under `*.test.certified.app`. See [Certified services](/reference/certified-services) for details on which to use in which scenario.
 
 For applications, the important part is that ePDS still finishes by issuing a standard AT Protocol authorization code. In practice, this means you can integrate it with [`@atproto/oauth-client-node`](https://github.com/bluesky-social/atproto/tree/main/packages/oauth/oauth-client-node).
 

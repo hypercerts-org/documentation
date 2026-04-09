@@ -93,8 +93,7 @@ Personal Data Servers operated by the Hypercerts ecosystem that host user reposi
 | PDS | Type | Example users |
 |-----|------|---------------|
 | `pds.bsky.app` | Third-party (Bluesky) | General users |
-| `pds1.certified.app` | Optional Hypercerts | climateai.org, daviddao.org, hyperboards.org |
-| `pds2.certified.app` | Optional Hypercerts | Additional users |
+| `certified.one` | Hypercerts-operated ePDS (production) | Certified users — see [Certified services](/reference/certified-services) |
 
 ---
 
