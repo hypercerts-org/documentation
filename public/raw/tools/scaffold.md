@@ -96,8 +96,8 @@ The profile page lets you update your Certified profile — display name, bio, p
 | `REDIS_HOST` | Redis hostname |
 | `REDIS_PORT` | Redis port |
 | `REDIS_PASSWORD` | Redis password |
-| `NEXT_PUBLIC_PDS_URL` | PDS URL (e.g. `https://dev.certified.app` for staging, or `https://epds1.test.certified.app` for bleeding-edge testing — see [Certified services](/reference/certified-services)) |
-| `NEXT_PUBLIC_EPDS_URL` | ePDS URL (e.g. `https://dev.certified.app`) (optional; required only for email/passwordless login) |
+| `NEXT_PUBLIC_PDS_URL` | Target PDS for the standard handle-based OAuth sign-in flow. Can be any AT Protocol PDS (Bluesky, a Certified ePDS, a self-hosted PDS, etc.). |
+| `NEXT_PUBLIC_EPDS_URL` | Optional. Target ePDS for the email/passwordless sign-in tab. Only needed if you want to offer email login; leave unset to disable that tab. Must be an ePDS (a PDS with the ePDS email-login extension), so in practice a [Certified-operated ePDS](/reference/certified-services). |
 
 {% callout type="note" %}
 Redis is the default session store, but you can use any persistent storage (Supabase, Postgres, DynamoDB, etc.). You just need to implement the `NodeSavedStateStore` and `NodeSavedSessionStore` interfaces from `@atproto/oauth-client-node`. See `lib/redis-state-store.ts` for the reference implementation.
