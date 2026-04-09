@@ -11,17 +11,17 @@ Certified operates several [ePDS](/architecture/epds) instances across productio
 
 | Service | Environment | Who it's for |
 |---|---|---|
-| [`certified.one`](https://certified.one) | Production ePDS | End users and production apps |
-| [`dev.certified.app`](https://dev.certified.app) | Staging ePDS | App developers' staging environments |
+| [`certified.one`](https://certified.one) | Production ePDS | Production "Sign in with Certified" |
+| [`dev.certified.app`](https://dev.certified.app) | Staging ePDS | Staging "Sign in with Certified" for apps under development |
 | `*.test.certified.app` | Test ePDS instances | Hypercerts core development; bleeding-edge testing |
 
 Note the distinction between `certified.one` (the production ePDS backend) and [`certified.app`](https://certified.app) (the frontend app for managing `certified.one` identities and other AT Protocol identities).
 
 ## Production: `certified.one`
 
-`certified.one` **is** the production ePDS. It's the user-facing service behind the Certified frontend at [`certified.app`](https://certified.app), and the endpoint that production applications should point at when they need to authenticate users via Certified.
+`certified.one` **is** the production ePDS. It's the user-facing service behind the Certified frontend at [`certified.app`](https://certified.app), and the endpoint that production applications should point at when they implement "Sign in with Certified".
 
-If you're building an app on top of Hypercerts and deploying it to production, this is the ePDS URL your users' sessions will be issued against.
+By the nature of AT Protocol's decentralized approach to identity and data storage, any ATProto app can be used with any PDS — so `certified.one` is not a requirement for apps built on Hypercerts, just the production ePDS to use when you specifically want to offer Sign in with Certified (e.g. to get email/OTP login via the ePDS extension).
 
 ## Staging: `dev.certified.app`
 
@@ -31,7 +31,7 @@ If you're building an app on top of Hypercerts and deploying it to production, t
 - It can generally be treated as a fairly stable service.
 - However, by design it is **not guaranteed** to be as stable as production.
 
-**Recommendation:** most developers building apps on top of Hypercerts should point their staging environments at `dev.certified.app`. It gives you an environment that closely tracks what will soon be in production, without risking your users against an instance that may change without warning.
+**Recommendation:** most developers building apps that offer "Sign in with Certified" should point their staging environments at `dev.certified.app`. It gives you an environment that closely tracks what will soon be in production, without exposing your users to an instance that may change without warning. (Apps that don't use Certified for sign-in don't need to point at any Certified-operated ePDS — any ATProto PDS will do.)
 
 ## Test instances: `*.test.certified.app`
 
@@ -55,6 +55,7 @@ Hostnames under `test.certified.app` correspond to individual test ePDS instance
 | Scenario | Use |
 |---|---|
 | Signing up as an end user | [`certified.app`](https://certified.app) (frontend for `certified.one`) |
-| Deploying an app to production | `certified.one` |
-| Staging environment for an app built on Hypercerts | `dev.certified.app` |
+| Production "Sign in with Certified" in your app | `certified.one` |
+| Staging "Sign in with Certified" in your app | `dev.certified.app` |
 | Contributing to Hypercerts core / testing bleeding-edge ePDS changes | An active `*.test.certified.app` instance (currently `epds1.test.certified.app`) |
+| Building an ATProto app that doesn't need Sign in with Certified | Any ATProto PDS — none of the above are required |
