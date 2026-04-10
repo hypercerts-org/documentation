@@ -10,7 +10,7 @@ Certified operates several [ePDS](/architecture/epds) instances across productio
 Apps built on Hypercerts don't *need* to use a Certified PDS — any AT Protocol PDS will work. The guidance below applies when you specifically want to offer "Sign in with Certified" or otherwise integrate with the ePDS extension.
 
 {% callout type="note" %}
-**Reading handles.** A user's PDS is encoded in the suffix of their handle: `alice.certified.one` lives on the production ePDS, `bob.dev.certified.app` on staging, `group.pds1.test.certified.app` on a test instance. This is a quick way to tell which PDS any given identity is on.
+**Reading handles.** Accounts created via [`certified.app`](https://certified.app) get handles under `.certified.one` (e.g. `alice.certified.one`) — the same domain as the production PDS itself. Staging accounts live under `.dev.certified.app`, and test accounts under the relevant `*.test.certified.app` subdomain (e.g. `group.pds1.test.certified.app`). The handle suffix is a quick way to tell which PDS an identity is on.
 {% /callout %}
 
 ## Quick reference

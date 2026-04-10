@@ -20,7 +20,7 @@ Hyperboards turns hypercert data into shareable, embeddable visualizations. Each
 
 ## How it works
 
-1. **Sign in** with your ATProto handle (e.g. `yourname.certified.app` or `yourname.bsky.social`)
+1. **Sign in** with your ATProto handle (e.g. `yourname.certified.one` or `yourname.bsky.social`)
 2. **Create a board** from the dashboard — select one or more hypercerts to visualize
 3. **Customize** the treemap layout by dragging and resizing contributor tiles
 4. **Share** the board URL or embed it on your website via iframe

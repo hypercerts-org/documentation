@@ -25,7 +25,7 @@ The repo is also indexed on [deepwiki](https://deepwiki.com/hypercerts-org/hyper
 
 ### Sign in with ATProto
 
-Enter your handle (e.g. `yourname.certified.app` or `yourname.bsky.social`) and the app redirects you to your PDS for OAuth authorization. Once approved, you're signed in with a session tied to your DID.
+Enter your handle (e.g. `yourname.certified.one` or `yourname.bsky.social`) and the app redirects you to your PDS for OAuth authorization. Once approved, you're signed in with a session tied to your DID.
 
 Alternatively, the sign-in dialog has an **Email** tab (visible when `NEXT_PUBLIC_EPDS_URL` is configured). Entering your email authenticates via the ePDS — if no account is registered with that email, the ePDS creates one for you automatically.
 

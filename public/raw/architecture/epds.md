@@ -62,7 +62,7 @@ const oauthClient = new NodeOAuthClient({
   sessionStore,
 })
 
-const url = await oauthClient.authorize('alice.certified.app', {
+const url = await oauthClient.authorize('alice.certified.one', {
   scope: 'atproto transition:generic',
 })
 
@@ -103,7 +103,7 @@ const oauthClient = new NodeOAuthClient({
   sessionStore,
 })
 
-const url = await oauthClient.authorize('alice.certified.app', {
+const url = await oauthClient.authorize('alice.certified.one', {
   scope: 'atproto transition:generic',
 })
 
@@ -191,6 +191,8 @@ The extra branding fields customize the hosted login and email experience. `epds
 ## Further reading
 
 - [Account & Identity Setup](/architecture/account-and-identity)
+- [Certified PDSs](/reference/certified-services) — the production, staging, and test ePDS instances Certified operates
+- [Certified Group Service (CGS)](/architecture/certified-group-service) — a governance layer that sits in front of a PDS to support multi-identity, role-based repo management
 - [Scaffold Starter App](/tools/scaffold)
 - [ePDS repository](https://github.com/hypercerts-org/ePDS)
 - Install the ePDS agent skill with `npx skills add hypercerts-org/ePDS --skill epds-login`
