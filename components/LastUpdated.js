@@ -8,11 +8,14 @@ export function LastUpdated() {
   const date = lastUpdated[currentPath];
 
   useEffect(() => {
-    if (!date) return;
-
-    // Remove any existing last-updated element
+    // Always remove any stale last-updated element from a previous route,
+    // even if the current route has no date — otherwise the imperatively
+    // appended element survives React reconciliation and ends up stranded
+    // on the new page.
     const existing = document.querySelector('.last-updated');
     if (existing) existing.remove();
+
+    if (!date) return;
 
     const article = document.querySelector('.layout-content article');
     if (!article) return;
