@@ -17,16 +17,16 @@ Apps built on Hypercerts don't *need* to use a Certified PDS — any AT Protocol
 
 | Service | Environment | Who it's for | ePDS version | PDS version |
 |---|---|---|---|---|
-| [`certified.one`](https://certified.one) | Production ePDS | Production "Sign in with Certified" | pre-0.2.0 ([`0f72433`](https://github.com/hypercerts-org/ePDS/commit/0f72433f)) [¹][n1] | see [`/xrpc/_health`](https://certified.one/xrpc/_health) [²][n2] |
-| [`dev.certified.app`](https://dev.certified.app) | Staging ePDS | Staging "Sign in with Certified" for apps under development | pre-0.2.0 ([`ad7fd26`](https://github.com/hypercerts-org/ePDS/commit/ad7fd261)) [¹][n1] | see [`/xrpc/_health`](https://dev.certified.app/xrpc/_health) [²][n2] |
+| [`certified.one`](https://certified.one) | Production ePDS | Production "Sign in with Certified" | pre-0.2.0 ([`0f72433`](https://github.com/hypercerts-org/ePDS/commit/0f72433f)) [¹][n1] | 0.4.211 [²][n2] |
+| [`dev.certified.app`](https://dev.certified.app) | Staging ePDS | Staging "Sign in with Certified" for apps under development | pre-0.2.0 ([`ad7fd26`](https://github.com/hypercerts-org/ePDS/commit/ad7fd261)) [¹][n1] | 0.4.211 [²][n2] |
 | `*.test.certified.app` | Test ePDS instances | Hypercerts core development; bleeding-edge testing | See [test instances](#current-test-instances) below | See [test instances](#current-test-instances) below |
 
-[n1]: #checking-the-running-version "Pre-0.2.0: includes login-hint and initial handle picker, but not configurable OTP, epds_handle_mode, email masking, or consent fixes. Upgrade imminent."
-[n2]: #checking-the-running-version "Known ePDS bug: PDS version missing from /xrpc/_health; fix imminent"
+[n1]: #checking-the-running-version "Pre-0.2.0: includes login-hint and initial handle picker, but not configurable OTP, epds_handle_mode, email masking, or consent screen fixes. Upgrade imminent."
+[n2]: #checking-the-running-version "/xrpc/_health not yet reporting version on these instances; version from pnpm-lock.yaml at the deployed commit"
 
-¹ Pre-0.2.0: includes the login-hint feature and initial handle picker from [0.2.0](https://github.com/hypercerts-org/ePDS/releases/tag/epds%400.2.0), but not configurable OTP, `epds_handle_mode`, fail-fast env var validation, `PORT` env var support, email masking ([0.2.1](https://github.com/hypercerts-org/ePDS/releases/tag/epds%400.2.1)), or the consent screen fixes ([0.2.2](https://github.com/hypercerts-org/ePDS/releases/tag/ePDS%400.2.2)). Upgrade imminent.
+¹ Pre-0.2.0: includes the login-hint feature and initial handle picker from [0.2.0](https://github.com/hypercerts-org/ePDS/releases/tag/epds%400.2.0), but not configurable OTP, `epds_handle_mode`, email masking ([0.2.1](https://github.com/hypercerts-org/ePDS/releases/tag/epds%400.2.1)), or the consent screen fixes ([0.2.2](https://github.com/hypercerts-org/ePDS/releases/tag/ePDS%400.2.2)). Upgrade imminent.
 
-² If the PDS version is missing from the `/xrpc/_health` response, this is a known ePDS bug with an imminent fix.
+² `/xrpc/_health` is not yet reporting the PDS version on these instances; version determined from `pnpm-lock.yaml` at the deployed commit.
 
 Note the distinction between these ePDS backends and [`certified.app`](https://certified.app) — the frontend app that end users interact with to manage their `certified.one` identity (and other AT Protocol identities). `certified.app` is not an ePDS; it's a client that talks to one.
 
@@ -56,11 +56,9 @@ These instances are mainly used by the Hypercerts core development team. However
 
 | Instance | Status | ePDS version | PDS version |
 |---|---|---|---|
-| `epds1.test.certified.app` | Active | see [`/health`](https://epds1.test.certified.app/health) | see [`/xrpc/_health`](https://epds1.test.certified.app/xrpc/_health) [²][n2] |
+| `epds1.test.certified.app` | Active | see [`/health`](https://epds1.test.certified.app/health) | see [`/xrpc/_health`](https://epds1.test.certified.app/xrpc/_health) |
 | `pds1.test.certified.app` | Active — currently used as the backing PDS for the hosted [CGS](/architecture/certified-group-service) | n/a (vanilla PDS) | see [`/xrpc/_health`](https://pds1.test.certified.app/xrpc/_health) |
 | `pds-eu-west4.test.certified.app` | Deprecated — do not use for new work | n/a (vanilla PDS) | see [`/xrpc/_health`](https://pds-eu-west4.test.certified.app/xrpc/_health) |
-
-² If the PDS version is missing from the `/xrpc/_health` response, this is a known ePDS bug with an imminent fix.
 
 ### Checking the running version
 
