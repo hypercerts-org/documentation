@@ -43,7 +43,7 @@ make build
 Log in with your ATProto handle and app password:
 
 ```bash
-hc account login -u yourhandle.certified.app -p your-app-password
+hc account login -u yourhandle.certified.one -p your-app-password
 ```
 
 Check your session status:

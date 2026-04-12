@@ -55,7 +55,7 @@ const client = new NodeOAuthClient({
 });
 
 // Redirect the user to their PDS to authorize
-const url = await client.authorize("alice.certified.app");
+const url = await client.authorize("alice.certified.one");
 
 // After the user approves, exchange the callback params for a session
 const { session } = await client.callback(new URLSearchParams(callbackQuery));
@@ -256,7 +256,7 @@ If you don't want to write code, the [Scaffold app](https://hypercerts-scaffold.
 
 ### Step 1 — Sign in
 
-Enter your ATProto handle (e.g. `yourname.certified.app` or `yourname.bsky.social`) on the sign-in screen. You'll be redirected to your PDS to authorize the app. Once you approve, you'll land on the home screen with your DID and display name visible.
+Enter your ATProto handle (e.g. `yourname.certified.one` or `yourname.bsky.social`) on the sign-in screen. You'll be redirected to your PDS to authorize the app. Once you approve, you'll land on the home screen with your DID and display name visible.
 
 ![Scaffold sign-in screen showing handle input field](/images/scaffold/sign-in.png)
 *Enter your ATProto handle to authenticate via OAuth.*

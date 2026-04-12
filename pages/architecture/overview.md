@@ -11,7 +11,7 @@ The Hypercerts Protocol is built on [AT Protocol](https://atproto.com/docs) — 
 
 ![The Hypercerts Stack](/images/architecture-stack.svg)
 
-**Data.** All hypercert records — activity claims, contributions, attachments, evaluations, measurements — live on AT Protocol. Each user's data is stored on a Personal Data Server (PDS) they control. Shared schemas called [lexicons](/lexicons/introduction-to-lexicons) define the structure of every record type, so any application can read any record. Users can switch PDS providers without losing data. See [Account & Identity](/architecture/account-and-identity) and [Portability & Data Access](/architecture/portability-and-scaling).
+**Data.** All hypercert records — activity claims, contributions, attachments, evaluations, measurements — live on AT Protocol. Each user's data is stored on a Personal Data Server (PDS) they control. Shared schemas called [lexicons](/lexicons/introduction-to-lexicons) define the structure of every record type, so any application can read any record. Users can switch PDS providers without losing data. For cases where multiple identities need to co-manage a single repository, the [Certified Group Service (CGS)](/architecture/certified-group-service) adds role-based governance in front of a PDS. See [Account & Identity](/architecture/account-and-identity) and [Portability & Data Access](/architecture/portability-and-scaling).
 
 **Applications.** Funding platforms, dashboards, and evaluation tools read from and write to the data layer. They query [indexers](/architecture/indexers-and-discovery) that aggregate records from across the network into searchable databases. Different indexers can build different views of the same underlying data.
 

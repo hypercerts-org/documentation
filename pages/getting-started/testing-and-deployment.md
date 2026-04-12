@@ -15,6 +15,8 @@ This page covers how to test your Hypercerts integration locally, the validation
 
 Run a local PDS to avoid polluting production data. Self-host a test instance using the [ATProto PDS distribution](https://github.com/bluesky-social/pds) and follow the [ATProto self-hosting guide](https://atproto.com/guides/self-hosting).
 
+If you don't want to run your own instance, you can point your staging environment at `dev.certified.app` — the Certified-operated staging ePDS. It's the usual target for app developers building on Hypercerts who want to offer "Sign in with Certified". See [Certified PDSs](/reference/certified-services) for the caveats that apply.
+
 Point your ATProto client to the local instance instead of production:
 
 ```typescript

@@ -25,7 +25,7 @@ The repo is also indexed on [deepwiki](https://deepwiki.com/hypercerts-org/hyper
 
 ### Sign in with ATProto
 
-Enter your handle (e.g. `yourname.certified.app` or `yourname.bsky.social`) and the app redirects you to your PDS for OAuth authorization. Once approved, you're signed in with a session tied to your DID.
+Enter your handle (e.g. `yourname.certified.one` or `yourname.bsky.social`) and the app redirects you to your PDS for OAuth authorization. Once approved, you're signed in with a session tied to your DID.
 
 Alternatively, the sign-in dialog has an **Email** tab (visible when `NEXT_PUBLIC_EPDS_URL` is configured). Entering your email authenticates via the ePDS — if no account is registered with that email, the ePDS creates one for you automatically.
 
@@ -96,8 +96,8 @@ The profile page lets you update your Certified profile — display name, bio, p
 | `REDIS_HOST` | Redis hostname |
 | `REDIS_PORT` | Redis port |
 | `REDIS_PASSWORD` | Redis password |
-| `NEXT_PUBLIC_PDS_URL` | PDS URL (e.g. `https://pds-eu-west4.test.certified.app`) |
-| `NEXT_PUBLIC_EPDS_URL` | ePDS URL (e.g. `https://epds1.test.certified.app`) (optional; required only for email/passwordless login) |
+| `NEXT_PUBLIC_PDS_URL` | Target PDS for the standard handle-based OAuth sign-in flow. Can be any AT Protocol PDS (Bluesky, a Certified ePDS, a self-hosted PDS, etc.). |
+| `NEXT_PUBLIC_EPDS_URL` | Optional. Target ePDS for the email/passwordless sign-in tab. Only needed if you want to offer email login; leave unset to disable that tab. Must be an ePDS (a PDS with the ePDS email-login extension), so in practice a [Certified-operated ePDS](/reference/certified-services). |
 
 {% callout type="note" %}
 Redis is the default session store, but you can use any persistent storage (Supabase, Postgres, DynamoDB, etc.). You just need to implement the `NodeSavedStateStore` and `NodeSavedSessionStore` interfaces from `@atproto/oauth-client-node`. See `lib/redis-state-store.ts` for the reference implementation.

@@ -41,14 +41,14 @@ Every record you create carries your DID as the author. If you change PDS provid
 
 ## Handles (your public username) and domain verification
 
-Handles are not needed to log in to the Hypercerts ecosystem, but every user has one. They serve as human-readable names for publicly addressing others and for interacting with other applications in the AT Protocol ecosystem that haven't implemented email-based login with Certified. Your handle is a human-readable name like `alice.certified.app`. Unlike your DID, your handle can change — it's a pointer to your DID, not your identity itself.
+Handles are not needed to log in to the Hypercerts ecosystem, but every user has one. They serve as human-readable names for publicly addressing others and for interacting with other applications in the AT Protocol ecosystem that haven't implemented email-based login with Certified. Your handle is a human-readable name like `alice.certified.one`. Unlike your DID, your handle can change — it's a pointer to your DID, not your identity itself.
 
 **Organizations should use custom domain handles.** A handle like `numpy.org` proves organizational identity — anyone can verify that the DID behind `numpy.org` is controlled by whoever controls the domain.
 
 To set up a custom handle, add a DNS TXT record or host a file at `https://your-domain.com/.well-known/atproto-did`. See the [AT Protocol handle documentation](https://atproto.com/specs/handle) for details.
 
 {% callout type="note" %}
-If you sign up using your email on certified.app you will initially be given a random handle like `1lasdk.certified.app`. You can change your handle by going to your profile settings and clicking on "Change handle" on [certified.app](https://certified.app).
+If you sign up using your email on certified.app you will initially be given a random handle like `1lasdk.certified.one`. You can change your handle by going to your profile settings and clicking on "Change handle" on [certified.app](https://certified.app).
 {% /callout %}
 ---
 
@@ -59,6 +59,14 @@ For teams with multiple contributors, create a dedicated organizational account 
 {% callout type="note" %}
 To set up an organizational account, create an account at [certified.app](https://certified.app) with the organization's email. Use a [custom domain handle](#handles-your-public-username-and-domain-verification) (e.g., `numpy.org`) to prove organizational identity.
 {% /callout %}
+
+### Role-based governance with CGS
+
+Sharing a single app password across an organisation is the simplest path but has real limits: every team member ends up with the same level of access, there's no audit trail, and revoking one person's access means rotating the password for everyone.
+
+The [Certified Group Service (CGS)](/architecture/certified-group-service) is the more principled answer. CGS sits in front of a PDS and adds **role-based access control** on top of a shared repository — multiple identities can co-manage the same ATProto repo with distinct member, admin, and owner roles, and every action is written to a per-group audit log. Members authenticate as themselves (not as the organisation), so access can be granted or revoked per-person without disturbing anyone else.
+
+Certified operates a hosted CGS instance (used by "create a group" flows on [certified.app](https://certified.app)), and CGS is also self-hostable if you want to run your own. Note: groups created via the hosted flow currently land on a test PDS — see [Certified PDSs](/reference/certified-services) for environment caveats. See the [CGS architecture page](/architecture/certified-group-service) for the full model.
 
 ---
 
