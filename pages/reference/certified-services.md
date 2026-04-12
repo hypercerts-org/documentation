@@ -15,11 +15,11 @@ Apps built on Hypercerts don't *need* to use a Certified PDS — any AT Protocol
 
 ## Quick reference
 
-| Service | Environment | Who it's for |
-|---|---|---|
-| [`certified.one`](https://certified.one) | Production ePDS | Production "Sign in with Certified" |
-| [`dev.certified.app`](https://dev.certified.app) | Staging ePDS | Staging "Sign in with Certified" for apps under development |
-| `*.test.certified.app` | Test ePDS instances | Hypercerts core development; bleeding-edge testing |
+| Service | Environment | Who it's for | Version |
+|---|---|---|---|
+| [`certified.one`](https://certified.one) | Production ePDS | Production "Sign in with Certified" | Old / unversioned; upgrade imminent |
+| [`dev.certified.app`](https://dev.certified.app) | Staging ePDS | Staging "Sign in with Certified" for apps under development | Old / unversioned; upgrade imminent |
+| `*.test.certified.app` | Test ePDS instances | Hypercerts core development; bleeding-edge testing | See [test instances](#current-test-instances) below |
 
 Note the distinction between these ePDS backends and [`certified.app`](https://certified.app) — the frontend app that end users interact with to manage their `certified.one` identity (and other AT Protocol identities). `certified.app` is not an ePDS; it's a client that talks to one.
 
@@ -47,11 +47,21 @@ These instances are mainly used by the Hypercerts core development team. However
 
 ### Current test instances
 
-| Instance | Status |
-|---|---|
-| `epds1.test.certified.app` | Active |
-| `pds1.test.certified.app` | Active — currently used as the backing PDS for the hosted [CGS](/architecture/certified-group-service) |
-| `pds-eu-west4.test.certified.app` | Deprecated — do not use for new work |
+| Instance | Status | Version |
+|---|---|---|
+| `epds1.test.certified.app` | Active | [`/health`](https://epds1.test.certified.app/health) |
+| `pds1.test.certified.app` | Active — currently used as the backing PDS for the hosted [CGS](/architecture/certified-group-service) | n/a (vanilla PDS) |
+| `pds-eu-west4.test.certified.app` | Deprecated — do not use for new work | n/a |
+
+### Checking the running version
+
+ePDS instances that have been upgraded to the versioned release ([ePDS PR #74](https://github.com/hypercerts-org/ePDS/pull/74) and later) expose a `/health` endpoint that returns the running version as JSON, for example:
+
+```json
+{"status":"ok","service":"epds","version":"<semver>+<commit>"}
+```
+
+The "Version" column above links directly to each instance's `/health` endpoint where available. Older instances that pre-date this feature are marked as "old / unversioned".
 
 ### Naming scheme
 
