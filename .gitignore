@@ -3,3 +3,9 @@ node_modules/
 out/
 .vercel/
 .DS_Store
+
+# Generated at build time by lib/generate-*.js — no need to track
+public/raw/
+public/search-index.json
+public/sitemap.xml
+lib/lastUpdated.json
