@@ -15,11 +15,14 @@ Apps built on Hypercerts don't *need* to use a Certified PDS — any AT Protocol
 
 ## Quick reference
 
-| Service | Environment | Who it's for | Version |
-|---|---|---|---|
-| [`certified.one`](https://certified.one) | Production ePDS | Production "Sign in with Certified" | Old / unversioned; upgrade imminent |
-| [`dev.certified.app`](https://dev.certified.app) | Staging ePDS | Staging "Sign in with Certified" for apps under development | Old / unversioned; upgrade imminent |
-| `*.test.certified.app` | Test ePDS instances | Hypercerts core development; bleeding-edge testing | See [test instances](#current-test-instances) below |
+| Service | Environment | Who it's for | ePDS version | PDS version |
+|---|---|---|---|---|
+| [`certified.one`](https://certified.one) | Production ePDS | Production "Sign in with Certified" | <sup>1</sup> | see [`/xrpc/_health`](https://certified.one/xrpc/_health) <sup>2</sup> |
+| [`dev.certified.app`](https://dev.certified.app) | Staging ePDS | Staging "Sign in with Certified" for apps under development | <sup>1</sup> | see [`/xrpc/_health`](https://dev.certified.app/xrpc/_health) <sup>2</sup> |
+| `*.test.certified.app` | Test ePDS instances | Hypercerts core development; bleeding-edge testing | See [test instances](#current-test-instances) below | See [test instances](#current-test-instances) below |
+
+<sup>1</sup> Old / unversioned ePDS; upgrade imminent.
+<sup>2</sup> If the PDS version is missing from the `/xrpc/_health` response, this is a known ePDS bug with an imminent fix.
 
 Note the distinction between these ePDS backends and [`certified.app`](https://certified.app) — the frontend app that end users interact with to manage their `certified.one` identity (and other AT Protocol identities). `certified.app` is not an ePDS; it's a client that talks to one.
 
@@ -47,21 +50,33 @@ These instances are mainly used by the Hypercerts core development team. However
 
 ### Current test instances
 
-| Instance | Status | Version |
-|---|---|---|
-| `epds1.test.certified.app` | Active | [`/health`](https://epds1.test.certified.app/health) |
-| `pds1.test.certified.app` | Active — currently used as the backing PDS for the hosted [CGS](/architecture/certified-group-service) | n/a (vanilla PDS) |
-| `pds-eu-west4.test.certified.app` | Deprecated — do not use for new work | n/a |
+| Instance | Status | ePDS version | PDS version |
+|---|---|---|---|
+| `epds1.test.certified.app` | Active | see [`/health`](https://epds1.test.certified.app/health) | see [`/xrpc/_health`](https://epds1.test.certified.app/xrpc/_health) <sup>2</sup> |
+| `pds1.test.certified.app` | Active — currently used as the backing PDS for the hosted [CGS](/architecture/certified-group-service) | n/a (vanilla PDS) | see [`/xrpc/_health`](https://pds1.test.certified.app/xrpc/_health) |
+| `pds-eu-west4.test.certified.app` | Deprecated — do not use for new work | n/a | n/a |
+
+<sup>2</sup> If the PDS version is missing from the `/xrpc/_health` response, this is a known ePDS bug with an imminent fix.
 
 ### Checking the running version
 
-ePDS instances that have been upgraded to the versioned release ([ePDS PR #74](https://github.com/hypercerts-org/ePDS/pull/74) and later) expose a `/health` endpoint that returns the running version as JSON, for example:
+There are two version endpoints to be aware of:
+
+**ePDS version (`/health`)** — ePDS instances that have been upgraded to the versioned release ([ePDS PR #74](https://github.com/hypercerts-org/ePDS/pull/74) and later) expose a `/health` endpoint that returns the ePDS version as JSON, for example:
 
 ```json
 {"status":"ok","service":"epds","version":"<semver>+<commit>"}
 ```
 
-The "Version" column above links directly to each instance's `/health` endpoint where available. Older instances that pre-date this feature are marked as "old / unversioned".
+Older instances that pre-date this feature are marked as "old / unversioned" in the tables above. For what changed in each ePDS release, see the [ePDS release notes on GitHub](https://github.com/hypercerts-org/ePDS/releases).
+
+**Underlying PDS version (`/xrpc/_health`)** — every AT Protocol PDS (including ePDS instances) exposes `/xrpc/_health`, which returns the upstream PDS version:
+
+```json
+{"version":"<version>"}
+```
+
+This is a standard AT Protocol endpoint and works on vanilla PDS instances out of the box. On ePDS instances, the version may currently be missing from the response due to a known bug (imminent fix); if you see an empty `{}` response, that's why.
 
 ### Naming scheme
 
