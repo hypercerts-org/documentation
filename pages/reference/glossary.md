@@ -41,7 +41,7 @@ A permanent identifier for a user or organization. Looks like `did:plc:abc123xyz
 
 #### ePDS (extended PDS)
 
-A standard AT Protocol PDS with Certified's email/OTP login extension on top, so users can sign in with just an email and a one-time code. From an app's point of view, OAuth against an ePDS still finishes with a normal AT Protocol authorization code. See [ePDS (extended PDS)](/architecture/epds) and the list of Certified-operated ePDS instances on [Certified PDSs](/reference/certified-services).
+A standard AT Protocol PDS with Certified's email/OTP login extension on top, so users can sign in with just an email and a one-time code. From an app's point of view, OAuth against an ePDS still finishes with a normal AT Protocol authorization code. See [ePDS (extended PDS)](/architecture/epds) and the list of Certified-operated ePDS instances on [Certified PDSs](/reference/certified-pdss).
 
 #### Evaluation
 
@@ -65,7 +65,7 @@ A quantitative observation attached to a hypercert (e.g., "12 pages written", "5
 
 #### PDS (Personal Data Server)
 
-The server where your records are stored. You interact with it through the ATProto API — you don't need to manage it directly. You can use a [Certified-operated PDS](/reference/certified-services), Bluesky's, or self-host one. Records are portable between PDS instances.
+The server where your records are stored. You interact with it through the ATProto API — you don't need to manage it directly. You can use a [Certified-operated PDS](/reference/certified-pdss), Bluesky's, or self-host one. Records are portable between PDS instances.
 
 #### Strong reference
 
