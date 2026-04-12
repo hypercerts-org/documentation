@@ -17,14 +17,14 @@ Apps built on Hypercerts don't *need* to use a Certified PDS — any AT Protocol
 
 | Service | Environment | Who it's for | ePDS version | PDS version |
 |---|---|---|---|---|
-| [`certified.one`](https://certified.one) | Production ePDS | Production "Sign in with Certified" | unspecified [¹][n1] | see [`/xrpc/_health`](https://certified.one/xrpc/_health) [²][n2] |
-| [`dev.certified.app`](https://dev.certified.app) | Staging ePDS | Staging "Sign in with Certified" for apps under development | unspecified [¹][n1] | see [`/xrpc/_health`](https://dev.certified.app/xrpc/_health) [²][n2] |
+| [`certified.one`](https://certified.one) | Production ePDS | Production "Sign in with Certified" | pre-0.2.0 ([`0f72433`](https://github.com/hypercerts-org/ePDS/commit/0f72433f)) [¹][n1] | see [`/xrpc/_health`](https://certified.one/xrpc/_health) [²][n2] |
+| [`dev.certified.app`](https://dev.certified.app) | Staging ePDS | Staging "Sign in with Certified" for apps under development | pre-0.2.0 ([`ad7fd26`](https://github.com/hypercerts-org/ePDS/commit/ad7fd261)) [¹][n1] | see [`/xrpc/_health`](https://dev.certified.app/xrpc/_health) [²][n2] |
 | `*.test.certified.app` | Test ePDS instances | Hypercerts core development; bleeding-edge testing | See [test instances](#current-test-instances) below | See [test instances](#current-test-instances) below |
 
-[n1]: #checking-the-running-version "Old / unversioned ePDS; upgrade imminent"
+[n1]: #checking-the-running-version "Pre-0.2.0: includes login-hint and initial handle picker, but not configurable OTP, epds_handle_mode, email masking, or consent fixes. Upgrade imminent."
 [n2]: #checking-the-running-version "Known ePDS bug: PDS version missing from /xrpc/_health; fix imminent"
 
-¹ Old / unversioned ePDS; upgrade imminent.
+¹ Pre-0.2.0: includes the login-hint feature and initial handle picker from [0.2.0](https://github.com/hypercerts-org/ePDS/releases/tag/epds%400.2.0), but not configurable OTP, `epds_handle_mode`, fail-fast env var validation, `PORT` env var support, email masking ([0.2.1](https://github.com/hypercerts-org/ePDS/releases/tag/epds%400.2.1)), or the consent screen fixes ([0.2.2](https://github.com/hypercerts-org/ePDS/releases/tag/ePDS%400.2.2)). Upgrade imminent.
 
 ² If the PDS version is missing from the `/xrpc/_health` response, this is a known ePDS bug with an imminent fix.
 
