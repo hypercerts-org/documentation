@@ -66,7 +66,7 @@ Sharing a single app password across an organisation is the simplest path but ha
 
 The [Certified Group Service (CGS)](/architecture/certified-group-service) is the more principled answer. CGS sits in front of a PDS and adds **role-based access control** on top of a shared repository — multiple identities can co-manage the same ATProto repo with distinct member, admin, and owner roles, and every action is written to a per-group audit log. Members authenticate as themselves (not as the organisation), so access can be granted or revoked per-person without disturbing anyone else.
 
-Certified operates a hosted CGS instance (used by "create a group" flows on [certified.app](https://certified.app)), and CGS is also self-hostable if you want to run your own. See the [CGS architecture page](/architecture/certified-group-service) for the full model.
+Certified operates a hosted CGS instance (used by "create a group" flows on [certified.app](https://certified.app)), and CGS is also self-hostable if you want to run your own. Note: groups created via the hosted flow currently land on a test PDS — see [Certified PDSs](/reference/certified-services) for environment caveats. See the [CGS architecture page](/architecture/certified-group-service) for the full model.
 
 ---
 

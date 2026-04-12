@@ -73,4 +73,4 @@ A reference to another record that includes both the AT-URI and a content hash (
 
 #### Work scope
 
-The "what" dimension of a hypercert — what work is being claimed. Can be a simple free-text string or a structured [CEL expression](https://github.com/google/cel-spec) for machine-evaluable scopes. See [Work Scopes](/core-concepts/work-scopes).
+The "what" dimension of a hypercert — what work is being claimed. Can be a simple free-text string or a structured [CEL expression](https://github.com/google/cel-spec) for machine-evaluable scopes. See [Work Scopes](/core-concepts/cel-work-scopes).
