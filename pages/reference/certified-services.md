@@ -17,14 +17,15 @@ Apps built on Hypercerts don't *need* to use a Certified PDS — any AT Protocol
 
 | Service | Environment | Who it's for | ePDS version | PDS version |
 |---|---|---|---|---|
-| [`certified.one`](https://certified.one) | Production ePDS | Production "Sign in with Certified" | [¹][n1] | see [`/xrpc/_health`](https://certified.one/xrpc/_health) [²][n2] |
-| [`dev.certified.app`](https://dev.certified.app) | Staging ePDS | Staging "Sign in with Certified" for apps under development | [¹][n1] | see [`/xrpc/_health`](https://dev.certified.app/xrpc/_health) [²][n2] |
+| [`certified.one`](https://certified.one) | Production ePDS | Production "Sign in with Certified" | unspecified [¹][n1] | see [`/xrpc/_health`](https://certified.one/xrpc/_health) [²][n2] |
+| [`dev.certified.app`](https://dev.certified.app) | Staging ePDS | Staging "Sign in with Certified" for apps under development | unspecified [¹][n1] | see [`/xrpc/_health`](https://dev.certified.app/xrpc/_health) [²][n2] |
 | `*.test.certified.app` | Test ePDS instances | Hypercerts core development; bleeding-edge testing | See [test instances](#current-test-instances) below | See [test instances](#current-test-instances) below |
 
 [n1]: #checking-the-running-version "Old / unversioned ePDS; upgrade imminent"
 [n2]: #checking-the-running-version "Known ePDS bug: PDS version missing from /xrpc/_health; fix imminent"
 
 ¹ Old / unversioned ePDS; upgrade imminent.
+
 ² If the PDS version is missing from the `/xrpc/_health` response, this is a known ePDS bug with an imminent fix.
 
 Note the distinction between these ePDS backends and [`certified.app`](https://certified.app) — the frontend app that end users interact with to manage their `certified.one` identity (and other AT Protocol identities). `certified.app` is not an ePDS; it's a client that talks to one.
@@ -57,7 +58,7 @@ These instances are mainly used by the Hypercerts core development team. However
 |---|---|---|---|
 | `epds1.test.certified.app` | Active | see [`/health`](https://epds1.test.certified.app/health) | see [`/xrpc/_health`](https://epds1.test.certified.app/xrpc/_health) [²][n2] |
 | `pds1.test.certified.app` | Active — currently used as the backing PDS for the hosted [CGS](/architecture/certified-group-service) | n/a (vanilla PDS) | see [`/xrpc/_health`](https://pds1.test.certified.app/xrpc/_health) |
-| `pds-eu-west4.test.certified.app` | Deprecated — do not use for new work | n/a | n/a |
+| `pds-eu-west4.test.certified.app` | Deprecated — do not use for new work | n/a (vanilla PDS) | see [`/xrpc/_health`](https://pds-eu-west4.test.certified.app/xrpc/_health) |
 
 ² If the PDS version is missing from the `/xrpc/_health` response, this is a known ePDS bug with an imminent fix.
 
