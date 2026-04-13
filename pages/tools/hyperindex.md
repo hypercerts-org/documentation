@@ -16,6 +16,16 @@ Built in Go. Source: [github.com/gainforest/hyperindex](https://github.com/gainf
 
 Hosted production and staging endpoints: [Certified Services](/reference/certified-services#indexers).
 
+## Why indexers & discovery
+
+AT Protocol is federated, so hypercert records are distributed across many PDSs instead of living in a single database. If an app wants to discover records across users and organizations, it needs a way to aggregate that network data into one queryable view.
+
+Indexers handle that job. They consume network events, fetch and parse records by lexicon, normalize them into query-ready storage, and expose APIs for search, filtering, and aggregation.
+
+Hyperindex is the reference indexer used in this ecosystem. It is Tap-first: Tap handles ingestion, while Hyperindex consumes those events and serves typed GraphQL queries over indexed records.
+
+If you want to inspect indexers running across the broader ecosystem, use [Hyperscan](https://www.hyperscan.dev). For current Certified-operated production/staging endpoints, see [Certified Services](/reference/certified-services#indexers).
+
 ## How it works
 
 Hyperindex is **Tap-first** (recommended). Tap handles ingestion and Hyperindex consumes Tap events, stores records, and exposes them via GraphQL.
@@ -31,7 +41,7 @@ Jetstream mode still exists as a legacy/non-Tap mode, but Tap is the preferred s
 ## Quick start
 
 ```bash
-git clone https://github.com/hypercerts-org/hyperindex.git
+git clone https://github.com/gainforest/hyperindex.git
 cd hyperindex
 cp .env.example .env
 go run ./cmd/hyperindex
@@ -266,7 +276,6 @@ docker compose up --build
 
 ## Learn more
 
-- [GitHub repository](https://github.com/hypercerts-org/hyperindex) — source code, issues, and documentation
+- [GitHub repository](https://github.com/gainforest/hyperindex) — source code, issues, and documentation
 - [Certified Services](/reference/certified-services#indexers) — current public indexer endpoints
-- [Indexers & Discovery](/architecture/indexers-and-discovery) — how indexers fit into the Hypercerts architecture
 - [Building on Hypercerts](/getting-started/building-on-hypercerts) — integration patterns for platforms and tools

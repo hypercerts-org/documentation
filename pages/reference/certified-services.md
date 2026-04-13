@@ -44,5 +44,4 @@ For full PDS details (versions, active test instances, and guidance), see [Certi
 ## Related pages
 
 - [Hyperindex](/tools/hyperindex)
-- [Indexers & Discovery](/architecture/indexers-and-discovery)
 - [Certified PDSs](/reference/certified-pdss)

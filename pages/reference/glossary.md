@@ -53,7 +53,7 @@ A structured digital record of a contribution: who did what, when, where, and wi
 
 #### Hyperindex
 
-A reference indexer that indexes hypercert records across the network and exposes them via a GraphQL API. Other indexers exist — see [Indexers & Discovery](/architecture/indexers-and-discovery).
+A reference indexer that indexes hypercert records across the network and exposes them via a GraphQL API. Other indexers exist — see [Hyperindex](/tools/hyperindex).
 
 #### Lexicon
 

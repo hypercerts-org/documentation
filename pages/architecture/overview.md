@@ -13,7 +13,7 @@ The Hypercerts Protocol is built on [AT Protocol](https://atproto.com/docs) — 
 
 **Data.** All hypercert records — activity claims, contributions, attachments, evaluations, measurements — live on AT Protocol. Each user's data is stored on a Personal Data Server (PDS) they control. Shared schemas called [lexicons](/lexicons/introduction-to-lexicons) define the structure of every record type, so any application can read any record. Users can switch PDS providers without losing data. For cases where multiple identities need to co-manage a single repository, the [Certified Group Service (CGS)](/architecture/certified-group-service) adds role-based governance in front of a PDS. See [Account & Identity](/architecture/account-and-identity) and [Portability & Data Access](/architecture/portability-and-scaling).
 
-**Applications.** Funding platforms, dashboards, and evaluation tools read from and write to the data layer. They query [indexers](/architecture/indexers-and-discovery) that aggregate records from across the network into searchable databases. Different indexers can build different views of the same underlying data.
+**Applications.** Funding platforms, dashboards, and evaluation tools read from and write to the data layer. They query [indexers](/tools/hyperindex) that aggregate records from across the network into searchable databases. Different indexers can build different views of the same underlying data.
 
 **Ownership (planned).** On-chain anchoring for funding and tokenization is not yet implemented. The intended design freezes a hypercert's ATProto records and anchors them on-chain before funding — so funders know exactly what they're paying for. See [Funding & Value Flow](/core-concepts/funding-and-value-flow).
 
