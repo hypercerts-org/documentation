@@ -18,15 +18,15 @@ Apps built on Hypercerts don't *need* to use a Certified PDS — any AT Protocol
 | Service | Environment | Who it's for | ePDS version | PDS version |
 |---|---|---|---|---|
 | [`certified.one`](https://certified.one) | Production ePDS | Production "Sign in with Certified" | pre-0.2.0 ([`0f72433`](https://github.com/hypercerts-org/ePDS/commit/0f72433f)) [¹][n1] | 0.4.211 [²][n2] |
-| [`dev.certified.app`](https://dev.certified.app) | Staging ePDS | Staging "Sign in with Certified" for apps under development | pre-0.2.0 ([`ad7fd26`](https://github.com/hypercerts-org/ePDS/commit/ad7fd261)) [¹][n1] | 0.4.211 [²][n2] |
+| [`dev.certified.app`](https://dev.certified.app) | Staging ePDS | Staging "Sign in with Certified" for apps under development | see [`/health`](https://dev.certified.app/health) | see [`/xrpc/_health`](https://dev.certified.app/xrpc/_health) |
 | `*.test.certified.app` | Test ePDS instances | Hypercerts core development; bleeding-edge testing | See [test instances](#current-test-instances) below | See [test instances](#current-test-instances) below |
 
 [n1]: #checking-the-running-version "Pre-0.2.0: includes login-hint and initial handle picker, but not configurable OTP, epds_handle_mode, email masking, or consent screen fixes. Upgrade imminent."
-[n2]: #checking-the-running-version "/xrpc/_health not yet reporting version on these instances; version from pnpm-lock.yaml at the deployed commit"
+[n2]: #checking-the-running-version "/xrpc/_health not yet reporting version on this instance; version from pnpm-lock.yaml at the deployed commit"
 
 ¹ Pre-0.2.0: includes the login-hint feature and initial handle picker from [0.2.0](https://github.com/hypercerts-org/ePDS/releases/tag/epds%400.2.0), but not configurable OTP, `epds_handle_mode`, email masking ([0.2.1](https://github.com/hypercerts-org/ePDS/releases/tag/epds%400.2.1)), or the consent screen fixes ([0.2.2](https://github.com/hypercerts-org/ePDS/releases/tag/ePDS%400.2.2)). Upgrade imminent.
 
-² `/xrpc/_health` is not yet reporting the PDS version on these instances; version determined from `pnpm-lock.yaml` at the deployed commit.
+² `/xrpc/_health` is not yet reporting the PDS version on this instance; version determined from `pnpm-lock.yaml` at the deployed commit.
 
 Note the distinction between these ePDS backends and [`certified.app`](https://certified.app) — the frontend app that end users interact with to manage their `certified.one` identity (and other AT Protocol identities). `certified.app` is not an ePDS; it's a client that talks to one.
 
