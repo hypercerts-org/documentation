@@ -12,7 +12,9 @@ Hyperindex (`hi`) is a Go AT Protocol AppView server that indexes records and ex
 - Backfill historical records from any user or the entire network
 - Run your own indexer for full control over data availability and query performance
 
-Built in Go on [bluesky-social/indigo](https://github.com/bluesky-social/indigo). Source: [github.com/hypercerts-org/hyperindex](https://github.com/hypercerts-org/hyperindex).
+Built in Go. Source: [github.com/gainforest/hyperindex](https://github.com/gainforest/hyperindex). Tap Source: [github.com/bluesky-social](https://github.com/bluesky-social/indigo/tree/main/cmd/tap).
+
+Hosted production and staging endpoints: [Certified Services](/reference/certified-services#indexers).
 
 ## How it works
 
@@ -265,5 +267,6 @@ docker compose up --build
 ## Learn more
 
 - [GitHub repository](https://github.com/hypercerts-org/hyperindex) — source code, issues, and documentation
+- [Certified Services](/reference/certified-services#indexers) — current public indexer endpoints
 - [Indexers & Discovery](/architecture/indexers-and-discovery) — how indexers fit into the Hypercerts architecture
 - [Building on Hypercerts](/getting-started/building-on-hypercerts) — integration patterns for platforms and tools

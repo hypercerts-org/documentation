@@ -17,6 +17,8 @@ That's what indexers do: they subscribe to the firehose (a real-time stream of r
 
 Multiple indexers are running across the ecosystem — see [Hyperscan Indexers](https://www.hyperscan.dev/indexers) for a live list with health status.
 
+For current Certified-operated service endpoints and status pages, see [Certified Services](/reference/certified-services).
+
 You can also run your own instance and register custom lexicons alongside the standard `org.hypercerts.*` ones. See the [Hyperindex repository](https://github.com/hypercerts-org/hyperindex) for setup instructions.
 
 For how indexers fit into the protocol stack, see [Data Flow & Lifecycle](/architecture/data-flow-and-lifecycle#stage-4-discovery--indexing).
