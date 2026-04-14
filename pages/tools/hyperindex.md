@@ -169,7 +169,7 @@ Note: some managed platforms (including Railway) may auto-provision a subset of 
 |---|---|---|
 | `NEXT_PUBLIC_API_URL` | `https://hyperindex.example.com` | Browser-side URL of your Hyperindex backend |
 | `HYPERINDEX_URL` | `https://hyperindex.example.com` | Server-side URL of your Hyperindex backend (used by Next API proxy routes) |
-| `PUBLIC_URL` | `https://hyperindex-frontend.example.com` | Client frontend URL used for OAuth client metadata and auth redirects |
+| `NEXT_PUBLIC_CLIENT_URL` | `https://hyperindex-frontend.example.com` | Client frontend URL used for OAuth client metadata and auth redirects |
 | `COOKIE_SECRET` | `<long-random-secret>` | Session encryption |
 | `ATPROTO_JWK_PRIVATE` | `<jwk-json>` | Confidential OAuth signing key |
 
@@ -217,7 +217,7 @@ Set these only when needed.
   - Logged-in DID is not present in `ADMIN_DIDS`
 
 - **Trailing slash URL issues**
-  - `PUBLIC_URL` must **not** include a trailing slash.
+  - `NEXT_PUBLIC_CLIENT_URL` must **not** include a trailing slash.
   - Use:
     - `https://hyperindex-frontend.example.com` ✅
     - `https://hyperindex-frontend.example.com/` ❌
@@ -265,7 +265,7 @@ Deploy client on Railway/Vercel/etc and set:
 
 - `NEXT_PUBLIC_API_URL=<hyperindex-backend-public-url>`
 - `HYPERINDEX_URL=<hyperindex-backend-public-url>`
-- auth/session vars (`PUBLIC_URL`, `COOKIE_SECRET`, `ATPROTO_JWK_PRIVATE`) as needed
+- auth/session vars (`NEXT_PUBLIC_CLIENT_URL`, `COOKIE_SECRET`, `ATPROTO_JWK_PRIVATE`) as needed
 
 ### Railway-specific DB path notes
 
