@@ -11,10 +11,10 @@ This page lists public service surfaces for Certified-operated Hypercerts infras
 
 | Service | Environment | Public URL | Purpose |
 |---|---|---|---|
-| Hyperindex API | Production | [`api.hi.gainforest.app/graphql`](https://api.hi.gainforest.app/graphql) | GraphQL API for indexed Hypercerts and Certified records |
-| Hyperindex Client | Production | [`hi.gainforest.app`](https://hi.gainforest.app) | Frontend view for the production indexer |
-| Hyperindex API | Staging | [`dev.api.hi.gainforest.app/graphql`](https://dev.api.hi.gainforest.app/graphql) | GraphQL API for staging data and testing |
-| Hyperindex Client | Staging | [`dev.hi.gainforest.app`](https://dev.hi.gainforest.app) | Frontend view for the staging indexer |
+| Hyperindex API | Production | [`api.indexer.hypercerts.dev/graphql`](https://api.indexer.hypercerts.dev/graphql) | GraphQL API for indexed Hypercerts and Certified records |
+| Hyperindex Client | Production | [`indexer.hypercerts.dev`](https://indexer.hypercerts.dev) | Frontend view for the production indexer |
+| Hyperindex API | Staging | [`dev.api.indexer.hypercerts.dev/graphql`](https://dev.api.indexer.hypercerts.dev/graphql) | GraphQL API for staging data and testing |
+| Hyperindex Client | Staging | [`dev.indexer.hypercerts.dev`](https://dev.indexer.hypercerts.dev) | Frontend view for the staging indexer |
 
 ## PDSs
 
