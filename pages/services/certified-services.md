@@ -26,7 +26,7 @@ Certified operates multiple ePDS environments for identity and sign-in flows:
 | [`dev.certified.app`](https://dev.certified.app) | Staging ePDS | Staging/testing before production rollout |
 | `*.test.certified.app` | Test ePDS instances | Hypercerts core testing and bleeding-edge validation |
 
-For full PDS details (versions, active test instances, and guidance), see [Certified PDSs](/reference/certified-pdss).
+For full PDS details (versions, active test instances, and guidance), see [Certified PDSs](/services/certified-pdss).
 
 ## Hyperscan
 
@@ -43,5 +43,5 @@ For full PDS details (versions, active test instances, and guidance), see [Certi
 
 ## Related pages
 
-- [Hyperindex](/tools/hyperindex)
-- [Certified PDSs](/reference/certified-pdss)
+- [Hyperindex](/services/hyperindex)
+- [Certified PDSs](/services/certified-pdss)

@@ -92,7 +92,7 @@ Each ePDS is paired with an auth service (e.g. `auth.certified.one`, `auth.dev.c
 
 Operational status for the Certified-operated ePDSs is tracked on two [Instatus](https://instatus.com/) pages:
 
-For non-PDS infrastructure (for example Hyperindexer/Hyperlabeller and ecosystem-facing links), see [Certified Services](/reference/certified-services).
+For non-PDS infrastructure (for example Hyperindexer/Hyperlabeller and ecosystem-facing links), see [Certified Services](/services/certified-services).
 
 | Page | Covers |
 |---|---|

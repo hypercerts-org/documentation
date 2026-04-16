@@ -90,7 +90,7 @@ Personal Data Servers operated by the Hypercerts ecosystem that host user reposi
 
 **Why we're not prioritizing this:** Users can use any ATProto PDS (Bluesky's, self-hosted, community-operated). The data layer is solved. However, dedicated Hypercerts PDSs could eventually provide guaranteed uptime for impact-critical data, support for larger blobs, federation across multiple servers, and organizational sovereignty.
 
-General users can use any existing ATProto PDS such as `pds.bsky.app`. Hypercerts also operates its own production, staging, and test ePDS instances for apps that want to offer "Sign in with Certified" — see [Certified services](/reference/certified-pdss) for the full list.
+General users can use any existing ATProto PDS such as `pds.bsky.app`. Hypercerts also operates its own production, staging, and test ePDS instances for apps that want to offer "Sign in with Certified" — see [Certified services](/services/certified-pdss) for the full list.
 
 ---
 

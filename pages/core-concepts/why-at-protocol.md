@@ -25,7 +25,7 @@ For impact funding to work across applications, a contribution recorded in one a
 
 ATProto enables this through [lexicons](/lexicons/introduction-to-lexicons): shared, namespaced schemas that define how records are structured. Because lexicons are open, any app can create compatible records and any app can read them. No bilateral API integrations required.
 
-Records reference each other via AT-URIs, forming a traversable graph: an evaluation references an activity claim, a funding receipt references both the claim and the funder. This graph is what indexers crawl to build queryable views. See [Hyperindex](/tools/hyperindex).
+Records reference each other via AT-URIs, forming a traversable graph: an evaluation references an activity claim, a funding receipt references both the claim and the funder. This graph is what indexers crawl to build queryable views. See [Hyperindex](/services/hyperindex).
 
 ## A decentralized trust graph
 

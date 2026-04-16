@@ -7,7 +7,7 @@ description: How the ePDS adds email/OTP login on top of AT Protocol without cha
 
 The ePDS adds email-based, passwordless sign-in on top of a standard AT Protocol PDS. Users enter their email, receive a one-time code, and end up with a normal AT Protocol session tied to a DID.
 
-Certified operates production, staging, and test ePDS instances. See [Certified services](/reference/certified-pdss) for the current hostnames and guidance on which to use in which scenario.
+Certified operates production, staging, and test ePDS instances. See [Certified services](/services/certified-pdss) for the current hostnames and guidance on which to use in which scenario.
 
 For applications, the important part is that ePDS still finishes by issuing a standard AT Protocol authorization code. In practice, this means you can integrate it with [`@atproto/oauth-client-node`](https://github.com/bluesky-social/atproto/tree/main/packages/oauth/oauth-client-node).
 
@@ -191,7 +191,7 @@ The extra branding fields customize the hosted login and email experience. `epds
 ## Further reading
 
 - [Account & Identity Setup](/architecture/account-and-identity)
-- [Certified PDSs](/reference/certified-pdss) — the production, staging, and test ePDS instances Certified operates
+- [Certified PDSs](/services/certified-pdss) — the production, staging, and test ePDS instances Certified operates
 - [Certified Group Service (CGS)](/architecture/certified-group-service) — a governance layer that sits in front of a PDS to support multi-identity, role-based repo management
 - [Scaffold Starter App](/tools/scaffold)
 - [ePDS repository](https://github.com/hypercerts-org/ePDS)

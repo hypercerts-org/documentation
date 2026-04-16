@@ -9,7 +9,7 @@ In standard AT Protocol, each repository is controlled by a single identity (DID
 
 The [Certified Group Service](https://github.com/hypercerts-org/certified-group-service) (CGS) fills that gap. It's an AT Protocol service that sits between clients and a group's backing PDS, enforcing role-based access control, tracking record authorship, and keeping a full audit log. From the client's perspective, a group looks like any other AT Protocol repository — it just happens to be co-governed.
 
-Certified operates a hosted CGS instance, but CGS is also designed to be **self-hostable per operator** — anyone can run their own instance and point it at whichever PDS backs the group (including, but not limited to, the [Certified-operated PDSs](/reference/certified-pdss)).
+Certified operates a hosted CGS instance, but CGS is also designed to be **self-hostable per operator** — anyone can run their own instance and point it at whichever PDS backs the group (including, but not limited to, the [Certified-operated PDSs](/services/certified-pdss)).
 
 Today, a given CGS deployment points at a single backing PDS (configured via the `GROUP_PDS_URL` environment variable), and every group it registers lives on that PDS. Operators who want to host groups across multiple PDSs currently run multiple CGS instances. This is a current architectural constraint rather than a fundamental one, and may evolve in the future.
 

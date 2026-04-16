@@ -14,7 +14,7 @@ Hyperindex (`hi`) is a Go AT Protocol AppView server that indexes records and ex
 
 Built in Go. Source: [github.com/gainforest/hyperindex](https://github.com/gainforest/hyperindex). Tap reference implementation: [github.com/bluesky-social](https://github.com/bluesky-social/indigo/tree/main/cmd/tap).
 
-Hosted production and staging endpoints: [Certified Services](/reference/certified-services#indexers).
+Hosted production and staging endpoints: [Certified Services](/services/certified-services#indexers).
 
 ## Why indexers & discovery
 
@@ -290,5 +290,5 @@ docker compose up --build
 ## Learn more
 
 - [GitHub repository](https://github.com/gainforest/hyperindex) — source code, issues, and documentation
-- [Certified Services](/reference/certified-services#indexers) — current public indexer endpoints
+- [Certified Services](/services/certified-services#indexers) — current public indexer endpoints
 - [Building on Hypercerts](/getting-started/building-on-hypercerts) — integration patterns for platforms and tools
