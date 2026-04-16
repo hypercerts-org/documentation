@@ -321,7 +321,7 @@ Stock
 {% column %}
 CSS injected
 
-![CSS-injected recovery screen](/images/epds/recovery-image-css-injected.png)
+![CSS-injected recovery screen](/images/epds/recovery-css-injected.png)
 {% /column %}
 {% /columns %}
 
