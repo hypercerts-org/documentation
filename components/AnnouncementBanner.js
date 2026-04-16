@@ -24,9 +24,9 @@ export function AnnouncementBanner() {
         <span className="announcement-banner-date">April 8, 2026</span>
         <span className="announcement-banner-text">
           <strong>hypercerts-lexicon v0.11.0</strong> — breaking changes to evaluation scores, badge references, and funding receipts.{' '}
-          <Link href="/reference/release-notes-v0-11-0" className="announcement-banner-link">
+          <a href="https://github.com/hypercerts-org/hypercerts-lexicon/releases/tag/v0.11.0" className="announcement-banner-link" target="_blank" rel="noopener noreferrer">
             Read the release notes&nbsp;&rarr;
-          </Link>
+          </a>
         </span>
         <button
           className="announcement-banner-close"
