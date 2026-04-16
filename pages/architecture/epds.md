@@ -182,11 +182,148 @@ Your client metadata file is a public JSON document served over HTTPS. Its URL i
   "background_color": "#ffffff",
   "email_template_uri": "https://yourapp.example.com/email-template.html",
   "email_subject_template": "{{code}} - Your {{app_name}} code",
+  "branding": {
+    "css": "body { background: #0f172a; color: #e2e8f0; }"
+  },
   "epds_handle_mode": "picker-with-random"
 }
 ```
 
 The extra branding fields customize the hosted login and email experience. `epds_handle_mode` sets your preferred handle mode for new users unless you override it on the authorization URL.
+
+## Branding and customization
+
+### How branding works
+
+ePDS reads branding settings from your app's `client-metadata.json`, using the OAuth `client_id` to look it up. Standard metadata fields like `logo_uri`, `brand_color`, `background_color`, `email_template_uri`, and `email_subject_template` customize the hosted login and email experience.
+
+Trusted clients can go further by adding custom CSS in client metadata under `branding.css`:
+
+```json
+{
+  "branding": {
+    "css": "body { background: #0f172a; color: #e2e8f0; }"
+  }
+}
+```
+
+When the client is trusted, ePDS injects that CSS into its hosted auth pages and the stock consent page.
+
+{% callout type="warning" %}
+Trust is checked against the exact `client_id`.
+
+The `client_id` you send during OAuth, the `client_id` inside `client-metadata.json`, and the entry in `PDS_OAUTH_TRUSTED_CLIENTS` must all be identical.
+
+For example, if your client metadata says `"client_id": "https://hypercerts-scaffold.vercel.app/client-metadata.json"`, then `PDS_OAUTH_TRUSTED_CLIENTS` must contain `https://hypercerts-scaffold.vercel.app/client-metadata.json` — not just `https://hypercerts-scaffold.vercel.app`. See the [Scaffold Starter App](/tools/scaffold) for a concrete example of a client serving metadata from `/client-metadata.json`.
+{% /callout %}
+
+### Client metadata branding fields
+
+These fields are the main branding controls exposed through client metadata:
+
+| Field | What it affects |
+|------|------------------|
+| `logo_uri` | App logo shown in hosted auth and email flows |
+| `brand_color` | Primary brand color used by hosted screens |
+| `background_color` | Background color for hosted screens |
+| `email_template_uri` | Custom HTML template for OTP emails |
+| `email_subject_template` | Subject line template for OTP emails |
+| `branding.css` | Custom CSS for trusted clients |
+
+### CSS injection for trusted clients
+
+Custom CSS is only applied for clients whose exact `client_id` appears in `PDS_OAUTH_TRUSTED_CLIENTS`. When present, ePDS injects a `<style>` tag into the rendered page, sanitizes the CSS to prevent `</style>` tag closure, and updates the page's CSP `style-src` directive with a SHA-256 hash for the injected stylesheet.
+
+This gives operators a safety boundary: untrusted clients never get CSS injection, even if their metadata contains branding CSS.
+
+### Where branding appears
+
+The send-OTP and initial-OTP screens are two states of the same auth-service route: `https://auth.epds1.test.certified.app/oauth/authorize`.
+
+| Surface | URL | Supports branding |
+|---|---|---|
+| Send OTP | `https://auth.epds1.test.certified.app/oauth/authorize` | Metadata fields + trusted-client CSS |
+| Initial OTP | `https://auth.epds1.test.certified.app/oauth/authorize` | Metadata fields + trusted-client CSS |
+| Choose handle | `https://auth.epds1.test.certified.app/auth/choose-handle` | Metadata fields + trusted-client CSS |
+| Recovery | `https://auth.epds1.test.certified.app/auth/recover` | Metadata fields + trusted-client CSS |
+| Consent page | `https://epds1.test.certified.app/oauth/authorize` | Trusted-client CSS |
+
+### Examples
+
+#### Send OTP
+
+{% columns %}
+{% column %}
+Stock
+
+![Stock send OTP screen](/images/epds/send-otp-stock.png)
+{% /column %}
+{% column %}
+CSS injected
+
+![CSS-injected send OTP screen](/images/epds/send-otp-css-injected.png)
+{% /column %}
+{% /columns %}
+
+#### Initial OTP
+
+{% columns %}
+{% column %}
+Stock
+
+![Stock initial OTP screen](/images/epds/initial-otp-stock.png)
+{% /column %}
+{% column %}
+CSS injected
+
+![CSS-injected initial OTP screen](/images/epds/initial-otp-css-injected.png)
+{% /column %}
+{% /columns %}
+
+#### Choose handle
+
+{% columns %}
+{% column %}
+Stock
+
+![Stock choose handle screen](/images/epds/choose-handle-stock.png)
+{% /column %}
+{% column %}
+CSS injected
+
+![CSS-injected choose handle screen](/images/epds/choose-handle-css-injected.png)
+{% /column %}
+{% /columns %}
+
+#### Consent page
+
+{% columns %}
+{% column %}
+Stock
+
+![Stock consent page](/images/epds/consent-page-stock.png)
+{% /column %}
+{% column %}
+CSS injected
+
+![CSS-injected consent page](/images/epds/consent-page-css-injected.png)
+{% /column %}
+{% /columns %}
+
+#### Recovery
+
+{% columns %}
+{% column %}
+Stock
+
+![Stock recovery screen](/images/epds/recovery-stock.png)
+{% /column %}
+{% column %}
+CSS injected
+
+![CSS-injected recovery screen](/images/epds/recovery-image-css-injected.png)
+{% /column %}
+{% /columns %}
 
 ## Further reading
 
