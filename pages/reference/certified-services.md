@@ -34,6 +34,13 @@ For full PDS details (versions, active test instances, and guidance), see [Certi
 |---|---|---|
 | Hyperscan | [`www.hyperscan.dev`](https://www.hyperscan.dev) | Ecosystem-wide view of indexers and related discovery infrastructure |
 
+## Labelers
+
+| Service | Environment | Public URL | Purpose |
+|---|---|---|---|
+| Hyperlabel | Production | [`hyperlabel-production.up.railway.app`](https://hyperlabel-production.up.railway.app/) | Labels hypercert activity records for quality and likely-test detection |
+| Orglabeler | Production | [`orglabeler-production.up.railway.app`](https://orglabeler-production.up.railway.app/) | Labels certified organization records using merged profile and organization context |
+
 ## Status pages
 
 | Page | Covers |
@@ -44,4 +51,5 @@ For full PDS details (versions, active test instances, and guidance), see [Certi
 ## Related pages
 
 - [Hyperindex](/tools/hyperindex)
+- [Labelers](/tools/labelers)
 - [Certified PDSs](/reference/certified-pdss)
