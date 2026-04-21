@@ -167,11 +167,13 @@ Note: some managed platforms (including Railway) may auto-provision a subset of 
 
 | Variable | Example | What it is for |
 |---|---|---|
-| `NEXT_PUBLIC_API_URL` | `https://hyperindex.example.com` | Browser-side URL of your Hyperindex backend |
-| `HYPERINDEX_URL` | `https://hyperindex.example.com` | Server-side URL of your Hyperindex backend (used by Next API proxy routes) |
+| `NEXT_PUBLIC_HYPERINDEX_URL` | `https://hyperindex.example.com` | Browser-side URL of your Hyperindex backend |
+| `HYPERINDEX_URL` | `https://hyperindex.example.com` | Server-side URL of your Hyperindex backend (used by Next API proxy routes). If unset, it falls back to `NEXT_PUBLIC_HYPERINDEX_URL` |
 | `NEXT_PUBLIC_CLIENT_URL` | `https://hyperindex-frontend.example.com` | Client frontend URL used for OAuth client metadata and auth redirects |
 | `COOKIE_SECRET` | `<long-random-secret>` | Session encryption |
 | `ATPROTO_JWK_PRIVATE` | `<jwk-json>` | Confidential OAuth signing key |
+
+Hyperindex normalizes both `NEXT_PUBLIC_HYPERINDEX_URL` and `HYPERINDEX_URL`: it trims surrounding whitespace, removes trailing slashes, and prepends `https://` when no scheme is provided.
 
 ### Optional variables
 
@@ -209,7 +211,7 @@ Set these only when needed.
 
 - **Client works but admin requests fail**
   - `HYPERINDEX_URL` is missing on the client deployment
-  - `NEXT_PUBLIC_API_URL` alone is not enough for server-side proxy routes
+  - `NEXT_PUBLIC_HYPERINDEX_URL` alone is not enough for server-side proxy routes
   - `EXTERNAL_BASE_URL` does not match the backend's public URL
 
 - **`admin privileges required` while logged in**
@@ -237,7 +239,7 @@ Set these only when needed.
 4. Add backend variables from the baseline list above
 5. Deploy
 
-Use `PORT=8080` for the Hyperindex service. For public URL variables (for example `EXTERNAL_BASE_URL`, `NEXT_PUBLIC_API_URL`, `HYPERINDEX_URL`), use the Railway-generated HTTPS domain (typically without appending `:8080`).
+Use `PORT=8080` for the Hyperindex service. For public URL variables (for example `EXTERNAL_BASE_URL`, `NEXT_PUBLIC_HYPERINDEX_URL`, `HYPERINDEX_URL`), use the Railway-generated HTTPS domain (typically without appending `:8080`).
 
 ### 2) Deploy Tap
 
@@ -263,7 +265,7 @@ Redeploy backend after updating these values.
 
 Deploy client on Railway/Vercel/etc and set:
 
-- `NEXT_PUBLIC_API_URL=<hyperindex-backend-public-url>`
+- `NEXT_PUBLIC_HYPERINDEX_URL=<hyperindex-backend-public-url>`
 - `HYPERINDEX_URL=<hyperindex-backend-public-url>`
 - auth/session vars (`NEXT_PUBLIC_CLIENT_URL`, `COOKIE_SECRET`, `ATPROTO_JWK_PRIVATE`) as needed
 
