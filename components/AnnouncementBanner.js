@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-const BANNER_ID = 'lexicon-v0.11.0';
+const BANNER_ID = 'may-2026-community-call';
 
 export function AnnouncementBanner() {
   const [dismissed, setDismissed] = useState(true);
@@ -21,11 +21,11 @@ export function AnnouncementBanner() {
   return (
     <div className="announcement-banner">
       <div className="announcement-banner-inner">
-        <span className="announcement-banner-date">April 8, 2026</span>
+        <span className="announcement-banner-date">May 2026</span>
         <span className="announcement-banner-text">
-          <strong>hypercerts-lexicon v0.11.0</strong> — breaking changes to evaluation scores, badge references, and funding receipts.{' '}
-          <a href="https://github.com/hypercerts-org/hypercerts-lexicon/releases/tag/v0.11.0" className="announcement-banner-link" target="_blank" rel="noopener noreferrer">
-            Read the release notes&nbsp;&rarr;
+          Join our <strong>May community call</strong>, updates, demos and open Q&amp;A:{' '}
+          <a href="https://luma.com/fcyqpplm" className="announcement-banner-link" target="_blank" rel="noopener noreferrer">
+            RSVP on Luma&nbsp;&rarr;
           </a>
         </span>
         <button
