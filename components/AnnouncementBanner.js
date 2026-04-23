@@ -23,7 +23,7 @@ export function AnnouncementBanner() {
       <div className="announcement-banner-inner">
         <span className="announcement-banner-date">May 2026</span>
         <span className="announcement-banner-text">
-          Join our <strong>May community call</strong>, updates, demos and open Q&amp;A:{' '}
+          Join our <strong>May community call</strong>. Updates, demos and open Q&amp;A:{' '}
           <a href="https://luma.com/fcyqpplm" className="announcement-banner-link" target="_blank" rel="noopener noreferrer">
             RSVP on Luma&nbsp;&rarr;
           </a>
