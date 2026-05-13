@@ -24,7 +24,7 @@ Indexers handle that job. They consume network events, fetch and parse records b
 
 Hyperindex is the reference indexer used in this ecosystem.
 
-If you want to inspect indexers running across the broader ecosystem, use [Hyperscan](https://www.hyperscan.dev).
+If you want to inspect indexers running across the broader ecosystem, use [Hyperscan](/tools/hyperscan).
 
 ## How it works
 

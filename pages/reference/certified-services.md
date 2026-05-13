@@ -32,7 +32,7 @@ For full PDS details (versions, active test instances, and guidance), see [Certi
 
 | Service | Public URL | Purpose |
 |---|---|---|
-| Hyperscan | [`www.hyperscan.dev`](https://www.hyperscan.dev) | Ecosystem-wide view of indexers and related discovery infrastructure |
+| [Hyperscan](/tools/hyperscan) | [`www.hyperscan.dev`](https://www.hyperscan.dev) | Ecosystem-wide view of indexers and related discovery infrastructure |
 
 ## Labelers
 
