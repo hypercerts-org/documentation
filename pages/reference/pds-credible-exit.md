@@ -62,6 +62,7 @@ export NEW_PDS="https://dev.certified.app"
 
 export OLD_DID="did:plc:example"
 export OLD_HANDLE="example.climateai.org"
+export OLD_PASSWORD="source-account-password-if-known"
 export NEW_HANDLE="example.dev.certified.app"
 
 export NEW_EMAIL="migration+example@example.com"
@@ -77,7 +78,7 @@ goat repo export "$OLD_DID" --output "backup/${OLD_DID}.car"
 goat blob export "$OLD_DID"
 ```
 
-If the source account does not have a password, reset it with source PDS admin access:
+If the source account does not have a reusable password, reset it with source PDS admin access. This replaces `OLD_PASSWORD` for the rest of the guide:
 
 ```bash
 export OLD_ADMIN_PASSWORD="source-pds-admin-password"
