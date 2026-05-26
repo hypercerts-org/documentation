@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-const BANNER_ID = 'may-2026-community-call';
+const BANNER_ID = 'june-2026-community-call';
 
 export function AnnouncementBanner() {
   const [dismissed, setDismissed] = useState(true);
@@ -21,10 +21,10 @@ export function AnnouncementBanner() {
   return (
     <div className="announcement-banner">
       <div className="announcement-banner-inner">
-        <span className="announcement-banner-date">May 2026</span>
+        <span className="announcement-banner-date">June 2, 2026</span>
         <span className="announcement-banner-text">
-          Join our <strong>May community call</strong>. Updates, demos and open Q&amp;A:{' '}
-          <a href="https://luma.com/fcyqpplm" className="announcement-banner-link" target="_blank" rel="noopener noreferrer">
+          Join our <strong>June community call</strong>. Updates, demos and open Q&amp;A:{' '}
+          <a href="https://luma.com/y0dxmfa9" className="announcement-banner-link" target="_blank" rel="noopener noreferrer">
             RSVP on Luma&nbsp;&rarr;
           </a>
         </span>
