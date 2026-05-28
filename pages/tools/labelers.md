@@ -35,8 +35,9 @@ The shared ingestion layer is the same, but each labeler targets different recor
 
 ## Hyperlabel
 
-**Production:** [hyperlabel-production.up.railway.app](https://hyperlabel-production.up.railway.app/)  
-**Docs:** [hyperlabel-production.up.railway.app/docs](https://hyperlabel-production.up.railway.app/docs)
+**Production:** [activitylabeler.hypercerts.dev](https://activitylabeler.hypercerts.dev/)
+
+**Docs:** [activitylabeler.hypercerts.dev/docs](https://activitylabeler.hypercerts.dev/docs)
 
 Hyperlabel scores the quality of hypercert activity records and publishes labels that help distinguish well-formed records from drafts, placeholders, or likely test data.
 
@@ -70,8 +71,9 @@ It also applies penalties and test-detection heuristics for low-quality patterns
 
 ## Orglabeler
 
-**Production:** [orglabeler-production.up.railway.app](https://orglabeler-production.up.railway.app/)  
-**Docs:** [orglabeler-production.up.railway.app/docs](https://orglabeler-production.up.railway.app/docs)
+**Production:** [orglabeler.hypercerts.dev](https://orglabeler.hypercerts.dev/)
+
+**Docs:** [orglabeler.hypercerts.dev/docs](https://orglabeler.hypercerts.dev/docs)
 
 Orglabeler scores the quality of certified organization data and publishes labels that reflect how complete and credible an organization record looks.
 
