@@ -33,7 +33,7 @@ In practice, this means:
 
 The shared ingestion layer is the same, but each labeler targets different record types and applies different criteria.
 
-## Hyperlabel
+## Activity Labeler
 
 **Production:** [activitylabeler.hypercerts.dev](https://activitylabeler.hypercerts.dev/)
 
@@ -45,11 +45,11 @@ The shared ingestion layer is the same, but each labeler targets different recor
 
 **Labeler service record:** [`app.bsky.labeler.service/self` on PDSls](https://pds.ls/at://did:plc:antf7bsm6f4ohkqfdckefyt7/app.bsky.labeler.service/self) · [Hyperscan](https://www.hyperscan.dev/data?did=did%3Aplc%3Aantf7bsm6f4ohkqfdckefyt7&collection=app.bsky.labeler.service&rkey=self)
 
-Hyperlabel scores the quality of hypercert activity records and publishes labels that help distinguish well-formed records from drafts, placeholders, or likely test data.
+Activity Labeler scores the quality of hypercert activity records and publishes labels that help distinguish well-formed records from drafts, placeholders, or likely test data.
 
 ### What it labels
 
-Hyperlabel watches:
+Activity Labeler watches:
 
 - `org.hypercerts.claim.activity`
 
@@ -57,11 +57,11 @@ It ingests those records through Tap, evaluates them, and publishes signed label
 
 ### How it is set up
 
-Hyperlabel uses Tap to discover repos, backfill historical activity records, and stream live updates. Once a record is ingested, the labeler scores it, stores the result for the dashboard, and publishes the matching AT Protocol label.
+Activity Labeler uses Tap to discover repos, backfill historical activity records, and stream live updates. Once a record is ingested, the labeler scores it, stores the result for the dashboard, and publishes the matching AT Protocol label.
 
 ### Criteria
 
-Hyperlabel evaluates activity records across these main criteria:
+Activity Labeler evaluates activity records across these main criteria:
 
 - Title quality
 - Summary quality
