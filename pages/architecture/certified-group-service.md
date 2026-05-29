@@ -51,12 +51,12 @@ One important gotcha: CGS uses **custom NSIDs** for record operations — `app.c
 Every request to CGS arrives with `Authorization: Bearer <JWT>`. The `AuthVerifier` runs the following checks:
 
 1. **Signature** — verified against the issuer's DID document via `@atproto/xrpc-server`'s `verifyJwt()`.
-2. **Audience** — the JWT's `aud` must match a group DID registered with this CGS instance.
+2. **Audience** — for group-scoped operations the JWT's `aud` must match a group DID registered with this CGS instance. Service-level (cross-group) operations such as `app.certified.groups.membership.list` instead require `aud` to be the service's own DID.
 3. **Lexicon method** — the JWT's `lxm` must match the requested XRPC method (from an allowlist of record and group-management operations).
 4. **Token lifetime** — `exp - iat` must not exceed the nonce TTL (120 seconds), so that tokens can't outlive the replay-prevention window.
 5. **Nonce (replay prevention)** — the JWT's `jti` is checked against a short-lived nonce cache. If it's been seen before, the request is rejected.
 
-If all checks pass, the handler receives `{ iss: callerDid, aud: groupDid }` and proceeds to authorization.
+For a group-scoped request, the handler then receives `{ callerDid, groupDid }` and proceeds to authorization. Cross-group requests receive just `{ callerDid }`.
 
 ## Authorization (RBAC)
 
@@ -107,6 +107,12 @@ Every meaningful action — permitted or denied — is written to the per-group 
 
 Admins can query the audit log via `app.certified.group.audit.query`.
 
+## Cross-group membership
+
+Most CGS operations are scoped to a single group. One endpoint is service-level rather than group-level: `app.certified.groups.membership.list` lets the authenticated user list **every group they belong to on this CGS instance**, along with their role and join date in each. Because it spans groups, its service auth JWT is addressed to the service's own DID (`aud` = service DID) rather than to any one group.
+
+CGS answers this query from a `member_index` table in the global database — a reverse index from member DID to the groups they're in — since the per-group databases have no way to look up membership across groups.
+
 ## Group lifecycle
 
 Groups are created via `app.certified.group.register`, which requires a service auth JWT proving the caller controls the prospective owner DID. During registration, CGS:
@@ -122,7 +128,7 @@ From then on, the group's DID is co-governed through CGS: owners promote admins,
 
 CGS uses SQLite for all persistence:
 
-- A **global database** holds the group registry (`groups` table) and the nonce cache.
+- A **global database** holds the group registry (`groups` table), the nonce cache, and a `member_index` table (the reverse member-to-group index that backs cross-group membership listing).
 - Each group gets its **own per-group database**, named by the SHA-256 hash of the group DID. This isolates group data and keeps audit logs per-group.
 - All databases use WAL mode for concurrent read performance.
 
