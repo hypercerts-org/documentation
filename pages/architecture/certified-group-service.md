@@ -109,7 +109,7 @@ Admins can query the audit log via `app.certified.group.audit.query`.
 
 ## Cross-group membership
 
-Most CGS operations are scoped to a single group. One endpoint is service-level rather than group-level: `app.certified.groups.membership.list` lets the authenticated user list **every group they belong to on this CGS instance**, along with their role and join date in each. Because it spans groups, its service auth JWT is addressed to the service's own DID (`aud` = service DID) rather than to any one group.
+Most CGS operations are scoped to a single group. One endpoint is service-level rather than group-level: `app.certified.groups.membership.list` lets the authenticated user list **every group they belong to on this group service**, along with their role and join date in each. Because it spans groups, its service auth JWT is addressed to the service's own DID (`aud` = service DID) rather than to any one group.
 
 CGS answers this query from a `member_index` table in the global database — a reverse index from member DID to the groups they're in — since the per-group databases have no way to look up membership across groups.
 
