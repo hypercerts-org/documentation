@@ -82,8 +82,8 @@ member (0)  <  admin (1)  <  owner (2)
 
 - **Cannot modify equal or higher roles.** An admin cannot remove another admin; only an owner can.
 - **`member.add` cannot assign `owner`.** The owner role is immutable — it is fixed at registration and cannot be assigned or changed via `role.set` (ownership transfer is a separate operation, not yet implemented).
-- **Self-removal always succeeds.** Any member can remove themselves, regardless of role.
-- **Owners cannot be removed or demoted.** `role.set` and `member.remove` both reject the owner role.
+- **Owners cannot be removed or demoted.** `role.set` and `member.remove` both reject the owner role — this takes precedence over self-removal, so even an owner cannot remove themselves.
+- **Self-removal succeeds for non-owners.** Any member or admin can remove themselves regardless of the equal-or-higher-role rule; only the owner is excepted (see above).
 - **Authorship is tracked per record.** CGS maintains a `group_record_authors` table so `deleteOwnRecord` (member) can be distinguished from `deleteAnyRecord` (admin).
 
 ## PDS proxying and credentials
