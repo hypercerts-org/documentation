@@ -70,9 +70,9 @@ member (0)  <  admin (1)  <  owner (2)
 
 | Operation | Minimum role |
 |---|---|
-| Create records, upload blobs, edit any record, list members | member |
-| Delete records you authored | member |
-| Delete any member's record | admin |
+| Create records, upload blobs, list members | member |
+| Edit / delete records you authored | member |
+| Edit / delete any member's record | admin |
 | Edit the group's profile | admin |
 | Add / remove members | admin |
 | Query the audit log | admin |
@@ -81,9 +81,9 @@ member (0)  <  admin (1)  <  owner (2)
 ### Special rules
 
 - **Cannot modify equal or higher roles.** An admin cannot remove another admin; only an owner can.
-- **`member.add` cannot assign `owner`.** New owners must be promoted by an existing owner via `role.set`.
+- **`member.add` cannot assign `owner`.** The owner role is immutable — it is fixed at registration and cannot be assigned or changed via `role.set` (ownership transfer is a separate operation, not yet implemented).
 - **Self-removal always succeeds.** Any member can remove themselves, regardless of role.
-- **Last-owner protection.** The system atomically prevents demoting or removing the only remaining owner.
+- **Owners cannot be removed or demoted.** `role.set` and `member.remove` both reject the owner role.
 - **Authorship is tracked per record.** CGS maintains a `group_record_authors` table so `deleteOwnRecord` (member) can be distinguished from `deleteAnyRecord` (admin).
 
 ## PDS proxying and credentials
