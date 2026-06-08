@@ -13,6 +13,8 @@ Certified operates a hosted CGS instance, but CGS is also designed to be **self-
 
 Today, a given CGS deployment points at a single backing PDS (configured via the `GROUP_PDS_URL` environment variable), and every group it registers lives on that PDS. Operators who want to host groups across multiple PDSs currently run multiple CGS instances. This is a current architectural constraint rather than a fundamental one, and may evolve in the future.
 
+Certified operates production, staging, and test CGS instances. See [Certified Group Services](/reference/certified-group-services) for the current hostnames, version endpoints, and guidance on which to use in which scenario.
+
 ## System overview
 
 ```text
@@ -147,6 +149,7 @@ None of the above are committed features; they're possibilities being shaped by 
 
 ## Further reading
 
+- [Certified Group Services](/reference/certified-group-services) — hosted CGS instances, environments, and version endpoints
 - [CGS repository](https://github.com/hypercerts-org/certified-group-service)
 - [Architecture doc](https://github.com/hypercerts-org/certified-group-service/blob/main/docs/architecture.md) — full data model, startup sequence, and implementation details
 - [Integration guide](https://github.com/hypercerts-org/certified-group-service/blob/main/docs/integration-guide.md)
