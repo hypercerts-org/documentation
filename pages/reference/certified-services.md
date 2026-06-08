@@ -30,6 +30,18 @@ Certified operates multiple ePDS environments for identity and sign-in flows:
 
 For full PDS details (versions, active test instances, and guidance), see [Certified PDSs](/reference/certified-pdss).
 
+## Group Services
+
+Certified operates multiple [CGS](/architecture/certified-group-service) environments for group-governed repositories:
+
+| Service | Environment | Use |
+|---|---|---|
+| [`groups.certified.app`](https://groups.certified.app) | Production CGS | Production group-governed repositories |
+| [`dev.groups.certified.app`](https://dev.groups.certified.app) | Staging CGS | Staging/testing before production rollout |
+| [`test.groups.certified.app`](https://test.groups.certified.app) | Test CGS | Hypercerts core testing and bleeding-edge validation |
+
+For full CGS details (versions, environments, and guidance), see [Certified Group Services](/reference/certified-group-services).
+
 ## Hyperscan
 
 | Service | Public URL | Purpose |
@@ -62,3 +74,4 @@ The ATProto labeler identities are Certified accounts that publish each `app.bsk
 - [Hyperindex](/tools/hyperindex)
 - [Labelers](/tools/labelers)
 - [Certified PDSs](/reference/certified-pdss)
+- [Certified Group Services](/reference/certified-group-services)

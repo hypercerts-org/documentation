@@ -9,9 +9,11 @@ In standard AT Protocol, each repository is controlled by a single identity (DID
 
 The [Certified Group Service](https://github.com/hypercerts-org/certified-group-service) (CGS) fills that gap. It's an AT Protocol service that sits between clients and a group's backing PDS, enforcing role-based access control, tracking record authorship, and keeping a full audit log. From the client's perspective, a group looks like any other AT Protocol repository — it just happens to be co-governed.
 
-Certified operates a hosted CGS instance, but CGS is also designed to be **self-hostable per operator** — anyone can run their own instance and point it at whichever PDS backs the group (including, but not limited to, the [Certified-operated PDSs](/reference/certified-pdss)).
+Certified operates a hosted CGS instance, but CGS is also designed to be **self-hostable per operator** — anyone can run their own instance against any AT Protocol PDS (including, but not limited to, the [Certified-operated PDSs](/reference/certified-pdss)).
 
-Today, a given CGS deployment points at a single backing PDS (configured via the `GROUP_PDS_URL` environment variable), and every group it registers lives on that PDS. Operators who want to host groups across multiple PDSs currently run multiple CGS instances. This is a current architectural constraint rather than a fundamental one, and may evolve in the future.
+A single CGS instance can host groups across multiple PDSs. Each group records its own backing PDS, resolved from the group's DID document and stored per-group. When a group is **imported** ([`app.certified.group.import`](#group-lifecycle)), CGS uses whatever PDS already hosts that account, so imported groups can live on different PDSs within one instance. The `GROUP_PDS_URL` environment variable is narrower than it sounds: it's only the PDS on which `app.certified.group.register` creates **brand-new** group accounts. Letting `register` target a specific PDS per call is a plausible future extension but is not implemented today.
+
+Certified operates production, staging, and test CGS instances. See [Certified Group Services](/reference/certified-group-services) for the current hostnames, version endpoints, and guidance on which to use in which scenario.
 
 ## System overview
 
@@ -115,14 +117,18 @@ CGS answers this query from a `member_index` table in the global database — a 
 
 ## Group lifecycle
 
-Groups are created via `app.certified.group.register`, which requires a service auth JWT proving the caller controls the prospective owner DID. During registration, CGS:
+A group enters the service in one of two ways: **register** (create a brand-new account) or **import** (adopt an account that already exists).
 
-1. Creates a new PDS account on the instance's configured backing PDS and receives a new group DID.
+**Register** — `app.certified.group.register` requires a service auth JWT proving the caller controls the prospective owner DID. During registration, CGS:
+
+1. Creates a new PDS account on the instance's configured backing PDS (`GROUP_PDS_URL`) and receives a new group DID.
 2. Generates a recovery keypair and registers a `#certified_group` service entry in the group's DID document via a PLC operation.
 3. Stores the encrypted app password and recovery key in its own database.
 4. Seeds the caller as the group's first owner.
 
-From then on, the group's DID is co-governed through CGS: owners promote admins, admins manage members, and members interact with the repository subject to the permission matrix above.
+**Import** — `app.certified.group.import` adopts a pre-existing PDS account instead of creating one. The caller supplies an app password, and the JWT must be signed by the account being imported (proving control of the group DID beyond merely holding its app password). CGS resolves the account's PDS from its own DID document — which may be any PDS, not just `GROUP_PDS_URL` — authenticates there with the app password, stores the credentials, and seeds the named owner. It does **not** generate a recovery key (an app password cannot grant key control) or modify the account's DID document.
+
+Both are service-level operations (`aud` = the service's own DID), since the group does not yet exist in the service when they run. From then on, the group's DID is co-governed through CGS: owners promote admins, admins manage members, and members interact with the repository subject to the permission matrix above.
 
 ## Storage
 
@@ -141,12 +147,13 @@ The current RBAC model — three fixed roles (`member`, `admin`, `owner`) with a
 - **Group-level governance.** Move beyond unilateral admin/owner actions toward proposals, voting, or quorum-based decisions for sensitive operations.
 - **Time-bound and delegated roles.** Temporary elevations — e.g. an admin grants another member `admin` for 24 hours, after which the role automatically reverts.
 - **Credential-based membership.** Derive membership and roles from external signals (verifiable credentials, badges, tokens) rather than only manual `member.add` calls.
-- **Multiple backing PDSs per instance.** Today, one CGS deployment is bound to a single backing PDS. Supporting multiple PDSs per instance (or per group) would let a single deployment host groups across different PDS providers.
+- **Per-call PDS targeting for `register`.** A single instance can already host groups across multiple PDSs via `import` (which adopts an account on whatever PDS already hosts it). What's missing is letting `register` create new group accounts on a caller-chosen PDS rather than only the instance's configured `GROUP_PDS_URL`.
 
 None of the above are committed features; they're possibilities being shaped by user and developer needs and feedback.
 
 ## Further reading
 
+- [Certified Group Services](/reference/certified-group-services) — hosted CGS instances, environments, and version endpoints
 - [CGS repository](https://github.com/hypercerts-org/certified-group-service)
 - [Architecture doc](https://github.com/hypercerts-org/certified-group-service/blob/main/docs/architecture.md) — full data model, startup sequence, and implementation details
 - [Integration guide](https://github.com/hypercerts-org/certified-group-service/blob/main/docs/integration-guide.md)
