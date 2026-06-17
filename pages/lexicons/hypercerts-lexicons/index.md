@@ -10,7 +10,7 @@ These lexicons define the record types for tracking impact work in the `org.hype
 | Lexicon | NSID | Description |
 |---------|------|-------------|
 | **[Activity Claim](/lexicons/hypercerts-lexicons/activity-claim)** | `org.hypercerts.claim.activity` | The core hypercert record — who did what, when, where |
-| **[Contribution](/lexicons/hypercerts-lexicons/contribution)** | `org.hypercerts.claim.contributorInformation`<br/>`org.hypercerts.claim.contribution` | Contributor identity and contribution details (two lexicons) |
+| **[Contribution](/lexicons/hypercerts-lexicons/contribution)** | `org.hypercerts.claim.contributorInformation`{% br /%}`org.hypercerts.claim.contribution` | Contributor identity and contribution details (two lexicons) |
 | **[Attachment](/lexicons/hypercerts-lexicons/attachment)** | `org.hypercerts.context.attachment` | Supporting documentation — URLs, files, IPFS links |
 | **[Measurement](/lexicons/hypercerts-lexicons/measurement)** | `org.hypercerts.context.measurement` | Quantitative data attached to a claim |
 | **[Evaluation](/lexicons/hypercerts-lexicons/evaluation)** | `org.hypercerts.context.evaluation` | Third-party assessment of a claim |

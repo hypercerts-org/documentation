@@ -5,8 +5,10 @@ import figure from './figure.markdoc';
 import cardLink from './card-link.markdoc';
 import cardGrid from './card-grid.markdoc';
 import heroBanner from './hero-banner.markdoc';
+import br from './br.markdoc';
 
 export default {
+  br,
   callout,
   columns,
   column,
