@@ -17,13 +17,9 @@ Groups *registered* through the hosted CGS currently get their PDS accounts crea
 
 | Service | Environment | Who it's for | CGS version |
 |---|---|---|---|
-| [`groups.certified.app`](https://groups.certified.app) | Production CGS | Production group-governed repositories | not yet reporting [¹][n1] |
+| [`groups.certified.app`](https://groups.certified.app) | Production CGS | Production group-governed repositories | see [`/health`](https://groups.certified.app/health) |
 | [`dev.groups.certified.app`](https://dev.groups.certified.app) | Staging CGS | Staging group governance for apps under development | see [`/health`](https://dev.groups.certified.app/health) |
 | [`test.groups.certified.app`](https://test.groups.certified.app) | Test CGS | Hypercerts core development; bleeding-edge testing | see [`/health`](https://test.groups.certified.app/health) |
-
-[n1]: #checking-the-running-version "Version endpoints land on this instance after its next upgrade."
-
-¹ The version endpoints don't report on this instance yet; they will after its next upgrade.
 
 ## Production: `groups.certified.app`
 
@@ -47,7 +43,7 @@ By the nature of AT Protocol's decentralized approach, CGS is not a requirement 
 
 It's mainly used by the Hypercerts core development team. However, because development happens in public, anyone else who wants to run against the latest bleeding-edge code is welcome to test on it as well — **as long as you understand the risks of doing so** (data may be wiped, services may be unavailable, breaking changes may ship without notice, etc.).
 
-### Checking the running version
+## Checking the running version
 
 Like the [ePDS](/architecture/epds), CGS exposes its version on two health endpoints:
 
@@ -59,7 +55,7 @@ Like the [ePDS](/architecture/epds), CGS exposes its version on two health endpo
 
 **`/xrpc/_health`** — returns the same payload. Unlike a plain AT Protocol PDS — where `/xrpc/_health` reports the upstream PDS version — CGS is its own service and is not a PDS, so both endpoints report the CGS version (`service: group-service`), not the version of the [backing PDS](/reference/certified-pdss) it proxies to. To check the backing PDS version, query that PDS's own `/xrpc/_health` directly.
 
-The test and staging instances ([`test.groups.certified.app`](https://test.groups.certified.app/health) and [`dev.groups.certified.app`](https://dev.groups.certified.app/health)) report the version today. The production instance doesn't expose the version endpoints yet; it will after its next upgrade.
+All three instances — production ([`groups.certified.app`](https://groups.certified.app/health)), staging ([`dev.groups.certified.app`](https://dev.groups.certified.app/health)), and test ([`test.groups.certified.app`](https://test.groups.certified.app/health)) — report the version on these endpoints.
 
 ## Status pages
 
