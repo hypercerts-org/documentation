@@ -3,9 +3,11 @@ title: Hypercerts Documentation
 description: Documentation for the Hypercerts Protocol — structured, verifiable records of impact work built on AT Protocol.
 ---
 
-# Hypercerts Protocol
+# Certified & Hypercerts Protocol
 
-A hypercert is a structured, verifiable record of impact work — it captures who contributed, what they did, over what time period, and in what scope, along with measurements and supporting evidence. It's a living impact certificate — as evaluations, measurements, and new contributions are added, the record grows richer over time.
+Certified is a place to record and recognize real work and impact. You publish activities, group them into projects, organize as groups, and back each other with endorsements — all on the open AT Protocol, so your account and everything you create stay portable across compatible apps instead of locked into one platform.
+
+Certified uses the Hypercerts Protocol. A hypercert is a structured, verifiable record of impact work — it captures who contributed, what they did, over what time period, and in what scope, along with measurements and supporting evidence. It's a living impact certificate — as evaluations, measurements, and new contributions are added, the record grows richer over time.
 
 ## Get started
 

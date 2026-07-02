@@ -139,6 +139,17 @@ export default function Layout({ children, frontmatter }) {
           </button>
           <Link href="/" className="layout-logo">
             <img
+              src="/images/certified_wordmark_black.svg"
+              alt="Certified"
+              className="layout-logo-wordmark layout-logo-light"
+            />
+            <img
+              src="/images/certified_wordmark_white.svg"
+              alt="Certified"
+              className="layout-logo-wordmark layout-logo-dark"
+            />
+            <span className="layout-logo-sep" aria-hidden="true" />
+            <img
               src="/images/hypercerts_logo.svg"
               alt="Hypercerts"
               className="layout-logo-icon layout-logo-light"
