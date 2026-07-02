@@ -495,6 +495,19 @@ img {
   flex-shrink: 0;
 }
 
+.layout-logo-wordmark {
+  height: 18px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.layout-logo-sep {
+  width: 1px;
+  height: 20px;
+  background: var(--color-border);
+  flex-shrink: 0;
+}
+
 .layout-logo-dark {
   display: none;
 }
