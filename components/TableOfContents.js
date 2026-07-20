@@ -17,16 +17,33 @@ export function TableOfContents() {
       return;
     }
 
-    const elements = article.querySelectorAll("h2, h3");
-    const items = Array.from(elements).map((el) => {
-      if (!el.id) {
-        el.id = el.textContent
-          .toLowerCase()
-          .replace(/[^a-z0-9]+/g, "-")
-          .replace(/(^-|-$)/g, "");
+    const elements = Array.from(article.querySelectorAll("h2, h3"));
+    const baseIds = elements.map((el) => {
+      const generatedId = el.textContent
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "");
+      return el.id || generatedId || "section";
+    });
+    const reservedIds = new Set(baseIds);
+    const usedIds = new Set();
+    const items = elements.map((el, index) => {
+      const baseId = baseIds[index];
+      let id = baseId;
+      let suffix = 2;
+
+      if (usedIds.has(id)) {
+        do {
+          id = `${baseId}-${suffix}`;
+          suffix += 1;
+        } while (usedIds.has(id) || reservedIds.has(id));
       }
+
+      usedIds.add(id);
+      if (el.id !== id) el.id = id;
+
       return {
-        id: el.id,
+        id,
         text: el.textContent,
         level: el.tagName === "H3" ? 3 : 2,
       };
