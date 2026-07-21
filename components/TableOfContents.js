@@ -8,7 +8,7 @@ export function TableOfContents() {
   const router = useRouter();
   const currentPath = router.asPath.split("#")[0].split("?")[0];
 
-  // Extract H2 and H3 headings from the DOM after render
+  // Read the IDs assigned while Markdoc renders each H2 and H3 heading.
   useEffect(() => {
     if (typeof window === "undefined") return;
     const article = document.querySelector(".layout-content article");
@@ -17,17 +17,17 @@ export function TableOfContents() {
       return;
     }
 
-    const elements = article.querySelectorAll("h2, h3");
+    const elements = article.querySelectorAll("h2[id], h3[id]");
     const items = Array.from(elements).map((el) => {
-      if (!el.id) {
-        el.id = el.textContent
-          .toLowerCase()
-          .replace(/[^a-z0-9]+/g, "-")
-          .replace(/(^-|-$)/g, "");
-      }
+      const anchor = el.querySelector(":scope > .heading-anchor");
+      const text = Array.from(el.childNodes)
+        .filter((child) => child !== anchor)
+        .map((child) => child.textContent)
+        .join("");
+
       return {
         id: el.id,
-        text: el.textContent,
+        text,
         level: el.tagName === "H3" ? 3 : 2,
       };
     });
