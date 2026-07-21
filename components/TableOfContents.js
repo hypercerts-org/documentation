@@ -8,7 +8,7 @@ export function TableOfContents() {
   const router = useRouter();
   const currentPath = router.asPath.split("#")[0].split("?")[0];
 
-  // Extract H2 and H3 headings from the DOM after render
+  // Read the IDs assigned while Markdoc renders each H2 and H3 heading.
   useEffect(() => {
     if (typeof window === "undefined") return;
     const article = document.querySelector(".layout-content article");
@@ -17,34 +17,17 @@ export function TableOfContents() {
       return;
     }
 
-    const elements = Array.from(article.querySelectorAll("h2, h3"));
-    const baseIds = elements.map((el) => {
-      const generatedId = el.textContent
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/(^-|-$)/g, "");
-      return el.id || generatedId || "section";
-    });
-    const reservedIds = new Set(baseIds);
-    const usedIds = new Set();
-    const items = elements.map((el, index) => {
-      const baseId = baseIds[index];
-      let id = baseId;
-      let suffix = 2;
-
-      if (usedIds.has(id)) {
-        do {
-          id = `${baseId}-${suffix}`;
-          suffix += 1;
-        } while (usedIds.has(id) || reservedIds.has(id));
-      }
-
-      usedIds.add(id);
-      if (el.id !== id) el.id = id;
+    const elements = article.querySelectorAll("h2[id], h3[id]");
+    const items = Array.from(elements).map((el) => {
+      const anchor = el.querySelector(":scope > .heading-anchor");
+      const text = Array.from(el.childNodes)
+        .filter((child) => child !== anchor)
+        .map((child) => child.textContent)
+        .join("");
 
       return {
-        id,
-        text: el.textContent,
+        id: el.id,
+        text,
         level: el.tagName === "H3" ? 3 : 2,
       };
     });
