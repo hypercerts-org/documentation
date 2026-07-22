@@ -6,6 +6,7 @@ import cardLink from './card-link.markdoc';
 import cardGrid from './card-grid.markdoc';
 import heroBanner from './hero-banner.markdoc';
 import br from './br.markdoc';
+import remoteDoc from './remote-doc.markdoc';
 
 export default {
   br,
@@ -16,4 +17,5 @@ export default {
   'card-link': cardLink,
   'card-grid': cardGrid,
   'hero-banner': heroBanner,
+  'remote-doc': remoteDoc,
 };

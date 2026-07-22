@@ -8,31 +8,45 @@ export function TableOfContents() {
   const router = useRouter();
   const currentPath = router.asPath.split("#")[0].split("?")[0];
 
-  // Read the IDs assigned while Markdoc renders each H2 and H3 heading.
+  // Read IDs assigned while Markdoc renders each heading and update when runtime docs load.
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === "undefined") return undefined;
     const article = document.querySelector(".layout-content article");
     if (!article) {
       setHeadings([]);
-      return;
+      return undefined;
     }
 
-    const elements = article.querySelectorAll("h2[id], h3[id]");
-    const items = Array.from(elements).map((el) => {
-      const anchor = el.querySelector(":scope > .heading-anchor");
-      const text = Array.from(el.childNodes)
-        .filter((child) => child !== anchor)
-        .map((child) => child.textContent)
-        .join("");
+    const collectHeadings = () => {
+      const elements = article.querySelectorAll("h2[id], h3[id], h4[id]");
+      const items = Array.from(elements).map((el) => {
+        const anchor = el.querySelector(":scope > .heading-anchor");
+        const text = Array.from(el.childNodes)
+          .filter((child) => child !== anchor)
+          .map((child) => child.textContent)
+          .join("");
 
-      return {
-        id: el.id,
-        text,
-        level: el.tagName === "H3" ? 3 : 2,
-      };
-    });
-    setHeadings(items);
-    setActiveId("");
+        return {
+          id: el.id,
+          text,
+          level: Number(el.tagName.slice(1)),
+        };
+      });
+      setHeadings(items);
+      setActiveId("");
+    };
+
+    collectHeadings();
+
+    const observer = new MutationObserver(collectHeadings);
+    observer.observe(article, { childList: true, subtree: true });
+    window.addEventListener("remote-docs:loaded", collectHeadings);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("remote-docs:loaded", collectHeadings);
+    };
+  }, [currentPath]);
   }, [currentPath]);
 
   // Scroll spy using scroll position
@@ -94,8 +108,8 @@ export function TableOfContents() {
             <a
               href={`#${id}`}
               className={`toc-link${level === 3 ? " toc-link-h3" : ""}${
-                activeId === id ? " toc-link-active" : ""
-              }`}
+                level === 4 ? " toc-link-h4" : ""
+              }${activeId === id ? " toc-link-active" : ""}`}
               onClick={(e) => {
                 e.preventDefault();
                 const target = document.getElementById(id);

@@ -1,18 +1,22 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
-function getRawUrl(currentPath) {
+function getGeneratedRawUrl(currentPath) {
   if (currentPath === '/') return '/raw/index.md';
   return `/raw${currentPath}.md`;
 }
 
-export function CopyRawButton() {
+/**
+ * Render page-level actions for copying or viewing the Markdown source for the current docs page.
+ * Pages that render canonical Markdown from another repository can set `rawUrl` in frontmatter so these actions use that source instead of the generated local fallback.
+ */
+export function CopyRawButton({ frontmatter }) {
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
   const [isCopying, setIsCopying] = useState(false);
   const router = useRouter();
   const currentPath = router.asPath.split('#')[0].split('?')[0] || '/';
-  const rawUrl = getRawUrl(currentPath);
+  const rawUrl = frontmatter?.rawUrl || getGeneratedRawUrl(currentPath);
 
   const handleCopy = async () => {
     setIsCopying(true);
