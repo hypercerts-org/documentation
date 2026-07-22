@@ -1,0 +1,103 @@
+name: External docs refresh dry run (temporary)
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/docs-refresh*.yml'
+      - 'docs-sources.yml'
+      - 'docs/remote-markdown.md'
+      - 'lib/external-docs.js'
+      - 'lib/generate-docs-fingerprint.js'
+      - 'lib/generate-external-docs-manifest.js'
+      - 'lib/compare-docs-fingerprint.js'
+      - 'package.json'
+      - 'package-lock.json'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: external-docs-refresh-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  dry-run:
+    name: Compare external docs fingerprints without deploying
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout docs repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate external docs manifest generation
+        run: npm run generate:external-docs
+
+      - name: Generate current docs fingerprint
+        run: npm run docs:fingerprint -- --output /tmp/current-docs-fingerprint.json
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Download deployed docs fingerprint
+        env:
+          DOCS_FINGERPRINT_URL: ${{ vars.DOCS_FINGERPRINT_URL || 'https://documentation-zeta-weld.vercel.app/docs-fingerprint.json' }}
+        run: |
+          set +e
+          http_code=$(curl -sS -L -w "%{http_code}" \
+            -o /tmp/deployed-docs-fingerprint.json \
+            "$DOCS_FINGERPRINT_URL")
+          curl_status=$?
+          set -e
+
+          if [ "$curl_status" -ne 0 ]; then
+            echo "::error::Failed to download deployed docs fingerprint from $DOCS_FINGERPRINT_URL. Dry-run cannot compare against deployed state."
+            exit 1
+          fi
+
+          case "$http_code" in
+            200)
+              ;;
+            404)
+              echo '{}' > /tmp/deployed-docs-fingerprint.json
+              ;;
+            *)
+              echo "::error::Unexpected HTTP $http_code while downloading $DOCS_FINGERPRINT_URL. Dry-run cannot compare against deployed state."
+              exit 1
+              ;;
+          esac
+
+      - name: Compare fingerprints
+        id: diff
+        run: |
+          node lib/compare-docs-fingerprint.js \
+            /tmp/current-docs-fingerprint.json \
+            /tmp/deployed-docs-fingerprint.json >> "$GITHUB_OUTPUT"
+
+      - name: Report dry-run result
+        run: |
+          if [ "${{ steps.diff.outputs.changed }}" = "true" ]; then
+            echo "::notice::External docs fingerprint differs from the deployed site. The production workflow would trigger the Vercel deploy hook."
+          else
+            echo "::notice::External docs fingerprint matches the deployed site. The production workflow would do nothing."
+          fi
+
+          {
+            echo "### External docs refresh dry run"
+            echo ""
+            echo "This temporary PR-only workflow never calls the Vercel deploy hook."
+            echo ""
+            echo "Changed: ${{ steps.diff.outputs.changed || 'unknown' }}"
+            echo "Reason: ${{ steps.diff.outputs.reason || 'not computed' }}"
+            echo "Current: ${{ steps.diff.outputs.current_fingerprint || 'n/a' }}"
+            echo "Deployed: ${{ steps.diff.outputs.deployed_fingerprint || 'n/a' }}"
+          } >> "$GITHUB_STEP_SUMMARY"

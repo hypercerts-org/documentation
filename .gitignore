@@ -6,6 +6,10 @@ out/
 
 # Generated at build time by lib/generate-*.js — no need to track
 public/raw/
+public/external-docs.json
+public/docs-fingerprint.json
 public/search-index.json
 public/sitemap.xml
+current-docs-fingerprint.json
+deployed-docs-fingerprint.json
 lib/lastUpdated.json

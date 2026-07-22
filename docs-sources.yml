@@ -1,0 +1,8 @@
+sources:
+  - id: epds
+    title: ePDS
+    repo: hypercerts-org/ePDS
+    branch: main
+    docsPath: docs
+    entrypoint: tutorial.md
+    routeBase: /architecture/epds

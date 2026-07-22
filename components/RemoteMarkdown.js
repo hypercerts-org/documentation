@@ -17,6 +17,8 @@ import { CardGrid } from './CardGrid';
 import { MermaidDiagram } from './MermaidDiagram';
 
 const SOURCE_ORG = 'hypercerts-org';
+const EXTERNAL_DOCS_MANIFEST_URL = '/external-docs.json';
+let externalDocsManifestPromise = null;
 const RemoteMarkdownContext = React.createContext(null);
 
 const markdocConfig = {
@@ -66,6 +68,75 @@ function resolveGitHubMarkdownSource(source) {
   }
 
   throw new Error('Remote docs can only be loaded from github.com or raw.githubusercontent.com.');
+}
+
+function isHttpUrl(source) {
+  try {
+    const url = new URL(source);
+    return url.protocol === 'https:' || url.protocol === 'http:';
+  } catch {
+    return false;
+  }
+}
+
+function throwIfAborted(signal) {
+  if (!signal?.aborted) return;
+  const error = new Error('Aborted');
+  error.name = 'AbortError';
+  throw error;
+}
+
+async function loadExternalDocsManifest() {
+  if (!externalDocsManifestPromise) {
+    externalDocsManifestPromise = fetch(EXTERNAL_DOCS_MANIFEST_URL, {
+      cache: 'no-store',
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`${EXTERNAL_DOCS_MANIFEST_URL} returned ${response.status} ${response.statusText || 'without an external docs manifest'}. Run npm run generate:external-docs before starting the docs site.`);
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        externalDocsManifestPromise = null;
+        throw error;
+      });
+  }
+
+  return externalDocsManifestPromise;
+}
+
+function resolveRegisteredMarkdownSource(source, manifest) {
+  const id = String(source || '').trim();
+  if (!/^[a-z0-9][a-z0-9-]*$/.test(id)) {
+    throw new Error('Remote doc source must be a GitHub URL or a docs-sources.yml id like "epds".');
+  }
+
+  const entry = manifest?.sources?.[id];
+  if (!entry) {
+    throw new Error(`No external docs source "${id}" was found in ${EXTERNAL_DOCS_MANIFEST_URL}. Add it to docs-sources.yml and rebuild.`);
+  }
+
+  const [owner, repo] = String(entry.repo || '').split('/');
+  if (owner?.toLowerCase() !== SOURCE_ORG || !repo || !entry.branch || !entry.filePath || !entry.rawUrl || !entry.sourceUrl) {
+    throw new Error(`External docs source "${id}" is incomplete. Set repo, branch, docsPath, and entrypoint in docs-sources.yml, then rebuild.`);
+  }
+
+  return {
+    sourceUrl: entry.sourceUrl,
+    rawUrl: entry.rawUrl,
+    owner,
+    repo,
+    ref: entry.branch,
+    filePath: entry.filePath,
+  };
+}
+
+async function resolveMarkdownSource(source, signal) {
+  if (isHttpUrl(source)) return resolveGitHubMarkdownSource(source);
+  const manifest = await loadExternalDocsManifest();
+  throwIfAborted(signal);
+  return resolveRegisteredMarkdownSource(source, manifest);
 }
 
 /**
@@ -160,31 +231,31 @@ export function RemoteMarkdown({ source, children }) {
   const [markdown, setMarkdown] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const sourceState = useMemo(() => {
-    try {
-      return { sourceInfo: resolveGitHubMarkdownSource(source), sourceError: null };
-    } catch (err) {
-      return { sourceInfo: null, sourceError: err };
-    }
-  }, [source]);
-  const { sourceInfo, sourceError } = sourceState;
+  const [sourceInfo, setSourceInfo] = useState(null);
 
   useEffect(() => {
-    if (!sourceInfo) {
-      setIsLoading(false);
-      return undefined;
-    }
-
     const controller = new AbortController();
     setMarkdown(null);
     setError(null);
+    setSourceInfo(null);
     setIsLoading(true);
 
     async function loadRemoteMarkdown() {
+      let nextSourceInfo;
+
+      try {
+        nextSourceInfo = await resolveMarkdownSource(source, controller.signal);
+        setSourceInfo(nextSourceInfo);
+      } catch (err) {
+        if (err.name === 'AbortError') return;
+        setError(err);
+        return;
+      }
+
       let githubError = null;
 
       try {
-        const nextMarkdown = await fetchMarkdown(sourceInfo.rawUrl, controller.signal, 'GitHub');
+        const nextMarkdown = await fetchMarkdown(nextSourceInfo.rawUrl, controller.signal, 'GitHub');
         transformMarkdown(nextMarkdown);
         setMarkdown(nextMarkdown);
         return;
@@ -210,7 +281,7 @@ export function RemoteMarkdown({ source, children }) {
     });
 
     return () => controller.abort();
-  }, [rawCacheUrl, sourceInfo]);
+  }, [rawCacheUrl, source]);
 
   const renderedState = useMemo(() => {
     if (!markdown || !sourceInfo) return { renderedContent: null, renderError: null };
@@ -228,7 +299,7 @@ export function RemoteMarkdown({ source, children }) {
     }
   }, [markdown, sourceInfo]);
   const { renderedContent, renderError } = renderedState;
-  const displayError = error || sourceError || renderError;
+  const displayError = error || renderError;
 
   useEffect(() => {
     if (!renderedContent) return undefined;
@@ -260,7 +331,7 @@ export function RemoteMarkdown({ source, children }) {
     <>
       <div className="remote-doc-status remote-doc-status--error" role="alert">
         <strong>Could not load the canonical docs.</strong>{' '}
-        The browser could not load the live GitHub raw file or the build-time raw cache. Showing the local fallback below. Try refreshing, or edit{' '}
+        The browser could not load the registered source, the live GitHub raw file, or the build-time raw cache. Showing the local fallback below. Try refreshing, or edit{' '}
         {sourceInfo ? (
           <a href={sourceInfo.sourceUrl} target="_blank" rel="noopener noreferrer">the source file</a>
         ) : (
