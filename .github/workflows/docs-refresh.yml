@@ -30,10 +30,12 @@ jobs:
 
     steps:
       - name: Checkout docs repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6.0.2
+        with:
+          persist-credentials: false
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6.4.0
         with:
           node-version: 22
           cache: npm
@@ -49,7 +51,7 @@ jobs:
 
       - name: Download deployed docs fingerprint
         env:
-          DOCS_FINGERPRINT_URL: ${{ vars.DOCS_FINGERPRINT_URL || 'https://documentation-zeta-weld.vercel.app/docs-fingerprint.json' }}
+          DOCS_FINGERPRINT_URL: ${{ vars.DOCS_FINGERPRINT_URL || 'https://staging.docs.hypercerts.org/docs-fingerprint.json' }}
         run: |
           set +e
           http_code=$(curl -sS -L -w "%{http_code}" \
@@ -109,13 +111,19 @@ jobs:
 
       - name: Write summary
         if: always()
+        env:
+          DIFF_CHANGED: ${{ steps.diff.outputs.changed || 'unknown' }}
+          DIFF_REASON: ${{ steps.diff.outputs.reason || 'not computed' }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run == true }}
+          CURRENT_FINGERPRINT: ${{ steps.diff.outputs.current_fingerprint || 'n/a' }}
+          DEPLOYED_FINGERPRINT: ${{ steps.diff.outputs.deployed_fingerprint || 'n/a' }}
         run: |
           {
             echo "### External docs refresh"
             echo ""
-            echo "Changed: ${{ steps.diff.outputs.changed || 'unknown' }}"
-            echo "Reason: ${{ steps.diff.outputs.reason || 'not computed' }}"
-            echo "Dry run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run == true }}"
-            echo "Current: ${{ steps.diff.outputs.current_fingerprint || 'n/a' }}"
-            echo "Deployed: ${{ steps.diff.outputs.deployed_fingerprint || 'n/a' }}"
+            echo "Changed: $DIFF_CHANGED"
+            echo "Reason: $DIFF_REASON"
+            echo "Dry run: $DRY_RUN"
+            echo "Current: $CURRENT_FINGERPRINT"
+            echo "Deployed: $DEPLOYED_FINGERPRINT"
           } >> "$GITHUB_STEP_SUMMARY"

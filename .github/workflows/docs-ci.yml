@@ -1,0 +1,58 @@
+name: Docs CI
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/docs*.yml'
+      - 'docs-sources.yml'
+      - 'docs/remote-markdown.md'
+      - 'components/**'
+      - 'lib/external-docs*.js'
+      - 'lib/generate-docs-fingerprint.js'
+      - 'lib/generate-external-docs-manifest.js'
+      - 'lib/generate-raw-pages.js'
+      - 'lib/generate-search-index.js'
+      - 'lib/compare-docs-fingerprint.js'
+      - 'markdoc/**'
+      - 'next.config.js'
+      - 'pages/**'
+      - 'test/**'
+      - 'package.json'
+      - 'package-lock.json'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-ci-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: Test and build documentation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout docs repo
+        uses: actions/checkout@v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v6.4.0
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build static documentation
+        run: npm run build
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
