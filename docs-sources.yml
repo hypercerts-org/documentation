@@ -1,12 +1,12 @@
 sources:
-  - id: epds
+  - id: epds-architecture
     title: ePDS
     repo: hypercerts-org/ePDS
     ref: main
-    path: docs/tutorial.md
+    path: docs/architecture.md
 
-  - id: hyperindex-test
-    title: Hyperindex test source
+  - id: hyperindex
+    title: Hyperindex
     repo: gainforest/hyperindex
-    ref: skills-update
+    ref: main
     path: docs/hyperindex.md

@@ -48,11 +48,11 @@ Add the file to `docs-sources.yml`:
 
 ```yaml
 sources:
-  - id: epds
+  - id: epds-architecture
     title: ePDS
     repo: hypercerts-org/ePDS
     ref: main
-    path: docs/tutorial.md
+    path: docs/architecture.md
 ```
 
 - `id` is the stable lowercase identifier used by pages.
@@ -71,7 +71,7 @@ Set `externalDoc` in a frontmatter-only page:
 ---
 title: ePDS (extended PDS)
 description: How to integrate applications with ePDS login.
-externalDoc: epds
+externalDoc: epds-architecture
 ---
 ```
 
