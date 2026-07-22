@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/router";
+import { createUniqueHeadingIds } from "../lib/heading-ids.mjs";
 
 export function TableOfContents() {
   const [headings, setHeadings] = useState([]);
@@ -16,8 +17,13 @@ export function TableOfContents() {
       return;
     }
 
-    const elements = article.querySelectorAll("h2[id], h3[id], h4[id]");
-    const items = Array.from(elements).map((el) => {
+    const elements = Array.from(article.querySelectorAll("h2, h3, h4"));
+    const ids = createUniqueHeadingIds(
+      elements.map((el) => ({ id: el.id, text: el.textContent })),
+    );
+    const items = elements.map((el, index) => {
+      const id = ids[index];
+      if (el.id !== id) el.id = id;
       const anchor = el.querySelector(":scope > .heading-anchor");
       const text = Array.from(el.childNodes)
         .filter((child) => child !== anchor)
@@ -25,7 +31,7 @@ export function TableOfContents() {
         .join("");
 
       return {
-        id: el.id,
+        id,
         text,
         level: Number(el.tagName.slice(1)),
       };
