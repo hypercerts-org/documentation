@@ -2,6 +2,46 @@
 
 Use an external documentation page when one Markdown file in a service repository is the canonical source for a route on this site. External files are fetched before the static build; browsers never fetch the page Markdown.
 
+## Workflow overview
+
+```mermaid
+flowchart TD
+    A["Register each external Markdown file<br/>in docs-sources.yml"]
+    A --> B["Create a frontmatter-only docs page<br/>externalDoc: source-id"]
+
+    subgraph Build["Documentation build"]
+        C["npm run build"]
+        C --> D["npm run generate"]
+        D --> E["generate:external-docs"]
+        E --> F["Fetch registered Markdown files<br/>through the GitHub Contents API"]
+        F --> G["Store immutable build snapshot<br/>lib/external-docs-content.json"]
+        G --> H["Generate search index, raw pages,<br/>metadata, and sitemap"]
+        H --> I["Generate public fingerprint<br/>public/docs-fingerprint.json"]
+        I --> J["next build"]
+
+        B --> J
+        G --> K["external-docs-loader reads the snapshot<br/>and injects the cached Markdown"]
+        J --> K
+        K --> L["Markdoc compiles the page"]
+        L --> M["Export static documentation site"]
+        M --> N["Deploy site and fingerprint<br/>browser never fetches GitHub"]
+    end
+
+    subgraph Refresh["External documentation refresh"]
+        O["GitHub Action runs<br/>hourly or by manual dispatch"]
+        O --> P["Fetch current registered Markdown<br/>from GitHub"]
+        P --> Q["Generate current combined fingerprint"]
+        Q --> R["Download deployed fingerprint<br/>from /docs-fingerprint.json"]
+        R --> S{"Do the fingerprints differ?"}
+
+        S -->|No| T["Do nothing<br/>deployed documentation is current"]
+        S -->|Yes| U["Call Vercel deploy hook"]
+        U --> V["Vercel starts a new build"]
+    end
+
+    V --> C
+```
+
 ## Register a source
 
 Add the file to `docs-sources.yml`:
@@ -55,7 +95,7 @@ A missing source, failed content request, empty file, local fallback body, or in
 
 `.github/workflows/docs-refresh.yml` runs hourly and can also be dispatched manually. It fetches the registered files, compares their combined fingerprint with the deployed site, and calls the configured Vercel deploy hook when they differ. Manual runs default to dry-run mode.
 
-`.github/workflows/docs-refresh-pr-dry-run.yml` builds and compares fingerprints on relevant pull requests without calling a deploy hook.
+`.github/workflows/docs-ci.yml` runs tests and builds the static documentation on relevant pull requests targeting `main`; it does not call a deploy hook.
 
 Configuration:
 
