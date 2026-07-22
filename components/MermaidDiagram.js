@@ -1,25 +1,38 @@
 import { useEffect, useMemo, useState } from 'react';
 import { CodeBlock } from './CodeBlock';
 
+/** Cached Mermaid module load shared by every diagram on the current page. */
 let mermaidModulePromise;
+/** Monotonic counter used to give Mermaid render targets unique DOM identifiers. */
 let diagramIdCounter = 0;
 
+/**
+ * Load Mermaid once per browser session while allowing a failed chunk load to be retried.
+ */
 function getMermaid() {
   if (!mermaidModulePromise) {
-    mermaidModulePromise = import('mermaid').then((module) => {
-      const mermaid = module.default || module;
-      return mermaid;
-    });
+    mermaidModulePromise = import('mermaid')
+      .then((module) => module.default || module)
+      .catch((error) => {
+        mermaidModulePromise = undefined;
+        throw error;
+      });
   }
 
   return mermaidModulePromise;
 }
 
+/**
+ * Allocate a unique identifier for one Mermaid render target.
+ */
 function getDiagramId() {
   diagramIdCounter += 1;
   return `mermaid-diagram-${diagramIdCounter}`;
 }
 
+/**
+ * Select the Mermaid theme that matches the current documentation color scheme.
+ */
 function getPreferredMermaidTheme() {
   if (typeof document !== 'undefined' && document.documentElement.classList.contains('dark')) {
     return 'dark';
@@ -41,6 +54,7 @@ export function MermaidDiagram({ chart, children }) {
   const [theme, setTheme] = useState('neutral');
 
   useEffect(() => {
+    /** Synchronize the diagram theme when the page color-scheme class changes. */
     const updateTheme = () => setTheme(getPreferredMermaidTheme());
     updateTheme();
 
@@ -62,6 +76,9 @@ export function MermaidDiagram({ chart, children }) {
     setError(null);
     setSvg('');
 
+    /**
+     * Render the current source with Mermaid unless this React effect has been cancelled.
+     */
     async function renderDiagram() {
       try {
         const mermaid = await getMermaid();

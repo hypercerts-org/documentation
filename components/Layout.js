@@ -212,7 +212,7 @@ export default function Layout({ children, frontmatter }) {
 
         <main className="layout-content" id="main-content">
           <Breadcrumbs />
-          {frontmatter && <CopyRawButton frontmatter={frontmatter} />}
+          {frontmatter && <CopyRawButton />}
           <LastUpdated />
           <article>{children}</article>
 

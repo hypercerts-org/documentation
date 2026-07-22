@@ -1153,26 +1153,6 @@ a.sidebar-link-active:hover {
   color: var(--color-text-secondary);
 }
 
-.remote-doc-status {
-  margin-bottom: var(--space-6);
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-bg-subtle);
-  color: var(--color-text-secondary);
-  font-size: 0.875rem;
-  line-height: 1.5;
-}
-
-.remote-doc-status--error {
-  border-color: var(--color-warning);
-  background: var(--color-warning-bg);
-  color: var(--color-text-primary);
-}
-
-.remote-doc-status--error strong {
-  color: var(--color-text-heading);
-}
 /* ===== Pagination ===== */
 .pagination {
   display: flex;

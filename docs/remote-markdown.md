@@ -1,78 +1,65 @@
-# Runtime remote Markdown
+# Build-time external documentation
 
-Use the `{% remote-doc %}` Markdoc tag when a page should render canonical Markdown from a Hypercerts service repository without copying that Markdown into this documentation repo.
+Use an external documentation page when one Markdown file in a service repository is the canonical source for a route on this site. External files are fetched before the static build; browsers never fetch the page Markdown.
 
-Register the source once in `docs-sources.yml`:
+## Register a source
+
+Add the file to `docs-sources.yml`:
 
 ```yaml
 sources:
   - id: epds
     title: ePDS
     repo: hypercerts-org/ePDS
-    branch: main
-    docsPath: docs
-    entrypoint: tutorial.md
-    routeBase: /architecture/epds
+    ref: main
+    path: docs/tutorial.md
 ```
 
-Then reference that registry id from the page:
+- `id` is the stable lowercase identifier used by pages.
+- `title` identifies the source in generated fingerprint metadata.
+- `repo` is the GitHub `owner/repository` pair.
+- `ref` is the branch, tag, or commit to fetch.
+- `path` is one `.md`, `.mdoc`, or `.mdx` file in that repository.
+
+GitHub API request and browser URLs are derived internally. Do not add URLs, directory paths, or separate entrypoints to the registry.
+
+## Create the page
+
+Set `externalDoc` in a frontmatter-only page:
 
 ```md
 ---
 title: ePDS (extended PDS)
+description: How to integrate applications with ePDS login.
 externalDoc: epds
 ---
-
-{% remote-doc source="epds" %}
-
-A short unavailable-state fallback goes here. Keep it brief so the documentation repo does not become a second source of truth.
-
-{% /remote-doc %}
 ```
 
-## How it works
+Do not add a local Markdown body. The registered file is the only page body, which prevents stale fallback content from diverging from rendering, search, or `/raw` exports.
 
-- The site remains a static Next.js export.
-- `npm run generate:external-docs` reads `docs-sources.yml` and writes `/external-docs.json` for browser components.
-- The browser resolves `{% remote-doc source="epds" %}` through `/external-docs.json`, then fetches the source file from `raw.githubusercontent.com` at runtime first.
-- If the live GitHub fetch fails, the browser falls back to the build-time copy in `/raw`.
-- Build-time search and raw-page generation use `externalDoc` frontmatter, so search and `/raw` use the canonical Markdown instead of the local fallback.
-- The fetched Markdown is parsed with the same Markdoc tags and nodes used by local pages.
-- Fenced `mermaid` diagrams render as SVGs in the browser through the Mermaid npm package.
-- Relative links in the remote Markdown point back to the source GitHub repository.
-- `Copy raw` and `View raw` use the page's registered `externalDoc` source when it is set.
-- The wrapped local Markdown is the last-resort fallback content. Keep it to a short unavailable-state message, not a copy of the canonical docs.
+## Build behavior
 
-## Scheduled refresh and deploys
+`npm run generate:external-docs` fetches every registered file once through the GitHub contents API and writes `lib/external-docs-content.json`. The static build then uses that immutable snapshot for:
 
-`npm run docs:fingerprint` reads `docs-sources.yml`, fetches GitHub tree metadata for each registered `docsPath`, and writes `public/docs-fingerprint.json` during the static build. The generated file includes a stable `combinedFingerprint`; timestamps are ignored by the comparison script.
+- Markdoc page rendering;
+- search indexing;
+- local `/raw` page exports;
+- last-updated metadata;
+- deployed external-docs fingerprints.
 
-`.github/workflows/docs-refresh.yml` runs hourly and through `workflow_dispatch`:
+External Markdown is parsed with the same Markdoc configuration as local pages. Relative links point to the source repository, relative images use public GitHub content URLs, and fenced `mermaid` diagrams render through the Mermaid component. Extensionless relative paths are treated as directories; link to extensionless files such as `LICENSE`, `Dockerfile`, or `Makefile` with an absolute GitHub URL.
 
-1. Generate the current external-docs fingerprint.
-2. Download the deployed fingerprint from `DOCS_FINGERPRINT_URL`, defaulting to `https://documentation-zeta-weld.vercel.app/docs-fingerprint.json`.
-3. Compare only `combinedFingerprint`.
-4. If it changed, `POST` to the configured Vercel Deploy Hook.
+A missing source, failed content request, empty file, local fallback body, or invalid Markdoc in an external page fails the build with an actionable error. The existing deployment remains online instead of publishing stale or inconsistent content. Source commit timestamps are informational and may be omitted when GitHub cannot provide them.
 
-Manual `workflow_dispatch` runs default to `dry_run: true`, which compares fingerprints without calling the Vercel hook. Set `dry_run: false` when you want the manual run to deploy. GitHub only accepts `workflow_dispatch` and scheduled runs once the workflow file exists on the default branch. The workflow only treats a deployed-fingerprint `404` as missing first-run state; transient download failures fail the workflow instead of deploying on an unknown diff.
+## Refresh workflow
 
-`.github/workflows/docs-refresh-pr-dry-run.yml` is a temporary PR-only check for this rollout. It runs the same manifest and fingerprint comparison on pull requests, writes a summary, and never calls the Vercel deploy hook.
+`.github/workflows/docs-refresh.yml` runs hourly and can also be dispatched manually. It fetches the registered files, compares their combined fingerprint with the deployed site, and calls the configured Vercel deploy hook when they differ. Manual runs default to dry-run mode.
 
-Required GitHub Actions secret:
+`.github/workflows/docs-refresh-pr-dry-run.yml` builds and compares fingerprints on relevant pull requests without calling a deploy hook.
 
-- `VERCEL_DEPLOY_HOOK_URL` — the Vercel Deploy Hook URL for the production docs branch.
+Configuration:
 
-Optional GitHub Actions variable:
-
-- `DOCS_FINGERPRINT_URL` — the deployed site fingerprint URL. Forks and staging deployments should set this to their own Vercel URL, for example `https://your-test-docs.vercel.app/docs-fingerprint.json`.
-
-Optional GitHub Actions secret:
-
-- `DOCS_SOURCE_TOKEN` — a GitHub token with read access to source repos. Public repos can use the workflow `GITHUB_TOKEN`, but this avoids API rate limits and is required if a source repo becomes private.
-
-## Constraints
-
-- Sources must be in `hypercerts-org` GitHub repositories.
-- Registry ids must be lowercase, for example `epds` or `certified-group-service`.
-- A source needs `entrypoint` when `docsPath` points at a directory and a page renders it through `{% remote-doc %}`.
-- The current page renderer is browser-runtime fetching, not server-side rendering.
+- `VERCEL_DEPLOY_HOOK_URL` is required before deployment is enabled.
+- `DOCS_FINGERPRINT_URL` optionally selects the deployed fingerprint to compare.
+- `DOCS_SOURCE_TOKEN` optionally grants source-repository access and additional GitHub API capacity. It is required for private repositories.
+- `DOCS_ALLOWED_SOURCE_ORGS` optionally overrides the comma-separated trusted-owner allowlist. It defaults to `hypercerts-org,gainforest`.

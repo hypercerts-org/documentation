@@ -8,45 +8,30 @@ export function TableOfContents() {
   const router = useRouter();
   const currentPath = router.asPath.split("#")[0].split("?")[0];
 
-  // Read IDs assigned while Markdoc renders each heading and update when runtime docs load.
+  // Read IDs assigned while Markdoc renders each heading after route changes.
   useEffect(() => {
-    if (typeof window === "undefined") return undefined;
     const article = document.querySelector(".layout-content article");
     if (!article) {
       setHeadings([]);
-      return undefined;
+      return;
     }
 
-    const collectHeadings = () => {
-      const elements = article.querySelectorAll("h2[id], h3[id], h4[id]");
-      const items = Array.from(elements).map((el) => {
-        const anchor = el.querySelector(":scope > .heading-anchor");
-        const text = Array.from(el.childNodes)
-          .filter((child) => child !== anchor)
-          .map((child) => child.textContent)
-          .join("");
+    const elements = article.querySelectorAll("h2[id], h3[id], h4[id]");
+    const items = Array.from(elements).map((el) => {
+      const anchor = el.querySelector(":scope > .heading-anchor");
+      const text = Array.from(el.childNodes)
+        .filter((child) => child !== anchor)
+        .map((child) => child.textContent)
+        .join("");
 
-        return {
-          id: el.id,
-          text,
-          level: Number(el.tagName.slice(1)),
-        };
-      });
-      setHeadings(items);
-      setActiveId("");
-    };
-
-    collectHeadings();
-
-    const observer = new MutationObserver(collectHeadings);
-    observer.observe(article, { childList: true, subtree: true });
-    window.addEventListener("remote-docs:loaded", collectHeadings);
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("remote-docs:loaded", collectHeadings);
-    };
-  }, [currentPath]);
+      return {
+        id: el.id,
+        text,
+        level: Number(el.tagName.slice(1)),
+      };
+    });
+    setHeadings(items);
+    setActiveId("");
   }, [currentPath]);
 
   // Scroll spy using scroll position

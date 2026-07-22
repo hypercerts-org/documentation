@@ -2,7 +2,11 @@ sources:
   - id: epds
     title: ePDS
     repo: hypercerts-org/ePDS
-    branch: main
-    docsPath: docs
-    entrypoint: tutorial.md
-    routeBase: /architecture/epds
+    ref: main
+    path: docs/tutorial.md
+
+  - id: hyperindex-test
+    title: Hyperindex test source
+    repo: gainforest/hyperindex
+    ref: skills-update
+    path: docs/hyperindex.md

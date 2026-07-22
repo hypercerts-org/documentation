@@ -4,9 +4,10 @@
   "private": true,
   "description": "Hypercerts Protocol Documentation",
   "scripts": {
+    "test": "node --test",
     "generate:external-docs": "node lib/generate-external-docs-manifest.js",
     "docs:fingerprint": "node lib/generate-docs-fingerprint.js",
-    "generate": "npm run generate:external-docs && node lib/generate-search-index.js && node lib/generate-last-updated.js && node lib/generate-sitemap.js && node lib/generate-raw-pages.js && npm run docs:fingerprint",
+    "generate": "npm run generate:external-docs && node lib/generate-search-index.js && node lib/generate-last-updated.js && node lib/generate-sitemap.js && node lib/generate-raw-pages.js && npm run docs:fingerprint -- --content lib/external-docs-content.json",
     "dev": "npm run generate && next dev --webpack",
     "build": "npm run generate && next build --webpack",
     "start": "next start"

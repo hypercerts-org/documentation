@@ -1,5 +1,8 @@
 import { Tag } from "@markdoc/markdoc";
 
+/**
+ * Normalize a fence language declaration to the first lowercase language token.
+ */
 function getFenceLanguage(language) {
   return String(language || "")
     .trim()
@@ -23,6 +26,9 @@ const fence = {
       default: true,
     },
   },
+  /**
+   * Route Mermaid fences to the diagram component and preserve the normal code-block path for other languages.
+   */
   transform(node, config) {
     const attributes = node.transformAttributes(config);
 

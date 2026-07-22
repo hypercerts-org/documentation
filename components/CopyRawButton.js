@@ -1,59 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 
-const EXTERNAL_DOCS_MANIFEST_URL = '/external-docs.json';
-
+/**
+ * Map a documentation route to the generated local Markdown artifact used by page actions.
+ */
 function getGeneratedRawUrl(currentPath) {
   if (currentPath === '/') return '/raw/index.md';
   return `/raw${currentPath}.md`;
 }
 
-async function getExternalDocRawUrl(externalDoc, signal) {
-  const response = await fetch(EXTERNAL_DOCS_MANIFEST_URL, {
-    cache: 'no-store',
-    signal,
-  });
-
-  if (!response.ok) {
-    throw new Error(`Could not load ${EXTERNAL_DOCS_MANIFEST_URL}. Run npm run generate:external-docs before starting the docs site.`);
-  }
-
-  const manifest = await response.json();
-  const rawUrl = manifest?.sources?.[externalDoc]?.rawUrl;
-  if (!rawUrl) {
-    throw new Error(`External docs source "${externalDoc}" does not define a raw Markdown URL.`);
-  }
-
-  return rawUrl;
-}
-
 /**
- * Render page-level actions for copying or viewing the Markdown source for the current docs page.
- * Pages that render canonical Markdown from another repository can set `externalDoc` in frontmatter so these actions use the registry source instead of the generated local fallback.
+ * Render page-level actions for copying or viewing the generated Markdown for the current docs page.
+ * External docs are included in the same local /raw output as ordinary pages.
  */
-export function CopyRawButton({ frontmatter }) {
+export function CopyRawButton() {
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
   const [isCopying, setIsCopying] = useState(false);
-  const [externalRawUrl, setExternalRawUrl] = useState(null);
   const router = useRouter();
   const currentPath = router.asPath.split('#')[0].split('?')[0] || '/';
-  const generatedRawUrl = getGeneratedRawUrl(currentPath);
-  const rawUrl = frontmatter?.rawUrl || externalRawUrl || generatedRawUrl;
-
-  useEffect(() => {
-    if (!frontmatter?.externalDoc || frontmatter?.rawUrl) {
-      setExternalRawUrl(null);
-      return undefined;
-    }
-
-    const controller = new AbortController();
-    getExternalDocRawUrl(frontmatter.externalDoc, controller.signal)
-      .then(setExternalRawUrl)
-      .catch(() => setExternalRawUrl(null));
-
-    return () => controller.abort();
-  }, [frontmatter?.externalDoc, frontmatter?.rawUrl]);
+  const rawUrl = getGeneratedRawUrl(currentPath);
 
   const handleCopy = async () => {
     setIsCopying(true);
