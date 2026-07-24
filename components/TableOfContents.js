@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/router";
+import { createUniqueHeadingIds } from "../lib/heading-ids.mjs";
 
 export function TableOfContents() {
   const [headings, setHeadings] = useState([]);
@@ -8,17 +9,21 @@ export function TableOfContents() {
   const router = useRouter();
   const currentPath = router.asPath.split("#")[0].split("?")[0];
 
-  // Read the IDs assigned while Markdoc renders each H2 and H3 heading.
+  // Read IDs assigned while Markdoc renders each heading after route changes.
   useEffect(() => {
-    if (typeof window === "undefined") return;
     const article = document.querySelector(".layout-content article");
     if (!article) {
       setHeadings([]);
       return;
     }
 
-    const elements = article.querySelectorAll("h2[id], h3[id]");
-    const items = Array.from(elements).map((el) => {
+    const elements = Array.from(article.querySelectorAll("h2, h3, h4"));
+    const ids = createUniqueHeadingIds(
+      elements.map((el) => ({ id: el.id, text: el.textContent })),
+    );
+    const items = elements.map((el, index) => {
+      const id = ids[index];
+      if (el.id !== id) el.id = id;
       const anchor = el.querySelector(":scope > .heading-anchor");
       const text = Array.from(el.childNodes)
         .filter((child) => child !== anchor)
@@ -26,9 +31,9 @@ export function TableOfContents() {
         .join("");
 
       return {
-        id: el.id,
+        id,
         text,
-        level: el.tagName === "H3" ? 3 : 2,
+        level: Number(el.tagName.slice(1)),
       };
     });
     setHeadings(items);
@@ -94,8 +99,8 @@ export function TableOfContents() {
             <a
               href={`#${id}`}
               className={`toc-link${level === 3 ? " toc-link-h3" : ""}${
-                activeId === id ? " toc-link-active" : ""
-              }`}
+                level === 4 ? " toc-link-h4" : ""
+              }${activeId === id ? " toc-link-active" : ""}`}
               onClick={(e) => {
                 e.preventDefault();
                 const target = document.getElementById(id);

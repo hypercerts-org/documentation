@@ -1081,6 +1081,11 @@ a.sidebar-link-active:hover {
   padding-left: 24px;
 }
 
+.toc-link-h4 {
+  font-size: 12px;
+  padding-left: 40px;
+}
+
 /* ===== Last Updated ===== */
 .page-tools {
   display: flex;
@@ -1147,6 +1152,7 @@ a.sidebar-link-active:hover {
   font-style: italic;
   color: var(--color-text-secondary);
 }
+
 /* ===== Pagination ===== */
 .pagination {
   display: flex;
@@ -1425,6 +1431,36 @@ a.sidebar-link-active:hover {
   font-size: 13px;
   line-height: 20px;
   color: #d6deeb;
+}
+
+.mermaid-diagram {
+  margin: var(--space-6) 0;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-subtle);
+  overflow-x: auto;
+}
+
+.mermaid-diagram svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.mermaid-diagram--loading {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+}
+
+.mermaid-diagram--error {
+  border-color: var(--color-warning);
+  background: var(--color-warning-bg);
+}
+
+.mermaid-diagram--error p {
+  margin-bottom: var(--space-4);
 }
 
 .layout-content code {

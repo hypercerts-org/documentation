@@ -1,18 +1,25 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
-function getRawUrl(currentPath) {
+/**
+ * Map a documentation route to the generated local Markdown artifact used by page actions.
+ */
+function getGeneratedRawUrl(currentPath) {
   if (currentPath === '/') return '/raw/index.md';
   return `/raw${currentPath}.md`;
 }
 
+/**
+ * Render page-level actions for copying or viewing the generated Markdown for the current docs page.
+ * External docs are included in the same local /raw output as ordinary pages.
+ */
 export function CopyRawButton() {
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
   const [isCopying, setIsCopying] = useState(false);
   const router = useRouter();
   const currentPath = router.asPath.split('#')[0].split('?')[0] || '/';
-  const rawUrl = getRawUrl(currentPath);
+  const rawUrl = getGeneratedRawUrl(currentPath);
 
   const handleCopy = async () => {
     setIsCopying(true);

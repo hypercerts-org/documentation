@@ -1,0 +1,18 @@
+sources:
+  - id: epds-architecture
+    title: ePDS architecture
+    repo: hypercerts-org/ePDS
+    ref: main
+    path: docs/architecture.md
+
+  - id: epds-tutorial
+    title: ePDS integration tutorial
+    repo: hypercerts-org/ePDS
+    ref: main
+    path: docs/tutorial.md
+
+  - id: hyperindex
+    title: Hyperindex
+    repo: gainforest/hyperindex
+    ref: main
+    path: docs/hyperindex.md

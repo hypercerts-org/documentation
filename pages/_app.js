@@ -11,6 +11,7 @@ import { Link } from '../components/Link';
 import { DotPattern } from '../components/DotPattern';
 import { HeroBanner } from '../components/HeroBanner';
 import { CardGrid } from '../components/CardGrid';
+import { MermaidDiagram } from '../components/MermaidDiagram';
 import { Analytics } from '@vercel/analytics/next';
 
 const components = {
@@ -26,6 +27,7 @@ const components = {
   DotPattern,
   HeroBanner,
   CardGrid,
+  MermaidDiagram,
 };
 
 export default function App({ Component, pageProps }) {
