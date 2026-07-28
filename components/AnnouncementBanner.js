@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-const BANNER_ID = 'july-14-2026-community-call';
+const BANNER_ID = 'september-1-2026-community-call';
+
+// Banner hides itself from September 2, 2026 (visitor's local midnight) onwards.
+const EXPIRES_AT = new Date('2026-09-02T00:00:00').getTime();
 
 export function AnnouncementBanner() {
   const [dismissed, setDismissed] = useState(true);
 
   useEffect(() => {
+    if (Date.now() >= EXPIRES_AT) return;
     const stored = localStorage.getItem(`banner-dismissed-${BANNER_ID}`);
     if (!stored) setDismissed(false);
   }, []);
@@ -21,10 +25,10 @@ export function AnnouncementBanner() {
   return (
     <div className="announcement-banner">
       <div className="announcement-banner-inner">
-        <span className="announcement-banner-date">July 14, 2026</span>
+        <span className="announcement-banner-date">Tuesday, September 1, 2026</span>
         <span className="announcement-banner-text">
-          Join our <strong>July community call</strong>. Updates, demos and open Q&amp;A:{' '}
-          <a href="https://luma.com/5yivfrkt" className="announcement-banner-link" target="_blank" rel="noopener noreferrer">
+          Join our <strong>September community call</strong>. Updates, demos and open Q&amp;A:{' '}
+          <a href="https://luma.com/mw1phg5t" className="announcement-banner-link" target="_blank" rel="noopener noreferrer">
             RSVP on Luma&nbsp;&rarr;
           </a>
         </span>
