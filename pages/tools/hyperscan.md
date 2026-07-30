@@ -124,5 +124,4 @@ Use the Agent API when you want a tool, bot, or coding agent to understand the c
 
 - [Hyperindex](/tools/hyperindex) — indexer used to query and serve indexed Hypercerts data
 - [Labelers](/tools/labelers) — ATProto label services used for quality and trust signals
-- [Hypercerts CLI](/tools/hypercerts-cli) — command-line tool for creating and inspecting Hypercerts records
 - [Introduction to Lexicons](/lexicons/introduction-to-lexicons) — schemas behind the records shown in Hyperscan
