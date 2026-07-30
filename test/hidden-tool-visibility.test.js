@@ -1,5 +1,4 @@
 const assert = require('node:assert/strict');
-const { execFileSync } = require('node:child_process');
 const { existsSync, readFileSync, readdirSync } = require('node:fs');
 const { join, relative } = require('node:path');
 const test = require('node:test');
@@ -11,7 +10,8 @@ const HIDDEN_PATHS = [
   '/tools/scaffold',
   '/tools/hyperboards',
 ];
-const HIDDEN_PAGE_FILES = new Set(HIDDEN_PATHS.map((path) => `pages${path}.md`));
+const ROUTE_PAGE_FILES = HIDDEN_PATHS.map((path) => `pages${path}.md`);
+const DRAFT_PAGE_FILES = HIDDEN_PATHS.map((path) => `drafts${path}.md`);
 
 function walkMarkdownFiles(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -20,28 +20,12 @@ function walkMarkdownFiles(directory) {
   });
 }
 
-test('keeps the hidden tool page source files', () => {
-  for (const file of HIDDEN_PAGE_FILES) {
-    assert.equal(existsSync(join(ROOT, file)), true, `${file} must remain available for direct routes`);
+test('archives hidden tool pages outside the routable pages directory', () => {
+  for (const file of ROUTE_PAGE_FILES) {
+    assert.equal(existsSync(join(ROOT, file)), false, `${file} must not remain routable`);
   }
-});
-
-test('excludes hidden tool pages from the generated search index', () => {
-  execFileSync(process.execPath, ['lib/generate-search-index.js'], { cwd: ROOT });
-  const index = JSON.parse(readFileSync(join(ROOT, 'public/search-index.json'), 'utf8'));
-  const indexedHiddenPaths = index
-    .map((page) => page.path)
-    .filter((path) => HIDDEN_PATHS.includes(path));
-
-  assert.deepEqual(indexedHiddenPaths, []);
-});
-
-test('excludes hidden tool pages from the generated sitemap', () => {
-  execFileSync(process.execPath, ['lib/generate-sitemap.js'], { cwd: ROOT });
-  const sitemap = readFileSync(join(ROOT, 'public/sitemap.xml'), 'utf8');
-
-  for (const path of HIDDEN_PATHS) {
-    assert.doesNotMatch(sitemap, new RegExp(`<loc>[^<]+${path}</loc>`));
+  for (const file of DRAFT_PAGE_FILES) {
+    assert.equal(existsSync(join(ROOT, file)), true, `${file} must preserve the page source`);
   }
 });
 
@@ -50,10 +34,7 @@ test('does not link to hidden tool pages from visible documentation or navigatio
     join(ROOT, 'components/Layout.js'),
     join(ROOT, 'components/SearchDialog.js'),
     join(ROOT, 'lib/navigation.js'),
-    ...walkMarkdownFiles(PAGES_DIR).filter((file) => {
-      const repoPath = relative(ROOT, file).split('\\').join('/');
-      return !HIDDEN_PAGE_FILES.has(repoPath);
-    }),
+    ...walkMarkdownFiles(PAGES_DIR),
   ];
 
   for (const file of authoredFiles) {
