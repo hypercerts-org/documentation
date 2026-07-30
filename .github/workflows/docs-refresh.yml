@@ -6,12 +6,12 @@ on:
   workflow_dispatch:
     inputs:
       dry_run:
-        description: 'Check for external docs changes without deploying.'
+        description: 'Dry run: Check for external docs changes without deploying.'
         required: false
         default: true
         type: boolean
       force_deploy:
-        description: 'Deploy anyway, even if the external docs have not changed. Dry run must be unchecked.'
+        description: 'Force deploy: Deploy anyway, even if the external docs have not changed. Dry run must be unchecked.'
         required: false
         default: false
         type: boolean
