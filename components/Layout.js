@@ -163,7 +163,7 @@ export default function Layout({ children, frontmatter }) {
           <span className="header-divider" aria-hidden="true" />
           <nav className="header-nav" aria-label="Main navigation">
             <Link href="/getting-started/quickstart" className="header-nav-link">Docs</Link>
-            <Link href="/tools/scaffold" className="header-nav-link">Tools</Link>
+            <Link href="/tools/hypercerts-agent-skills" className="header-nav-link">Tools</Link>
           </nav>
           <div style={{ flex: 1 }} />
           <button

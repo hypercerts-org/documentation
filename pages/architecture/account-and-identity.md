@@ -90,7 +90,7 @@ See [ePDS (extended PDS)](/architecture/epds) for integration examples, handle m
 
 For scripts, CLI tools, and server-side automation, use app passwords instead of your main password. App passwords are scoped credentials that can be revoked independently.
 
-Create one in your account settings at [certified.app](https://certified.app). Give it a descriptive name (e.g., "CI/CD pipeline" or "Local development"). If a credential is compromised, revoke just that app password — your main account stays secure. The [Hypercerts CLI](/tools/hypercerts-cli) uses app passwords for authentication.
+Create one in your account settings at [certified.app](https://certified.app). Give it a descriptive name (e.g., "CI/CD pipeline" or "Local development"). If a credential is compromised, revoke just that app password — your main account stays secure.
 
 {% callout type="warning" %}
 Never commit app passwords to version control. Use environment variables or a secrets manager.

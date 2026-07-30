@@ -64,7 +64,7 @@ const { session } = await client.callback(new URLSearchParams(callbackQuery));
 const agent = new Agent(session);
 ```
 
-See the [AT Protocol OAuth documentation](https://atproto.com/specs/oauth) for full details on client metadata, session storage, and keyset configuration. For further info on how to set up OAuth you can check out [AT Protos node.js implementation tutorial](https://atproto.com/guides/oauth-cli-tutorial) or the [scaffold app](/tools/scaffold).
+See the [AT Protocol OAuth documentation](https://atproto.com/specs/oauth) for full details on client metadata, session storage, and keyset configuration. For a step-by-step Node.js example, see the [AT Protocol OAuth tutorial](https://atproto.com/guides/oauth-cli-tutorial).
 
 ## Create your first hypercert
 
@@ -346,8 +346,6 @@ Your hypercert is now created and stored on your PDS. The completion screen show
 
 ![Completion screen showing the finished hypercert](/images/scaffold/finalized-cert.png)
 *The hypercert is created and stored on your PDS.*
-
-For full details on the Scaffold app — including self-hosting, environment setup, and extending the codebase — see the [Scaffold app documentation](/tools/scaffold).
 
 ## Next steps
 

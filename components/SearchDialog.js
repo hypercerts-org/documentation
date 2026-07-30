@@ -26,7 +26,6 @@ const QUICK_LINK_PATHS = [
   '/getting-started/quickstart',
   '/core-concepts/what-is-hypercerts',
   '/core-concepts/hypercerts-core-data-model',
-  '/tools/scaffold',
   '/architecture/overview',
   '/reference/glossary',
 ];
