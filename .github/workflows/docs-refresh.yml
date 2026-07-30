@@ -6,12 +6,12 @@ on:
   workflow_dispatch:
     inputs:
       dry_run:
-        description: 'Compare fingerprints without posting to the Vercel deploy hook.'
+        description: 'Check for external docs changes without deploying.'
         required: false
         default: true
         type: boolean
       force_deploy:
-        description: 'Mark the run as changed even when the deployed fingerprint matches.'
+        description: 'Deploy anyway, even if the external docs have not changed. Dry run must be unchecked.'
         required: false
         default: false
         type: boolean
