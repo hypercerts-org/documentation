@@ -104,7 +104,7 @@ For non-PDS infrastructure (for example Hyperindexer/Hyperlabeller and ecosystem
 If a single repository needs to be co-managed by multiple identities with different permission levels, the [Certified Group Service](/architecture/certified-group-service) (CGS) sits in front of a PDS and adds role-based access control on top. Certified operates production, staging, and test CGS instances, and CGS can also be self-hosted; either way it can proxy to any AT Protocol PDS, including the Certified-operated PDSs above. For the hosted CGS hostnames, environments, and version endpoints, see [Certified Group Services](/reference/certified-group-services).
 
 {% callout type="note" %}
-At the moment, groups created through the hosted CGS (e.g. when you create a group on [`certified.app`](https://certified.app)) land on a **test PDS**, not on production. Treat any group data accordingly — the same test-instance caveats apply as for any other `*.test.certified.app` PDS.
+Groups registered through a hosted CGS are created on the PDS configured for that CGS deployment. The backing PDS is environment-specific: production, staging, and test CGS instances can point to their corresponding PDS environments. Imported groups remain on whichever PDS already hosts the account. See [Certified Group Services](/reference/certified-group-services) for the current CGS environment mapping.
 {% /callout %}
 
 ## Which one should I use?

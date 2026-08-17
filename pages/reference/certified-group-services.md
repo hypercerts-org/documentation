@@ -10,7 +10,7 @@ Certified operates several [CGS](/architecture/certified-group-service) instance
 CGS is also **self-hostable per operator** — you don't have to use a Certified-operated instance. Anyone can run their own CGS against any AT Protocol PDS. The `GROUP_PDS_URL` setting configures where newly *registered* groups get their accounts; *imported* groups keep whatever PDS already hosts them, so one instance can span multiple PDSs (see [Group lifecycle](/architecture/certified-group-service#group-lifecycle)). The guidance below applies when you specifically want to use a Certified-hosted group service (for example, the "create a group" flow on [`certified.app`](https://certified.app)).
 
 {% callout type="note" %}
-Groups *registered* through the hosted CGS currently get their PDS accounts created on a **test PDS**, not production — the same test-instance caveats apply as for any other `*.test.certified.app` PDS. See [Certified PDSs](/reference/certified-pdss) for details.
+Groups registered through a hosted CGS are created on the PDS configured for that CGS deployment. The backing PDS is environment-specific: production, staging, and test CGS instances can point to their corresponding PDS environments. Imported groups remain on whichever PDS already hosts the account. See [Certified PDSs](/reference/certified-pdss) for the current environment mapping.
 {% /callout %}
 
 ## Quick reference
@@ -20,6 +20,30 @@ Groups *registered* through the hosted CGS currently get their PDS accounts crea
 | [`groups.certified.app`](https://groups.certified.app) | Production CGS | Production group-governed repositories | see [`/health`](https://groups.certified.app/health) |
 | [`dev.groups.certified.app`](https://dev.groups.certified.app) | Staging CGS | Staging group governance for apps under development | see [`/health`](https://dev.groups.certified.app/health) |
 | [`test.groups.certified.app`](https://test.groups.certified.app) | Test CGS | Hypercerts core development; bleeding-edge testing | see [`/health`](https://test.groups.certified.app/health) |
+
+## Service DID and proxy target
+
+Each hosted CGS instance publishes its service DID document at:
+
+```text
+https://<cgs-host>/.well-known/did.json
+```
+
+The service DID is normally:
+
+```text
+did:web:<cgs-host>
+```
+
+The current hosted integration calls CGS directly. If using optional AT Protocol service proxying, target the service with:
+
+```text
+atproto-proxy: did:web:<cgs-host>#certified_group_service
+```
+
+Proxied group-scoped requests must also include `repo`, containing the group DID or handle.
+
+The older `did:plc:<groupDid>#certified_group` target is deprecated and retained only for migration. See [Certified Group Service](/architecture/certified-group-service) for the request flows and the distinction between direct calls and service proxying.
 
 ## Production: `groups.certified.app`
 
