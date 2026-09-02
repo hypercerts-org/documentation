@@ -16,3 +16,9 @@ sources:
     repo: gainforest/hyperindex
     ref: main
     path: docs/hyperindex.md
+
+  - id: hypercerts-lexicon-changelog
+    title: Hypercerts Lexicon changelog
+    repo: hypercerts-org/hypercerts-lexicon
+    ref: main
+    path: CHANGELOG.md

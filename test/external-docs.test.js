@@ -1,5 +1,5 @@
 const assert = require('node:assert/strict');
-const { mkdtempSync, rmSync, writeFileSync } = require('node:fs');
+const { mkdtempSync, readFileSync, rmSync, writeFileSync } = require('node:fs');
 const { tmpdir } = require('node:os');
 const { join } = require('node:path');
 const test = require('node:test');
@@ -172,6 +172,25 @@ test('uses external Markdown for a frontmatter-only external page', () => {
     resolvePageDocument({ title: 'ePDS', externalDoc: 'epds' }, localMarkdown, content, 'pages/epds.md'),
     { markdown: '# Canonical ePDS docs', externalDoc: snapshot },
   );
+});
+
+test('configures the Lexicon changelog as the releases page external source', () => {
+  const source = loadExternalDocSources().find(({ id }) => id === 'hypercerts-lexicon-changelog');
+  assert.deepEqual(source, {
+    id: 'hypercerts-lexicon-changelog',
+    title: 'Hypercerts Lexicon changelog',
+    repo: 'hypercerts-org/hypercerts-lexicon',
+    ref: 'main',
+    path: 'CHANGELOG.md',
+  });
+
+  const pagePath = join(__dirname, '..', 'pages', 'reference', 'releases.md');
+  const page = readFileSync(pagePath, 'utf8');
+  assert.deepEqual(parseMarkdownFrontmatter(page), {
+    title: 'Hypercerts Lexicon releases',
+    description: 'Release history for the Hypercerts Lexicon schemas and TypeScript package.',
+    externalDoc: 'hypercerts-lexicon-changelog',
+  });
 });
 
 test('compiles external Markdown with local frontmatter and generated source metadata', () => {
