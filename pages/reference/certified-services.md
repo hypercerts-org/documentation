@@ -42,12 +42,6 @@ Certified operates multiple [CGS](/architecture/certified-group-service) environ
 
 For full CGS details (versions, environments, and guidance), see [Certified Group Services](/reference/certified-group-services).
 
-## Hyperscan
-
-| Service | Public URL | Purpose |
-|---|---|---|
-| [Hyperscan](/tools/hyperscan) | [`www.hyperscan.dev`](https://www.hyperscan.dev) | Ecosystem-wide view of indexers and related discovery infrastructure |
-
 ## Labelers
 
 | Service | Environment | Public URL | Purpose |
@@ -59,8 +53,8 @@ The ATProto labeler identities are Certified accounts that publish each `app.bsk
 
 | Service | Labeler handle | DID | Service record |
 |---|---|---|---|
-| Activity Labeler | `activitylabeler.certified.one` | `did:plc:antf7bsm6f4ohkqfdckefyt7` | [PDSls](https://pds.ls/at://did:plc:antf7bsm6f4ohkqfdckefyt7/app.bsky.labeler.service/self) · [Hyperscan](https://www.hyperscan.dev/data?did=did%3Aplc%3Aantf7bsm6f4ohkqfdckefyt7&collection=app.bsky.labeler.service&rkey=self) |
-| Orglabeler | `orglabeler.certified.one` | `did:plc:pswneepkd5lesumj7ejmkbal` | [PDSls](https://pds.ls/at://did:plc:pswneepkd5lesumj7ejmkbal/app.bsky.labeler.service/self) · [Hyperscan](https://www.hyperscan.dev/data?did=did%3Aplc%3Apswneepkd5lesumj7ejmkbal&collection=app.bsky.labeler.service&rkey=self) |
+| Activity Labeler | `activitylabeler.certified.one` | `did:plc:antf7bsm6f4ohkqfdckefyt7` | [PDSls](https://pds.ls/at://did:plc:antf7bsm6f4ohkqfdckefyt7/app.bsky.labeler.service/self) |
+| Orglabeler | `orglabeler.certified.one` | `did:plc:pswneepkd5lesumj7ejmkbal` | [PDSls](https://pds.ls/at://did:plc:pswneepkd5lesumj7ejmkbal/app.bsky.labeler.service/self) |
 
 ## Status pages
 
