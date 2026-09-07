@@ -43,7 +43,7 @@ The shared ingestion layer is the same, but each labeler targets different recor
 
 **DID:** `did:plc:antf7bsm6f4ohkqfdckefyt7`
 
-**Labeler service record:** [`app.bsky.labeler.service/self` on PDSls](https://pds.ls/at://did:plc:antf7bsm6f4ohkqfdckefyt7/app.bsky.labeler.service/self) · [Hyperscan](https://www.hyperscan.dev/data?did=did%3Aplc%3Aantf7bsm6f4ohkqfdckefyt7&collection=app.bsky.labeler.service&rkey=self)
+**Labeler service record:** [`app.bsky.labeler.service/self` on PDSls](https://pds.ls/at://did:plc:antf7bsm6f4ohkqfdckefyt7/app.bsky.labeler.service/self)
 
 Activity Labeler scores the quality of hypercert activity records and publishes labels that help distinguish well-formed records from drafts, placeholders, or likely test data.
 
@@ -85,7 +85,7 @@ It also applies penalties and test-detection heuristics for low-quality patterns
 
 **DID:** `did:plc:pswneepkd5lesumj7ejmkbal`
 
-**Labeler service record:** [`app.bsky.labeler.service/self` on PDSls](https://pds.ls/at://did:plc:pswneepkd5lesumj7ejmkbal/app.bsky.labeler.service/self) · [Hyperscan](https://www.hyperscan.dev/data?did=did%3Aplc%3Apswneepkd5lesumj7ejmkbal&collection=app.bsky.labeler.service&rkey=self)
+**Labeler service record:** [`app.bsky.labeler.service/self` on PDSls](https://pds.ls/at://did:plc:pswneepkd5lesumj7ejmkbal/app.bsky.labeler.service/self)
 
 Orglabeler scores the quality of certified organization data and publishes labels that reflect how complete and credible an organization record looks.
 
