@@ -42,6 +42,17 @@ Certified operates multiple [CGS](/architecture/certified-group-service) environ
 
 For full CGS details (versions, environments, and guidance), see [Certified Group Services](/reference/certified-group-services).
 
+## Feed Service
+
+The Hypercerts Feed Service turns current Hyperindex data into ordered, viewer-scoped Hypercerts feeds through custom XRPC procedures.
+
+| Environment | Public URL |
+|---|---|
+| Production | [`https://feed.hypercerts.dev`](https://feed.hypercerts.dev) |
+| Staging (planned) | [`https://dev.feed.hypercerts.dev`](https://dev.feed.hypercerts.dev) |
+
+For usage examples and the source repository, see [Hypercerts Feed Service](/tools/hypercerts-feed-service).
+
 ## Labelers
 
 | Service | Environment | Public URL | Purpose |
@@ -66,6 +77,7 @@ The ATProto labeler identities are Certified accounts that publish each `app.bsk
 ## Related pages
 
 - [Hyperindex](/tools/hyperindex)
+- [Hypercerts Feed Service](/tools/hypercerts-feed-service)
 - [Labelers](/tools/labelers)
 - [Certified PDSs](/reference/certified-pdss)
 - [Certified Group Services](/reference/certified-group-services)
