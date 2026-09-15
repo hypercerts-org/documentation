@@ -167,12 +167,11 @@ Applications built on the infrastructure, governed by the Hypercerts Collective:
 | Frontend | Purpose | Status |
 |----------|---------|--------|
 | **Ma Earth** | Regenerative land funding, community onboarding | Active |
-| **hyperboards.org** | Hypercert visualization and management | Active |
 | **Other frontends** | Third-party applications | Ecosystem |
 
 **How records flow:**
 
-1. User creates a hypercert record via a frontend (Ma Earth, hyperboards.org, etc.)
+1. User creates a hypercert record via a frontend such as Ma Earth
 2. Frontend writes the record to the user's PDS
 3. PDS syncs to the network via the relay
 4. Hyperindex indexes the record
@@ -270,7 +269,7 @@ Open governance body for the ATProto impact ecosystem. Coordinates decisions abo
 
 - Evaluators
 - Hypercerts Labeller
-- Frontend applications (Ma Earth, hyperboards.org)
+- Frontend applications
 - Lexicon standards adoption
 
 ### Lexicon Indexing Requests (LIRs)

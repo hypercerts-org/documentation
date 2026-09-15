@@ -77,6 +77,20 @@ externalDoc: epds-architecture
 
 Do not add a local Markdown body. The registered file is the only page body, which prevents stale fallback content from diverging from rendering, search, or `/raw` exports.
 
+## Document a service with subpages
+
+Use a local overview page for the service's role, status, supported environments, and relationship to the rest of the Hypercerts stack. Keep implementation-specific detail in the service repository when that repository owns the contract.
+
+For each canonical upstream Markdown file:
+
+1. Add a separate source entry to `docs-sources.yml`.
+2. Add a frontmatter-only wrapper at the intended child route.
+3. Link the imported child page from the local service overview.
+
+This allows a service to have multiple source-backed subpages without copying its documentation into this repository. The current loader deliberately does not support a local introduction plus an imported body on the same route. Use a local parent page when editorial context is needed, then keep each imported child page fully canonical to its upstream file.
+
+Choose `ref` according to the source's publishing policy. A moving branch such as `main` follows upstream changes through the refresh workflow. A tag or commit creates a stable documentation snapshot and must be updated deliberately.
+
 ## Build behavior
 
 `npm run generate:external-docs` fetches every registered file once through the GitHub contents API and writes `lib/external-docs-content.json`. The static build then uses that immutable snapshot for:

@@ -7,8 +7,8 @@ description: Lexicon reference for the Attachment record type in Hypercerts.
 
 `org.hypercerts.context.attachment`
 
-An attachment links supporting documentation to one or more existing records. It can reference files, documents, external URIs, or IPFS content, and can attach to any record type via strong references.
+An attachment can link documentary material or other context to zero or more records. Its optional `subjects` array uses strong references, and its optional content can include URI or blob objects.
 
-Attachments are useful for providing evidence, documentation, or additional context for hypercerts. For example, you might attach a research paper to an activity claim, link a GitHub repository to a software project, or include photos documenting environmental work. Each attachment includes a title, optional description, the URI or content reference, and an array of strong references to the records it supports.
+Only `title` and `createdAt` are required. Description, subjects, content, content type, location, and signatures are optional. Applications should not assume that every attachment is evidence or that its contents verify a subject.
 
-For the full schema, see [`org.hypercerts.context.attachment`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/org/hypercerts/context/attachment.json) in the lexicon repo.
+For the full released schema, see [`org.hypercerts.context.attachment` at v1.4.0](https://github.com/hypercerts-org/hypercerts-lexicon/blob/v1.4.0/lexicons/org/hypercerts/context/attachment.json).

@@ -23,12 +23,12 @@ function getSnippet(body, query, contextChars = 60) {
 
 // Paths for the curated quick links shown in the empty state
 const QUICK_LINK_PATHS = [
-  '/getting-started/quickstart',
+  '/guide',
+  '/client-integration',
+  '/reference',
+  '/change-history',
   '/core-concepts/what-is-hypercerts',
   '/core-concepts/hypercerts-core-data-model',
-  '/tools/scaffold',
-  '/architecture/overview',
-  '/reference/glossary',
 ];
 
 export function SearchDialog({ isOpen, onClose }) {

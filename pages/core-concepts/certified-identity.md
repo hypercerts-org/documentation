@@ -1,72 +1,70 @@
 ---
-title: Certified Identity
-description: How identity works in the Hypercerts ecosystem — DIDs, signing, portability, and wallet linkage.
+title: Identity, Authorship & Trust
+description: How repository publishers, named actors, signatures, acknowledgements, and application trust policies differ.
 ---
 
-# Certified Identity
+# Identity, Authorship & Trust
 
-Every hypercert record has an author. Every evaluation carries a signature. Every funding receipt traces back to a DID. Identity is a core primitive of the protocol — it determines who owns records, who can be trusted, and who receives funding.
+Every Hypercerts record is addressed inside an AT Protocol repository identified by a DID. This makes its publication attributable, but attribution is only one input to trust.
 
-## Identity in the Hypercerts Protocol
+## Four claims to keep separate
 
-The Hypercerts Protocol uses AT Protocol's identity system. Every participant — whether an individual contributor, an evaluator, or an organization — is identified by a **DID (Decentralized Identifier)**.
+| Claim | What it means |
+|---|---|
+| **Repository publisher** | The DID in the AT-URI identifies the repository that published the record. Signed repository commits make unauthorized changes detectable. |
+| **Named actor** | A record can name contributors, evaluators, senders, recipients, issuers, or subjects. Those fields are assertions and may not identify the repository publisher. |
+| **Record-content attestation** | Many released records optionally carry inline signatures or references to remote proof records. These are separate from AT Protocol repository signatures. |
+| **Application trust** | A client decides which publishers, evidence, attestations, and corroborating records it accepts for a purpose. The protocol does not calculate one global trust score. |
 
-A DID like `did:plc:z72i7hdynmk6r22z27h6tvur` is:
+## DIDs and repositories
 
-- **Permanent** — it never changes, even if you switch servers or handles
-- **Portable** — your records, reputation, and history follow your DID across platforms
-- **Cryptographically verifiable** — every record you create is signed by your DID's key pair, and anyone can verify the signature
+A DID such as `did:plc:z72i7hdynmk6r22z27h6tvur` identifies an AT Protocol account independently of its current handle or PDS host. DID resolution provides the service location and verification methods needed by AT Protocol clients.
 
-Your DID resolves via the [PLC directory](https://plc.directory) to a DID document containing your current PDS, public signing keys, and handle.
+AT-URIs include this DID. For example, `at://did:plc:example/org.hypercerts.claim.activity/3k7` attributes the record slot to that repository. A CID identifies one version of the record contents.
 
-## How identity connects to the protocol
+Do not describe every actor-like field as a DID:
 
-| Layer | How identity is used |
-|-------|---------------------|
-| **Data** | Every record (activity claims, evaluations, measurements) carries the author's DID. The PDS signs records into a Merkle tree, making authorship tamper-evident. |
-| **Trust** | Evaluators build reputation tied to their DID. Applications can weight evaluations based on the evaluator's history and credentials. |
-| **Funding** | Funding receipts link funder DIDs to the work they support. Wallet linkage (work-in-progress) connects DIDs to on-chain addresses for payment flows and tokenization. |
-| **Portability** | Switching PDS providers doesn't change your DID. Your entire history — claims, evaluations, contributions — migrates with you. |
+- Activity contributor identities can contain a DID or another identifier string.
+- Contributor information can identify a person through a DID or social-profile URI by convention.
+- Evaluation `evaluators` are DID objects, but the schema does not require one of them to be the repository publisher.
+- Receipt parties can be text, a DID, or a strong reference to another record.
 
-## Certified: the reference identity provider
+## Organization records
 
-[Certified](https://certified.app) is the identity provider built for the Hypercerts ecosystem. It provisions the full identity stack in a single sign-up:
+An organization can use an AT Protocol account containing two singleton records:
 
-- **A DID** — your permanent identifier
-- **A PDS** — your Personal Data Server, where records are stored
-- **Low-friction sign-in** — email and code, no passwords or protocol knowledge required
+- `app.certified.actor.profile/self` for general profile information.
+- `app.certified.actor.organization/self` for organization-specific metadata.
 
-Certified exists because most Hypercerts users are not Bluesky users. Researchers, land stewards, open-source maintainers, and funders need an entry point that doesn't require knowledge of ATProto or decentralized protocols. Certified provides that — a neutral identity provider that isn't tied to any single application.
+Their association is the shared repository identity and `self` key. The released schemas do not define members, administrators, ownership, or links from an organization to its projects. Multi-user repository governance is an infrastructure concern described in the [Certified Group Service](/architecture/certified-group-service) Reference.
 
-[`certified.app`](https://certified.app) is the frontend where your Certified identity is managed day-to-day: sign up, sign in, update your profile, change your handle, create groups, and manage passwords. It talks to the production Certified PDS at `certified.one` under the hood.
+## Corroboration records
 
-### Handles (your public username)
+The graph can accumulate independent responses without changing the original assertion:
 
-Handles are not needed to log in to the Hypercerts ecosystem, but every user has one. They serve as human-readable names for publicly addressing others and for interacting with other applications in the AT Protocol ecosystem that haven't implemented email-based login with Certified. Your handle (e.g., `alice.certified.one`) is human-readable but not permanent — it's a pointer to your DID. Organizations can use **custom domain handles** (e.g., `numpy.org`) to prove organizational identity through DNS verification.
+- An acknowledgement accepts or rejects a subject or relationship from another repository.
+- A badge response records a response to a badge award separately from the award itself.
+- An evaluation can cite measurements and publish its own assessment of a subject.
+- Optional signatures can attest to record content through a verification method or proof record.
 
-For setup details, see [Account & Identity Setup](/architecture/account-and-identity).
+None of these relationships is automatically reciprocal. An award does not imply acceptance, a contributor mention does not prove participation, and an evaluation does not prove independence merely because it is stored separately.
 
-## Compatible with Bluesky and other AT Protocol accounts
+## From provenance to trust
 
-{% callout type="note" %}
-Hypercerts is fully interoperable with the AT Protocol ecosystem. If you already have a Bluesky account or any other ATProto identity, you can log in with your existing handle (e.g., `alice.bsky.social`) and use all Hypercerts applications — no additional account needed.
-{% /callout %}
+A compatible application should show or preserve:
 
-## Wallet linkage
+1. The source AT-URI and version CID.
+2. The repository DID that published the record.
+3. Actors named inside the record.
+4. Acknowledgements, responses, signatures, and evidence that corroborate or challenge it.
+5. The application's own inclusion, ranking, and authority policy.
 
-To receive on-chain funding, a DID needs to be linked to an on-chain wallet address. This is handled by [**IdentityLink**](https://identitylink.vercel.app/) — a cryptographic attestation system that binds a DID to one or more on-chain addresses via a signed proof stored in your PDS. For the Ethereum ecosystem this looks like:
+This supports plural trust models. A community, certifier, funder, and automated agent can evaluate the same graph differently while working from attributable source records.
 
-1. Authenticates the user via ATProto OAuth
-2. Connects an EVM wallet (EOA, Smart Wallet, or Safe)
-3. Signs an EIP-712 typed message proving ownership
-4. Stores the attestation in the user's PDS
+## Certified as one access path
 
-The attestation is self-sovereign (stored in your PDS, not a central database) and verifiable by anyone. See the [Roadmap](/roadmap) for current IdentityLink status.
+[Certified](https://certified.app) provides Hypercerts-oriented accounts and organization tooling. It is one provider and application surface, not the identity layer of the protocol itself. Existing AT Protocol identities may be usable where an application supports their authentication and the required permissions.
 
-## Next steps
+For account creation, OAuth, service environments, and organization-managed writes, use [Account & Identity Setup](/architecture/account-and-identity) and [Client Integration](/client-integration).
 
-- [Account & Identity Setup](/architecture/account-and-identity) — create an account, configure custom domains, manage app passwords, and set up organization accounts
-- [Architecture Overview](/architecture/overview) — how identity fits into the protocol stack
-- [Quickstart](/getting-started/quickstart) — create your first hypercert
-
-Next: [Why AT Protocol?](/core-concepts/why-at-protocol) — how identity and records stay portable across apps.
+Next: [Work Scopes & Classification](/core-concepts/cel-work-scopes).

@@ -7,8 +7,10 @@ description: Lexicon reference for the Collection record type in Hypercerts.
 
 `org.hypercerts.collection`
 
-A collection groups activity claims into a named set. A single hypercert can belong to multiple collections at the same time — for example, one collection representing a multi-year reforestation program, another curating a funder's portfolio, and a personal "favorites" list. Collections make it easy to organize and surface hypercerts in different contexts without duplicating data.
+A collection groups activity claims, feature records, and other collections into a named set. The same record can be referenced by multiple collections, such as a project, program, portfolio, or favorites list.
 
-Each collection has a title, description, and an array of strong references to the claims it contains.
+Each optional `items` entry is an object containing an `itemIdentifier` strong reference and an optional `itemWeight`. Collections can also reference one location and general vocabulary tags.
 
-For the full schema, see [`org.hypercerts.collection`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/org/hypercerts/collection.json) in the lexicon repo.
+A project is represented by the shared convention `type: "project"`; it is not a separate record type. The `type` field is optional and open, so consumers must implement the convention.
+
+For the full released schema, see [`org.hypercerts.collection` at v1.4.0](https://github.com/hypercerts-org/hypercerts-lexicon/blob/v1.4.0/lexicons/org/hypercerts/collection.json).

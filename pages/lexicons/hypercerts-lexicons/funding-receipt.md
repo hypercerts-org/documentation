@@ -7,10 +7,10 @@ description: Lexicon reference for the Funding Receipt record type in Hypercerts
 
 `org.hypercerts.funding.receipt`
 
-A funding receipt records a funding payment from one party to another. It's typically created by a facilitator or funding platform, but can be created by either the funder or recipient.
+A funding receipt records an assertion about a funding payment. It can be published by a facilitator, platform, sender, recipient, or another party.
 
-Each receipt includes the funder's DID, the recipient's DID, the amount and currency, the payment rail used (like bank transfer, crypto, or grant platform), and an optional transaction ID for verification. Receipts can reference the activity claims or collections they fund, creating a traceable link from funding to impact work.
+The required fields are `to`, `amount`, `currency`, and `createdAt`. The sender, funded subject, payment rail, payment date, and transaction identifier are optional. Sender and recipient values can use free text, a DID, or a strong reference.
 
-Funding receipts enable transparent funding tracking and make it possible to see who funded what work. They're designed to be simple and flexible enough to represent everything from traditional grants to crypto payments to in-kind contributions.
+The optional `for` strong reference can connect a receipt to an activity, project collection, organization record, or another subject. A structurally valid receipt does not itself prove settlement, authorization, uniqueness, or acknowledgement by either party.
 
-For the full schema, see [`org.hypercerts.funding.receipt`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/org/hypercerts/funding/receipt.json) in the lexicon repo.
+For the full released schema, see [`org.hypercerts.funding.receipt` at v1.4.0](https://github.com/hypercerts-org/hypercerts-lexicon/blob/v1.4.0/lexicons/org/hypercerts/funding/receipt.json).

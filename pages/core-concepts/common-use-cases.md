@@ -1,49 +1,39 @@
 ---
 title: Common Use Cases
-description: See how hypercerts work for different types of contributions.
+description: See how common funding and evaluation scenarios map to the Hypercerts record graph.
 ---
 
 # Common Use Cases
 
-Hypercerts work for any kind of impact work. This page shows four common scenarios and how they map to the hypercerts data model.
+These examples show how domain workflows can use the same record graph. They are conceptual mappings, not tested SDK or XRPC instructions.
 
 ## Open-source software maintenance
 
-A team maintains a widely-used library. They create a hypercert covering a year of maintenance — bug fixes, documentation updates, and community support.
-
-```typescript
-const result = await agent.com.atproto.repo.createRecord({
-  repo: agent.session.did,
-  collection: "org.hypercerts.claim.activity",
-  record: {
-    title: "Library maintenance, 2025",
-    shortDescription: "Ongoing maintenance of an open-source library",
-    description: "Fixed 47 bugs, reviewed 120 pull requests, updated documentation, and provided community support on Discord.",
-    workScope: { allOf: ["Software Development", "Open Source"] },
-    startDate: "2025-01-01T00:00:00Z",
-    endDate: "2025-12-31T23:59:59Z",
-    $type: "org.hypercerts.claim.activity",
-    createdAt: new Date().toISOString(),
-  },
-});
-```
-
-The team then attaches links to the repository, release notes, and commit history. Contribution records identify who did what — core developers, documentation leads, community managers. Organizations that depend on the library can fund this work retroactively.
+A team publishes an activity for a year of library maintenance. Contributor entries describe maintainers and roles. Attachments link releases and reports; measurements describe issues resolved or downloads; peer evaluators publish assessments. A project collection can group annual activities, and receipts can record prospective or retroactive support.
 
 ## Regenerative land stewardship
 
-A conservation group restores degraded forest over several years. The activity claim covers the full project timeline (2020–2025) with work scopes like "Ecosystem Restoration" and "Biodiversity Conservation".
-
-Measurement records track hectares restored, native species planted, and carbon sequestration estimates. Location records anchor the work geographically. Attachments include satellite imagery, biodiversity surveys, and field reports. Climate funders can review the full record before deciding to support the next phase.
+A project collection with `type: "project"` groups restoration activities and the land areas they concern. Feature records represent zones or strata; location records provide spatial representations. Attachments link satellite imagery and reports, measurements describe observations, and community or expert evaluations assess the work. Receipts can point to the project collection or a specific activity.
 
 ## Scientific research
 
-A research team completes a multi-year study and wants to document the effort with clear contributor roles. The activity claim describes the research and its outputs, with contribution records identifying the principal investigator, postdocs, and graduate students along with their relative contributions.
-
-Attachments link to published papers (via DOI), lab notebooks, and experimental protocols. Evaluation records capture peer review outcomes. Research foundations or industry partners interested in the field can fund the work.
+A research activity identifies contributors and reusable contribution details. Attachments link papers, data, and protocols. Measurements can describe outputs; evaluations record peer assessments and cite relevant measurements. A funding receipt records support but does not establish research quality or payment settlement by itself.
 
 ## Community event organization
 
-A group runs regular workshops teaching practical skills to underrepresented communities. They want to document their educational impact. The activity claim covers the full year of workshops with work scopes like "Education" and "Community Building".
+A program collection groups workshop activities and optional cohort features. Contributor entries identify instructors and hosts. Attachments provide materials and reports; measurements record attendance or outcomes; participant or expert evaluations add assessments. Acknowledgements can confirm particular relationships without turning them into protocol-wide truth.
 
-Measurement records track total attendees, completion rates, and outcomes. Contribution records identify instructors, venue hosts, and curriculum developers. Attachments include workshop materials and participant feedback. Organizations with community programs can review the record and decide to fund future sessions.
+## Certifications and network recognition
+
+A network or certifier publishes a badge definition and then an award whose subject is an account or project record. The recipient can publish a separate badge response. The award does not imply acceptance, and the definition's issuer list requires application-level authorization checks.
+
+## What remains application-specific
+
+In every scenario, applications still decide:
+
+- Which publishers, evaluators, certifiers, and vocabularies they trust.
+- Which records their index includes and how backlinks are resolved.
+- How source data becomes forms, search, rankings, totals, or recommendations.
+- How private operational data and payment execution stay outside public records.
+
+For implementation status, use [Client Integration](/client-integration). For exact schemas, use the [Lexicon inventory](/reference/lexicon-inventory).

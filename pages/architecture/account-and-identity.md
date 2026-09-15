@@ -5,7 +5,7 @@ description: Understand your identity, configure custom domains, and manage cred
 
 # Account & Identity Setup
 
-If you followed the [Quickstart](/getting-started/quickstart), you already have an account. This page explains what that account gives you and how to configure it — custom domain handles for organizations, app passwords for scripts, shared repositories for teams, and account recovery.
+This page explains what an AT Protocol account gives you and how to configure it: custom domain handles for organizations, app passwords for scripts, shared repositories for teams, and account recovery.
 
 ---
 
@@ -14,28 +14,27 @@ If you followed the [Quickstart](/getting-started/quickstart), you already have 
 Sign up at [certified.app](https://certified.app/). You'll get:
 
 - **Low-friction sign-in** — Sign in with just your email and a code. No passwords or protocol knowledge required.
-- **A DID** — Your permanent, portable identifier (e.g., `did:plc:z72i7hdynmk6r22z27h6tvur`). It never changes, even if you switch servers or handles.
-- **A Repository** — Your own collection on the certified PDS, where your hypercerts, evaluations, and other records are stored. You own this data and you can migrate it between servers.
-- **An (embedded) wallet** — Add your existing EVM wallet or get a new one.
-- **Ecosystem access** — Your identity works across every Hypercerts application.
+- **A DID** — Your portable account identifier (e.g., `did:plc:z72i7hdynmk6r22z27h6tvur`), distinct from the current server address and handle.
+- **A repository** — An AT Protocol repository on a Certified PDS, where Hypercerts and other supported records can be stored.
+- **Application access** — A DID and repository that compatible applications can support through their own authentication and permission flows.
 
 ### Why Certified?
 
 The Hypercerts Protocol is built on AT Protocol — the same decentralized data layer that powers Bluesky. But most Hypercerts users are not Bluesky users. They are researchers, land stewards, open-source maintainers, funders, and evaluators. Asking them to "sign in with Bluesky" to use a funding platform would be confusing — it ties a funding tool to a social media brand. This is no knock on Bluesky — it's a great platform, just not the right entry point for a funding tool.
 
-Certified is a neutral identity provider that isn't tied to any single application. You create an account and immediately have an identity that works across the entire ecosystem — no knowledge of Bluesky, ATProto, or decentralized protocols required.
+Certified provides a Hypercerts-oriented account path without requiring users to understand Bluesky or AT Protocol internals. Each application still determines which account providers and permissions it supports.
 
 {% callout type="note" %}
-Hypercerts is fully interoperable with the AT Protocol ecosystem. If you already have a Bluesky account or any other ATProto identity, log in with your existing handle (e.g., `alice.bsky.social`) and use all Hypercerts applications — no additional account needed.
+Existing Bluesky and other AT Protocol accounts can be used by Hypercerts applications that support their authentication provider and request the required permissions. Check the target application's supported account types before treating an existing identity as a complete integration path.
 {% /callout %}
 
 ---
 
 ## Your DID
 
-Your DID is your permanent identity. It looks like `did:plc:z72i7hdynmk6r22z27h6tvur` and is resolved via the [PLC directory](https://plc.directory), which maps it to your current PDS, public keys, and handle.
+Your DID is your account identifier. It looks like `did:plc:z72i7hdynmk6r22z27h6tvur` and is resolved via the [PLC directory](https://plc.directory), which maps it to the current PDS, public keys, and handle.
 
-Every record you create carries your DID as the author. If you change PDS providers, your DID stays the same — other applications continue to recognize you and your data migrates with you.
+The DID in a record's AT-URI identifies the repository that published it. An account migration that preserves the DID can preserve those AT-URIs when the PDS changes; application recognition and index freshness remain implementation concerns.
 
 ---
 
@@ -43,7 +42,7 @@ Every record you create carries your DID as the author. If you change PDS provid
 
 Handles are not needed to log in to the Hypercerts ecosystem, but every user has one. They serve as human-readable names for publicly addressing others and for interacting with other applications in the AT Protocol ecosystem that haven't implemented email-based login with Certified. Your handle is a human-readable name like `alice.certified.one`. Unlike your DID, your handle can change — it's a pointer to your DID, not your identity itself.
 
-**Organizations should use custom domain handles.** A handle like `numpy.org` proves organizational identity — anyone can verify that the DID behind `numpy.org` is controlled by whoever controls the domain.
+**Organizations should use custom domain handles.** A handle like `numpy.org` demonstrates control of the domain at verification time and gives applications a recognizable name for the DID.
 
 To set up a custom handle, add a DNS TXT record or host a file at `https://your-domain.com/.well-known/atproto-did`. See the [AT Protocol handle documentation](https://atproto.com/specs/handle) for details.
 
@@ -74,7 +73,7 @@ Certified operates hosted CGS instances for its environments (used by "create a 
 
 ### OAuth (for applications)
 
-Applications authenticate users via AT Protocol OAuth. The AT Protocol client libraries handle the full OAuth flow — authorization, token management, and session restoration. Users authorize your app through their PDS and never share credentials with your application. See the [Quickstart](/getting-started/quickstart) for the authentication setup.
+Applications authenticate users via AT Protocol OAuth. The AT Protocol client libraries handle the full OAuth flow — authorization, token management, and session restoration. Users authorize your app through their PDS and never share credentials with your application. See [Client Integration](/client-integration) for the evolving integration guidance.
 
 ### OAuth (for ePDS)
 The ePDS (extended PDS) adds email/passwordless login on top of the standard PDS, without modifying the underlying AT Protocol PDS code. When a user authenticates, the ePDS Auth Service handles the OTP flow and then issues a standard AT Protocol authorization code back to your app.
@@ -106,5 +105,5 @@ Beyond identity, Certified contributes shared data schemas to the AT Protocol ec
 
 ## Next steps
 
-- [Quickstart](/getting-started/quickstart) — build a complete hypercert with contributions, attachments, and measurements
-- [Working with Evaluations](/getting-started/working-with-evaluations) — create evaluations of other people's work
+- [Client Integration](/client-integration) — review the target SDK and XRPC path and current gaps
+- [Evaluation Lexicon](/lexicons/hypercerts-lexicons/evaluation) — inspect the evaluation record schema

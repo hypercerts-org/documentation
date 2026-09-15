@@ -35,7 +35,7 @@ Create dedicated test accounts — never use production identities for testing. 
 
 ### Create and verify a test record
 
-Create a record using the same `createRecord` call from the [Quickstart](/getting-started/quickstart), then read it back to confirm it was stored correctly. The returned CID is a content hash — if the record changes, the CID changes, which is how you verify data integrity.
+Create a record using the same client path your application will use in production, then read it back to confirm it was stored correctly. The returned CID is a content hash. If the record changes, the CID changes, which is how you identify the version that was read.
 
 ### Clean up test data
 
@@ -69,7 +69,7 @@ All datetime fields must use ISO 8601 format (e.g., `2026-01-15T00:00:00Z`).
 
 ### Strong references
 
-When one record references another (e.g., an evaluation referencing an activity claim), the reference must include both the AT-URI and the CID. The CID is a content hash — if the referenced record is later modified, the CID won't match, making tampering detectable. If you need the current CID, fetch the record with `getRecord` before creating the reference.
+When a field uses `com.atproto.repo.strongRef`, include both the AT-URI and CID. Other declared relationship forms include DIDs and URI-only record subjects, so follow the target Lexicon rather than converting every relationship to a strong reference. If you need the current CID for a strong reference, fetch the record before creating the reference.
 
 ### String and array limits
 
@@ -138,7 +138,7 @@ If you accidentally publish PII, delete the record immediately and contact index
 
 ## Authentication in production
 
-Use OAuth for production applications. OAuth lets users authorize your app without sharing credentials. See the [Quickstart](/getting-started/quickstart) for the authentication setup and the [ATProto OAuth spec](https://atproto.com/specs/oauth) for the full protocol details.
+Use OAuth for production applications. OAuth lets users authorize your app without sharing credentials. See [Client Integration](/client-integration) for the evolving integration guidance and the [ATProto OAuth spec](https://atproto.com/specs/oauth) for the full protocol details.
 
 Instead of using generic [transitional](https://atproto.com/specs/oauth#authorization-scopes) permission scopes like `transition:generic` use [granular scopes](https://atproto.com/specs/permission) as much as possible. Example: `repo:org.hypercerts.claim.activity?action=create&action=update`.
 
@@ -160,7 +160,7 @@ Before deploying to production:
 
 ## See also
 
-- [Quickstart](/getting-started/quickstart) — create your first hypercert
+- [Client Integration](/client-integration) — review the target SDK and XRPC path and current gaps
 - [Lexicon reference](/lexicons/hypercerts-lexicons) — field definitions and constraints for each record type
 - [Architecture Overview](/architecture/overview) — how the protocol stack fits together, including the security model
-- [Data Flow & Lifecycle](/architecture/data-flow-and-lifecycle) — how records move through the system
+- [Records, References & Lifecycle](/architecture/data-flow-and-lifecycle) — how records change and connect across repositories

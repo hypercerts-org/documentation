@@ -162,8 +162,10 @@ export default function Layout({ children, frontmatter }) {
           </Link>
           <span className="header-divider" aria-hidden="true" />
           <nav className="header-nav" aria-label="Main navigation">
-            <Link href="/getting-started/quickstart" className="header-nav-link">Docs</Link>
-            <Link href="/tools/scaffold" className="header-nav-link">Tools</Link>
+            <Link href="/guide" className="header-nav-link">Guide</Link>
+            <Link href="/client-integration" className="header-nav-link">Client integration</Link>
+            <Link href="/reference" className="header-nav-link">Reference</Link>
+            <Link href="/change-history" className="header-nav-link">Change history</Link>
           </nav>
           <div style={{ flex: 1 }} />
           <button

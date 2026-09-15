@@ -7,8 +7,8 @@ description: Lexicon reference for the Evaluation record type in Hypercerts.
 
 `org.hypercerts.context.evaluation`
 
-An evaluation is a structured assessment of a hypercert or other record. Third parties — auditors, peer reviewers, grant programs — use evaluations to assess whether claimed work actually happened and had the stated impact. It includes the evaluator's DID, a summary of their assessment, an optional numeric score, and can reference measurements that informed the evaluation.
+An evaluation is a structured assessment. It requires an `evaluators` array, a summary, and a creation time. It can identify one primary `subject`, reference supporting measurements, attach report content, and include a string-based score range.
 
-An evaluation can reference multiple records (for example, assessing a collection and all its constituent claims), and can cite specific measurements as evidence. This creates a traceable chain from raw data through measurements to final assessments.
+The `subject` is optional and singular. Measurements are a separate plural relationship. The schema does not require the named evaluators to be the repository publisher, require a non-empty evaluator array, establish independence, or enforce numeric score ordering.
 
-For the full schema, see [`org.hypercerts.context.evaluation`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/org/hypercerts/context/evaluation.json) in the lexicon repo.
+For the full released schema, see [`org.hypercerts.context.evaluation` at v1.4.0](https://github.com/hypercerts-org/hypercerts-lexicon/blob/v1.4.0/lexicons/org/hypercerts/context/evaluation.json).

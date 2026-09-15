@@ -13,7 +13,7 @@ The central record in the hypercerts data model. Describes the work that was don
 
 #### AT-URI
 
-The permanent, globally unique identifier for a record. Looks like `at://did:plc:abc123/org.hypercerts.claim.activity/3k7`. You'll see these in every API response — they're how records reference each other.
+The stable, globally unique identifier for a record slot. It looks like `at://did:plc:abc123/org.hypercerts.claim.activity/3k7`. The record at that URI can be updated or deleted; a CID identifies one exact content version.
 
 #### Attachment
 
@@ -21,7 +21,7 @@ Supporting documentation linked to one or more records — a URL, uploaded file,
 
 #### Certified
 
-The identity provider for the Hypercerts ecosystem. We built Certified to give the ecosystem a unified entry point — one account that works across all Hypercerts applications. When you sign up at [certified.app](https://certified.app), you get a DID, a PDS, and an embedded wallet. See [Account & Identity Setup](/architecture/account-and-identity).
+An account and application provider oriented toward Hypercerts users and organizations. A Certified account provides a DID and repository on a Certified PDS. Application compatibility still depends on supported authentication and permissions. See [Account & Identity Setup](/architecture/account-and-identity).
 
 #### CGS (Certified Group Service)
 
@@ -37,7 +37,7 @@ Who contributed to a hypercert. Can be as simple as a DID string, or a richer re
 
 #### DID (Decentralized Identifier)
 
-A permanent identifier for a user or organization. Looks like `did:plc:abc123xyz`. You get one when you create an account on [certified.app](https://certified.app) or [Bluesky](https://bsky.app). Your DID never changes, even if you switch servers or handles. Every record you create carries your DID as the author.
+An identifier for an AT Protocol account, such as `did:plc:abc123xyz`. The DID in an AT-URI identifies the repository that published the record. It is distinct from a mutable handle and from actors named inside the record.
 
 #### ePDS (extended PDS)
 
@@ -53,7 +53,7 @@ A structured digital record of a contribution: who did what, when, where, and wi
 
 #### Hyperindex
 
-A reference indexer that indexes hypercert records across the network and exposes them via a GraphQL API. Other indexers exist — see [Hyperindex](/tools/hyperindex).
+A legacy indexer that indexes Hypercerts records and exposes them through GraphQL. It is supporting infrastructure, not the target Hypercerts protocol API. See [Hyperindex](/tools/hyperindex).
 
 #### Lexicon
 
