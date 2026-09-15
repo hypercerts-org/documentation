@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Sidebar } from './Sidebar';
 import { TableOfContents } from './TableOfContents';
-import { getPrevNext } from '../lib/navigation';
+import { getNavigationSection, getPrevNext } from '../lib/navigation';
 import { LastUpdated } from './LastUpdated';
 import { Breadcrumbs } from './Breadcrumbs';
 import { ThemeToggle } from './ThemeToggle';
@@ -24,6 +24,7 @@ export default function Layout({ children, frontmatter }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const router = useRouter();
   const currentPath = router.asPath.split('#')[0].split('?')[0];
+  const currentSection = getNavigationSection(currentPath)?.section;
   const { prev, next } = getPrevNext(currentPath);
 
   const title = frontmatter?.title;
@@ -162,10 +163,10 @@ export default function Layout({ children, frontmatter }) {
           </Link>
           <span className="header-divider" aria-hidden="true" />
           <nav className="header-nav" aria-label="Main navigation">
-            <Link href="/guide" className="header-nav-link">Guide</Link>
-            <Link href="/client-integration" className="header-nav-link">Client integration</Link>
-            <Link href="/reference" className="header-nav-link">Reference</Link>
-            <Link href="/change-history" className="header-nav-link">Change history</Link>
+            <Link href="/guide" className={`header-nav-link${currentSection === 'Guide' ? ' header-nav-link-active' : ''}`}>Guide</Link>
+            <Link href="/client-integration" className={`header-nav-link${currentSection === 'Client Integration' ? ' header-nav-link-active' : ''}`}>Client integration</Link>
+            <Link href="/reference" className={`header-nav-link${currentSection === 'Reference' ? ' header-nav-link-active' : ''}`}>Reference</Link>
+            <Link href="/change-history" className={`header-nav-link${currentSection === 'Change History' ? ' header-nav-link-active' : ''}`}>Change history</Link>
           </nav>
           <div style={{ flex: 1 }} />
           <button
