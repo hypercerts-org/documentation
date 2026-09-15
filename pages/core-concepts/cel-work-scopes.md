@@ -1,60 +1,36 @@
 ---
-title: Work Scopes and Classification
-description: How Hypercerts records describe and classify the work covered by a claim.
+title: Describing and Classifying Work
+description: Help people and applications understand what an activity covers and find related projects.
 ---
 
-# Work Scopes and Classification
+# Describing and Classifying Work
 
-A work scope describes what an activity covers. Classification tags describe projects, features, and reusable categories. The released model keeps these concerns separate.
+People describe similar work in different ways. That is fine for a conversation, but it makes searching and comparing projects harder. Shared terms help an application recognize connections without throwing away the detail in people's descriptions.
 
-## Activity work scopes
+Hypercerts offers two related tools: work scopes for activities, and classification tags for collections and features.
 
-An activity's `workScope` can contain either:
+## Say what an activity covers
 
-- A free-form work-scope string for human-readable descriptions.
-- An embedded `org.hypercerts.workscope.cel` object for machine-readable expressions.
+A **work scope** explains the work included in an activity claim. For an open-source project, it might say “maintenance of the mapping library, including bug fixes and documentation.” This helps a reader understand what the claim covers and what would belong in another activity.
 
-The CEL object is embedded inside the activity; it is not a repository record. It contains an expression, a version, and `usedTags`, which are strong references to `org.hypercerts.workscope.tag` records.
+A plain-text scope is often enough. When applications need to compare or combine scopes more precisely, there is also a structured form using **Common Expression Language (CEL)**. It combines shared work-scope terms with logical expressions instead of relying on wording alone.
 
-Work-scope tags are reusable atoms for expressions. They can identify a parent tag, an equivalent external concept, or a replacement tag. Applications still need to decide which publishers and vocabularies they recognize.
+You don't need to learn that expression language to understand the Guide. The choice is practical: use a readable description when people need an explanation, and consider the structured form when software needs a shared way to reason about the scope.
 
-## General classification
+## Help people find related projects
 
-`org.hypercerts.vocab.tag` provides broader classifications for:
+**Vocabulary tags** classify collections, including projects, and features such as land areas. They can help a directory group projects by subject or let a funder find work in a field it supports.
 
-- `org.hypercerts.collection` records, including project collections.
-- `org.hypercerts.entity.feature` records.
+These classification tags have a different job from an activity's work scope. A project category helps people find the project; a work scope says which work an activity covers. They use separate schemas.
 
-General vocabulary tags can name broader concepts, equivalent external concepts, and superseding tags. The attached tags apply together by the released convention; they do not provide the Boolean expression language used by activity work scopes.
+## Share terms, not just labels
 
-## The three related schema families
+A reusable tag is a record with its own publisher and identifier. Two tags called “restoration” may mean different things if different organizations define them. Keeping the link to the actual tag lets another app inspect the intended meaning.
 
-- `org.hypercerts.workscope.cel` defines the structured Common Expression Language (CEL) object used by work-scope fields.
-- `org.hypercerts.workscope.tag` defines reusable terms used in work-scope expressions.
-- `org.hypercerts.vocab.tag` provides broader classification tags outside the work-scope expression model.
+Tags can also relate to broader terms, external concepts, or replacement terms. Communities can develop vocabularies suited to their field, while applications choose which vocabularies to recognize.
 
-These replace the older `org.hypercerts.ontology.*` names that appeared in previous documentation drafts.
+This gives shared structure room to grow. An app can show an unfamiliar term with its source instead of silently translating it into a category that means something else.
 
-## Shared usage guidance
+The [Lexicon inventory](/reference/lexicon-inventory) lists the work-scope and vocabulary schemas when you need their exact definitions.
 
-- Use a simple textual scope when shared machine interpretation is not required.
-- Use a CEL scope when consumers need to apply logical operations to shared work-scope terms.
-- Use general vocabulary tags for classification of a collection or feature, not as a substitute for an activity's work-scope expression.
-- Preserve the publisher's AT-URI with every referenced tag. Matching names or keys from different repositories do not establish identical meaning.
-- Follow `supersededBy` and hierarchy relationships according to an explicit application policy. The Lexicons do not prevent cycles or invalid hierarchies.
-- Preserve unknown `knownValues`, tags, and CEL versions even when the application cannot interpret them.
-- Do not describe a scope or classification as verified merely because it passes structural validation.
-
-## Open values and governance
-
-Lexicon `knownValues` are open suggestions, not closed enums. A writer may publish another value that remains structurally valid. This supports extension, but it also means interoperable applications need fallback behavior.
-
-Vocabulary authority is similarly contextual. The DID in a tag's AT-URI identifies its publisher. It does not make that publisher universally authoritative for a domain. Applications should state which tag publishers they recognize and retain the original source when presenting normalized categories.
-
-For exact fields and constraints, use the released `@hypercerts-org/lexicon` package and the [Lexicon inventory](/reference/lexicon-inventory). Tested SDK examples remain part of the evolving [Client Integration](/client-integration) path.
-
-## Related pages
-
-- [Core Data Model](/core-concepts/hypercerts-core-data-model)
-- [Validation, Extension & Interpretation](/core-concepts/validation-and-interpretation)
-- [Lexicon inventory](/reference/lexicon-inventory)
+Next: [Records That Change Over Time](/architecture/data-flow-and-lifecycle), to see how these connections behave when information is updated.

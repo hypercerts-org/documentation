@@ -1,39 +1,48 @@
 ---
-title: Common Use Cases
-description: See how common funding and evaluation scenarios map to the Hypercerts record graph.
+title: What You Can Build
+description: Explore how project tools, evaluation services, funding platforms, and agents can build on shared information.
 ---
 
-# Common Use Cases
+# What You Can Build
 
-These examples show how domain workflows can use the same record graph. They are conceptual mappings, not tested SDK or XRPC instructions.
+You don't have to build the whole journey from project reporting to funding. You can make one part of it better, using information others publish and contributing something useful in return.
 
-## Open-source software maintenance
+Here are some ways the building blocks in this Guide could come together.
 
-A team publishes an activity for a year of library maintenance. Contributor entries describe maintainers and roles. Attachments link releases and reports; measurements describe issues resolved or downloads; peer evaluators publish assessments. A project collection can group annual activities, and receipts can record prospective or retroactive support.
+## Help projects tell their story once
 
-## Regenerative land stewardship
+A project dashboard could help a team describe its work, organize activities, and publish updates with evidence. The team uses a familiar interface, while the application publishes shared records that other tools can read.
 
-A project collection with `type: "project"` groups restoration activities and the land areas they concern. Feature records represent zones or strata; location records provide spatial representations. Attachments link satellite imagery and reports, measurements describe observations, and community or expert evaluations assess the work. Receipts can point to the project collection or a specific activity.
+For a land stewardship project, that might mean grouping restoration activities and land areas, linking field observations, and showing progress across seasons. The resulting history can be useful to the next funder as well as to the team itself.
 
-## Scientific research
+## Make expertise easier to contribute
 
-A research activity identifies contributors and reusable contribution details. Attachments link papers, data, and protocols. Measurements can describe outputs; evaluations record peer assessments and cite relevant measurements. A funding receipt records support but does not establish research quality or payment settlement by itself.
+An evaluation tool could help reviewers find work in their field, inspect evidence, and publish assessments. The useful contribution is the reviewer's insight, made available beyond the process that first requested it.
 
-## Community event organization
+For research, this might mean an assessment of methods and findings. For open-source software, it might mean a review of maintenance quality and the experience of teams that depend on the library. Each field can choose its own questions and methods.
 
-A program collection groups workshop activities and optional cohort features. Contributor entries identify instructors and hosts. Attachments provide materials and reports; measurements record attendance or outcomes; participant or expert evaluations add assessments. Acknowledgements can confirm particular relationships without turning them into protocol-wide truth.
+## Bring existing knowledge into funding decisions
 
-## Certifications and network recognition
+A funding platform could read project information and earlier assessments, ask only for the additional context its process needs, and record support afterward.
 
-A network or certifier publishes a badge definition and then an award whose subject is an account or project record. The recipient can publish a separate badge response. The award does not imply acceptance, and the definition's issuer list requires application-level authorization checks.
+Crowdfunding with matching funds is an existing application described on the [landing page](https://hypercerts.org). Other mechanisms, such as outcome payments or milestone bounties, could use similar information, with their own selection and payment rules.
 
-## What remains application-specific
+## Make recognition easier to discover
 
-In every scenario, applications still decide:
+A network directory could show projects alongside certifications or endorsements from organizations its users recognize. It could explain who awarded each badge and link to supporting assessments.
 
-- Which publishers, evaluators, certifiers, and vocabularies they trust.
-- Which records their index includes and how backlinks are resolved.
-- How source data becomes forms, search, rankings, totals, or recommendations.
-- How private operational data and payment execution stay outside public records.
+A funder exploring a new field could use that directory to find relevant projects and people with expertise, then inspect the underlying records rather than rely only on a list of names.
 
-For implementation status, use [Client Integration](/client-integration). For exact schemas, use the [Lexicon inventory](/reference/lexicon-inventory).
+## Give agents useful sources to work with
+
+An agent could help a project prepare an update, find relevant evaluations for a funder, or flag a question that needs human review. Shared formats make it easier to distinguish a project's claim from someone else's assessment and follow each back to its source.
+
+An agent's summary is still an interpretation. Keeping the evidence and its publisher visible lets people check the conclusions, compare perspectives, and ask better questions.
+
+## Choose the connection your users need
+
+A useful starting point is a concrete question: “What has this project done since we funded it?” or “Which assessments can we reuse?” Then identify the records needed to answer it.
+
+Your app may begin by reading existing information, publishing one kind of record, or doing both. It gains value from the wider network without having to reproduce every other tool.
+
+Next: [Building on Shared Records](/core-concepts/validation-and-interpretation), the final step before Client Integration.

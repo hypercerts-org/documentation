@@ -1,69 +1,34 @@
 ---
 title: Guide
-description: Understand the Hypercerts Protocol, its data model, and the conventions that make records useful across applications.
+description: Follow how information about valuable work becomes useful to projects, evaluators, funders, and the applications they use.
 ---
 
 # Guide
 
-Hypercerts gives valuable work, project context, assessments, and funding history shared formats that independent applications can reuse. This Guide explains the protocol model and the conventions that make those records meaningful together.
+You've seen the idea: projects should be able to share their work once, and funders should be able to build on what others already know. This Guide explains how Hypercerts makes that possible.
 
-Use the Guide to understand the system. Use [Client Integration](/client-integration) for tested implementation paths and [Reference](/reference) for exact schemas and service contracts.
+If you'd like the high-level story first, visit [hypercerts.org](https://hypercerts.org). Here, we'll go one level deeper, from describing a piece of work to connecting it with evidence, independent assessments, and funding.
 
-{% callout type="note" %}
-The current schema baseline is `@hypercerts-org/lexicon` 1.4.0. Hypercerts evolves through additive Lexicon releases and shared usage guidance. There is no ratified conformance specification or universal compatibility badge.
-{% /callout %}
+## Start with what people already know
 
-## What the protocol includes
+A project team knows what it has been doing. A community knows how that work affects local people. A specialist can assess the methods. A funder knows why it chose to offer support. Each holds a different part of the picture.
 
-The practical protocol spans several layers:
+Usually, these pieces end up in separate application forms, reports, and databases. Hypercerts gives them a shared format and a way to connect. A team can publish an update through one app, an evaluator can review the work through another, and a funding platform can bring both into view.
 
-| Layer | Responsibility |
-|---|---|
-| **AT Protocol** | DIDs, repositories, record addressing, signed commits, Personal Data Servers (PDSs), and data portability |
-| **Released Lexicons** | The structural shapes for Hypercerts and Certified records |
-| **Shared usage guidance** | Conventions for concepts such as projects, references, attribution, classification, and interpretation |
-| **Applications and services** | Writing, discovery, indexing, aggregation, policy, and user experience |
-| **Change history** | Released additions, corrections, and migration context |
+The people contributing information keep their own voices. An evaluator publishes their assessment rather than editing the project's account of its work. Later, someone deciding whether to fund the project can see both accounts and the evidence behind them.
 
-Lexicons establish structural validity. They do not prove that work happened, that an evaluator is independent, that a receipt corresponds to a settled payment, or that an index contains every related record. Those judgments depend on provenance, corroboration, application policy, and evidence.
+That is how a useful record grows over time. The next decision can begin with what is already known, rather than another blank form.
 
-```mermaid
-flowchart LR
-  A["Authors and organizations"] -->|publish| P["AT Protocol repositories"]
-  P --> H["Hypercerts and Certified records"]
-  H --> I["Relays and indexers"]
-  I --> X["Applications and agents"]
-  G["Lexicons and usage guidance"] -.shape and meaning.-> H
-  X -->|publish more context| P
-```
+## What you'll learn
 
-## Follow the model
+We'll follow three parts of that story:
 
-{% card-grid %}
-{% card-link title="What are Hypercerts?" href="/core-concepts/what-is-hypercerts" %}
-Start with the problem, the protocol boundary, and what a hypercert represents.
-{% /card-link %}
-{% card-link title="Why AT Protocol?" href="/core-concepts/why-at-protocol" %}
-Understand the identity, record, and portability foundation.
-{% /card-link %}
-{% card-link title="Core Data Model" href="/core-concepts/hypercerts-core-data-model" %}
-See every released record family, relationship direction, and higher-level convention.
-{% /card-link %}
-{% card-link title="Common Use Cases" href="/core-concepts/common-use-cases" %}
-Map real scenarios to the record graph without depending on one application.
-{% /card-link %}
-{% /card-grid %}
+1. **Make information reusable.** Meet the open network underneath Hypercerts and the shared language that lets different apps understand the same records.
+2. **Build a fuller picture of the work.** Describe activities and projects, add evidence and evaluations, recognize contributions, and record funding.
+3. **Put that knowledge to use.** Understand how records stay connected as they change, how apps find them, and where your own application can contribute.
 
-## Understand meaning and trust
+Along the way, we'll introduce technical terms such as *Lexicon*, *repository*, and *indexer* when they help explain a practical question. Exact fields and constraints are linked in the Reference for when you need them.
 
-- [Identity, Authorship & Trust](/core-concepts/certified-identity) separates repository publishers, named actors, attestations, and application trust decisions.
-- [Work Scopes & Classification](/core-concepts/cel-work-scopes) distinguishes activity scope expressions from tags used to classify projects and features.
-- [Funding Records & Value Flow](/core-concepts/funding-and-value-flow) explains what a receipt records and what it does not prove.
+By the end, you should be able to explain how the pieces fit together and choose a starting point for your application. [Client Integration](/client-integration) is the next step toward building it.
 
-## Operate across repositories
-
-- [Records, References & Lifecycle](/architecture/data-flow-and-lifecycle) explains record slots, versions, strong references, updates, deletion, and backlink discovery.
-- [Public Data, Discovery & Portability](/architecture/portability-and-scaling) explains the difference between publication, availability, discovery, and indexed views.
-- [Validation, Extension & Interpretation](/core-concepts/validation-and-interpretation) separates schema checks from application semantics and explains safe extension.
-
-For an exact list of released schemas, continue to the [Lexicon inventory](/reference/lexicon-inventory).
+Start with [Why AT Protocol?](/core-concepts/why-at-protocol): how can people using different apps contribute to the same picture?

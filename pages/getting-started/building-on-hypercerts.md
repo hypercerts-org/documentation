@@ -91,7 +91,7 @@ You're also free to create new lexicons for use cases that don't fit the origina
 
 Use a strong reference when the field requires an AT-URI and CID for one content version. Use DID fields for accounts and URI-only record subjects where the Lexicon deliberately models a relationship that survives updates. Do not substitute one reference form for another.
 
-See [Records, References & Lifecycle](/architecture/data-flow-and-lifecycle) and [Validation, Extension & Interpretation](/core-concepts/validation-and-interpretation) before publishing an extension.
+See [Records That Change Over Time](/architecture/data-flow-and-lifecycle) and [Building on Shared Records](/core-concepts/validation-and-interpretation) before publishing an extension.
 
 
 ## Next Steps

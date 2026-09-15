@@ -163,4 +163,4 @@ Before deploying to production:
 - [Client Integration](/client-integration) — review the target SDK and XRPC path and current gaps
 - [Lexicon reference](/lexicons/hypercerts-lexicons) — field definitions and constraints for each record type
 - [Architecture Overview](/architecture/overview) — how the protocol stack fits together, including the security model
-- [Records, References & Lifecycle](/architecture/data-flow-and-lifecycle) — how records change and connect across repositories
+- [Records That Change Over Time](/architecture/data-flow-and-lifecycle): how records change and connect across repositories

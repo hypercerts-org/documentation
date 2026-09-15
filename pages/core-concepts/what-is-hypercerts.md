@@ -1,75 +1,41 @@
 ---
-title: What are Hypercerts?
-description: Shared records for describing valuable work and connecting it to context, assessment, and funding.
+title: Activity Claims
+description: Describe a piece of work so others can recognize contributions, add evidence, and assess its value.
 ---
 
-# What are Hypercerts?
+# Activity Claims
 
-A hypercert is an `org.hypercerts.claim.activity` record that describes valuable work. Other records can connect contributors, evidence, measurements, evaluations, acknowledgements, classifications, projects, and funding history to that activity over time.
+Maintaining an open-source library, restoring a wetland, or running a community workshop all involve work worth describing. An **activity claim**, or hypercert, gives that work a shared record that other people can refer to.
 
-Together, these records form an open graph rather than one final certificate or document. Different people and organizations publish from their own AT Protocol repositories. Applications assemble the parts relevant to their users and preserve who published each assertion.
+The word *claim* matters. The record is someone's account of the work. Evidence and assessments help others judge that account over time.
 
-## The structure of a hypercert
+## Give the work a clear description
 
-The activity model is designed to answer four useful questions:
+A useful activity description answers four questions:
 
-- **Who** is doing (or did) the work?
-- **What** are they doing (or what did they do)?
-- **When** is it happening (or when did it happen)?
-- **Where** did it happen? (physical or digital)
+- **Who** contributed?
+- **What** are they doing, or what did they do?
+- **When** does the work take place?
+- **Where** does it happen, whether in a physical place or online?
 
-These are conceptual dimensions, not all required fields in the released schema. Version 1.4.0 requires a title, short description, and creation time; richer records add the dimensions needed for their use case.
+For example, a team might describe “maintenance of an open-source mapping library, January to June.” It can name the maintainers, explain the work covered, and link to the repository. Someone reading it has a much clearer starting point than a broad claim to be “supporting open source.”
 
-Related records can add more context:
+An activity can describe planned, ongoing, or completed work. Make that distinction clear in the description. A plan for restoration and a report of completed restoration should not be mistaken for each other.
 
-- **Attachments:** documents, links, files, reports, or other material. An attachment may be evidence, but its existence does not verify its contents.
-- **Measurements:** quantitative observations, their units, methods, measurers, and evidence links.
-- **Evaluations:** assessments with named evaluators, summaries, optional scores, reports, and supporting measurements.
-- **Contributions:** reusable details about who was involved, their roles, and their periods of contribution.
-- **Collections:** group activities, non-agent features, and other collections into projects, programs, portfolios, or other sets.
-- **Funding receipts:** record assertions about funding payments and what they supported.
-- **Acknowledgements, badges, and signatures:** add independent signals about relationships, recognition, and provenance.
+## Recognize the people involved
 
+Contributor details let a team name the people or organizations involved and describe their roles. One person may have maintained the code, another written documentation, and another organized user testing.
 
+Simple identity and role details can be included directly. Reusable contributor and contribution records are available when you need more detail. Optional weights can express relative contributions, but how to choose those weights is a decision for the people and application using them.
 
-## What a hypercert is not
+Naming someone is the publisher's account of their involvement. A response from that person can add confirmation. We'll return to this in [Trust and Recognition](/core-concepts/certified-identity).
 
-- **Not a truth certificate:** valid structure and attributable publication do not prove a claim is correct.
-- **Not a payment rail:** a funding receipt describes a claimed transfer; Hypercerts does not settle the payment.
-- **Not a token:** the released protocol model is based on AT Protocol records.
-- **Not a single document:** related records can be published and updated independently across repositories.
-- **Not a complete global view:** finding every backlink requires an indexer, and every index has a coverage policy.
+## Let the picture develop
 
-## How people use them
+The activity provides a common point of reference. Later, the team can link a progress report, users can publish measurements, and reviewers can assess the results. These additions can live in other accounts without changing the activity itself.
 
-**If you're doing the work**, you create a hypercert to make your contributions visible. Instead of writing reports that sit in a folder, you publish a verifiable record that any platform can display and build on.
+This is why a hypercert can become more useful over time. The description of the work remains connected to what people learn about it.
 
-**If you're evaluating work**, you publish an assessment from an AT Protocol repository and reference the record version you assessed. Applications can use your identity, evidence, and history as inputs to their own trust model.
+You can start with a short record and add detail as it becomes useful. The schema requires a title, short description, and creation time; contributor, time, location, and other details are optional. The [Activity Claim reference](/lexicons/hypercerts-lexicons/activity-claim) covers the exact fields, including descriptions, work scope, and rights or licensing information.
 
-**If you're funding work**, you can inspect attributable project information and assessments, then publish a receipt describing support. Whether that receipt proves settlement depends on its publisher and supporting data.
-
-**If you're building a platform**, you can read and write hypercerts using shared schemas. A funding platform, a project dashboard, and an evaluation tool can all work with the same data.
-
-## An example
-
-Say a team runs a coastal reforestation project. They create a hypercert:
-
-> **Coastal mangrove restoration, 2025**
->
-> 50 hectares restored over 12 months (the activity claim). Satellite imagery confirms canopy coverage. An independent ecologist evaluates the work as "high-quality restoration with strong community engagement."
-
-The activity claim is the starting record. Over the following months, the team or third parties publish measurements and attachments that refer to it. An evaluator can assess a specific version. An indexer can assemble those independently published records for a funding application, which may then record support with a funding receipt.
-
-## Why it's built this way
-
-Hypercerts are designed to live beyond any single platform.
-This is why we built hypercerts on [AT Protocol](/core-concepts/why-at-protocol), a decentralized data layer that also powers Bluesky. This gives hypercerts some important properties:
-
-- **Repository-controlled:** records live in an AT Protocol repository associated with the publisher's DID rather than only in one application's database.
-- **Portable:** the DID and AT-URIs do not encode the current server address, so repository migration can preserve record identifiers.
-- **Attributable:** signed repository commits let consumers verify which repository published a version; optional record-level attestations are a separate mechanism.
-- **Interoperable by agreement:** applications can understand records when they implement the released schemas and compatible usage conventions.
-
-## Next step
-
-To see the full graph, including projects and adjacent Certified records, read the [Core Data Model](/core-concepts/hypercerts-core-data-model).
+Next: [Projects and Collections](/core-concepts/projects-and-collections), for work that spans more than one activity.

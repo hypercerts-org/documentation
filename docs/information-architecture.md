@@ -11,6 +11,19 @@ This is the working migration map for the protocol-first documentation restructu
 - Existing public routes remain stable during the first pass unless their content has been explicitly retired.
 - A proposal in the third editor's draft is not a protocol requirement unless it is independently ratified and reflected in authoritative sources.
 
+## Guide reader journey
+
+The landing page introduces the promise; the Guide explains how it works; Client Integration helps readers build; Reference supplies the details they look up along the way.
+
+Assume readers have seen the landing page, with an optional link to `https://hypercerts.org` at the start for those who haven't. The Guide follows the same story one level deeper: reuse existing knowledge, connect contributions from different people, build a fuller picture over time, and bring it into funding decisions.
+
+- Begin with familiar questions and explain technical terms at the point they become useful. Introduce AT Protocol, repositories, Lexicons, and indexers early enough to explain cross-application reuse.
+- Give activities, projects, evidence, and evaluations recognizable concept pages. Explain what they are and why a reader would use them before discussing schema details.
+- Use short illustrative examples. Keep field inventories, exhaustive validation rules, and implementation contracts in Reference or Client Integration.
+- Explain a limitation alongside the decision it affects, rather than opening each page with a list of things the protocol cannot do.
+- Keep the Guide navigation flat and ordered for a start-to-finish reading path. Each page leads to the next; the final page leads to Client Integration with its current implementation status clear.
+- Treat the older vision essay as separate background, outside the sequential Guide. It includes historical economic ideas that would interrupt the current learning path.
+
 ## First-pass migration
 
 | Previous area | New primary home | Treatment |
@@ -22,7 +35,7 @@ This is the working migration map for the protocol-first documentation restructu
 | Architecture | Guide or Reference | Put lifecycle and portability guidance in Guide; put system and service architecture in Reference; put account setup in Client Integration. |
 | Lexicons and service directories | Reference | Keep existing routes and expand source-backed coverage. |
 | Lexicon releases | Change History | Keep the imported upstream changelog and add adopter-facing migration context separately. |
-| Ecosystem and vision | Guide | Keep protocol-purpose content in the conceptual path. |
+| Ecosystem and vision | Separate background | Retain the existing essay route outside the sequential Guide; the landing page provides the high-level introduction. |
 | Roadmap | Unassigned | Keep the source for now, but do not mix planned capabilities into supported instructions or change history. |
 
 ## Third editor's draft disposition
@@ -49,12 +62,7 @@ The draft at `https://claude.ai/code/artifact/cf891a57-416c-4d63-8ec3-8194e6cb6e
 
 ### Guide
 
-- Protocol and infrastructure boundaries
-- Record identity, versions, and references
-- Identity, authority, trust, and corroboration
-- Validation and extensibility
-- Aggregation and interpretation
-- Known limitations and open semantic questions
+The narrative path now covers the main concepts, common usage, and the handoff to building. Further work should test whether newcomers can explain the system and choose a useful integration after reading it, rather than expand the Guide into a field-by-field reference.
 
 ### Client Integration
 

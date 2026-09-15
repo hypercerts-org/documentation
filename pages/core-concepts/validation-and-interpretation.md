@@ -1,67 +1,44 @@
 ---
-title: Validation, Extension & Interpretation
-description: How structural Lexicon validation differs from semantic compatibility, and how clients handle extensions and derived views.
+title: Building on Shared Records
+description: Bring the Guide together and prepare to build an application that others can understand and build on.
 ---
 
-# Validation, Extension & Interpretation
+# Building on Shared Records
 
-Passing Lexicon validation means a record has an accepted structural shape. It does not mean the record is true, authorized, complete, discoverable, or useful for a particular decision.
+We've followed a piece of work from its initial description through evidence, assessments, recognition, and funding. We've also seen how different people can contribute through different apps, while keeping their own records connected.
 
-## Three layers of validation
+Now the question is where your application joins that story.
 
-| Layer | Typical checks | Who performs them |
-|---|---|---|
-| **Structural** | Required fields, primitive formats, lengths, unions, and referenced object shapes | SDKs, clients, validators, and indexers |
-| **Semantic** | Expected target collection, project convention, numeric ranges, chronology, tag policy, and role consistency | Compatible applications and indexers |
-| **Trust and policy** | Publisher authority, evaluator independence, evidence quality, payment verification, moderation, and ranking | Each application, community, or decision-maker |
+## Put the pieces together
 
-A PDS stores AT Protocol repository records. Do not assume it enforces every Hypercerts domain rule. Writers should validate before publication, and readers should validate untrusted records again.
+The system has three complementary parts:
 
-## Constraints beyond the Lexicons
+- **AT Protocol** gives people accounts and repositories for publishing and linking records.
+- **Hypercerts** gives those records shared formats and meaning: activities, projects, evidence, evaluations, and funding history.
+- **Applications and services** help people publish, find, interpret, and act on that information.
 
-Several released conventions cannot be fully expressed by the schemas:
+An indexer can bring records into a queryable view. Your interface can help a user understand that view or add a new contribution. That contribution can, in turn, become useful in someone else's app.
 
-- A project is a collection with `type: "project"`; `type` is optional and open.
-- Most strong-reference fields structurally accept any strong reference even when their descriptions name expected target collections.
-- Numeric amounts, weights, measurements, and scores are strings; meaningful ranges and arithmetic require application checks.
-- Required arrays can still be empty unless a minimum length is declared.
-- Date ordering, hierarchy cycles, record-key conventions, and cross-field equality require additional validation.
-- A named contributor, evaluator, issuer, sender, or recipient is not automatically the repository publisher.
+## Write information others can understand
 
-Compatible clients should document which of these rules they enforce on writes, reads, or both.
+Use the existing Lexicons where they fit your purpose. Their fields give other applications a recognizable starting point. Validation checks that a record has the expected structure, such as required fields and correctly formed links.
 
-## Open values and unknown data
+Meaning needs attention too. A project should use the shared project convention. A measurement needs an understandable metric and unit. An evaluation should link to the work it assesses and make its reasoning accessible.
 
-AT Protocol `knownValues` are not closed enums. A value outside the published list can remain structurally valid. Open unions similarly allow later record shapes.
+A record passing a schema check doesn't establish whether its claims are true. Your app can help readers judge them by showing who published the information and what supports it.
 
-Readers should:
+## Build for a network with different tools
 
-1. Preserve unknown fields and values when round-tripping data.
-2. Display a safe fallback instead of assigning an invented meaning.
-3. Avoid rejecting an entire graph because one connected record is unknown.
-4. Record which Lexicon package version and usage conventions they support.
+Other applications may use newer fields, unfamiliar categories, or extensions you haven't implemented. Show what your app understands, retain unfamiliar information when editing where possible, and avoid silently giving it a different meaning.
 
-## Extending the model
+If your use case needs something the shared formats don't cover, you can define another Lexicon and publish records that link to the existing work. Other apps and indexers will need to support that extension before they can use it. This lets specialized tools develop without replacing the shared foundation.
 
-Use a standard `org.hypercerts.*` or `app.certified.*` field when it fits the intended meaning. When an application needs data outside those schemas, publish a separate namespaced record that references the standard subject rather than adding unregistered fields and expecting other clients to interpret them.
+The [Reference](/reference) links to exact schemas and service documentation. The current Guide uses the Hypercerts and Certified schemas in `@hypercerts-org/lexicon` 1.4.0; [Change History](/change-history) is where to follow their evolution.
 
-An extension becomes interoperable only when other consumers know its Lexicon and usage. Default Hypercerts indexers are not required to ingest application-specific namespaces.
+## Take the next step
 
-## Aggregation and derived views
+Choose one useful flow for your users: publish an activity, help someone evaluate work, or bring existing project information into a funding process. Decide who publishes each piece and what a reader needs to understand it.
 
-Search results, backlinks, totals, scores, and hydrated project views are derived from an indexer's observed records. They should retain links to source AT-URIs and state material policies such as:
+Then continue to [Client Integration](/client-integration) for account setup, the available walkthroughs, and the SDK and API path as it develops. The complete SDK/XRPC walkthrough is still being prepared; that section explains what is available today.
 
-- Included repositories and record collections.
-- Accepted versions and extensions.
-- Handling of updates, deletions, and stale strong references.
-- Deduplication and conflict rules.
-- Trusted publishers or vocabulary authorities.
-- Moderation and ranking behavior.
-
-Derived data should not overwrite or masquerade as source assertions. Two indexers can legitimately produce different views from different coverage or policies.
-
-## Current compatibility boundary
-
-There are no ratified Hypercerts conformance classes or universal test suite. The current compatibility baseline is the released Lexicons plus documented shared conventions. API availability, SDK behavior, service support, and user-facing workflows have their own versions and should not be inferred from record schemas.
-
-Continue to [Client Integration](/client-integration) for tested implementation paths or [Reference](/reference) for exact contracts.
+The aim is simple: make one contribution useful beyond the app where it began. Your application can help the next person start with more knowledge and less repeated work.

@@ -41,7 +41,7 @@ For a known AT-URI, read the record from its repository. Cross-repository discov
 
 ## How do I fund a hypercert?
 
-Hypercerts does not execute payments. A platform can process funding through its chosen payment rail and publish a funding receipt that describes the payment. The receipt does not independently prove settlement. See [Funding Records & Value Flow](/core-concepts/funding-and-value-flow).
+Hypercerts does not execute payments. A platform can process funding through its chosen payment rail and publish a funding receipt that describes the payment. The receipt does not independently prove settlement. See [Funding and Learning](/core-concepts/funding-and-value-flow).
 
 ## Where do I get help?
 

@@ -1,34 +1,31 @@
 ---
 title: Hypercerts Documentation
-description: Guides, integration paths, technical reference, and change history for the Hypercerts Protocol.
+description: Learn how Hypercerts connects work, evidence, assessments, and funding, then start building with it.
 ---
 
-# Hypercerts Documentation
+# Build with Hypercerts
 
-The Hypercerts Protocol provides shared record formats and usage conventions for publishing information about work, evidence, evaluations, and funding on AT Protocol.
+A project's story should travel with it: the work it has done, the people who contributed, what others think of it, and the support it has received. With Hypercerts, you can build applications that add to that story and use what others have already shared.
 
-The protocol does not currently have a separate formal specification. The Guide, available integration material, source-backed technical reference, and change history together describe how compatible applications use and evolve the protocol.
+Looking for a high-level introduction? Start at [hypercerts.org](https://hypercerts.org). These docs take the next step: understanding how it all works, then putting it into practice.
 
-## Choose a section
+## Start with the Guide
+
+The [Guide](/guide) introduces the building blocks through the questions they help answer. How do you describe work? How can someone else evaluate it? How can a funding platform use that assessment without asking the project to start again?
+
+Read it from start to finish, or jump to a concept you want to understand. You don't need to know AT Protocol before you begin.
 
 {% card-grid %}
 {% card-link title="Guide" href="/guide" %}
-Understand the protocol, its data model, and shared usage conventions.
+Understand how projects, evidence, evaluations, and funding connect across applications.
 {% /card-link %}
-{% card-link title="Client integration" href="/client-integration" %}
-Review the target path from authentication and record creation to discovery and display, including the current gaps.
+{% card-link title="Client Integration" href="/client-integration" %}
+Move from understanding to implementation, with the available walkthroughs and SDK and API guidance as it develops.
 {% /card-link %}
 {% card-link title="Reference" href="/reference" %}
-Inspect Lexicons, service architecture, interfaces, environments, and tooling.
+Look up record fields, schemas, and service details while you build.
 {% /card-link %}
-{% card-link title="Change history" href="/change-history" %}
-Track schema and component changes, compatibility notes, and migration guidance.
+{% card-link title="Change History" href="/change-history" %}
+See what has changed and what it means for your integration.
 {% /card-link %}
 {% /card-grid %}
-
-## Recommended path
-
-1. Start with the [Guide](/guide) to understand the model and common interpretation.
-2. Use [Client integration](/client-integration) for current integration material and known gaps.
-3. Consult the [Reference](/reference) for exact source-backed contracts.
-4. Review [Change history](/change-history) when upgrading an integration.

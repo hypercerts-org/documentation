@@ -1,69 +1,44 @@
 ---
-title: "Funding & Value Flow"
-description: What released funding receipts record, how they connect to work, and what they do not prove.
+title: Funding and Learning
+description: Use what is already known about a project, record support, and make the next funding decision better informed.
 ---
 
-# Funding & Value Flow
+# Funding and Learning
 
-Hypercerts can describe funding without prescribing a payment rail or funding mechanism. The released `org.hypercerts.funding.receipt` schema records an assertion about a funding payment. It does not execute or independently verify that payment.
+A funder considering a project wants to understand the work, the evidence behind it, and what others have learned. The records we've covered let an application bring those pieces together.
 
-## Hypercerts work with any funding mechanism
+The funder can then make a decision using its own priorities and process. Hypercerts helps carry information into that decision and preserve what happens afterward.
 
-Funding can be prospective, concurrent, or retroactive. A receipt can be used around grants, crowdfunding, matching, bounties, purchases, or other mechanisms when the parties can represent the event with the released fields.
+## Record support for the work
 
-The protocol records funding context. It does not define eligibility, allocation, matching, settlement, refunds, or ownership semantics for those mechanisms.
+A **funding receipt** describes a funding payment. It records a recipient, amount, currency, and creation time. It can also name the sender, link to the activity or project supported, and include payment details such as a transaction identifier.
 
-## Tracking funding
+A funding platform, facilitator, funder, or recipient can publish a receipt. That flexibility makes it useful across different funding arrangements. A reader should be able to see who published the receipt as well as the parties it names.
 
-The receipt has four required fields:
+For example, a platform could record a payment toward a community energy installation and link it to that activity. A later reader can then connect the support with the work and its subsequent reports.
 
-- `to`: the recipient, represented by free text, a DID, or a strong reference.
-- `amount`: a string representing the amount.
-- `currency`: a string identifying the payment currency.
-- `createdAt`: the record creation time.
+The payment itself happens through the platform's chosen payment system. The receipt describes it; verifying that money arrived requires payment evidence and trust in the source. An acknowledgement from a relevant party can add confirmation, but it doesn't replace payment verification.
 
-It can also include:
+## Close the loop after funding
 
-- `from`: an optional sender. Omitting it allows an anonymous sender assertion.
-- `for`: a strong reference to the activity, project collection, organization record, or other subject funded.
-- Payment-rail, date, transaction, memo, and optional signature information.
+The useful story continues after a funding round closes:
 
-The schema intentionally supports publishers other than the sender or recipient. A funding platform, grant program, payment processor, sender, or recipient can publish a receipt. Consumers should therefore distinguish the repository publisher from the parties named inside it.
+1. A project describes the work it intends to do.
+2. Funders use available information and assessments to decide what to support.
+3. Receipts record support for the work.
+4. The team reports progress, and others contribute observations or assessments.
+5. The next funding decision builds on that history.
 
-## Connecting funding to work
+This is an example, not a required sequence. Work may already be underway or completed before it receives funding. The point is to keep what each round learns available to the next.
 
-```mermaid
-flowchart LR
-  P["Receipt publisher"] -->|publishes| R["Funding receipt"]
-  R -->|from, optional| F["Sender"]
-  R -->|to, required| T["Recipient"]
-  R -->|for, optional strongRef| W["Activity, project, organization, or other record"]
-  A["Acknowledging actor"] -->|separate record| K["Acknowledgement"]
-  K -->|subject| R
-```
+## Support different ways of funding
 
-An acknowledgement can add an independently published acceptance or rejection. It is a relationship record, not a cryptographic counter-signature and not proof of bank or blockchain settlement.
+The landing page describes crowdfunding with matching funds as a current use. The same idea of shared evidence could support outcome payments, prize competitions, or milestone bounties. Investment and procurement are further possibilities to explore.
 
-## What applications must decide
+Those approaches need their own rules for eligibility, selection, and payment. Hypercerts supplies reusable information; it doesn't decide which funding mechanism a community should use.
 
-The released schema does not guarantee:
+Likewise, an app showing “total funding” needs to consider currencies, repeated receipts, and which publishers it includes. A number is more useful when readers can inspect the receipts behind it and understand its coverage.
 
-- That a payment settled, was not refunded, or matches an external transaction.
-- That the publisher was authorized to speak for a named party.
-- That every relevant receipt has been published or indexed.
-- That duplicate or conflicting receipts have been removed.
-- That amount and currency strings can be safely summed without normalization.
+The [Funding Receipt reference](/lexicons/hypercerts-lexicons/funding-receipt) has the field details.
 
-Applications should preserve source records, define accepted publishers and payment evidence, identify deduplication rules, and label derived totals as index-dependent.
-
-## Current boundary
-
-The released 1.4.0 Lexicons do not define claim freezing, token wrapping, ownership fractions, auctions, or settlement. Those ideas may appear in historical or future design material, but they are not current protocol behavior and should not be inferred from a funding receipt.
-
-
-## See also
-
-- [Core Data Model](/core-concepts/hypercerts-core-data-model)
-- [Identity, Authorship & Trust](/core-concepts/certified-identity)
-- [Records, References & Lifecycle](/architecture/data-flow-and-lifecycle)
-- [Funding Receipt reference](/lexicons/hypercerts-lexicons/funding-receipt)
+We've now followed the story from a description of work to evidence, trust, and support. Next, [Describing and Classifying Work](/core-concepts/cel-work-scopes) explains how apps can recognize related work across projects.

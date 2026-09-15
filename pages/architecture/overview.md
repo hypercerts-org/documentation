@@ -25,7 +25,7 @@ A client writes a record to a repository through a PDS or managed service. A rel
 
 ![Data flow through ATProto](/images/architecture-dataflow.svg)
 
-For record versions, relationship directions, and reverse discovery, see [Records, References & Lifecycle](/architecture/data-flow-and-lifecycle).
+For an introduction to record versions, links, and discovery, see [Records That Change Over Time](/architecture/data-flow-and-lifecycle).
 
 ## Why It's Trustworthy
 

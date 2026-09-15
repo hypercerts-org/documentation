@@ -1,60 +1,42 @@
 ---
-title: Public Data, Discovery & Portability
-description: How source records, repository migration, relays, indexers, availability, and public-data limits differ.
+title: Finding and Reusing Information
+description: How apps bring records from different accounts together and let people reuse them beyond the place they were published.
 ---
 
-# {% $markdoc.frontmatter.title %}
+# Finding and Reusing Information
 
-Hypercerts uses public AT Protocol repository records so independent applications can read and connect them. Publication, availability, discovery, and presentation are different operations, and none guarantees the others.
+A project description lives with the project. An assessment lives with its publisher. Funding receipts may come from several platforms. To show a useful project page, an application needs to find these pieces and connect them.
 
-## Public source records
+This is where indexing services help turn shared records into something people can browse and use.
 
-Records in the released Hypercerts and Certified collections should be treated as public. Do not publish secrets, private contact details, confidential applications, access tokens, or personal data that should not be replicated.
+## From individual records to a project view
 
-A source record being public does not mean every application will discover or display it. A reader may need its AT-URI, access to the current PDS, or an indexer that has observed it.
+If an app knows a record's address, it can read it from the account's PDS. For broader questions, such as “which projects have recent evaluations?”, it usually queries an indexer.
 
-## Switching PDSs
+A **relay** helps carry updates from repositories across the network. An **indexer** collects records it is interested in and organizes them for queries. It can track links, find evaluations of an activity, and assemble information for a project page.
 
-AT-URIs use a DID rather than a server address. When an AT Protocol account migration preserves the DID, repository records can retain their identifiers after the DID document points to the new PDS.
+The app adds the interface: a timeline, an evidence browser, a funding dashboard, or a comparison tool. It may show the same records in a very different way from the app that published them.
 
-Migration still depends on a correct repository transfer, DID update, supported account state, and consumers resolving the current DID document. Applications and stale caches do not necessarily update immediately. See the [AT Protocol account migration guide](https://atproto.com/guides/account-migration) for the protocol process.
+## Different views can serve different needs
 
-## Discovery and indexed views
+A community directory may focus on local projects. A research tool may show assessments by a particular group of experts. Both can use Hypercerts without indexing every kind of record or adopting the same ranking method.
 
-Cross-repository applications commonly use relays and indexers:
+This also explains why a missing search result doesn't necessarily mean a record doesn't exist. The index may not cover that account, may not support the record type, or may still be catching up with updates.
 
-- A PDS hosts the current source repository.
-- A relay observes repositories and emits events according to its crawl and policy scope.
-- An indexer consumes selected events, resolves relationships, and builds queryable views.
-- An application reads those views and may also fetch source records directly.
+When an app presents a total or a summary, it helps to say what it includes and link back to the source records. Readers can then understand the view they are seeing.
 
-No index is inherently complete. Coverage can differ by repositories, collections, time range, moderation policy, retention, and failed ingestion. Applications should identify the source of aggregate claims and avoid presenting "not indexed" as "does not exist."
+## Reuse information beyond one app
 
-## Switching applications
+Because the record formats are public, a new application can support them without inventing an export format with each existing platform. A project can use one tool for publishing updates and another for sharing its work with funders.
 
-Shared Lexicons make it possible for another application to parse a source record without a bilateral data export. Practical interoperability still depends on the second application supporting:
+The second app still needs to support the relevant formats and features. Shared records make reuse possible; they don't make every app identical.
 
-- The record's Lexicon version and shared usage conventions.
-- Authentication and permissions for any writes.
-- The relevant repository or indexer coverage.
-- Unknown fields, record types, and values without data loss.
-- Product-specific workflows that are not encoded in the protocol.
+People can also move their account to another supported PDS while preserving its DID. The record addresses can stay the same because they identify the account, rather than its current server. Hosting choices can change without giving the project a completely new identity.
 
-An application can therefore build on the same records without every application having identical features or trust policies.
+## Publish what is meant to be shared
 
-## Updates, deletion, and persistence
+This reuse depends on public records. Keep confidential applications and private personal information in systems suited to that purpose, and publish the information people intend to make available across the network.
 
-Publishers can update and delete repository records. Other systems may retain prior versions, indexed copies, screenshots, exports, or references. Deleting the source is not a guarantee that all public copies disappear.
+Deleting a public record from its source doesn't remove every copy others may have kept. Think of publishing here as sharing information openly, rather than placing it in a private project workspace.
 
-Consumers should distinguish:
-
-- Current source state from cached or historical state.
-- A missing record from one outside the indexer's coverage.
-- An unavailable PDS from a deleted record.
-- A strong reference to an older CID from a broken reference.
-
-## Operational limits
-
-Portability does not by itself guarantee availability. DIDs must resolve, PDSs must serve repositories, and indexing paths must remain healthy. Applications that depend on durable access should define retry, cache, source-verification, and outage behavior without presenting a cache as the source of truth.
-
-Next: [Validation, Extension & Interpretation](/core-concepts/validation-and-interpretation).
+Next: [What You Can Build](/core-concepts/common-use-cases), using these connections as the starting point for your own application.

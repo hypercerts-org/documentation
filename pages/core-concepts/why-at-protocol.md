@@ -1,38 +1,36 @@
 ---
 title: Why AT Protocol?
-description: Why the Hypercerts Protocol is built on AT Protocol.
+description: How people using different applications can publish, connect, and reuse information about the same work.
 ---
 
 # Why AT Protocol?
 
-The Hypercerts Protocol is built on [AT Protocol](https://atproto.com/docs), the open protocol for decentralized data that also powers Bluesky.
+Suppose a project publishes a progress update through a funding platform. An evaluator wants to assess that work using their own tool. Another funder wants to read both. They shouldn't need to join the first platform or negotiate a custom data-sharing arrangement just to work with the same public information.
 
-Earlier Hypercerts versions centered on onchain tokens. The current model uses AT Protocol repositories for rich, evolving work records. Publishing these records does not inherently require a blockchain wallet, gas, or a settlement transaction.
+Hypercerts builds on [AT Protocol](https://atproto.com/docs), the open network technology that also powers Bluesky. It gives people an account and a place to publish records that different applications can work with.
 
-ATProto gives hypercerts three properties that matter for impact funding: portable data, shared schemas, and a trust graph rooted in cryptographic identity.
+## Records belong to accounts, not just apps
 
-## Portable, user-controlled data
+Think of a **record** as a small structured document, such as a description of an activity or an evaluation. An account keeps its records in a **repository**, a little like a folder of those documents. A **Personal Data Server (PDS)** hosts that repository. People can use a hosted service; they don't need to run their own server.
 
-Information about valuable work should be reusable beyond the application that collected it.
+An app helps someone create and read these records. The records can also be read by other apps that support their format. This separates the information from the interface used to publish it.
 
-Hypercerts records are stored in AT Protocol repositories hosted on Personal Data Servers (PDSs). Each repository is addressed through a DID rather than a fixed server URL. An account migration that preserves the DID can therefore preserve record AT-URIs when the hosting location changes.
+AT Protocol also gives each account a lasting identifier called a **DID**, short for decentralized identifier. It identifies the account separately from its current name or hosting server. This is what allows an account to keep its identity when moving between supported hosts.
 
-Applications can build views over source records without becoming the only database that defines those records. See [Public Data, Discovery & Portability](/architecture/portability-and-scaling).
+## Other people can add their perspective
 
-## Shared schemas across applications
+The evaluator publishes a new record in their own repository and links it to the project's work. The original activity stays with the project. The assessment stays with its publisher.
 
-For project information to be reused, a record written by one application needs an open shape that another application can parse.
+A funding app can then show them together. This is a central idea in Hypercerts: people can contribute information about the same work without sharing one account or giving each other permission to edit their records.
 
-AT Protocol enables this through [Lexicons](/lexicons/introduction-to-lexicons): shared, namespaced schemas that define record structures. A client can implement those public schemas and usage conventions without obtaining a proprietary schema from the original application.
+## A network needs a shared language
 
-Records reference accounts and other records through DIDs, AT-URIs, and strong references. Indexers can observe those forward links and build backlink queries and hydrated views. See [Records, References & Lifecycle](/architecture/data-flow-and-lifecycle).
+AT Protocol provides accounts, publishing, and links between records. Hypercerts provides the formats for describing work, evidence, evaluations, and funding.
 
-## Attributable inputs to trust
+These formats are defined in **Lexicons**. A Lexicon is a schema: it tells software what kind of record it is reading and which fields to expect. Using the same formats lets an evaluation tool and a funding platform exchange meaningful information, even if their interfaces look completely different.
 
-AT Protocol provides account identity through DIDs and attributes repository publication through signed commits. Hypercerts adds records that can name contributors, evaluators, issuers, funders, and subjects. These named actors may differ from the repository publisher.
+To find information spread across accounts, applications use **indexers**. An indexer collects records and makes them searchable, including connections such as “evaluations of this activity.” Each indexer has its own coverage, so different apps may show different parts of the network.
 
-This gives applications attributable inputs for their own trust models. It does not establish one trust score, verify every named actor, or guarantee that every public record has been indexed. See [Identity, Authorship & Trust](/core-concepts/certified-identity).
+You now have the basic division of work: AT Protocol lets people publish, Hypercerts gives the information a shared meaning, and applications help people use it.
 
-## Protocol boundary
-
-The released Hypercerts Lexicons describe AT Protocol records. They do not define payment settlement, claim freezing, token ownership, or a canonical global index. Those capabilities can be implemented by applications or future schemas without changing the role of AT Protocol as the source-record layer.
+Next, let's look at [the shared language itself](/core-concepts/hypercerts-core-data-model).

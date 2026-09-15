@@ -68,4 +68,4 @@ Until that reference is generated, use the versioned package or [`v1.4.0` source
 
 The NPM package also bundles dependency schemas outside the `org.hypercerts.*` and `app.certified.*` namespaces. Package inclusion does not make every bundled namespace part of this documentation's Hypercerts Protocol surface.
 
-See the [Core Data Model](/core-concepts/hypercerts-core-data-model) for meaning and relationships and [Validation, Extension & Interpretation](/core-concepts/validation-and-interpretation) for constraints that applications must enforce.
+For a conceptual introduction, read [A Shared Language](/core-concepts/hypercerts-core-data-model). [Building on Shared Records](/core-concepts/validation-and-interpretation) explains how shared formats and application choices work together.
