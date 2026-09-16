@@ -4,7 +4,7 @@ This is the working migration map for the protocol-first documentation restructu
 
 ## Principles
 
-- The documentation has four primary sections: Guide, Client Integration, Reference, and Change History.
+- The documentation has four primary sections: Guide, Client Integration, Reference, and Changes.
 - Together, the Guide, Lexicons, API and SDK contracts, reference implementation behavior, and change history describe the protocol. There is no separate ratified formal specification.
 - Guide pages explain meaning and shared usage. Reference pages provide exact source-backed contracts.
 - Integration pages publish tested paths, not inferred or aspirational APIs.
@@ -24,6 +24,12 @@ Assume readers have seen the landing page, with an optional link to `https://hyp
 - Keep the Guide navigation flat and ordered for a start-to-finish reading path. Each page leads to the next; the final page leads to Client Integration with its current implementation status clear.
 - Treat the older vision essay as separate background, outside the sequential Guide. It includes historical economic ideas that would interrupt the current learning path.
 
+## Documentation landing page
+
+The root route is a section directory, with a short introduction, four section overviews, and curated links into each section. It has no sidebar, table of contents, or article tools. The header and a compact section navigation on smaller screens provide access to the section hubs; each hub retains its own sidebar.
+
+The public name and route for change history are **Changes** and `/changes`. Redirect the previous `/change-history` route and its raw Markdown URL to their new equivalents.
+
 ## First-pass migration
 
 | Previous area | New primary home | Treatment |
@@ -34,7 +40,7 @@ Assume readers have seen the landing page, with an optional link to `https://hyp
 | Tools | Reference | Keep Agent Skills, Hypercerts Feed Service, Labelers, and legacy Hyperindex. Remove Scaffold from the active documentation because it is not a supported integration path. |
 | Architecture | Guide or Reference | Put lifecycle and portability guidance in Guide; put system and service architecture in Reference; put account setup in Client Integration. |
 | Lexicons and service directories | Reference | Keep existing routes and expand source-backed coverage. |
-| Lexicon releases | Change History | Keep the imported upstream changelog and add adopter-facing migration context separately. |
+| Lexicon releases | Changes | Keep the imported upstream changelog and add adopter-facing migration context separately. |
 | Ecosystem and vision | Separate background | Retain the existing essay route outside the sequential Guide; the landing page provides the high-level introduction. |
 | Roadmap | Unassigned | Keep the source for now, but do not mix planned capabilities into supported instructions or change history. |
 
@@ -52,7 +58,7 @@ The draft at `https://claude.ai/code/artifact/cf891a57-416c-4d63-8ec3-8194e6cb6e
 | Hypercerts and Certified schema chapters (sections 6 to 11) | Guide concept groups plus Lexicon Reference | Take structural facts from released Lexicons, not from the prose draft alone. |
 | Interoperability profiles (section 13) | Unresolved | Do not publish the proposed profiles as compatibility requirements. |
 | Authorization and permission sets (section 14) | Client Integration and Reference | Document released permission sets and tested OAuth behavior; review proposed expansion rules separately. |
-| Versioning and releases (section 15) | Change History | Distinguish independent component releases from any coordinated protocol release relationship. |
+| Versioning and releases (section 15) | Changes | Distinguish independent component releases from any coordinated protocol release relationship. |
 | Open issues (section 16) | Future known-limitations pages | Publish verified limitations, not speculative resolutions. |
 | Lexicon inventory (appendix B) | Reference coverage checklist | Verify every item against a released Lexicon source. |
 | Worked example (appendix C) | Future Client Integration walkthrough | Rebuild as a runnable, tested SDK and XRPC example. |
@@ -83,7 +89,7 @@ The narrative path now covers the main concepts, common usage, and the handoff t
 - Hypercerts API service overview and environments
 - Per-service subpages for ePDS, CGS, labelers, feed generators, relay or Jetstream, and operational status
 
-### Change History
+### Changes
 
 - Adopter-facing change entries that link meaning, schemas, components, and migration steps
 - Component changelog links without implying one universal compliance version

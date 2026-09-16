@@ -1,11 +1,11 @@
 ---
-title: Change History
+title: Changes
 description: Adopter-facing history for Hypercerts schema, guidance, SDK, API, and service changes.
 ---
 
-# Change History
+# Changes
 
-Change history helps adopters understand what changed, who is affected, and whether an integration requires action.
+This section helps adopters understand what changed, who is affected, and whether an integration requires action.
 
 The current source-backed history covers [Hypercerts Lexicon releases](/reference/releases). Future entries should connect changes in protocol meaning and guidance to the affected Lexicons, SDK, APIs, and services.
 

@@ -33,7 +33,7 @@ Other applications may use newer fields, unfamiliar categories, or extensions yo
 
 If your use case needs something the shared formats don't cover, you can define another Lexicon and publish records that link to the existing work. Other apps and indexers will need to support that extension before they can use it. This lets specialized tools develop without replacing the shared foundation.
 
-The [Reference](/reference) links to exact schemas and service documentation. The current Guide uses the Hypercerts and Certified schemas in `@hypercerts-org/lexicon` 1.4.0; [Change History](/change-history) is where to follow their evolution.
+The [Reference](/reference) links to exact schemas and service documentation. The current Guide uses the Hypercerts and Certified schemas in `@hypercerts-org/lexicon` 1.4.0; [Changes](/changes) is where to follow their evolution.
 
 ## Take the next step
 

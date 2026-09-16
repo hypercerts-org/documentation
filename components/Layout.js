@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Sidebar } from './Sidebar';
 import { TableOfContents } from './TableOfContents';
-import { getNavigationSection, getPrevNext } from '../lib/navigation';
+import { getNavigationSection, getPrevNext, navigation } from '../lib/navigation';
 import { LastUpdated } from './LastUpdated';
 import { Breadcrumbs } from './Breadcrumbs';
 import { ThemeToggle } from './ThemeToggle';
@@ -18,12 +18,26 @@ const DEFAULT_DESCRIPTION =
   'Documentation for the Hypercerts Protocol — structured, verifiable records of impact work built on AT Protocol.';
 const OG_IMAGE = `${SITE_URL}/images/hypercerts_logo.png`;
 
+function SectionLinks({ currentSection }) {
+  return navigation.map(({ section, children }) => (
+    <Link
+      key={section}
+      href={children[0].path}
+      className={`header-nav-link${currentSection === section ? ' header-nav-link-active' : ''}`}
+      aria-current={currentSection === section ? 'location' : undefined}
+    >
+      {section}
+    </Link>
+  ));
+}
+
 export default function Layout({ children, frontmatter }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const router = useRouter();
   const currentPath = router.asPath.split('#')[0].split('?')[0];
+  const isLanding = currentPath === '/';
   const currentSection = getNavigationSection(currentPath)?.section;
   const { prev, next } = getPrevNext(currentPath);
 
@@ -36,7 +50,7 @@ export default function Layout({ children, frontmatter }) {
 
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'TechArticle',
+    '@type': isLanding ? 'WebPage' : 'TechArticle',
     headline: title || SITE_NAME,
     description,
     url: canonicalUrl,
@@ -61,6 +75,10 @@ export default function Layout({ children, frontmatter }) {
       setSidebarCollapsed(true);
     }
   }, []);
+
+  useEffect(() => {
+    setSidebarOpen(false);
+  }, [currentPath]);
 
   useEffect(() => {
     const handler = (e) => {
@@ -92,7 +110,7 @@ export default function Layout({ children, frontmatter }) {
         <link rel="canonical" href={canonicalUrl} />
 
         {/* Open Graph */}
-        <meta property="og:type" content="article" />
+        <meta property="og:type" content={isLanding ? 'website' : 'article'} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={description} />
         <meta property="og:url" content={canonicalUrl} />
@@ -121,23 +139,25 @@ export default function Layout({ children, frontmatter }) {
 
       <AnnouncementBanner />
 
-      <header className="layout-header">
+      <header className={`layout-header${isLanding ? ' layout-header-landing' : ''}`}>
         <a href="#main-content" className="skip-to-content">Skip to content</a>
         <div className="layout-header-inner">
-          <button
-            className="hamburger-btn"
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            aria-label="Toggle navigation"
-          >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path
-                d="M3 5h14M3 10h14M3 15h14"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
+          {!isLanding && (
+            <button
+              className="hamburger-btn"
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              aria-label="Toggle navigation"
+            >
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path
+                  d="M3 5h14M3 10h14M3 15h14"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
+          )}
           <Link href="/" className="layout-logo">
             <img
               src="/images/certified_wordmark_black.svg"
@@ -163,10 +183,7 @@ export default function Layout({ children, frontmatter }) {
           </Link>
           <span className="header-divider" aria-hidden="true" />
           <nav className="header-nav" aria-label="Main navigation">
-            <Link href="/guide" className={`header-nav-link${currentSection === 'Guide' ? ' header-nav-link-active' : ''}`}>Guide</Link>
-            <Link href="/client-integration" className={`header-nav-link${currentSection === 'Client Integration' ? ' header-nav-link-active' : ''}`}>Client integration</Link>
-            <Link href="/reference" className={`header-nav-link${currentSection === 'Reference' ? ' header-nav-link-active' : ''}`}>Reference</Link>
-            <Link href="/change-history" className={`header-nav-link${currentSection === 'Change History' ? ' header-nav-link-active' : ''}`}>Change history</Link>
+            <SectionLinks currentSection={currentSection} />
           </nav>
           <div style={{ flex: 1 }} />
           <button
@@ -205,22 +222,35 @@ export default function Layout({ children, frontmatter }) {
         </div>
       </header>
 
-      <div className="layout-container">
-        <Sidebar
-          isOpen={sidebarOpen}
-          onClose={() => setSidebarOpen(false)}
-          collapsed={sidebarCollapsed}
-          onToggleCollapse={toggleCollapsed}
-        />
+      {isLanding && (
+        <nav className="landing-section-nav" aria-label="Documentation sections">
+          <SectionLinks />
+        </nav>
+      )}
 
-        <main className="layout-content" id="main-content">
-          <Breadcrumbs />
-          {frontmatter && <CopyRawButton />}
-          <LastUpdated />
+      <div className={`layout-container${isLanding ? ' layout-container-landing' : ''}`}>
+        {!isLanding && (
+          <Sidebar
+            isOpen={sidebarOpen}
+            onClose={() => setSidebarOpen(false)}
+            collapsed={sidebarCollapsed}
+            onToggleCollapse={toggleCollapsed}
+          />
+        )}
+
+        <main className={`layout-content${isLanding ? ' docs-landing' : ''}`} id="main-content">
+          {!isLanding && (
+            <>
+              <Breadcrumbs />
+              {frontmatter && <CopyRawButton />}
+              <LastUpdated />
+            </>
+          )}
+          {isLanding && <p className="docs-landing-eyebrow">Documentation</p>}
           <article>{children}</article>
 
 
-          {(prev || next) && (
+          {!isLanding && (prev || next) && (
             <nav className="pagination" aria-label="Page navigation">
               <div className="pagination-prev">
                 {prev && (
@@ -242,9 +272,11 @@ export default function Layout({ children, frontmatter }) {
           )}
         </main>
 
-        <aside className="layout-toc">
-          <TableOfContents />
-        </aside>
+        {!isLanding && (
+          <aside className="layout-toc">
+            <TableOfContents />
+          </aside>
+        )}
       </div>
       <SearchDialog isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </>

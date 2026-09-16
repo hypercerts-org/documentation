@@ -4,6 +4,16 @@
   "framework": "nextjs",
   "redirects": [
     {
+      "source": "/change-history",
+      "destination": "/changes",
+      "permanent": true
+    },
+    {
+      "source": "/raw/change-history.md",
+      "destination": "/raw/changes.md",
+      "permanent": true
+    },
+    {
       "source": "/getting-started/quickstart",
       "destination": "/client-integration",
       "permanent": true
