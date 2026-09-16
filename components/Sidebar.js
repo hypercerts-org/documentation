@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { navigation } from '../lib/navigation';
+import { getNavigationSection, navigation } from '../lib/navigation';
 
 function isActive(path, currentPath) {
   return path === currentPath;
@@ -37,6 +37,7 @@ function NavItem({ item, currentPath, depth = 0 }) {
             style={{ paddingLeft: `${16 + depth * 16}px` }}
           >
             {item.title}
+            {item.badge && <span className="sidebar-release-badge">{item.badge}</span>}
           </Link>
         ) : (
           <span
@@ -112,6 +113,8 @@ function NavSection({ item, currentPath }) {
 export function Sidebar({ isOpen, onClose, collapsed, onToggleCollapse }) {
   const router = useRouter();
   const currentPath = router.asPath.split('#')[0].split('?')[0];
+  const currentSection = getNavigationSection(currentPath);
+  const visibleNavigation = currentSection ? [currentSection] : navigation;
 
   const onCloseRef = useRef(onClose);
   useEffect(() => {
@@ -169,8 +172,26 @@ export function Sidebar({ isOpen, onClose, collapsed, onToggleCollapse }) {
 
         {/* Nav content — hidden when collapsed */}
         <div className="sidebar-content">
+          <div className="sidebar-section-switcher">
+            <span className="sidebar-section-switcher-title">Sections</span>
+            {navigation.map((section) => {
+              const overview = section.children.find((child) => child.path);
+              if (!overview) return null;
+
+              const active = section.section === currentSection?.section;
+              return (
+                <Link
+                  key={section.section}
+                  href={overview.path}
+                  className={`sidebar-section-switcher-link${active ? ' sidebar-section-switcher-link-active' : ''}`}
+                >
+                  {section.section}
+                </Link>
+              );
+            })}
+          </div>
           <ul className="sidebar-nav">
-            {navigation.map((item, i) => (
+            {visibleNavigation.map((item, i) => (
               <NavSection
                 key={item.section || item.path || i}
                 item={item}

@@ -1,106 +1,48 @@
 ---
-title: Core Data Model
-description: The data model behind hypercerts — record types, dimensions, and how they connect.
+title: A Shared Language
+description: Meet the building blocks that let projects, evaluators, networks, and funders contribute information others can use.
 ---
 
-# Core Data Model
+# A Shared Language
 
-A hypercert is an [activity claim](/lexicons/hypercerts-lexicons/activity-claim) with linked records that describe work done. The activity claim is the anchor — contributions, attachments, measurements, and evaluations reference it to add context.
+“We restored a wetland” and “we reviewed that restoration” are different contributions to the same story. Hypercerts gives each a recognizable form so an application can tell them apart and connect them.
 
-This page explains what records exist, what they contain, and how they connect.
+That shared language starts with the work and grows as more people contribute.
 
-## The core record: activity claim
+## From an activity to a fuller picture
 
-Every hypercert starts with an **activity claim** — the central record that answers four questions:
+An **activity claim**, also called a hypercert, describes a piece of work. It gives other records something specific to refer to. A project can bring several activities together, while evidence and evaluations help others understand what happened and why it matters.
 
-| Dimension | Question | Example |
-|-----------|----------|---------|
-| **Contributors** | Who is doing (or did) the work? | Alice, Bob |
-| **Work scope** | What are they doing (or what did they do)? | Documentation, Reforestation |
-| **Time of work** | When is it happening (or when did it happen)? | January – March 2026 |
-| **Location** | Where is it taking (or did it take) place? | Coastal Kenya |
+| Question | Building block |
+|---|---|
+| What work is being done, and by whom? | An **activity claim**, with contributor details |
+| How does it fit into a larger effort? | A **project**, which groups related activities |
+| What can we look at or measure? | **Attachments** and **measurements** |
+| What do others think of the work? | **Evaluations** |
+| Who recognizes or confirms a relationship? | **Badges**, **responses**, and **acknowledgements** |
+| What support has the work received? | **Funding receipts** |
 
-The activity claim gets a permanent AT-URI like `at://did:plc:alice123/org.hypercerts.claim.activity/3k7`.
+Imagine a community energy project. Installing solar panels is one activity. A report describes the installation, a measurement records energy production, and a specialist evaluates the results. A funder can read those pieces together before deciding whether to support the next phase.
 
-## Additional details
-
-The activity claim has a `contributors` array. Each entry is a contributor object with three fields:
-
-- **`contributorIdentity`** — either an inline identity object (`#contributorIdentity`, containing an `identity` DID string) or a strong reference to an `org.hypercerts.claim.contributorInformation` record with a full social profile
-- **`contributionWeight`** — an optional relative weight string (e.g. `"1"`, `"0.5"`)
-- **`contributionDetails`** — either an inline role object (`#contributorRole`, containing a `role` string) or a strong reference to an `org.hypercerts.claim.contribution` record with structured contribution data
-
-Simple cases use inline objects directly in the activity claim. Richer profiles use separate records that the contributor or project lead creates independently.
-
-| Record type | What it adds | Who creates it | Lexicon |
-|-------------|-------------|----------------|---------|
-| **Contributor Information** | Social profile, image, display name | The contributor or project lead | `org.hypercerts.claim.contributorInformation` |
-| **Contribution** | Structured role and contribution data | The contributor or project lead | `org.hypercerts.claim.contribution` |
-
-## Records that attach to a hypercert
-
-Other records link to the activity claim to add context. Again, each is a separate record with its own AT-URI – they reference the activity claim, not the other way around.
-
-The following diagram shows record types and how they reference the activity claim. Records can be created by different people and live in different repositories.
-
-{% figure src="/images/hypercert-erd.svg" alt="Hypercert record relationships" /%}
-
-The diagram includes a **token** entity — tokenization (anchoring a hypercert on-chain) is not yet implemented.
-
-| Record type | What it adds | Who creates it | Lexicon |
-|-------------|-------------|----------------|---------|
-| **Attachment** | Supporting documentation — URLs, uploaded files, IPFS links. Can link to any record type, not only activity claims. | Anyone with additional data | `org.hypercerts.context.attachment` |
-| **Measurement** | Quantitative data — "12 pages written", "50 tons CO₂ reduced" | E.g. a third-party measurer or the project (self-reported) | `org.hypercerts.context.measurement` |
-| **Evaluation** | An (independent) assessment of the work | E.g. a third-party evaluator, community members, beneficiaries | `org.hypercerts.context.evaluation` |
-
-### Additional notes
-
-- Records don't have to be created together. Users can create a measurement first and link it to an activity claim later. 
-- A record can also be linked to multiple other records, e.g. a measurement in a bioregion is linked to multiple activity claims.
-- An evaluator creates an evaluation from their own account — it references an activity claim but lives in their personal data server.
-
-This means a hypercert grows over time – it is a living record. The core claim stays the same, but attachments, measurements, and evaluations accumulate around it.
-
-## Grouping hypercerts
-
-Hypercerts can be grouped into **collections**. A multi-year project might have one hypercert per year, with a collection representing the full project. But collections are flexible — anyone can create one for any purpose. Someone might curate a personal collection of hypercerts they find interesting, or an organization might group all their hypercerts together. A hypercert can belong to many collections.
-
-| Record type | What it adds | Who creates it | Lexicon |
-|-------------|-------------|----------------|---------|
-| **Collection** | Groups activity claims and/or other collections into a project or portfolio. Supports recursive nesting. | E.g. the project organizer | `org.hypercerts.collection` |
-
-## How records connect
-
-Records reference each other using [strong references](/reference/glossary#strong-reference) — if a referenced record is modified after the reference was created, the change is detectable.
-
-```text
-Activity Claim (the core record)
-├── contributors[0]
-│   ├── contributorIdentity: {identity: "did:plc:alice..."} (inline #contributorIdentity or ref to ContributorInformation)
-│   ├── contributionWeight: "1"
-│   └── contributionDetails: {role: "Lead author"} (inline #contributorRole or ref to Contribution)
-├── contributors[1]
-│   ├── contributorIdentity: → ContributorInformation record (Bob)
-│   └── contributionDetails: → Contribution record (Technical reviewer, Jan-Mar)
-├── Attachment: GitHub repository link
-├── Measurement: 12 pages written
-├── Measurement: 8,500 words
-└── Evaluation: "High-quality documentation" (by Carol)
+```mermaid
+flowchart LR
+  P["Community energy project"] -->|includes| A["Solar installation activity"]
+  R["Installation report"] -->|documents| A
+  M["Energy production measurement"] -->|measures results of| A
+  E["Specialist evaluation"] -->|assesses| A
+  F["Funding receipt"] -->|records support for| A
 ```
 
+These are separate records, not sections everyone edits in a single document. Each can be published by the person or organization contributing that information. Links between them let an application bring the story together.
 
+## Formats and meaning work together
 
-## Mutability
+The Lexicons describe the fields software reads and writes. The Guide explains what those records mean and how to use them together.
 
-Activity claims and their linked records are currently immutable once created. Record versioning and edit history will be supported in a future release, along with the ability to lock a hypercert at a specific version for funding.
+For example, a project uses a grouping record called a *collection*. Applications agree to recognize a collection marked as a project. That small shared convention lets a project dashboard and a funding platform recognize the same grouping.
 
+You'll also encounter **Certified**. It provides accounts and tools for working with Hypercerts, and its shared schemas describe things such as profiles, organizations, locations, and badges. Those schemas can be used by other applications too.
 
-## What happens next
+You don't need to learn every schema before you begin. Start with the records that answer your users' questions. The next pages introduce the main building blocks individually; the [Lexicon inventory](/reference/lexicon-inventory) is there when you want the complete list.
 
-Once you understand the data model, you're ready to build:
-
-- **[Quickstart](/getting-started/quickstart)** — create your first activity claim
-- **[Quickstart](/getting-started/quickstart)** — build a complete hypercert with all record types
-- **[Lexicon reference](/lexicons/hypercerts-lexicons)** — field-by-field schema for every record type
-
-Next: [Certified Identity](/core-concepts/certified-identity) — who authors records and how signatures work.
+Next: [Activity Claims](/core-concepts/what-is-hypercerts), the starting point for describing the work.

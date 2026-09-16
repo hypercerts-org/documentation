@@ -1,5 +1,5 @@
 ---
-title: Hyperindex
-description: A Go ATProto indexer that indexes hypercert records and exposes them via GraphQL.
+title: Hyperindex (legacy)
+description: Legacy GraphQL indexing infrastructure for Hypercerts and Certified records.
 externalDoc: hyperindex
 ---

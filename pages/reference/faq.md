@@ -9,19 +9,19 @@ description: Common questions about building with Hypercerts.
 
 ## What is a hypercert?
 
-A structured digital record of a contribution — who did what, when, where, and with what supporting documentation. You create one by writing an `org.hypercerts.claim.activity` record to your PDS. See the [Quickstart](/getting-started/quickstart).
+A structured digital record of a contribution — who did what, when, where, and with what supporting documentation. Its core is an `org.hypercerts.claim.activity` record stored in an AT Protocol repository. See [Client Integration](/client-integration) for current integration guidance and known gaps.
 
 ## How is this different from the previous (EVM-based) Hypercerts?
 
-The new protocol stores data on AT Protocol instead of purely on-chain. This gives you richer schemas, data portability, and lower costs. On-chain anchoring for funding is [planned](/core-concepts/funding-and-value-flow) but not yet implemented.
+The current protocol stores its source records on AT Protocol rather than representing every hypercert as an onchain token. The released Lexicons do not define anchoring, freezing, token ownership, or settlement.
 
 ## Do I need a blockchain wallet?
 
-Not to create or evaluate hypercerts — you only need an account on [certified.app](https://certified.app) or any ATProto provider. A wallet will be needed for on-chain funding once the [tokenization layer](/core-concepts/funding-and-value-flow) is built.
+Not for the released Hypercerts record model. A particular application or payment mechanism may separately require a wallet.
 
 ## Can I use my Bluesky account?
 
-Yes. Bluesky accounts are ATProto accounts. Your existing DID and identity work with Hypercerts out of the box.
+Bluesky accounts are AT Protocol accounts. They can use Hypercerts applications that support their authentication provider and request the required record permissions; support is an application capability, not a guarantee of the record Lexicons.
 
 ## Is my data public?
 
@@ -33,17 +33,16 @@ You can delete records from your account. However, cached copies may persist in 
 
 ## Who can evaluate my hypercert?
 
-Anyone with an ATProto account. Evaluations are separate records created by the evaluator, linked to your hypercert via a strong reference. You don't control who evaluates your work. See [Working with Evaluations](/getting-started/working-with-evaluations).
+Anyone with an ATProto account. Evaluations are separate records created by the evaluator, linked to your hypercert via a strong reference. You don't control who evaluates your work. See the [Evaluation Lexicon](/lexicons/hypercerts-lexicons/evaluation) for the record schema.
 
 ## How do I query hypercerts across the network?
 
-Use the [Hyperindex](/tools/hyperindex) GraphQL API at `https://api.indexer.hypercerts.dev/graphql`. It indexes all hypercert records across the network and supports filtering, search, real-time subscriptions, and standard introspection for typed client generation. You can explore the API in GraphiQL at `https://api.indexer.hypercerts.dev/graphiql`.
+For a known AT-URI, read the record from its repository. Cross-repository discovery requires an indexing service and depends on that service's coverage. The supported Hypercerts XRPC read API is being documented as it stabilizes. [Hyperindex](/tools/hyperindex) remains available as legacy GraphQL infrastructure, but it is not the target protocol interface.
 
 ## How do I fund a hypercert?
 
-The on-chain funding layer is not yet implemented. The planned design freezes records before funding to ensure funders know exactly what they are paying for. See [Funding & Value Flow](/core-concepts/funding-and-value-flow).
+Hypercerts does not execute payments. A platform can process funding through its chosen payment rail and publish a funding receipt that describes the payment. The receipt does not independently prove settlement. See [Funding and Learning](/core-concepts/funding-and-value-flow).
 
 ## Where do I get help?
 
-- [GitHub](https://github.com/hypercerts-org) — source code, issues, and discussions
-- [Roadmap](/roadmap) — what's being built and what's next
+- [GitHub](https://github.com/hypercerts-org) — source code and repository-specific issues or discussions

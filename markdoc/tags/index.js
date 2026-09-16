@@ -5,6 +5,7 @@ import figure from './figure.markdoc';
 import cardLink from './card-link.markdoc';
 import cardGrid from './card-grid.markdoc';
 import heroBanner from './hero-banner.markdoc';
+import docsSection from './docs-section.markdoc';
 import br from './br.markdoc';
 
 export default {
@@ -16,4 +17,5 @@ export default {
   'card-link': cardLink,
   'card-grid': cardGrid,
   'hero-banner': heroBanner,
+  'docs-section': docsSection,
 };

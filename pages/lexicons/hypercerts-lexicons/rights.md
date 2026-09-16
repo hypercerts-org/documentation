@@ -9,4 +9,4 @@ description: Lexicon reference for the Rights record type in Hypercerts.
 
 Describes the rights associated with a hypercert — whether it can be sold, transferred, and under what conditions. Rights are defined as a separate record and referenced from an activity claim, so the same rights definition can be reused across multiple claims.
 
-For the full schema, see [`org.hypercerts.claim.rights`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/org/hypercerts/claim/rights.json) in the lexicon repo.
+For the full released schema, see [`org.hypercerts.claim.rights` at v1.4.0](https://github.com/hypercerts-org/hypercerts-lexicon/blob/v1.4.0/lexicons/org/hypercerts/claim/rights.json).

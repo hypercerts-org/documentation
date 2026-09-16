@@ -1,5 +1,57 @@
 {
   "buildCommand": "npm run build",
   "installCommand": "npm install",
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "redirects": [
+    {
+      "source": "/change-history",
+      "destination": "/changes",
+      "permanent": true
+    },
+    {
+      "source": "/raw/change-history.md",
+      "destination": "/raw/changes.md",
+      "permanent": true
+    },
+    {
+      "source": "/getting-started/quickstart",
+      "destination": "/client-integration",
+      "permanent": true
+    },
+    {
+      "source": "/getting-started/working-with-evaluations",
+      "destination": "/client-integration",
+      "permanent": true
+    },
+    {
+      "source": "/tools/scaffold",
+      "destination": "/client-integration",
+      "permanent": true
+    },
+    {
+      "source": "/tools/hyperboards",
+      "destination": "/reference",
+      "permanent": true
+    },
+    {
+      "source": "/raw/getting-started/quickstart.md",
+      "destination": "/raw/client-integration.md",
+      "permanent": true
+    },
+    {
+      "source": "/raw/getting-started/working-with-evaluations.md",
+      "destination": "/raw/client-integration.md",
+      "permanent": true
+    },
+    {
+      "source": "/raw/tools/scaffold.md",
+      "destination": "/raw/client-integration.md",
+      "permanent": true
+    },
+    {
+      "source": "/raw/tools/hyperboards.md",
+      "destination": "/raw/reference.md",
+      "permanent": true
+    }
+  ]
 }

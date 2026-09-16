@@ -11,4 +11,4 @@ A location record implementing the [Astral Location Protocol](https://spec.decen
 
 Locations can be represented in multiple formats: decimal coordinates, GeoJSON, H3 indices, geohashes, etc. Each record includes a Spatial Reference System (SRS) URI so coordinate values are unambiguous. See the [location type registry](https://spec.decentralizedgeo.org/specification/location-types/#location-type-registry) for the full list of supported formats.
 
-For the full schema, see [`app.certified.location`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/app/certified/location.json) in the lexicon repo.
+For the full released schema, see [`app.certified.location` at v1.4.0](https://github.com/hypercerts-org/hypercerts-lexicon/blob/v1.4.0/lexicons/app/certified/location.json).

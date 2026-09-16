@@ -1,38 +1,36 @@
 ---
 title: Why AT Protocol?
-description: Why the Hypercerts Protocol is built on AT Protocol.
+description: How people using different applications can publish, connect, and reuse information about the same work.
 ---
 
 # Why AT Protocol?
 
-The Hypercerts Protocol is built on [AT Protocol](https://atproto.com/docs) — the same open protocol for decentralized data that powers Bluesky.
+Suppose a project publishes a progress update through a funding platform. An evaluator wants to assess that work using their own tool. Another funder wants to read both. They shouldn't need to join the first platform or negotiate a custom data-sharing arrangement just to work with the same public information.
 
-In Hypercerts v0.1, every hypercert was an on-chain token — publishing one required a wallet, gas fees, and a blockchain transaction. This created friction for the contributors, researchers, and organizations the protocol is designed to serve. By moving the data layer to ATProto, creating a hypercert requires no wallet, no gas, and no transaction fees. On-chain anchoring is reserved for where it actually matters: funding and settlement.
+Hypercerts builds on [AT Protocol](https://atproto.com/docs), the open network technology that also powers Bluesky. It gives people an account and a place to publish records that different applications can work with.
 
-ATProto gives hypercerts three properties that matter for impact funding: portable data, shared schemas, and a trust graph rooted in cryptographic identity.
+## Records belong to accounts, not just apps
 
-## Portable, user-controlled data
+Think of a **record** as a small structured document, such as a description of an activity or an evaluation. An account keeps its records in a **repository**, a little like a folder of those documents. A **Personal Data Server (PDS)** hosts that repository. People can use a hosted service; they don't need to run their own server.
 
-Contributions must outlive any single platform.
+An app helps someone create and read these records. The records can also be read by other apps that support their format. This separates the information from the interface used to publish it.
 
-Hypercert records are stored in signed user repositories hosted on Personal Data Servers (PDS). Each repository is cryptographically tied to a user's DID — not to the server hosting it. Contributors, evaluators, and funders choose where their data lives: on Hypercerts Foundation infrastructure, on third-party providers, or self-hosted. They can migrate at any time without losing records or needing anyone's permission.
+AT Protocol also gives each account a lasting identifier called a **DID**, short for decentralized identifier. It identifies the account separately from its current name or hosting server. This is what allows an account to keep its identity when moving between supported hosts.
 
-Applications are views over user-owned data — not gatekeepers of it. See [Portability & Data Access](/architecture/portability-and-scaling).
+## Other people can add their perspective
 
-## Shared schemas across applications
+The evaluator publishes a new record in their own repository and links it to the project's work. The original activity stays with the project. The assessment stays with its publisher.
 
-For impact funding to work across applications, a contribution recorded in one app must be evaluable in another and fundable in a third — without bespoke integrations.
+A funding app can then show them together. This is a central idea in Hypercerts: people can contribute information about the same work without sharing one account or giving each other permission to edit their records.
 
-ATProto enables this through [lexicons](/lexicons/introduction-to-lexicons): shared, namespaced schemas that define how records are structured. Because lexicons are open, any app can create compatible records and any app can read them. No bilateral API integrations required.
+## A network needs a shared language
 
-Records reference each other via AT-URIs, forming a traversable graph: an evaluation references an activity claim, a funding receipt references both the claim and the funder. This graph is what indexers crawl to build queryable views. See [Hyperindex](/tools/hyperindex).
+AT Protocol provides accounts, publishing, and links between records. Hypercerts provides the formats for describing work, evidence, evaluations, and funding.
 
-## A decentralized trust graph
+These formats are defined in **Lexicons**. A Lexicon is a schema: it tells software what kind of record it is reading and which fields to expect. Using the same formats lets an evaluation tool and a funding platform exchange meaningful information, even if their interfaces look completely different.
 
-ATProto provides persistent, portable identities via Decentralized Identifiers (DIDs). Every record carries its author's DID and cryptographic signature. Over time, these identities accumulate contribution records, evaluations, endorsements, and funding decisions — forming a durable impact trust graph that persists across platforms.
+To find information spread across accounts, applications use **indexers**. An indexer collects records and makes them searchable, including connections such as “evaluations of this activity.” Each indexer has its own coverage, so different apps may show different parts of the network.
 
-Trust becomes computable across the ecosystem — not siloed within individual platforms. A funder can trace who evaluated a project, what else those evaluators have assessed, and how their past judgments correlated with outcomes. Because all records are signed and publicly indexable, trust models can be independently implemented, compared, and audited.
+You now have the basic division of work: AT Protocol lets people publish, Hypercerts gives the information a shared meaning, and applications help people use it.
 
-## Data layer + ownership layer
-
-The design principle: keep rich, evolving contribution data off-chain (ATProto) and use on-chain systems only where immutability and settlement matter. ATProto handles the data layer — claims, attachments, evaluations, trust signals. On-chain anchoring and tokenization handle the funding layer — immutable snapshots, programmable funding, and settlement mechanisms. See [Architecture Overview](/architecture/overview) for how the layers fit together.
+Next, let's look at [the shared language itself](/core-concepts/hypercerts-core-data-model).

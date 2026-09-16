@@ -126,9 +126,9 @@ The response contains only ordered source-record AT-URIs and, when another page 
 
 Keep cursors opaque and send them back only with the same `feedId`. Put `cursor` and `limit` at the top level of the request, not inside `params`.
 
-## Supported event kinds
+## Documented event kinds
 
-Omit `params.kinds`, or pass an empty array, to include every supported kind. These values describe the type of source record and the hydrated content returned for it:
+Omit `params.kinds`, or pass an empty array, to include every event kind supported by the service. These values cover the Hypercerts and Certified source records documented here; consult the implementation repository for the complete service contract.
 
 | Kind | Source record | Description |
 |---|---|---|
@@ -137,7 +137,6 @@ Omit `params.kinds`, or pass an empty array, to include every supported kind. Th
 | `project.created_with_cert` | `org.hypercerts.collection` | A collection representing a project created together with a Hypercert activity |
 | `evaluation.create` | `org.hypercerts.context.evaluation` | A newly published evaluation of a target record |
 | `measurement.create` | `org.hypercerts.context.measurement` | A newly published measurement of a target record |
-| `hyperboard.create` | `org.hyperboards.board` | A newly created Hyperboard |
 | `update.create` | `org.hypercerts.context.attachment` | A newly published update or attachment |
 | `endorsement.award` | `app.certified.badge.award` | An endorsement awarded to an account |
 

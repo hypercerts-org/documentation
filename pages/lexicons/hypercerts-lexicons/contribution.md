@@ -11,23 +11,23 @@ This page covers two related lexicons that work together to represent contributo
 
 `org.hypercerts.claim.contributorInformation`
 
-Stores identity information for a contributor: display name, identifier (like a GitHub username or email), and an optional profile image. This record can be created once and referenced from multiple activity claims, making it easy to maintain consistent contributor identity across projects.
+Stores presentation and identifier information for a contributor: display name, an optional identifier described as a DID or social-profile URI, and an optional image. The schema does not validate the identifier as a DID or URI.
 
-A contributor doesn't need a full `contributorInformation` record. The activity claim's `contributors` array accepts either a strong reference to a `contributorInformation` record or an inline identity string (typically a DID). Use the inline form for simple cases; use the record when you want a reusable profile with a display name and image.
+A contributor does not need a separate `contributorInformation` record. The activity claim's contributor entry accepts either a strong reference to that record or an inline `contributorIdentity` object containing an `identity` string. The inline value is an object, not a bare string.
 
-For the full schema, see [`org.hypercerts.claim.contributorInformation`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/org/hypercerts/claim/contributorInformation.json) in the lexicon repo.
+For the full released schema, see [`org.hypercerts.claim.contributorInformation` at v1.4.0](https://github.com/hypercerts-org/hypercerts-lexicon/blob/v1.4.0/lexicons/org/hypercerts/claim/contributorInformation.json).
 
 ## Contribution
 
 `org.hypercerts.claim.contribution`
 
-Stores details about a specific contribution, including the contributor's role, a description of what they did, and the timeframe of their work. Like contributor identity, contribution details can be provided inline (as a role string) or as a strong reference to a separate record.
+Stores details about a contribution, including an optional role, description, and timeframe. Contribution details in an activity can be an inline `contributorRole` object containing a `role` string or a strong reference to this separate record. The inline value is not a bare string.
 
 The activity claim's `contributors` array also supports contribution weights to indicate relative effort or impact.
 
 ## Choosing contribution weights
 
-Weights are always proportional. The protocol stores them as strings and does not enforce any particular calculation method. How you arrive at the numbers is up to you. The following are just examples — pick whatever approach fits your project, or invent your own.
+Weights are intended as positive relative values. The protocol stores them as strings and does not enforce numeric syntax, normalization, or a calculation method. The following are application-policy examples, not protocol requirements.
 
 ### Equal split
 
@@ -82,4 +82,4 @@ Example: A team weights roles at 40% and peer scores at 60%. Alice (lead, peer s
 Weights are stored as strings and do not need to sum to any particular value. These examples all produce relative values — what matters is the ratio between contributors, not the absolute numbers.
 {% /callout %}
 
-For the full schema, see [`org.hypercerts.claim.contribution`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/org/hypercerts/claim/contribution.json) in the lexicon repo.
+For the full released schema, see [`org.hypercerts.claim.contribution` at v1.4.0](https://github.com/hypercerts-org/hypercerts-lexicon/blob/v1.4.0/lexicons/org/hypercerts/claim/contribution.json).

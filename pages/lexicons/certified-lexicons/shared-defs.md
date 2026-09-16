@@ -7,8 +7,11 @@ description: Reusable type definitions shared across Certified lexicons.
 
 `app.certified.defs`
 
-Common type definitions used across the certified ecosystem. Currently defines the `did` type, which represents a Decentralized Identifier.
+Common embedded definitions used across the Certified and Hypercerts Lexicons. Version 1.4.0 defines:
 
-The `did` type is used throughout the certified and hypercerts lexicons to reference accounts and actors. It ensures consistent formatting and validation of DIDs across all record types.
+- `did`: an object containing a DID-formatted account identifier.
+- `recordSubject`: an object containing an AT-URI, used when a relationship should follow a record slot without pinning one CID.
 
-For the full schema, see [`app.certified.defs`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/app/certified/defs.json) in the lexicon repo.
+These are embedded object definitions, not repository record collections.
+
+For the full released schema, see [`app.certified.defs` at v1.4.0](https://github.com/hypercerts-org/hypercerts-lexicon/blob/v1.4.0/lexicons/app/certified/defs.json).

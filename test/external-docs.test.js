@@ -182,6 +182,7 @@ test('configures the Lexicon changelog as the releases page external source', ()
     repo: 'hypercerts-org/hypercerts-lexicon',
     ref: 'main',
     path: 'CHANGELOG.md',
+    trackRelease: true,
   });
 
   const pagePath = join(__dirname, '..', 'pages', 'reference', 'releases.md');

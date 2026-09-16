@@ -4,5 +4,6 @@ export default {
     title: { type: String, required: true },
     href: { type: String, required: true },
     icon: { type: String },
+    badge: { type: String },
   },
 };

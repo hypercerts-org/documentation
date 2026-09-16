@@ -52,4 +52,4 @@ A project lead disagrees with an evaluation of their work and wants to flag it.
 
 The rejection doesn't delete the evaluation — it creates a counter-signal that applications can use to present both sides.
 
-For the full schema, see [`org.hypercerts.context.acknowledgement`](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/org/hypercerts/context/acknowledgement.json) in the lexicon repo.
+For the full released schema, see [`org.hypercerts.context.acknowledgement` at v1.4.0](https://github.com/hypercerts-org/hypercerts-lexicon/blob/v1.4.0/lexicons/org/hypercerts/context/acknowledgement.json).

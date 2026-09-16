@@ -1,107 +1,44 @@
 ---
-title: "Funding & Value Flow"
-description: How hypercerts track the funding of activities.
+title: Funding and Learning
+description: Use what is already known about a project, record support, and make the next funding decision better informed.
 ---
 
-# Funding & Value Flow
+# Funding and Learning
 
-{% callout type="note" %}
-Funding is under active development.
-{% /callout %}
+A funder considering a project wants to understand the work, the evidence behind it, and what others have learned. The records we've covered let an application bring those pieces together.
 
-Hypercerts track the funding of activities without prescribing how funds flow — any payment method and any funding mechanism works.
+The funder can then make a decision using its own priorities and process. Hypercerts helps carry information into that decision and preserve what happens afterward.
 
-What hypercerts add is a structured, verifiable record of who funded what.
+## Record support for the work
 
-## Hypercerts work with any funding mechanism
+A **funding receipt** describes a funding payment. It records a recipient, amount, currency, and creation time. It can also name the sender, link to the activity or project supported, and include payment details such as a transaction identifier.
 
-Funding can be **prospective** (before work begins) or **retroactive** (after outcomes are demonstrated). Different mechanisms suit different contexts, for example:
+A funding platform, facilitator, funder, or recipient can publish a receipt. That flexibility makes it useful across different funding arrangements. A reader should be able to see who published the receipt as well as the parties it names.
 
-| Mechanism | Description |
-|-----------|-------------|
-| **Grant funding** | Funders award grants to support planned activities |
-| **Milestone-based funding** | Funds are released as work reaches defined milestones |
-| **Prize competitions** | Awards for achieving specific outcomes |
-| **Quadratic funding** | Small donations amplified through matching pools |
-| **Sale of impact certificates** | Funders purchase certificates representing completed work |
-| **Auction of impact certificates** | Competitive bidding on verified impact claims |
+For example, a platform could record a payment toward a community energy installation and link it to that activity. A later reader can then connect the support with the work and its subsequent reports.
 
-Multiple mechanisms can coexist for the same activity — a project might receive a grant prospectively and sell impact certificates retroactively. Hypercerts tracks this accurately without double counting: every funding receipt references the specific activity claim it funds, making it possible to compute total funding per claim across all receipts.
+The payment itself happens through the platform's chosen payment system. The receipt describes it; verifying that money arrived requires payment evidence and trust in the source. An acknowledgement from a relevant party can add confirmation, but it doesn't replace payment verification.
 
-## Tracking funding
+## Close the loop after funding
 
-{% callout type="note" %}
-Funding tracking is in active development. Receipts and acknowledgements exist today.
-{% /callout %}
+The useful story continues after a funding round closes:
 
-Hypercerts separate the *tracking* of funding from the *flow* of funds. Any existing payment infrastructure can work with hypercerts — the protocol simply records the fact that funding happened.
+1. A project describes the work it intends to do.
+2. Funders use available information and assessments to decide what to support.
+3. Receipts record support for the work.
+4. The team reports progress, and others contribute observations or assessments.
+5. The next funding decision builds on that history.
 
-The protocol tracks funding through the `org.hypercerts.funding.receipt` record. A funding receipt records who funded which activity, how much, and when — creating a verifiable funding trail. The receipt references the activity claim it funds, linking the funding record to the work it supports.
+This is an example, not a required sequence. Work may already be underway or completed before it receives funding. The point is to keep what each round learns available to the next.
 
-Funding receipts are typically created by a **facilitator** — a payment processor, grant platform, funding app, or other intermediary that processes the payment and creates the receipt. The facilitator acts as a neutral third party, giving the receipt more credibility than a self-reported claim.
+## Support different ways of funding
 
-| Scenario | Facilitator | Verification |
-|----------|-------------|--------------|
-| **On-chain funding** | A funding app verifies the transaction and creates the receipt, linking the transaction hash and chain ID | Verifiable on-chain |
-| **Card / bank transfer** | A payment processor settles the payment and creates the receipt | Trust in the processor |
-| **Grant platform** | The grant platform records the award and creates the receipt on behalf of the funder | Trust in the platform |
+The landing page describes crowdfunding with matching funds as a current use. The same idea of shared evidence could support outcome payments, prize competitions, or milestone bounties. Investment and procurement are further possibilities to explore.
 
-The funder or the contributor can then create an **acknowledgement** — a counter-signature confirming the receipt's accuracy — to strengthen its credibility.
+Those approaches need their own rules for eligibility, selection, and payment. Hypercerts supplies reusable information; it doesn't decide which funding mechanism a community should use.
 
-The protocol does not enforce that projects or funders disclose their funding — creating a receipt is voluntary. Funders can also choose to remain anonymous in the public record; a receipt can track a contribution without revealing the funder's identity.
+Likewise, an app showing “total funding” needs to consider currencies, repeated receipts, and which publishers it includes. A number is more useful when readers can inspect the receipts behind it and understand its coverage.
 
-## Tokenization
+The [Funding Receipt reference](/lexicons/hypercerts-lexicons/funding-receipt) has the field details.
 
-{% callout type="note" %}
-Tokenization is under active development. This section describes the planned architecture.
-{% /callout %}
-
-A hypercert can optionally be wrapped in an on-chain token. This gives funders a programmable proof of their contribution. Tokenization is an optional wrapper around a claim snapshot; the canonical record remains the AT Protocol data.
-
-When locking is available, a claim can be frozen before tokenization. This gives funders a stronger guarantee — the claim they reviewed is exactly the claim they funded, and it cannot change after the fact.
-
-| Property | Detail |
-|----------|--------|
-| **Token standards** | ERC-20, ERC-1155, or custom — different standards on different chains |
-| **Transferability** | Ranges from non-transferable recognition to fully transferable certificates |
-| **Single-wrap constraint** | Every claim can only be wrapped in a token once, preventing double counting |
-| **Rights** | Optional definition of the rights of the owners, set in the hypercert's `org.hypercerts.claim.rights` record |
-
-Tokenization enables programmable funding — smart contract logic can enforce distribution rules, matching formulas, and other mechanisms that would be difficult to coordinate offchain.
-
-## Example: from creation to funding
-
-There are many different flows that can be represented with hypercerts. Below is one example that follows a hypercert from creation to funding.
-
-### Stage 1 — Creation and evaluation
-
-Alice plants 500 trees in a reforestation project and creates an activity claim with measurements and attachments. Bob, an environmental auditor, evaluates the claim from his own PDS. See [Quickstart](/getting-started/quickstart) for a walkthrough.
-
-### Stage 2 — Funding
-
-Carol, a climate funder, reviews Alice's claim and Bob's evaluation. She decides to fund Alice's work through her organization's grant platform. The payment facilitator processes the payment and creates a funding receipt, recording Carol's contribution and referencing Alice's activity claim.
-
-| Record | Owner |
-|--------|-------|
-| Funding receipt | Payment facilitator |
-| Acknowledgement | Alice or Carol |
-
-Either party can then create an acknowledgement — a counter-signature confirming the receipt's accuracy — to strengthen its credibility.
-
-### Stage 3 — Locking
-
-{% callout type="note" %}
-Locking is planned but not yet implemented.
-{% /callout %}
-
-Alice locks the claim, freezing it so its contents can't change. This gives future funders a guarantee — the claim they review is exactly the claim they'll be funding.
-
-### Stage 4 — Retroactive funding
-
-Two years later, Eve assesses the health of Alice's trees and publishes a positive evaluation. Grace, a climate funder focused on proven outcomes, sees the original claim, both evaluations, and Carol's earlier funding. She funds the project retroactively with a new funding receipt referencing the same activity claim.
-
-
-## See also
-
-- [Architecture Overview](/architecture/overview) — how the full protocol stack fits together
-- [Data Flow & Lifecycle](/architecture/data-flow-and-lifecycle) — how a hypercert moves through the system
+We've now followed the story from a description of work to evidence, trust, and support. Next, [Describing and Classifying Work](/core-concepts/cel-work-scopes) explains how apps can recognize related work across projects.

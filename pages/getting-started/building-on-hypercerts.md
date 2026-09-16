@@ -25,7 +25,7 @@ Create platforms that use hypercerts to structure contributions and distribute f
 
 - Retroactive funding rounds where evaluators assess completed work
 - Milestone-based grant systems that release funds as work progresses
-- Crowdfunding campaigns where backers receive fractional rights to impact claims
+- Crowdfunding campaigns that connect project information, partner review, and funding receipts
 - Quadratic funding mechanisms that allocate matching pools based on community support
 
 ### Evaluation Tools
@@ -37,21 +37,6 @@ Build services that help domain experts create structured, verifiable evaluation
 - Code quality analysis for open source software
 - Educational outcome measurement for learning programs
 
-```javascript
-// Example: Create an evaluation
-const evaluation = await agent.com.atproto.repo.createRecord({
-  repo: agent.session.did,
-  collection: "org.hypercerts.context.evaluation",
-  record: {
-    subject: { uri: claimUri, cid: claimCid },
-    evaluators: [{ did: "did:plc:ragtjsm2j2vknwkz3zp4oxrd" }],
-    summary: "Scientific rigor and reproducibility assessment",
-    $type: "org.hypercerts.context.evaluation",
-    createdAt: new Date().toISOString(),
-  },
-});
-```
-
 ### Dashboards & Explorers
 
 Aggregate and display hypercerts across the ecosystem:
@@ -61,7 +46,7 @@ Aggregate and display hypercerts across the ecosystem:
 - Impact maps visualizing geographic distribution of work
 - Timeline views tracking contribution history
 
-Read-only integrations require only an indexer connection — no PDS needed.
+Read-only integrations can fetch known source records without an authenticated PDS session. Cross-repository search and backlinks normally require an indexer, whose coverage and API contract must be evaluated separately.
 
 ### Impact Portfolios
 
@@ -85,7 +70,7 @@ Build AI systems that participate in the ecosystem:
 
 To query hypercerts efficiently, run your own indexer:
 
-1. **Subscribe to the relay firehose** for hypercert lexicon records
+1. **Choose a relay or repository ingestion scope** for the Hypercerts and Certified record collections you support
 2. **Parse and validate** incoming records against lexicon schemas
 3. **Store in a queryable database** (PostgreSQL, MongoDB, etc.)
 4. **Expose an API** for your application to query
@@ -98,26 +83,20 @@ The ecosystem works because platforms follow shared conventions:
 
 ### Use Standard Lexicons
 
-Use the standard `org.hypercerts.*` and `app.certified.*` lexicons for data that fits them — this is what makes your data interoperable across the ecosystem. Default indexers subscribe to these namespaces, so records using standard lexicons are automatically discoverable. If you need additional fields to extend the standard lexicons, create a [sidecar record](https://atproto.com/guides/lexicon-style-guide#design-patterns) that references the standard record via a strong reference. Since sidecars are likely application-specific, default indexers won't see them unless explicitly configured to index your namespace.
+Use the standard `org.hypercerts.*` and `app.certified.*` Lexicons for data that fits them. This gives other applications a public shape to implement, but discovery still depends on relay and indexer coverage. If you need data outside the standard schemas, create a [sidecar record](https://atproto.com/guides/lexicon-style-guide#design-patterns) in your own namespace and reference the standard subject with the relationship form appropriate to its lifecycle. Indexers must explicitly choose to ingest application-specific namespaces.
 
 You're also free to create new lexicons for use cases that don't fit the original schemas — ATProto is designed for this.
 
-### Use Strong References
+### Use the declared relationship shape
 
-Always include CID when referencing records. The CID is a content hash of the record at the time you referenced it — if the record is later modified, the CID won't match, making tampering detectable.
+Use a strong reference when the field requires an AT-URI and CID for one content version. Use DID fields for accounts and URI-only record subjects where the Lexicon deliberately models a relationship that survives updates. Do not substitute one reference form for another.
 
-```javascript
-// Good: includes CID
-{ uri: "at://did:plc:abc/org.hypercerts.claim.activity/123", cid: "bafyreiabc..." }
-
-// Bad: URI only (no tamper-evidence)
-{ uri: "at://did:plc:abc/org.hypercerts.claim.activity/123" }
-```
+See [Records That Change Over Time](/architecture/data-flow-and-lifecycle) and [Building on Shared Records](/core-concepts/validation-and-interpretation) before publishing an extension.
 
 
 ## Next Steps
 
 - Read the [Lexicons reference](/lexicons/introduction-to-lexicons) to understand the data model
 - Explore the [Architecture overview](/architecture/overview) to see how components fit together
-- Try the [Quickstart](/getting-started/quickstart) to create your first hypercert
+- Follow the evolving [Client Integration](/client-integration) path for supported SDK and XRPC guidance
 - Join the community to discuss your integration plans
