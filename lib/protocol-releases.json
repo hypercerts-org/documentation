@@ -1,0 +1,67 @@
+[
+  {
+    "version": "1.4",
+    "date": "2026-08-24",
+    "title": "Features and shared vocabulary",
+    "summary": "Describe subjects such as land areas, ecological zones, or participant cohorts with feature records. Shared vocabulary tags let projects and features reuse the same definitions instead of relying on inconsistent free-text labels.",
+    "changes": [
+      "Introduces org.hypercerts.entity.feature for subjects that are not people or organizations, with descriptions, optional locations, and external identifiers.",
+      "Introduces org.hypercerts.vocab.tag for reusable classification, including broader terms, alternative names, external equivalents, and replacement terms.",
+      "Collections can include features alongside activities and other collections. Existing activities continue to reference locations directly."
+    ],
+    "compatibility": "Additive: existing records remain valid. Applications can add support for the new records as their use cases require.",
+    "sourceVersion": "1.4.0"
+  },
+  {
+    "version": "1.3",
+    "date": "2026-08-13",
+    "title": "Richer descriptions with updated Leaflet formats",
+    "summary": "Updates the bundled Leaflet schemas, giving applications more ways to represent rich descriptions while keeping them aligned with Leaflet's published formats.",
+    "changes": [
+      "Adds Leaflet block types including image galleries, HTML, post lists, and publication blocks, plus theme-color definitions.",
+      "Expands image, iframe, and rich-text options, including image display width, iframe aspect ratio, link hrefs, and highlight colors.",
+      "Linear documents can include the newly supported blocks."
+    ],
+    "compatibility": "Readers of rich descriptions should handle unfamiliar blocks gracefully. Applications that render or validate Leaflet content should review the updated bundled schemas.",
+    "sourceVersion": "1.3.0"
+  },
+  {
+    "version": "1.2",
+    "date": "2026-08-03",
+    "title": "Follow projects and request grouped permissions",
+    "summary": "Adds follows for records such as projects, and reusable permission sets that let applications request access to related record types together.",
+    "changes": [
+      "Introduces app.certified.graph.entityFollow for non-account entities. Its AT-URI reference keeps following the record across updates instead of pinning one content version.",
+      "Adds org.hypercerts.authWrite and app.certified.authWrite permission sets, so an application can request a namespace's listed write permissions through an include scope.",
+      "Account follows remain separate in app.certified.graph.follow."
+    ],
+    "compatibility": "These are additional capabilities. Use entity follows for records and account follows for accounts; review the permission sets when configuring authorization.",
+    "sourceVersion": "1.2.0"
+  },
+  {
+    "version": "1.1",
+    "date": "2026-07-06",
+    "title": "Optional signatures on record contents",
+    "summary": "Lets a signer attest to a record's contents, adding a form of provenance separate from the signature on the publishing AT Protocol repository.",
+    "changes": [
+      "Adds optional signatures to the record schemas, with shared app.certified.signature.defs definitions.",
+      "Supports inline signatures and references to remote app.certified.signature.proof records.",
+      "Record signatures complement the existing wallet-consent proof on EVM identity links."
+    ],
+    "compatibility": "Non-breaking: signatures are optional. Existing records without signatures remain valid.",
+    "sourceVersion": "1.1.0"
+  },
+  {
+    "version": "1.0",
+    "date": "2026-06-17",
+    "title": "First stable Lexicon baseline",
+    "summary": "Establishes the first stable release of the Hypercerts and Certified Lexicon package, its TypeScript types, and generated exports.",
+    "changes": [
+      "Promotes the existing package to 1.0.0. The stability promotion itself does not introduce new schemas or types.",
+      "Also increases the plain-text activity work-scope limit from 100 to 1,000 graphemes, with a 10,000-byte cap.",
+      "Establishes standard semantic versioning for the package: breaking changes advance the major version, compatible additions the minor version, and fixes the patch version."
+    ],
+    "compatibility": "The work-scope limit increase preserves existing valid records. This history begins with the stable 1.0 baseline; earlier pre-release migrations remain in the component changelog.",
+    "sourceVersion": "1.0.0"
+  }
+]

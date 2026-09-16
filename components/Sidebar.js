@@ -37,6 +37,7 @@ function NavItem({ item, currentPath, depth = 0 }) {
             style={{ paddingLeft: `${16 + depth * 16}px` }}
           >
             {item.title}
+            {item.badge && <span className="sidebar-release-badge">{item.badge}</span>}
           </Link>
         ) : (
           <span

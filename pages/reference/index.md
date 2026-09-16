@@ -31,7 +31,7 @@ The XRPC API and SDK reference will be added from their canonical implementation
 
 ## Source-owned documentation
 
-Four detailed documents are currently imported from their owning repositories during the documentation build:
+Seven documents are currently imported from their owning repositories during the documentation build:
 
 | Source | Owning repository | Local route |
 |---|---|---|
@@ -39,10 +39,13 @@ Four detailed documents are currently imported from their owning repositories du
 | ePDS integration tutorial | `hypercerts-org/ePDS` | [Integrate with ePDS](/tutorials/epds) |
 | Hyperindex documentation | `gainforest/hyperindex` | [Hyperindex](/tools/hyperindex) |
 | Hypercerts Lexicon changelog | `hypercerts-org/hypercerts-lexicon` | [Lexicon releases](/reference/releases) |
+| Certified Group Service changelog | `hypercerts-org/certified-group-service` | [CGS releases](/changes/cgs) |
+| Hypercerts Relay changelog | `hypercerts-org/hypercerts-relay` | [Relay releases](/changes/relay) |
+| Hypercerts Feed Service changelog | `hypercerts-org/hypercerts-feed-service` | [Feed Service releases](/changes/feed-service) |
 
-The build stores the resolved source commit and content hash. These imports currently follow each repository's `main` branch. Release contracts should prefer immutable package versions, tags, or commits where available.
+The build stores a content snapshot and hash, with a source-file update timestamp when available. These imports currently follow each repository's `main` branch. Release contracts should prefer immutable package versions, tags, or commits where available. [Changes](/changes) combines the protocol release history with the published component versions.
 
-Canonical external imports are not yet configured for the SDK, Hypercerts XRPC API, Certified Group Service, Hypercerts Feed Service, labelers, or a versioned generated Lexicon field reference. Their local overview pages should not be read as complete API contracts.
+Detailed API-reference imports are not yet configured for the SDK, Hypercerts XRPC API, Certified Group Service, Hypercerts Feed Service, labelers, or a versioned generated Lexicon field reference. Importing a component changelog does not turn its local overview into a complete API contract.
 
 ## Services and tooling
 

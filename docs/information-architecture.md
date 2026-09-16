@@ -30,6 +30,14 @@ The root route is a section directory, with a short introduction, four section o
 
 The public name and route for change history are **Changes** and `/changes`. Redirect the previous `/change-history` route and its raw Markdown URL to their new equivalents.
 
+## Protocol release communication
+
+The documentation repository is the canonical source for protocol major/minor releases. The participating stack is Lexicons, Hypercerts API, SDK, Certified Group Service, Entryway, Relay, and Feed Service. Major/minor versions are coordinated; component patches advance independently. The intended shared-version compatibility promise must be supported by testing, not inferred from matching labels.
+
+The initial protocol history is reconstructed from Lexicon 1.0 through 1.4. This describes the changes that drove those release lines, not a retroactive assertion that all services shipped simultaneously or used those numbers. Component cards and sidebar badges show their actual published versions. Numeric alignment, release sources for the API and entryway, and the new SDK's first release remain implementation work in the owning projects.
+
+The Changes overview and docs landing page share the latest protocol summary and component catalog. Full protocol history lives at `/changes/protocol`; component changelogs are imported from owning repositories at build time. Blog links are added only when a real release article exists. See [the release-maintenance workflow](remote-markdown.md#protocol-releases-and-component-versions).
+
 ## First-pass migration
 
 | Previous area | New primary home | Treatment |
@@ -91,9 +99,9 @@ The narrative path now covers the main concepts, common usage, and the handoff t
 
 ### Changes
 
-- Adopter-facing change entries that link meaning, schemas, components, and migration steps
-- Component changelog links without implying one universal compliance version
-- Migration guides for changes that require adopter action
+- Establish the API and entryway release sources and connect the SDK when its repository exists.
+- Align component major/minor versions in the owning projects and verify the supported combinations.
+- Write release articles and migration guides for future coordinated changes that need them.
 
 ## External service documentation
 

@@ -1,0 +1,48 @@
+[
+  {
+    "id": "lexicons",
+    "title": "Lexicons",
+    "path": "/reference/releases",
+    "sourceId": "hypercerts-lexicon-changelog",
+    "description": "Shared record schemas, types, and permission sets."
+  },
+  {
+    "id": "api",
+    "title": "Hypercerts API",
+    "path": "/changes/api",
+    "description": "The XRPC read API. Its own release history is being prepared."
+  },
+  {
+    "id": "sdk",
+    "title": "Hypercerts SDK",
+    "path": "/changes/sdk",
+    "description": "The new SDK is under development; no package release is available yet."
+  },
+  {
+    "id": "cgs",
+    "title": "Certified Group Service",
+    "path": "/changes/cgs",
+    "sourceId": "cgs-changelog",
+    "description": "Group accounts, permissions, and shared repository management."
+  },
+  {
+    "id": "entryway",
+    "title": "Entryway",
+    "path": "/changes/entryway",
+    "description": "The account entryway is under development; its release history will be linked here."
+  },
+  {
+    "id": "relay",
+    "title": "Hypercerts Relay",
+    "path": "/changes/relay",
+    "sourceId": "relay-changelog",
+    "description": "Network ingestion and relay infrastructure."
+  },
+  {
+    "id": "feed",
+    "title": "Hypercerts Feed Service",
+    "path": "/changes/feed-service",
+    "sourceId": "feed-changelog",
+    "description": "Feed selection and read interfaces."
+  }
+]

@@ -22,3 +22,25 @@ sources:
     repo: hypercerts-org/hypercerts-lexicon
     ref: main
     path: CHANGELOG.md
+    trackRelease: true
+
+  - id: cgs-changelog
+    title: Certified Group Service changelog
+    repo: hypercerts-org/certified-group-service
+    ref: main
+    path: CHANGELOG.md
+    trackRelease: true
+
+  - id: relay-changelog
+    title: Hypercerts Relay changelog
+    repo: hypercerts-org/hypercerts-relay
+    ref: main
+    path: CHANGELOG.md
+    trackRelease: true
+
+  - id: feed-changelog
+    title: Hypercerts Feed Service changelog
+    repo: hypercerts-org/hypercerts-feed-service
+    ref: main
+    path: CHANGELOG.md
+    trackRelease: true

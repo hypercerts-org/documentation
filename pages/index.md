@@ -66,12 +66,12 @@ Get a quick explanation of an unfamiliar term.
 
 {% /docs-section %}
 
-{% docs-section title="Changes" href="/changes" icon="changes" description="Follow releases and understand what has changed. The release history currently covers the Lexicon package." %}
+{% docs-section title="Changes" href="/changes" icon="changes" description="Follow the protocol's major and minor releases, then explore the latest releases of each component." %}
 
-{% card-grid columns=1 %}
-{% card-link title="Lexicon releases" href="/reference/releases" %}
-Read the package changelog from the source repository.
-{% /card-link %}
-{% /card-grid %}
+{% release-latest /%}
+
+{% release-cards /%}
+
+Versions show actual published component releases. Shared major/minor numbering is being adopted; components without a release are marked under development.
 
 {% /docs-section %}
