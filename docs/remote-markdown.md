@@ -116,15 +116,15 @@ External Markdown is parsed with the same Markdoc configuration as local pages. 
 
 ## Protocol releases and component versions
 
-`lib/protocol-releases.json` is the reviewed, canonical protocol major/minor history, newest first. The initial 1.0–1.4 entries are reconstructed from Lexicon releases; dates are the corresponding package publication dates. A component release does not automatically announce a new protocol release. Edit this file to publish the next coordinated release summary, compatibility guidance, and source version. An optional `blogUrl` adds a release-article link when an article is actually published.
+`lib/protocol-releases.json` is the reviewed, canonical protocol major/minor history, newest first. Each entry records its source Lexicon version and publication date. A component release does not automatically announce a new protocol release. Edit this file to publish the next coordinated release summary, compatibility guidance, and source version. Use `cardSummary` for a one-sentence description on release cards. An optional `blogUrl` adds a release-article link when an article is actually published.
 
 `lib/release-components.json` names the seven participating components and their local changelog routes. A `sourceId` connects a component to a release-tracked source in `docs-sources.yml`. Components without a published release display **Under development**; the new SDK has no source repository attached yet. Entryway is separate from the preceding ePDS product, and HappyView's version is not substituted for the Hypercerts API version.
 
 During generation, `lib/release-catalog.json` holds the compact version/status data used by the sidebar. The same catalog is saved inside the external content snapshot. Local pages use these standalone build-time markers:
 
-- `release-latest`: short current-release summary for the landing page.
-- `release-summary`: current release with highlights and source links.
-- `release-cards`: protocol-history link and all component version/status cards.
+- `protocol-title`: Hypercerts Protocol heading with the current version.
+- `release-summary`: current release with highlights for the Changes overview.
+- `release-cards`: Hypercerts Protocol and component version/status cards.
 - `protocol-history`: the full reviewed major/minor history.
 
 Write a marker as a self-closing Markdoc-style line, such as `{% release-summary /%}`. The shared page resolver expands it before Markdoc rendering, search indexing, or raw Markdown export, so those surfaces contain the same actual release information. No release lookup happens in the browser.

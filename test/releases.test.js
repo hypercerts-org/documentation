@@ -50,17 +50,23 @@ test('history keeps protocol lines distinct from component patch releases', () =
 
 test('release markers expand for page rendering, search, and raw Markdown through the shared resolver', () => {
   const catalog = buildReleaseCatalog(history, components, sources());
-  const markdown = '# Releases\n\n{% release-latest /%}\n\n{% release-summary /%}\n\n{% release-cards /%}\n\n{% protocol-history /%}\n';
+  const markdown = '{% protocol-title /%}\n\n{% release-summary /%}\n\n{% release-cards /%}\n\n{% protocol-history /%}\n';
   const result = resolvePageDocument({}, markdown, { releases: catalog }).markdown;
-  assert.doesNotMatch(result, /{% (?:release-|protocol-history)/);
+  assert.doesNotMatch(result, /{% (?:release-|protocol-)/);
   assert.match(result, /Hypercerts Protocol 1\.4/);
   assert.match(result, /badge="v1\.4\.12"/);
+  assert.match(result, /title="Hypercerts Protocol" href="\/changes\/protocol" badge="v1\.4"/);
+  assert(result.includes(history[0].cardSummary));
   assert.match(result, /badge="v0\.6\.0"/);
   assert.match(result, /badge="Under development"/);
   assert.match(result, /## 1\.0: First stable/);
   assert.doesNotMatch(result, /Read the release article/);
   assert.equal(expandReleaseMarkdown('# Ordinary page'), '# Ordinary page');
   assert.throws(() => expandReleaseMarkdown(markdown), /Missing release catalog/);
+  const summary = expandReleaseMarkdown('{% release-summary /%}', catalog);
+  assert.doesNotMatch(summary, /Read the protocol changelog|Lexicons 1\.4\.0 release/);
+  const fullHistory = expandReleaseMarkdown('{% protocol-history /%}', catalog);
+  assert.match(fullHistory, /Based on \[Lexicons 1\.4\.0\]/);
 });
 
 test('a later component patch updates badges without rewriting protocol history', () => {

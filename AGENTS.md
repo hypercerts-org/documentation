@@ -1,5 +1,11 @@
 # Agent Instructions
 
+## Documentation writing
+
+- Regular documentation and inline code comments describe the current state: what a concept or component is, how it works, and how to use it.
+- Keep historical decisions, previous approaches, and the reasons for replacing them in changelogs and blog posts. Do not add a backstory to a current-state explanation.
+- Keep overview pages concise. Use names, version badges, and short descriptions rather than commentary about how the documentation was assembled.
+
 ## Git Workflow — Branch + PR (MANDATORY)
 
 **NEVER commit directly to `main`.** All work goes through feature branches and pull requests.

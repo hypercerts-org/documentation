@@ -1021,17 +1021,6 @@ a.sidebar-link-active:hover {
   color: var(--color-text-secondary);
 }
 
-.docs-section-links > p {
-  font-size: 15px;
-  line-height: 1.6;
-}
-
-.docs-section-links > .card-grid + p {
-  margin: var(--space-4) 0 0;
-  font-size: 13px;
-  color: var(--color-text-secondary);
-}
-
 .sidebar-nav-link-row {
   display: flex;
   align-items: center;

@@ -3,6 +3,7 @@
     "version": "1.4",
     "date": "2026-08-24",
     "title": "Features and shared vocabulary",
+    "cardSummary": "Describe land areas, ecological zones, and other subjects with feature records and shared vocabulary tags.",
     "summary": "Describe subjects such as land areas, ecological zones, or participant cohorts with feature records. Shared vocabulary tags let projects and features reuse the same definitions instead of relying on inconsistent free-text labels.",
     "changes": [
       "Introduces org.hypercerts.entity.feature for subjects that are not people or organizations, with descriptions, optional locations, and external identifiers.",

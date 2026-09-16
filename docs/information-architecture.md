@@ -7,6 +7,7 @@ This is the working migration map for the protocol-first documentation restructu
 - The documentation has four primary sections: Guide, Client Integration, Reference, and Changes.
 - Together, the Guide, Lexicons, API and SDK contracts, reference implementation behavior, and change history describe the protocol. There is no separate ratified formal specification.
 - Guide pages explain meaning and shared usage. Reference pages provide exact source-backed contracts.
+- Regular documentation and inline code comments describe the current state. Historical choices, changes in direction, and their reasoning belong in changelogs and blog posts.
 - Integration pages publish tested paths, not inferred or aspirational APIs.
 - Existing public routes remain stable during the first pass unless their content has been explicitly retired.
 - A proposal in the third editor's draft is not a protocol requirement unless it is independently ratified and reflected in authoritative sources.
@@ -34,9 +35,9 @@ The public name and route for change history are **Changes** and `/changes`. Red
 
 The documentation repository is the canonical source for protocol major/minor releases. The participating stack is Lexicons, Hypercerts API, SDK, Certified Group Service, Entryway, Relay, and Feed Service. Major/minor versions are coordinated; component patches advance independently. The intended shared-version compatibility promise must be supported by testing, not inferred from matching labels.
 
-The initial protocol history is reconstructed from Lexicon 1.0 through 1.4. This describes the changes that drove those release lines, not a retroactive assertion that all services shipped simultaneously or used those numbers. Component cards and sidebar badges show their actual published versions. Numeric alignment, release sources for the API and entryway, and the new SDK's first release remain implementation work in the owning projects.
+Protocol release entries cite their source Lexicon releases. Component cards and sidebar badges show published versions or **Under development**. Release numbering and source registration are maintained in the owning projects; the documentation does not substitute a protocol version for an unpublished component version.
 
-The Changes overview and docs landing page share the latest protocol summary and component catalog. Full protocol history lives at `/changes/protocol`; component changelogs are imported from owning repositories at build time. Blog links are added only when a real release article exists. See [the release-maintenance workflow](remote-markdown.md#protocol-releases-and-component-versions).
+The docs landing page and Changes overview use the same cards for Hypercerts Protocol and the components: name, version or development status, and a short description. The protocol card uses one sentence about the current release. The landing page has no additional release explanation above or below the cards. The Changes overview adds the current release details and versioning policy. Full protocol history lives at `/changes/protocol`, headed with the current Hypercerts Protocol version; each entry links to its source Lexicon release. Component changelogs are imported from owning repositories at build time. Blog links are added only when a real release article exists. See [the release-maintenance workflow](remote-markdown.md#protocol-releases-and-component-versions).
 
 ## First-pass migration
 
