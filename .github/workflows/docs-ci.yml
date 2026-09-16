@@ -16,6 +16,7 @@ on:
       - 'lib/generate-search-index.js'
       - 'lib/compare-docs-fingerprint.js'
       - 'lib/releases.js'
+      - 'lib/github-auth.js'
       - 'lib/release-components.json'
       - 'lib/protocol-releases.json'
       - 'lib/navigation.js'

@@ -94,6 +94,16 @@ Choose `ref` according to the source's publishing policy. A moving branch such a
 
 ## Build behavior
 
+### Local development and GitHub rate limits
+
+`npm run dev` reuses the last successful external-content snapshot when its sources still match `docs-sources.yml`. This makes repeated dev-server starts work offline and avoids spending GitHub API requests just to edit local pages. It still regenerates local release summaries, navigation data, search, and raw Markdown. The console reports the original fetch time; cached versions are not presented as newly fetched.
+
+On a first start, or after changing the source registry, it fetches fresh content. Run `npm run generate` whenever you want to refresh external docs and component versions explicitly. Production `npm run build` and the scheduled refresh always fetch fresh upstream data and still fail on unsuccessful requests.
+
+Authentication is resolved from `DOCS_SOURCE_TOKEN`, then `GITHUB_TOKEN`, then `GH_TOKEN`. Outside CI, the scripts also reuse an existing GitHub CLI login through `gh auth token --hostname github.com`. Run `gh auth login` if needed. Tokens stay in memory and request headers; they are not logged or written into generated content. Without authentication, GitHub's low shared-IP request limit can stop a fresh fetch.
+
+### Static build
+
 `npm run generate:external-docs` fetches every registered file once through the GitHub contents API and writes `lib/external-docs-content.json`. The static build then uses that immutable snapshot for:
 
 - Markdoc page rendering;
