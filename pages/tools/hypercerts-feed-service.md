@@ -13,14 +13,16 @@ The service does not ingest records, modify indexed data, or call PDSs and AppVi
 
 ## Service endpoints
 
-| Environment | Base URL |
-|---|---|
-| Production | [`https://feed.hypercerts.dev`](https://feed.hypercerts.dev) |
-| Staging | [`https://dev.feed.hypercerts.dev`](https://dev.feed.hypercerts.dev) |
+| Environment | Base URL | Service DID | DID document |
+|---|---|---|---|
+| Production | [`https://feed.hypercerts.dev`](https://feed.hypercerts.dev) | `did:web:feed.hypercerts.dev` | [`/.well-known/did.json`](https://feed.hypercerts.dev/.well-known/did.json) |
+| Staging | [`https://dev.feed.hypercerts.dev`](https://dev.feed.hypercerts.dev) | `did:web:dev.feed.hypercerts.dev` | [`/.well-known/did.json`](https://dev.feed.hypercerts.dev/.well-known/did.json) |
+
+The DID document links will work once the service-auth release is deployed to each environment. Use the bare service DID, **without** `#hypercerts_feed`, as the JWT audience; the service entry is for discovery.
 
 ## Available procedures
 
-Both procedures are unauthenticated HTTP `POST` requests with a JSON body.
+Both procedures are HTTP `POST` requests with a JSON body. AT Protocol service authentication is optional: requests without a bearer token use `params.viewerDid`, while authenticated requests use the token's verified issuer as the viewer.
 
 | Procedure | Returns |
 |---|---|
@@ -31,7 +33,7 @@ Both accept the same request shape:
 
 - `feedId` selects the feed algorithm. The currently registered value is `org.hypercerts.feed.defs#hypercertsFeed`.
 - For this feed, `params` must include `$type: "org.hypercerts.feed.defs#hypercertsFeedParams"`. This identifies the parameter format used by the feed; the remaining fields in `params` must be supported by that format.
-- `params.viewerDid` selects the viewer whose follows define the base feed scope.
+- `params.viewerDid` selects the viewer whose follows define the base feed scope. It is required without a bearer token. With a valid service-auth token, omit it or set it to the token issuer's DID; a different DID is rejected.
 - `params.trustedEvaluators` can add subjects endorsed by selected evaluators.
 - `params.organizationQuality` can filter organizations using quality labels from the configured [Orglabeler](/tools/labelers#orglabeler), which publishes labels for certified organizations.
 - `params.kinds` can restrict the returned event kinds.
@@ -40,6 +42,25 @@ Both accept the same request shape:
 
 `params` is an open union so additional feed algorithms may define different parameter types, including algorithms with no parameters. For the currently registered feed, include only the fields defined by `org.hypercerts.feed.defs#hypercertsFeedParams`; `limit` and `cursor` are generic top-level fields, not members of `params`.
 
+## Authenticate a feed request
+
+To request a feed for the authenticated caller, obtain an AT Protocol service-auth JWT from the caller's PDS and send it as a bearer token. For example, with a token already issued for `org.hypercerts.feed.getFeed`:
+
+```bash
+curl --request POST \
+  --url https://feed.hypercerts.dev/xrpc/org.hypercerts.feed.getFeed \
+  --header 'content-type: application/json' \
+  --header 'authorization: Bearer <service-auth-jwt>' \
+  --data '{
+    "feedId": "org.hypercerts.feed.defs#hypercertsFeed",
+    "params": {"$type": "org.hypercerts.feed.defs#hypercertsFeedParams"},
+    "limit": 20
+  }'
+```
+
+The token must target the service's bare DID (the operator's `SERVICE_DID`, not `did#serviceId`), carry the **exact procedure NSID** in `lxm` (`org.hypercerts.feed.getFeed` or `org.hypercerts.feed.getFeedSkeleton`), and be signed by the issuer's `#atproto` key. Request a separate token for each procedure and each attempt: tokens need a signed, non-empty `jti` of at most 256 UTF-8 bytes and can be used only once per issuer in the running process, even if feed generation fails. Replay tracking is process-local and is not shared across replicas or restarts.
+
+A supplied invalid, expired, or replayed bearer token returns HTTP 401; it never falls back to anonymous access. If `params.viewerDid` differs from the verified issuer, the request returns HTTP 400 `InvalidRequest`. Without a token, continue to include `params.viewerDid` as in the examples below. Operators must configure `SERVICE_DID` to the service's bare DID even if all requests are anonymous; a full live replay store can return HTTP 503 for authenticated requests.
 
 ## Get a hydrated feed with curl
 
