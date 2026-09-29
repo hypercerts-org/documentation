@@ -3,20 +3,18 @@
   "version": "1.0.0",
   "private": true,
   "description": "Hypercerts Protocol Documentation",
+  "packageManager": "pnpm@12.6.0",
   "engines": {
     "node": ">=22.12.0"
-  },
-  "overrides": {
-    "baseline-browser-mapping": "^2.11.23"
   },
   "scripts": {
     "test": "node --test",
     "generate:external-docs": "node lib/generate-external-docs-manifest.js",
     "docs:fingerprint": "node lib/generate-docs-fingerprint.js",
-    "generate:local": "node lib/generate-search-index.js && node lib/generate-last-updated.js && node lib/generate-sitemap.js && node lib/generate-raw-pages.js && npm run docs:fingerprint -- --content lib/external-docs-content.json",
-    "generate": "npm run generate:external-docs && npm run generate:local",
-    "dev": "node lib/generate-external-docs-manifest.js --prefer-cache && npm run generate:local && next dev --webpack",
-    "build": "npm run generate && next build --webpack",
+    "generate:local": "node lib/generate-search-index.js && node lib/generate-last-updated.js && node lib/generate-sitemap.js && node lib/generate-raw-pages.js && pnpm run docs:fingerprint --content lib/external-docs-content.json",
+    "generate": "pnpm run generate:external-docs && pnpm run generate:local",
+    "dev": "node lib/generate-external-docs-manifest.js --prefer-cache && pnpm run generate:local && next dev --webpack",
+    "build": "pnpm run generate && next build --webpack",
     "start": "next start"
   },
   "dependencies": {
