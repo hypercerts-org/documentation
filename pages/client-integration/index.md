@@ -27,12 +27,9 @@ Review application patterns and interoperability principles.
 {% card-link title="Account & Identity Setup" href="/architecture/account-and-identity" %}
 Understand accounts, OAuth, handles, and organization-managed records.
 {% /card-link %}
-{% card-link title="Integrate with ePDS" href="/tutorials/epds" %}
-Use the source-backed ePDS authentication walkthrough.
-{% /card-link %}
 {% card-link title="Testing & Deployment" href="/getting-started/testing-and-deployment" %}
 Validate records, test safely, and prepare an integration for production.
 {% /card-link %}
 {% /card-grid %}
 
-Use the [Reference](/reference) for Lexicons and current service details. Hyperindex remains documented as legacy GraphQL infrastructure, not as the target protocol API.
+Use the [Reference](/reference) for Lexicons and current service details.

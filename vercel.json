@@ -52,6 +52,36 @@
       "source": "/raw/tools/hyperboards.md",
       "destination": "/raw/reference.md",
       "permanent": true
+    },
+    {
+      "source": "/architecture/epds",
+      "destination": "https://github.com/hypercerts-org/ePDS/blob/main/docs/architecture.md",
+      "permanent": true
+    },
+    {
+      "source": "/raw/architecture/epds.md",
+      "destination": "https://github.com/hypercerts-org/ePDS/blob/main/docs/architecture.md",
+      "permanent": true
+    },
+    {
+      "source": "/tutorials/epds",
+      "destination": "https://github.com/hypercerts-org/ePDS/blob/main/docs/tutorial.md",
+      "permanent": true
+    },
+    {
+      "source": "/raw/tutorials/epds.md",
+      "destination": "https://github.com/hypercerts-org/ePDS/blob/main/docs/tutorial.md",
+      "permanent": true
+    },
+    {
+      "source": "/tools/hyperindex",
+      "destination": "https://github.com/GainForest/hyperindex/blob/main/docs/hyperindex.md",
+      "permanent": true
+    },
+    {
+      "source": "/raw/tools/hyperindex.md",
+      "destination": "https://github.com/GainForest/hyperindex/blob/main/docs/hyperindex.md",
+      "permanent": true
     }
   ]
 }

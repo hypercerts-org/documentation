@@ -37,9 +37,6 @@ Find a starting point for your application.
 {% card-link title="Accounts and identity" href="/architecture/account-and-identity" %}
 Understand accounts, handles, and authentication.
 {% /card-link %}
-{% card-link title="Integrate with ePDS" href="/tutorials/epds" %}
-Follow the authentication walkthrough.
-{% /card-link %}
 {% card-link title="Testing and deployment" href="/getting-started/testing-and-deployment" %}
 Prepare your integration for real use.
 {% /card-link %}

@@ -41,7 +41,7 @@ An identifier for an AT Protocol account, such as `did:plc:abc123xyz`. The DID i
 
 #### ePDS (extended PDS)
 
-A standard AT Protocol PDS with Certified's email/OTP login extension on top, so users can sign in with just an email and a one-time code. From an app's point of view, OAuth against an ePDS still finishes with a normal AT Protocol authorization code. See [ePDS (extended PDS)](/architecture/epds) and the list of Certified-operated ePDS instances on [Certified PDSs](/reference/certified-pdss).
+A standard AT Protocol PDS with Certified's email/OTP login extension on top, so users can sign in with just an email and a one-time code. From an app's point of view, OAuth against an ePDS still finishes with a normal AT Protocol authorization code. See [ePDS (extended PDS)](https://github.com/hypercerts-org/ePDS/blob/main/docs/architecture.md) and the list of Certified-operated ePDS instances on [Certified PDSs](/reference/certified-pdss).
 
 #### Evaluation
 
@@ -53,7 +53,7 @@ A structured digital record of a contribution: who did what, when, where, and wi
 
 #### Hyperindex
 
-A legacy indexer that indexes Hypercerts records and exposes them through GraphQL. It is supporting infrastructure, not the target Hypercerts protocol API. See [Hyperindex](/tools/hyperindex).
+A legacy indexer that indexes Hypercerts records and exposes them through GraphQL. It is supporting infrastructure, not the target Hypercerts protocol API. See [Hyperindex](https://github.com/GainForest/hyperindex/blob/main/docs/hyperindex.md).
 
 #### Lexicon
 

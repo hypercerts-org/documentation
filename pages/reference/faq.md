@@ -37,7 +37,7 @@ Anyone with an ATProto account. Evaluations are separate records created by the 
 
 ## How do I query hypercerts across the network?
 
-For a known AT-URI, read the record from its repository. Cross-repository discovery requires an indexing service and depends on that service's coverage. The supported Hypercerts XRPC read API is being documented as it stabilizes. [Hyperindex](/tools/hyperindex) remains available as legacy GraphQL infrastructure, but it is not the target protocol interface.
+For a known AT-URI, read the record from its repository. Cross-repository discovery requires an indexing service and depends on that service's coverage. The supported Hypercerts XRPC read API is being documented as it stabilizes. [Hyperindex](https://github.com/GainForest/hyperindex/blob/main/docs/hyperindex.md) remains available as legacy GraphQL infrastructure, but it is not the target protocol interface.
 
 ## How do I fund a hypercert?
 

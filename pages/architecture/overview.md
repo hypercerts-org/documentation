@@ -13,7 +13,7 @@ The Hypercerts Protocol uses [AT Protocol](https://atproto.com/docs) for identit
 
 **Source records.** Hypercerts and Certified records live in AT Protocol repositories hosted by PDSs. Public Lexicons define their shapes. A compatible consumer can fetch known records directly and preserve their AT-URIs and CIDs.
 
-**Discovery and views.** Relays observe repository events. Indexers select records, resolve references, build backlink indexes, and expose queryable views. Coverage and interpretation depend on each service. [Hyperindex](/tools/hyperindex) is retained as legacy GraphQL infrastructure while the target XRPC API is being developed.
+**Discovery and views.** Relays observe repository events. Indexers select records, resolve references, build backlink indexes, and expose queryable views. Coverage and interpretation depend on each service. [Hyperindex](https://github.com/GainForest/hyperindex/blob/main/docs/hyperindex.md) is retained as legacy GraphQL infrastructure while the target XRPC API is being developed.
 
 **Applications.** Funding platforms, project tools, evaluation services, dashboards, and agents read source or indexed records and publish new records. Their authentication, private data, workflows, ranking, and payment execution are outside the record schemas.
 

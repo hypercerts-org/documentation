@@ -81,7 +81,7 @@ The ePDS (extended PDS) adds email/passwordless login on top of the standard PDS
 You can integrate ePDS with [`@atproto/oauth-client-node`](https://github.com/bluesky-social/atproto/tree/main/packages/oauth/oauth-client-node). If your app already has an email field, start OAuth normally and add `login_hint=<email>` to the authorization URL before redirecting the user. If your app just has a sign-in button, redirect the user normally and let ePDS collect the email itself. You can also optionally add `epds_handle_mode` to the authorization URL to control how new users get handles.
 
 {% callout type="note" %}
-See [ePDS (extended PDS)](/architecture/epds) for integration examples, handle mode configuration, and client metadata options. A ready-made skill that implements the full ePDS OAuth flow is available at `.agents/skills/epds-login/SKILL.md` in the [ePDS repository](https://github.com/hypercerts-org/ePDS).
+See [ePDS (extended PDS)](https://github.com/hypercerts-org/ePDS/blob/main/docs/architecture.md) for integration examples, handle mode configuration, and client metadata options. A ready-made skill that implements the full ePDS OAuth flow is available at `.agents/skills/epds-login/SKILL.md` in the [ePDS repository](https://github.com/hypercerts-org/ePDS).
 {% /callout %}
 
 

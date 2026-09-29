@@ -125,4 +125,4 @@ It also runs an authenticity gate before completeness scoring. Obvious junk, pla
 ## See also
 
 - [Certified Services](/reference/certified-services)
-- [Hyperindex](/tools/hyperindex)
+- [Hyperindex](https://github.com/GainForest/hyperindex/blob/main/docs/hyperindex.md)

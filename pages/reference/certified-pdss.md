@@ -5,7 +5,7 @@ description: Overview of the Certified-operated ePDS instances (production, stag
 
 # Certified PDSs
 
-Certified operates several [ePDS](/architecture/epds) instances across production, staging, and test environments. This page explains what each one is for and which you should use in which scenario.
+Certified operates several [ePDS](https://github.com/hypercerts-org/ePDS/blob/main/docs/architecture.md) instances across production, staging, and test environments. This page explains what each one is for and which you should use in which scenario.
 
 Apps built on Hypercerts don't *need* to use a Certified PDS — any AT Protocol PDS will work. The guidance below applies when you specifically want to offer "Sign in with Certified" or otherwise integrate with the ePDS extension.
 
@@ -86,7 +86,7 @@ Hostnames under `test.certified.app` correspond to individual test ePDS instance
 
 ## Auth services
 
-Each ePDS is paired with an auth service (e.g. `auth.certified.one`, `auth.dev.certified.app`) that handles the email/OTP step of the [ePDS flow](/architecture/epds). You don't talk to it directly — the PDS routes users through it during OAuth — but it shows up in status pages and logs alongside the PDS itself.
+Each ePDS is paired with an auth service (e.g. `auth.certified.one`, `auth.dev.certified.app`) that handles the email/OTP step of the [ePDS flow](https://github.com/hypercerts-org/ePDS/blob/main/docs/architecture.md). You don't talk to it directly — the PDS routes users through it during OAuth — but it shows up in status pages and logs alongside the PDS itself.
 
 ## Status pages
 

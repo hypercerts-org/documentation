@@ -76,7 +76,7 @@ The ATProto labeler identities are Certified accounts that publish each `app.bsk
 
 ## Related pages
 
-- [Hyperindex](/tools/hyperindex)
+- [Hyperindex](https://github.com/GainForest/hyperindex/blob/main/docs/hyperindex.md)
 - [Hypercerts Feed Service](/tools/hypercerts-feed-service)
 - [Labelers](/tools/labelers)
 - [Certified PDSs](/reference/certified-pdss)

@@ -69,7 +69,7 @@ It's mainly used by the Hypercerts core development team. However, because devel
 
 ## Checking the running version
 
-Like the [ePDS](/architecture/epds), CGS exposes its version on two health endpoints:
+Like the [ePDS](https://github.com/hypercerts-org/ePDS/blob/main/docs/architecture.md), CGS exposes its version on two health endpoints:
 
 **`/health`** — returns the CGS version as JSON, for example:
 

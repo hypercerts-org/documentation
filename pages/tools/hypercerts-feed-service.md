@@ -5,7 +5,7 @@ description: Read ordered, viewer-scoped Hypercerts feeds from indexed network d
 
 # Hypercerts Feed Service
 
-The Hypercerts Feed Service is a read-only TypeScript service that turns data indexed by [Hyperindex](/tools/hyperindex) into ordered, viewer-scoped Hypercerts feeds. It reads Hyperindex's current PostgreSQL data directly and exposes the results through custom XRPC procedures.
+The Hypercerts Feed Service is a read-only TypeScript service that turns data indexed by [Hyperindex](https://github.com/GainForest/hyperindex/blob/main/docs/hyperindex.md) into ordered, viewer-scoped Hypercerts feeds. It reads Hyperindex's current PostgreSQL data directly and exposes the results through custom XRPC procedures.
 
 A feed starts with the accounts that a viewer follows through `app.certified.graph.follow` records. Clients can extend that scope with trusted evaluators, filter organizations by quality labels, and select the event kinds they want to display. Results are ordered newest first.
 
@@ -147,4 +147,4 @@ The implementation, Lexicon definitions, and complete request behavior are avail
 ## See also
 
 - [Certified Services](/reference/certified-services)
-- [Hyperindex](/tools/hyperindex)
+- [Hyperindex](https://github.com/GainForest/hyperindex/blob/main/docs/hyperindex.md)
