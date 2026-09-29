@@ -7,7 +7,7 @@ description: Meet the building blocks that let projects, evaluators, networks, a
 
 “We restored a wetland” and “we reviewed that restoration” are different contributions to the same story. Hypercerts gives each a recognizable form so an application can tell them apart and connect them.
 
-Without a shared language, the same information is collected again and again. Data about projects and organizations sits in separate directories, surveys, certifications, and portfolios that don't talk to each other, so every new program asks the same questions. Initiatives such as [Aligned for Impact](https://initiatives.weforum.org/global-alliance-for-social-entrepreneurship/data), where dozens of data-collecting organizations are harmonizing the questions they ask social enterprises, show how much value there is in agreeing on common formats. A shared language lets independent services work together while each keeps its own purpose, and each record keeps the name of whoever issued it.
+Without a shared language, the same information is collected again and again. Data about projects and organizations sits in separate directories, surveys, certifications, and portfolios that don't talk to each other, so every new program asks the same questions. Networks of funders, researchers, and support organizations are increasingly working to harmonize the data they collect, because common formats let what one organization collects be reused by the next. A shared language lets independent services work together while each keeps its own purpose, and each record keeps the name of whoever issued it.
 
 That shared language starts with the work and grows as more people contribute.
 
