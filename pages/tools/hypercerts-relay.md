@@ -5,9 +5,9 @@ description: Connect to the Hypercerts Relay firehose or the Jetstream record st
 
 # Hypercerts Relay and Jetstream
 
-The Hypercerts Relay receives repository events from approved Personal Data Servers (PDSs). It publishes the full, raw AT Protocol `subscribeRepos` firehose.
+The Hypercerts Relay receives repository events from Personal Data Servers (PDSs) which can be accessing via the standard `subscribeRepos` firehose.
 
-Jetstream reads that firehose and keeps records from the Hypercerts and Certified lexicons selected by its policy. Use Jetstream when you need a stream of those records or an archive backfill. Use Relay when you need the raw firehose.
+A Jetstream v2 service is availability which provides a full backfill of crawled lexicon collections and a live stream of these lexicon record events. You will typically be consuming the jetstream rather than firehose unless there's a need for the full CBOR verification details.
 
 ## URLs
 
@@ -19,17 +19,17 @@ Jetstream reads that firehose and keeps records from the Hypercerts and Certifie
 | Jetstream archive plan | `https://jetstream.hypercerts.dev/xrpc/network.bsky.jetstream.planSnapshot` | Plan an archive download before connecting to the live stream. |
 | Jetstream archive segments | `https://jetstream.hypercerts.dev/xrpc/network.bsky.jetstream.getSegment` | Download a segment named by an archive plan. |
 
-The Relay firehose uses the normal `com.atproto.sync.subscribeRepos` event format. Jetstream uses the `network.bsky.jetstream.subscribeEvents` format and the `xrpc.v1.json` WebSocket subprotocol.
+The Relay firehose uses the normal `com.atproto.sync.subscribeRepos` event format. Jetstream uses the `network.bsky.jetstream.subscribeEvents` format.
 
-## Connect to Relay
+## Subscribing to Relay
 
-Open a WebSocket connection to the Relay firehose URL. Persist the sequence number from each event. On reconnect, send it as the `cursor` query parameter.
+When subscribed to the relay, persist the sequence number from each event. On reconnect, send it as the `cursor` query parameter.
 
 Relay keeps raw events for 72 hours. A cursor older than that window may not be available, so consumers should be able to recover from a newer position.
 
-## Connect to Jetstream
+## Working with Jetstream
 
-Open a WebSocket connection to the Jetstream live stream URL. With no parameters, the connection starts at the live tip. Add `cursor=<sequence>` to replay from a saved Jetstream sequence number.
+When subscribed with no parameters, the connection starts at the live tip. Add `cursor=<sequence>` to replay from a saved Jetstream sequence number.
 
 Jetstream can filter the stream with these query parameters:
 
@@ -41,7 +41,9 @@ Jetstream can filter the stream with these query parameters:
 
 If a saved Jetstream sequence is older than the retained stream, Jetstream returns `CursorTooOld`. Backfill from the archive, save the resulting sequence, then reconnect to the live stream.
 
-## Backfill with Jetstream
+### Backfill
+
+**Note:** The archive/backfill endpoints require a Jetstream API Key, contact the Hypercerts team for one before using.
 
 Jetstream backfill lets a client catch up from the retained archive before it starts receiving live events.
 
@@ -50,9 +52,9 @@ Jetstream backfill lets a client catch up from the retained archive before it st
 3. Keep requesting pages until `plannedThroughSeq` equals `sealedTipSeq`. Keep the first `sealedTipSeq` as the fixed end of this backfill.
 4. Connect to `subscribeEvents` with `cursor` set to the next sequence after the archive backfill. De-duplicate the small overlap at the handoff.
 
-The archive endpoints require a Jetstream API key. Ask the Hypercerts team for a key, then send it as `Authorization: Bearer <api-key>` on archive-plan and segment-download requests. Keep the key out of browser code, logs, and command history.
+The Jetstream API Key should be included in the request as `Authorization: Bearer <api-key>` on archive-plan and segment-download requests.
 
-Backfill returns events that Jetstream has retained. It cannot provide data older than the available archive.
+Backfill returns events that Jetstream has retained and cannot return data older than the archive however it should be expected that Jetsream will have backfilled the PDS jetstream is subscribed to, if you find gaps contact Hypercerts.
 
 ## Default lexicons
 
@@ -82,11 +84,11 @@ org.hypercerts.funding.receipt
 org.hypercerts.workscope.tag
 ```
 
-An operator can add exact collection NSIDs to the Jetstream policy. When the policy changes, Jetstream backfills the newly selected collections for every approved PDS.
+Hypercerts adds additional lexicons on request. When a lexicon is added, Jetstream backfills the newly selected collections for every approved PDS.
 
 ## Request a PDS crawl
 
-To ask Relay to reconnect to an approved PDS, send its hostname as JSON:
+To ask Relay to reconnect, send its hostname as JSON:
 
 ```bash
 curl --request POST \

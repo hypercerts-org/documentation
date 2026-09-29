@@ -60,9 +60,11 @@ Relay provides the raw repository-event firehose. Jetstream provides the selecte
 | Service | Environment | Public URL |
 |---|---|---|
 | Relay | Production | [`relay.hypercerts.dev`](https://relay.hypercerts.dev) |
+| Relay | Staging | [`relay.staging.hypercerts.dev`](https://relay.hypercerts.dev) |
 | Jetstream | Production | [`jetstream.hypercerts.dev`](https://jetstream.hypercerts.dev) |
+| Jetstream | Staging | [`jetstream.staging.hypercerts.dev`](https://jetstream.hypercerts.dev) |
 
-See [Hypercerts Relay and Jetstream](/tools/hypercerts-relay) for connection URLs, default lexicons, crawl requests, and backfill.
+See [Hypercerts Relay and Jetstream](/tools/hypercerts-relay) for full details.
 
 ## Labelers
 
