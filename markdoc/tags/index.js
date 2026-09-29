@@ -7,6 +7,7 @@ import cardGrid from './card-grid.markdoc';
 import heroBanner from './hero-banner.markdoc';
 import docsSection from './docs-section.markdoc';
 import br from './br.markdoc';
+import trustTimeline from './trust-timeline.markdoc';
 
 export default {
   br,
@@ -18,4 +19,5 @@ export default {
   'card-grid': cardGrid,
   'hero-banner': heroBanner,
   'docs-section': docsSection,
+  'trust-timeline': trustTimeline,
 };

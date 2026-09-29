@@ -13,6 +13,7 @@ import { HeroBanner } from '../components/HeroBanner';
 import { CardGrid } from '../components/CardGrid';
 import { DocsSection } from '../components/DocsSection';
 import { MermaidDiagram } from '../components/MermaidDiagram';
+import { TrustTimeline } from '../components/TrustTimeline';
 import { Analytics } from '@vercel/analytics/next';
 
 const components = {
@@ -30,6 +31,7 @@ const components = {
   CardGrid,
   DocsSection,
   MermaidDiagram,
+  TrustTimeline,
 };
 
 export default function App({ Component, pageProps }) {

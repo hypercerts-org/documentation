@@ -1651,6 +1651,177 @@ a.sidebar-link-active:hover {
   margin-top: var(--space-2);
 }
 
+/* ===== Component: TrustTimeline ===== */
+.trust-timeline {
+  margin: var(--space-8) 0;
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+}
+
+.trust-timeline-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  font-family: var(--font-body);
+}
+
+.tt-axis {
+  fill: none;
+  stroke: var(--color-text-secondary);
+  stroke-width: 1;
+}
+
+.tt-leader {
+  fill: none;
+  stroke: var(--color-border-strong);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+}
+
+.tt-step {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.tt-start {
+  fill: var(--color-bg);
+  stroke: var(--color-accent);
+  stroke-width: 2;
+}
+
+.tt-badge {
+  fill: var(--color-accent);
+  stroke: var(--color-bg);
+  stroke-width: 3;
+}
+
+.tt-badge-number {
+  fill: var(--color-bg);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.tt-label {
+  fill: var(--color-text-secondary);
+  font-size: 12px;
+}
+
+.tt-label-strong {
+  fill: var(--color-text-heading);
+  font-weight: 600;
+}
+
+.layout-content article .trust-timeline-signals,
+.trust-timeline-signals {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.layout-content article .trust-timeline-signals .tt-card,
+.trust-timeline-signals .tt-card {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-subtle);
+}
+
+.trust-timeline-signals .tt-card-attestation {
+  border-color: color-mix(in oklch, var(--color-accent) 35%, var(--color-border));
+}
+
+.tt-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.tt-card-number {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.tt-card-group {
+  color: var(--color-text-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.tt-card-name {
+  color: var(--color-text-heading);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.tt-card-by {
+  margin-top: 2px;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+.trust-timeline-signals .tt-card-record {
+  display: inline-block;
+  margin-top: var(--space-2);
+  padding: 1px 6px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  color: var(--color-link);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.trust-timeline-signals .tt-card-record:hover {
+  color: var(--color-link-hover);
+  border-color: var(--color-border-strong);
+}
+
+.trust-timeline .figure-caption {
+  margin-top: var(--space-4);
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .trust-timeline {
+    padding: var(--space-4);
+  }
+
+  .layout-content article .trust-timeline-signals,
+  .trust-timeline-signals {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 440px) {
+  .layout-content article .trust-timeline-signals,
+  .trust-timeline-signals {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 /* ===== Component: DotPattern ===== */
 .dot-pattern {
   position: absolute;

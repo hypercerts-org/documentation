@@ -19,14 +19,7 @@ The people contributing information keep their own voices. An evaluator publishe
 
 That is how trust builds over time. Each update, endorsement, assessment, or funding record lowers the cost of the next decision, which can begin with what is already known rather than another blank form.
 
-```mermaid
-flowchart LR
-  P["Project profile<br/>by the project"] --> U["Progress update<br/>by the project"]
-  U --> E["Endorsement<br/>by a peer network"]
-  E --> V["Evaluation<br/>by a specialist"]
-  V --> F["Funding record<br/>by a funder"]
-  F --> N["Next funding decision<br/>starts from this history"]
-```
+{% trust-timeline /%}
 
 This matters more as AI makes polished applications cheap to write. Signals from outside the application, attributed to the people who gave them, help funders and their tools tell a strong project from a strong pitch.
 
