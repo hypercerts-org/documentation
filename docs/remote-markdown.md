@@ -1,6 +1,6 @@
-# Build-time external documentation
+# Build-time changelog imports
 
-Use an external documentation page when one Markdown file in a service repository is the canonical source for a route on this site. External files are fetched before the static build; browsers never fetch the page Markdown.
+Component changelogs are imported from their owning repositories at build time. They are the only imported content: all other pages, including component Reference pages, are written in this repository (see [Documentation ownership](information-architecture.md#documentation-ownership)). External files are fetched before the static build; browsers never fetch the page Markdown.
 
 ## Workflow overview
 
@@ -10,8 +10,8 @@ flowchart TD
     A --> B["Create a frontmatter-only docs page<br/>externalDoc: source-id"]
 
     subgraph Build["Documentation build"]
-        C["npm run build"]
-        C --> D["npm run generate"]
+        C["pnpm run build"]
+        C --> D["pnpm run generate"]
         D --> E["generate:external-docs"]
         E --> F["Fetch registered Markdown files<br/>through the GitHub Contents API"]
         F --> G["Store immutable build snapshot<br/>lib/external-docs-content.json"]
@@ -48,11 +48,12 @@ Add the file to `docs-sources.yml`:
 
 ```yaml
 sources:
-  - id: epds-architecture
-    title: ePDS
-    repo: hypercerts-org/ePDS
+  - id: relay-changelog
+    title: Hypercerts Relay changelog
+    repo: hypercerts-org/hypercerts-relay
     ref: main
-    path: docs/architecture.md
+    path: CHANGELOG.md
+    trackRelease: true
 ```
 
 - `id` is the stable lowercase identifier used by pages.
@@ -70,41 +71,29 @@ Set `externalDoc` in a frontmatter-only page:
 
 ```md
 ---
-title: ePDS (extended PDS)
-description: How to integrate applications with ePDS login.
-externalDoc: epds-architecture
+title: Hypercerts Relay Changelog
+description: Project-owned release history imported from the Hypercerts Relay repository.
+externalDoc: relay-changelog
 ---
 ```
 
 Do not add a local Markdown body. The registered file is the only page body, which prevents stale fallback content from diverging from rendering, search, or `/raw` exports.
 
-## Document a service with subpages
-
-Use a local overview page for the service's role, status, supported environments, and relationship to the rest of the Hypercerts stack. Keep implementation-specific detail in the service repository when that repository owns the contract.
-
-For each canonical upstream Markdown file:
-
-1. Add a separate source entry to `docs-sources.yml`.
-2. Add a frontmatter-only wrapper at the intended child route.
-3. Link the imported child page from the local service overview.
-
-This allows a service to have multiple source-backed subpages without copying its documentation into this repository. The current loader deliberately does not support a local introduction plus an imported body on the same route. Use a local parent page when editorial context is needed, then keep each imported child page fully canonical to its upstream file.
-
-Choose `ref` according to the source's publishing policy. A moving branch such as `main` follows upstream changes through the refresh workflow. A tag or commit creates a stable documentation snapshot and must be updated deliberately.
+Choose `ref` according to the source's publishing policy. A moving branch such as `main` follows upstream changes through the refresh workflow. A tag or commit creates a stable snapshot and must be updated deliberately.
 
 ## Build behavior
 
 ### Local development and GitHub rate limits
 
-`npm run dev` reuses the last successful external-content snapshot when its sources still match `docs-sources.yml`. This makes repeated dev-server starts work offline and avoids spending GitHub API requests just to edit local pages. It still regenerates local release summaries, navigation data, search, and raw Markdown. The console reports the original fetch time; cached versions are not presented as newly fetched.
+`pnpm run dev` reuses the last successful external-content snapshot when its sources still match `docs-sources.yml`. This makes repeated dev-server starts work offline and avoids spending GitHub API requests just to edit local pages. It still regenerates local release summaries, navigation data, search, and raw Markdown. The console reports the original fetch time; cached versions are not presented as newly fetched.
 
-On a first start, or after changing the source registry, it fetches fresh content. Run `npm run generate` whenever you want to refresh external docs and component versions explicitly. Production `npm run build` and the scheduled refresh always fetch fresh upstream data and still fail on unsuccessful requests.
+On a first start, or after changing the source registry, it fetches fresh content. Run `pnpm run generate` whenever you want to refresh external docs and component versions explicitly. Production `pnpm run build` and the scheduled refresh always fetch fresh upstream data and still fail on unsuccessful requests.
 
 Authentication is resolved from `DOCS_SOURCE_TOKEN`, then `GITHUB_TOKEN`, then `GH_TOKEN`. Outside CI, the scripts also reuse an existing GitHub CLI login through `gh auth token --hostname github.com`. Run `gh auth login` if needed. Tokens stay in memory and request headers; they are not logged or written into generated content. Without authentication, GitHub's low shared-IP request limit can stop a fresh fetch.
 
 ### Static build
 
-`npm run generate:external-docs` fetches every registered file once through the GitHub contents API and writes `lib/external-docs-content.json`. The static build then uses that immutable snapshot for:
+`pnpm run generate:external-docs` fetches every registered file once through the GitHub contents API and writes `lib/external-docs-content.json`. The static build then uses that immutable snapshot for:
 
 - Markdoc page rendering;
 - search indexing;

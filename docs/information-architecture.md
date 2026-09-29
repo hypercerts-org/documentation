@@ -9,6 +9,8 @@ This is the working migration map for the protocol-first documentation restructu
 - Guide pages explain meaning and shared usage. Reference pages provide exact source-backed contracts.
 - Regular documentation and inline code comments describe the current state. Historical choices, changes in direction, and their reasoning belong in changelogs and blog posts.
 - Integration pages publish tested paths, not inferred or aspirational APIs.
+- All documentation pages are written and reviewed in this repository. Component changelogs are the only content imported from component repositories. See [Documentation ownership](#documentation-ownership).
+- The site documents actively maintained components only. Documentation for sunset components belongs in their own repositories.
 - Existing public routes remain stable during the first pass unless their content has been explicitly retired.
 - A proposal in the third editor's draft is not a protocol requirement unless it is independently ratified and reflected in authoritative sources.
 
@@ -45,9 +47,9 @@ The docs landing page and Changes overview use the same cards for Hypercerts Pro
 |---|---|---|
 | Get Started | Client Integration | Keep Building on Hypercerts and Testing & Deployment. Retire the current Quickstart and Working with Evaluations pages. |
 | Core Concepts | Guide | Keep and regroup the existing concept pages. Review claims against current Lexicons and AT Protocol behavior. |
-| Tutorials | Client Integration | Keep the ePDS tutorial source-backed from its service repository. |
-| Tools | Reference | Keep Agent Skills, Hypercerts Feed Service, Labelers, and legacy Hyperindex. Remove Scaffold from the active documentation because it is not a supported integration path. |
-| Architecture | Guide or Reference | Put lifecycle and portability guidance in Guide; put system and service architecture in Reference; put account setup in Client Integration. |
+| Tutorials | Retired | Remove the ePDS tutorial. ePDS is being sunset in favour of Entryway; any remaining ePDS documentation belongs in the ePDS repository. |
+| Tools | Reference | Keep Agent Skills, Hypercerts Feed Service, Hypercerts Relay and Jetstream, and Labelers. Remove Scaffold because it is not a supported integration path, and remove legacy Hyperindex because it is no longer maintained. |
+| Architecture | Guide or Reference | Put lifecycle and portability guidance in Guide; put system and service architecture in Reference; put account setup in Client Integration. Remove the imported ePDS architecture page. |
 | Lexicons and service directories | Reference | Keep existing routes and expand source-backed coverage. |
 | Lexicon releases | Changes | Keep the imported upstream changelog and add adopter-facing migration context separately. |
 | Ecosystem and vision | Separate background | Retain the existing essay route outside the sequential Guide; the landing page provides the high-level introduction. |
@@ -96,7 +98,7 @@ The narrative path now covers the main concepts, common usage, and the handoff t
 - XRPC query and procedure pages generated or imported from canonical schemas
 - SDK exports, types, validation, errors, and version support
 - Hypercerts API service overview and environments
-- Per-service subpages for ePDS, CGS, labelers, feed generators, relay or Jetstream, and operational status
+- Per-service subpages for CGS, Entryway, labelers, feed generators, Relay and Jetstream, and operational status
 
 ### Changes
 
@@ -104,12 +106,26 @@ The narrative path now covers the main concepts, common usage, and the handoff t
 - Align component major/minor versions in the owning projects and verify the supported combinations.
 - Write release articles and migration guides for future coordinated changes that need them.
 
-## External service documentation
+## Documentation ownership
 
-Keep one local service overview when the documentation site needs to explain role, support status, and relationships. Import each canonical technical subpage independently from its owning repository through `docs-sources.yml` and a frontmatter-only route wrapper. This preserves source ownership while allowing a service to occupy a full subtree in the documentation site.
+All documentation pages, including Reference pages for individual components, are written in this repository and changed through regular pull requests. Component changelogs are the only content imported from component repositories at build time.
 
-Do not combine locally maintained prose with imported Markdown on the same route. The import loader intentionally rejects that pattern to prevent two sources from drifting.
+Keeping pages in one repository lets authors use the site's Markdoc components, link between sections with site routes, and preview the result locally before review. Importing pages would require a registry entry and a wrapper page per file, would make links resolve against the source repository, and would surface errors only after the refresh build.
+
+Component repositories still own:
+
+- `CHANGELOG.md` and published GitHub Releases, imported into Changes and the version badges;
+- contributor and operator material, such as local development, internal architecture, and self-hosting, linked from the relevant Reference page when useful;
+- canonical schemas, such as Lexicon JSON, from which Reference pages may later be generated.
+
+When a component release changes public behaviour, its maintainer reviews the affected pages in this repository and opens a pull request in the same release cycle, or records that the release has no documentation impact.
+
+Planned support:
+
+- a release-checklist or pull-request-template line in each component repository asking for the documentation pull request or a "no docs impact" note;
+- `CODEOWNERS` entries so component maintainers review changes to their pages;
+- an internal link check in CI for local routes.
 
 ## URL migration
 
-The first pass reorganizes navigation while preserving the existing URLs of retained pages. The four explicitly retired pages redirect to the nearest active section hub. Future route moves should be made only with permanent redirects, internal-link checks, and a review of raw Markdown URLs.
+The first pass reorganizes navigation while preserving the existing URLs of retained pages. The explicitly retired pages redirect to the nearest active section hub. Future route moves should be made only with permanent redirects, internal-link checks, and a review of raw Markdown URLs.
