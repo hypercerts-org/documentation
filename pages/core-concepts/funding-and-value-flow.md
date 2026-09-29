@@ -17,6 +17,8 @@ A funding platform, facilitator, funder, or recipient can publish a receipt. Tha
 
 For example, a platform could record a payment toward a community energy installation and link it to that activity. A later reader can then connect the support with the work and its subsequent reports.
 
+A funding record is also a trust signal. Knowing who has already backed a project, and on what basis, helps the next funder decide.
+
 The payment itself happens through the platform's chosen payment system. The receipt describes it; verifying that money arrived requires payment evidence and trust in the source. An acknowledgement from a relevant party can add confirmation, but it doesn't replace payment verification.
 
 ## Close the loop after funding

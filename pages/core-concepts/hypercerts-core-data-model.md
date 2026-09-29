@@ -7,6 +7,8 @@ description: Meet the building blocks that let projects, evaluators, networks, a
 
 “We restored a wetland” and “we reviewed that restoration” are different contributions to the same story. Hypercerts gives each a recognizable form so an application can tell them apart and connect them.
 
+Without a shared language, the same information is collected again and again. Data about projects and organizations sits in separate directories, surveys, certifications, and portfolios that don't talk to each other, so every new program asks the same questions. Initiatives such as [Aligned for Impact](https://initiatives.weforum.org/global-alliance-for-social-entrepreneurship/data), where dozens of data-collecting organizations are harmonizing the questions they ask social enterprises, show how much value there is in agreeing on common formats. A shared language lets independent services work together while each keeps its own purpose, and each record keeps the name of whoever issued it.
+
 That shared language starts with the work and grows as more people contribute.
 
 ## From an activity to a fuller picture
@@ -41,7 +43,7 @@ The Lexicons describe the fields software reads and writes. The Guide explains w
 
 For example, a project uses a grouping record called a *collection*. Applications agree to recognize a collection marked as a project. That small shared convention lets a project dashboard and a funding platform recognize the same grouping.
 
-You'll also encounter **Certified**. It provides accounts and tools for working with Hypercerts, and its shared schemas describe things such as profiles, organizations, locations, and badges. Those schemas can be used by other applications too.
+You'll also encounter **Certified**, the identity service operated by the Hypercerts Foundation. It lets people and organizations sign in to Hypercerts applications with an AT Protocol account, including with just an email address. Its shared schemas describe things such as profiles, organizations, locations, and badges, and other applications can use them too.
 
 You don't need to learn every schema before you begin. Start with the records that answer your users' questions. The next pages introduce the main building blocks individually; the [Lexicon inventory](/reference/lexicon-inventory) is there when you want the complete list.
 

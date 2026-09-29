@@ -5,7 +5,9 @@ description: Learn how Hypercerts connects work, evidence, assessments, and fund
 
 # Build with Hypercerts
 
-A project's story should travel with it: the work it has done, the evidence behind it, and the support it has received. Learn how the pieces connect, then build applications that add to that story.
+Hypercerts is an open protocol that connects projects with those who review them, vouch for them, and back them. Projects publish their work, updates, and evidence as records they control. Others add trust signals, such as endorsements, evaluations, and funding records, each attributed to whoever provided it.
+
+These records live on AT Protocol and outlast any single app. Learn how they connect, then build applications that read them and add to them.
 
 New to Hypercerts? Get the high-level introduction at [hypercerts.org](https://hypercerts.org), or start exploring below.
 

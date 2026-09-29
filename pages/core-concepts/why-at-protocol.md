@@ -17,6 +17,43 @@ An app helps someone create and read these records. The records can also be read
 
 AT Protocol also gives each account a lasting identifier called a **DID**, short for decentralized identifier. It identifies the account separately from its current name or hosting server. This is what allows an account to keep its identity when moving between supported hosts.
 
+## You own your records and can take them with you
+
+On most platforms, the information you create belongs to the platform. A project's profile, updates, and funding history sit in that platform's database, under rules the platform sets and can change. If the project wants to move, it starts again from nothing. If the platform shuts down, the history disappears with it. And when leaving means losing something important, the platform has little reason to serve you well.
+
+AT Protocol works differently. A project's records live in its own repository, under its own identity, and every record is signed so anyone can check who published it. The project controls them:
+
+- **Ownership.** The project decides what to publish, update, or delete. Other people and apps can link to its records or respond to them, but they can't change them.
+- **Portability.** The project can move its repository to another host and keep its identity, its records, and the links others have made to them.
+- **No lock-in.** Any compatible app can read the same records. A project can apply through a new platform and bring its history with it, and if one app closes, another can still show that history.
+
+```mermaid
+flowchart LR
+  subgraph Project["Project account (DID)"]
+    PR["Profile, activities, updates"]
+  end
+  subgraph Evaluator["Evaluator account (DID)"]
+    ER["Evaluation"]
+  end
+  subgraph Funder["Funder account (DID)"]
+    FR["Funding record"]
+  end
+  ER -. links to .-> PR
+  FR -. links to .-> PR
+  PR --> IDX["Relay and indexers"]
+  ER --> IDX
+  FR --> IDX
+  IDX --> A1["Funding platform"]
+  IDX --> A2["Evaluation tool"]
+  IDX --> A3["Directory"]
+```
+
+Each account keeps its own records. Links connect them, and any app can read across all of them.
+
+It works much like a website: you can change hosting providers without losing your address or your content. For the people using an app, all of this stays in the background.
+
+This is what lets trust travel. The updates, endorsements, and funding records a project builds up in one place stay with the project, so the next funder sees what came before, on whatever platform it uses. For a longer introduction to this idea, see Dan Abramov's [Open Social](https://overreacted.io/open-social/).
+
 ## Other people can add their perspective
 
 The evaluator publishes a new record in their own repository and links it to the project's work. The original activity stays with the project. The assessment stays with its publisher.

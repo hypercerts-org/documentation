@@ -7,7 +7,7 @@ description: Understand who stands behind information and how assessments, endor
 
 A project update, a neighbor's endorsement, and an expert assessment each tell you something different. Together, they can give you more confidence in the work, or reveal questions you need to investigate.
 
-Hypercerts makes these contributions visible and connects them to their sources. Deciding which ones to rely on remains a matter of judgment.
+We call these contributions **trust signals**: project updates, endorsements, evaluations, certifications, and funding records, each attributed to whoever provided it. Hypercerts makes them visible and connects them to their sources. Deciding which ones to rely on remains a matter of judgment.
 
 ## Start with who published it
 
