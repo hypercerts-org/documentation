@@ -29,7 +29,8 @@ Relay keeps raw events for 72 hours. A cursor older than that window may not be 
 
 ## Working with Jetstream
 
-When subscribed with no parameters, the connection starts at the live tip. Add `cursor=<sequence>` to replay from a saved Jetstream sequence number.
+When subscribed with no parameters, the connection starts at the live tip. Add `cursor=<sequence>` to replay from a saved Jetstream sequence number, because Jetstream replays the event 
+reconnects can deliver duplicated, therefore deduplicate or handle events idempotently on reconnect. 
 
 Jetstream can filter the stream with these query parameters:
 
@@ -55,6 +56,10 @@ Jetstream backfill lets a client catch up from the retained archive before it st
 The Jetstream API Key should be included in the request as `Authorization: Bearer <api-key>` on archive-plan and segment-download requests.
 
 Backfill returns events that Jetstream has retained and cannot return data older than the archive however it should be expected that Jetsream will have backfilled the PDS jetstream is subscribed to, if you find gaps contact Hypercerts.
+
+When using `planSnapshot` for archival backfill it can return whole-segment entries or block ranges. Whole segments will use `getsegment` and block ranges require `getBlock` for each block index followed by decoding and exact filtering.
+
+See [Bluesky Jetstream Docs](https://bsky.network/docs/jetstream/) for further details.
 
 ## Default lexicons
 
