@@ -53,6 +53,17 @@ The Hypercerts Feed Service turns current Hyperindex data into ordered, viewer-s
 
 For usage examples and the source repository, see [Hypercerts Feed Service](/tools/hypercerts-feed-service).
 
+## Relay and Jetstream
+
+Relay provides the raw repository-event firehose. Jetstream provides the selected Hypercerts and Certified record stream and archive.
+
+| Service | Environment | Public URL |
+|---|---|---|
+| Relay | Production | [`relay.hypercerts.dev`](https://relay.hypercerts.dev) |
+| Jetstream | Production | [`jetstream.hypercerts.dev`](https://jetstream.hypercerts.dev) |
+
+See [Hypercerts Relay and Jetstream](/tools/hypercerts-relay) for connection URLs, default lexicons, crawl requests, and backfill.
+
 ## Labelers
 
 | Service | Environment | Public URL | Purpose |
