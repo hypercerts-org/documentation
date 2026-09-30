@@ -16,6 +16,7 @@ import { MermaidDiagram } from '../components/MermaidDiagram';
 import { TrustTimeline } from '../components/TrustTimeline';
 import { AccountRecordsDiagram } from '../components/AccountRecordsDiagram';
 import { SharedLanguageDiagram } from '../components/SharedLanguageDiagram';
+import { StackDiagram } from '../components/StackDiagram';
 import { Analytics } from '@vercel/analytics/next';
 
 const components = {
@@ -36,6 +37,7 @@ const components = {
   TrustTimeline,
   AccountRecordsDiagram,
   SharedLanguageDiagram,
+  StackDiagram,
 };
 
 export default function App({ Component, pageProps }) {

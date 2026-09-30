@@ -92,6 +92,76 @@
       "source": "/raw/architecture/overview.md",
       "destination": "/raw/core-concepts/why-at-protocol.md",
       "permanent": true
+    },
+    {
+      "source": "/reference/certified-services",
+      "destination": "/reference/services",
+      "permanent": true
+    },
+    {
+      "source": "/raw/reference/certified-services.md",
+      "destination": "/raw/reference/services.md",
+      "permanent": true
+    },
+    {
+      "source": "/reference/certified-pdss",
+      "destination": "/reference/services/certified-pdss",
+      "permanent": true
+    },
+    {
+      "source": "/raw/reference/certified-pdss.md",
+      "destination": "/raw/reference/services/certified-pdss.md",
+      "permanent": true
+    },
+    {
+      "source": "/reference/certified-group-services",
+      "destination": "/reference/services/certified-group-service",
+      "permanent": true
+    },
+    {
+      "source": "/raw/reference/certified-group-services.md",
+      "destination": "/raw/reference/services/certified-group-service.md",
+      "permanent": true
+    },
+    {
+      "source": "/architecture/certified-group-service",
+      "destination": "/reference/services/certified-group-service",
+      "permanent": true
+    },
+    {
+      "source": "/raw/architecture/certified-group-service.md",
+      "destination": "/raw/reference/services/certified-group-service.md",
+      "permanent": true
+    },
+    {
+      "source": "/tools/hypercerts-relay",
+      "destination": "/reference/services/relay",
+      "permanent": true
+    },
+    {
+      "source": "/raw/tools/hypercerts-relay.md",
+      "destination": "/raw/reference/services/relay.md",
+      "permanent": true
+    },
+    {
+      "source": "/tools/labelers",
+      "destination": "/reference/services/labelers",
+      "permanent": true
+    },
+    {
+      "source": "/raw/tools/labelers.md",
+      "destination": "/raw/reference/services/labelers.md",
+      "permanent": true
+    },
+    {
+      "source": "/tools/hypercerts-feed-service",
+      "destination": "/reference/services/feed-service",
+      "permanent": true
+    },
+    {
+      "source": "/raw/tools/hypercerts-feed-service.md",
+      "destination": "/raw/reference/services/feed-service.md",
+      "permanent": true
     }
   ]
 }

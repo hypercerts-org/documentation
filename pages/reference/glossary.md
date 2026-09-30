@@ -25,7 +25,7 @@ An account and application provider oriented toward Hypercerts users and organiz
 
 #### CGS (Certified Group Service)
 
-An AT Protocol service that sits between clients and a group's backing PDS and adds role-based access control, record-authorship tracking, and an audit log. Lets multiple identities co-manage a single ATProto repository with member/admin/owner roles. See [Certified Group Service (CGS)](/architecture/certified-group-service).
+An AT Protocol service that sits between clients and a group's backing PDS and adds role-based access control, record-authorship tracking, and an audit log. Lets multiple identities co-manage a single ATProto repository with member/admin/owner roles. See [Certified Group Service (CGS)](/reference/services/certified-group-service).
 
 #### Collection
 
@@ -41,7 +41,7 @@ An identifier for an AT Protocol account, such as `did:plc:abc123xyz`. The DID i
 
 #### ePDS (extended PDS)
 
-A standard AT Protocol PDS with Certified's email/OTP login extension on top, so users can sign in with just an email and a one-time code. From an app's point of view, OAuth against an ePDS still finishes with a normal AT Protocol authorization code. See [ePDS (extended PDS)](https://github.com/hypercerts-org/ePDS/blob/main/docs/architecture.md) and the list of Certified-operated ePDS instances on [Certified PDSs](/reference/certified-pdss).
+A standard AT Protocol PDS with Certified's email/OTP login extension on top, so users can sign in with just an email and a one-time code. From an app's point of view, OAuth against an ePDS still finishes with a normal AT Protocol authorization code. See [ePDS (extended PDS)](https://github.com/hypercerts-org/ePDS/blob/main/docs/architecture.md) and the list of Certified-operated ePDS instances on [Certified PDSs](/reference/services/certified-pdss).
 
 #### Evaluation
 
@@ -65,7 +65,7 @@ A quantitative observation attached to a hypercert (e.g., "12 pages written", "5
 
 #### PDS (Personal Data Server)
 
-The server where your records are stored. You interact with it through the ATProto API — you don't need to manage it directly. You can use a [Certified-operated PDS](/reference/certified-pdss), Bluesky's, or self-host one. Records are portable between PDS instances.
+The server where your records are stored. You interact with it through the ATProto API — you don't need to manage it directly. You can use a [Certified-operated PDS](/reference/services/certified-pdss), Bluesky's, or self-host one. Records are portable between PDS instances.
 
 #### Strong reference
 

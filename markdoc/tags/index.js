@@ -10,6 +10,7 @@ import br from './br.markdoc';
 import trustTimeline from './trust-timeline.markdoc';
 import accountRecordsDiagram from './account-records-diagram.markdoc';
 import sharedLanguageDiagram from './shared-language-diagram.markdoc';
+import stackDiagram from './stack-diagram.markdoc';
 
 export default {
   br,
@@ -24,4 +25,5 @@ export default {
   'trust-timeline': trustTimeline,
   'account-records-diagram': accountRecordsDiagram,
   'shared-language-diagram': sharedLanguageDiagram,
+  'stack-diagram': stackDiagram,
 };

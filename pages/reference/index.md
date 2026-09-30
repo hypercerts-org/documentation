@@ -17,7 +17,7 @@ Queries and procedures of the Hypercerts API. Under development.
 {% card-link title="SDK" href="/reference/sdk" %}
 Exports, types, and versions of the Hypercerts SDK. Under development.
 {% /card-link %}
-{% card-link title="Services and tooling" href="/reference/certified-services" %}
+{% card-link title="Services and tooling" href="/reference/services" %}
 Service environments, endpoints, and supporting tools.
 {% /card-link %}
 {% /card-grid %}

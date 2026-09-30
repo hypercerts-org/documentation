@@ -55,7 +55,7 @@ Find the schemas for Hypercerts and Certified records.
 {% card-link title="Hypercerts Lexicons" href="/lexicons/hypercerts-lexicons" %}
 See the schema, an example, and usage conventions for each record.
 {% /card-link %}
-{% card-link title="Services and endpoints" href="/reference/certified-services" %}
+{% card-link title="Services and endpoints" href="/reference/services" %}
 Find service environments and their details.
 {% /card-link %}
 {% card-link title="Glossary" href="/reference/glossary" %}

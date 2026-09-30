@@ -63,9 +63,9 @@ To set up an organizational account, create an account at [certified.app](https:
 
 Sharing a single app password across an organisation is the simplest path but has real limits: every team member ends up with the same level of access, there's no audit trail, and revoking one person's access means rotating the password for everyone.
 
-The [Certified Group Service (CGS)](/architecture/certified-group-service) is the more principled answer. CGS sits in front of a PDS and adds **role-based access control** on top of a shared repository — multiple identities can co-manage the same ATProto repo with distinct member, admin, and owner roles, and every action is written to a per-group audit log. Members authenticate as themselves (not as the organisation), so access can be granted or revoked per-person without disturbing anyone else.
+The [Certified Group Service (CGS)](/reference/services/certified-group-service) is the more principled answer. CGS sits in front of a PDS and adds **role-based access control** on top of a shared repository — multiple identities can co-manage the same ATProto repo with distinct member, admin, and owner roles, and every action is written to a per-group audit log. Members authenticate as themselves (not as the organisation), so access can be granted or revoked per-person without disturbing anyone else.
 
-Certified operates hosted CGS instances for its environments (used by "create a group" flows on [certified.app](https://certified.app)), and CGS is also self-hostable if you want to run your own. Registered groups are created on the PDS configured for the relevant CGS deployment; imported groups remain on their existing PDS. See [Certified PDSs](/reference/certified-pdss) for the environment mapping and the [CGS architecture page](/architecture/certified-group-service) for the full model.
+Certified operates hosted CGS instances for its environments (used by "create a group" flows on [certified.app](https://certified.app)), and CGS is also self-hostable if you want to run your own. Registered groups are created on the PDS configured for the relevant CGS deployment; imported groups remain on their existing PDS. See [Certified PDSs](/reference/services/certified-pdss) for the environment mapping and the [CGS architecture page](/reference/services/certified-group-service) for the full model.
 
 ---
 
