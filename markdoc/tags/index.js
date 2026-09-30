@@ -8,6 +8,8 @@ import heroBanner from './hero-banner.markdoc';
 import docsSection from './docs-section.markdoc';
 import br from './br.markdoc';
 import trustTimeline from './trust-timeline.markdoc';
+import accountRecordsDiagram from './account-records-diagram.markdoc';
+import sharedLanguageDiagram from './shared-language-diagram.markdoc';
 
 export default {
   br,
@@ -20,4 +22,6 @@ export default {
   'hero-banner': heroBanner,
   'docs-section': docsSection,
   'trust-timeline': trustTimeline,
+  'account-records-diagram': accountRecordsDiagram,
+  'shared-language-diagram': sharedLanguageDiagram,
 };

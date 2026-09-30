@@ -27,28 +27,7 @@ AT Protocol works differently. A project's records live in its own repository, u
 - **Portability.** The project can move its repository to another host and keep its identity, its records, and the links others have made to them.
 - **No lock-in.** Any compatible app can read the same records. A project can apply through a new platform and bring its history with it, and if one app closes, another can still show that history.
 
-```mermaid
-flowchart LR
-  subgraph Project["Project account (DID)"]
-    PR["Profile, activities, updates"]
-  end
-  subgraph Evaluator["Evaluator account (DID)"]
-    ER["Evaluation"]
-  end
-  subgraph Funder["Funder account (DID)"]
-    FR["Funding record"]
-  end
-  ER -. links to .-> PR
-  FR -. links to .-> PR
-  PR --> IDX["Relay and indexers"]
-  ER --> IDX
-  FR --> IDX
-  IDX --> A1["Funding platform"]
-  IDX --> A2["Evaluation tool"]
-  IDX --> A3["Directory"]
-```
-
-Each account keeps its own records. Links connect them, and any app can read across all of them.
+{% account-records-diagram /%}
 
 It works much like a website: you can change hosting providers without losing your address or your content. For the people using an app, all of this stays in the background.
 
@@ -66,8 +45,14 @@ AT Protocol provides accounts, publishing, and links between records. Hypercerts
 
 These formats are defined in **Lexicons**. A Lexicon is a schema: it tells software what kind of record it is reading and which fields to expect. Using the same formats lets an evaluation tool and a funding platform exchange meaningful information, even if their interfaces look completely different.
 
-To find information spread across accounts, applications use **indexers**. An indexer collects records and makes them searchable, including connections such as “evaluations of this activity.” Each indexer has its own coverage, so different apps may show different parts of the network.
+Records are spread across many accounts, and those accounts are hosted on many different Personal Data Servers. To find them, applications use **indexers**. A **relay** follows servers across the network and passes on new and changed records; an indexer collects the records it cares about and makes them searchable, including connections such as “evaluations of this activity.” Each indexer has its own coverage, so different apps may show different parts of the network.
 
 You now have the basic division of work: AT Protocol lets people publish, Hypercerts gives the information a shared meaning, and applications help people use it.
+
+## Explore further
+
+- [PDSls](https://pdsls.dev/): browse any account's repository and records, including Hypercerts records.
+- [AT Protocol overview](https://atproto.com/guides/overview): the official introduction to repositories, servers, relays, and indexers.
+- [A deep dive into the Atmosphere](https://atproto.wiki/en/wiki/explainers/deep-dive): a community explainer of how the services fit together.
 
 Next, let's look at [the shared language itself](/core-concepts/hypercerts-core-data-model).

@@ -26,14 +26,7 @@ An **activity claim**, also called a hypercert, describes a piece of work. It gi
 
 Imagine a community energy project. Installing solar panels is one activity. A report describes the installation, a measurement records energy production, and a specialist evaluates the results. A funder can read those pieces together before deciding whether to support the next phase.
 
-```mermaid
-flowchart LR
-  P["Community energy project"] -->|includes| A["Solar installation activity"]
-  R["Installation report"] -->|documents| A
-  M["Energy production measurement"] -->|measures results of| A
-  E["Specialist evaluation"] -->|assesses| A
-  F["Funding receipt"] -->|records support for| A
-```
+{% shared-language-diagram /%}
 
 These are separate records, not sections everyone edits in a single document. Each can be published by the person or organization contributing that information. Links between them let an application bring the story together.
 

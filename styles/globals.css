@@ -1822,6 +1822,146 @@ a.sidebar-link-active:hover {
   }
 }
 
+/* ===== Component: Guide diagrams ===== */
+.guide-diagram {
+  margin: var(--space-8) 0;
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+}
+
+.guide-diagram-scroll {
+  overflow-x: auto;
+}
+
+.guide-diagram-svg {
+  display: block;
+  width: 100%;
+  min-width: 560px;
+  height: auto;
+  font-family: var(--font-body);
+}
+
+.guide-diagram .figure-caption {
+  margin-top: var(--space-4);
+  text-align: center;
+}
+
+.gd-panel {
+  fill: var(--color-bg-subtle);
+  stroke: var(--color-border-strong);
+  stroke-width: 1;
+}
+
+.gd-panel-accent {
+  stroke: var(--color-accent);
+  stroke-width: 2;
+}
+
+.gd-chip,
+.gd-node {
+  fill: var(--color-bg);
+  stroke: var(--color-border-strong);
+  stroke-width: 1;
+}
+
+.gd-chip-accent {
+  stroke: var(--color-accent);
+  stroke-width: 1.5;
+}
+
+.gd-pill {
+  fill: var(--color-bg);
+  stroke: color-mix(in oklch, var(--color-accent) 45%, var(--color-border));
+  stroke-width: 1;
+}
+
+.gd-skeleton {
+  fill: var(--color-border);
+}
+
+.gd-dot {
+  fill: var(--color-border-strong);
+}
+
+.gd-divider {
+  fill: none;
+  stroke: var(--color-border);
+  stroke-width: 1;
+}
+
+.gd-flow {
+  fill: none;
+  stroke: var(--color-text-secondary);
+  stroke-width: 1.25;
+}
+
+.gd-flow-accent {
+  stroke: var(--color-accent);
+  stroke-width: 1.5;
+}
+
+.gd-link {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+.gd-arrowhead {
+  fill: var(--color-text-secondary);
+}
+
+.gd-arrowhead-accent {
+  fill: var(--color-accent);
+}
+
+.gd-eyebrow {
+  fill: var(--color-text-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.gd-title {
+  fill: var(--color-text-heading);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.gd-title-large {
+  font-size: 16px;
+}
+
+.gd-text {
+  fill: var(--color-text-primary);
+  font-size: 12px;
+}
+
+.gd-caption {
+  fill: var(--color-text-secondary);
+  font-size: 11px;
+}
+
+.gd-caption-accent,
+.gd-mono-accent {
+  fill: var(--color-link);
+}
+
+.gd-mono {
+  fill: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+@media (max-width: 720px) {
+  .guide-diagram {
+    padding: var(--space-4);
+  }
+}
+
 /* ===== Component: DotPattern ===== */
 .dot-pattern {
   position: absolute;

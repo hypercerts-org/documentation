@@ -14,6 +14,8 @@ import { CardGrid } from '../components/CardGrid';
 import { DocsSection } from '../components/DocsSection';
 import { MermaidDiagram } from '../components/MermaidDiagram';
 import { TrustTimeline } from '../components/TrustTimeline';
+import { AccountRecordsDiagram } from '../components/AccountRecordsDiagram';
+import { SharedLanguageDiagram } from '../components/SharedLanguageDiagram';
 import { Analytics } from '@vercel/analytics/next';
 
 const components = {
@@ -32,6 +34,8 @@ const components = {
   DocsSection,
   MermaidDiagram,
   TrustTimeline,
+  AccountRecordsDiagram,
+  SharedLanguageDiagram,
 };
 
 export default function App({ Component, pageProps }) {
