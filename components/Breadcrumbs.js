@@ -4,10 +4,10 @@ import { navigation } from "../lib/navigation";
 
 function findBreadcrumbs(nav, targetPath, trail = []) {
   for (const item of nav) {
-    if (item.section) {
+    if (item.section || item.group) {
       const result = findBreadcrumbs(item.children || [], targetPath, [
         ...trail,
-        { title: item.section },
+        { title: item.section || item.group },
       ]);
       if (result) return result;
     } else {

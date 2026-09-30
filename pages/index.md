@@ -46,14 +46,14 @@ Prepare your integration for real use.
 
 {% /docs-section %}
 
-{% docs-section title="Reference" href="/reference" icon="reference" description="Look up the details while you build: record schemas, architecture, services, and supporting tools." %}
+{% docs-section title="Reference" href="/reference" icon="reference" description="Look up the details while you build: record schemas, the API and SDK, services, and supporting tools." %}
 
 {% card-grid %}
 {% card-link title="Lexicon reference" href="/reference/lexicon-inventory" %}
 Find the schemas for Hypercerts and Certified records.
 {% /card-link %}
-{% card-link title="Architecture" href="/architecture/overview" %}
-See how the network and its services fit together.
+{% card-link title="Hypercerts Lexicons" href="/lexicons/hypercerts-lexicons" %}
+See the schema, an example, and usage conventions for each record.
 {% /card-link %}
 {% card-link title="Services and endpoints" href="/reference/certified-services" %}
 Find service environments and their details.

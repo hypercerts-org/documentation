@@ -5,29 +5,24 @@ description: Exact schemas, interfaces, services, environments, and implementati
 
 # Reference
 
-The Reference contains exact, source-backed contracts. Use the [Guide](/guide) when you need the meaning of a concept or the common convention around it.
+The Reference contains exact, source-backed details to look up while you build. Use the [Guide](/guide) when you need the meaning of a concept or the conventions around it.
 
 {% card-grid %}
 {% card-link title="Lexicons" href="/lexicons/introduction-to-lexicons" %}
-Browse Hypercerts and Certified record schemas and shared definitions.
+Schemas, examples, and usage conventions for every Hypercerts and Certified record.
 {% /card-link %}
-{% card-link title="Lexicon inventory" href="/reference/lexicon-inventory" %}
-See every Hypercerts and Certified schema released in package version 1.4.0 and the current reference coverage.
+{% card-link title="XRPC API" href="/reference/xrpc-api" %}
+Queries and procedures of the Hypercerts API. Under development.
 {% /card-link %}
-{% card-link title="Architecture" href="/architecture/overview" %}
-Understand how PDSs, relays, APIs, indexers, and supporting services connect.
+{% card-link title="SDK" href="/reference/sdk" %}
+Exports, types, and versions of the Hypercerts SDK. Under development.
 {% /card-link %}
-{% card-link title="Services" href="/reference/certified-services" %}
-Find current environments, endpoints, service identities, and status pages.
-{% /card-link %}
-{% card-link title="Lexicon releases" href="/reference/releases" %}
-Read the source-backed Lexicon package changelog.
+{% card-link title="Services and tooling" href="/reference/certified-services" %}
+Service environments, endpoints, and supporting tools.
 {% /card-link %}
 {% /card-grid %}
 
-## API and SDK
-
-The XRPC API and SDK reference will be added from their canonical implementation sources as those contracts stabilize. Method pages must identify authentication, inputs, outputs, failure behavior, service version, and source schema. This documentation does not infer API methods from record Lexicons.
+The [Glossary](/reference/glossary) explains terms used across the documentation, and the [FAQ](/reference/faq) answers common questions.
 
 ## Imported changelogs
 
@@ -41,12 +36,3 @@ Component changelogs are imported from their owning repositories during the docu
 | Hypercerts Feed Service changelog | `hypercerts-org/hypercerts-feed-service` | [Feed Service releases](/changes/feed-service) |
 
 These imports follow each repository's `main` branch. [Changes](/changes) combines the protocol release history with the published component versions. All other Reference pages are maintained in the documentation repository.
-
-Detailed API reference is not yet available for the SDK, Hypercerts XRPC API, Certified Group Service, Hypercerts Feed Service, labelers, or a versioned generated Lexicon field reference.
-
-## Services and tooling
-
-- [Certified Group Service](/architecture/certified-group-service)
-- [Hypercerts Feed Service](/tools/hypercerts-feed-service)
-- [Labelers](/tools/labelers)
-- [Hypercerts Agent Skills](/tools/hypercerts-agent-skills)

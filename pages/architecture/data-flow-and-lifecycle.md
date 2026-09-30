@@ -39,6 +39,6 @@ Publishers can delete records from their repositories. Links to a deleted record
 
 A useful app keeps the link and explains that the target is unavailable. This preserves what the publisher referred to instead of substituting a different record or pretending the relationship never existed.
 
-For a technical overview of the services involved, see [Architecture](/architecture/overview).
+For how records spread across accounts and servers reach applications, see [Why AT Protocol?](/core-concepts/why-at-protocol) and [Finding and Reusing Information](/architecture/portability-and-scaling).
 
 Next: [Finding and Reusing Information](/architecture/portability-and-scaling), where these individual links become useful project views.

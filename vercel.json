@@ -82,6 +82,16 @@
       "source": "/raw/tools/hyperindex.md",
       "destination": "https://github.com/GainForest/hyperindex/blob/main/docs/hyperindex.md",
       "permanent": true
+    },
+    {
+      "source": "/architecture/overview",
+      "destination": "/core-concepts/why-at-protocol",
+      "permanent": true
+    },
+    {
+      "source": "/raw/architecture/overview.md",
+      "destination": "/raw/core-concepts/why-at-protocol.md",
+      "permanent": true
     }
   ]
 }

@@ -97,6 +97,6 @@ See [Records That Change Over Time](/architecture/data-flow-and-lifecycle) and [
 ## Next Steps
 
 - Read the [Lexicons reference](/lexicons/introduction-to-lexicons) to understand the data model
-- Explore the [Architecture overview](/architecture/overview) to see how components fit together
+- Read [Why AT Protocol?](/core-concepts/why-at-protocol) to see how accounts, relays, indexers, and apps fit together
 - Follow the evolving [Client Integration](/client-integration) path for supported SDK and XRPC guidance
 - Join the community to discuss your integration plans
