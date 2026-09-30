@@ -8,11 +8,11 @@ const icons = {
 };
 
 /** A section introduction and its curated links on the documentation landing page. */
-export function DocsSection({ title, href, icon, description, children }) {
+export function DocsSection({ title, href, icon, description, layout = 'cards', children }) {
   const headingId = `docs-${icon}`;
 
   return (
-    <section className="docs-section" aria-labelledby={headingId}>
+    <section className={`docs-section docs-section-${layout}`} aria-labelledby={headingId}>
       <div className="docs-section-intro">
         <span className="docs-section-icon" aria-hidden="true">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">

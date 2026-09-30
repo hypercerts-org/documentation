@@ -2677,6 +2677,84 @@ html.dark .search-result-snippet mark {
   line-height: 1.5;
 }
 
+/* Single row of cards for a short set of steps */
+.docs-section-row .card-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Compact link list: two columns of rows separated by rules */
+.docs-section-list .card-grid {
+  gap: 0 var(--space-8);
+}
+
+.docs-section-list a.card-link,
+.docs-section-table a.card-link {
+  min-height: 0;
+  padding: var(--space-3) var(--space-1);
+  border: none;
+  border-top: 1px solid var(--color-border);
+  border-radius: 0;
+  background: none;
+}
+
+.docs-section-list a.card-link:hover,
+.docs-section-table a.card-link:hover {
+  background: none;
+}
+
+.docs-section-list a.card-link:hover .card-link-title,
+.docs-section-table a.card-link:hover .card-link-title {
+  color: var(--color-link-hover);
+}
+
+.docs-section-list .card-link-title::after {
+  content: " \2192";
+  color: var(--color-text-secondary);
+}
+
+/* Status table: one row per component with name, version, and description */
+.docs-section-table .card-grid {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+}
+
+.docs-section-table .card-link-text {
+  display: grid;
+  grid-template-columns: minmax(0, 13rem) minmax(0, 9rem) minmax(0, 1fr);
+  align-items: baseline;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.docs-section-table .card-link-title {
+  margin-bottom: 0;
+}
+
+.docs-section-table .release-badge {
+  justify-self: start;
+  margin: 0;
+}
+
+.docs-section-table .card-link-desc p {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+@media (max-width: 768px) {
+  .docs-section-row .card-grid,
+  .docs-section-list .card-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .docs-section-table .card-link-text {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .docs-section-table .card-link-desc {
+    grid-column: 1 / -1;
+  }
+}
+
 .landing-section-nav {
   display: none;
 }
