@@ -31,6 +31,6 @@ Tags can also relate to broader terms, external concepts, or replacement terms. 
 
 This gives shared structure room to grow. An app can show an unfamiliar term with its source instead of silently translating it into a category that means something else.
 
-The [Lexicon inventory](/reference/lexicon-inventory) lists the work-scope and vocabulary schemas when you need their exact definitions.
+For exact definitions, see the [Work Scope](/lexicons/hypercerts-lexicons/work-scope) and [Vocabulary Tag](/lexicons/hypercerts-lexicons/vocabulary-tag) references.
 
 Next: [Records That Change Over Time](/architecture/data-flow-and-lifecycle), to see how these connections behave when information is updated.

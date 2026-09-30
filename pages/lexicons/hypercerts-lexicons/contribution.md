@@ -1,85 +1,106 @@
 ---
 title: Contribution
-description: Lexicon reference for the Contribution record type in Hypercerts.
+description: Lexicon reference for org.hypercerts.claim.contributorInformation and org.hypercerts.claim.contribution, reusable records that describe who contributed to an activity and what they did.
 ---
 
 # Contribution
 
-This page covers two related lexicons that work together to represent contributors and their contributions.
+`org.hypercerts.claim.contributorInformation` and `org.hypercerts.claim.contribution`
 
-## Contributor Information
+## Overview
 
-`org.hypercerts.claim.contributorInformation`
+An [activity claim](/lexicons/hypercerts-lexicons/activity-claim) names its contributors in the `contributors` array. Each entry says who contributed and, optionally, what they did. Both parts can be written inline in the activity or as a strong reference to a separate record:
 
-Stores presentation and identifier information for a contributor: display name, an optional identifier described as a DID or social-profile URI, and an optional image. The schema does not validate the identifier as a DID or URI.
+- A **contributor information** record describes *who*: an identifier (a DID or a profile URI), a display name, and an image.
+- A **contribution** record describes *what*: a role, a description of the work, and the period it covers.
 
-A contributor does not need a separate `contributorInformation` record. The activity claim's contributor entry accepts either a strong reference to that record or an inline `contributorIdentity` object containing an `identity` string. The inline value is an object, not a bare string.
+These records exist so contributor details can carry more than a single string and can be reused across activities. For the concepts, see [Activity Claims](/core-concepts/what-is-hypercerts) in the Guide.
 
-For the full released schema, see [`org.hypercerts.claim.contributorInformation` at v1.4.0](https://github.com/hypercerts-org/hypercerts-lexicon/blob/v1.4.0/lexicons/org/hypercerts/claim/contributorInformation.json).
+## How it's used
 
-## Contribution
+- **Inline for simple cases.** An activity's contributor entry can hold an inline identity string and an inline role string. That needs no extra records and is often enough.
+- **Referenced for reuse and detail.** A team that credits the same person on many activities publishes one contributor information record and references it from each. A contribution record is useful when a role needs a description or its own dates.
+- **The activity ties them together.** A contributor entry pairs `contributorIdentity` (inline or a reference to a contributor information record) with optional `contributionDetails` (inline or a reference to a contribution record) and an optional `contributionWeight`. Neither record points back to the activity, so the association exists only through the activity's references.
+- **Contributors can confirm.** Naming someone is the publisher's statement. The named person can confirm their involvement by publishing an [acknowledgement](/lexicons/hypercerts-lexicons/acknowledgement) in their own repository; see [Trust and Recognition](/core-concepts/certified-identity).
 
-`org.hypercerts.claim.contribution`
+Both records require only `createdAt`. In practice, write at least an `identifier` or `displayName` on a contributor information record, and at least a `role` or `contributionDescription` on a contribution record, so the reference says something.
 
-Stores details about a contribution, including an optional role, description, and timeframe. Contribution details in an activity can be an inline `contributorRole` object containing a `role` string or a strong reference to this separate record. The inline value is not a bare string.
+## Contributor information schema
 
-The activity claim's `contributors` array also supports contribution weights to indicate relative effort or impact.
+Who a contributor is, for display and linking.
 
-## Choosing contribution weights
+{% lexicon-schema nsid="org.hypercerts.claim.contributorInformation" /%}
 
-Weights are intended as positive relative values. The protocol stores them as strings and does not enforce numeric syntax, normalization, or a calculation method. The following are application-policy examples, not protocol requirements.
+## Contribution schema
 
-### Equal split
+What a contributor did on a piece of work.
 
-Every contributor gets weight `"1"`. Works well for collaborative work where contributions are hard to separate, or small teams where everyone contributed roughly equally.
+{% lexicon-schema nsid="org.hypercerts.claim.contribution" /%}
 
-Example: 4 contributors each with `contributionWeight: "1"`
+## Example
 
-### Role-based multipliers
+The community energy project credits its electrician with a contributor information record:
 
-Assign a base multiplier per role:
+```json
+{
+  "$type": "org.hypercerts.claim.contributorInformation",
+  "identifier": "did:plc:ewvi7nxzyoun6zhxrhs64oiz",
+  "displayName": "Maja Lindqvist",
+  "image": {
+    "$type": "org.hypercerts.defs#uri",
+    "uri": "https://cdn.example.org/contributors/maja-lindqvist.jpg"
+  },
+  "createdAt": "2026-07-01T14:02:00.000Z"
+}
+```
 
-| Role | Weight |
-|------|--------|
-| Lead/Creator | 6 |
-| Core contributor | 4 |
-| Reviewer/Advisor | 2 |
-| Minor contributor | 1 |
+A contribution record describing her part of the solar installation:
 
-Example: Lead author `"6"`, two core contributors `"4"` each, one reviewer `"2"`, one minor contributor `"1"`
+```json
+{
+  "$type": "org.hypercerts.claim.contribution",
+  "role": "Electrical installation",
+  "contributionDescription": "Designed the inverter and wiring layout, installed the 40 kW array's electrical system, and completed the grid connection inspection with the utility.",
+  "startDate": "2026-04-15T00:00:00.000Z",
+  "endDate": "2026-06-20T00:00:00.000Z",
+  "createdAt": "2026-07-01T14:05:00.000Z"
+}
+```
 
-### Activity-based (git signals)
+The activity's `contributors` array then references both records. Each reference is a union member, so it carries `$type`:
 
-Derive weights from repository data: commits, lines changed, PRs merged, issues closed.
+```json
+{
+  "contributorIdentity": {
+    "$type": "com.atproto.repo.strongRef",
+    "uri": "at://did:plc:4yyb5gyoxl3sqdlqrvuxshkp/org.hypercerts.claim.contributorInformation/3lwzq2r6k4c2b",
+    "cid": "bafyreibm3yqk5k7ruhlxwjzr2sxyqkqvfdyjgn6a7n5wrzntnzb4m6wqfe"
+  },
+  "contributionWeight": "1",
+  "contributionDetails": {
+    "$type": "com.atproto.repo.strongRef",
+    "uri": "at://did:plc:4yyb5gyoxl3sqdlqrvuxshkp/org.hypercerts.claim.contribution/3lwzq3a7m5d2c",
+    "cid": "bafyreif6y3h4qmxw2nqk7o5ztjq3vbl4c2rjrk5e7gdmxyw6ut2hzpq3ka"
+  }
+}
+```
 
-Caveat: biased toward code-heavy contributions; does not capture design, coordination, or review work well.
+## Rules and best practices
 
-Example: Alice (450 commits) `"45"`, Bob (350 commits) `"35"`, Carol (200 commits) `"20"`
+- **Choose inline or referenced by need.** Use inline objects when a contributor is a single identity string with a short role label. Use records when the contributor appears on several activities, needs a name or image, or when the contribution needs a description or timeframe.
+- **Publish one contributor information record per person and reuse it.** Writing a new record for every activity creates copies that drift apart when details change.
+- **Use a DID as the identifier where possible.** A DID lets applications resolve the contributor's own profile. The schema accepts any string, so readers can't assume an identifier resolves, and a non-DID value is best shown as an unlinked name. When the contributor has their own profile, applications typically prefer it for display over another party's record about them.
+- **A contributor information record is the publisher's description.** Unless the record lives in the contributor's own repository or carries their signature, its name and image are what the publisher says about that person, not the person's own statement.
+- **Keep identity out of contribution records.** A contribution record has no identity field. Who made the contribution comes from `contributorIdentity` on the same contributor entry.
+- **Keep contribution dates inside the activity's timeframe.** The schema describes this but can't check it, because the record doesn't name its activity. One contribution record may be referenced from activities with different dates, so readers shouldn't reject either record when dates don't line up.
+- **Weights belong to the activity.** `contributionWeight` sits on the activity's contributor entry, not on these records. It is a relative value within that one activity; see the [Activity Claim](/lexicons/hypercerts-lexicons/activity-claim) page.
+- **Mind the length limits when converting inline roles.** The inline role allows up to 100 graphemes (1,000 bytes), while a contribution record's `role` is limited to 100 bytes, so some inline roles won't fit. Put longer text in `contributionDescription` rather than truncating it.
+- **References pin a version.** Correcting a referenced record changes its CID. Activities that referenced the earlier version keep pointing to it until they are updated.
 
-### Peer assessment
+## Related
 
-Each contributor receives a fixed budget of points (e.g. 100) to distribute among peers (not themselves). Final weight = total points received.
-
-Caveat: requires active participation from all contributors.
-
-Example: After a round, Alice receives 140 points → `"140"`, Bob receives 90 → `"90"`, Carol receives 70 → `"70"`
-
-### Outcome-based
-
-Weight by measurable deliverables: features shipped, milestones hit, KPIs moved.
-
-Caveat: hardest to quantify fairly; risk of rewarding easily-measured work over important-but-hard-to-measure work.
-
-Example: Alice delivered 3 milestones → `"3"`, Bob delivered 1 → `"1"`
-
-### Composite
-
-Combine multiple signals — for example, mix role-based multipliers with peer assessment scores. Weight each signal by how much it should matter, then add them up.
-
-Example: A team weights roles at 40% and peer scores at 60%. Alice (lead, peer score 140) gets `"57"`, Bob (core, peer score 90) gets `"55"`, Carol (core, peer score 70) gets `"43"`.
-
-{% callout type="note" %}
-Weights are stored as strings and do not need to sum to any particular value. These examples all produce relative values — what matters is the ratio between contributors, not the absolute numbers.
-{% /callout %}
-
-For the full released schema, see [`org.hypercerts.claim.contribution` at v1.4.0](https://github.com/hypercerts-org/hypercerts-lexicon/blob/v1.4.0/lexicons/org/hypercerts/claim/contribution.json).
+- [Activity Claim](/lexicons/hypercerts-lexicons/activity-claim): the record whose `contributors` array uses these records.
+- [Acknowledgement](/lexicons/hypercerts-lexicons/acknowledgement): how a contributor confirms their inclusion.
+- [Profile](/lexicons/certified-lexicons/profile): a contributor's own profile, when they have an account.
+- [Signatures](/lexicons/certified-lexicons/signatures): attestations over a record's content.
+- Guide: [Activity Claims](/core-concepts/what-is-hypercerts), [Trust and Recognition](/core-concepts/certified-identity).

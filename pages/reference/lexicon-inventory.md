@@ -1,71 +1,69 @@
 ---
 title: Lexicon Inventory
-description: Complete inventory of Hypercerts and Certified schemas released in @hypercerts-org/lexicon 1.4.0.
+description: Complete inventory of Hypercerts and Certified schemas released in @hypercerts-org/lexicon 1.4.1.
 ---
 
 # Lexicon Inventory
 
-This page inventories the `org.hypercerts.*` and `app.certified.*` schemas in [`@hypercerts-org/lexicon` 1.4.0](https://www.npmjs.com/package/@hypercerts-org/lexicon/v/1.4.0). The immutable source tag is [`v1.4.0`](https://github.com/hypercerts-org/hypercerts-lexicon/tree/v1.4.0/lexicons).
+This page lists the `org.hypercerts.*` and `app.certified.*` schemas in [`@hypercerts-org/lexicon` 1.4.1](https://www.npmjs.com/package/@hypercerts-org/lexicon/v/1.4.1). The source tag is [`v1.4.1`](https://github.com/hypercerts-org/hypercerts-lexicon/tree/v1.4.1/lexicons).
 
-The package contains 23 repository record collections, two write permission sets, and four definition-only schemas across these namespaces. It contains no Hypercerts or Certified XRPC query or procedure Lexicons. API methods and SDK behavior must therefore be documented from their own canonical sources.
+The package contains 25 repository record collections, two write permission sets, and four definition-only schemas across these namespaces. It contains no XRPC query or procedure Lexicons; the Hypercerts API documents its methods separately.
+
+Each reference page generates its schema tables from the released package, so the tables always match the version shown on the page.
 
 ## Hypercerts record collections
 
-| NSID | Role | Local detail |
+| NSID | Role | Reference |
 |---|---|---|
-| `org.hypercerts.claim.activity` | Describes impact work | [Activity Claim](/lexicons/hypercerts-lexicons/activity-claim) |
+| `org.hypercerts.claim.activity` | Describes a piece of work | [Activity Claim](/lexicons/hypercerts-lexicons/activity-claim) |
 | `org.hypercerts.claim.contribution` | Reusable contribution role and timeframe | [Contribution](/lexicons/hypercerts-lexicons/contribution) |
 | `org.hypercerts.claim.contributorInformation` | Reusable contributor identity and presentation | [Contribution](/lexicons/hypercerts-lexicons/contribution) |
 | `org.hypercerts.claim.rights` | Rights and licensing terms | [Rights](/lexicons/hypercerts-lexicons/rights) |
-| `org.hypercerts.collection` | Weighted grouping of activities, features, or collections | [Collection](/lexicons/hypercerts-lexicons/collection) |
+| `org.hypercerts.collection` | Weighted grouping of activities, features, or collections; a project is a collection of type `project` | [Collection](/lexicons/hypercerts-lexicons/collection) |
+| `org.hypercerts.entity.feature` | Non-agent subject such as a zone, cohort, or campaign | [Feature](/lexicons/hypercerts-lexicons/feature) |
+| `org.hypercerts.vocab.tag` | Classification term for collections and features | [Vocabulary Tag](/lexicons/hypercerts-lexicons/vocabulary-tag) |
+| `org.hypercerts.workscope.tag` | Reusable term in a structured work scope | [Work Scope](/lexicons/hypercerts-lexicons/work-scope) |
+| `org.hypercerts.context.attachment` | Documents, evidence, reports, or commentary | [Attachment](/lexicons/hypercerts-lexicons/attachment) |
+| `org.hypercerts.context.measurement` | Quantitative observation with method and evidence | [Measurement](/lexicons/hypercerts-lexicons/measurement) |
+| `org.hypercerts.context.evaluation` | Assessment with named evaluators and supporting data | [Evaluation](/lexicons/hypercerts-lexicons/evaluation) |
 | `org.hypercerts.context.acknowledgement` | Acceptance or rejection of a subject or relationship | [Acknowledgement](/lexicons/hypercerts-lexicons/acknowledgement) |
-| `org.hypercerts.context.attachment` | Documentary material, evidence, reports, or commentary | [Attachment](/lexicons/hypercerts-lexicons/attachment) |
-| `org.hypercerts.context.evaluation` | Assessment with named evaluators and optional supporting data | [Evaluation](/lexicons/hypercerts-lexicons/evaluation) |
-| `org.hypercerts.context.measurement` | Quantitative observation, method, and evidence links | [Measurement](/lexicons/hypercerts-lexicons/measurement) |
-| `org.hypercerts.entity.feature` | Non-agent subject such as a zone, stratum, cohort, or campaign | Source schema only |
-| `org.hypercerts.funding.receipt` | Assertion about a funding payment | [Funding Receipt](/lexicons/hypercerts-lexicons/funding-receipt) |
-| `org.hypercerts.vocab.tag` | Governed general classification term | Source schema only |
-| `org.hypercerts.workscope.tag` | Reusable atom for an activity CEL work scope | Source schema only |
+| `org.hypercerts.funding.receipt` | Record of a funding payment | [Funding Receipt](/lexicons/hypercerts-lexicons/funding-receipt) |
 
 ## Hypercerts definitions and permissions
 
-| NSID | Kind | Role |
+| NSID | Kind | Reference |
 |---|---|---|
-| `org.hypercerts.defs` | Definitions | Reusable descriptions, blobs, images, video, and URI objects |
-| `org.hypercerts.workscope.cel` | Definition | CEL expression embedded inside an activity work scope; not a repository record |
-| `org.hypercerts.authWrite` | Permission set | Create, update, and delete grants for the 13 Hypercerts record collections |
+| `org.hypercerts.defs` | Definitions: descriptions, blobs, images, video, and URI objects | [Shared Definitions](/lexicons/hypercerts-lexicons/shared-defs) |
+| `org.hypercerts.workscope.cel` | Structured work-scope expression embedded in an activity; not a repository record | [Work Scope](/lexicons/hypercerts-lexicons/work-scope) |
+| `org.hypercerts.authWrite` | Permission set: create, update, and delete for the 13 Hypercerts record collections | [Schema](https://github.com/hypercerts-org/hypercerts-lexicon/blob/v1.4.1/lexicons/org/hypercerts/authWrite.json) |
 
 ## Certified record collections
 
-| NSID | Role | Local detail |
+| NSID | Role | Reference |
 |---|---|---|
-| `app.certified.actor.profile` | Singleton account profile | [Profile](/lexicons/certified-lexicons/profile) |
-| `app.certified.actor.organization` | Singleton organization metadata | Source schema only |
+| `app.certified.actor.profile` | Account profile, one per account | [Profile](/lexicons/certified-lexicons/profile) |
+| `app.certified.actor.organization` | Organization details, one per account | [Organization](/lexicons/certified-lexicons/organization) |
+| `app.certified.location` | Reusable place or area | [Location](/lexicons/certified-lexicons/location) |
 | `app.certified.badge.definition` | Badge type definition | [Badge Definition](/lexicons/certified-lexicons/badge-definition) |
 | `app.certified.badge.award` | Badge award to an account or record | [Badge Award](/lexicons/certified-lexicons/badge-award) |
-| `app.certified.badge.response` | Recipient response to an award | [Badge Response](/lexicons/certified-lexicons/badge-response) |
-| `app.certified.graph.follow` | Account-to-account follow | Source schema only |
-| `app.certified.graph.entityFollow` | Follow of a record subject by AT-URI | Source schema only |
-| `app.certified.link.evm` | DID-to-EVM-address link with an EIP-712 proof shape | Source schema only |
-| `app.certified.location` | Reusable spatial representation | [Location](/lexicons/certified-lexicons/location) |
-| `app.certified.signature.proof` | Remote proof containing the CID of attested content | Source schema only |
+| `app.certified.badge.response` | Recipient's response to an award | [Badge Response](/lexicons/certified-lexicons/badge-response) |
+| `app.certified.graph.follow` | Account-to-account follow | [Follows](/lexicons/certified-lexicons/follows) |
+| `app.certified.graph.entityFollow` | Follow of a record by AT-URI | [Follows](/lexicons/certified-lexicons/follows) |
+| `app.certified.feed.like` | Like of a record | [Likes and Reposts](/lexicons/certified-lexicons/likes-and-reposts) |
+| `app.certified.feed.repost` | Repost of a record | [Likes and Reposts](/lexicons/certified-lexicons/likes-and-reposts) |
+| `app.certified.link.evm` | Link between an account and an EVM address | [EVM Link](/lexicons/certified-lexicons/evm-link) |
+| `app.certified.signature.proof` | Remote proof over the content of another record | [Signatures](/lexicons/certified-lexicons/signatures) |
 
 ## Certified definitions and permissions
 
-| NSID | Kind | Role |
+| NSID | Kind | Reference |
 |---|---|---|
-| `app.certified.defs` | Definitions | DID object and URI-only record-subject object |
-| `app.certified.signature.defs` | Definitions | Inline and remote record-content signature variants |
-| `app.certified.authWrite` | Permission set | Create, update, and delete grants for the 10 Certified record collections |
-
-## Coverage status
-
-The human-readable pages currently cover the original activity, context, collection, funding, profile, location, and badge families. The 1.4.0 feature and vocabulary records, organization and graph records, EVM link, signature system, common definitions, and permission sets still need generated or source-owned field reference pages.
-
-Until that reference is generated, use the versioned package or [`v1.4.0` source tree](https://github.com/hypercerts-org/hypercerts-lexicon/tree/v1.4.0/lexicons) for exact fields. Do not use mutable `main` as the production contract.
+| `app.certified.defs` | Definitions: DID object and URI-only record subject | [Shared Definitions](/lexicons/certified-lexicons/shared-defs) |
+| `app.certified.signature.defs` | Definitions: inline and remote record-content signatures | [Signatures](/lexicons/certified-lexicons/signatures) |
+| `app.certified.authWrite` | Permission set: create, update, and delete for the 12 Certified record collections | [Schema](https://github.com/hypercerts-org/hypercerts-lexicon/blob/v1.4.1/lexicons/app/certified/authWrite.json) |
 
 ## Package boundary
 
-The NPM package also bundles dependency schemas outside the `org.hypercerts.*` and `app.certified.*` namespaces. Package inclusion does not make every bundled namespace part of this documentation's Hypercerts Protocol surface.
+The npm package also bundles dependency schemas outside the `org.hypercerts.*` and `app.certified.*` namespaces, such as Leaflet documents and Bluesky rich-text facets. Including them in the package doesn't make them part of the Hypercerts Protocol.
 
 For a conceptual introduction, read [A Shared Language](/core-concepts/hypercerts-core-data-model). [Building on Shared Records](/core-concepts/validation-and-interpretation) explains how shared formats and application choices work together.

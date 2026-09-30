@@ -94,7 +94,6 @@ The narrative path now covers the main concepts, common usage, and the handoff t
 
 ### Reference
 
-- Complete `org.hypercerts.*` and `app.certified.*` Lexicon inventory
 - XRPC query and procedure pages generated or imported from canonical schemas
 - SDK exports, types, validation, errors, and version support
 - Hypercerts API service overview and environments
@@ -116,7 +115,7 @@ Component repositories still own:
 
 - `CHANGELOG.md` and published GitHub Releases, imported into Changes and the version badges;
 - contributor and operator material, such as local development, internal architecture, and self-hosting, linked from the relevant Reference page when useful;
-- canonical schemas, such as Lexicon JSON, from which Reference pages may later be generated.
+- canonical schemas, such as Lexicon JSON. Lexicon reference pages generate their schema tables at build time from the pinned `@hypercerts-org/lexicon` package through `{% lexicon-schema nsid="..." /%}` markers (see `lib/lexicon-schema.js`); the prose, examples, and usage conventions around them are written here. Bumping the package version updates every table.
 
 When a component release changes public behaviour, its maintainer reviews the affected pages in this repository and opens a pull request in the same release cycle, or records that the release has no documentation impact.
 
