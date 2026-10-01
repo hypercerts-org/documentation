@@ -1918,6 +1918,15 @@ a.sidebar-link-active:hover {
   fill: var(--color-accent);
 }
 
+.gd-logo-dark,
+html.dark .gd-logo-light {
+  display: none;
+}
+
+html.dark .gd-logo-dark {
+  display: inline;
+}
+
 .gd-eyebrow {
   fill: var(--color-text-secondary);
   font-size: 11px;

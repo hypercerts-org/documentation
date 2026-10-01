@@ -39,7 +39,7 @@ export function StackDiagram() {
         <svg className="guide-diagram-svg" viewBox="0 0 760 500" role="img" aria-labelledby="stack-title stack-desc">
           <title id="stack-title">The Hypercerts stack</title>
           <desc id="stack-desc">
-            Records live in many PDSs, some hosted by Certified and some independent. The Hypercerts Relay collects changes from them, Jetstream filters those changes to Hypercerts and Certified records, and the indexer builds a searchable view that serves the Hypercerts API. Labelers publish labels that the indexer uses. Applications read through the SDK or the API. To write, users sign in through the entryway, which hosts Certified accounts on the Certified PDSs, and groups write through the Certified Group Service. The feed service provides feeds to applications on its own.
+            Records live in many PDSs, some hosted by the Hypercerts Foundation as Certified PDSs and some independent. The Hypercerts Relay collects changes from them, Jetstream filters those changes to Hypercerts and Certified records, and the indexer builds a searchable view that serves the Hypercerts API. Labelers publish labels that the indexer uses. Applications read through the SDK or the API. To write, users sign in through the entryway, from your application or from certified.app, where they manage their account. Signed-in users and groups acting through the Certified Group Service write to the same Certified PDSs. The feed service provides feeds to applications on its own.
           </desc>
           <defs>
             <marker id="stack-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -51,23 +51,28 @@ export function StackDiagram() {
           </defs>
 
           {/* Applications */}
-          <rect className="gd-panel gd-panel-accent" x="176" y="24" width="408" height="64" rx="12" />
-          <text className="gd-title gd-title-large" x="196" y="52">Your application</text>
-          <text className="gd-caption" x="196" y="72">Reads through the SDK or the API; writes as the signed-in user</text>
+          <rect className="gd-panel" x="16" y="24" width="150" height="64" rx="12" />
+          <image className="gd-logo-light" href="/images/certified_wordmark_black.svg" x="46" y="38" width="90" height="17.25" />
+          <image className="gd-logo-dark" href="/images/certified_wordmark_white.svg" x="46" y="38" width="90" height="17.25" />
+          <text className="gd-caption" x="91" y="76" textAnchor="middle">manage your account</text>
+          <rect className="gd-panel gd-panel-accent" x="186" y="24" width="398" height="64" rx="12" />
+          <text className="gd-title gd-title-large" x="206" y="52">Your application</text>
+          <text className="gd-caption" x="206" y="72">Reads through the SDK or the API; writes as the signed-in user</text>
           <Node x={604} y={28} w={140} title="Feed Service" role="ready-made feeds" />
           <Edge d="M602 56 H588" />
 
-          {/* Account side: writing */}
-          <Node x={16} y={150} w={150} title="Entryway" role="sign-in and accounts" />
+          {/* Account side: signing in and writing */}
+          <Node x={16} y={150} w={150} title="Entryway" role="signs users in" />
           <Node x={186} y={150} w={150} title="Certified Group Service" role="group accounts" />
-          <Edge d="M232 90 C 232 120, 91 118, 91 148" label="sign in" labelX={150} labelY={116} write />
-          <Edge d="M300 90 V148" label="group writes" labelX={300} labelY={118} write />
+          <Edge d="M46 90 V148" write />
+          <Edge d="M236 90 C 236 126, 130 112, 130 148" label="sign in" labelX={96} labelY={119} write />
+          <Edge d="M300 90 V148" label="act for a group" labelX={300} labelY={119} write />
 
           {/* Read side */}
           <Node x={404} y={150} w={186} title="Indexer" role="serves the Hypercerts API" accent />
           <Node x={610} y={150} w={134} title="Labelers" role="publish labels" />
           <Edge d="M608 178 H594" />
-          <text className="gd-caption" x="600" y="232" textAnchor="middle">labels</text>
+          <text className="gd-caption" x="600" y="142" textAnchor="middle">labels</text>
           <Edge d="M497 148 V92" label="SDK / API" labelX={497} labelY={118} />
 
           <Node x={404} y={256} w={130} h={52} title="Hypercerts Relay" role="collects changes" />
@@ -77,15 +82,14 @@ export function StackDiagram() {
 
           {/* Where records live */}
           <text className="gd-eyebrow" x="16" y="456">Where records live: PDSs</text>
-          <Node x={16} y={380} w={190} title="Certified PDSs" role="hosted by the Foundation" accent />
-          <Node x={226} y={380} w={190} title="Independent PDS" role="any AT Protocol host" />
-          <Node x={436} y={380} w={190} title="Independent PDS" role="any AT Protocol host" />
-          <Edge d="M91 212 V376" label="hosts accounts" labelX={91} labelY={296} write />
-          <Edge d="M261 212 C 261 300, 300 320, 300 376" label="writes" labelX={282} labelY={296} write />
+          <Node x={16} y={380} w={260} title="Certified PDSs" role="hosted by the Foundation" accent />
+          <Node x={296} y={380} w={190} title="Independent PDS" role="any AT Protocol host" />
+          <Edge d="M91 212 V376" label="users write" labelX={91} labelY={296} write />
+          <Edge d="M261 212 C 261 300, 200 320, 200 376" label="groups write" labelX={238} labelY={296} write />
 
-          <path className="gd-flow" d="M111 380 V344 H531 V380 M321 380 V344" />
+          <path className="gd-flow" d="M256 380 V344 H469 M391 380 V344" />
           <Edge d="M469 344 V312" />
-          <text className="gd-caption" x="560" y="338" textAnchor="middle">record changes</text>
+          <text className="gd-caption" x="480" y="334">record changes</text>
 
           {/* Legend */}
           <path className="gd-flow" d="M470 476 H498" />
