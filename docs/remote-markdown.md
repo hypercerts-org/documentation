@@ -126,7 +126,7 @@ A missing source, failed content request, empty file, local fallback body, or in
 
 `.github/workflows/docs-refresh.yml` runs hourly and can also be dispatched manually. It fetches the registered files and tracked release metadata, compares their combined fingerprint with the deployed site, and calls the configured Vercel deploy hook when they differ. A newly published component version triggers refresh even if the changelog content has not changed. Manual runs default to dry-run mode.
 
-`.github/workflows/docs-ci.yml` runs tests and builds the static documentation on relevant pull requests targeting `main`; it does not call a deploy hook.
+`.github/workflows/docs-ci.yml` runs the tests, builds the static documentation, and checks internal links on relevant pull requests targeting `main`; it does not call a deploy hook.
 
 Configuration:
 

@@ -20,7 +20,7 @@ Hypercerts is an open protocol for describing work and the trust around it: who 
 | `markdoc/` | Custom Markdown tags used in pages, such as cards, callouts, and diagrams |
 | `lib/` | Navigation and the scripts that generate search, schema tables, and release data at build time |
 | `test/` | Tests for those scripts |
-| `docs/` | Notes for maintainers: how the documentation is organized and how imported changelogs work |
+| `docs/` | Notes for maintainers, listed below |
 
 The site is built with [Next.js](https://nextjs.org) and [Markdoc](https://markdoc.dev), and follows the Hypercerts design system.
 
@@ -45,7 +45,12 @@ pnpm run check:links
 
 ## Contributing
 
-All pages are written in this repository and changed through pull requests to `main`. Write about the current state of the protocol and its services; release history belongs in changelogs. [`docs/information-architecture.md`](docs/information-architecture.md) explains how the documentation is organized and who owns what.
+All pages are written in this repository and changed through pull requests to `main`. Write about the current state of the protocol and its services; release history belongs in changelogs.
+
+Two notes for maintainers:
+
+- [How the documentation is organized](docs/information-architecture.md): the sections, the structure of Lexicon and service pages, the writing rules, and who owns what.
+- [Build-time changelog imports](docs/remote-markdown.md): how component changelogs and version badges are fetched, and how protocol releases are published.
 
 ## Related repositories
 

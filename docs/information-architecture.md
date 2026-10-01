@@ -1,131 +1,97 @@
-# Documentation information architecture
+# How the documentation is organized
 
-This is the working migration map for the protocol-first documentation restructure. It is a maintainer document, not a protocol specification.
+A guide for people who maintain this site: what goes where, how pages are structured, and the rules we write by. It describes the documentation as it is today.
 
-## Principles
+## Sections
 
-- The documentation has four primary sections: Guide, Client Integration, Reference, and Changes.
-- Together, the Guide, Lexicons, API and SDK contracts, reference implementation behavior, and change history describe the protocol. There is no separate ratified formal specification.
-- Guide pages explain meaning and shared usage. Reference pages provide exact source-backed contracts.
-- Regular documentation and inline code comments describe the current state. Historical choices, changes in direction, and their reasoning belong in changelogs and blog posts.
-- Integration pages publish tested paths, not inferred or aspirational APIs.
-- All documentation pages are written and reviewed in this repository. Component changelogs are the only content imported from component repositories. See [Documentation ownership](#documentation-ownership).
-- The site documents actively maintained components only. Documentation for sunset components belongs in their own repositories.
-- Existing public routes remain stable during the first pass unless their content has been explicitly retired.
-- A proposal in the third editor's draft is not a protocol requirement unless it is independently ratified and reflected in authoritative sources.
+The site has four sections, each with its own sidebar. The root page is a short landing page that introduces them and has no sidebar.
 
-## Guide reader journey
-
-The landing page introduces the promise; the Guide explains how it works; Client Integration helps readers build; Reference supplies the details they look up along the way.
-
-Assume readers have seen the landing page, with an optional link to `https://hypercerts.org` at the start for those who haven't. The Guide follows the same story one level deeper: reuse existing knowledge, connect contributions from different people, build a fuller picture over time, and bring it into funding decisions.
-
-- Begin with familiar questions and explain technical terms at the point they become useful. Introduce AT Protocol, repositories, Lexicons, and indexers early enough to explain cross-application reuse.
-- Give activities, projects, evidence, and evaluations recognizable concept pages. Explain what they are and why a reader would use them before discussing schema details.
-- Use short illustrative examples. Keep field inventories, exhaustive validation rules, and implementation contracts in Reference or Client Integration.
-- Explain a limitation alongside the decision it affects, rather than opening each page with a list of things the protocol cannot do.
-- Keep the Guide navigation flat and ordered for a start-to-finish reading path. Each page leads to the next; the final page leads to Client Integration with its current implementation status clear.
-- Treat the older vision essay as separate background, outside the sequential Guide. It includes historical economic ideas that would interrupt the current learning path.
-
-## Documentation landing page
-
-The root route is a section directory, with a short introduction, four section overviews, and curated links into each section. It has no sidebar, table of contents, or article tools. The header and a compact section navigation on smaller screens provide access to the section hubs; each hub retains its own sidebar.
-
-The public name and route for change history are **Changes** and `/changes`. Redirect the previous `/change-history` route and its raw Markdown URL to their new equivalents.
-
-## Protocol release communication
-
-The documentation repository is the canonical source for protocol major/minor releases. The participating stack is Lexicons, Hypercerts API, SDK, Certified Group Service, Entryway, Relay, and Feed Service. Major/minor versions are coordinated; component patches advance independently. The intended shared-version compatibility promise must be supported by testing, not inferred from matching labels.
-
-Protocol release entries cite their source Lexicon releases. Component cards and sidebar badges show published versions or **Under development**. Release numbering and source registration are maintained in the owning projects; the documentation does not substitute a protocol version for an unpublished component version.
-
-The docs landing page and Changes overview use the same cards for Hypercerts Protocol and the components: name, version or development status, and a short description. The protocol card uses one sentence about the current release. The landing page has no additional release explanation above or below the cards. The Changes overview adds the current release details and versioning policy. Full protocol history lives at `/changes/protocol`, headed with the current Hypercerts Protocol version; each entry links to its source Lexicon release. Component changelogs are imported from owning repositories at build time. Blog links are added only when a real release article exists. See [the release-maintenance workflow](remote-markdown.md#protocol-releases-and-component-versions).
-
-## First-pass migration
-
-| Previous area | New primary home | Treatment |
+| Section | Purpose | Reader |
 |---|---|---|
-| Get Started | Client Integration | Keep Building on Hypercerts and Testing & Deployment. Retire the current Quickstart and Working with Evaluations pages. |
-| Core Concepts | Guide | Keep and regroup the existing concept pages. Review claims against current Lexicons and AT Protocol behavior. |
-| Tutorials | Retired | Remove the ePDS tutorial. ePDS is being sunset in favour of Entryway; any remaining ePDS documentation belongs in the ePDS repository. |
-| Tools | Reference | Keep Agent Skills, Hypercerts Feed Service, Hypercerts Relay and Jetstream, and Labelers. Remove Scaffold because it is not a supported integration path, and remove legacy Hyperindex because it is no longer maintained. |
-| Architecture | Guide or Reference | Put lifecycle and portability guidance in Guide; put system and service architecture in Reference; put account setup in Client Integration. Remove the imported ePDS architecture page. |
-| Lexicons and service directories | Reference | Keep existing routes and expand source-backed coverage. |
-| Lexicon releases | Changes | Keep the imported upstream changelog and add adopter-facing migration context separately. |
-| Ecosystem and vision | Separate background | Retain the existing essay route outside the sequential Guide; the landing page provides the high-level introduction. |
-| Roadmap | Retired | Removed as outdated; the route redirects to Changes. |
+| **Guide** | Explains what Hypercerts is and how its records work, as one start-to-finish reading path | Anyone new to Hypercerts |
+| **Client Integration** | Shows how to build an application: signing in, writing records, reading them | Developers building on Hypercerts |
+| **Reference** | Exact details to look up: Lexicons, the API and SDK, and the services in the stack | Developers while they build |
+| **Changes** | Protocol releases and the published version of each component | Anyone tracking what changed |
 
-## Third editor's draft disposition
+The Guide, the Lexicons, the API and SDK, and the release history together describe the protocol. There is no separate formal specification.
 
-The draft at `https://claude.ai/code/artifact/cf891a57-416c-4d63-8ec3-8194e6cb6e28` is explicitly unratified. Use it as an inventory and review source, not as publication-ready normative text.
+Navigation is defined in `lib/navigation.js`. A section's entries can be grouped under an uppercase subsection heading with a `group` entry, as Reference does for Lexicons, XRPC API, SDK, and Services and tooling.
 
-| Draft material | Destination | Publication rule |
-|---|---|---|
-| Introduction and relationship to AT Protocol (section 1) | Guide foundations | Reuse descriptive material after checking current terminology. |
-| Conformance model and requirement keywords (section 2) | Do not publish as current protocol | No conformance classes or test suite have been ratified. |
-| General requirements (section 3) | Guide topics such as references, trust, validation, and aggregation | Treat the numbered requirements as proposals until reviewed. |
-| Terminology and data model (section 4) | Guide and Glossary | Separate concept meaning from field-level Reference content. |
-| Identity, authority, and provenance (section 5) | Guide: Identity and Trust | Explain repository attribution, named subjects, corroboration, and optional record-level attestations. |
-| Hypercerts and Certified schema chapters (sections 6 to 11) | Guide concept groups plus Lexicon Reference | Take structural facts from released Lexicons, not from the prose draft alone. |
-| Interoperability profiles (section 13) | Unresolved | Do not publish the proposed profiles as compatibility requirements. |
-| Authorization and permission sets (section 14) | Client Integration and Reference | Document released permission sets and tested OAuth behavior; review proposed expansion rules separately. |
-| Versioning and releases (section 15) | Changes | Distinguish independent component releases from any coordinated protocol release relationship. |
-| Open issues (section 16) | Future known-limitations pages | Publish verified limitations, not speculative resolutions. |
-| Lexicon inventory (appendix B) | Reference coverage checklist | Verify every item against a released Lexicon source. |
-| Worked example (appendix C) | Future Client Integration walkthrough | Rebuild as a runnable, tested SDK and XRPC example. |
-| Proposed requirements register (appendix D) | Draft review only | Do not convert it into active documentation requirements. |
+## Guide
 
-## Missing pages and source work
+The Guide follows the story told on hypercerts.org one level deeper: existing knowledge about projects should be reusable, different people contribute to the same picture, trust builds over time, and that picture informs funding decisions.
 
-### Guide
+- The navigation is flat and ordered. Each page ends by leading to the next, and the last page hands over to Client Integration.
+- Concept pages explain what something is and why a reader would use it before any schema detail. Field lists and validation rules belong in Reference.
+- Use short, concrete examples. The community energy project (a solar installation) runs through the Guide and the Lexicon examples.
+- Explain a limitation next to the decision it affects, not as a list of things the protocol cannot do.
 
-The narrative path now covers the main concepts, common usage, and the handoff to building. Further work should test whether newcomers can explain the system and choose a useful integration after reading it, rather than expand the Guide into a field-by-field reference.
+## Reference
 
-### Client Integration
+### Lexicons
 
-- Prerequisites and supported environments
-- Authentication and permission sets
-- Create and store records with the SDK
-- Read and discover records through XRPC
-- Complete project, activity, and evidence walkthrough
-- Evaluation workflow
-- Organization-managed records
-- Troubleshooting and production readiness
+Every record type has a page with the same sections:
 
-### Reference
+1. **Overview**: what the record is and why it exists, with a link to the Guide.
+2. **How it's used**: who publishes it and how it connects to other records.
+3. **Schema**: generated, see below.
+4. **Example**: a realistic record that validates against the released schema.
+5. **Rules and best practices**: usage conventions the schema cannot express.
+6. **Related**: connected Lexicons and Guide pages.
 
-- XRPC query and procedure pages generated or imported from canonical schemas
-- SDK exports, types, validation, errors, and version support
-- Hypercerts API service overview and environments
-- Per-service subpages for CGS, Entryway, labelers, feed generators, Relay and Jetstream, and operational status
+The schema section contains only a marker, `{% lexicon-schema nsid="..." /%}`. At build time `lib/lexicon-schema.js` expands it into tables from the pinned `@hypercerts-org/lexicon` package, so the tables always match a released version. Bumping the package version updates every table. The Lexicon inventory page states the version and counts in prose and needs a manual update when the version changes.
 
-### Changes
+### Services and tooling
 
-- Establish the API and entryway release sources and connect the SDK when its repository exists.
-- Align component major/minor versions in the owning projects and verify the supported combinations.
-- Write release articles and migration guides for future coordinated changes that need them.
+The overview page has the architecture diagram, a table of components, and **the only list of running endpoints**. Service pages link to it and do not repeat hostnames in tables.
+
+Every service has one page with the same sections: Where it fits, AT Protocol background, How it works, Using it from your application, Status and source, Related. Each page has one short code example and is about 800 to 1,100 words.
+
+The pages are written for a project integrating with Hypercerts. Deploying or operating a service is out of scope; each page links to the service's repository for that.
+
+### XRPC API and SDK
+
+Placeholder pages until those components are released. They describe what is coming and what to use meanwhile, and do not document unreleased methods.
+
+## Changes
+
+`lib/protocol-releases.json` holds the protocol's major and minor release history. Component version badges come from each component's published GitHub release, and component changelogs are imported at build time. A component without a published release shows **Under development**. See [Build-time changelog imports](remote-markdown.md).
+
+## Writing rules
+
+- **Describe the current state.** What something is, how it works, and how to use it. History, earlier approaches, and the reasons for changing them belong in changelogs and blog posts.
+- **Introduce every term where it first appears on a page**, with a few words, even if another page explains it. Readers arrive on any page.
+- **Do not document what is not released.** Mark components under development as such, and say what readers can use today.
+- **No specification language.** The documentation gives practical guidance ("Use X when…"), not requirement keywords such as MUST or SHOULD. Unratified proposals are not presented as protocol rules.
+- **Only actively maintained components are documented.** Material for retired components belongs in their own repositories.
+- **Write plainly.** Short sentences, concrete examples, no promotional language.
+
+## Design
+
+The site follows the Hypercerts design system through `@hypercerts-org/ui-react`: its tokens supply colour, type, and radius (see the top of `styles/globals.css`), and its components are used where they fit (callouts, breadcrumbs, buttons, badges, and the landing hero). Dark mode is a documentation-site exception with its own values for the same tokens. Diagrams are React components that read the same tokens.
 
 ## Documentation ownership
 
-All documentation pages, including Reference pages for individual components, are written in this repository and changed through regular pull requests. Component changelogs are the only content imported from component repositories at build time.
+All pages, including Reference pages for individual components, are written in this repository and changed through pull requests. Component changelogs are the only content imported from other repositories.
 
-Keeping pages in one repository lets authors use the site's Markdoc components, link between sections with site routes, and preview the result locally before review. Importing pages would require a registry entry and a wrapper page per file, would make links resolve against the source repository, and would surface errors only after the refresh build.
+Keeping pages here lets authors use the site's components, link between sections, and preview the result before review.
 
-Component repositories still own:
+Component repositories own:
 
-- `CHANGELOG.md` and published GitHub Releases, imported into Changes and the version badges;
-- contributor and operator material, such as local development, internal architecture, and self-hosting, linked from the relevant Reference page when useful;
-- canonical schemas, such as Lexicon JSON. Lexicon reference pages generate their schema tables at build time from the pinned `@hypercerts-org/lexicon` package through `{% lexicon-schema nsid="..." /%}` markers (see `lib/lexicon-schema.js`); the prose, examples, and usage conventions around them are written here. Bumping the package version updates every table.
+- `CHANGELOG.md` and published GitHub Releases, which feed Changes and the version badges;
+- contributor and operator material, such as local development, internal architecture, and self-hosting;
+- canonical schemas, such as Lexicon JSON, from which this site generates its schema tables.
 
-When a component release changes public behaviour, its maintainer reviews the affected pages in this repository and opens a pull request in the same release cycle, or records that the release has no documentation impact.
+When a component release changes public behaviour, its maintainer reviews the affected pages here and opens a pull request, or notes that the release has no documentation impact.
 
-CI checks internal links and anchors in the built site (`pnpm run check:links`), and Dependabot opens a pull request when a new `@hypercerts-org/lexicon` or `@hypercerts-org/ui-react` version is published.
+## Checks and automation
 
-Planned support:
+- `pnpm test` runs the tests for the build scripts.
+- `pnpm run build` builds the static site and fails on invalid pages or failed changelog imports.
+- `pnpm run check:links` checks every internal link and anchor in the built site. CI runs all three on pull requests.
+- An hourly workflow redeploys the site when an imported changelog or a component release changes.
+- Dependabot opens a pull request when a new `@hypercerts-org/lexicon` or `@hypercerts-org/ui-react` version is published.
 
-- a release-checklist or pull-request-template line in each component repository asking for the documentation pull request or a "no docs impact" note;
-- `CODEOWNERS` entries so component maintainers review changes to their pages;
+## URLs
 
-## URL migration
-
-The first pass reorganizes navigation while preserving the existing URLs of retained pages. The explicitly retired pages redirect to the nearest active section hub. Future route moves should be made only with permanent redirects, internal-link checks, and a review of raw Markdown URLs.
+Page routes are public addresses. When a page moves or is removed, add a permanent redirect in `vercel.json` for the page and for its `/raw/….md` export, and update links across the site.
