@@ -1,74 +1,95 @@
 ---
 title: Indexer and Hypercerts API
-description: The indexer collects Hypercerts and Certified records from across the network and serves the Hypercerts API for reading and discovering them. Under development.
+description: The indexer collects Hypercerts and Certified records from across the network and serves the Hypercerts API for reading and searching them. Under development.
 ---
 
 # Indexer and Hypercerts API
 
-{% callout type="info" title="Under development" %}
-The indexer and the Hypercerts API are being built and have no published release yet. The planned API methods may change before release.
-{% /callout %}
+The indexer collects Hypercerts and Certified records from across the network, stores them in a database organized for queries, and serves the Hypercerts API. Applications use that API to read, list, and search records without visiting every server that holds them. Both are under development: the API is not deployed yet, and this page describes its design and what to use in the meantime.
 
-Hypercerts records are spread across many servers, one repository per account. Reading a single record is easy if you know where it lives, but questions such as "which activities have recent evaluations?" would mean visiting every server. The **indexer** answers those questions: it collects Hypercerts and Certified records from across the network, stores them in a database organized for queries, and serves the **Hypercerts API**, which applications use to read, list, and search those records.
+## Where it fits
 
-## What it does
+The indexer reads the stream of record changes that [Jetstream](/reference/services/relay) delivers and picks up the labels that the [labelers](/reference/services/labelers) publish. Applications sit on the other side: they call the Hypercerts API directly or through the [SDK](/reference/sdk). The [Feed Service](/reference/services/feed-service) is a second reader of indexed data. The [services overview](/reference/services) has the full diagram.
 
-An account's records live in its repository on a **PDS** (Personal Data Server). Hypercerts records live in many PDSs. The [relay](/reference/services/relay) collects changes from those servers, and Jetstream filters them down to Hypercerts and Certified records. The indexer reads that filtered stream, builds a searchable view of the records, and serves the Hypercerts API. Applications use the [SDK](/reference/sdk) or call the API directly. [Labelers](/reference/services/labelers) publish labels about records, which the indexer picks up. Around that path, the [entryway](/reference/services/entryway) handles sign-in, the [Certified Group Service](/reference/services/certified-group-service) handles group accounts, and the [feed service](/reference/services/feed-service) builds feeds.
+## AT Protocol background
 
-The records themselves stay in their owners' repositories. The indexer holds a copy arranged for lookups, so an application can find records across all accounts with one request. [Finding and Reusing Information](/architecture/portability-and-scaling) explains the role of indexers in the wider network.
+In AT Protocol, each account's records live in its own repository on a PDS (Personal Data Server). Reading one record is easy when you know its address. A question such as "which activities have recent evaluations?" is not, because the answer is spread over many repositories on many servers.
+
+An **AppView** is the kind of service that answers such questions. It consumes the network's stream of record changes, keeps the records it cares about in its own database, and serves an API over them. The records stay in their owners' repositories. The AppView holds a copy arranged for lookups.
+
+This gives AT Protocol applications a characteristic shape: they **read from an indexed view and write to the user's PDS**. A new record reaches the view a moment later, by way of the relay.
+
+AppViews and PDSs expose their APIs through **XRPC**, AT Protocol's convention for HTTP APIs. Each method is named by an NSID (Namespaced Identifier), such as `org.hypercerts.claim.getActivity`, and is called at `/xrpc/<NSID>`. Queries are `GET` requests with URL parameters, and procedures are `POST` requests with a JSON body. Both are described by Lexicon schemas, the same schema language that defines record types.
 
 ## How it works
 
-The Hypercerts Foundation is building the indexer on [HappyView](https://github.com/hypercerts-org/happyview), a lexicon-driven AppView for AT Protocol:
+### Built on HappyView
 
-- An **AppView** is an AT Protocol service that collects records from the network, indexes them, and serves an API over them.
-- **Lexicon-driven** means HappyView takes its data model from Lexicon schemas, the files that define each record type and API method. Given the schemas, it sets up storage, indexing, and API endpoints for them. See [Introduction to Lexicons](/lexicons/introduction-to-lexicons).
+The Hypercerts Foundation is building the indexer on [HappyView](https://github.com/hypercerts-org/happyview), an AppView that is driven by Lexicon schemas. Given the schemas for a set of record types and API methods, HappyView sets up storage, indexing, and XRPC endpoints for them. Lua scripts define the query logic where a method needs more than a plain lookup.
+
+The Foundation maintains a fork of HappyView and aims to contribute its changes back to the original project. The goal is for the hosted Hypercerts API to be standard HappyView plus Hypercerts configuration: the schemas, the configuration files, and the query scripts.
+
+### From stream to searchable view
 
 The indexer:
 
-1. **Reads records from Jetstream.** Jetstream is the Hypercerts service that delivers Hypercerts and Certified record changes as a stream of JSON events, with an archive for catching up on past events. See [Relay and Jetstream](/reference/services/relay).
-2. **Links related records.** A record often refers to another, such as an evaluation that points to the activity it evaluates. The indexer connects these so that one query can return, for example, the evaluations of an activity.
-3. **Applies labels.** It picks up the labels published by the Hypercerts [labelers](/reference/services/labelers), such as quality tiers and likely test data, so that results can take them into account.
-4. **Serves the Hypercerts API.** The API is an **XRPC** API: XRPC is AT Protocol's convention for calling a service over HTTP, where each method is named by an NSID (Namespaced Identifier), such as `org.hypercerts.claim.getActivity`.
+1. **Reads records from Jetstream**, which delivers Hypercerts and Certified record changes as JSON events and keeps an archive for catching up on the past.
+2. **Links related records.** A record often points to another, such as an evaluation pointing to the activity it evaluates. The indexer connects them, so one query can return an activity together with its author's profile and its contributors.
+3. **Applies labels.** It subscribes to the Hypercerts labelers, so results can take signals such as a quality tier or "likely test data" into account.
 
-The Foundation maintains a fork of HappyView at [hypercerts-org/happyview](https://github.com/hypercerts-org/happyview) and aims to contribute its changes back to the original project. The goal is for the hosted Hypercerts API to be standard HappyView plus Hypercerts configuration: the Lexicon schemas, configuration files, and Lua scripts that define the database queries.
+Coverage follows from the sources: the indexer sees records on the PDSs that the Hypercerts Relay follows, in the collections that Jetstream keeps. A record missing from a result may live outside that coverage.
 
-### Planned API methods
+### The Hypercerts API
 
-The planned methods follow a pattern of get, list, and search queries for each family of records, for example:
+The planned methods follow one pattern for each family of records: a get, a list, and a search query. For activities, those are `org.hypercerts.claim.getActivity`, `listActivities`, and `searchActivities`. Similar queries are planned for collections, evaluations, attachments, funding receipts, locations, and badge definitions, along with Certified queries such as `app.certified.actor.getProfile` and `app.certified.graph.listActorFollowers`.
 
-- `org.hypercerts.claim.getActivity`, `org.hypercerts.claim.listActivities`, and `org.hypercerts.claim.searchActivities` for activities
-- `app.certified.actor.getProfile` for Certified profiles
-- `app.certified.graph.listActorFollowers` for follow relationships
-
-Similar queries are planned for organizations, collections, evaluations, attachments, locations, badge definitions, and funding receipts. You can browse the current set in [hypercerts-api-endpoints](https://github.com/hypercerts-org/hypercerts-api-endpoints). That repository is a snapshot of planned definitions, not a list of deployed methods, and the set may change before release. The [XRPC API reference](/reference/xrpc-api) will document each method once the API is released.
+Results are views, not bare records. A view wraps the original record, unchanged, with metadata such as its AT-URI (the record's `at://` address), its CID (a hash of its content), and details the indexer has looked up for you, such as the author's profile.
 
 ## Using it from your application
 
-Once released, the recommended way to use the Hypercerts API is through the [SDK](/reference/sdk). You can also call the API directly over HTTP, as with any XRPC service. The [XRPC API reference](/reference/xrpc-api) will list the methods, their parameters, and their responses.
+Once the API is released, the recommended way to use it is through the [SDK](/reference/sdk). You can also call it over HTTP like any XRPC service, and the [XRPC API reference](/reference/xrpc-api) will document each method.
 
-Until then:
+The example shows the planned shape of one query, taken from the definitions in [hypercerts-api-endpoints](https://github.com/hypercerts-org/hypercerts-api-endpoints). That repository is a snapshot of planned definitions. The method is not deployed, and its shape may change before release.
 
-- **Read single records from their repository.** If you know which account published a record, read it from that account's PDS with the standard AT Protocol methods.
-- **Follow records as they change.** To build your own view of Hypercerts records, subscribe to Jetstream and backfill from its archive. See [Relay and Jetstream](/reference/services/relay).
+```bash
+# Planned query. Not deployed yet, and the shape may change.
+curl --get https://<hypercerts-api-host>/xrpc/org.hypercerts.claim.getActivity \
+  --data-urlencode 'uri=at://did:plc:example/org.hypercerts.claim.activity/3msek4eui2i27'
+
+# Planned response:
+# {
+#   "activity": {
+#     "uri": "at://did:plc:example/org.hypercerts.claim.activity/3msek4eui2i27",
+#     "cid": "bafyrei...",
+#     "indexedAt": "2026-08-05T22:08:58.761Z",
+#     "did": "did:plc:example",
+#     "author": { ... },        the author's profile details
+#     "record": { ... },        the original activity record, unchanged
+#     "contributors": [ ... ]   contributors, with their profiles where known
+#   }
+# }
+```
+
+Until the API is available:
+
+- **Read single records from their repository.** If you know which account published a record, read it from that account's PDS with `com.atproto.repo.getRecord`. See [Certified PDSs](/reference/services/certified-pdss).
+- **Follow records as they change.** To build your own view, subscribe to Jetstream and backfill from its archive. See [Relay and Jetstream](/reference/services/relay).
 - **Read labels directly.** Query the [labelers](/reference/services/labelers) for quality labels.
-- **Design against the Lexicons.** The API returns the records described in [Hypercerts Lexicons](/lexicons/hypercerts-lexicons) and [Certified Lexicons](/lexicons/certified-lexicons), so you can build your data handling around those schemas now.
+- **Design against the Lexicons.** The API returns the records described in [Hypercerts lexicons](/lexicons/hypercerts-lexicons) and [Certified lexicons](/lexicons/certified-lexicons), so you can build your data handling around those schemas now.
 
-## Status
+Writing does not change when the API arrives. Your application keeps writing records to the user's PDS, and the indexer picks them up from the stream.
 
-Under development, with no published release. Follow the API's status on [Changes](/changes/api).
+## Status and source
 
-## Running your own
+The indexer and the Hypercerts API are under development, with no published release and no deployed endpoint. Follow their status on [Hypercerts API releases](/changes/api).
 
-Operating your own indexer is outside the scope of this documentation for now. The source code is in the [hypercerts-org/happyview repository](https://github.com/hypercerts-org/happyview).
+The source code is in the [happyview repository](https://github.com/hypercerts-org/happyview), and the planned method definitions are in [hypercerts-api-endpoints](https://github.com/hypercerts-org/hypercerts-api-endpoints). Running your own instance is outside the scope of this documentation for now.
 
 ## Related
 
-- [Services overview and running endpoints](/reference/services#running-services)
-- [XRPC API reference](/reference/xrpc-api)
-- [SDK](/reference/sdk)
+- [Services overview](/reference/services)
 - [Relay and Jetstream](/reference/services/relay)
 - [Labelers](/reference/services/labelers)
+- [Feed Service](/reference/services/feed-service)
+- [XRPC API reference](/reference/xrpc-api)
 - [Finding and Reusing Information](/architecture/portability-and-scaling)
-- [Data flow and lifecycle](/architecture/data-flow-and-lifecycle)
-- [HappyView documentation](https://happyview.dev)

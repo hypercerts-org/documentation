@@ -1,90 +1,88 @@
 ---
 title: Certified PDSs
-description: The Personal Data Servers the Hypercerts Foundation hosts, what they store, and which environment to use when.
+description: The Personal Data Servers the Hypercerts Foundation hosts for Certified accounts, what they store, and how applications read from them.
 ---
 
 # Certified PDSs
 
-The Hypercerts Foundation hosts several Personal Data Servers (PDSs), known as the Certified PDSs. They hold the accounts that people create through [certified.app](https://certified.app) and are a large part of the infrastructure the Foundation runs for Hypercerts.
+The Certified PDSs are the Personal Data Servers (PDSs) that the Hypercerts Foundation hosts for Certified accounts, the accounts people create at [certified.app](https://certified.app). A PDS is the server that stores an account's records and serves them to any application that asks. If your users sign in with Certified, their Hypercerts records live here. If they use another AT Protocol account, their records live on another PDS and work the same way.
 
-## What it does
+## Where it fits
 
-A PDS is the server that hosts an account's repository of records and its identity. In AT Protocol, every account has a DID (a permanent identifier), and the DID document points to the PDS that currently hosts the account. Applications read and write that account's records by talking to its PDS.
+PDSs are the first layer of the stack: every Hypercerts record is written to a PDS before anything else happens to it. People create and manage their accounts at [certified.app](/reference/services/certified-app), and the [Certified Group Service (CGS)](/reference/services/certified-group-service) writes records to a PDS for accounts that a group manages together. Downstream, the [Hypercerts Relay](/reference/services/relay) collects the changes that PDSs publish. The [services overview](/reference/services) has the full diagram.
 
-Each Certified PDS stores:
+## AT Protocol background
 
-- **Account repositories.** Each account's signed collection of records, including Hypercerts records (activity claims, contributions, evaluations, and so on) and Certified records such as profiles and locations. See [Certified lexicons](/lexicons/certified-lexicons).
-- **Blobs.** Binary files attached to records, such as images and documents.
-- **Account credentials.** The data the server needs to sign users in and authorize applications, such as sessions and app passwords.
+In AT Protocol, each account has a **repository**: a collection of **records**, which are JSON documents such as a profile or a Hypercerts activity claim. Records of the same type sit together in a collection named after their schema, for example `org.hypercerts.claim.activity`, and each record has a record key. A record's address, called an AT-URI, has the form `at://<account>/<collection>/<record key>`. The repository is signed with the account's key, so anyone can check who published a record.
 
-Hypercerts records live in many PDSs, and the Certified PDSs are only some of them. Any AT Protocol PDS works with Hypercerts, including a self-hosted one or a Bluesky-hosted account. The rest of the stack reads from all of them the same way: a relay collects changes from PDSs, Jetstream turns them into a stream, and the [indexer](/reference/services/indexer) builds the Hypercerts API from that stream. The [entryway](/reference/services/entryway) handles sign-in and account hosting for Certified accounts, and the [Certified Group Service](/reference/services/certified-group-service) lets groups co-manage a repository that lives on a PDS.
+An account is identified by a **DID** (decentralized identifier), a permanent ID such as `did:plc:z72i7hdynmk6r22z27h6tvur`. The DID resolves to a DID document, which lists the account's public keys and the PDS that currently hosts it. A **handle**, such as `alice.certified.one`, is a readable name that points to the DID. The handle can change. The DID does not.
+
+Hosting an account means the PDS stores its repository, serves its records, keeps its credentials, and publishes its changes to the network. Because the DID document only points at the current PDS, an account can move to another PDS and keep its DID, its records, and the links others have made to them.
 
 ## How it works
 
-The Certified PDSs run [ePDS](https://github.com/hypercerts-org/ePDS), an extended PDS. ePDS is a standard AT Protocol PDS with an extra sign-in layer that lets users log in with their email address and a one-time code instead of a password. Each ePDS is paired with an auth service that handles the email and code step. Your application does not talk to the auth service directly: the PDS routes users through it during the OAuth flow and then returns a standard AT Protocol authorization code to your app. OAuth is the protocol an application uses to get permission to act on a user's behalf without seeing their credentials.
+### A standard PDS with email sign-in
+
+The Certified PDSs run [ePDS](https://github.com/hypercerts-org/ePDS), an extended PDS. ePDS is a standard AT Protocol PDS wrapped with an extra sign-in layer: users log in with their email address and a one-time code, with no password. A new user gets a DID, a handle, and a repository on first login, without needing to know what any of those are. Each PDS is paired with an auth service that handles the email step. Applications don't call the auth service. In every other respect, a Certified PDS behaves like any AT Protocol PDS, so standard AT Protocol sign-in with a handle and password also works.
+
+Sign-in is moving to the [Entryway](/reference/services/entryway), which will take over the email step from ePDS. Until it is released, ePDS is how users sign in to a Certified PDS.
+
+### What a Certified PDS stores
+
+- **Repositories.** Each account's records: Hypercerts records (activity claims, contributions, evaluations, and so on) and Certified records such as profiles and locations. See [Hypercerts lexicons](/lexicons/hypercerts-lexicons) and [Certified lexicons](/lexicons/certified-lexicons).
+- **Blobs.** Binary files attached to records, such as images and documents.
+- **Account credentials.** What the server needs to sign users in and authorize applications, such as sessions and app passwords.
+
+### Environments
 
 The Foundation runs Certified PDSs in three roles:
 
-- **Production.** The PDS behind [certified.app](https://certified.app). Point production applications that offer "Sign in with Certified" here.
-- **Staging.** The last testing step for ePDS changes before they reach production. Changes are announced ahead of time and it is generally stable, but it is not guaranteed to be as stable as production. Point your own staging environment here.
-- **Test.** Instances that run the newest ePDS code. They are mainly for Hypercerts core development. Anyone can use them, but data can be wiped, instances can be unavailable, and breaking changes can ship without notice. Test instances come and go, so confirm with the Hypercerts core team that an instance is still active before relying on it.
+- **Production** is the PDS behind [certified.app](https://certified.app). Live applications use it.
+- **Staging** is the last testing step before a change reaches production. Changes are announced ahead of time. Point your own staging environment here.
+- **Test** instances run the newest code for Hypercerts core development. Data can be wiped and instances can change without notice.
 
-For the current hostnames of each environment, see [Running services](/reference/services#running-services).
+The handle suffix tells you which environment hosts an account: production handles look like `alice.certified.one`, while staging and test accounts use their own domains. [certified.app](https://certified.app) itself is not a PDS. It is the web application where people manage their Certified account. Hostnames for every environment are listed under [Running services](/reference/services#running-services).
 
-[certified.app](https://certified.app) is not a PDS. It is the web application where people manage their Certified account, and it talks to the production PDS.
+### Certified PDSs are some of many
 
-The handle suffix of an account tells you which environment hosts it. Production accounts get handles under the production PDS domain (for example `alice.certified.one`), while staging and test accounts use their own domains.
-
-### Checking the running version
-
-There are two version endpoints.
-
-**ePDS version (`/health`).** Versioned ePDS instances return the ePDS version as JSON:
-
-```json
-{"status":"ok","service":"epds","version":"<semver>+<commit>"}
-```
-
-Older instances from before versioned releases do not expose this endpoint. For what changed in each release, see the [ePDS release notes](https://github.com/hypercerts-org/ePDS/releases).
-
-**Underlying PDS version (`/xrpc/_health`).** Every AT Protocol PDS, including ePDS instances, exposes this standard endpoint, which returns the upstream PDS version:
-
-```json
-{"version":"<version>"}
-```
-
-On some ePDS instances the version is currently missing from this response because of a known bug. An empty `{}` response means you are seeing that bug.
+Hypercerts records live on many PDSs. A Bluesky-hosted account or a self-hosted PDS can publish Hypercerts records too, and the rest of the stack reads from all of them the same way. Your application does not need a Certified PDS to work with Hypercerts. It uses one when its users have Certified accounts.
 
 ## Using it from your application
 
-Your application does not need a Certified PDS to work with Hypercerts. Use one when you want to offer "Sign in with Certified", which gives your users email and one-time-code login.
+Applications read from a PDS without authentication and write to it with the user's permission.
 
-| Scenario | Use |
-|---|---|
-| Signing up or managing your own account as an end user | [certified.app](https://certified.app) |
-| Production "Sign in with Certified" in your app | The production PDS |
-| Staging "Sign in with Certified" in your app | The staging PDS |
-| Contributing to Hypercerts core or testing the newest ePDS changes | An active test instance |
+**Reading.** PDSs expose an XRPC API. XRPC is AT Protocol's convention for HTTP APIs: each method has a namespaced name and is called at `/xrpc/<method name>`. The example resolves a handle to its DID with `com.atproto.identity.resolveHandle`, then reads one record with `com.atproto.repo.getRecord`:
 
-Sign-in uses standard AT Protocol OAuth, so any AT Protocol OAuth client library works. For the integration details, see the [entryway](/reference/services/entryway) page and [Account & Identity Setup](/architecture/account-and-identity).
+```bash
+# Resolve a handle to the account's DID
+curl 'https://certified.one/xrpc/com.atproto.identity.resolveHandle?handle=alice.certified.one'
+# {"did":"did:plc:..."}
 
-### Group-governed repositories
+# Read one record from that account's repository
+curl --get https://certified.one/xrpc/com.atproto.repo.getRecord \
+  --data-urlencode 'repo=did:plc:...' \
+  --data-urlencode 'collection=app.certified.actor.profile' \
+  --data-urlencode 'rkey=self'
+# {"uri":"at://did:plc:.../app.certified.actor.profile/self","cid":"...","value":{...}}
+```
 
-If several people need to co-manage one repository with different roles, use the [Certified Group Service](/reference/services/certified-group-service). It sits in front of a PDS, including the Certified PDSs, and adds role-based access control.
+The response contains the record's AT-URI, its CID (a hash of its content), and the record itself in `value`. To list every record in a collection, call `com.atproto.repo.listRecords` with the same `repo` and `collection`. Send these requests to the PDS named in the account's DID document, which is a Certified PDS only for Certified accounts. To read records across many accounts, use [Jetstream](/reference/services/relay) or the [Hypercerts API](/reference/services/indexer) instead of calling each PDS.
 
-## Status
+**Writing.** Your application first signs the user in with AT Protocol OAuth. The [Entryway](/reference/services/entryway) page shows how, both today and after the Entryway is released. With the resulting session it calls `com.atproto.repo.createRecord`, `putRecord`, or `deleteRecord` on the user's PDS, usually through the [SDK](/reference/sdk). Use the production PDS for live applications and the staging PDS for your own staging environment.
 
-The Certified PDSs run ePDS. See the [ePDS releases](https://github.com/hypercerts-org/ePDS/releases) for version history and the `/health` endpoint of each instance for the version it runs. Operational status is published on [certified.instatus.com](https://certified.instatus.com/) (production and staging) and [test-certified.instatus.com](https://test-certified.instatus.com/) (test instances).
+**Checking an instance.** `/health` returns the ePDS version an instance runs, and the standard `/xrpc/_health` returns the version of the underlying PDS.
 
-## Running your own
+## Status and source
 
-Operating your own PDS or ePDS is outside the scope of this documentation for now. See the [ePDS repository](https://github.com/hypercerts-org/ePDS) for its deployment guide.
+The Certified PDSs are running in production, staging, and test. They run ePDS, whose versions and release notes are on the [ePDS releases page](https://github.com/hypercerts-org/ePDS/releases). Operational status is published on [certified.instatus.com](https://certified.instatus.com/) for production and staging, and on [test-certified.instatus.com](https://test-certified.instatus.com/) for test instances.
+
+The source code is in the [ePDS repository](https://github.com/hypercerts-org/ePDS). Running your own PDS or ePDS is outside the scope of this documentation for now.
 
 ## Related
 
 - [Services overview](/reference/services) and [Running services](/reference/services#running-services)
 - [Entryway](/reference/services/entryway)
 - [Certified Group Service](/reference/services/certified-group-service)
+- [Relay and Jetstream](/reference/services/relay)
 - [Account & Identity Setup](/architecture/account-and-identity)
-- [Certified identity](/core-concepts/certified-identity)
 - [Why AT Protocol](/core-concepts/why-at-protocol)

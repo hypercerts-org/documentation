@@ -15,8 +15,9 @@ This section describes each service at the level a project needs to integrate wi
 
 | Component | What it does | Status |
 |---|---|---|
+| [certified.app](/reference/services/certified-app) | The web app where people create and manage their Certified account | Running |
 | [Certified PDSs](/reference/services/certified-pdss) | Host Certified accounts and their records. A PDS (Personal Data Server) stores an account's repository of records. | Running |
-| [Entryway](/reference/services/entryway) | Signs users in and hosts their Certified accounts | Under development; ePDS provides sign-in today |
+| [Entryway](/reference/services/entryway) | Signs users in to their Certified accounts | Under development; the Certified PDSs handle sign-in today |
 | [Certified Group Service](/reference/services/certified-group-service) | Lets several people manage one group account with different roles | Running |
 | [Relay and Jetstream](/reference/services/relay) | The relay collects record changes from PDSs across the network; Jetstream filters them down to Hypercerts and Certified records | Running |
 | [Indexer and Hypercerts API](/reference/services/indexer) | Builds a searchable view of the records and serves the Hypercerts API | Under development |
