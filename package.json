@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@hypercerts-org/lexicon": "1.4.1",
+    "@hypercerts-org/ui-react": "0.2.0",
     "@markdoc/markdoc": "^0.5.9",
     "@markdoc/next.js": "^0.5.0",
     "@vercel/analytics": "^2.0.1",

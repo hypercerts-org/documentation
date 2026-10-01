@@ -172,6 +172,9 @@ importers:
       '@hypercerts-org/lexicon':
         specifier: 1.4.1
         version: 1.4.1(@atproto/xrpc@0.8.13)
+      '@hypercerts-org/ui-react':
+        specifier: 0.2.0
+        version: 0.2.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@markdoc/markdoc':
         specifier: ^0.5.9
         version: 0.5.9(react@19.3.0)
@@ -260,6 +263,13 @@ packages:
     resolution: {integrity: sha512-EkxQOSBK47MmDNNfguILVRnRYJbpKZ+8qk1XMmzpSgDcRHDoIaodfUup5ClwA6ndlR9X0LN6i5PjlOMaMYnE3Q==}
     peerDependencies:
       '@atproto/xrpc': '*'
+
+  '@hypercerts-org/ui-react@0.2.0':
+    resolution: {integrity: sha512-3/8PJluH07euvnAliQaIYGsVrrpTApeo/NgwoHMQpRTf8PXOagoEhnv/NffSgJNfTKao5ShKLCk5F5I6gpKLLw==}
+    engines: {node: '>=20.12.0'}
+    peerDependencies:
+      react: ^19.0.0
+      react-dom: ^19.0.0
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -898,6 +908,11 @@ packages:
   lodash-es@4.18.1:
     resolution: {integrity: sha512-J8xewKD/Gk22OZbhpOVSwcs60zhd95ESDwezOFuA3/099925PdHJ7OFHNTGtajL3AlZkykD32HykiMo+BIBI8A==}
 
+  lucide-react@0.468.0:
+    resolution: {integrity: sha512-6koYRhnM2N0GGZIdXzSeiNwguv1gt/FAjZOiPl76roBi3xKEXa4WmfpxgQwTTL4KipXjefrnf3oV4IsYhi4JFA==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0-rc
+
   marked@16.4.2:
     resolution: {integrity: sha512-TI3V8YYWvkVf3KJe1dRkpnjs68JUPyEa5vjKrp1XEEJUAOaQc+Qj+L1qWbPd0SJuAdQkFU0h73sXXqwDYxsiDA==}
     engines: {node: '>= 20'}
@@ -1134,6 +1149,12 @@ snapshots:
       '@atproto/lexicon': 0.6.2
       '@atproto/xrpc': 0.8.13
       multiformats: 13.4.2
+
+  '@hypercerts-org/ui-react@0.2.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+    dependencies:
+      lucide-react: 0.468.0(react@19.3.0)
+      react: 19.3.0
+      react-dom: 19.3.0(react@19.3.0)
 
   '@iconify/types@2.0.0': {}
 
@@ -1697,6 +1718,10 @@ snapshots:
   layout-base@2.0.1: {}
 
   lodash-es@4.18.1: {}
+
+  lucide-react@0.468.0(react@19.3.0):
+    dependencies:
+      react: 19.3.0
 
   marked@16.4.2: {}
 

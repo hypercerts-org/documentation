@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { Button } from '@hypercerts-org/ui-react';
 
 /**
  * Map a documentation route to the generated local Markdown artifact used by page actions.
@@ -55,12 +56,7 @@ export function CopyRawButton() {
 
   return (
     <div className="page-tools" aria-label="Page tools">
-      <button
-        className="page-tools-button"
-        onClick={handleCopy}
-        type="button"
-        disabled={isCopying}
-      >
+      <Button variant="secondary" size="sm" onClick={handleCopy} disabled={isCopying}>
         <svg
           className="page-tools-icon"
           width="14"
@@ -73,13 +69,8 @@ export function CopyRawButton() {
           <path d="M7 15H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v1" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
         </svg>
         <span>{isCopying ? 'Copying...' : copied ? 'Copied' : copyError ? 'Copy failed' : 'Copy raw'}</span>
-      </button>
-      <a
-        className="page-tools-link"
-        href={rawUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      </Button>
+      <Button variant="secondary" size="sm" href={rawUrl} target="_blank" rel="noopener noreferrer">
         <svg
           className="page-tools-icon"
           width="14"
@@ -93,7 +84,7 @@ export function CopyRawButton() {
           <path d="M19 13v5a1 1 0 0 1-1 1h-12a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
         <span>View raw</span>
-      </a>
+      </Button>
     </div>
   );
 }

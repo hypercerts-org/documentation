@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Breadcrumb } from "@hypercerts-org/ui-react";
 import { useRouter } from "next/router";
 import { navigation } from "../lib/navigation";
 
@@ -37,31 +37,13 @@ export function Breadcrumbs() {
 
   if (crumbs.length <= 1) return null;
 
-  return (
-    <nav className="breadcrumbs" aria-label="Breadcrumb">
-      <ol className="breadcrumbs-list">
-        <li className="breadcrumbs-item">
-          <Link href="/" className="breadcrumbs-link">
-            Docs
-          </Link>
-        </li>
-        {crumbs.slice(0, -1).map((crumb, i) => (
-          <li key={i} className="breadcrumbs-item">
-            <span className="breadcrumbs-separator">/</span>
-            {crumb.path ? (
-              <Link href={crumb.path} className="breadcrumbs-link">
-                {crumb.title}
-              </Link>
-            ) : (
-              <span className="breadcrumbs-text">{crumb.title}</span>
-            )}
-          </li>
-        ))}
-        <li className="breadcrumbs-item">
-          <span className="breadcrumbs-separator">/</span>
-          <span className="breadcrumbs-current">{crumbs[crumbs.length - 1].title}</span>
-        </li>
-      </ol>
-    </nav>
-  );
+  const items = [
+    { label: 'Docs', href: '/' },
+    ...crumbs.map((crumb, i) => ({
+      label: crumb.title,
+      href: i < crumbs.length - 1 ? crumb.path : undefined,
+    })),
+  ];
+
+  return <Breadcrumb items={items} maxItems={6} className="breadcrumbs" />;
 }

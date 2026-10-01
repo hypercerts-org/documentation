@@ -1,3 +1,4 @@
+import '@hypercerts-org/ui-react/styles.css';
 import '../styles/globals.css';
 import Layout from '../components/Layout';
 import { Callout } from '../components/Callout';
@@ -18,6 +19,9 @@ import { AccountRecordsDiagram } from '../components/AccountRecordsDiagram';
 import { SharedLanguageDiagram } from '../components/SharedLanguageDiagram';
 import { StackDiagram } from '../components/StackDiagram';
 import { Analytics } from '@vercel/analytics/next';
+import NextLink from 'next/link';
+import { UIProvider } from '@hypercerts-org/ui-react';
+import { DocsHero } from '../components/DocsHero';
 
 const components = {
   Callout,
@@ -38,13 +42,16 @@ const components = {
   AccountRecordsDiagram,
   SharedLanguageDiagram,
   StackDiagram,
+  DocsHero,
 };
 
 export default function App({ Component, pageProps }) {
   return (
-    <Layout frontmatter={pageProps.markdoc?.frontmatter}>
-      <Component {...pageProps} components={components} />
-      <Analytics />
-    </Layout>
+    <UIProvider link={NextLink}>
+      <Layout frontmatter={pageProps.markdoc?.frontmatter}>
+        <Component {...pageProps} components={components} />
+        <Analytics />
+      </Layout>
+    </UIProvider>
   );
 }

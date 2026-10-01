@@ -237,7 +237,6 @@ export default function Layout({ children, frontmatter }) {
               <LastUpdated />
             </>
           )}
-          {isLanding && <p className="docs-landing-eyebrow">Documentation</p>}
           <article>{children}</article>
 
 

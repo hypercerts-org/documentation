@@ -1,12 +1,13 @@
 import React from 'react';
+import { Banner } from '@hypercerts-org/ui-react';
 
+const TONES = { info: 'info', note: 'info', warning: 'warning', danger: 'danger', success: 'success' };
+
+/** A callout in page content, rendered with the design system's Banner. */
 export function Callout({ type = 'info', title, children }) {
-  const typeClass = `callout--${type}`;
-
   return (
-    <div className={`callout ${typeClass}`}>
-      {title && <div className="callout-title">{title}</div>}
-      <div className="callout-body">{children}</div>
-    </div>
+    <Banner tone={TONES[type] || 'info'} title={title} className="callout">
+      {children}
+    </Banner>
   );
 }

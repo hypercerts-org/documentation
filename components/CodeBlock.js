@@ -1,28 +1,47 @@
 import { useState } from 'react';
-import { Highlight, themes } from 'prism-react-renderer';
+import { Highlight } from 'prism-react-renderer';
 
-const LANGUAGE_META = {
-  typescript: { label: 'TypeScript', color: '#3178c6' },
-  javascript: { label: 'JavaScript', color: '#f0db4f' },
-  bash: { label: 'Terminal', color: '#4eaa25' },
-  shell: { label: 'Terminal', color: '#4eaa25' },
-  json: { label: 'JSON', color: '#a0a0a0' },
-  jsx: { label: 'JSX', color: '#61dafb' },
-  tsx: { label: 'TSX', color: '#3178c6' },
-  css: { label: 'CSS', color: '#264de4' },
-  html: { label: 'HTML', color: '#e34c26' },
-  markdown: { label: 'Markdown', color: '#a0a0a0' },
+const LANGUAGE_LABELS = {
+  typescript: 'TypeScript',
+  ts: 'TypeScript',
+  javascript: 'JavaScript',
+  js: 'JavaScript',
+  bash: 'Terminal',
+  shell: 'Terminal',
+  json: 'JSON',
+  jsx: 'JSX',
+  tsx: 'TSX',
+  css: 'CSS',
+  html: 'HTML',
+  markdown: 'Markdown',
+  text: 'Text',
 };
 
-function getLangMeta(language) {
+/**
+ * Syntax colours from the design system's text layer: ink, muted grey, and the one accent.
+ * The values are CSS variables, so the theme follows light and dark mode.
+ */
+const codeTheme = {
+  plain: { color: 'var(--color-code-text)', backgroundColor: 'transparent' },
+  styles: [
+    { types: ['comment', 'prolog', 'doctype', 'cdata'], style: { color: 'var(--color-code-muted)', fontStyle: 'italic' } },
+    { types: ['punctuation', 'operator'], style: { color: 'var(--color-code-muted)' } },
+    { types: ['string', 'char', 'attr-value', 'template-string', 'inserted'], style: { color: 'var(--color-accent)' } },
+    { types: ['keyword', 'tag', 'selector', 'important', 'atrule', 'builtin'], style: { color: 'var(--color-code-text)', fontWeight: '600' } },
+    { types: ['number', 'boolean', 'constant', 'symbol', 'deleted'], style: { color: 'var(--color-accent)' } },
+    { types: ['property', 'attr-name', 'function', 'class-name', 'variable'], style: { color: 'var(--color-code-text)' } },
+  ],
+};
+
+function getLangLabel(language) {
   const key = (language || '').toLowerCase();
-  return LANGUAGE_META[key] || { label: language || 'Code', color: '#6b7280' };
+  return LANGUAGE_LABELS[key] || language || 'Code';
 }
 
 export function CodeBlock({ content, language, children }) {
   const [copied, setCopied] = useState(false);
   const code = (content || children || '').replace(/\n$/, '');
-  const meta = getLangMeta(language);
+  const label = getLangLabel(language);
 
   const handleCopy = async () => {
     try {
@@ -44,13 +63,7 @@ export function CodeBlock({ content, language, children }) {
   return (
     <div className="codeblock">
       <div className="codeblock-header">
-        <div className="codeblock-lang">
-          <span
-            className="codeblock-lang-dot"
-            style={{ backgroundColor: meta.color }}
-          />
-          <span className="codeblock-lang-label">{meta.label}</span>
-        </div>
+        <span className="codeblock-lang-label">{label}</span>
         <button
           className="codeblock-copy"
           onClick={handleCopy}
@@ -88,7 +101,7 @@ export function CodeBlock({ content, language, children }) {
           )}
         </button>
       </div>
-      <Highlight theme={themes.nightOwl} code={code} language={language || 'text'}>
+      <Highlight theme={codeTheme} code={code} language={language || 'text'}>
         {({ tokens, getLineProps, getTokenProps }) => (
           <pre className="codeblock-pre">
             <code>
