@@ -162,6 +162,16 @@
       "source": "/raw/tools/hypercerts-feed-service.md",
       "destination": "/raw/reference/services/feed-service.md",
       "permanent": true
+    },
+    {
+      "source": "/roadmap",
+      "destination": "/changes",
+      "permanent": true
+    },
+    {
+      "source": "/raw/roadmap.md",
+      "destination": "/raw/changes.md",
+      "permanent": true
     }
   ]
 }

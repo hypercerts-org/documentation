@@ -1379,30 +1379,7 @@ a.sidebar-link-active:hover {
   margin-top: var(--space-2);
 }
 
-/* ===== Component: Columns ===== */
-.columns {
-  display: flex;
-  gap: var(--space-6);
-  margin: var(--space-4) 0;
-}
-
-.column {
-  flex: 1;
-  min-width: 0;
-}
-
-/* ===== Component: Figure ===== */
-.figure {
-  text-align: center;
-  margin: var(--space-6) 0;
-}
-
-.figure img {
-  max-width: 100%;
-  height: auto;
-  border-radius: var(--radius-md);
-}
-
+/* ===== Figure captions ===== */
 .figure-caption {
   font-size: 13px;
   color: var(--color-text-secondary);
@@ -1729,72 +1706,6 @@ html.dark .gd-logo-dark {
   }
 }
 
-/* ===== Component: DotPattern ===== */
-.dot-pattern {
-  position: absolute;
-  inset: 0;
-  fill: var(--hc-line-faint);
-}
-
-/* ===== Component: Hero Banner ===== */
-.hero-banner {
-  position: relative;
-  margin: calc(-1 * var(--space-6)) 0 var(--space-8) calc(-72px);
-  padding: var(--space-12) 72px var(--space-10) 72px;
-}
-
-.hero-banner-content {
-  position: relative;
-  z-index: 1;
-}
-
-.hero-title {
-  font-family: var(--font-display);
-  font-size: 40px;
-  font-weight: 700;
-  color: var(--color-text-title);
-  line-height: 1.15;
-  margin: 0 0 var(--space-4) 0;
-  letter-spacing: -0.02em;
-}
-
-.hero-subtitle {
-  font-size: 18px;
-  line-height: 1.6;
-  color: var(--color-text-secondary);
-  margin: 0;
-  max-width: 600px;
-}
-
-.layout-content a.hero-cta,
-.layout-content a.hero-cta:hover,
-.hero-cta,
-.hero-cta:hover {
-  color: white;
-  text-decoration: none;
-  text-decoration-color: transparent;
-  text-underline-offset: initial;
-}
-
-.hero-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  margin-top: var(--space-6);
-  padding: 10px 24px;
-  background: var(--hc-fill-solid);
-  color: var(--hc-text-on-fill);
-  font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 500;
-  border-radius: var(--radius-md);
-  transition: background var(--transition-fast);
-}
-
-.hero-cta:hover {
-  background: var(--hc-fill-solid-hover);
-}
-
 /* ===== Component: CardLink ===== */
 .card-link {
   display: flex;
@@ -2093,15 +2004,6 @@ html.dark .search-overlay {
   .layout-content h1 {
     font-size: 28px;
   }
-
-  .hero-banner {
-    margin: calc(-1 * var(--space-6)) calc(-1 * var(--space-6)) var(--space-6) calc(-1 * var(--space-6));
-    padding: var(--space-8) var(--space-6) var(--space-6) var(--space-6);
-  }
-
-  .hero-title {
-    font-size: 32px;
-  }
 }
 
 /* Mobile: sidebar hidden, content full width */
@@ -2173,11 +2075,6 @@ html.dark .search-overlay {
     padding: var(--space-6) var(--space-4);
   }
 
-  /* Columns stack on mobile */
-  .columns {
-    flex-direction: column;
-  }
-
   /* Tables scroll horizontally on mobile */
   .layout-content table {
     display: block;
@@ -2225,15 +2122,6 @@ html.dark .search-overlay {
 
   .pagination-link-next {
     text-align: left;
-  }
-
-  .hero-banner {
-    margin: calc(-1 * var(--space-6)) calc(-1 * var(--space-4)) var(--space-6) calc(-1 * var(--space-4));
-    padding: var(--space-8) var(--space-4) var(--space-6) var(--space-4);
-  }
-
-  .hero-title {
-    font-size: 28px;
   }
 
   /* Compact breadcrumbs on mobile */

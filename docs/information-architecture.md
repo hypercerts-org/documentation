@@ -53,7 +53,7 @@ The docs landing page and Changes overview use the same cards for Hypercerts Pro
 | Lexicons and service directories | Reference | Keep existing routes and expand source-backed coverage. |
 | Lexicon releases | Changes | Keep the imported upstream changelog and add adopter-facing migration context separately. |
 | Ecosystem and vision | Separate background | Retain the existing essay route outside the sequential Guide; the landing page provides the high-level introduction. |
-| Roadmap | Unassigned | Keep the source for now, but do not mix planned capabilities into supported instructions or change history. |
+| Roadmap | Retired | Removed as outdated; the route redirects to Changes. |
 
 ## Third editor's draft disposition
 
@@ -119,11 +119,12 @@ Component repositories still own:
 
 When a component release changes public behaviour, its maintainer reviews the affected pages in this repository and opens a pull request in the same release cycle, or records that the release has no documentation impact.
 
+CI checks internal links and anchors in the built site (`pnpm run check:links`), and Dependabot opens a pull request when a new `@hypercerts-org/lexicon` or `@hypercerts-org/ui-react` version is published.
+
 Planned support:
 
 - a release-checklist or pull-request-template line in each component repository asking for the documentation pull request or a "no docs impact" note;
 - `CODEOWNERS` entries so component maintainers review changes to their pages;
-- an internal link check in CI for local routes.
 
 ## URL migration
 

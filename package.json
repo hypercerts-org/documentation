@@ -15,6 +15,7 @@
     "generate": "pnpm run generate:external-docs && pnpm run generate:local",
     "dev": "node lib/generate-external-docs-manifest.js --prefer-cache && pnpm run generate:local && next dev --webpack",
     "build": "pnpm run generate && next build --webpack",
+    "check:links": "node lib/check-links.js",
     "start": "next start"
   },
   "dependencies": {

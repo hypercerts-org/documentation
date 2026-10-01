@@ -1,0 +1,14 @@
+# Opens a pull request when a new version of the Hypercerts packages is published.
+# Merging it updates the generated lexicon schema tables and the design-system styles.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: daily
+    allow:
+      - dependency-name: "@hypercerts-org/lexicon"
+      - dependency-name: "@hypercerts-org/ui-react"
+    commit-message:
+      prefix: chore
+    labels: []
