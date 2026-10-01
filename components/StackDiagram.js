@@ -95,7 +95,7 @@ export function StackDiagram() {
         </svg>
       </div>
       <figcaption className="figure-caption">
-        Records stay in each account's PDS. The relay, Jetstream, and indexer bring them together for reading; the entryway and CGS handle signing in and writing.
+        Records stay in each account's PDS. The relay, Jetstream, and indexer bring them together for reading, while the entryway and CGS handle signing in and writing.
       </figcaption>
     </figure>
   );

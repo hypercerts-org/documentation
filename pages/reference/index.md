@@ -18,21 +18,6 @@ Queries and procedures of the Hypercerts API. Under development.
 Exports, types, and versions of the Hypercerts SDK. Under development.
 {% /card-link %}
 {% card-link title="Services and tooling" href="/reference/services" %}
-Service environments, endpoints, and supporting tools.
+The services in the Hypercerts stack and where they run.
 {% /card-link %}
 {% /card-grid %}
-
-The [Glossary](/reference/glossary) explains terms used across the documentation, and the [FAQ](/reference/faq) answers common questions.
-
-## Imported changelogs
-
-Component changelogs are imported from their owning repositories during the documentation build:
-
-| Source | Owning repository | Local route |
-|---|---|---|
-| Hypercerts Lexicon changelog | `hypercerts-org/hypercerts-lexicon` | [Lexicon releases](/reference/releases) |
-| Certified Group Service changelog | `hypercerts-org/certified-group-service` | [CGS releases](/changes/cgs) |
-| Hypercerts Relay changelog | `hypercerts-org/hypercerts-relay` | [Relay releases](/changes/relay) |
-| Hypercerts Feed Service changelog | `hypercerts-org/hypercerts-feed-service` | [Feed Service releases](/changes/feed-service) |
-
-These imports follow each repository's `main` branch. [Changes](/changes) combines the protocol release history with the published component versions. All other Reference pages are maintained in the documentation repository.
