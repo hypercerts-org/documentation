@@ -117,3 +117,39 @@ test('registry ordering does not affect the combined fingerprint', () => {
     buildFingerprintDocument([second, first]).combinedFingerprint,
   );
 });
+
+test('published stable release metadata is captured in the build snapshot', async context => {
+  const originalFetch = global.fetch;
+  context.after(() => { global.fetch = originalFetch; });
+  global.fetch = async url => String(url).endsWith('/releases/latest')
+    ? response({ json: { tag_name: 'v1.4.12', published_at: '2026-09-01T00:00:00Z', draft: false, prerelease: false } })
+    : String(url).includes('/commits?') ? response({ json: [] }) : response({ text: '# Changelog' });
+  const snapshot = await collectSourceSnapshot({ ...source, trackRelease: true });
+  assert.equal(snapshot.release.version, '1.4.12');
+  assert.equal(snapshot.release.url, 'https://github.com/hypercerts-org/ePDS/releases/tag/v1.4.12');
+});
+
+test('an accessible repository without a GitHub release is explicitly unreleased', async context => {
+  const originalFetch = global.fetch;
+  context.after(() => { global.fetch = originalFetch; });
+  global.fetch = async url => String(url).endsWith('/releases/latest')
+    ? response({ ok: false, status: 404 })
+    : String(url).includes('/commits?') ? response({ json: [] }) : response({ text: '# Changelog' });
+  assert.equal((await collectSourceSnapshot({ ...source, trackRelease: true })).release, null);
+});
+
+test('failed release requests and unstable tags cannot silently become version badges', async context => {
+  const originalFetch = global.fetch;
+  context.after(() => { global.fetch = originalFetch; });
+  for (const failure of [response({ ok: false, status: 403 }), response({ ok: false, status: 500 }), response({ json: { tag_name: 'v1.5.0-beta.1', prerelease: true } })]) {
+    global.fetch = async url => String(url).endsWith('/releases/latest') ? failure
+      : String(url).includes('/commits?') ? response({ json: [] }) : response({ text: '# Changelog' });
+    await assert.rejects(() => collectSourceSnapshot({ ...source, trackRelease: true }), /Release metadata|stable semantic/);
+  }
+});
+
+test('publishing a release changes the refresh fingerprint even if Markdown is unchanged', () => {
+  const snapshot = { ...source, trackRelease: true, contentHash: sha256('# Changelog'), release: null };
+  const published = { ...snapshot, release: { version: '1.4.1', tag: 'v1.4.1', url: 'https://github.com/hypercerts-org/example/releases/tag/v1.4.1', publishedAt: '2026-09-01T00:00:00Z' } };
+  assert.notEqual(buildFingerprintDocument([snapshot]).combinedFingerprint, buildFingerprintDocument([published]).combinedFingerprint);
+});

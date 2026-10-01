@@ -5,6 +5,10 @@ description: Recognizing and rewarding value creators.
 
 # Why We Need Hypercerts
 
+{% callout type="warning" %}
+This is a vision and background essay. Its economic and ownership examples are not a description of the current released protocol. Use the [Guide](/guide) for the current model and [Funding and Learning](/core-concepts/funding-and-value-flow) for how funding records connect to work.
+{% /callout %}
+
 ## The Problem
 
 #### A Simple Observation

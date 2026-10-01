@@ -1,0 +1,4 @@
+minimumReleaseAgeExclude:
+  - '@hypercerts-org/lexicon'
+overrides:
+  baseline-browser-mapping: ^2.11.23

@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { navigation } from '../lib/navigation';
+import { getNavigationSection, navigation } from '../lib/navigation';
 
 function isActive(path, currentPath) {
   return path === currentPath;
@@ -15,76 +15,61 @@ function isChildActive(item, currentPath) {
   return false;
 }
 
-function NavItem({ item, currentPath, depth = 0 }) {
+/**
+ * Render one navigation entry. An entry with children is a category: its row links to the category page,
+ * and its children are shown while that page or one of its descendants is active.
+ */
+function NavItem({ item, currentPath }) {
   const hasChildren = item.children && item.children.length > 0;
   const active = item.path && isActive(item.path, currentPath);
   const childActive = hasChildren && isChildActive(item, currentPath);
-  const [expanded, setExpanded] = useState(childActive || active);
+  const expanded = hasChildren && (active || childActive);
+  const className = `sidebar-link${active ? ' sidebar-link-active' : ''}${childActive && !active ? ' sidebar-link-parent-active' : ''}`;
 
-  useEffect(() => {
-    if (childActive || active) {
-      setExpanded(true);
-    }
-  }, [childActive, active]);
+  const content = (
+    <>
+      <span className="sidebar-link-label">
+        {item.title}
+        {item.badge && <span className="sidebar-release-badge">{item.badge}</span>}
+      </span>
+      {hasChildren && (
+        <svg className={`sidebar-link-chevron${expanded ? ' sidebar-link-chevron-open' : ''}`} width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M6 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      )}
+    </>
+  );
 
   return (
     <li className="sidebar-nav-item">
-      <div className="sidebar-nav-link-row">
-        {item.path ? (
-          <Link
-            href={item.path}
-            className={`sidebar-link${active ? ' sidebar-link-active' : ''}${childActive ? ' sidebar-link-parent-active' : ''}`}
-            style={{ paddingLeft: `${16 + depth * 16}px` }}
-          >
-            {item.title}
-          </Link>
-        ) : (
-          <span
-            className={`sidebar-link${childActive ? ' sidebar-link-parent-active' : ''}`}
-            style={{ paddingLeft: `${16 + depth * 16}px` }}
-          >
-            {item.title}
-          </span>
-        )}
-        {hasChildren && (
-          <button
-            className="sidebar-expand-btn"
-            onClick={() => setExpanded(!expanded)}
-            aria-label={expanded ? 'Collapse' : 'Expand'}
-          >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              style={{
-                transform: expanded ? 'rotate(90deg)' : 'rotate(0deg)',
-                transition: 'transform 0.15s ease',
-              }}
-            >
-              <path
-                d="M6 4l4 4-4 4"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-        )}
-      </div>
-      {hasChildren && expanded && (
+      {item.path ? (
+        <Link href={item.path} className={className} aria-current={active ? 'page' : undefined} aria-expanded={hasChildren ? expanded : undefined}>
+          {content}
+        </Link>
+      ) : (
+        <span className={className}>{content}</span>
+      )}
+      {expanded && (
         <ul className="sidebar-nav-children">
           {item.children.map((child) => (
-            <NavItem
-              key={child.path || child.title}
-              item={child}
-              currentPath={currentPath}
-              depth={depth + 1}
-            />
+            <NavItem key={child.path || child.title} item={child} currentPath={currentPath} />
           ))}
         </ul>
       )}
+    </li>
+  );
+}
+
+/** Render a titled subsection inside a documentation section without adding a nesting level. */
+function NavGroup({ item, currentPath }) {
+  return (
+    <li className="sidebar-group">
+      <h4 className="sidebar-group-header">{item.group}</h4>
+      <ul className="sidebar-section-list">
+        {item.children.map((child) => (
+          <NavItem key={child.path || child.title} item={child} currentPath={currentPath} />
+        ))}
+      </ul>
     </li>
   );
 }
@@ -96,11 +81,9 @@ function NavSection({ item, currentPath }) {
         <h3 className="sidebar-section-header">{item.section}</h3>
         <ul className="sidebar-section-list">
           {item.children.map((child) => (
-            <NavItem
-              key={child.path || child.title}
-              item={child}
-              currentPath={currentPath}
-            />
+            child.group
+              ? <NavGroup key={child.group} item={child} currentPath={currentPath} />
+              : <NavItem key={child.path || child.title} item={child} currentPath={currentPath} />
           ))}
         </ul>
       </li>
@@ -112,6 +95,8 @@ function NavSection({ item, currentPath }) {
 export function Sidebar({ isOpen, onClose, collapsed, onToggleCollapse }) {
   const router = useRouter();
   const currentPath = router.asPath.split('#')[0].split('?')[0];
+  const currentSection = getNavigationSection(currentPath);
+  const visibleNavigation = currentSection ? [currentSection] : navigation;
 
   const onCloseRef = useRef(onClose);
   useEffect(() => {
@@ -169,8 +154,26 @@ export function Sidebar({ isOpen, onClose, collapsed, onToggleCollapse }) {
 
         {/* Nav content — hidden when collapsed */}
         <div className="sidebar-content">
+          <div className="sidebar-section-switcher">
+            <span className="sidebar-section-switcher-title">Sections</span>
+            {navigation.map((section) => {
+              const overview = section.children.find((child) => child.path);
+              if (!overview) return null;
+
+              const active = section.section === currentSection?.section;
+              return (
+                <Link
+                  key={section.section}
+                  href={overview.path}
+                  className={`sidebar-section-switcher-link${active ? ' sidebar-section-switcher-link-active' : ''}`}
+                >
+                  {section.section}
+                </Link>
+              );
+            })}
+          </div>
           <ul className="sidebar-nav">
-            {navigation.map((item, i) => (
+            {visibleNavigation.map((item, i) => (
               <NavSection
                 key={item.section || item.path || i}
                 item={item}
