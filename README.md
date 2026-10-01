@@ -49,7 +49,7 @@ All pages are written in this repository and changed through pull requests to `m
 
 Two notes for maintainers:
 
-- [How the documentation is organized](docs/information-architecture.md): the sections, the structure of Lexicon and service pages, the writing rules, and who owns what.
+- [How the documentation is organized](docs/information-architecture.md): the sections, the structure of Lexicon and service pages, the writing rules, who owns what, and **what to update by hand when a Lexicon version or a service is released**.
 - [Build-time changelog imports](docs/remote-markdown.md): how component changelogs and version badges are fetched, and how protocol releases are published.
 
 ## Related repositories

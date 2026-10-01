@@ -1,15 +1,13 @@
 ---
 title: Lexicon Inventory
-description: Complete inventory of Hypercerts and Certified schemas released in @hypercerts-org/lexicon 1.4.1.
+description: Every Hypercerts and Certified schema in the released @hypercerts-org/lexicon package.
 ---
 
 # Lexicon Inventory
 
-This page lists the `org.hypercerts.*` and `app.certified.*` schemas in [`@hypercerts-org/lexicon` 1.4.1](https://www.npmjs.com/package/@hypercerts-org/lexicon/v/1.4.1). The source tag is [`v1.4.1`](https://github.com/hypercerts-org/hypercerts-lexicon/tree/v1.4.1/lexicons).
+This page lists the `org.hypercerts.*` and `app.certified.*` schemas in the released [`@hypercerts-org/lexicon`](https://www.npmjs.com/package/@hypercerts-org/lexicon) package: record collections, shared definitions, and permission sets. The package contains no XRPC query or procedure Lexicons; the Hypercerts API documents its methods separately.
 
-The package contains 25 repository record collections, two write permission sets, and four definition-only schemas across these namespaces. It contains no XRPC query or procedure Lexicons; the Hypercerts API documents its methods separately.
-
-Each reference page generates its schema tables from the released package, so the tables always match the version shown on the page.
+Each reference page generates its schema tables from the released package and shows the version it was generated from. [Changes](/changes) lists what each release added.
 
 ## Hypercerts record collections
 
@@ -35,7 +33,7 @@ Each reference page generates its schema tables from the released package, so th
 |---|---|---|
 | `org.hypercerts.defs` | Definitions: descriptions, blobs, images, video, and URI objects | [Shared Definitions](/lexicons/hypercerts-lexicons/shared-defs) |
 | `org.hypercerts.workscope.cel` | Structured work-scope expression embedded in an activity; not a repository record | [Work Scope](/lexicons/hypercerts-lexicons/work-scope) |
-| `org.hypercerts.authWrite` | Permission set: create, update, and delete for the 13 Hypercerts record collections | [Schema](https://github.com/hypercerts-org/hypercerts-lexicon/blob/v1.4.1/lexicons/org/hypercerts/authWrite.json) |
+| `org.hypercerts.authWrite` | Permission set: create, update, and delete for all Hypercerts record collections | [Schema](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/org/hypercerts/authWrite.json) |
 
 ## Certified record collections
 
@@ -60,7 +58,7 @@ Each reference page generates its schema tables from the released package, so th
 |---|---|---|
 | `app.certified.defs` | Definitions: DID object and URI-only record subject | [Shared Definitions](/lexicons/certified-lexicons/shared-defs) |
 | `app.certified.signature.defs` | Definitions: inline and remote record-content signatures | [Signatures](/lexicons/certified-lexicons/signatures) |
-| `app.certified.authWrite` | Permission set: create, update, and delete for the 12 Certified record collections | [Schema](https://github.com/hypercerts-org/hypercerts-lexicon/blob/v1.4.1/lexicons/app/certified/authWrite.json) |
+| `app.certified.authWrite` | Permission set: create, update, and delete for all Certified record collections | [Schema](https://github.com/hypercerts-org/hypercerts-lexicon/blob/main/lexicons/app/certified/authWrite.json) |
 
 ## Package boundary
 

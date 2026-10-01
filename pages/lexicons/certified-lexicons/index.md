@@ -34,4 +34,4 @@ The `app.certified` Lexicons provide shared records for identity and recognition
 
 ## Shared definitions
 
-[Shared Definitions](/lexicons/certified-lexicons/shared-defs) (`app.certified.defs`) covers the DID and record-subject objects these records reuse. The `app.certified.authWrite` permission set grants create, update, and delete access to all 12 record collections. See the complete [Lexicon inventory](/reference/lexicon-inventory).
+[Shared Definitions](/lexicons/certified-lexicons/shared-defs) (`app.certified.defs`) covers the DID and record-subject objects these records reuse. The `app.certified.authWrite` permission set grants create, update, and delete access to all of these record collections. See the complete [Lexicon inventory](/reference/lexicon-inventory).

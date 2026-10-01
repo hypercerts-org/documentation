@@ -36,4 +36,4 @@ The `org.hypercerts` Lexicons describe work and the information around it: who d
 
 ## Shared definitions
 
-[Shared Definitions](/lexicons/hypercerts-lexicons/shared-defs) (`org.hypercerts.defs`) covers the description, image, blob, and URI objects these records reuse. The `org.hypercerts.authWrite` permission set grants create, update, and delete access to all 13 record collections. See the complete [Lexicon inventory](/reference/lexicon-inventory).
+[Shared Definitions](/lexicons/hypercerts-lexicons/shared-defs) (`org.hypercerts.defs`) covers the description, image, blob, and URI objects these records reuse. The `org.hypercerts.authWrite` permission set grants create, update, and delete access to all of these record collections. See the complete [Lexicon inventory](/reference/lexicon-inventory).

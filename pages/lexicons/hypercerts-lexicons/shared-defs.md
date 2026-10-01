@@ -28,8 +28,8 @@ Most file-valued fields are a union of `uri` and one of the blob definitions, so
 | `smallBlob` | `content` items on [attachment](/lexicons/hypercerts-lexicons/attachment) and [evaluation](/lexicons/hypercerts-lexicons/evaluation); `attachment` on [rights](/lexicons/hypercerts-lexicons/rights); `location` on [location](/lexicons/certified-lexicons/location); `referenceDocument` on [vocabulary tag](/lexicons/hypercerts-lexicons/vocabulary-tag) and [work-scope tag](/lexicons/hypercerts-lexicons/work-scope) |
 | `smallImage` | `image` on [activity](/lexicons/hypercerts-lexicons/activity-claim) and [contributor information](/lexicons/hypercerts-lexicons/contribution); `avatar` on [collection](/lexicons/hypercerts-lexicons/collection) and [profile](/lexicons/certified-lexicons/profile) |
 | `largeImage` | `banner` on [collection](/lexicons/hypercerts-lexicons/collection) and [profile](/lexicons/certified-lexicons/profile) |
-| `smallVideo` | Not used by the Hypercerts or Certified lexicons in version 1.4.1 |
-| `largeBlob` | Not used by any lexicon in version 1.4.1 |
+| `smallVideo` | Not currently used by the Hypercerts or Certified lexicons |
+| `largeBlob` | Not currently used by any lexicon |
 
 ## Schema
 
