@@ -5,20 +5,26 @@ description: Build applications that create, store, discover, and display Hyperc
 
 # Client Integration
 
-Client integration documentation is being rebuilt around the Hypercerts SDK and XRPC APIs. The target path is a tested end-to-end flow rather than the previous GraphQL-first quickstart.
+This section shows how to build an application on Hypercerts: signing users in, writing records, and reading them back.
 
-## Recommended path
+{% callout type="info" title="More is on the way" %}
+We are actively working on new versions of the Hypercerts API and SDK. As they are released, this section will grow with step-by-step guides for reading and writing records, integrating with the Feed Service, and connecting your application to certified.app. Until then, the pages below cover what you can build with today.
+{% /callout %}
 
-1. Authenticate an AT Protocol account and request the required permissions.
-2. Create compatible records with the Hypercerts SDK.
-3. Store records in the appropriate Personal Data Server (PDS).
-4. Read and discover records through supported XRPC APIs.
-5. Apply labels or feeds when the application needs them.
-6. Display connected records and preserve authorship and reference state.
+## The integration path
 
-Detailed code will be published only after this complete path is tested against supported SDK, API, and service versions.
+An application built on Hypercerts typically does the following:
 
-## Available integration material
+1. Signs the user in with their AT Protocol account and asks for the permissions it needs.
+2. Creates records with the Hypercerts SDK.
+3. Stores them in the user's Personal Data Server (PDS), the server that hosts the account's records.
+4. Reads and discovers records through the Hypercerts API.
+5. Uses labels and feeds where they help.
+6. Displays connected records, showing who published each one.
+
+Steps 2 and 4 depend on the SDK and API under development. See [SDK](/reference/sdk) and [XRPC API](/reference/xrpc-api) for their status, and [Services and tooling](/reference/services) for the services that are running today.
+
+## Available today
 
 {% card-grid %}
 {% card-link title="Building on Hypercerts" href="/getting-started/building-on-hypercerts" %}
@@ -32,4 +38,4 @@ Validate records, test safely, and prepare an integration for production.
 {% /card-link %}
 {% /card-grid %}
 
-Use the [Reference](/reference) for Lexicons and current service details.
+Use the [Reference](/reference) for Lexicons and service details.
