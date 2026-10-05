@@ -55,7 +55,7 @@ test('release markers expand for page rendering, search, and raw Markdown throug
   assert.doesNotMatch(result, /{% (?:release-|protocol-)/);
   assert.match(result, /Hypercerts Protocol 1\.4/);
   assert.match(result, /badge="v1\.4\.12"/);
-  assert.match(result, /title="Hypercerts Protocol" href="\/changes\/protocol" badge="v1\.4"/);
+  assert.match(result, /title="Hypercerts Protocol" href="\/releases\/protocol" badge="v1\.4"/);
   assert(result.includes(history[0].cardSummary));
   assert.match(result, /badge="v0\.6\.0"/);
   assert.match(result, /badge="Under development"/);

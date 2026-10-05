@@ -17,4 +17,4 @@ Until then:
 
 - Records can be read directly from each account's repository. [Finding and Reusing Information](/architecture/portability-and-scaling) explains how applications find records across accounts.
 - The [Lexicons](/lexicons/introduction-to-lexicons) describe the records the API returns.
-- Follow the API's status on [Changes](/changes/api).
+- Follow the API's status on [Releases](/releases/api).

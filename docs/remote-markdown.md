@@ -71,7 +71,7 @@ Set `externalDoc` in a frontmatter-only page:
 
 ```md
 ---
-title: Hypercerts Relay Changelog
+title: Hypercerts Relay Releases
 description: Project-owned release history imported from the Hypercerts Relay repository.
 externalDoc: relay-changelog
 ---
@@ -112,7 +112,7 @@ External Markdown is parsed with the same Markdoc configuration as local pages. 
 During generation, `lib/release-catalog.json` holds the compact version/status data used by the sidebar. The same catalog is saved inside the external content snapshot. Local pages use these standalone build-time markers:
 
 - `protocol-title`: Hypercerts Protocol heading with the current version.
-- `release-summary`: current release with highlights for the Changes overview.
+- `release-summary`: current release with highlights for the Releases overview.
 - `release-cards`: Hypercerts Protocol and component version/status cards.
 - `protocol-history`: the full reviewed major/minor history.
 

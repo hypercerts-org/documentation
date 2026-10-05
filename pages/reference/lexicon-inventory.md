@@ -7,7 +7,7 @@ description: Every Hypercerts and Certified schema in the released @hypercerts-o
 
 This page lists the `org.hypercerts.*` and `app.certified.*` schemas in the released [`@hypercerts-org/lexicon`](https://www.npmjs.com/package/@hypercerts-org/lexicon) package: record collections, shared definitions, and permission sets. The package contains no XRPC query or procedure Lexicons; the Hypercerts API documents its methods separately.
 
-Each reference page generates its schema tables from the released package and shows the version it was generated from. [Changes](/changes) lists what each release added.
+Each reference page generates its schema tables from the released package and shows the version it was generated from. [Releases](/releases) lists what each release added.
 
 ## Hypercerts record collections
 

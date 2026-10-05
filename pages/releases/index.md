@@ -1,9 +1,9 @@
 ---
-title: Changes
+title: Releases
 description: The current Hypercerts Protocol release, its new capabilities, and the release histories of the components that support it.
 ---
 
-# Changes
+# Releases
 
 {% release-summary /%}
 

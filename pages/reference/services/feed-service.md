@@ -90,7 +90,7 @@ The service's hosts and DIDs are listed under [Running services](/reference/serv
 
 ## Status and source
 
-The Feed Service is released and running in production and staging. See the [Feed Service changelog](/changes/feed-service) for the current version and release history.
+The Feed Service is released and running in production and staging. See the [Feed Service releases](/releases/feed-service) for the current version and release history.
 
 The source code and the Lexicon schemas for its methods are in the [hypercerts-feed-service repository](https://github.com/hypercerts-org/hypercerts-feed-service). Running your own instance is outside the scope of this documentation for now.
 
@@ -100,4 +100,4 @@ The source code and the Lexicon schemas for its methods are in the [hypercerts-f
 - [Indexer and Hypercerts API](/reference/services/indexer)
 - [Labelers](/reference/services/labelers)
 - [Certified lexicons](/lexicons/certified-lexicons)
-- [Feed Service changelog](/changes/feed-service)
+- [Feed Service releases](/releases/feed-service)

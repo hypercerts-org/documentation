@@ -9,4 +9,4 @@ description: Release status of the account entryway and its relationship to exis
 
 The existing [ePDS changelog](https://github.com/hypercerts-org/ePDS/blob/main/CHANGELOG.md) documents the preceding account infrastructure. Its releases are not labeled as Entryway releases here. The entryway's own changelog will be connected once its release source is established.
 
-Entryway is included in coordinated protocol major/minor releases, with independent component patches. See [Changes](/changes) for the release line and [Account & Identity Setup](/architecture/account-and-identity) for the current account guidance.
+Entryway is included in coordinated protocol major/minor releases, with independent component patches. See [Releases](/releases) for the release line and [Account & Identity Setup](/architecture/account-and-identity) for the current account guidance.

@@ -17,4 +17,4 @@ Until then:
 
 - The [`@hypercerts-org/lexicon`](https://www.npmjs.com/package/@hypercerts-org/lexicon) package provides the schemas, TypeScript types, and record validation. [Introduction to Lexicons](/lexicons/introduction-to-lexicons) shows how to validate a record before writing it.
 - [Client Integration](/client-integration) describes what is available for building today.
-- Follow the SDK's status on [Changes](/changes/sdk).
+- Follow the SDK's status on [Releases](/releases/sdk).

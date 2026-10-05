@@ -91,7 +91,7 @@ Use the production instance for live applications and the staging instance for y
 
 ## Status and source
 
-CGS is released and running in production, staging, and test. See the [CGS changelog](/changes/cgs) for the current version and release history. An instance reports its version at `/health`.
+CGS is released and running in production, staging, and test. See the [CGS releases](/releases/cgs) for the current version and release history. An instance reports its version at `/health`.
 
 The source code is in the [certified-group-service repository](https://github.com/hypercerts-org/certified-group-service). Running your own instance is outside the scope of this documentation for now.
 
@@ -101,4 +101,4 @@ The source code is in the [certified-group-service repository](https://github.co
 - [Certified PDSs](/reference/services/certified-pdss)
 - [Entryway](/reference/services/entryway)
 - [Account & Identity Setup](/architecture/account-and-identity)
-- [CGS changelog](/changes/cgs)
+- [CGS releases](/releases/cgs)

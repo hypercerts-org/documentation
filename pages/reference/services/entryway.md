@@ -83,7 +83,7 @@ Point production applications at the production Certified PDS and your staging e
 
 ## Status and source
 
-The Entryway is under development and has no published release. Follow its progress on [Entryway releases](/changes/entryway). Its source code is not public yet. The sign-in layer in use today is in the public [ePDS repository](https://github.com/hypercerts-org/ePDS). Running your own instance is outside the scope of this documentation for now.
+The Entryway is under development and has no published release. Follow its progress on [Entryway releases](/releases/entryway). Its source code is not public yet. The sign-in layer in use today is in the public [ePDS repository](https://github.com/hypercerts-org/ePDS). Running your own instance is outside the scope of this documentation for now.
 
 ## Related
 
@@ -92,4 +92,4 @@ The Entryway is under development and has no published release. Follow its progr
 - [Certified Group Service](/reference/services/certified-group-service)
 - [Account & Identity Setup](/architecture/account-and-identity)
 - [Certified identity](/core-concepts/certified-identity)
-- [Entryway releases](/changes/entryway)
+- [Entryway releases](/releases/entryway)

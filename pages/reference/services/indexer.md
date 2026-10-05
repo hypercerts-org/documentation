@@ -81,7 +81,7 @@ Writing does not change when the API arrives. Your application keeps writing rec
 
 ## Status and source
 
-The indexer and the Hypercerts API are under development, with no published release and no deployed endpoint. Follow their status on [Hypercerts API releases](/changes/api).
+The indexer and the Hypercerts API are under development, with no published release and no deployed endpoint. Follow their status on [Hypercerts API releases](/releases/api).
 
 The source code is in the [happyview repository](https://github.com/hypercerts-org/happyview), and the planned method definitions are in [hypercerts-api-endpoints](https://github.com/hypercerts-org/hypercerts-api-endpoints). Running your own instance is outside the scope of this documentation for now.
 

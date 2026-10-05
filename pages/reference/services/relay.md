@@ -81,7 +81,7 @@ Hostnames for production and staging are listed under [Running services](/refere
 
 ## Status and source
 
-The hosted Hypercerts Relay and Jetstream are running in production and staging. The project has no published release yet. Follow releases on [Relay changes](/changes/relay).
+The hosted Hypercerts Relay and Jetstream are running in production and staging. The project has no published release yet. Follow releases on [Relay releases](/releases/relay).
 
 The source code for both, including Jetstream, is in the [hypercerts-relay repository](https://github.com/hypercerts-org/hypercerts-relay). Running your own instance is outside the scope of this documentation for now.
 

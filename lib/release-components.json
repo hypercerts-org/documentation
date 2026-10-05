@@ -9,39 +9,39 @@
   {
     "id": "api",
     "title": "Hypercerts API",
-    "path": "/changes/api",
+    "path": "/releases/api",
     "description": "The XRPC read API. Its own release history is being prepared."
   },
   {
     "id": "sdk",
     "title": "Hypercerts SDK",
-    "path": "/changes/sdk",
+    "path": "/releases/sdk",
     "description": "The new SDK is under development; no package release is available yet."
   },
   {
     "id": "cgs",
     "title": "Certified Group Service",
-    "path": "/changes/cgs",
+    "path": "/releases/cgs",
     "sourceId": "cgs-changelog",
     "description": "Group accounts, permissions, and shared repository management."
   },
   {
     "id": "entryway",
     "title": "Entryway",
-    "path": "/changes/entryway",
+    "path": "/releases/entryway",
     "description": "The account entryway is under development; its release history will be linked here."
   },
   {
     "id": "relay",
     "title": "Hypercerts Relay",
-    "path": "/changes/relay",
+    "path": "/releases/relay",
     "sourceId": "relay-changelog",
     "description": "Network ingestion and relay infrastructure."
   },
   {
     "id": "feed",
     "title": "Hypercerts Feed Service",
-    "path": "/changes/feed-service",
+    "path": "/releases/feed-service",
     "sourceId": "feed-changelog",
     "description": "Feed selection and read interfaces."
   }

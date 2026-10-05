@@ -63,7 +63,7 @@ Get a quick explanation of an unfamiliar term.
 
 {% /docs-section %}
 
-{% docs-section title="Changes" layout="table" href="/changes" icon="changes" description="Follow the protocol's major and minor releases, then explore the latest releases of each component." %}
+{% docs-section title="Releases" layout="table" href="/releases" icon="changes" description="Follow the protocol's major and minor releases, then explore the latest releases of each component." %}
 
 {% release-cards /%}
 
