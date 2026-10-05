@@ -57,7 +57,7 @@ Deletion removes the record from your PDS. Cached copies may persist in indexers
 
 ## Record constraints
 
-The PDS itself is schema-agnostic — it will accept any record with a valid `$type`. Validation against lexicon schemas happens downstream: indexers and app views ignore or reject malformed records, and client libraries may validate before submission. To ensure your records are indexed and usable across the ecosystem, they should conform to the lexicon schemas.
+The PDS itself is schema-agnostic — it will accept any record with a valid `$type`. Validation against lexicon schemas happens downstream: indexers and applications ignore or reject malformed records, and client libraries may validate before submission. To ensure your records are indexed and usable across the ecosystem, they should conform to the lexicon schemas.
 
 ### Required fields
 
@@ -128,7 +128,7 @@ Store sensitive data in a private database and reference it by ID if needed.
 
 You can delete records from your PDS at any time. However:
 
-- Indexers (like Hyperindex) may cache records and take time to update
+- Indexers may cache records and take time to update
 - Other users may have already fetched and stored copies
 - The deletion event itself is visible in your repository history
 

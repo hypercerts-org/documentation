@@ -7,7 +7,7 @@ description: Every Hypercerts and Certified schema in the released @hypercerts-o
 
 This page lists the `org.hypercerts.*` and `app.certified.*` schemas in the released [`@hypercerts-org/lexicon`](https://www.npmjs.com/package/@hypercerts-org/lexicon) package: record collections, shared definitions, and permission sets. The package contains no XRPC query or procedure Lexicons; the Hypercerts API documents its methods separately.
 
-Each reference page generates its schema tables from the released package and shows the version it was generated from. [Changes](/changes) lists what each release added.
+Each reference page generates its schema tables from the released package and shows the version it was generated from. [Releases](/releases) lists what each release added.
 
 ## Hypercerts record collections
 
@@ -19,7 +19,7 @@ Each reference page generates its schema tables from the released package and sh
 | `org.hypercerts.claim.rights` | Rights and licensing terms | [Rights](/lexicons/hypercerts-lexicons/rights) |
 | `org.hypercerts.collection` | Weighted grouping of activities, features, or collections; a project is a collection of type `project` | [Collection](/lexicons/hypercerts-lexicons/collection) |
 | `org.hypercerts.entity.feature` | Non-agent subject such as a zone, cohort, or campaign | [Feature](/lexicons/hypercerts-lexicons/feature) |
-| `org.hypercerts.vocab.tag` | Classification term for collections and features | [Vocabulary Tag](/lexicons/hypercerts-lexicons/vocabulary-tag) |
+| `org.hypercerts.vocab.tag` | Classification term for Hypercerts records, used today by collections and features | [Vocabulary Tag](/lexicons/hypercerts-lexicons/vocabulary-tag) |
 | `org.hypercerts.workscope.tag` | Reusable term in a structured work scope | [Work Scope](/lexicons/hypercerts-lexicons/work-scope) |
 | `org.hypercerts.context.attachment` | Documents, evidence, reports, or commentary | [Attachment](/lexicons/hypercerts-lexicons/attachment) |
 | `org.hypercerts.context.measurement` | Quantitative observation with method and evidence | [Measurement](/lexicons/hypercerts-lexicons/measurement) |

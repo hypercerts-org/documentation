@@ -13,9 +13,9 @@ Hypercerts has two building blocks for sharing this material: attachments and me
 
 ## Attachments give people something to inspect
 
-An **attachment** connects material such as documents, photos, datasets, or links to the records it concerns. It can carry a progress update, a research paper, a field report, or a link to a software release.
+An **attachment** is a general-purpose way to connect material to an activity claim or any other record it concerns: documents, photos, datasets, or links. It can carry a progress update, a research paper, a field report, or a link to a software release.
 
-The attachment is a record of its own. It can point to one or several subjects, so the same report can give context to more than one activity. The material can be linked from elsewhere or included as an uploaded file where supported.
+Attachments can come from the project itself or from anyone else, such as a partner, an auditor, or a community member. Each attachment is a record of its own and stays associated with whoever published it. It can point to one or several subjects, so the same report can give context to more than one activity. The material can be linked from elsewhere or included as an uploaded file where supported.
 
 Not every attachment is evidence. A plan explains intent; a progress report describes work; a dataset may help test a claim. Give the material a clear title and description so readers know what they are looking at.
 

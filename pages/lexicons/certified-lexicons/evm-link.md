@@ -60,7 +60,7 @@ An account linking its wallet. The record is published in the repository of `did
 - **One link applies across EVM chains.** For an EOA, `chainId` records which chain was used for signing, but the link applies to the same address on every EVM-compatible chain.
 - **A proof shows a signature was made once, not current control.** There is no expiry or revocation field. The wallet may have changed hands since. To remove a link, delete the record.
 - **An address can be linked to several accounts.** A wallet key can sign messages naming any number of DIDs. When looking up accounts for an address, treat the result as possibly many and show every verified link, not one of them as the owner.
-- **Proof and signatures do different jobs.** `proof` shows the wallet holder consented to the link. The optional `signatures` property shows who produced the record, for example that a platform created it on the user's behalf. Neither replaces the other.
+- **Proof and signatures do different jobs.** `proof` shows the wallet holder consented to the link. The optional `signatures` property can show who produced the record, for example that a platform created it on the user's behalf. Neither replaces the other.
 - **A link proves key control, nothing more.** It doesn't verify the account, the person behind it, or anything the wallet has done onchain.
 
 ## Related

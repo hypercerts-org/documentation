@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import lastUpdated from '../lib/lastUpdated.json';
 
-export function LastUpdated() {
+export function LastUpdated({ hidden = false }) {
   const router = useRouter();
   const currentPath = router.asPath.split('#')[0].split('?')[0];
-  const date = lastUpdated[currentPath];
+  const date = hidden ? undefined : lastUpdated[currentPath];
 
   useEffect(() => {
     // Always remove any stale last-updated element from a previous route,

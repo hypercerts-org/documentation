@@ -126,7 +126,7 @@ Applies to the Certified Group Service, Relay and Jetstream, Feed Service, and L
 
 Applies today to the Hypercerts API, the SDK, and the Entryway, which show **Under development**.
 
-- [ ] Register its changelog in `docs-sources.yml` with `trackRelease: true`, set its `sourceId` in `lib/release-components.json`, and replace its page under `pages/changes/` with an `externalDoc` wrapper. [Build-time changelog imports](remote-markdown.md) has the steps.
+- [ ] Register its changelog in `docs-sources.yml` with `trackRelease: true`, set its `sourceId` in `lib/release-components.json`, and replace its page under `pages/releases/` with an `externalDoc` wrapper. [Build-time changelog imports](remote-markdown.md) has the steps.
 - [ ] Replace its placeholder page with real content: `pages/reference/xrpc-api.md`, `pages/reference/sdk.md`, or `pages/reference/services/entryway.md`. Split it into several pages and add them to `lib/navigation.js` if needed.
 - [ ] Update its row in the components table and in **Running services** on the services overview.
 - [ ] Search the pages for "under development" and for the component's name, and update what is no longer true: the Client Integration info box and integration path, the Indexer page, the Glossary, and the FAQ.

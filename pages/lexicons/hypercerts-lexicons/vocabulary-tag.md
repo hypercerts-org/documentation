@@ -1,6 +1,6 @@
 ---
 title: Vocabulary Tag
-description: Lexicon reference for org.hypercerts.vocab.tag, a reusable term for classifying collections and features.
+description: Lexicon reference for org.hypercerts.vocab.tag, a reusable term for classifying Hypercerts records, used today by collections and features.
 ---
 
 # Vocabulary Tag

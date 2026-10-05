@@ -26,7 +26,7 @@ const QUICK_LINK_PATHS = [
   '/guide',
   '/client-integration',
   '/reference',
-  '/changes',
+  '/releases',
   '/core-concepts/what-is-hypercerts',
   '/core-concepts/hypercerts-core-data-model',
 ];

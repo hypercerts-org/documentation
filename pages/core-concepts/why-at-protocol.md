@@ -31,7 +31,7 @@ AT Protocol works differently. A project's records live in its own repository, u
 
 It works much like a website: you can change hosting providers without losing your address or your content. For the people using an app, all of this stays in the background.
 
-This is what lets trust travel. The updates, endorsements, and funding records a project builds up in one place stay with the project, so the next funder sees what came before, on whatever platform it uses. For a longer introduction to this idea, see Dan Abramov's [Open Social](https://overreacted.io/open-social/).
+This is what lets trust travel. The updates, endorsements, and funding records a project builds up in one place stay connected to the project, so the next funder sees what came before, on whatever platform it uses. For a longer introduction to this idea, see Dan Abramov's [Open Social](https://overreacted.io/open-social/).
 
 ## Other people can add their perspective
 

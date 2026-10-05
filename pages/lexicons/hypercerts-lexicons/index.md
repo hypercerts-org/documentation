@@ -21,7 +21,7 @@ The `org.hypercerts` Lexicons describe work and the information around it: who d
 |---|---|---|
 | [Collection](/lexicons/hypercerts-lexicons/collection) | `org.hypercerts.collection` | Groups activities, features, or collections; projects are collections of type `project` |
 | [Feature](/lexicons/hypercerts-lexicons/feature) | `org.hypercerts.entity.feature` | A place, cohort, or other subject the work concerns |
-| [Vocabulary Tag](/lexicons/hypercerts-lexicons/vocabulary-tag) | `org.hypercerts.vocab.tag` | Classification terms for collections and features |
+| [Vocabulary Tag](/lexicons/hypercerts-lexicons/vocabulary-tag) | `org.hypercerts.vocab.tag` | Classification terms for Hypercerts records, used today by collections and features |
 | [Work Scope](/lexicons/hypercerts-lexicons/work-scope) | `org.hypercerts.workscope.tag`{% br /%}`org.hypercerts.workscope.cel` | Structured descriptions of what an activity covers |
 
 ## Evidence, assessment, and funding

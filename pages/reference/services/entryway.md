@@ -35,7 +35,7 @@ Nothing in this is specific to Certified from your application's side. It runs a
 
 ### What the Entryway changes
 
-In AT Protocol, an entryway is a single front door for a group of PDSs. Users sign in and manage their account at one address, and the entryway routes each account to the PDS that stores its repository (the account's collection of records). The Hypercerts Entryway takes over the sign-in role that ePDS has today, including email and one-time-code login, so that the PDSs behind it can be standard AT Protocol PDSs.
+In AT Protocol, an entryway is a single front door for a group of PDSs. Users sign in and manage their account at one address, and the entryway routes each account to the PDS that stores its repository (the account's collection of records). The Entryway takes over the sign-in role that ePDS has today, including email and one-time-code login, so that the PDSs behind it can be standard AT Protocol PDSs.
 
 Applications keep using AT Protocol OAuth. The details of the Entryway, and anything an existing integration has to change, will be documented here when it is released.
 
@@ -83,7 +83,7 @@ Point production applications at the production Certified PDS and your staging e
 
 ## Status and source
 
-The Entryway is under development and has no published release. Follow its progress on [Entryway releases](/changes/entryway). Its source code is not public yet. The sign-in layer in use today is in the public [ePDS repository](https://github.com/hypercerts-org/ePDS). Running your own instance is outside the scope of this documentation for now.
+The Entryway is under development and has no published release. Follow its progress on [Entryway releases](/releases/entryway). Its source code is not public yet. The sign-in layer in use today is in the public [ePDS repository](https://github.com/hypercerts-org/ePDS). Running your own instance is outside the scope of this documentation for now.
 
 ## Related
 
@@ -92,4 +92,4 @@ The Entryway is under development and has no published release. Follow its progr
 - [Certified Group Service](/reference/services/certified-group-service)
 - [Account & Identity Setup](/architecture/account-and-identity)
 - [Certified identity](/core-concepts/certified-identity)
-- [Entryway releases](/changes/entryway)
+- [Entryway releases](/releases/entryway)

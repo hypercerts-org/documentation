@@ -234,9 +234,10 @@ export default function Layout({ children, frontmatter }) {
             <>
               <Breadcrumbs />
               {frontmatter && <CopyRawButton />}
-              <LastUpdated />
             </>
           )}
+          {/* Mounted on the landing page too, so it can remove the line it appended on the page before */}
+          <LastUpdated hidden={isLanding} />
           <article>{children}</article>
 
 

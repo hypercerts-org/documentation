@@ -3,7 +3,7 @@ title: Hypercerts Documentation
 description: Learn how Hypercerts connects work, evidence, assessments, and funding, then start building with it.
 ---
 
-{% docs-hero eyebrow="Documentation" title="Build on records" turn="that outlast any single app" %}
+{% docs-hero eyebrow="Documentation" title="Build with Hypercerts" %}
 Hypercerts is an open protocol that connects projects with those who review them, vouch for them, and back them. Projects publish their work, updates, and evidence as records they control. Others add trust signals, such as endorsements, evaluations, and funding records, each attributed to whoever provided it.
 
 Learn how these records connect, then build applications that read them and add to them. New to Hypercerts? Start with the introduction at [hypercerts.org](https://hypercerts.org).
@@ -44,7 +44,7 @@ Prepare your integration for real use.
 
 {% /docs-section %}
 
-{% docs-section title="Reference" layout="list" href="/reference" icon="reference" description="Look up the details while you build: record schemas, the API and SDK, services, and supporting tools." %}
+{% docs-section title="Reference" href="/reference" icon="reference" description="Look up the details while you build: record schemas, the API and SDK, services, and supporting tools." %}
 
 {% card-grid %}
 {% card-link title="Lexicon reference" href="/reference/lexicon-inventory" %}
@@ -63,7 +63,7 @@ Get a quick explanation of an unfamiliar term.
 
 {% /docs-section %}
 
-{% docs-section title="Changes" layout="table" href="/changes" icon="changes" description="Follow the protocol's major and minor releases, then explore the latest releases of each component." %}
+{% docs-section title="Releases" layout="table" href="/releases" icon="changes" description="Follow the protocol's major and minor releases, then explore the latest releases of each component." %}
 
 {% release-cards /%}
 

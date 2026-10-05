@@ -1455,7 +1455,7 @@ a.sidebar-link-active:hover {
 .layout-content article .trust-timeline-signals,
 .trust-timeline-signals {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--space-3);
   margin: var(--space-6) 0 0;
   padding: 0;

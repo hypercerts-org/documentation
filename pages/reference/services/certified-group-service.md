@@ -9,7 +9,7 @@ The Certified Group Service (CGS) lets several people manage one AT Protocol acc
 
 ## Where it fits
 
-CGS sits between your application and the PDS (Personal Data Server, the server that stores an account's records) that hosts a group's account. Members sign in to their own accounts through the [Entryway](/reference/services/entryway), and CGS writes to the group's account on a [Certified PDS](/reference/services/certified-pdss) or any other PDS. To everything downstream, a group looks like any other account. The [services overview](/reference/services) has the full diagram.
+CGS sits between your application and the PDS (Personal Data Server, the server that stores an account's records) that hosts a group's account. Members sign in to their own accounts through their PDS today, and through the [Entryway](/reference/services/entryway) once it is released, and CGS writes to the group's account on a [Certified PDS](/reference/services/certified-pdss) or any other PDS. To everything downstream, a group looks like any other account. The [services overview](/reference/services) has the full diagram.
 
 ## AT Protocol background
 
@@ -91,7 +91,7 @@ Use the production instance for live applications and the staging instance for y
 
 ## Status and source
 
-CGS is released and running in production, staging, and test. See the [CGS changelog](/changes/cgs) for the current version and release history. An instance reports its version at `/health`.
+CGS is released and running in production, staging, and test. See the [CGS releases](/releases/cgs) for the current version and release history. An instance reports its version at `/health`.
 
 The source code is in the [certified-group-service repository](https://github.com/hypercerts-org/certified-group-service). Running your own instance is outside the scope of this documentation for now.
 
@@ -101,4 +101,4 @@ The source code is in the [certified-group-service repository](https://github.co
 - [Certified PDSs](/reference/services/certified-pdss)
 - [Entryway](/reference/services/entryway)
 - [Account & Identity Setup](/architecture/account-and-identity)
-- [CGS changelog](/changes/cgs)
+- [CGS releases](/releases/cgs)

@@ -15,10 +15,6 @@ A record in which an account accepts or rejects a relationship that someone else
 
 The record that describes a piece of work: what is being done or was done, by whom, when, and where. Also called a hypercert. Evidence, evaluations, and funding receipts point to it. See [Activity Claims](/core-concepts/what-is-hypercerts).
 
-#### AppView
-
-The AT Protocol term for a service that collects records from across the network and serves them to applications through an API. The Hypercerts [indexer](#indexer) is an AppView.
-
 #### AT Protocol
 
 The open network technology that Hypercerts is built on, also used by Bluesky. It gives every account an identity and a repository for its records, and lets any application read them. See [Why AT Protocol?](/core-concepts/why-at-protocol).
@@ -141,7 +137,7 @@ A service that collects records from many accounts and makes them searchable, in
 
 #### Jetstream
 
-A service that turns the [firehose](#firehose) into a filtered stream of record changes in plain JSON. The Hypercerts Jetstream carries only Hypercerts and Certified records. See [Relay and Jetstream](/reference/services/relay).
+A service that turns the [firehose](#firehose) into a filtered stream of record changes in plain JSON. The Hypercerts Jetstream keeps only the record collections it is configured for, such as Hypercerts and Certified records. See [Relay and Jetstream](/reference/services/relay).
 
 #### Label
 
@@ -229,7 +225,7 @@ Information that helps someone decide whether to rely on a project or its work: 
 
 #### Vocabulary tag
 
-A reusable classification term that collections and features can refer to, so directories can group projects by subject. See [Vocabulary Tag](/lexicons/hypercerts-lexicons/vocabulary-tag).
+A reusable term for classifying Hypercerts records. Today collections and features refer to it, so directories can group projects by subject. See [Vocabulary Tag](/lexicons/hypercerts-lexicons/vocabulary-tag).
 
 #### Work scope
 

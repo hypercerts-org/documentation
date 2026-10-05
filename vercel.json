@@ -4,13 +4,33 @@
   "framework": "nextjs",
   "redirects": [
     {
+      "source": "/changes",
+      "destination": "/releases",
+      "permanent": true
+    },
+    {
+      "source": "/changes/:path*",
+      "destination": "/releases/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/raw/changes.md",
+      "destination": "/raw/releases.md",
+      "permanent": true
+    },
+    {
+      "source": "/raw/changes/:path*",
+      "destination": "/raw/releases/:path*",
+      "permanent": true
+    },
+    {
       "source": "/change-history",
-      "destination": "/changes",
+      "destination": "/releases",
       "permanent": true
     },
     {
       "source": "/raw/change-history.md",
-      "destination": "/raw/changes.md",
+      "destination": "/raw/releases.md",
       "permanent": true
     },
     {
@@ -165,12 +185,12 @@
     },
     {
       "source": "/roadmap",
-      "destination": "/changes",
+      "destination": "/releases",
       "permanent": true
     },
     {
       "source": "/raw/roadmap.md",
-      "destination": "/raw/changes.md",
+      "destination": "/raw/releases.md",
       "permanent": true
     }
   ]

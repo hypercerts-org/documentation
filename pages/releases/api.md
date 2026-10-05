@@ -9,4 +9,4 @@ description: Release status of the Hypercerts XRPC API.
 
 The API implementation builds on [HappyView](https://github.com/hypercerts-org/happyview). HappyView's own version is not the version of the Hypercerts API contract. This page will import the API's own changelog when its release source is established.
 
-The Hypercerts API is included in coordinated protocol major/minor releases, with independent component patches. See [Changes](/changes) for the current release line and component status, or [Client Integration](/client-integration) for implementation guidance as it develops.
+The Hypercerts API is included in coordinated protocol major/minor releases, with independent component patches. See [Releases](/releases) for the current release line and component status, or [Client Integration](/client-integration) for implementation guidance as it develops.
