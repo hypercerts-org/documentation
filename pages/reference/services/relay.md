@@ -9,7 +9,7 @@ Hypercerts records are spread across many servers, one repository per account. T
 
 ## Where it fits
 
-The relay reads from PDSs (Personal Data Servers, the servers that store accounts' records), including the [Certified PDSs](/reference/services/certified-pdss). Jetstream reads from the relay and keeps only Hypercerts and Certified records. The main consumer of Jetstream is the [indexer](/reference/services/indexer), which turns the stream into the searchable Hypercerts API. The [services overview](/reference/services) has the full diagram.
+The relay reads from PDSs (Personal Data Servers, the servers that store accounts' records), including the [Certified PDSs](/reference/services/certified-pdss). Jetstream reads from the relay and keeps only the record collections it is configured for, such as Hypercerts and Certified records. The main consumer of Jetstream is the [indexer](/reference/services/indexer), which turns the stream into the searchable Hypercerts API. The [services overview](/reference/services) has the full diagram.
 
 ## AT Protocol background
 

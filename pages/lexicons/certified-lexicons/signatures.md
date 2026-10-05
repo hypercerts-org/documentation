@@ -20,7 +20,7 @@ Unsigned records are the normal case. For how signatures fit alongside other tru
 
 ## How it's used
 
-- **A platform marks records it produced.** When an app writes records into a user's repository, the commit is attributed to the user. An inline signature made with the platform's key is how a reader can tell which platform produced the record.
+- **A platform marks records it produced.** When an app writes records into a user's repository, the commit is attributed to the user. A platform can add an inline signature made with its own key, so a reader can check which platform produced the record.
 - **A third party attests to a record.** An auditor computes the CID of a project's activity and publishes a proof record naming it, with a `note` explaining what they checked. The attestor needs no write access to the project's repository.
 - **The author surfaces the attestation.** The record's author adds a strong reference to the proof record in the record's `signatures` array, so readers of the record can find it.
 - **Readers verify.** An app checks each entry independently and shows which signers or attestors it could verify.

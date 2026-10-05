@@ -15,17 +15,17 @@ The indexer reads the stream of record changes that [Jetstream](/reference/servi
 
 In AT Protocol, each account's records live in its own repository on a PDS (Personal Data Server). Reading one record is easy when you know its address. A question such as "which activities have recent evaluations?" is not, because the answer is spread over many repositories on many servers.
 
-An **AppView** is the kind of service that answers such questions. It consumes the network's stream of record changes, keeps the records it cares about in its own database, and serves an API over them. The records stay in their owners' repositories. The AppView holds a copy arranged for lookups.
+A service that answers such questions combines an indexer, a data plane, and an API over them. The indexer consumes the network's stream of record changes and keeps the records it cares about in the data plane, its own database. The API answers questions from that database. The records stay in their owners' repositories; the data plane holds a copy arranged for lookups.
 
 This gives AT Protocol applications a characteristic shape: they **read from an indexed view and write to the user's PDS**. A new record reaches the view a moment later, by way of the relay.
 
-AppViews and PDSs expose their APIs through **XRPC**, AT Protocol's convention for HTTP APIs. Each method is named by an NSID (Namespaced Identifier), such as `org.hypercerts.claim.getActivity`, and is called at `/xrpc/<NSID>`. Queries are `GET` requests with URL parameters, and procedures are `POST` requests with a JSON body. Both are described by Lexicon schemas, the same schema language that defines record types.
+PDSs and APIs like this one are called through **XRPC**, AT Protocol's convention for HTTP APIs. Each method is named by an NSID (Namespaced Identifier), such as `org.hypercerts.claim.getActivity`, and is called at `/xrpc/<NSID>`. Queries are `GET` requests with URL parameters, and procedures are `POST` requests with a JSON body. Both are described by Lexicon schemas, the same schema language that defines record types.
 
 ## How it works
 
 ### Built on HappyView
 
-The Hypercerts Foundation is building the indexer on [HappyView](https://github.com/hypercerts-org/happyview), an AppView that is driven by Lexicon schemas. Given the schemas for a set of record types and API methods, HappyView sets up storage, indexing, and XRPC endpoints for them. Lua scripts define the query logic where a method needs more than a plain lookup.
+The Hypercerts Foundation is building the indexer on [HappyView](https://github.com/hypercerts-org/happyview), a framework for indexing AT Protocol records and serving an API over them, driven by Lexicon schemas. Given the schemas for a set of record types and API methods, HappyView sets up storage, indexing, and XRPC endpoints for them. Lua scripts define the query logic where a method needs more than a plain lookup.
 
 The Foundation maintains a fork of HappyView and aims to contribute its changes back to the original project. The goal is for the hosted Hypercerts API to be standard HappyView plus Hypercerts configuration: the schemas, the configuration files, and the query scripts.
 

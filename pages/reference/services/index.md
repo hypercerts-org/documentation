@@ -7,7 +7,7 @@ description: The services that make up the Hypercerts stack, how they fit togeth
 
 Hypercerts records live in the repositories of the people and organizations who publish them, spread across many servers. A set of services, most of them operated by the Hypercerts Foundation, lets people sign in and publish records, and lets applications find and read them.
 
-This section describes each service at the level a project needs to integrate with Hypercerts: what it does, how it works, and how your application uses it. Most projects integrate through the [SDK](/reference/sdk), or by calling the [Hypercerts API](/reference/xrpc-api) directly. Running your own copy of a service is outside the scope of this documentation for now; each page links to the service's source code.
+This section describes each service at the level a project needs to integrate with Hypercerts: what it does, how it works, and how your application uses it. Once they are released, most projects will integrate through the [SDK](/reference/sdk) or by calling the [Hypercerts API](/reference/xrpc-api) directly. Running your own copy of a service is outside the scope of this documentation for now; each page links to the service's source code.
 
 {% stack-diagram /%}
 

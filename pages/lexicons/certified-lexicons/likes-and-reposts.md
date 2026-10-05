@@ -19,7 +19,7 @@ Both records use the same shape as Bluesky's `app.bsky.feed.like` and `app.bsky.
 
 - **Showing appreciation.** A user likes a project's latest activity. Apps show a like count and let people see who liked it.
 - **Spreading the word.** A funder reposts a project's activity so its followers see it in their feeds.
-- **Crediting discovery.** When someone likes or reposts a record they found through a repost, `via` points at that repost. AppViews use it to credit the account that surfaced the record and to trace repost chains.
+- **Crediting discovery.** When someone likes or reposts a record they found through a repost, `via` points at that repost. Indexers and applications use it to credit the account that surfaced the record and to trace repost chains.
 - **Counting.** Indexers count likes and reposts by `subject.uri`, so all versions of a record share one count. The `subject.cid` still tells readers which version each person saw.
 
 To undo a like or a repost, delete the record.

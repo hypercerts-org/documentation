@@ -9,7 +9,7 @@ description: What Lexicons are, how the Hypercerts and Certified namespaces divi
 
 A Lexicon is an AT Protocol schema. It tells software what kind of record it is reading, which fields to expect, and which constraints apply, such as required fields, maximum lengths, and accepted formats. Each Lexicon has an NSID (namespaced identifier), such as `org.hypercerts.claim.activity`, that records carry in their `$type` field.
 
-A schema describes the shape of one record. The Hypercerts Protocol is how the records are used together: which record points to which, and conventions the schema alone can't express. For example, a project is a [collection](/lexicons/hypercerts-lexicons/collection) with `type` set to `project`, and an evaluation links to the exact version of the activity it assessed. The reference pages describe both.
+A schema describes the shape of one record. The Hypercerts Protocol is the lexicons together with guidance on how the records are used together: which record points to which, and conventions the schema alone can't express. For example, a project is a [collection](/lexicons/hypercerts-lexicons/collection) with `type` set to `project`, and an evaluation links to the exact version of the activity it assessed. The reference pages describe both.
 
 ## Two namespaces
 

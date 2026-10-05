@@ -5,7 +5,7 @@ description: The Personal Data Servers the Hypercerts Foundation hosts for Certi
 
 # Certified PDSs
 
-The Certified PDSs are the Personal Data Servers (PDSs) that the Hypercerts Foundation hosts for Certified accounts, the accounts people create at [certified.app](https://certified.app). A PDS is the server that stores an account's records and serves them to any application that asks. If your users sign in with Certified, their Hypercerts records live here. If they use another AT Protocol account, their records live on another PDS and work the same way.
+The Certified PDSs are the Personal Data Servers (PDSs) that the Hypercerts Foundation hosts for Certified accounts, which people manage at [certified.app](https://certified.app). A PDS is the server that stores an account's records and serves them to any application that asks. If your users sign in with Certified, their Hypercerts records live here. If they use another AT Protocol account, their records live on another PDS and work the same way.
 
 ## Where it fits
 
@@ -68,7 +68,7 @@ curl --get https://certified.one/xrpc/com.atproto.repo.getRecord \
 
 The response contains the record's AT-URI, its CID (a hash of its content), and the record itself in `value`. To list every record in a collection, call `com.atproto.repo.listRecords` with the same `repo` and `collection`. Send these requests to the PDS named in the account's DID document, which is a Certified PDS only for Certified accounts. To read records across many accounts, use [Jetstream](/reference/services/relay) or the [Hypercerts API](/reference/services/indexer) instead of calling each PDS.
 
-**Writing.** Your application first signs the user in with AT Protocol OAuth. The [Entryway](/reference/services/entryway) page shows how, both today and after the Entryway is released. With the resulting session it calls `com.atproto.repo.createRecord`, `putRecord`, or `deleteRecord` on the user's PDS, usually through the [SDK](/reference/sdk). Use the production PDS for live applications and the staging PDS for your own staging environment.
+**Writing.** Your application first signs the user in with AT Protocol OAuth. The [Entryway](/reference/services/entryway) page shows how, both today and after the Entryway is released. With the resulting session it calls `com.atproto.repo.createRecord`, `putRecord`, or `deleteRecord` on the user's PDS. Once the [SDK](/reference/sdk) is released, most applications will make these calls through it. Use the production PDS for live applications and the staging PDS for your own staging environment.
 
 **Checking an instance.** `/health` returns the ePDS version an instance runs, and the standard `/xrpc/_health` returns the version of the underlying PDS.
 

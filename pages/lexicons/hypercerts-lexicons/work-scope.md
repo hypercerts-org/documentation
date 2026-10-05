@@ -22,7 +22,7 @@ A list of tags can only say "all of these". An expression can also say "this but
 - **A project writes a scope for its activity.** The activity's `workScope` holds a CEL object whose `expression` names tag keys, and whose `usedTags` pins the exact tag records those keys refer to.
 - **Applications compare and filter.** A funder's application can evaluate expressions to find activities within its focus, or check whether two claims describe overlapping work.
 
-Work-scope tags are separate from [vocabulary tags](/lexicons/hypercerts-lexicons/vocabulary-tag), which classify collections and features. An expression uses work-scope tags only.
+Work-scope tags are separate from [vocabulary tags](/lexicons/hypercerts-lexicons/vocabulary-tag), which classify Hypercerts records, today collections and features. An expression uses work-scope tags only.
 
 ## Work-scope tag schema
 
@@ -108,6 +108,6 @@ An activity using that term, together with `community_ownership` and an explicit
 ## Related
 
 - [Activity Claim](/lexicons/hypercerts-lexicons/activity-claim): the record whose `workScope` holds the CEL object or a plain-text scope.
-- [Vocabulary Tag](/lexicons/hypercerts-lexicons/vocabulary-tag): classification terms for collections and features.
+- [Vocabulary Tag](/lexicons/hypercerts-lexicons/vocabulary-tag): classification terms for Hypercerts records, used today by collections and features.
 - [Shared Definitions](/lexicons/hypercerts-lexicons/shared-defs): the `uri` and `smallBlob` objects used by `referenceDocument`.
 - Guide: [Describing and Classifying Work](/core-concepts/cel-work-scopes), [Activity Claims](/core-concepts/what-is-hypercerts), [Records That Change Over Time](/architecture/data-flow-and-lifecycle).

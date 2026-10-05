@@ -7,7 +7,7 @@ description: Help people and applications understand what an activity covers and
 
 People describe similar work in different ways. That is fine for a conversation, but it makes searching and comparing projects harder. Shared terms help an application recognize connections without throwing away the detail in people's descriptions.
 
-Hypercerts offers two related tools: work scopes for activities, and classification tags for collections and features.
+Hypercerts offers two related tools: work scopes for activities, and classification tags for other records, today collections and features.
 
 ## Say what an activity covers
 

@@ -35,7 +35,7 @@ Nothing in this is specific to Certified from your application's side. It runs a
 
 ### What the Entryway changes
 
-In AT Protocol, an entryway is a single front door for a group of PDSs. Users sign in and manage their account at one address, and the entryway routes each account to the PDS that stores its repository (the account's collection of records). The Hypercerts Entryway takes over the sign-in role that ePDS has today, including email and one-time-code login, so that the PDSs behind it can be standard AT Protocol PDSs.
+In AT Protocol, an entryway is a single front door for a group of PDSs. Users sign in and manage their account at one address, and the entryway routes each account to the PDS that stores its repository (the account's collection of records). The Entryway takes over the sign-in role that ePDS has today, including email and one-time-code login, so that the PDSs behind it can be standard AT Protocol PDSs.
 
 Applications keep using AT Protocol OAuth. The details of the Entryway, and anything an existing integration has to change, will be documented here when it is released.
 

@@ -9,7 +9,7 @@ The Certified Group Service (CGS) lets several people manage one AT Protocol acc
 
 ## Where it fits
 
-CGS sits between your application and the PDS (Personal Data Server, the server that stores an account's records) that hosts a group's account. Members sign in to their own accounts through the [Entryway](/reference/services/entryway), and CGS writes to the group's account on a [Certified PDS](/reference/services/certified-pdss) or any other PDS. To everything downstream, a group looks like any other account. The [services overview](/reference/services) has the full diagram.
+CGS sits between your application and the PDS (Personal Data Server, the server that stores an account's records) that hosts a group's account. Members sign in to their own accounts through their PDS today, and through the [Entryway](/reference/services/entryway) once it is released, and CGS writes to the group's account on a [Certified PDS](/reference/services/certified-pdss) or any other PDS. To everything downstream, a group looks like any other account. The [services overview](/reference/services) has the full diagram.
 
 ## AT Protocol background
 
