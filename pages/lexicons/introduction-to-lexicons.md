@@ -1,21 +1,33 @@
 ---
 title: Introduction to Lexicons
-description: Understand lexicons — the shared schemas that define record types in the Hypercerts Protocol.
+description: What Lexicons are, how the Hypercerts and Certified namespaces divide the records, and how the reference pages are organized.
 ---
 
 # Introduction to Lexicons
 
 ## What is a lexicon?
 
-An ATProto lexicon is essentially a schema or template that defines what data can be stored and how it should be structured. Think of it like a form with specific fields - it tells you what information is required, what's optional, and what format each piece of data should follow.
+A Lexicon is an AT Protocol schema. It tells software what kind of record it is reading, which fields to expect, and which constraints apply, such as required fields, maximum lengths, and accepted formats. Each Lexicon has an NSID (namespaced identifier), such as `org.hypercerts.claim.activity`, that records carry in their `$type` field.
 
-## Lexicon Categories
+A schema describes the shape of one record. The Hypercerts Protocol is the lexicons together with guidance on how the records are used together: which record points to which, and conventions the schema alone can't express. For example, a project is a [collection](/lexicons/hypercerts-lexicons/collection) with `type` set to `project`, and an evaluation links to the exact version of the activity it assessed. The reference pages describe both.
 
-All lexicons follow the principle that "everything is a claim" - whether it's a hypercert, a measurement, or an attachment, each represents a verifiable assertion stored on the ATProto network. This creates a composable system where claims can reference and build upon each other while maintaining clear data structures and relationships.
+## Two namespaces
 
-[**Certified Lexicons**](certified-lexicons/) provide foundational building blocks that can be shared across multiple protocols. These include common data types, standardized location references, profiles, badges, and other universal concepts that extend beyond hypercerts alone.
+[**Hypercerts Lexicons**](/lexicons/hypercerts-lexicons) (`org.hypercerts.*`) describe work and the information around it: activity claims, contributors, collections, evidence, evaluations, and funding receipts.
 
-[**Hypercerts Lexicons**](hypercerts-lexicons/) contain the core claim types specific to impact tracking. These lexicons define how to structure and relate different types of impact claims. The central record is the activity claim (the hypercert itself), which lives in the `org.hypercerts.claim` namespace. Supporting records like measurements, attachments, evaluations, and acknowledgements live in the `org.hypercerts.context` namespace, enabling anyone to add context to existing claims.
+[**Certified Lexicons**](/lexicons/certified-lexicons) (`app.certified.*`) provide shared records for identity and recognition: profiles, organizations, locations, badges, follows, and signatures. Any application can use them.
+
+The [Lexicon inventory](/reference/lexicon-inventory) lists every schema in the current release.
+
+## How the reference pages are organized
+
+Each record type has a page with the same sections:
+
+- **Overview** and **How it's used**: what the record is for, who publishes it, and how it connects to other records. For the concepts behind them, see the [Guide](/guide).
+- **Schema**: generated from the released `@hypercerts-org/lexicon` package, with the record key, required and optional properties, types, constraints, and nested definitions.
+- **Example**: a realistic record that validates against the schema.
+- **Rules and best practices**: conventions that the schema can't enforce.
+- **Related**: the records and Guide pages it connects to.
 
 ## Validate records before writing
 

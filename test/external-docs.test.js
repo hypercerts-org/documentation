@@ -147,12 +147,12 @@ test('loads generated external content and reports missing or malformed files', 
   });
   for (const malformed of ['{broken', '{}', '{"sources":[]}']) {
     withTempFile('content.json', malformed, (path) => {
-      assert.throws(() => loadExternalDocsContent(path), /Run npm run generate:external-docs first/);
+      assert.throws(() => loadExternalDocsContent(path), /Run pnpm run generate:external-docs first/);
     });
   }
   assert.throws(
     () => loadExternalDocsContent(join(tmpdir(), 'missing-external-docs-content.json')),
-    /Run npm run generate:external-docs first/,
+    /Run pnpm run generate:external-docs first/,
   );
 });
 
@@ -182,6 +182,7 @@ test('configures the Lexicon changelog as the releases page external source', ()
     repo: 'hypercerts-org/hypercerts-lexicon',
     ref: 'main',
     path: 'CHANGELOG.md',
+    trackRelease: true,
   });
 
   const pagePath = join(__dirname, '..', 'pages', 'reference', 'releases.md');

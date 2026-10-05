@@ -1,49 +1,48 @@
 ---
-title: Common Use Cases
-description: See how hypercerts work for different types of contributions.
+title: What You Can Build
+description: Explore how project tools, evaluation services, funding platforms, and agents can build on shared information.
 ---
 
-# Common Use Cases
+# What You Can Build
 
-Hypercerts work for any kind of impact work. This page shows four common scenarios and how they map to the hypercerts data model.
+You don't have to build the whole journey from project reporting to funding. You can make one part of it better, using information others publish and contributing something useful in return.
 
-## Open-source software maintenance
+Here are some ways the building blocks in this Guide could come together.
 
-A team maintains a widely-used library. They create a hypercert covering a year of maintenance — bug fixes, documentation updates, and community support.
+## Help projects tell their story once
 
-```typescript
-const result = await agent.com.atproto.repo.createRecord({
-  repo: agent.session.did,
-  collection: "org.hypercerts.claim.activity",
-  record: {
-    title: "Library maintenance, 2025",
-    shortDescription: "Ongoing maintenance of an open-source library",
-    description: "Fixed 47 bugs, reviewed 120 pull requests, updated documentation, and provided community support on Discord.",
-    workScope: { allOf: ["Software Development", "Open Source"] },
-    startDate: "2025-01-01T00:00:00Z",
-    endDate: "2025-12-31T23:59:59Z",
-    $type: "org.hypercerts.claim.activity",
-    createdAt: new Date().toISOString(),
-  },
-});
-```
+A project dashboard could help a team describe its work, organize activities, and publish updates with evidence. The team uses a familiar interface, while the application publishes shared records that other tools can read.
 
-The team then attaches links to the repository, release notes, and commit history. Contribution records identify who did what — core developers, documentation leads, community managers. Organizations that depend on the library can fund this work retroactively.
+For a land stewardship project, that might mean grouping restoration activities and land areas, linking field observations, and showing progress across seasons. The resulting history can be useful to the next funder as well as to the team itself.
 
-## Regenerative land stewardship
+## Make expertise easier to contribute
 
-A conservation group restores degraded forest over several years. The activity claim covers the full project timeline (2020–2025) with work scopes like "Ecosystem Restoration" and "Biodiversity Conservation".
+An evaluation tool could help reviewers find work in their field, inspect evidence, and publish assessments. The useful contribution is the reviewer's insight, made available beyond the process that first requested it.
 
-Measurement records track hectares restored, native species planted, and carbon sequestration estimates. Location records anchor the work geographically. Attachments include satellite imagery, biodiversity surveys, and field reports. Climate funders can review the full record before deciding to support the next phase.
+For research, this might mean an assessment of methods and findings. For open-source software, it might mean a review of maintenance quality and the experience of teams that depend on the library. Each field can choose its own questions and methods.
 
-## Scientific research
+## Bring existing knowledge into funding decisions
 
-A research team completes a multi-year study and wants to document the effort with clear contributor roles. The activity claim describes the research and its outputs, with contribution records identifying the principal investigator, postdocs, and graduate students along with their relative contributions.
+A funding platform could read project information and earlier assessments, ask only for the additional context its process needs, and record support afterward.
 
-Attachments link to published papers (via DOI), lab notebooks, and experimental protocols. Evaluation records capture peer review outcomes. Research foundations or industry partners interested in the field can fund the work.
+Crowdfunding with matching funds is an existing application described on the [landing page](https://hypercerts.org). Other mechanisms, such as outcome payments or milestone bounties, could use similar information, with their own selection and payment rules.
 
-## Community event organization
+## Make recognition easier to discover
 
-A group runs regular workshops teaching practical skills to underrepresented communities. They want to document their educational impact. The activity claim covers the full year of workshops with work scopes like "Education" and "Community Building".
+A network directory could show projects alongside certifications or endorsements from organizations its users recognize. It could explain who awarded each badge and link to supporting assessments.
 
-Measurement records track total attendees, completion rates, and outcomes. Contribution records identify instructors, venue hosts, and curriculum developers. Attachments include workshop materials and participant feedback. Organizations with community programs can review the record and decide to fund future sessions.
+A funder exploring a new field could use that directory to find relevant projects and people with expertise, then inspect the underlying records rather than rely only on a list of names.
+
+## Give agents useful sources to work with
+
+An agent could help a project prepare an update, find relevant evaluations for a funder, or flag a question that needs human review. Shared formats make it easier to distinguish a project's claim from someone else's assessment and follow each back to its source.
+
+An agent's summary is still an interpretation. Keeping the evidence and its publisher visible lets people check the conclusions, compare perspectives, and ask better questions.
+
+## Choose the connection your users need
+
+A useful starting point is a concrete question: “What has this project done since we funded it?” or “Which assessments can we reuse?” Then identify the records needed to answer it.
+
+Your app may begin by reading existing information, publishing one kind of record, or doing both. It gains value from the wider network without having to reproduce every other tool.
+
+Next: [Building on Shared Records](/core-concepts/validation-and-interpretation), the final step before Client Integration.

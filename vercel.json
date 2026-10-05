@@ -1,5 +1,197 @@
 {
-  "buildCommand": "npm run build",
-  "installCommand": "npm install",
-  "framework": "nextjs"
+  "buildCommand": "pnpm run build",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "framework": "nextjs",
+  "redirects": [
+    {
+      "source": "/changes",
+      "destination": "/releases",
+      "permanent": true
+    },
+    {
+      "source": "/changes/:path*",
+      "destination": "/releases/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/raw/changes.md",
+      "destination": "/raw/releases.md",
+      "permanent": true
+    },
+    {
+      "source": "/raw/changes/:path*",
+      "destination": "/raw/releases/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/change-history",
+      "destination": "/releases",
+      "permanent": true
+    },
+    {
+      "source": "/raw/change-history.md",
+      "destination": "/raw/releases.md",
+      "permanent": true
+    },
+    {
+      "source": "/getting-started/quickstart",
+      "destination": "/client-integration",
+      "permanent": true
+    },
+    {
+      "source": "/getting-started/working-with-evaluations",
+      "destination": "/client-integration",
+      "permanent": true
+    },
+    {
+      "source": "/tools/scaffold",
+      "destination": "/client-integration",
+      "permanent": true
+    },
+    {
+      "source": "/tools/hyperboards",
+      "destination": "/reference",
+      "permanent": true
+    },
+    {
+      "source": "/raw/getting-started/quickstart.md",
+      "destination": "/raw/client-integration.md",
+      "permanent": true
+    },
+    {
+      "source": "/raw/getting-started/working-with-evaluations.md",
+      "destination": "/raw/client-integration.md",
+      "permanent": true
+    },
+    {
+      "source": "/raw/tools/scaffold.md",
+      "destination": "/raw/client-integration.md",
+      "permanent": true
+    },
+    {
+      "source": "/raw/tools/hyperboards.md",
+      "destination": "/raw/reference.md",
+      "permanent": true
+    },
+    {
+      "source": "/architecture/epds",
+      "destination": "https://github.com/hypercerts-org/ePDS/blob/main/docs/architecture.md",
+      "permanent": true
+    },
+    {
+      "source": "/raw/architecture/epds.md",
+      "destination": "https://github.com/hypercerts-org/ePDS/blob/main/docs/architecture.md",
+      "permanent": true
+    },
+    {
+      "source": "/tutorials/epds",
+      "destination": "https://github.com/hypercerts-org/ePDS/blob/main/docs/tutorial.md",
+      "permanent": true
+    },
+    {
+      "source": "/raw/tutorials/epds.md",
+      "destination": "https://github.com/hypercerts-org/ePDS/blob/main/docs/tutorial.md",
+      "permanent": true
+    },
+    {
+      "source": "/tools/hyperindex",
+      "destination": "https://github.com/GainForest/hyperindex/blob/main/docs/hyperindex.md",
+      "permanent": true
+    },
+    {
+      "source": "/raw/tools/hyperindex.md",
+      "destination": "https://github.com/GainForest/hyperindex/blob/main/docs/hyperindex.md",
+      "permanent": true
+    },
+    {
+      "source": "/architecture/overview",
+      "destination": "/core-concepts/why-at-protocol",
+      "permanent": true
+    },
+    {
+      "source": "/raw/architecture/overview.md",
+      "destination": "/raw/core-concepts/why-at-protocol.md",
+      "permanent": true
+    },
+    {
+      "source": "/reference/certified-services",
+      "destination": "/reference/services",
+      "permanent": true
+    },
+    {
+      "source": "/raw/reference/certified-services.md",
+      "destination": "/raw/reference/services.md",
+      "permanent": true
+    },
+    {
+      "source": "/reference/certified-pdss",
+      "destination": "/reference/services/certified-pdss",
+      "permanent": true
+    },
+    {
+      "source": "/raw/reference/certified-pdss.md",
+      "destination": "/raw/reference/services/certified-pdss.md",
+      "permanent": true
+    },
+    {
+      "source": "/reference/certified-group-services",
+      "destination": "/reference/services/certified-group-service",
+      "permanent": true
+    },
+    {
+      "source": "/raw/reference/certified-group-services.md",
+      "destination": "/raw/reference/services/certified-group-service.md",
+      "permanent": true
+    },
+    {
+      "source": "/architecture/certified-group-service",
+      "destination": "/reference/services/certified-group-service",
+      "permanent": true
+    },
+    {
+      "source": "/raw/architecture/certified-group-service.md",
+      "destination": "/raw/reference/services/certified-group-service.md",
+      "permanent": true
+    },
+    {
+      "source": "/tools/hypercerts-relay",
+      "destination": "/reference/services/relay",
+      "permanent": true
+    },
+    {
+      "source": "/raw/tools/hypercerts-relay.md",
+      "destination": "/raw/reference/services/relay.md",
+      "permanent": true
+    },
+    {
+      "source": "/tools/labelers",
+      "destination": "/reference/services/labelers",
+      "permanent": true
+    },
+    {
+      "source": "/raw/tools/labelers.md",
+      "destination": "/raw/reference/services/labelers.md",
+      "permanent": true
+    },
+    {
+      "source": "/tools/hypercerts-feed-service",
+      "destination": "/reference/services/feed-service",
+      "permanent": true
+    },
+    {
+      "source": "/raw/tools/hypercerts-feed-service.md",
+      "destination": "/raw/reference/services/feed-service.md",
+      "permanent": true
+    },
+    {
+      "source": "/roadmap",
+      "destination": "/releases",
+      "permanent": true
+    },
+    {
+      "source": "/raw/roadmap.md",
+      "destination": "/raw/releases.md",
+      "permanent": true
+    }
+  ]
 }

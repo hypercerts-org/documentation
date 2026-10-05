@@ -39,7 +39,7 @@ This keeps task-specific instructions close to the projects they describe while 
 | Task area | Focused skill |
 | --- | --- |
 | ePDS login, AT Protocol OAuth, OTP login, email-first auth, PAR, PKCE, and DPoP flows | `epds-login` |
-| Hyperindex GraphQL queries, hosted endpoints, filtering, pagination, sorting, and consumer query workflows | `hyperindex` |
+| Hyperindex GraphQL queries for existing integrations (being retired in favor of the Hypercerts API) | `hyperindex` |
 | Certified Group Service app development, group-owned records, member and role management, blob uploads, and API keys | `app-development-with-cgs` |
 | Certified Organization Labeler / OrgLabeler labels for filtering certified actors and hiding likely test data | `orglabeler` |
 | Hypercerts lexicons, generated TypeScript types, validators, and reading or writing Hypercerts records | `building-with-hypercerts-lexicons` |

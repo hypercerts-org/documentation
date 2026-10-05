@@ -34,17 +34,20 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6.1.0
+
       - name: Setup Node
         uses: actions/setup-node@v6.4.0
         with:
           node-version: 22
-          cache: npm
+          cache: pnpm
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Generate current docs fingerprint
-        run: npm run docs:fingerprint -- --output current-docs-fingerprint.json
+        run: pnpm run docs:fingerprint --output current-docs-fingerprint.json
         env:
           DOCS_SOURCE_TOKEN: ${{ secrets.DOCS_SOURCE_TOKEN }}
           GITHUB_TOKEN: ${{ github.token }}
