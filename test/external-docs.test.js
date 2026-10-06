@@ -113,6 +113,7 @@ test('validates registry shape, source identity, repository, ref, path, and dupl
     'sources:\n  - id: docs\n    title: Docs\n    repo: hypercerts-org/docs\n    ref: main\n    path: ../guide.md',
     'sources:\n  - id: docs\n    title: Docs\n    repo: hypercerts-org/docs\n    ref: main\n    path: /guide.md',
     'sources:\n  - id: docs\n    title: Docs\n    repo: hypercerts-org/docs\n    ref: main\n    path: docs//guide.md',
+    'sources:\n  - id: docs\n    title: Docs\n    repo: hypercerts-org/docs\n    ref: main\n    path: guide.md\n    releaseTagPrefix: "@org/package@"',
     "sources:\n  - id: docs\n    title: Docs\n    repo: hypercerts-org/docs\n    ref: main\n    path: 'docs\\\\guide.md'",
     'sources:\n  - id: docs\n    title: One\n    repo: hypercerts-org/docs\n    ref: main\n    path: one.md\n  - id: docs\n    title: Two\n    repo: hypercerts-org/docs\n    ref: main\n    path: two.md',
   ];
@@ -191,6 +192,27 @@ test('configures the Lexicon changelog as the releases page external source', ()
     title: 'Hypercerts Lexicon releases',
     description: 'Release history for the Hypercerts Lexicon schemas and TypeScript package.',
     externalDoc: 'hypercerts-lexicon-changelog',
+  });
+});
+
+test('configures API releases from the package changelog and scoped tag', () => {
+  const source = loadExternalDocSources().find(({ id }) => id === 'api-changelog');
+  assert.deepEqual(source, {
+    id: 'api-changelog',
+    title: 'Hypercerts API changelog',
+    repo: 'hypercerts-org/api',
+    ref: 'main',
+    path: 'api/CHANGELOG.md',
+    trackRelease: true,
+    releaseTagPrefix: '@hypercerts-org/hypercerts-api@',
+  });
+
+  const pagePath = join(__dirname, '..', 'pages', 'releases', 'api.md');
+  const page = readFileSync(pagePath, 'utf8');
+  assert.deepEqual(parseMarkdownFrontmatter(page), {
+    title: 'Hypercerts API Releases',
+    description: 'Release history imported from the Hypercerts API repository.',
+    externalDoc: 'api-changelog',
   });
 });
 

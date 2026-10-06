@@ -114,6 +114,16 @@
       "permanent": true
     },
     {
+      "source": "/reference/services/indexer",
+      "destination": "/reference/services/hypercerts-api",
+      "permanent": true
+    },
+    {
+      "source": "/raw/reference/services/indexer.md",
+      "destination": "/raw/reference/services/hypercerts-api.md",
+      "permanent": true
+    },
+    {
       "source": "/reference/certified-services",
       "destination": "/reference/services",
       "permanent": true

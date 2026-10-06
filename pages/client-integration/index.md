@@ -7,8 +7,8 @@ description: Build applications that create, store, discover, and display Hyperc
 
 This section shows how to build an application on Hypercerts: signing users in, writing records, and reading them back.
 
-{% callout type="info" title="More is on the way" %}
-We are actively working on new versions of the Hypercerts API and SDK. As they are released, this section will grow with step-by-step guides for reading and writing records, integrating with the Feed Service, and connecting your application to certified.app. Until then, the pages below cover what you can build with today.
+{% callout type="info" title="Start with the API reference" %}
+The Hypercerts API is available for production reads. Use the [XRPC reference](/reference/xrpc-api) and its endpoint explorer to query indexed records. The SDK and additional step-by-step integration guides are still in development; the pages below cover the integration patterns available today.
 {% /callout %}
 
 ## The integration path
@@ -22,7 +22,7 @@ An application built on Hypercerts typically does the following:
 5. Uses labels and feeds where they help.
 6. Displays connected records, showing who published each one.
 
-Steps 2 and 4 depend on the SDK and API under development. See [SDK](/reference/sdk) and [XRPC API](/reference/xrpc-api) for their status, and [Services and tooling](/reference/services) for the services that are running today.
+Step 2 can use the released Lexicon package and direct AT Protocol writes; the SDK remains under development. Step 4 can use the released [Hypercerts API](/reference/xrpc-api). See [Services and tooling](/reference/services) for running service endpoints.
 
 ## Available today
 

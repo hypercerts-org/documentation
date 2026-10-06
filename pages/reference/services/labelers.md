@@ -9,7 +9,7 @@ Hypercerts runs two labelers. The Activity Labeler rates the quality of Hypercer
 
 ## Where it fits
 
-The labelers sit beside the main read path. They take in records from the relay, as the [indexer](/reference/services/indexer) does, and publish labels that the indexer picks up. The [Feed Service](/reference/services/feed-service) uses Orglabeler labels to filter organizations. Your application can also read labels directly. The [services overview](/reference/services) has the full diagram.
+The labelers sit beside the main read path. They take in records from the relay and publish labels. The [Hypercerts API](/reference/services/hypercerts-api) includes those labels in its query results, and the [Feed Service](/reference/services/feed-service) uses Orglabeler labels to filter organizations. Your application can also read labels directly. The [services overview](/reference/services) has the full diagram.
 
 ## AT Protocol background
 
@@ -86,7 +86,7 @@ When you use labels:
 - **Treat labels as signals, not verdicts.** A `standard` organization is not a bad one. It has filled in fewer fields.
 - **Handle the unlabeled case.** New records and accounts are labeled a short time after they appear, so keep a fallback for subjects with no label yet.
 
-Once the Hypercerts API is available, the [indexer](/reference/services/indexer) applies these labels for you, and you only query a labeler directly for special cases.
+The [Hypercerts API](/reference/services/hypercerts-api) includes labels published by the labelers. Query a labeler directly only for special cases.
 
 ## Status and source
 
@@ -97,7 +97,7 @@ The Orglabeler's source code is in the [orglabeler repository](https://github.co
 ## Related
 
 - [Services overview](/reference/services) and [Running services](/reference/services#running-services)
-- [Indexer and Hypercerts API](/reference/services/indexer)
+- [Hypercerts API](/reference/services/hypercerts-api)
 - [Feed Service](/reference/services/feed-service)
 - [Relay and Jetstream](/reference/services/relay)
 - [Certified identity](/core-concepts/certified-identity)

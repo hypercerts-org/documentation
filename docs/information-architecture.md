@@ -53,7 +53,7 @@ The pages are written for a project integrating with Hypercerts. Deploying or op
 
 ### XRPC API and SDK
 
-Placeholder pages until those components are released. They describe what is coming and what to use meanwhile, and do not document unreleased methods.
+The XRPC API is released. The local reference gives a quickstart and links to the hosted endpoint explorer for the current method schemas; it does not duplicate the full method catalog. The SDK remains under development, so its page describes what is available in the meantime.
 
 ## Changes
 
@@ -110,7 +110,7 @@ What happens on its own, and what someone has to do. If a step is not listed und
 
 ### A new release of a running service
 
-Applies to the Certified Group Service, Relay and Jetstream, Feed Service, and Labelers.
+Applies to the Certified Group Service, Relay and Jetstream, Feed Service, Labelers, and Hypercerts API.
 
 **Automatic**
 
@@ -124,12 +124,12 @@ Applies to the Certified Group Service, Relay and Jetstream, Feed Service, and L
 
 ### A component's first release
 
-Applies today to the Hypercerts API, the SDK, and the Entryway, which show **Under development**.
+Applies today to the SDK and Entryway, which remain **Under development**. The Hypercerts API's changelog and release metadata are imported from its repository.
 
 - [ ] Register its changelog in `docs-sources.yml` with `trackRelease: true`, set its `sourceId` in `lib/release-components.json`, and replace its page under `pages/releases/` with an `externalDoc` wrapper. [Build-time changelog imports](remote-markdown.md) has the steps.
 - [ ] Replace its placeholder page with real content: `pages/reference/xrpc-api.md`, `pages/reference/sdk.md`, or `pages/reference/services/entryway.md`. Split it into several pages and add them to `lib/navigation.js` if needed.
 - [ ] Update its row in the components table and in **Running services** on the services overview.
-- [ ] Search the pages for "under development" and for the component's name, and update what is no longer true: the Client Integration info box and integration path, the Indexer page, the Glossary, and the FAQ.
+- [ ] Search the pages for "under development" and for the component's name, and update what is no longer true: the Client Integration info box and integration path, the Hypercerts API service page, the Glossary, and the FAQ.
 - [ ] Add the Client Integration guides the release makes possible.
 - [ ] For the Entryway: update the sign-in descriptions on the Certified PDSs, certified.app, and Account & Identity pages, and remove the remaining ePDS references.
 - [ ] For the SDK: add Agent Skills back to the navigation once the skills cover the new SDK.

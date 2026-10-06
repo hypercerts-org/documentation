@@ -10,7 +10,9 @@
     "id": "api",
     "title": "Hypercerts API",
     "path": "/releases/api",
-    "description": "The XRPC read API. Its own release history is being prepared."
+    "description": "The production XRPC read API for Hypercerts and Certified records.",
+    "sourceId": "api-changelog",
+    "unreleasedLabel": "Production (unreleased)"
   },
   {
     "id": "sdk",

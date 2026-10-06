@@ -129,6 +129,35 @@ test('published stable release metadata is captured in the build snapshot', asyn
   assert.equal(snapshot.release.url, 'https://github.com/hypercerts-org/ePDS/releases/tag/v1.4.12');
 });
 
+test('tracks the API release behind its scoped package tag and rejects another package prefix', async context => {
+  const originalFetch = global.fetch;
+  context.after(() => { global.fetch = originalFetch; });
+  const apiSource = {
+    id: 'api-changelog',
+    title: 'Hypercerts API changelog',
+    repo: 'hypercerts-org/api',
+    ref: 'main',
+    path: 'api/CHANGELOG.md',
+    trackRelease: true,
+    releaseTagPrefix: '@hypercerts-org/hypercerts-api@',
+  };
+  const snapshotForTag = tag => {
+    global.fetch = async url => String(url).endsWith('/releases/latest')
+      ? response({ json: { tag_name: tag, published_at: '2026-10-06T16:12:16Z', draft: false, prerelease: false } })
+      : String(url).includes('/commits?') ? response({ json: [] }) : response({ text: '# @hypercerts-org/hypercerts-api\n\n## 0.1.0' });
+    return collectSourceSnapshot(apiSource);
+  };
+
+  const snapshot = await snapshotForTag('@hypercerts-org/hypercerts-api@0.1.0');
+  assert.equal(snapshot.release.version, '0.1.0');
+  assert.equal(snapshot.release.url, 'https://github.com/hypercerts-org/api/releases/tag/%40hypercerts-org%2Fhypercerts-api%400.1.0');
+  assert.equal(snapshot.path, 'api/CHANGELOG.md');
+  await assert.rejects(
+    () => snapshotForTag('@hypercerts-org/another-package@0.1.0'),
+    /stable semantic release tag/,
+  );
+});
+
 test('an accessible repository without a GitHub release is explicitly unreleased', async context => {
   const originalFetch = global.fetch;
   context.after(() => { global.fetch = originalFetch; });

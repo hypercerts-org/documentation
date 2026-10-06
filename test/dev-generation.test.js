@@ -75,7 +75,7 @@ test('production and explicit refresh fetch fresh content even when a cache exis
 
 test('cache invalidates when registry identity or release tracking changes', context => {
   const file = cacheFile(context);
-  for (const change of [{ ref: 'v2' }, { path: 'docs/CHANGELOG.md' }, { repo: 'hypercerts-org/other' }, { title: 'Other' }, { trackRelease: false }]) {
+  for (const change of [{ ref: 'v2' }, { path: 'docs/CHANGELOG.md' }, { repo: 'hypercerts-org/other' }, { title: 'Other' }, { trackRelease: false }, { releaseTagPrefix: '@hypercerts-org/hypercerts-api@' }]) {
     assert.equal(readCompatibleSnapshot([{ ...source, ...change }], file), null);
   }
   assert.equal(readCompatibleSnapshot([], file), null);

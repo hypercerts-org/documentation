@@ -9,7 +9,7 @@ The Feed Service builds activity feeds. Given a viewer, it returns the recent Hy
 
 ## Where it fits
 
-The Feed Service reads from a database of indexed Hypercerts records, the kind of view the [indexer](/reference/services/indexer) builds, and it uses labels from the [Orglabeler](/reference/services/labelers) to filter organizations. Applications call it directly. It is read-only: it does not collect records from the network or write anything. The [services overview](/reference/services) has the full diagram.
+The Feed Service reads indexed Hypercerts records and uses labels from the [Orglabeler](/reference/services/labelers) to filter organizations. Applications call it directly for ready-made feeds, or query the [Hypercerts API](/reference/services/hypercerts-api) for records. The Feed Service is read-only: it does not collect records from the network or write anything. The [services overview](/reference/services) has the full diagram.
 
 ## AT Protocol background
 
@@ -97,7 +97,7 @@ The source code and the Lexicon schemas for its methods are in the [hypercerts-f
 ## Related
 
 - [Services overview](/reference/services) and [Running services](/reference/services#running-services)
-- [Indexer and Hypercerts API](/reference/services/indexer)
+- [Hypercerts API](/reference/services/hypercerts-api)
 - [Labelers](/reference/services/labelers)
 - [Certified lexicons](/lexicons/certified-lexicons)
 - [Feed Service releases](/releases/feed-service)
