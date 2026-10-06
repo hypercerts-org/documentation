@@ -125,7 +125,7 @@ Another name for an [activity claim](#activity-claim): a record describing a pie
 
 #### Hypercerts API
 
-The interface applications use to read and discover Hypercerts records across the network. It is served by the [indexer](#indexer) and is under development. See [XRPC API](/reference/xrpc-api).
+The XRPC service applications use to query Hypercerts and Certified records across the network, served at [`api.hypercerts.dev`](https://api.hypercerts.dev). See [Hypercerts API](/reference/services/hypercerts-api) and [XRPC API](/reference/xrpc-api).
 
 #### Hypercerts Protocol
 
@@ -133,7 +133,7 @@ The Hypercerts and Certified [Lexicons](#lexicon) together with the conventions 
 
 #### Indexer
 
-A service that collects records from many accounts and makes them searchable, including the links between them, such as the evaluations of an activity. See [Indexer and Hypercerts API](/reference/services/indexer).
+A service that collects records from many accounts and organizes them into a searchable view. The Hypercerts API provides this kind of view for Hypercerts and Certified records. See [Hypercerts API](/reference/services/hypercerts-api).
 
 #### Jetstream
 

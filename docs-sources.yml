@@ -6,6 +6,14 @@ sources:
     path: CHANGELOG.md
     trackRelease: true
 
+  - id: api-changelog
+    title: Hypercerts API changelog
+    repo: hypercerts-org/api
+    ref: main
+    path: api/CHANGELOG.md
+    trackRelease: true
+    releaseTagPrefix: '@hypercerts-org/hypercerts-api@'
+
   - id: cgs-changelog
     title: Certified Group Service changelog
     repo: hypercerts-org/certified-group-service

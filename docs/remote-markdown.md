@@ -61,7 +61,8 @@ sources:
 - `repo` is the GitHub `owner/repository` pair.
 - `ref` is the branch, tag, or commit to fetch.
 - `path` is one `.md`, `.mdoc`, or `.mdx` file in that repository.
-- `trackRelease: true` optionally captures the repository's latest published stable GitHub Release alongside its changelog. A missing release is supported; failed requests and non-semantic or prerelease tags are not turned into version badges.
+- `trackRelease: true` optionally captures the repository's latest published stable GitHub Release alongside its changelog. A missing release is supported; failed requests, drafts, prereleases, and invalid semantic tags fail the build instead of producing a misleading version badge.
+- `releaseTagPrefix` optionally removes a fixed prefix from the release tag before semantic-version validation. Use it when a repository scopes tags by package, and only with `trackRelease: true`. For example, `@hypercerts-org/hypercerts-api@` turns `@hypercerts-org/hypercerts-api@0.1.0` into the version `0.1.0`.
 
 GitHub API request and browser URLs are derived internally. Do not add URLs, directory paths, or separate entrypoints to the registry.
 
@@ -118,7 +119,7 @@ During generation, `lib/release-catalog.json` holds the compact version/status d
 
 Write a marker as a self-closing Markdoc-style line, such as `{% release-summary /%}`. The shared page resolver expands it before Markdoc rendering, search indexing, or raw Markdown export, so those surfaces contain the same actual release information. No release lookup happens in the browser.
 
-To connect a future component: register its verified `CHANGELOG.md` with `trackRelease: true`, assign that `sourceId` in the component registry, and replace the local status page with a frontmatter-only `externalDoc` wrapper. Do not point the new SDK or XRPC API at the similarly named legacy repositories.
+To connect a future component: register its verified changelog with `trackRelease: true`, assign that `sourceId` in the component registry, and replace the local status page with a frontmatter-only `externalDoc` wrapper. Use `releaseTagPrefix` only when the repository's release tags include a fixed package prefix. Do not point the new SDK at similarly named legacy repositories.
 
 A missing source, failed content request, empty file, local fallback body, or invalid Markdoc in an external page fails the build with an actionable error. The existing deployment remains online instead of publishing stale or inconsistent content. Source commit timestamps are informational and may be omitted when GitHub cannot provide them.
 

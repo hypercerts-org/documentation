@@ -66,7 +66,7 @@ curl --get https://certified.one/xrpc/com.atproto.repo.getRecord \
 # {"uri":"at://did:plc:.../app.certified.actor.profile/self","cid":"...","value":{...}}
 ```
 
-The response contains the record's AT-URI, its CID (a hash of its content), and the record itself in `value`. To list every record in a collection, call `com.atproto.repo.listRecords` with the same `repo` and `collection`. Send these requests to the PDS named in the account's DID document, which is a Certified PDS only for Certified accounts. To read records across many accounts, use [Jetstream](/reference/services/relay) or the [Hypercerts API](/reference/services/indexer) instead of calling each PDS.
+The response contains the record's AT-URI, its CID (a hash of its content), and the record itself in `value`. To list every record in a collection, call `com.atproto.repo.listRecords` with the same `repo` and `collection`. Send these requests to the PDS named in the account's DID document, which is a Certified PDS only for Certified accounts. To read records across many accounts, use [Jetstream](/reference/services/relay) or the [Hypercerts API](/reference/services/hypercerts-api) instead of calling each PDS.
 
 **Writing.** Your application first signs the user in with AT Protocol OAuth. The [Entryway](/reference/services/entryway) page shows how, both today and after the Entryway is released. With the resulting session it calls `com.atproto.repo.createRecord`, `putRecord`, or `deleteRecord` on the user's PDS. Once the [SDK](/reference/sdk) is released, most applications will make these calls through it. Use the production PDS for live applications and the staging PDS for your own staging environment.
 

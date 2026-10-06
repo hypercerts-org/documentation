@@ -11,12 +11,15 @@ function sources() {
     id: component.sourceId,
     repo: `hypercerts-org/${component.id}`,
     ref: 'main',
-    path: 'CHANGELOG.md',
+    path: component.id === 'api' ? 'api/CHANGELOG.md' : 'CHANGELOG.md',
     trackRelease: true,
+    ...(component.id === 'api' ? { releaseTagPrefix: '@hypercerts-org/hypercerts-api@' } : {}),
     release: component.id === 'relay' ? null : {
-      version: component.id === 'lexicons' ? '1.4.12' : '0.6.0',
-      url: 'https://github.com/hypercerts-org/example/releases/tag/v0.6.0',
-      publishedAt: '2026-09-01T00:00:00Z',
+      version: component.id === 'lexicons' ? '1.4.12' : component.id === 'api' ? '0.1.0' : '0.6.0',
+      url: component.id === 'api'
+        ? 'https://github.com/hypercerts-org/api/releases/tag/%40hypercerts-org%2Fhypercerts-api%400.1.0'
+        : 'https://github.com/hypercerts-org/example/releases/tag/v0.6.0',
+      publishedAt: component.id === 'api' ? '2026-10-06T16:12:16Z' : '2026-09-01T00:00:00Z',
     },
   }));
 }
@@ -29,7 +32,11 @@ test('component versions are independent of the protocol line and missing releas
   assert.equal(byId.lexicons.aligned, true);
   assert.equal(byId.cgs.label, 'v0.6.0');
   assert.equal(byId.cgs.aligned, false);
-  for (const id of ['api', 'sdk', 'entryway', 'relay']) {
+  assert.equal(byId.api.version, '0.1.0');
+  assert.equal(byId.api.label, 'v0.1.0');
+  assert.equal(byId.api.releaseUrl, 'https://github.com/hypercerts-org/api/releases/tag/%40hypercerts-org%2Fhypercerts-api%400.1.0');
+  assert.equal(byId.api.changelogUrl, 'https://github.com/hypercerts-org/api/blob/main/api/CHANGELOG.md');
+  for (const id of ['sdk', 'entryway', 'relay']) {
     assert.equal(byId[id].version, null);
     assert.equal(byId[id].label, 'Under development');
   }

@@ -63,8 +63,8 @@ Hypercerts does not move money. A funding platform processes the payment through
 
 ## How do I query hypercerts across the network?
 
-If you know a record's address, read it directly from the account's repository. To find records across accounts, use an indexing service. The Hypercerts API will be the standard way to do this and is under development. Until it is released, you can follow record changes through [Jetstream](/reference/services/relay). See [Indexer and Hypercerts API](/reference/services/indexer).
+If you know a record's address, read it directly from the account's repository. To find and query records across accounts, use the production [Hypercerts API](https://api.hypercerts.dev). You can also follow record changes through [Jetstream](/reference/services/relay). See [Hypercerts API](/reference/services/hypercerts-api).
 
 ## Can I build on Hypercerts today?
 
-Yes. The record formats are released, and you can sign users in, write records to their repositories, read them back, and follow changes through Jetstream. The Hypercerts API and SDK, which will make reading and writing simpler, are under development. See [Client Integration](/client-integration) for what is available now.
+Yes. The record formats are released, and you can sign users in, write records to their repositories, read them back, and follow changes through Jetstream. Use the [Hypercerts API](/reference/xrpc-api) to query indexed records across accounts. The SDK is still under development. See [Client Integration](/client-integration) for integration guidance.

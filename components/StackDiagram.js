@@ -28,8 +28,8 @@ function Edge({ d, label, labelX, labelY, write = false }) {
 }
 
 /**
- * Show the Hypercerts stack: records in many PDSs flow through the relay and Jetstream to the indexer,
- * which serves the Hypercerts API to applications; the entryway and CGS handle sign-in and group writes.
+ * Show the Hypercerts stack: records in many PDSs flow through the relay and Jetstream to the Hypercerts API;
+ * the entryway and CGS handle sign-in and group writes.
  * Used on the Services and tooling overview.
  */
 export function StackDiagram() {
@@ -39,7 +39,7 @@ export function StackDiagram() {
         <svg className="guide-diagram-svg" viewBox="0 0 760 500" role="img" aria-labelledby="stack-title stack-desc">
           <title id="stack-title">The Hypercerts stack</title>
           <desc id="stack-desc">
-            Records live in many PDSs, some hosted by the Hypercerts Foundation as Certified PDSs and some independent. The Hypercerts Relay collects changes from them, Jetstream filters those changes to Hypercerts and Certified records, and the indexer builds a searchable view that serves the Hypercerts API. Labelers publish labels that the indexer uses. Applications read through the SDK or the API. To write, users sign in through the entryway, from your application or from certified.app, where they manage their account. Signed-in users and groups acting through the Certified Group Service write to the same Certified PDSs. The feed service provides feeds to applications on its own.
+            Records live in many PDSs, some hosted by the Hypercerts Foundation as Certified PDSs and some independent. The Hypercerts Relay collects changes from them, Jetstream filters those changes to Hypercerts and Certified records, and the Hypercerts API maintains a searchable view. Labelers publish labels that the API can include in query results. Applications read through the SDK or the API. To write, users sign in through the entryway, from your application or from certified.app, where they manage their account. Signed-in users and groups acting through the Certified Group Service write to the same Certified PDSs. The feed service provides feeds to applications on its own.
           </desc>
           <defs>
             <marker id="stack-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -69,7 +69,7 @@ export function StackDiagram() {
           <Edge d="M300 90 V148" label="act for a group" labelX={300} labelY={119} write />
 
           {/* Read side */}
-          <Node x={404} y={150} w={186} title="Indexer" role="serves the Hypercerts API" accent />
+          <Node x={404} y={150} w={186} title="Hypercerts API" role="searchable XRPC API" accent />
           <Node x={610} y={150} w={134} title="Labelers" role="publish labels" />
           <Edge d="M608 178 H594" />
           <text className="gd-caption" x="600" y="142" textAnchor="middle">labels</text>
@@ -99,7 +99,7 @@ export function StackDiagram() {
         </svg>
       </div>
       <figcaption className="figure-caption">
-        Records stay in each account's PDS. The relay, Jetstream, and indexer bring them together for reading, while the entryway and CGS handle signing in and writing.
+        Records stay in each account's PDS. The relay and Jetstream deliver changes to the Hypercerts API for network-wide queries, while the entryway and CGS handle signing in and writing.
       </figcaption>
     </figure>
   );
