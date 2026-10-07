@@ -59,9 +59,9 @@ Jetstream backfill lets a client catch up from the retained archive before it st
 
 The Jetstream API Key should be included in the request as `Authorization: Bearer <api-key>` on archive-plan and segment-download requests.
 
-Backfill returns events that Jetstream has retained and cannot return data older than the archive however it should be expected that Jetsream will have backfilled the PDS jetstream is subscribed to, if you find gaps contact Hypercerts.
+Backfill returns events that Jetstream has retained and cannot return data older than the archive however it should be expected that Jetstream will have backfilled the PDS jetstream is subscribed to, if you find gaps contact Hypercerts.
 
-When using `planSnapshot` for archival backfill it can return whole-segment entries or block ranges. Whole segments will use `getsegment` and block ranges require `getBlock` for each block index followed by decoding and exact filtering.
+When using `planSnapshot` for archival backfill it can return whole-segment entries or block ranges. Whole segments will use `getSegment` and block ranges require `getBlock` for each block index followed by decoding and exact filtering.
 
 See [Bluesky Jetstream Docs](https://bsky.network/docs/jetstream/) for further details.
 
