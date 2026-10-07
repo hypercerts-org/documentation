@@ -11,7 +11,7 @@ The **indexer** is the API's internal pipeline for building its searchable view,
 
 ## Where it fits
 
-The indexing pipeline reads record changes delivered by [Jetstream](/reference/services/relay) and uses labels published by the [labelers](/reference/services/labelers). Applications call the Hypercerts API directly or through the [SDK](/reference/sdk). The [Feed Service](/reference/services/feed-service) is a separate reader of indexed Hypercerts data. See the [services overview](/reference/services) for the full diagram.
+The indexing pipeline reads record changes delivered by [Jetstream](/reference/services/relay). <!-- Previously claimed that it also uses labels published by the [labelers](/reference/services/labelers). --> Applications call the Hypercerts API directly or through the [SDK](/reference/sdk). The [Feed Service](/reference/services/feed-service) is a separate reader of indexed Hypercerts data. See the [services overview](/reference/services) for the full diagram.
 
 ## AT Protocol background
 
@@ -35,7 +35,8 @@ The indexing pipeline:
 
 1. **Reads records from Jetstream**, which delivers Hypercerts and Certified record changes as JSON events and keeps an archive for catching up on the past.
 2. **Links related records.** An evaluation, for example, points to the activity it evaluates. The index connects those records so a query can return an activity with related context, such as its author's profile and contributors, where supported by the method.
-3. **Uses labels.** It incorporates labels published by Hypercerts labelers, so results can include signals such as a quality tier or "likely test data."
+
+<!-- 3. **Uses labels.** It incorporates labels published by Hypercerts labelers, so results can include signals such as a quality tier or "likely test data." -->
 
 Coverage follows from the sources: the API sees records on PDSs followed by the Hypercerts Relay and in the collections Jetstream keeps. A record missing from a result may be outside that coverage.
 
@@ -63,7 +64,7 @@ Choose another read path when it better fits your use case:
 
 - **Read a known record directly from its repository.** Use `com.atproto.repo.getRecord` when you know the record's address. See [Certified PDSs](/reference/services/certified-pdss).
 - **Follow live record changes.** Use Jetstream for a custom live view or lossless change processing. See [Relay and Jetstream](/reference/services/relay).
-- **Read labels directly.** Query a [labeler](/reference/services/labelers) for special cases; the Hypercerts API already includes labels in its query results.
+- **Read labels directly.** Query a [labeler](/reference/services/labelers) when your application needs label data. <!-- Previously: Query a [labeler](/reference/services/labelers) for special cases; the Hypercerts API already includes labels in its query results. -->
 - **Design against the Lexicons.** API results follow the [Hypercerts lexicons](/lexicons/hypercerts-lexicons) and [Certified lexicons](/lexicons/certified-lexicons).
 
 ## Status and source

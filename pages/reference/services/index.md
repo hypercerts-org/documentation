@@ -20,8 +20,8 @@ This section describes each service at the level a project needs to integrate wi
 | [Entryway](/reference/services/entryway) | Signs users in to their Certified accounts | Under development; the Certified PDSs handle sign-in today |
 | [Certified Group Service](/reference/services/certified-group-service) | Lets several people manage one group account with different roles | Running |
 | [Relay and Jetstream](/reference/services/relay) | The relay collects record changes from PDSs across the network; Jetstream filters them down to Hypercerts and Certified records | Running |
-| [Hypercerts API](/reference/services/hypercerts-api) | Serves XRPC queries over a searchable view of Hypercerts and Certified records | Running |
-| [Labelers](/reference/services/labelers) | Publish labels about records and accounts, such as "likely test data", that the Hypercerts API and applications can use | Running |
+| [Indexer and Hypercerts API](/reference/services/hypercerts-api) | Serves XRPC queries over a searchable view of Hypercerts and Certified records | Running |
+| [Labelers](/reference/services/labelers) | Publish labels about records and accounts, such as "likely test data", that applications can query directly. <!-- Previously: Publish labels about records and accounts, such as "likely test data", that the Hypercerts API and applications can use --> | Running |
 | [Feed Service](/reference/services/feed-service) | Serves ready-made feeds of recent Hypercerts activity | Running |
 
 ## Running services
