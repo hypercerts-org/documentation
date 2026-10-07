@@ -9,7 +9,7 @@ Hypercerts runs two labelers. The Activity Labeler rates the quality of Hypercer
 
 ## Where it fits
 
-The labelers sit beside the main read path. They take in records from the relay and publish labels. The [Hypercerts API](/reference/services/hypercerts-api) includes those labels in its query results, and the [Feed Service](/reference/services/feed-service) uses Orglabeler labels to filter organizations. Your application can also read labels directly. The [services overview](/reference/services) has the full diagram.
+The labelers sit beside the main read path. They take in records from the relay and publish labels. Your application can read labels directly from a labeler. The [Feed Service](/reference/services/feed-service) uses Orglabeler labels to filter organizations. <!-- The [Hypercerts API](/reference/services/hypercerts-api) includes those labels in its query results. --> The [services overview](/reference/services) has the full diagram.
 
 ## AT Protocol background
 
@@ -86,7 +86,7 @@ When you use labels:
 - **Treat labels as signals, not verdicts.** A `standard` organization is not a bad one. It has filled in fewer fields.
 - **Handle the unlabeled case.** New records and accounts are labeled a short time after they appear, so keep a fallback for subjects with no label yet.
 
-The [Hypercerts API](/reference/services/hypercerts-api) includes labels published by the labelers. Query a labeler directly only for special cases.
+For labels, query a [labeler](/reference/services/labelers) directly. <!-- The [Hypercerts API](/reference/services/hypercerts-api) includes labels published by the labelers. Query a labeler directly only for special cases. -->
 
 ## Status and source
 

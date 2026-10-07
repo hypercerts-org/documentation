@@ -39,7 +39,7 @@ export function StackDiagram() {
         <svg className="guide-diagram-svg" viewBox="0 0 760 500" role="img" aria-labelledby="stack-title stack-desc">
           <title id="stack-title">The Hypercerts stack</title>
           <desc id="stack-desc">
-            Records live in many PDSs, some hosted by the Hypercerts Foundation as Certified PDSs and some independent. The Hypercerts Relay collects changes from them, Jetstream filters those changes to Hypercerts and Certified records, and the Hypercerts API maintains a searchable view. Labelers publish labels that the API can include in query results. Applications read through the SDK or the API. To write, users sign in through the entryway, from your application or from certified.app, where they manage their account. Signed-in users and groups acting through the Certified Group Service write to the same Certified PDSs. The feed service provides feeds to applications on its own.
+            Records live in many PDSs, some hosted by the Hypercerts Foundation as Certified PDSs and some independent. The Hypercerts Relay collects changes from them, Jetstream filters those changes to Hypercerts and Certified records, and the Hypercerts API maintains a searchable view.{' '}{/* Labelers publish labels that the API can include in query results. */}{' '}Applications can query labelers directly for labels. Applications read through the SDK or the API. To write, users sign in through the entryway, from your application or from certified.app, where they manage their account. Signed-in users and groups acting through the Certified Group Service write to the same Certified PDSs. The feed service provides feeds to applications on its own.
           </desc>
           <defs>
             <marker id="stack-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -71,8 +71,9 @@ export function StackDiagram() {
           {/* Read side */}
           <Node x={404} y={150} w={186} title="Hypercerts API" role="searchable XRPC API" accent />
           <Node x={610} y={150} w={134} title="Labelers" role="publish labels" />
-          <Edge d="M608 178 H594" />
-          <text className="gd-caption" x="600" y="142" textAnchor="middle">labels</text>
+          {/* <Edge d="M608 178 H594" />
+          <text className="gd-caption" x="600" y="142" textAnchor="middle">labels</text> */}
+          <Edge d="M677 148 C 677 122, 642 101, 584 74" label="label queries" labelX={637} labelY={108} />
           <Edge d="M497 148 V92" label="SDK / API" labelX={497} labelY={118} />
 
           <Node x={404} y={256} w={130} h={52} title="Hypercerts Relay" role="collects changes" />
