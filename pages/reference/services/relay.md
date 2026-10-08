@@ -5,46 +5,109 @@ description: How the Hypercerts Relay and Jetstream gather Hypercerts and Certif
 
 # Relay and Jetstream
 
-Hypercerts records are spread across many servers, one repository per account. The Hypercerts Relay and Jetstream gather the changes from those servers into one stream, so an application can follow new and updated records without contacting every server itself. Use them when your application reacts to changes as they happen or keeps its own copy of the records.
+Hypercerts records are spread across many PDS instances, including the [Certified PDSs](/reference/services/certified-pdss), the Hypercerts Relay subscribes to them and receives these events 
+and makes them available in a single stream. While the relay provides a firehose subscription with full CBOR verification metadata, the Hypercerts Jetstream service provides an easily ingestible JSON subscription with the ability to perform a full backfill of watched lexicon collections.
 
-## Where it fits
+The [Hypercerts API](/reference/services/hypercerts-api) uses that stream to maintain its searchable view. The [services overview](/reference/services) has the full diagram.
 
-The relay reads from PDSs (Personal Data Servers, the servers that store accounts' records), including the [Certified PDSs](/reference/services/certified-pdss). Jetstream reads from the relay and keeps only the record collections it is configured for, such as Hypercerts and Certified records. The [Hypercerts API](/reference/services/hypercerts-api) uses that stream to maintain its searchable view. The [services overview](/reference/services) has the full diagram.
+## URLs
 
-## AT Protocol background
+| Service | URL | Use |
+| --- | --- | --- |
+| Relay firehose | `wss://relay.hypercerts.dev/xrpc/com.atproto.sync.subscribeRepos` | Receive raw AT Protocol repository events. Add `?cursor=<sequence>` to resume from a saved Relay cursor. |
+| Relay crawl request | `https://relay.hypercerts.dev/xrpc/com.atproto.sync.requestCrawl` | Ask Relay to reconnect to an approved PDS. |
+| Jetstream live stream | `wss://jetstream.hypercerts.dev/xrpc/network.bsky.jetstream.subscribeEvents` | Receive selected archived and live events in sequence order. |
+| Jetstream archive plan | `https://jetstream.hypercerts.dev/xrpc/network.bsky.jetstream.planSnapshot` | Plan an archive download before connecting to the live stream. |
+| Jetstream archive segments | `https://jetstream.hypercerts.dev/xrpc/network.bsky.jetstream.getSegment` | Download a segment named by an archive plan. |
 
-An AT Protocol account keeps its records in a **repository** on its PDS. Whenever the account creates, updates, or deletes a record, the PDS publishes a repository event describing the change. Anyone can subscribe to a PDS's events, but there are thousands of PDSs, and an application that wanted every record of one type would have to find and follow all of them.
 
-A **relay** solves this. It subscribes to many PDSs and merges their events into one continuous stream, called the **firehose**. Consumers connect to the relay once and receive everything. The firehose carries the signed repository data behind each change, so a consumer can verify that a change really came from the account it claims to.
+The Relay firehose uses the standard `com.atproto.sync.subscribeRepos` event format. Jetstream uses the `network.bsky.jetstream.subscribeEvents` format.
 
-Services that read the firehose build views from it, such as search indexes and feeds. This is why AT Protocol applications don't query every PDS. They read a single record from its PDS when they know its address, and they rely on a relay and an index for everything that spans accounts.
 
-## How it works
+## Subscribing to Relay
 
-### The Hypercerts Relay
+When subscribed to the relay, persist the sequence number from each event. On reconnect, send it as the `cursor` query parameter.
 
-The Hypercerts Relay is a relay with a deliberately limited set of sources. It:
+Relay keeps raw events for 72 hours. A cursor older than that window may not be available, so consumers should be able to recover from a newer position.
 
-- **Follows approved PDSs only.** The Hypercerts team approves a PDS before the relay connects to it.
-- **Passes on everything from those PDSs.** It does not select Hypercerts records, so its firehose also carries unrelated records from the same accounts.
-- **Keeps events for 72 hours.**
-- **Numbers every event.** A consumer saves the latest sequence number it processed and sends it back as a **cursor**, a bookmark that tells the relay where to resume.
 
-The firehose is the standard AT Protocol method `com.atproto.sync.subscribeRepos`, served over a WebSocket (a connection that stays open so the server can keep sending messages). Events are encoded in CBOR (Concise Binary Object Representation), a compact binary format.
+## Working with Jetstream
 
-### Jetstream
+When subscribed with no parameters, the connection starts at the live tip. Add `cursor=<sequence>` to replay from a saved Jetstream sequence number, because Jetstream replays the event 
+reconnects can deliver duplicates (as it replays from cursor forwards), therefore clients must deduplicate or process them idempotently. 
 
-Jetstream reads the relay's firehose and turns it into something easier to consume. It:
+Jetstream can filter the stream with these query parameters:
 
-- **Keeps selected collections only.** A collection is the set of an account's records of one type, named after the record's schema. Jetstream keeps the Hypercerts collections (`org.hypercerts.claim.*`, `org.hypercerts.context.*`, `org.hypercerts.collection`, `org.hypercerts.funding.receipt`, `org.hypercerts.workscope.tag`) and the Certified collections (`app.certified.actor.*`, `app.certified.badge.*`, `app.certified.graph.*`, `app.certified.location`, `app.certified.link.evm`, `app.certified.signature.proof`). The Hypercerts team adds collections on request.
-- **Delivers JSON.** Each event contains the record already decoded, so you don't handle CBOR or repository structures. In exchange, you trust Jetstream's reading of the data instead of verifying signatures yourself.
-- **Supports filters.** A subscriber can ask for certain collections or accounts.
+| Parameter | Meaning |
+| --- | --- |
+| `kinds=commit` | Receive record changes only (i.e exclude account, identity, and sync). |
+| `collections=<nsid>` | Receive commits for an exact collection NSID or a namespace pattern such as `org.hypercerts.context.*`. Use this together with `kinds=commit` to filter to these events.  |
+| `dids=<did>` | Receive events for one or more repository DIDs. |
 
-Jetstream numbers its events separately from the relay, so a cursor saved from one does not work with the other. Most applications use Jetstream. Subscribe to the relay only if you need the signed data, for example to verify records yourself.
+If a saved Jetstream sequence is older than the retained stream, Jetstream returns `CursorTooOld`. Backfill from the archive, save the resulting sequence, then reconnect to the live stream.
 
 ### Backfill
 
-Backfill means catching up on events from before you connected. Jetstream keeps an archive of the collections it selects. When it starts following a PDS, or when a collection is added to its list, it reads the existing records from the PDS into the archive. A new consumer downloads the archive and then continues on the live stream without a gap. For records that existed before Jetstream followed their PDS, the archive holds their state when Jetstream read them, not every earlier edit.
+**Note:** The archive/backfill endpoints require a Jetstream API Key, contact the Hypercerts team for one before using.
+
+Jetstream backfill lets a client catch up from the retained archive before it starts receiving live events.
+
+1. Send a `POST` request to `network.bsky.jetstream.planSnapshot` with the same `kinds`, `collections`, and `dids` filters that the live client will use.
+2. Download every segment or block range in the returned plan.
+3. Keep requesting pages until `plannedThroughSeq` equals `sealedTipSeq`. Keep the first `sealedTipSeq` as the fixed end of this backfill.
+4. Connect to `subscribeEvents` with `cursor` set to the next sequence after the archive backfill. De-duplicate the small overlap at the handoff.
+
+The Jetstream API Key should be included in the request as `Authorization: Bearer <api-key>` on archive-plan and segment-download requests.
+
+Backfill returns events that Jetstream has retained and cannot return data older than the archive however it should be expected that Jetstream will have backfilled the PDS jetstream is subscribed to, if you find gaps contact Hypercerts.
+
+When using `planSnapshot` for archival backfill it can return whole-segment entries or block ranges. Whole segments will use `getSegment` and block ranges require `getBlock` for each block index followed by decoding and exact filtering.
+
+See [Bluesky Jetstream Docs](https://bsky.network/docs/jetstream/) for further details.
+
+
+## Default lexicons
+
+Jetstream stores the following collections by default. Relay does not filter its raw firehose by this list.
+
+```text
+app.certified.actor.organization
+app.certified.actor.profile
+app.certified.badge.award
+app.certified.badge.definition
+app.certified.badge.response
+app.certified.graph.entityFollow
+app.certified.graph.follow
+app.certified.link.evm
+app.certified.location
+app.certified.signature.proof
+org.hypercerts.claim.activity
+org.hypercerts.claim.contribution
+org.hypercerts.claim.contributorInformation
+org.hypercerts.claim.rights
+org.hypercerts.collection
+org.hypercerts.context.acknowledgement
+org.hypercerts.context.attachment
+org.hypercerts.context.evaluation
+org.hypercerts.context.measurement
+org.hypercerts.funding.receipt
+org.hypercerts.workscope.tag
+```
+
+Hypercerts adds additional lexicons on request. When a lexicon is added, Jetstream backfills the newly selected collections for every approved PDS.
+
+## Request a PDS crawl
+
+To ask Relay to reconnect, send its hostname as JSON:
+
+```bash
+curl --request POST \
+  --url https://relay.hypercerts.dev/xrpc/com.atproto.sync.requestCrawl \
+  --header 'content-type: application/json' \
+  --data '{"hostname":"pds.example.com"}'
+```
+
+A newly approved PDS has a default limit of 100 active accounts. Relay's default configuration also sets a daily maximum of 50 new PDS subscriptions. Contact the hypercerts team to increase this limit.
 
 ## Using it from your application
 
@@ -69,15 +132,6 @@ socket.addEventListener("message", (event) => {
   console.log(change); // save its sequence number as your cursor
 });
 ```
-
-A few things to plan for:
-
-- **Reconnects repeat events.** The cursor is inclusive, so Jetstream replays the event you saved as well as what follows. Deduplicate, or process events so that receiving one twice gives the same result.
-- **Old cursors are refused.** If your cursor is older than what the live stream still holds, the connection fails with `CursorTooOld`. Backfill from the archive, then reconnect.
-- **Backfill needs an API key.** To backfill, you request a plan with the same filters as your live connection, download the archive files it lists, and then subscribe from the sequence number where the archive ends. Ask the Hypercerts team for a key. The full procedure is in the [Jetstream README](https://github.com/hypercerts-org/hypercerts-relay/blob/main/jetstream/README.md) and the [Bluesky Jetstream documentation](https://bsky.network/docs/jetstream/), which also describes the message format.
-- **New PDSs need approval.** If your users' records live on a PDS the relay does not follow, ask the Hypercerts team to add it. The public `com.atproto.sync.requestCrawl` method only reconnects a PDS that is already approved.
-
-Hostnames for production and staging are listed under [Running services](/reference/services#running-services).
 
 ## Status and source
 
