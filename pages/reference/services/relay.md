@@ -5,7 +5,7 @@ description: How the Hypercerts Relay and Jetstream gather Hypercerts and Certif
 
 # Relay and Jetstream
 
-Hypercerts records are spread across many PDS instances included the [Certified PDSs](/reference/services/certified-pdss), the Hypercerts Relay subscribes to them and receives these events 
+Hypercerts records are spread across many PDS instances, including the [Certified PDSs](/reference/services/certified-pdss), the Hypercerts Relay subscribes to them and receives these events 
 and makes them available in a single stream. While the relay provides a firehose subscription with full CBOR verification metadata, the Hypercerts Jetstream service provides an easily ingestible JSON subscription with the ability to perform a full backfill of watched lexicon collections.
 
 The [Hypercerts API](/reference/services/hypercerts-api) uses that stream to maintain its searchable view. The [services overview](/reference/services) has the full diagram.
@@ -34,14 +34,14 @@ Relay keeps raw events for 72 hours. A cursor older than that window may not be 
 ## Working with Jetstream
 
 When subscribed with no parameters, the connection starts at the live tip. Add `cursor=<sequence>` to replay from a saved Jetstream sequence number, because Jetstream replays the event 
-reconnects can deliver duplicated, therefore deduplicate or handle events idempotently on reconnect. 
+reconnects can deliver duplicates (as it replays from cursor forwards), therefore clients must deduplicate or process them idempotently. 
 
 Jetstream can filter the stream with these query parameters:
 
 | Parameter | Meaning |
 | --- | --- |
-| `kinds=commit` | Receive record changes only. |
-| `collections=<nsid>` | Receive commits for an exact collection NSID or a namespace pattern such as `org.hypercerts.context.*`. Use this together with `kinds=commit`. |
+| `kinds=commit` | Receive record changes only (i.e exclude account, identity, and sync). |
+| `collections=<nsid>` | Receive commits for an exact collection NSID or a namespace pattern such as `org.hypercerts.context.*`. Use this together with `kinds=commit` to filter to these events.  |
 | `dids=<did>` | Receive events for one or more repository DIDs. |
 
 If a saved Jetstream sequence is older than the retained stream, Jetstream returns `CursorTooOld`. Backfill from the archive, save the resulting sequence, then reconnect to the live stream.
