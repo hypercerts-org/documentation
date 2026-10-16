@@ -1,5 +1,19 @@
 [
   {
+    "version": "1.5",
+    "date": "2026-10-05",
+    "title": "Richer organization profiles, time-bound badges, and classified attachments",
+    "cardSummary": "Publish fuller organization details, specify when a badge award applies, and classify attachments with shared tags.",
+    "summary": "This release makes published records more useful in directories and assessments. Organizations can share the details a partner directory needs; badge awards can state their period of validity; and attachments can use the same reusable tags as features and collections.",
+    "changes": [
+      "Organizations can add an optional legal name, full logo, public email, and additional locations. Existing profile fields still carry the public display name, avatar, and main website; the primary location remains a separate reference.",
+      "Badge awards can specify when they start and stop applying. An expired award is not the same as a revoked one: deleting the award record remains the way to revoke it.",
+      "Attachments can use shared vocabulary tags, making evidence easier to classify consistently alongside features and collections. Multiple tags describe the attachment together, not alternative classifications."
+    ],
+    "compatibility": "All new fields are optional, so existing records remain valid. Applications that display organizations, badges, or attachments can adopt them as needed. Later 1.5.x fixes and additions are listed in the Lexicon changelog, not as separate protocol minor releases.",
+    "sourceVersion": "1.5.0"
+  },
+  {
     "version": "1.4",
     "date": "2026-08-24",
     "title": "Features and shared vocabulary",
