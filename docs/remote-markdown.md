@@ -75,10 +75,11 @@ Set `externalDoc` in a frontmatter-only page:
 title: Hypercerts Relay Releases
 description: Project-owned release history imported from the Hypercerts Relay repository.
 externalDoc: relay-changelog
+repositoryLink: true
 ---
 ```
 
-Do not add a local Markdown body. The registered file is the only page body, which prevents stale fallback content from diverging from rendering, search, or `/raw` exports.
+Do not add a local Markdown body. The registered file is the source of the page body, which prevents stale fallback content from diverging from rendering, search, or `/raw` exports. On component release pages, `repositoryLink: true` inserts a link derived from the registered source repository after the imported heading (or before the content when it has no heading). It appears in the rendered page, search, and raw Markdown without editing the upstream changelog.
 
 Choose `ref` according to the source's publishing policy. A moving branch such as `main` follows upstream changes through the refresh workflow. A tag or commit creates a stable snapshot and must be updated deliberately.
 
@@ -106,15 +107,15 @@ External Markdown is parsed with the same Markdoc configuration as local pages. 
 
 ## Protocol releases and component versions
 
-`lib/protocol-releases.json` is the reviewed, canonical protocol major/minor history, newest first. Each entry records its source Lexicon version and publication date. A component release does not automatically announce a new protocol release. Edit this file to publish the next coordinated release summary, compatibility guidance, and source version. Use `cardSummary` for a one-sentence description on release cards. An optional `blogUrl` adds a release-article link when an article is actually published.
+`lib/protocol-releases.json` holds the reviewed, human-readable protocol major/minor history, newest first. The Lexicon package's major/minor version defines the protocol line; each entry records the matching Lexicon release version and publication date. Review the generated Lexicon changelog in its release PR before publication and write the protocol note in Docs as part of the same release process. Explain the purpose, changes, and compatibility without duplicating every technical entry. A Lexicon patch updates the component changelog and badge, but does not need another protocol entry. `cardSummary` is the short explanation on the Releases overview. An optional `blogUrl` adds a release-article link when an article is actually published.
 
 `lib/release-components.json` names the seven participating components and their local changelog routes. A `sourceId` connects a component to a release-tracked source in `docs-sources.yml`. Components without a published release display **Under development**; the new SDK has no source repository attached yet. Entryway is separate from the preceding ePDS product, and HappyView's version is not substituted for the Hypercerts API version.
 
 During generation, `lib/release-catalog.json` holds the compact version/status data used by the sidebar. The same catalog is saved inside the external content snapshot. Local pages use these standalone build-time markers:
 
 - `protocol-title`: Hypercerts Protocol heading with the current version.
-- `release-summary`: current release with highlights for the Releases overview.
-- `release-cards`: Hypercerts Protocol and component version/status cards.
+- `release-summary`: brief current protocol line and links to its reviewed notes and Lexicon changelog on the Releases overview.
+- `release-cards`: component version/status cards.
 - `protocol-history`: the full reviewed major/minor history.
 
 Write a marker as a self-closing Markdoc-style line, such as `{% release-summary /%}`. The shared page resolver expands it before Markdoc rendering, search indexing, or raw Markdown export, so those surfaces contain the same actual release information. No release lookup happens in the browser.

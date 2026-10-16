@@ -15,7 +15,7 @@ function sources() {
     trackRelease: true,
     ...(component.id === 'api' ? { releaseTagPrefix: '@hypercerts-org/hypercerts-api@' } : {}),
     release: component.id === 'relay' ? null : {
-      version: component.id === 'lexicons' ? '1.4.12' : component.id === 'api' ? '0.1.0' : '0.6.0',
+      version: component.id === 'lexicons' ? '1.5.1' : component.id === 'api' ? '0.1.0' : '0.6.0',
       url: component.id === 'api'
         ? 'https://github.com/hypercerts-org/api/releases/tag/%40hypercerts-org%2Fhypercerts-api%400.1.0'
         : 'https://github.com/hypercerts-org/example/releases/tag/v0.6.0',
@@ -26,9 +26,9 @@ function sources() {
 
 test('component versions are independent of the protocol line and missing releases are explicit', () => {
   const catalog = buildReleaseCatalog(history, components, sources());
-  assert.equal(catalog.protocol[0].version, '1.4');
+  assert.equal(catalog.protocol[0].version, '1.5');
   const byId = Object.fromEntries(catalog.components.map(component => [component.id, component]));
-  assert.equal(byId.lexicons.label, 'v1.4.12');
+  assert.equal(byId.lexicons.label, 'v1.5.1');
   assert.equal(byId.lexicons.aligned, true);
   assert.equal(byId.cgs.label, 'v0.6.0');
   assert.equal(byId.cgs.aligned, false);
@@ -50,7 +50,8 @@ test('registered component changelogs must be available and release-tracked', ()
 });
 
 test('history keeps protocol lines distinct from component patch releases', () => {
-  assert.deepEqual(history.map(release => release.version), ['1.4', '1.3', '1.2', '1.1', '1.0']);
+  assert.deepEqual(history.map(release => release.version), ['1.5', '1.4', '1.3', '1.2', '1.1', '1.0']);
+  assert.equal(history[0].sourceVersion, '1.5.0');
   assert.throws(() => buildReleaseCatalog([...history, history[0]], components, sources()), /duplicate/);
   assert.throws(() => buildReleaseCatalog([{ ...history[0], sourceVersion: '1.3.1' }], components, sources()), /source version/);
 });
@@ -60,9 +61,11 @@ test('release markers expand for page rendering, search, and raw Markdown throug
   const markdown = '{% protocol-title /%}\n\n{% release-summary /%}\n\n{% release-cards /%}\n\n{% protocol-history /%}\n';
   const result = resolvePageDocument({}, markdown, { releases: catalog }).markdown;
   assert.doesNotMatch(result, /{% (?:release-|protocol-)/);
-  assert.match(result, /Hypercerts Protocol 1\.4/);
-  assert.match(result, /badge="v1\.4\.12"/);
-  assert.match(result, /title="Hypercerts Protocol" href="\/releases\/protocol" badge="v1\.4"/);
+  assert.match(result, /Hypercerts Protocol 1\.5/);
+  assert.match(result, /badge="v1\.5\.1"/);
+  assert.doesNotMatch(result, /title="Hypercerts Protocol" href="\/releases\/protocol"/);
+  assert.match(result, /current protocol release line is \*\*1\.5\*\*/);
+  assert.match(result, /\[what changed and why\]\(\/releases\/protocol\)/);
   assert(result.includes(history[0].cardSummary));
   assert.match(result, /badge="v0\.6\.0"/);
   assert.match(result, /badge="Under development"/);
@@ -72,14 +75,17 @@ test('release markers expand for page rendering, search, and raw Markdown throug
   assert.throws(() => expandReleaseMarkdown(markdown), /Missing release catalog/);
   const summary = expandReleaseMarkdown('{% release-summary /%}', catalog);
   assert.doesNotMatch(summary, /Read the protocol changelog|Lexicons 1\.4\.0 release/);
+  assert.doesNotMatch(summary, /Introduces org\.hypercerts\.entity\.feature/);
   const fullHistory = expandReleaseMarkdown('{% protocol-history /%}', catalog);
+  assert.match(fullHistory, /## 1\.5: Richer organization profiles/);
+  assert.match(fullHistory, /Based on \[Lexicons 1\.5\.0\]/);
   assert.match(fullHistory, /Based on \[Lexicons 1\.4\.0\]/);
 });
 
 test('a later component patch updates badges without rewriting protocol history', () => {
   const before = buildReleaseCatalog(history, components, sources());
   const updated = sources();
-  updated[0].release.version = '1.4.35';
+  updated[0].release.version = '1.5.35';
   const after = buildReleaseCatalog(history, components, updated);
   assert.equal(expandReleaseMarkdown('{% protocol-history /%}', before), expandReleaseMarkdown('{% protocol-history /%}', after));
   assert.notEqual(expandReleaseMarkdown('{% release-cards /%}', before), expandReleaseMarkdown('{% release-cards /%}', after));

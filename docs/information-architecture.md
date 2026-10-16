@@ -11,7 +11,7 @@ The site has four sections, each with its own sidebar. The root page is a short 
 | **Guide** | Explains what Hypercerts is and how its records work, as one start-to-finish reading path | Anyone new to Hypercerts |
 | **Client Integration** | Shows how to build an application: signing in, writing records, reading them | Developers building on Hypercerts |
 | **Reference** | Exact details to look up: Lexicons, the API and SDK, and the services in the stack | Developers while they build |
-| **Changes** | Protocol releases and the published version of each component | Anyone tracking what changed |
+| **Releases** | Reviewed protocol release notes and the published history of each component | Anyone tracking what changed |
 
 The Guide, the Lexicons, the API and SDK, and the release history together describe the protocol. There is no separate formal specification.
 
@@ -41,7 +41,7 @@ Every record type has a page with the same sections:
 
 The schema section contains only a marker, `{% lexicon-schema nsid="..." /%}`. At build time `lib/lexicon-schema.js` expands it into tables from the pinned `@hypercerts-org/lexicon` package, so the tables always match a released version. Bumping the package version updates every table, along with the version shown above it.
 
-Avoid typing version numbers or counts into prose. They go stale silently. Let the generated line on each Lexicon page and the badges on Changes carry the version, and link to Changes where a reader needs it. When a release adds a record type, add it to the Lexicon inventory and give it a page.
+Avoid typing version numbers or counts into prose. They go stale silently. Let the generated line on each Lexicon page and the badges on Releases carry the version, and link to Releases where a reader needs it. When a release adds a record type, add it to the Lexicon inventory and give it a page.
 
 ### Services and tooling
 
@@ -55,9 +55,9 @@ The pages are written for a project integrating with Hypercerts. Deploying or op
 
 The XRPC API is released. The local reference gives a quickstart and links to the hosted endpoint explorer for the current method schemas; it does not duplicate the full method catalog. The SDK remains under development, so its page describes what is available in the meantime.
 
-## Changes
+## Releases
 
-`lib/protocol-releases.json` holds the protocol's major and minor release history. Component version badges come from each component's published GitHub release, and component changelogs are imported at build time. A component without a published release shows **Under development**. See [Build-time changelog imports](remote-markdown.md).
+The Lexicon major and minor version defines the protocol release line. `lib/protocol-releases.json` holds reviewed, human-readable notes for those releases: what changed, why it matters, and compatibility for existing integrations. The Releases overview introduces the latest release briefly, and the full protocol history is visible in navigation. Lexicon and other component changelogs remain the detailed technical record. Component version badges come from each component's published GitHub release, and component changelogs are imported at build time. A component without a published release shows **Under development**. See [Build-time changelog imports](remote-markdown.md).
 
 ## Writing rules
 
@@ -80,7 +80,7 @@ Keeping pages here lets authors use the site's components, link between sections
 
 Component repositories own:
 
-- `CHANGELOG.md` and published GitHub Releases, which feed Changes and the version badges;
+- `CHANGELOG.md` and published GitHub Releases, which feed Releases and the version badges;
 - contributor and operator material, such as local development, internal architecture, and self-hosting;
 - canonical schemas, such as Lexicon JSON, from which this site generates its schema tables.
 
@@ -106,7 +106,7 @@ What happens on its own, and what someone has to do. If a step is not listed und
 - [ ] **A new record type:** create its page from the standard structure, then add it to `LEXICON_ROUTES` in `lib/lexicon-schema.js`, to `lib/navigation.js`, to the table on the section index page (`pages/lexicons/<namespace>/index.md`), and to the Lexicon inventory.
 - [ ] **A removed or renamed record type:** remove or rename its page, add redirects in `vercel.json`, and update the same four places.
 - [ ] **A new concept, or a change in how records are used together:** update the relevant Guide page and the Glossary.
-- [ ] **A new protocol major or minor release:** add an entry to `lib/protocol-releases.json`. Patch releases do not need one.
+- [ ] **A new protocol major or minor release:** review the Lexicon release PR before publishing. Deliberately edit its generated changelog into a human-readable summary and useful, attributable change list; do not treat the bot output as a complete release explanation. Draft a separate protocol note in `lib/protocol-releases.json` that explains the outcome, purpose, and compatibility without copying every technical item. Review it with the release and publish it after the Lexicon version is confirmed, with the source version and actual date. Patch releases remain in the Lexicon changelog, not as separate protocol notes.
 
 ### A new release of a running service
 

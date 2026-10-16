@@ -192,6 +192,7 @@ test('configures the Lexicon changelog as the releases page external source', ()
     title: 'Hypercerts Lexicon releases',
     description: 'Release history for the Hypercerts Lexicon schemas and TypeScript package.',
     externalDoc: 'hypercerts-lexicon-changelog',
+    repositoryLink: true,
   });
 });
 
@@ -213,7 +214,19 @@ test('configures API releases from the package changelog and scoped tag', () => 
     title: 'Hypercerts API Releases',
     description: 'Release history imported from the Hypercerts API repository.',
     externalDoc: 'api-changelog',
+    repositoryLink: true,
   });
+});
+
+test('release page links to its source repository in rendering and raw Markdown', () => {
+  const localMarkdown = '---\nexternalDoc: epds\nrepositoryLink: true\n---\n';
+  const frontmatter = parseMarkdownFrontmatter(localMarkdown);
+  const page = resolvePageDocument(frontmatter, localMarkdown, content);
+  assert.equal(page.markdown, '# Canonical ePDS docs\n\n[GitHub repository](https://github.com/hypercerts-org/ePDS)\n');
+  const compiled = compileExternalDocPage(frontmatter, localMarkdown, content, 'pages/epds.md');
+  assert.match(compiled, /# Canonical ePDS docs\n\n\[GitHub repository\]\(https:\/\/github.com\/hypercerts-org\/ePDS\)/);
+  const headingless = { sources: { epds: { ...snapshot, markdown: '## 1.0.0\n' } } };
+  assert.match(resolvePageDocument(frontmatter, localMarkdown, headingless).markdown, /^\[GitHub repository\]/);
 });
 
 test('compiles external Markdown with local frontmatter and generated source metadata', () => {
