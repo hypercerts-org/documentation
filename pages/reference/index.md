@@ -11,8 +11,8 @@ The Reference contains exact, source-backed details to look up while you build. 
 {% card-link title="Lexicons" href="/lexicons/introduction-to-lexicons" %}
 Schemas, examples, and usage conventions for every Hypercerts and Certified record.
 {% /card-link %}
-{% card-link title="XRPC API" href="/reference/xrpc-api" %}
-Queries and procedures of the released Hypercerts API.
+{% card-link title="API and indexer" href="/reference/services/hypercerts-api" %}
+How the Hypercerts API serves queries over indexed network records.
 {% /card-link %}
 {% card-link title="SDK" href="/reference/sdk" %}
 Exports, types, and versions of the Hypercerts SDK. Under development.

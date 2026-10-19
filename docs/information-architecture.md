@@ -15,7 +15,7 @@ The site has four sections, each with its own sidebar. The root page is a short 
 
 The Guide, the Lexicons, the API and SDK, and the release history together describe the protocol. There is no separate formal specification.
 
-Navigation is defined in `lib/navigation.js`. A section's entries can be grouped under an uppercase subsection heading with a `group` entry, as Reference does for Lexicons, XRPC API, SDK, and Services and tooling.
+Navigation is defined in `lib/navigation.js`. A section's entries can be grouped under an uppercase subsection heading with a `group` entry, as Reference does for Lexicons and Services and tooling. The SDK has its own page within Services and tooling, not a separate subsection.
 
 ## Guide
 
@@ -47,13 +47,13 @@ Avoid typing version numbers or counts into prose. They go stale silently. Let t
 
 The overview page has the architecture diagram, a table of components, and **the only list of running endpoints**. Service pages link to it and do not repeat hostnames in tables.
 
-Every service has one page with the same sections: Where it fits, AT Protocol background, How it works, Using it from your application, Status and source, Related. Each page has one short code example and is about 800 to 1,100 words.
+Service pages should introduce the service briefly, say where it fits, then give the implementation and integration facts a developer needs. Put essential AT Protocol context where it explains a specific behavior rather than in a separate background section. Link to canonical API and schema references instead of reproducing them. Keep examples short and remove repeated explanation; there is no target word count.
 
 The pages are written for a project integrating with Hypercerts. Deploying or operating a service is out of scope; each page links to the service's repository for that.
 
-### XRPC API and SDK
+### API and SDK
 
-The XRPC API is released. The local reference gives a quickstart and links to the hosted endpoint explorer for the current method schemas; it does not duplicate the full method catalog. The SDK remains under development, so its page describes what is available in the meantime.
+The API and indexer service page gives a quickstart and links to the hosted endpoint explorer for the current method schemas; it does not duplicate the full method catalog. The SDK remains under development, so its page describes what is available in the meantime.
 
 ## Releases
 
@@ -127,7 +127,7 @@ Applies to the Certified Group Service, Relay and Jetstream, Feed Service, Label
 Applies today to the SDK and Entryway, which remain **Under development**. The Hypercerts API's changelog and release metadata are imported from its repository.
 
 - [ ] Register its changelog in `docs-sources.yml` with `trackRelease: true`, set its `sourceId` in `lib/release-components.json`, and replace its page under `pages/releases/` with an `externalDoc` wrapper. [Build-time changelog imports](remote-markdown.md) has the steps.
-- [ ] Replace its placeholder page with real content: `pages/reference/xrpc-api.md`, `pages/reference/sdk.md`, or `pages/reference/services/entryway.md`. Split it into several pages and add them to `lib/navigation.js` if needed.
+- [ ] Replace its placeholder page with real content: `pages/reference/sdk.md` or `pages/reference/services/entryway.md`. Split it into several pages and add them to `lib/navigation.js` if needed.
 - [ ] Update its row in the components table and in **Running services** on the services overview.
 - [ ] Search the pages for "under development" and for the component's name, and update what is no longer true: the Client Integration info box and integration path, the Hypercerts API service page, the Glossary, and the FAQ.
 - [ ] Add the Client Integration guides the release makes possible.

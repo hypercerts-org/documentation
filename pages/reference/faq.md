@@ -67,4 +67,4 @@ If you know a record's address, read it directly from the account's repository. 
 
 ## Can I build on Hypercerts today?
 
-Yes. The record formats are released, and you can sign users in, write records to their repositories, read them back, and follow changes through Jetstream. Use the [Hypercerts API](/reference/xrpc-api) to query indexed records across accounts. The SDK is still under development. See [Client Integration](/client-integration) for integration guidance.
+Yes. The record formats are released, and you can sign users in, write records to their repositories, read them back, and follow changes through Jetstream. Use the [Hypercerts API](/reference/services/hypercerts-api) to query indexed records across accounts. The SDK is still under development. See [Client Integration](/client-integration) for integration guidance.

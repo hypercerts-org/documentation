@@ -125,7 +125,7 @@ Another name for an [activity claim](#activity-claim): a record describing a pie
 
 #### Hypercerts API
 
-The XRPC service applications use to query Hypercerts and Certified records across the network, served at [`api.hypercerts.dev`](https://api.hypercerts.dev). See [Hypercerts API](/reference/services/hypercerts-api) and [XRPC API](/reference/xrpc-api).
+The XRPC service applications use to query Hypercerts and Certified records across the network, served at [`api.hypercerts.dev`](https://api.hypercerts.dev). See [API and indexer](/reference/services/hypercerts-api) for how it works and the endpoint explorer.
 
 #### Hypercerts Protocol
 

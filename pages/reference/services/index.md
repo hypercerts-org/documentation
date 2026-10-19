@@ -1,13 +1,13 @@
 ---
 title: Services and tooling
-description: The services that make up the Hypercerts stack, how they fit together, and every running endpoint.
+description: The services and tooling in the Hypercerts stack, how they fit together, and every running endpoint.
 ---
 
 # Services and tooling
 
 Hypercerts records live in the repositories of the people and organizations who publish them, spread across many servers. A set of services, most of them operated by the Hypercerts Foundation, lets people sign in and publish records, and lets applications find and read them.
 
-This section describes each service at the level a project needs to integrate with Hypercerts: what it does, how it works, and how your application uses it. Applications can query indexed records through the [Hypercerts API](/reference/xrpc-api), or use the [SDK](/reference/sdk) where available. Running your own copy of a service is outside the scope of this documentation for now; each page links to the service's source code.
+This section describes the services and tooling a project needs to integrate with Hypercerts: what each does, how it works, and how your application uses it. Applications can query indexed records through the [Hypercerts API](/reference/services/hypercerts-api). The [SDK](/reference/sdk) is under development. Running your own copy of a service is outside the scope of this documentation for now; service pages link to their source code.
 
 {% stack-diagram /%}
 
@@ -20,7 +20,8 @@ This section describes each service at the level a project needs to integrate wi
 | [Entryway](/reference/services/entryway) | Signs users in to their Certified accounts | Under development; the Certified PDSs handle sign-in today |
 | [Certified Group Service](/reference/services/certified-group-service) | Lets several people manage one group account with different roles | Running |
 | [Relay and Jetstream](/reference/services/relay) | The relay collects record changes from PDSs across the network; Jetstream filters them down to Hypercerts and Certified records | Running |
-| [Indexer and Hypercerts API](/reference/services/hypercerts-api) | Serves XRPC queries over a searchable view of Hypercerts and Certified records | Running |
+| [API and indexer](/reference/services/hypercerts-api) | Serves XRPC queries over a searchable view of Hypercerts and Certified records | Running |
+| [SDK](/reference/sdk) | Client library for working with Hypercerts records and the API | Under development |
 | [Labelers](/reference/services/labelers) | Publish labels about records and accounts, such as "likely test data", that applications can query directly. <!-- Previously: Publish labels about records and accounts, such as "likely test data", that the Hypercerts API and applications can use --> | Running |
 | [Feed Service](/reference/services/feed-service) | Serves ready-made feeds of recent Hypercerts activity | Running |
 

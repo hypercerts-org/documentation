@@ -119,6 +119,16 @@
       "permanent": true
     },
     {
+      "source": "/reference/xrpc-api",
+      "destination": "/reference/services/hypercerts-api",
+      "permanent": true
+    },
+    {
+      "source": "/raw/reference/xrpc-api.md",
+      "destination": "/raw/reference/services/hypercerts-api.md",
+      "permanent": true
+    },
+    {
       "source": "/raw/reference/services/indexer.md",
       "destination": "/raw/reference/services/hypercerts-api.md",
       "permanent": true
