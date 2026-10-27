@@ -62,6 +62,7 @@ The profile of a community energy cooperative, with an uploaded avatar and a ban
 - **A website is a claim.** `website` states which site the account associates with itself; it doesn't prove the account controls that site. A custom domain handle is a stronger signal; see [Account & Identity Setup](/architecture/account-and-identity).
 - **Handle both image forms.** `avatar` and `banner` each accept either an uploaded image blob or a URI. Applications that display profiles need to support both. A blob is stored in the account's repository and identified by its content hash; a URI points elsewhere and its content can change without the record changing.
 - **Profiles are public.** Anyone can read everything in the record. Keep personal details to what the account wants to share publicly.
+- **Declare the text's language with `langs`.** List up to three BCP-47 tags (such as `es` or `pt-BR`) for the language the author actually wrote in, and let the author correct it. Don't derive it from the interface language or a profile preference. Readers treat it as a hint: don't hide a record because it has no `langs`.
 
 ## Related
 

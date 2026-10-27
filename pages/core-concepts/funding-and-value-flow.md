@@ -11,7 +11,7 @@ The funder can then make a decision using its own priorities and process. Hyperc
 
 ## Record support for the work
 
-A **funding receipt** describes a funding payment. It records a recipient, amount, currency, and creation time. It can also name the sender, link to the activity or project supported, and include payment details such as a transaction identifier.
+A **funding receipt** describes a funding payment. It records a recipient and a creation time, and usually the amount and currency. It can also name the sender, the kind of payment, the platform or intermediary that handled it, link to the activity or project supported, and include payment details such as a transaction identifier.
 
 A funding platform, facilitator, funder, or recipient can publish a receipt. That flexibility makes it useful across different funding arrangements. A reader should be able to see who published the receipt as well as the parties it names.
 
