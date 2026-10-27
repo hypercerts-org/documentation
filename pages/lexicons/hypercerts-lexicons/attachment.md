@@ -18,6 +18,7 @@ An attachment gives readers something to inspect. It does not by itself prove an
 - **A project documents its work.** The team publishes an installation report, progress photos, or a dataset and lists the activity in `subjects`.
 - **Third parties add material.** An auditor, partner, or community member publishes an attachment in their own repository pointing at someone else's activity. It stays associated with its publisher, not with the owner of the activity.
 - **One attachment, several subjects.** The same report can give context to several activities, or to an activity and the evaluation that relied on it.
+- **Authors post updates.** A person or organization posts a standalone update, one not about any particular project, as an attachment whose `subjects` point at the author's own [profile](/lexicons/certified-lexicons/profile). A project update is the same record with `subjects` pointing at the project. There is no separate post record.
 - **Material can come first.** `subjects` is optional, so a file can be published before the record it will support exists.
 - **Applications find attachments by indexing.** Records don't list their attachments. An indexer finds attachments by looking for records whose `subjects` point to a given record.
 
@@ -75,15 +76,17 @@ A community energy project attaching its installation report and a photo album t
 ## Rules and best practices
 
 - **Title and describe the material.** Readers often see only the title and short description in a list. Say what the material is and who prepared it, so a plan isn't mistaken for a report of completed work.
-- **Use `contentType` to say what kind of material it is.** The known values are `report`, `audit`, `evidence`, `testimonial`, and `methodology`; other values are allowed. The label describes the material but doesn't verify it: an attachment labelled `audit` does not make its subject audited.
+- **Use `contentType` to say what kind of material it is.** The known values are `update`, `report`, `audit`, `evidence`, `testimonial`, and `methodology`; other values are allowed. Use `update` for narrative updates. The label describes the material but doesn't verify it: an attachment labelled `audit` does not make its subject audited.
 - **Prefer uploaded files for material that must not change.** A `smallBlob` item is stored in the publisher's repository and addressed by its content hash, so the record's CID commits to those exact bytes. A `uri` item points somewhere else, and the content there can change or disappear. Applications can show readers which kind each item is.
 - **Mind the size limit.** Each blob item is limited to 10 MB (the `smallBlob` definition). Link to larger files with a `uri` item instead.
+- **Match profile subjects by URI.** Profiles are edited, so a strong reference to a profile soon pins an older version. When collecting an account's updates, take attachments published in that account's own repository and match the subject's `uri`, not its `cid`. Anyone can publish an attachment about a profile, so matching the URI alone would include third-party attachments.
 - **Strong references pin a version.** Each entry in `subjects` points to a specific version of the subject. If the subject is edited, the attachment still refers to the version it was written about.
 - **Don't edit an attachment to swap its material.** Other records may point to a specific version of the attachment. To publish revised material, create a new attachment.
 - **Link material that came first.** If you published an attachment before its subject existed, publish a new attachment naming the subject once it does, rather than editing the original.
 - **Use `location` for where the subject matter happened.** It points to an [`app.certified.location`](/lexicons/certified-lexicons/location) record, for example the site where photos were taken.
 - **Render any attachment from its title.** Applications can display an attachment from `title` and `createdAt` alone. Don't hide it because a subject can't be resolved or its content can't be fetched.
 - **Use the inline description unless you need structure.** `descriptionString` is the simplest variant and the one applications are most likely to render. The Leaflet document and strong-reference variants are for rich or externally maintained descriptions.
+- **Declare the text's language with `langs`.** List up to three BCP-47 tags (such as `es` or `pt-BR`) for the language the author actually wrote in, and let the author correct it. Don't derive it from the interface language or a profile preference. Readers treat it as a hint: don't hide a record because it has no `langs`.
 
 ## Related
 

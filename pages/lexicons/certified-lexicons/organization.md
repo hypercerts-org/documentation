@@ -63,6 +63,7 @@ The organization record for the community energy cooperative whose [profile](/le
 - **Link labels are chosen by the account.** A `urls` entry pairs a URL with an optional label written by the same account. Show the destination host when rendering a labeled link so people know where it goes.
 - **`visibility` is a preference.** `unlisted` asks platforms that honor the setting to leave the organization out of directories and search. The record is still public and readable by anyone.
 - **Pick a `longDescription` form.** Use the inline description string for plain text or markdown. Use an embedded Leaflet document for structured content, or a strong reference to an existing document record. Applications that can't render a form can fall back to the profile's description.
+- **Declare the text's language with `langs`.** List up to three BCP-47 tags (such as `es` or `pt-BR`) for the language the author actually wrote in, and let the author correct it. Don't derive it from the interface language or a profile preference. Readers treat it as a hint: don't hide a record because it has no `langs`.
 
 ## Related
 

@@ -88,6 +88,7 @@ A community energy project describing the installation phase of its solar array:
 - **Use a plain-text work scope unless software needs to reason about it.** The structured CEL form is for applications that compare or combine scopes; see [Describing and Classifying Work](/core-concepts/cel-work-scopes).
 - **Strong references pin a version.** `locations` and `rights` point to a specific version of the referenced record. If that record changes, update the reference to point at the new version.
 - **Editing changes the CID.** Evaluations and other records that referenced the earlier version keep pointing to it. Readers should be told when an assessment concerns an older version; see [Records That Change Over Time](/architecture/data-flow-and-lifecycle).
+- **Declare the text's language with `langs`.** List up to three BCP-47 tags (such as `es` or `pt-BR`) for the language the author actually wrote in, and let the author correct it. Don't derive it from the interface language or a profile preference. Readers treat it as a hint: don't hide a record because it has no `langs`.
 
 ## Related
 

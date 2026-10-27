@@ -69,6 +69,7 @@ A land restoration project describing one of its zones:
 - **Use `sameAs` for identity only.** Point it at an identifier for the subject in the external register, preferably a stable identifier rather than a web page about it. Mappings between classification terms belong on vocabulary tags.
 - **Co-membership is not a location claim.** An activity and a feature in the same collection are grouped, nothing more. Don't infer that the activity took place at the feature's location unless the activity says so, for example through its own `locations`.
 - **Check the subject's type.** Measurement and evaluation subjects are untyped strong references, so an application reading them determines from the resolved record whether it is an activity, a feature, or something else.
+- **Declare the text's language with `langs`.** List up to three BCP-47 tags (such as `es` or `pt-BR`) for the language the author actually wrote in, and let the author correct it. Don't derive it from the interface language or a profile preference. Readers treat it as a hint: don't hide a record because it has no `langs`.
 
 ## Related
 
