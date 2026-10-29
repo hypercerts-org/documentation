@@ -1,5 +1,20 @@
 [
   {
+    "version": "1.6",
+    "date": "2026-10-27",
+    "title": "Clearer funding receipts, multilingual updates, and app provenance",
+    "cardSummary": "Distinguish funds sent from funds received, publish updates beyond a single project, declare content languages, and sign records as the app that wrote them.",
+    "summary": "This release helps applications share a clearer picture of funding and ongoing work. Funding platforms can describe what a donor paid and what a recipient received without guessing missing amounts. People and organizations have an explicit way to publish updates beyond a single project. Language hints and application signatures help other apps interpret and attribute that content when they read it elsewhere on AT Protocol.",
+    "changes": [
+      "**Funding receipts that reflect real payment flows.** A donation can pass through a platform, incur fees, or arrive in another currency. Receipts now distinguish the gross amount paid from the net amount received, each with its own currency, and can record only what is known. They can identify an intermediary and distinguish donations, matching funds, and grants. Shared guidance separates payment methods from networks and explains when an onward payment is a separate grant rather than another receipt for the same donation. Omitting a donor's name does not make a public transaction hash anonymous. [#263](https://github.com/hypercerts-org/hypercerts-lexicon/pull/263)",
+      "**Updates without inventing a project.** People and organizations can publish a standalone update using the existing attachment record, with their own profile as its subject. Project updates use the same record, pointing at the project instead. The new `update` content type lets apps distinguish narrative posts from reports and evidence without maintaining a separate post format. This clarifies an existing use, rather than introducing a new record type. [#267](https://github.com/hypercerts-org/hypercerts-lexicon/pull/267)",
+      "**Language hints for multilingual applications.** Projects and other collections, activities, attachments, features, profiles, and organization records can declare up to three languages in `langs`, using the same format as Bluesky posts. This helps readers prioritize translation and indexing. The tags describe the author's original text, not their interface language, and remain hints: missing or incorrect tags are not a reason to hide a record. [#266](https://github.com/hypercerts-org/hypercerts-lexicon/pull/266)",
+      "**A verifiable link to the app that wrote a record.** An optional `createdVia` signature lets an application identify itself as the writer of that version, even when the record lives in a user's repository. Readers can use it to attribute content across apps, but only after verifying the signature and checking that its key belongs to the expected application. It identifies the writing app, not an endorsement or a guarantee that the content is true. [#268](https://github.com/hypercerts-org/hypercerts-lexicon/pull/268)"
+    ],
+    "compatibility": "Existing records remain valid, but receipt readers need attention: `amount` and `currency` are now optional. Update validation, types, and display logic before consuming receipts that omit them; older schemas may reject these receipts. For existing receipts, review the clarified meaning of `amount` as gross paid, not net received. Signing integrations should follow the [corrected procedure in the Lexicon README](https://github.com/hypercerts-org/hypercerts-lexicon/blob/v1.6.0/README.md#cryptographic-signatures): the signed metadata includes the key and the DID of the repository holding the record. Signatures made using the previous example fail verification against the attestation specification and need to be recreated; remote proof CID calculation was also corrected.",
+    "sourceVersion": "1.6.0"
+  },
+  {
     "version": "1.5",
     "date": "2026-10-05",
     "title": "Richer organization profiles, time-bound badges, and classified attachments",
