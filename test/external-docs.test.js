@@ -203,7 +203,7 @@ test('configures API releases from the package changelog and scoped tag', () => 
     title: 'Hypercerts API changelog',
     repo: 'hypercerts-org/api',
     ref: 'main',
-    path: 'api/CHANGELOG.md',
+    path: 'happyview-modules/CHANGELOG.md',
     trackRelease: true,
     releaseTagPrefix: '@hypercerts-org/hypercerts-api@',
   });

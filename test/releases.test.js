@@ -11,7 +11,7 @@ function sources() {
     id: component.sourceId,
     repo: `hypercerts-org/${component.id}`,
     ref: 'main',
-    path: component.id === 'api' ? 'api/CHANGELOG.md' : 'CHANGELOG.md',
+    path: component.id === 'api' ? 'happyview-modules/CHANGELOG.md' : 'CHANGELOG.md',
     trackRelease: true,
     ...(component.id === 'api' ? { releaseTagPrefix: '@hypercerts-org/hypercerts-api@' } : {}),
     release: component.id === 'relay' ? null : {
@@ -35,7 +35,7 @@ test('component versions are independent of the protocol line and missing releas
   assert.equal(byId.api.version, '0.1.0');
   assert.equal(byId.api.label, 'v0.1.0');
   assert.equal(byId.api.releaseUrl, 'https://github.com/hypercerts-org/api/releases/tag/%40hypercerts-org%2Fhypercerts-api%400.1.0');
-  assert.equal(byId.api.changelogUrl, 'https://github.com/hypercerts-org/api/blob/main/api/CHANGELOG.md');
+  assert.equal(byId.api.changelogUrl, 'https://github.com/hypercerts-org/api/blob/main/happyview-modules/CHANGELOG.md');
   for (const id of ['sdk', 'entryway', 'relay']) {
     assert.equal(byId[id].version, null);
     assert.equal(byId[id].label, 'Under development');
