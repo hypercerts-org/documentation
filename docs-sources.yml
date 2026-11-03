@@ -10,7 +10,7 @@ sources:
     title: Hypercerts API changelog
     repo: hypercerts-org/api
     ref: main
-    path: api/CHANGELOG.md
+    path: happyview-modules/CHANGELOG.md
     trackRelease: true
     releaseTagPrefix: '@hypercerts-org/hypercerts-api@'
 
