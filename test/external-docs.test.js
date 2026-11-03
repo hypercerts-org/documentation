@@ -186,7 +186,7 @@ test('configures the Lexicon changelog as the releases page external source', ()
     trackRelease: true,
   });
 
-  const pagePath = join(__dirname, '..', 'pages', 'reference', 'releases.md');
+  const pagePath = join(__dirname, '..', 'pages', 'releases', 'lexicon.md');
   const page = readFileSync(pagePath, 'utf8');
   assert.deepEqual(parseMarkdownFrontmatter(page), {
     title: 'Hypercerts Lexicon releases',
