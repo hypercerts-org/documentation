@@ -173,8 +173,8 @@ importers:
         specifier: 1.6.0
         version: 1.6.0(@atproto/xrpc@0.8.13)
       '@hypercerts-org/ui-react':
-        specifier: 0.2.0
-        version: 0.2.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: 0.2.1
+        version: 0.2.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@markdoc/markdoc':
         specifier: ^0.5.9
         version: 0.5.9(react@19.3.0)
@@ -264,8 +264,8 @@ packages:
     peerDependencies:
       '@atproto/xrpc': '*'
 
-  '@hypercerts-org/ui-react@0.2.0':
-    resolution: {integrity: sha512-3/8PJluH07euvnAliQaIYGsVrrpTApeo/NgwoHMQpRTf8PXOagoEhnv/NffSgJNfTKao5ShKLCk5F5I6gpKLLw==}
+  '@hypercerts-org/ui-react@0.2.1':
+    resolution: {integrity: sha512-35LCjkF/5PKN0Zz/rMO7WG6yS2JZB/26FuQw392daRTQ6vytaeoE0d1yTMuNhG+yA3M5Q2joxAPPwVGTGu2Y+Q==}
     engines: {node: '>=20.12.0'}
     peerDependencies:
       react: ^19.0.0
@@ -1150,7 +1150,7 @@ snapshots:
       '@atproto/xrpc': 0.8.13
       multiformats: 13.4.2
 
-  '@hypercerts-org/ui-react@0.2.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@hypercerts-org/ui-react@0.2.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
       lucide-react: 0.468.0(react@19.3.0)
       react: 19.3.0
