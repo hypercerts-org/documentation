@@ -205,7 +205,7 @@ test('configures API releases from the package changelog and scoped tag', () => 
     ref: 'main',
     path: 'happyview-modules/CHANGELOG.md',
     trackRelease: true,
-    releaseTagPrefix: '@hypercerts-org/hypercerts-api@',
+    releaseTagPrefix: '@hypercerts-org/happyview-modules@',
   });
 
   const pagePath = join(__dirname, '..', 'pages', 'releases', 'api.md');
