@@ -2,7 +2,7 @@
   {
     "id": "lexicons",
     "title": "Lexicons",
-    "path": "/reference/releases",
+    "path": "/releases/lexicon",
     "sourceId": "hypercerts-lexicon-changelog",
     "description": "Shared record schemas, types, and permission sets."
   },

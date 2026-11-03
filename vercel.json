@@ -212,6 +212,16 @@
       "source": "/raw/roadmap.md",
       "destination": "/raw/releases.md",
       "permanent": true
+    },
+    {
+      "source": "/reference/releases",
+      "destination": "/releases/lexicon",
+      "permanent": true
+    },
+    {
+      "source": "/raw/reference/releases.md",
+      "destination": "/raw/releases/lexicon.md",
+      "permanent": true
     }
   ]
 }
