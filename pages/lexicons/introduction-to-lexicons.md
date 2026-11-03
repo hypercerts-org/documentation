@@ -31,42 +31,44 @@ Each record type has a page with the same sections:
 
 ## Validate records before writing
 
-The Hypercerts lexicons are published as the `@hypercerts-org/lexicon` package. Use it in TypeScript or JavaScript applications to import schema constants and validate records before creating or updating them on a PDS.
+The Hypercerts lexicons are published as the `@hypercerts-org/lexicon` package. It exports a schema and TypeScript type for every lexicon, for use with the [`@atproto/lex`](https://www.npmjs.com/package/@atproto/lex) client. Use them to type records and validate them before creating or updating them on a PDS.
 
 ```bash
-pnpm add @hypercerts-org/lexicon
+pnpm add @hypercerts-org/lexicon @atproto/lex
 ```
 
 ```typescript
-import {
-  ACTIVITY_NSID,
-  OrgHypercertsClaimActivity,
-} from "@hypercerts-org/lexicon";
+import { Client, currentDatetimeString } from "@atproto/lex";
+import { org } from "@hypercerts-org/lexicon";
 
-const record = {
-  $type: ACTIVITY_NSID,
-  title: "Hypercerts documentation: lexicon validation guidance",
-  shortDescription: "Added docs for validating Hypercerts records before writes.",
-  workScope: {
-    $type: "org.hypercerts.claim.activity#workScopeString",
-    scope: "Documentation",
+const client = new Client(session); // an authenticated OAuth session
+const activity = org.hypercerts.claim.activity;
+
+// validateRequest checks the record against the schema before it is sent.
+await client.create(
+  activity,
+  {
+    title: "Hypercerts documentation: lexicon validation guidance",
+    shortDescription:
+      "Added docs for validating Hypercerts records before writes.",
+    workScope: {
+      $type: "org.hypercerts.claim.activity#workScopeString",
+      scope: "Documentation",
+    },
+    startDate: "2026-06-02T00:00:00Z",
+    endDate: "2026-06-02T23:59:59Z",
+    createdAt: currentDatetimeString(),
   },
-  startDate: "2026-06-02T00:00:00Z",
-  endDate: "2026-06-02T23:59:59Z",
-  createdAt: new Date().toISOString(),
-};
+  { validateRequest: true },
+);
 
-const result = OrgHypercertsClaimActivity.validateRecord(record);
+// Records from elsewhere (a form, another API) must include their $type.
+const result = activity.$safeParse(input);
 if (!result.success) {
-  throw new Error(`Invalid ${ACTIVITY_NSID} record: ${String(result.error)}`);
+  throw new Error(`Invalid ${activity.$type} record: ${String(result.error)}`);
 }
-
-await agent.com.atproto.repo.createRecord({
-  repo: agent.did,
-  collection: ACTIVITY_NSID,
-  record,
-  validate: true,
-});
 ```
 
-Use the same validation step before `putRecord` when updating an existing record. A PDS can accept records that downstream indexers later ignore, so validating before writes prevents malformed records from entering your repository.
+`client.create` sets the record's `$type` from the schema. Pass the same `validateRequest` option to `client.put` when updating an existing record. A PDS can accept records that downstream indexers later ignore, so validating before writes prevents malformed records from entering your repository.
+
+Version 2.0 of the package introduced these schemas. Code written for 1.x can keep its API by importing from `@hypercerts-org/lexicon/legacy` instead; the package README's [migration guide](https://github.com/hypercerts-org/hypercerts-lexicon#migrating-from-1x) shows how the old names map to the new ones.
