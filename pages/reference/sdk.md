@@ -16,5 +16,6 @@ Once released, this section will cover the SDK's exports and types, validation a
 Until then:
 
 - The [`@hypercerts-org/lexicon`](https://www.npmjs.com/package/@hypercerts-org/lexicon) package provides the schemas, TypeScript types, and record validation. [Introduction to Lexicons](/lexicons/introduction-to-lexicons) shows how to validate a record before writing it.
+- The [`@hypercerts-org/api`](https://www.npmjs.com/package/@hypercerts-org/api) package provides typed queries for the Hypercerts API. [API and indexer](/reference/services/hypercerts-api#from-typescript) shows how to call it.
 - [Client Integration](/client-integration) describes what is available for building today.
 - Follow the SDK's status on [Releases](/releases/sdk).

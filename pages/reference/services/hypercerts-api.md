@@ -23,7 +23,7 @@ The API returns indexed views rather than bare records. Depending on the method,
 
 ## Using it from your application
 
-XRPC names each HTTP method with an NSID (Namespaced Identifier) at `/xrpc/<NSID>`. Queries use `GET` with URL parameters. The public read queries need no user session. Call them directly or use the [SDK](/reference/sdk) when available.
+XRPC names each HTTP method with an NSID (Namespaced Identifier) at `/xrpc/<NSID>`. Queries use `GET` with URL parameters. The public read queries need no user session. Call them directly, or from TypeScript with the `@hypercerts-org/api` package below.
 
 For example, retrieve an activity by its full AT-URI. Replace the placeholders with the DID and record key of an activity available to the API:
 
@@ -32,6 +32,28 @@ activity_uri='at://<author-did>/org.hypercerts.claim.activity/<record-key>'
 curl --get 'https://api.hypercerts.dev/xrpc/org.hypercerts.claim.getActivity' \
   --data-urlencode "uri=$activity_uri"
 ```
+
+### From TypeScript
+
+[`@hypercerts-org/api`](https://www.npmjs.com/package/@hypercerts-org/api) provides typed definitions of every query for the [`@atproto/lex`](https://www.npmjs.com/package/@atproto/lex) client. Each query sits at its NSID path, with typed parameters and response views; the records inside the views have the types from [`@hypercerts-org/lexicon`](/lexicons/introduction-to-lexicons).
+
+```bash
+pnpm add @hypercerts-org/api @hypercerts-org/lexicon @atproto/lex
+```
+
+```typescript
+import { Client } from "@atproto/lex";
+import { org } from "@hypercerts-org/api";
+
+const api = new Client("https://api.hypercerts.dev", { validateResponse: false });
+
+const { activity } = await api.call(org.hypercerts.claim.getActivity, {
+  uri: "at://<author-did>/org.hypercerts.claim.activity/<record-key>",
+});
+console.log(activity.record.title);
+```
+
+`Client` validates responses against the lexicons by default. The API can still return some records that fail their lexicon, and one such record fails a whole list response, so turn response validation off for now (`validateResponse: false`) and read fields defensively. See the [package README](https://github.com/hypercerts-org/api/tree/main/packages/api#response-validation). The package's versions are listed under [Hypercerts API types releases](/releases/api-types).
 
 The API is for indexed reads, not repository writes. New or updated records may take time to appear.
 
@@ -43,4 +65,4 @@ Choose another read path when it better fits your use case:
 
 ## Status and source
 
-Production endpoint: [`api.hypercerts.dev`](https://api.hypercerts.dev). See [Hypercerts API releases](/releases/api) for its changelog and the [API repository](https://github.com/hypercerts-org/api) for source code.
+Production endpoint: [`api.hypercerts.dev`](https://api.hypercerts.dev). See [Hypercerts API releases](/releases/api) for the service's changelog, [Hypercerts API types releases](/releases/api-types) for the `@hypercerts-org/api` package, and the [API repository](https://github.com/hypercerts-org/api) for source code.

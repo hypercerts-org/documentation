@@ -15,6 +15,13 @@
     "unreleasedLabel": "Production (unreleased)"
   },
   {
+    "id": "api-types",
+    "title": "Hypercerts API types",
+    "path": "/releases/api-types",
+    "description": "The @hypercerts-org/api npm package: typed query definitions for calling the Hypercerts API with @atproto/lex.",
+    "sourceId": "api-types-changelog"
+  },
+  {
     "id": "sdk",
     "title": "Hypercerts SDK",
     "path": "/releases/sdk",

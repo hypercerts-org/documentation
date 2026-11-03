@@ -218,6 +218,22 @@ test('configures API releases from the package changelog and scoped tag', () => 
   });
 });
 
+test('configures the API types package releases from its own changelog and scoped tag', () => {
+  const source = loadExternalDocSources().find(({ id }) => id === 'api-types-changelog');
+  assert.deepEqual(source, {
+    id: 'api-types-changelog',
+    title: 'Hypercerts API types changelog',
+    repo: 'hypercerts-org/api',
+    ref: 'main',
+    path: 'packages/api/CHANGELOG.md',
+    trackRelease: true,
+    releaseTagPrefix: '@hypercerts-org/api@',
+  });
+
+  const page = readFileSync(join(__dirname, '..', 'pages', 'releases', 'api-types.md'), 'utf8');
+  assert.equal(parseMarkdownFrontmatter(page).externalDoc, 'api-types-changelog');
+});
+
 test('release page links to its source repository in rendering and raw Markdown', () => {
   const localMarkdown = '---\nexternalDoc: epds\nrepositoryLink: true\n---\n';
   const frontmatter = parseMarkdownFrontmatter(localMarkdown);
