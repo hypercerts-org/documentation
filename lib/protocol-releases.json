@@ -1,5 +1,19 @@
 [
   {
+    "version": "2.0",
+    "date": "2026-11-03",
+    "title": "Schemas for the modern AT Protocol client, with no record changes",
+    "cardSummary": "Type, validate, and write records with schemas for the modern @atproto/lex client. No record changed; the 1.x TypeScript API moves to /legacy.",
+    "summary": "This release changes how applications use the Hypercerts lexicons from TypeScript, not the records themselves. No lexicon changed, and every existing record remains valid. The protocol version follows the Lexicon package, and the package's new major version marks a breaking change for code that imports it.",
+    "changes": [
+      "**Schemas and types for the modern AT Protocol client.** The package now exports a schema and TypeScript type for every lexicon, for use with the [`@atproto/lex`](https://www.npmjs.com/package/@atproto/lex) client and in the NSID layout its documentation uses. `client.create(org.hypercerts.claim.activity, …)` writes a typed record, and `org.hypercerts.claim.activity.$safeParse(record)` validates one. Applications type and validate records the same way the AT Protocol's own tooling does, instead of through a second generated API. [#270](https://github.com/hypercerts-org/hypercerts-lexicon/pull/270)",
+      "**Validation checks the record type.** `$safeParse` requires the record's `$type`, which the 1.x `validate()` did not. Records read from a repository already carry it; data from forms or other APIs needs it added before checking, so a record cannot pass as a different type.",
+      "**The 1.x API moves to `/legacy`.** The previous types, validators, and NSID constants are unchanged at `@hypercerts-org/lexicon/legacy`, published as ESM and CommonJS. They are deprecated and will be removed in a later major version."
+    ],
+    "compatibility": "Records and stored data need no changes. Code that imports `@hypercerts-org/lexicon` needs one of two updates: change its imports to `@hypercerts-org/lexicon/legacy` to keep the 1.x API, including `require()`, or move to the new schemas using the [migration guide in the Lexicon README](https://github.com/hypercerts-org/hypercerts-lexicon/blob/v2.0.0/README.md#migrating-from-1x). The package root is ESM only, requires `@atproto/lex` ^0.4.2 as a peer dependency, and requires Node.js 22 or later. Data checked with `$safeParse` must include its `$type`.",
+    "sourceVersion": "2.0.0"
+  },
+  {
     "version": "1.6",
     "date": "2026-10-27",
     "title": "Clearer funding receipts, multilingual updates, and app provenance",
