@@ -129,7 +129,7 @@ test('published stable release metadata is captured in the build snapshot', asyn
   assert.equal(snapshot.release.url, 'https://github.com/hypercerts-org/ePDS/releases/tag/v1.4.12');
 });
 
-test('tracks the API release behind its scoped package tag and rejects another package prefix', async context => {
+test('tracks the API release behind its scoped package tag among the repository\'s other packages', async context => {
   const originalFetch = global.fetch;
   context.after(() => { global.fetch = originalFetch; });
   const apiSource = {
@@ -137,25 +137,31 @@ test('tracks the API release behind its scoped package tag and rejects another p
     title: 'Hypercerts API changelog',
     repo: 'hypercerts-org/api',
     ref: 'main',
-    path: 'api/CHANGELOG.md',
+    path: 'happyview-modules/CHANGELOG.md',
     trackRelease: true,
-    releaseTagPrefix: '@hypercerts-org/hypercerts-api@',
+    releaseTagPrefix: '@hypercerts-org/happyview-modules@',
   };
-  const snapshotForTag = tag => {
-    global.fetch = async url => String(url).endsWith('/releases/latest')
-      ? response({ json: { tag_name: tag, published_at: '2026-10-06T16:12:16Z', draft: false, prerelease: false } })
-      : String(url).includes('/commits?') ? response({ json: [] }) : response({ text: '# @hypercerts-org/hypercerts-api\n\n## 0.1.0' });
+  const release = (tag, extra = {}) => ({ tag_name: tag, published_at: '2026-11-03T09:22:45Z', draft: false, prerelease: false, ...extra });
+  const snapshotFor = releases => {
+    global.fetch = async url => String(url).includes('/releases?')
+      ? response({ json: releases })
+      : String(url).includes('/commits?') ? response({ json: [] }) : response({ text: '# @hypercerts-org/happyview-modules\n\n## 0.3.0' });
     return collectSourceSnapshot(apiSource);
   };
 
-  const snapshot = await snapshotForTag('@hypercerts-org/hypercerts-api@0.1.0');
-  assert.equal(snapshot.release.version, '0.1.0');
-  assert.equal(snapshot.release.url, 'https://github.com/hypercerts-org/api/releases/tag/%40hypercerts-org%2Fhypercerts-api%400.1.0');
-  assert.equal(snapshot.path, 'api/CHANGELOG.md');
-  await assert.rejects(
-    () => snapshotForTag('@hypercerts-org/another-package@0.1.0'),
-    /stable semantic release tag/,
-  );
+  // The repository's newest release belongs to another package; the API's is found by its prefix.
+  const snapshot = await snapshotFor([
+    release('@hypercerts-org/api@0.1.0'),
+    release('@hypercerts-org/happyview-modules@0.4.0-beta.1', { prerelease: true }),
+    release('@hypercerts-org/happyview-modules@0.3.0'),
+    release('@hypercerts-org/hypercerts-api@0.2.0'),
+  ]);
+  assert.equal(snapshot.release.version, '0.3.0');
+  assert.equal(snapshot.release.url, 'https://github.com/hypercerts-org/api/releases/tag/%40hypercerts-org%2Fhappyview-modules%400.3.0');
+  assert.equal(snapshot.path, 'happyview-modules/CHANGELOG.md');
+  assert.equal(await snapshotFor([]).then(item => item.release), null);
+  await assert.rejects(() => snapshotFor([release('@hypercerts-org/api@0.1.0')]), /No stable release of api-changelog/);
+  await assert.rejects(() => snapshotFor([release('@hypercerts-org/happyview-modules@0.3')]), /stable semantic release tag/);
 });
 
 test('an accessible repository without a GitHub release is explicitly unreleased', async context => {

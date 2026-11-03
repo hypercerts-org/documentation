@@ -13,7 +13,7 @@ function sources() {
     ref: 'main',
     path: component.id === 'api' ? 'happyview-modules/CHANGELOG.md' : 'CHANGELOG.md',
     trackRelease: true,
-    ...(component.id === 'api' ? { releaseTagPrefix: '@hypercerts-org/hypercerts-api@' } : {}),
+    ...(component.id === 'api' ? { releaseTagPrefix: '@hypercerts-org/happyview-modules@' } : {}),
     release: component.id === 'relay' ? null : {
       version: component.id === 'lexicons' ? '2.0.0' : component.id === 'api' ? '0.1.0' : '0.6.0',
       url: component.id === 'api'
