@@ -39,10 +39,9 @@ pnpm add @hypercerts-org/lexicon @atproto/lex
 
 ```typescript
 import { Client, currentDatetimeString } from "@atproto/lex";
-import { org } from "@hypercerts-org/lexicon";
+import * as activity from "@hypercerts-org/lexicon/org/hypercerts/claim/activity";
 
 const client = new Client(session); // an authenticated OAuth session
-const activity = org.hypercerts.claim.activity;
 
 // validateRequest checks the record against the schema before it is sent.
 await client.create(
@@ -69,6 +68,6 @@ if (!result.success) {
 }
 ```
 
-`client.create` sets the record's `$type` from the schema. Pass the same `validateRequest` option to `client.put` when updating an existing record. A PDS can accept records that downstream indexers later ignore, so validating before writes prevents malformed records from entering your repository.
+Each schema is imported from its NSID path, so a bundle includes only the schemas you use; the package root also exports the whole tree (`import { org } from "@hypercerts-org/lexicon"`, then `org.hypercerts.claim.activity`) but can pull much more of the package into a bundle. `client.create` sets the record's `$type` from the schema. Pass the same `validateRequest` option to `client.put` when updating an existing record. A PDS can accept records that downstream indexers later ignore, so validating before writes prevents malformed records from entering your repository.
 
 Version 2.0 of the package introduced these schemas. Code written for 1.x can keep its API by importing from `@hypercerts-org/lexicon/legacy` instead; the package README's [migration guide](https://github.com/hypercerts-org/hypercerts-lexicon#migrating-from-1x) shows how the old names map to the new ones.
