@@ -1,3 +1,6 @@
+allowBuilds:
+  # The postinstall only prints a funding banner; no build is needed.
+  core-js: false
 minimumReleaseAgeExclude:
   - '@hypercerts-org/lexicon'
 overrides:
