@@ -57,3 +57,10 @@ Two notes for maintainers:
 - [hypercerts-lexicon](https://github.com/hypercerts-org/hypercerts-lexicon): the record schemas
 - [certified-group-service](https://github.com/hypercerts-org/certified-group-service), [hypercerts-relay](https://github.com/hypercerts-org/hypercerts-relay), [hypercerts-feed-service](https://github.com/hypercerts-org/hypercerts-feed-service): services in the stack
 - [certified-app](https://github.com/hypercerts-org/certified-app): the Certified account app
+
+## License
+
+- The documentation text is licensed under [CC BY 4.0](LICENSE). You may share and adapt it if you credit the Hypercerts Foundation, link to the license, and say whether you changed it.
+- The code, meaning the examples and snippets in the pages and the site's own source, is licensed under either [MIT](LICENSE-MIT) or [Apache-2.0](LICENSE-APACHE), at your option, so you can copy it straight into your own project.
+- The licenses don't cover the images (logos, wordmarks, and the guilloche ornament) or fonts in this repository: the images belong to their owners, and each font keeps its own license.
+- Some content on the site isn't stored here: the changelogs it imports from other repositories at build time (listed in `docs-sources.yml`), and the schema tables on the Lexicon pages, which are generated from the `@hypercerts-org/lexicon` package. Each keeps the license of the repository it comes from.
