@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "Hypercerts Protocol Documentation",
+  "license": "CC-BY-4.0 AND (MIT OR Apache-2.0)",
   "packageManager": "pnpm@12.6.0",
   "engines": {
     "node": ">=22.12.0"

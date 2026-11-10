@@ -57,3 +57,9 @@ Two notes for maintainers:
 - [hypercerts-lexicon](https://github.com/hypercerts-org/hypercerts-lexicon): the record schemas
 - [certified-group-service](https://github.com/hypercerts-org/certified-group-service), [hypercerts-relay](https://github.com/hypercerts-org/hypercerts-relay), [hypercerts-feed-service](https://github.com/hypercerts-org/hypercerts-feed-service): services in the stack
 - [certified-app](https://github.com/hypercerts-org/certified-app): the Certified account app
+
+## License
+
+- The documentation text is licensed under [CC BY 4.0](LICENSE). You may reuse it if you credit the Hypercerts Foundation.
+- The code, meaning the examples and snippets in the pages and the site's own source, is licensed under either [MIT](LICENSE-MIT) or [Apache-2.0](LICENSE-APACHE), at your option, so you can copy it straight into your own project.
+- The licenses don't cover the logos or fonts in this repository: logos belong to their owners, and each font keeps its own license.
