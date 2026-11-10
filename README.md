@@ -63,4 +63,4 @@ Two notes for maintainers:
 - The documentation text is licensed under [CC BY 4.0](LICENSE). You may share and adapt it if you credit the Hypercerts Foundation, link to the license, and say whether you changed it.
 - The code, meaning the examples and snippets in the pages and the site's own source, is licensed under either [MIT](LICENSE-MIT) or [Apache-2.0](LICENSE-APACHE), at your option, so you can copy it straight into your own project.
 - The licenses don't cover the logos, wordmarks, or fonts in this repository: logos and wordmarks belong to their owners, and each font keeps its own license.
-- Changelogs that the site imports from other repositories at build time (listed in `docs-sources.yml`) aren't stored here. Each keeps the license of the repository it comes from.
+- Some content on the site isn't stored here: the changelogs it imports from other repositories at build time (listed in `docs-sources.yml`), and the schema tables on the Lexicon pages, which are generated from the `@hypercerts-org/lexicon` package. Each keeps the license of the repository it comes from.
