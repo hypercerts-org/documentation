@@ -16,8 +16,8 @@
 }
 
 @font-face {
-  font-family: 'Switzer Variable';
-  src: url('/fonts/Switzer-Variable.woff2') format('woff2');
+  font-family: 'Hanken Grotesk';
+  src: url('/fonts/HankenGrotesk-Variable.woff2') format('woff2');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -105,8 +105,10 @@
  * `data-hc-theme="hypercerts"` on <html>). The names below are the site's own
  * aliases, so component rules never hold a brand value directly. */
 :root {
-  /* Font stacks */
-  --font-body: 'Switzer Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* Font stacks. `--font-body` also replaces the value @hypercerts-org/ui-react
+   * sets for it, so the package's components (via `--hc-font-body`) get
+   * Hanken Grotesk too. */
+  --font-body: 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
   --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
 
