@@ -170,8 +170,8 @@ importers:
   .:
     dependencies:
       '@hypercerts-org/lexicon':
-        specifier: 2.0.1
-        version: 2.0.1(@atproto/lex@0.4.4)
+        specifier: 2.1.0
+        version: 2.1.0(@atproto/lex@0.4.4)
       '@hypercerts-org/ui-react':
         specifier: 0.2.1
         version: 0.2.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -338,8 +338,8 @@ packages:
   '@emnapi/runtime@1.11.3':
     resolution: {integrity: sha512-Xz4Tpyki7XyrpbUK1jR1AhdAdaXyhhY4lZ3neLodmhpuWfy2PAQN5B46sAiU4liOXGLkHypn/qU+jvfWSCYYLA==}
 
-  '@hypercerts-org/lexicon@2.0.1':
-    resolution: {integrity: sha512-o0k1eNzc3Eta4FGYN6+8xngSu82yig8sYAT3QBqRtBO4wIQPfqkAWteAZDnz9hHtowj8wG5uZ4kvGvWhnjRiVw==}
+  '@hypercerts-org/lexicon@2.1.0':
+    resolution: {integrity: sha512-FC23XtWTCbjga85QWgramyDUpC0vPwNtDvzakxBrT+RDq2YNImtuH/DbIrLgA8jLCpdh4/LM2H/76xDUzglKqg==}
     engines: {node: '>=22'}
     peerDependencies:
       '@atproto/lex': ^0.4.2
@@ -1558,7 +1558,7 @@ snapshots:
       tslib: 2.8.1
     optional: true
 
-  '@hypercerts-org/lexicon@2.0.1(@atproto/lex@0.4.4)':
+  '@hypercerts-org/lexicon@2.1.0(@atproto/lex@0.4.4)':
     dependencies:
       '@atproto/lex': 0.4.4
       '@atproto/lexicon': 0.6.2

@@ -1,5 +1,19 @@
 [
   {
+    "version": "2.1",
+    "date": "2026-11-17",
+    "title": "A shared value for comments on attachments",
+    "cardSummary": "Attachments can be labelled as comments, so apps that store comments as attachments use one value. No schema shape changes.",
+    "summary": "This release adds one known value to the attachment lexicon. Apps that store a comment as an attachment can now label it the same way, and readers can tell comments from reports and other evidence.",
+    "changes": [
+      "**`comment` is a known attachment `contentType`.** Use it for a comment whose `subjects` point at the record it comments on. The schema shape does not change. [#279](https://github.com/hypercerts-org/hypercerts-lexicon/pull/279)",
+      "**Dual license.** The Lexicon package is now licensed under either MIT or Apache-2.0, at your option. Earlier versions stay MIT. [#281](https://github.com/hypercerts-org/hypercerts-lexicon/pull/281)",
+      "**Deep imports recommended.** The package documentation now recommends importing by NSID path instead of from the package root in libraries and bundled apps, for smaller bundles. [#274](https://github.com/hypercerts-org/hypercerts-lexicon/pull/274)"
+    ],
+    "compatibility": "No changes needed. Existing records remain valid, and `contentType` already accepts values outside its known list. Applications that show attachments can start treating `comment` as its own kind.",
+    "sourceVersion": "2.1.0"
+  },
+  {
     "version": "2.0",
     "date": "2026-11-03",
     "title": "Schemas for the modern AT Protocol client, with no record changes",
